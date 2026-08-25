@@ -1,0 +1,37 @@
+from typing import List, Optional
+from pydantic import BaseModel
+
+
+class QuickFacts(BaseModel):
+    duration: str = "~2h"
+    age_rating: str = "Wszyscy"
+    parking: str = "Dostępny w pobliżu obiektu"
+
+
+class TicketInfo(BaseModel):
+    time_start: str
+    venue_name: str
+    price_range: str
+
+
+class EventAnalysis(BaseModel):
+    category: str
+    badges: List[str]
+    organizer: str
+    editorial_lead: str           # Krótka zajawka na kafelki (bez limitu psującego walidację)
+    full_description: str        # Kompletny, nieskrócony opis do widoku "O wydarzeniu"
+    details_bullets: List[str]
+    quick_facts: QuickFacts
+    ticket_info: TicketInfo
+    address: str
+
+
+class FullEventPage(BaseModel):
+    slug: str
+    title: str
+    date_start: str
+    date_end: str
+    date_formatted: str
+    image_url: str
+    source_url: str
+    analysis: EventAnalysis

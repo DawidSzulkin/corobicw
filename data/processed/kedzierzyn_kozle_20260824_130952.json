@@ -1,0 +1,103 @@
+[
+  {
+    "slug": "2026-08-01-parkrun-kędzierzyn-koźle",
+    "title": "parkrun Kędzierzyn-kOŹLE",
+    "date_formatted": "2026-08-01",
+    "raw_date": "2026-08-01",
+    "image_url": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80",
+    "source_url": "https://kedzierzynkozle.pl/pl/wydarzenie/parkrun-kedzierzyn-kozle-111",
+    "analysis": {
+      "category": "Dla Dzieci",
+      "badges": [
+        "Kategoria",
+        "Wstęp bezpłatny"
+      ],
+      "organizer": "np. Urząd Miasta Kędzierzyna-Koźla",
+      "editorial_lead": "Parkrun Kędzierzyn-Koźle to wydarzenie bezpłatne dla dzieci i ich rodziców, gdzie uczestnicy biegną po 5 km w ciągu 30 minut.",
+      "details_bullets": [
+        "Biegnij po 5 km",
+        "Wyścig dla dzieci",
+        "Biegnij z rodzicami"
+      ],
+      "quick_facts": {
+        "duration": "~30m",
+        "age_rating": "Brak ograniczeń",
+        "parking": "Parking miejski przy obiekcie"
+      },
+      "ticket_info": {
+        "time_start": "10:00 lub Całodniowe",
+        "doors_open": "9:30",
+        "venue_name": "Park Kędzierzyn-Koźle",
+        "price_range": "Wstęp bezpłatny"
+      },
+      "address": "Park Kędzierzyn-Koźle, ul. Jana Pawła II 22, Kędzierzyn-Koźle"
+    }
+  },
+  {
+    "slug": "2026-08-01-wielki-finał-30-grand-prix-opo",
+    "title": "Wielki Finał 30 Grand Prix Opolszczyzny w siatkówce plażowej kobiet i mężczyzn",
+    "date_formatted": "2026-08-01",
+    "raw_date": "2026-08-01",
+    "image_url": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80",
+    "source_url": "https://kedzierzynkozle.pl/pl/wydarzenie/wielki-final-30-grand-prix-opolszczyzny-w-siatkowce-plazowej-kobiet-i-mezczyzn",
+    "analysis": {
+      "category": "Sport",
+      "badges": [
+        "Koncert / Teatr / Sport / Kino / Dla Dzieci"
+      ],
+      "organizer": "np. Miejski Ośrodek Kultury / MOSiR / Urząd Miasta",
+      "editorial_lead": "Finał 30 Grand Prix Opolszczyzny w siatkówce plażowej kobiet i mężczyzn. Zawody trwają 2026-08-01.",
+      "details_bullets": [
+        "Finał 30 Grand Prix Opolszczyzny w siatkówce plażowej kobiet i mężczyzn",
+        "Zawody trwają 2026-08-01",
+        "Występy kobiet i mężczyzn"
+      ],
+      "quick_facts": {
+        "duration": "~2h",
+        "age_rating": "Brak ograniczeń",
+        "parking": "Parking miejski przy obiekcie"
+      },
+      "ticket_info": {
+        "time_start": "18:00 lub Całodniowe",
+        "doors_open": "17:30",
+        "venue_name": "np. Hala Azoty",
+        "price_range": "Wstęp bezpłatny"
+      },
+      "address": "np. al. Jana Pawła II 22 / Rynek, Kędzierzyn-Koźle"
+    }
+  },
+  {
+    "slug": "2026-08-01-mashadö-w-klubie-bababoo",
+    "title": "MASHADÖ W KLUBIE BABABOO",
+    "date_formatted": "2026-08-01",
+    "raw_date": "2026-08-01",
+    "image_url": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80",
+    "source_url": "https://kedzierzynkozle.pl/pl/wydarzenie/mashado-w-klubie-bababoo",
+    "analysis": {
+      "category": "Dla Dzieci",
+      "badges": [
+        "Koncert",
+        "Bilety"
+      ],
+      "organizer": "np. Miejski Ośrodek Kultury / MOSiR / Urząd Miasta",
+      "editorial_lead": "Wydarzenie MASHADÖ w klubie Bababoo dla dzieci. Bilety dostępne.",
+      "details_bullets": [
+        "Wydarzenie dla dzieci",
+        "Wyświetlanie artystów",
+        "Wyświetlanie muzyki"
+      ],
+      "quick_facts": {
+        "duration": "~2h",
+        "age_rating": "Brak ograniczeń",
+        "parking": "Parking miejski przy obiekcie"
+      },
+      "ticket_info": {
+        "time_start": "18:00",
+        "doors_open": "17:30",
+        "venue_name": "Klub Bababoo",
+        "price_range": "Wstęp bezpłatny"
+      },
+      "address": "al. Jana Pawła II 22, Kędzierzyn-Koźle"
+    }
+  }
+]

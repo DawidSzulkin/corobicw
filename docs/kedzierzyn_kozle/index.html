@@ -1,0 +1,803 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Wydarzeń: Kędzierzyn-Koźle</title>
+  <style>
+    :root {
+      --primary: #0056b3;
+      --primary-hover: #004085;
+      --accent: #dc2626;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .back-btn {
+      font-size: 13px;
+      text-decoration: none;
+      color: var(--muted);
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #e2e8f0; }
+
+    .main-container {
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .event-row {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      align-items: center;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .event-row:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Kontener miniatury z klockiem kalendarza */
+    .thumb-wrapper {
+      position: relative;
+      width: 140px;
+      height: 105px;
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+    .thumb-wrapper .event-thumb {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+      object-position: center top;
+      background: #f1f5f9;
+      display: block;
+    }
+
+    /* Klocek daty w stylu Pełnej Kultury */
+    .date-ribbon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 4px 8px;
+      border-bottom-right-radius: 6px;
+      border-top-left-radius: 6px;
+      text-align: center;
+      line-height: 1.1;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      z-index: 2;
+    }
+    .date-ribbon .ribbon-day {
+      font-size: 16px;
+      font-weight: 800;
+      display: block;
+    }
+    .date-ribbon .ribbon-month {
+      font-size: 9px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+      min-width: 0;
+    }
+    .event-category {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .date-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .badge-today { background: #fee2e2; color: #dc2626; }
+    .badge-tomorrow { background: #fef3c7; color: #d97706; }
+
+    .event-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .event-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .event-title a:hover { color: var(--primary); }
+
+    .event-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .event-meta {
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+    .event-price { font-weight: 600; color: #334155; }
+    .event-link {
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .event-link:hover { text-decoration: underline; }
+
+    @media (max-width: 560px) {
+      .event-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .thumb-wrapper {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <a href="index.html" class="logo">Wydarzenia Kędzierzyn-Koźle</a>
+      <a href="../index.html" class="back-btn">&larr; Zmień miasto</a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
+      <button class="filter-btn" onclick="filterEvents('today', this)">Dzisiaj</button>
+      <button class="filter-btn" onclick="filterEvents('tomorrow', this)">Jutro</button>
+      <button class="filter-btn" onclick="filterEvents('weekend', this)">W ten weekend</button>
+    </div>
+
+    <div id="events-agenda">
+      
+        <div class="event-item" data-start="2026-08-25" data-end="2026-08-25">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ee0979%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ff6a00%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffd200%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffd200%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22203%22%20cy%3D%22343%22%20r%3D%22161%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22651%22%20cy%3D%22444%22%20r%3D%22238%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%202l2.4%207.4h7.6l-6.2%204.5%202.4%207.4L12%2016.8l-6.2%204.5%202.4-7.4L2%209.4h7.6z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Lekcje muzealne: „Poznaj Kędzierzyn-Koźle szlakiem koziołków”" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">25</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Dla Dzieci &bull; Wt, 25 sie &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-25-lekcje-muzealne-poznaj-kedzierzyn.html">Lekcje muzealne: „Poznaj Kędzierzyn-Koźle szlakiem koziołków”</a></h3>
+                <p class="event-desc">Zapisy pod tel.: 799-029-292.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-25-lekcje-muzealne-poznaj-kedzierzyn.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-26" data-end="2026-08-26">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/styles/podstrona/public/events/779957611_990167270744554_9061985402871115300_n.png_0.jpeg?itok=U9MswL11" alt="Wakacje z książką w bibliotece: Droga do Bullerbyn" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">26</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Dla Dzieci &bull; Śr, 26 sie &bull; 11:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-26-wakacje-z-ksiazka-w-bibliotece-dro.html">Wakacje z książką w bibliotece: Droga do Bullerbyn</a></h3>
+                <p class="event-desc">Oddział dla dzieci, MBP, ul.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-26-wakacje-z-ksiazka-w-bibliotece-dro.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-27" data-end="2026-08-27">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/styles/podstrona/public/events/780157394_2603189776784631_4413131158361833179_n.png.jpeg?itok=iNP-6IGx" alt="WAKACJE Z KSIĄŻKĄ W BIBLIOTECE: mity i opowieści dla każdego" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">27</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Dla Dzieci &bull; Czw, 27 sie &bull; 11:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-27-wakacje-z-ksiazka-w-bibliotece-mit.html">WAKACJE Z KSIĄŻKĄ W BIBLIOTECE: mity i opowieści dla każdego</a></h3>
+                <p class="event-desc">Oddział dla dzieci, MBP, ul.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-27-wakacje-z-ksiazka-w-bibliotece-mit.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-28" data-end="2026-08-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/styles/podstrona/public/events/zrzut_ekranu_2026-08-25_o_09.28.54.png?itok=KxslOYgg" alt="PODRÓŻUJ Z MZK - zakopane" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 28 sie &bull; 07:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-28-podrozuj-z-mzk-zakopane.html">PODRÓŻUJ Z MZK - zakopane</a></h3>
+                <p class="event-desc">7:00 Przystanek MZK przy Dworcu Kolejowym w Kędzierzynie
+
+ul.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-28-podrozuj-z-mzk-zakopane.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-28" data-end="2026-08-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/styles/podstrona/public/events/777920061_2226367934570701_6248484053399071813_n.png_0.jpeg?itok=vYDsWTZ2" alt="WAKACJE Z KSIĄŻKĄ W BIBLIOTECE: Mikołajek opowiada nam o swoim lecie" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Dla Dzieci &bull; Pt, 28 sie &bull; 11:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-mik.html">WAKACJE Z KSIĄŻKĄ W BIBLIOTECE: Mikołajek opowiada nam o swoim lecie</a></h3>
+                <p class="event-desc">Oddział dla dzieci MBP, ul.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-mik.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-28" data-end="2026-08-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/pliki/756833091_1034602305691204_5875070843736727076_n.jpg?244" alt="Letnie Kino Plenerowe "Jedno życie"" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kino &bull; Pt, 28 sie &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-28-letnie-kino-plenerowe-jedno-zycie.html">Letnie Kino Plenerowe "Jedno życie"</a></h3>
+                <p class="event-desc">Miejski Osrodek Kultury w Kedzierzynie-Kole zaprasza na letnie jednozyczne plenerowe przedstawienie 'Jedno zycie' w dniu 28 sierpnia 2026 roku o godzinie 21.00. Wydarzenie będzie witrazne dla mieszkańców Miejskiego Ośrodka Wodociągów Kedzierzyn-Kole.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-28-letnie-kino-plenerowe-jedno-zycie.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/pliki/parkrun3_40_0_19_15_47_0_2.jpg?769" alt="parkrun Kędzierzyn-kOŹLE" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Sport &bull; Sob, 29 sie &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-29-parkrun-kedzierzyn-kozle.html">parkrun Kędzierzyn-kOŹLE</a></h3>
+                <p class="event-desc">Parkrun w Kedzierzynie-Kozle odbędzie się w sobotę w godzinie 9:00 w centrum miasta, a także w Skarbowie, w miejscowości Kedzierzyn-Kozle. Informacje na stronie www.parkrun.pl/kedzierzynkozle. #loveparkrun</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-29-parkrun-kedzierzyn-kozle.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23232526%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23414345%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22449%22%20cy%3D%22203%22%20r%3D%22160%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22822%22%20cy%3D%22434%22%20r%3D%22216%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Wieczór stunowy ZIOŁA i WITKI" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 29 sie &bull; 18:15</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-29-wieczor-stunowy-zioa-i-witki.html">Wieczór stunowy ZIOŁA i WITKI</a></h3>
+                <p class="event-desc">Wydarzenie miejskie: Wieczór stunowy ZIOŁA i WITKI.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-29-wieczor-stunowy-zioa-i-witki.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/pliki/whatsapp_image_2026-08-20_at_14.41.04.jpeg?198" alt="Osiedlowy Festyn dla dzieci" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Dla Dzieci &bull; Sob, 29 sie &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-29-osiedlowy-festyn-dla-dzieci.html">Osiedlowy Festyn dla dzieci</a></h3>
+                <p class="event-desc">Rada zaprasza mieszkańców do Festynu w Osiedlu Kedzierzyn-Kozle, który odbędzie się w sobotę 29 sierpnia 2026 roku w godzinach 14:00-19:00 w strefie rekreacyjnej 'Wesole Koziolk' ul. Kanonierow, Kozle.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-29-osiedlowy-festyn-dla-dzieci.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/pliki/b2_plakat.jpg?73" alt="Coverowe Pożegnanie Lata" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Koncert &bull; Sob, 29 sie &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-29-coverowe-pozegnanie-lata.html">Coverowe Pożegnanie Lata</a></h3>
+                <p class="event-desc">Wydarzenie to składa się z trzech showów: Bluesjak, Vintage i Stream. Odcinek z muzyką 'Szare Miraze' Tomajana trwa od 20.00 do 21.00. Południe 29 sierpnia 2026 odbędzie się w Parku Pojednania w Kedziern-Kozle. Czas trwania showów to: Bluesjak 18.00, Vintage 19.00, Stream...</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-29-coverowe-pozegnanie-lata.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/styles/podstrona/public/events/758192913_1033218459502904_3369620551432003481_n.png.jpeg?itok=ov6folWp" alt="Nightskating - nocne rolkowanie ulicami miasta" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Sport &bull; Sob, 29 sie &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-29-nightskating-nocne-rolkowanie-uli.html">Nightskating - nocne rolkowanie ulicami miasta</a></h3>
+                <p class="event-desc">Start: parking przed Halą Sportową "Śródmieście", al.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-29-nightskating-nocne-rolkowanie-uli.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-30" data-end="2026-08-30">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/pliki/plakat_dni_romow.jpg?906" alt="Międzynarodowy dzień Romów" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">30</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 30 sie &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-30-miedzynarodowy-dzien-romow.html">Międzynarodowy dzień Romów</a></h3>
+                <p class="event-desc">S HonorowyPatronat PrezydentaMiasta Kedzierzyn-Kozle Miedzynarodowy dzien Romow 30.08.2026 godz.16.00 Kedzierzyn-Kozle Al.JanaPawtaII Park Pojednania Wystapi: Gipsy Boys JR ZAPRASZAMYNA WYJATKOWE WYDARZENIE PREZENTUJACEKULTURE ROMSKA Projektwspolfina</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-30-miedzynarodowy-dzien-romow.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-30" data-end="2026-08-30">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/pliki/777381815_1688514579372088_1759668494037654457_n_0.jpg?805" alt="Metro & Tomek Zdyb "The untold stories" – Klub Kameleon" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">30</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 30 sie &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-30-metro-tomek-zdyb-the-untold-stor.html">Metro & Tomek Zdyb "The untold stories" – Klub Kameleon</a></h3>
+                <p class="event-desc">Koncert podsumowujący pierwszy rok działalności grupy, który poświęcił do opowieści autorstwa autorskiego o emocjach, relacjach i odszwaczeniach, które często trudno mówić. Zawiera nowoczesne brzmienie osobistych historii, które zostają gładko włożone na dźwięk. Koncert o...</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-30-metro-tomek-zdyb-the-untold-stor.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-30" data-end="2026-08-30">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://kedzierzynkozle.pl/sites/default/files/pliki/718994442_1501770661746598_2146043238125979341_n_1.png?741" alt="Mistrzostwa Polski Nauczycieli i Pracowników Oświaty w Triathlonie" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">30</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Sport &bull; Ndz, 30 sie &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-30-mistrzostwa-polski-nauczycieli-i-pr.html">Mistrzostwa Polski Nauczycieli i Pracowników Oświaty w Triathlonie</a></h3>
+                <p class="event-desc">Trzydziestokilometrowy triathlon nauczycieli i pracowników wychowania fizycznego odbędzie się w dniu 8 augusta w Kedzierzu-Kozle. Dystans składa się z 475m piwania, 22,5km roweru i 5,25km biegu. Wydarzenie organizowane przez twierdzatriathlon.pl jest jednym z mistrzostw P...</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <a href="wydarzenia/2026-08-30-mistrzostwa-polski-nauczycieli-i-pr.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-12" data-end="2026-09-12">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.mok.kedzierzyn-kozle.com.pl/images/2026/08/25/plener-malarski.png" alt="Letni Plener Malarski W Slawięcicach" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">12</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Dla Dzieci &bull; Sob, 12 wrz &bull; 10:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-12-letni-plener-malarski-w-slawiecicac.html">Letni Plener Malarski W Slawięcicach</a></h3>
+                <p class="event-desc">Letni Plener Malarski w Slawięcicach Data i godzina wydarzenia: 12.09.2026 r.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ 100 zł</span>
+                <a href="wydarzenia/2026-09-12-letni-plener-malarski-w-slawiecicac.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+    </div>
+
+  </div>
+
+  <script>
+    function initDynamicBadges() {
+      const now = new Date();
+      const todayStr = now.toISOString().slice(0, 10);
+      
+      const tomorrow = new Date();
+      tomorrow.setDate(now.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end');
+        const badgeContainer = el.querySelector('.badge-container');
+
+        if (!badgeContainer) return;
+
+        if (start === todayStr || (start <= todayStr && end >= todayStr)) {
+          badgeContainer.innerHTML = '<span class="date-badge badge-today">DZIŚ</span>';
+        } else if (start === tomorrowStr) {
+          badgeContainer.innerHTML = '<span class="date-badge badge-tomorrow">JUTRO</span>';
+        } else {
+          badgeContainer.innerHTML = '';
+        }
+      });
+    }
+
+    function filterEvents(mode, clickedBtn) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (clickedBtn) clickedBtn.classList.add('active');
+
+      const now = new Date();
+      const todayStr = now.toISOString().slice(0, 10);
+      
+      const tomorrow = new Date();
+      tomorrow.setDate(now.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end');
+
+        if (mode === 'all') {
+          el.style.display = 'block';
+        } else if (mode === 'today') {
+          el.style.display = (start === todayStr || (start <= todayStr && end >= todayStr)) ? 'block' : 'none';
+        } else if (mode === 'tomorrow') {
+          el.style.display = (start === tomorrowStr) ? 'block' : 'none';
+        } else if (mode === 'weekend') {
+          const d = new Date(start);
+          const day = d.getDay();
+          el.style.display = (day === 0 || day === 6) ? 'block' : 'none';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initDynamicBadges);
+  </script>
+</body>
+</html>

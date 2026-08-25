@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Wydarzeń: {{ city }}</title>
+  <style>
+    :root {
+      --primary: #0056b3;
+      --primary-hover: #004085;
+      --accent: #dc2626;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .back-btn {
+      font-size: 13px;
+      text-decoration: none;
+      color: var(--muted);
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #e2e8f0; }
+
+    .main-container {
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .event-row {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      align-items: center;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .event-row:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Kontener miniatury z klockiem kalendarza */
+    .thumb-wrapper {
+      position: relative;
+      width: 140px;
+      height: 105px;
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+    .thumb-wrapper .event-thumb {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+      object-position: center top;
+      background: #f1f5f9;
+      display: block;
+    }
+
+    /* Klocek daty w stylu Pełnej Kultury */
+    .date-ribbon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 4px 8px;
+      border-bottom-right-radius: 6px;
+      border-top-left-radius: 6px;
+      text-align: center;
+      line-height: 1.1;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      z-index: 2;
+    }
+    .date-ribbon .ribbon-day {
+      font-size: 16px;
+      font-weight: 800;
+      display: block;
+    }
+    .date-ribbon .ribbon-month {
+      font-size: 9px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+      min-width: 0;
+    }
+    .event-category {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .date-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .badge-today { background: #fee2e2; color: #dc2626; }
+    .badge-tomorrow { background: #fef3c7; color: #d97706; }
+
+    .event-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .event-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .event-title a:hover { color: var(--primary); }
+
+    .event-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .event-meta {
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+    .event-price { font-weight: 600; color: #334155; }
+    .event-link {
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .event-link:hover { text-decoration: underline; }
+
+    @media (max-width: 560px) {
+      .event-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .thumb-wrapper {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <a href="index.html" class="logo">Wydarzenia {{ city }}</a>
+      <a href="../index.html" class="back-btn">&larr; Zmień miasto</a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
+      <button class="filter-btn" onclick="filterEvents('today', this)">Dzisiaj</button>
+      <button class="filter-btn" onclick="filterEvents('tomorrow', this)">Jutro</button>
+      <button class="filter-btn" onclick="filterEvents('weekend', this)">W ten weekend</button>
+    </div>
+
+    <div id="events-agenda">
+      {% for ev in events %}
+        <div class="event-item" data-start="{{ ev.date_start }}" data-end="{{ ev.date_end }}">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="{{ ev.image_url }}" alt="{{ ev.title }}" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">{{ ev.date_start.split('-')[2] }}</span>
+                <span class="ribbon-month">
+                  {% set m = ev.date_start.split('-')[1] %}
+                  {% if m == '01' %}STY{% elif m == '02' %}LUT{% elif m == '03' %}MAR{% elif m == '04' %}KWI{% elif m == '05' %}MAJ{% elif m == '06' %}CZE{% elif m == '07' %}LIP{% elif m == '08' %}SIE{% elif m == '09' %}WRZ{% elif m == '10' %}PAŹ{% elif m == '11' %}LIS{% elif m == '12' %}GRU{% endif %}
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>{{ ev.analysis.category }} &bull; {{ ev.date_formatted }} &bull; {{ ev.analysis.ticket_info.time_start }}</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/{{ ev.slug }}.html">{{ ev.title }}</a></h3>
+                <p class="event-desc">{{ ev.analysis.editorial_lead }}</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ {{ ev.analysis.ticket_info.price_range }}</span>
+                <a href="wydarzenia/{{ ev.slug }}.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <script>
+    function initDynamicBadges() {
+      const now = new Date();
+      const todayStr = now.toISOString().slice(0, 10);
+      
+      const tomorrow = new Date();
+      tomorrow.setDate(now.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end');
+        const badgeContainer = el.querySelector('.badge-container');
+
+        if (!badgeContainer) return;
+
+        if (start === todayStr || (start <= todayStr && end >= todayStr)) {
+          badgeContainer.innerHTML = '<span class="date-badge badge-today">DZIŚ</span>';
+        } else if (start === tomorrowStr) {
+          badgeContainer.innerHTML = '<span class="date-badge badge-tomorrow">JUTRO</span>';
+        } else {
+          badgeContainer.innerHTML = '';
+        }
+      });
+    }
+
+    function filterEvents(mode, clickedBtn) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (clickedBtn) clickedBtn.classList.add('active');
+
+      const now = new Date();
+      const todayStr = now.toISOString().slice(0, 10);
+      
+      const tomorrow = new Date();
+      tomorrow.setDate(now.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end');
+
+        if (mode === 'all') {
+          el.style.display = 'block';
+        } else if (mode === 'today') {
+          el.style.display = (start === todayStr || (start <= todayStr && end >= todayStr)) ? 'block' : 'none';
+        } else if (mode === 'tomorrow') {
+          el.style.display = (start === tomorrowStr) ? 'block' : 'none';
+        } else if (mode === 'weekend') {
+          const d = new Date(start);
+          const day = d.getDay();
+          el.style.display = (day === 0 || day === 6) ? 'block' : 'none';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initDynamicBadges);
+  </script>
+</body>
+</html>

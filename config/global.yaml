@@ -1,0 +1,9 @@
+ollama:
+  url: "http://localhost:11434/api/generate"
+  model: "qwen2.5:3b"
+  timeout: 60
+  temperature: 0.2
+
+storage:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
