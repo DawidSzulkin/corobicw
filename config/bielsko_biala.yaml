@@ -1,0 +1,18 @@
+city_tag: "bielsko_biala"
+city: "Bielsko-Biała"
+description: "Nieoficjalny agregator wydarzeń, koncertów i spektakli w Bielsku-Białej. Informacje o imprezach kulturalnych i sportowych w mieście."
+seo_keywords: "Bielsko-Biała wydarzenia, koncerty Bielsko, teatr Bielsko-Biała, imprezy Bielsko"
+social_image: "https://www.bielsko.info/img/articles/2021/07/08/94e2e28a9b736b28b7e2d93e1b7f0e34.jpg"
+logo_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/POL_Bielsko-Bia%C5%82a_COA.svg/800px-POL_Bielsko-Bia%C5%82a_COA.svg.png"
+color_primary: "#1A365D"
+color_secondary: "#2B6CB0"
+color_accent: "#E53E3E"
+theme: "modern"
+
+sources:
+  kupbilecik_pl:
+    enabled: true
+    name: "KupBilecik (Bielsko)"
+  biletyna_pl:
+    enabled: true
+    name: "Biletyna (Bielsko)"

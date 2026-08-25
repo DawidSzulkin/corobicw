@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiscoOpera przy świecach | Bielsko-Biała</title>
+  <style>
+    :root { 
+      --primary: #0056b3; 
+      --primary-hover: #004085; 
+      --bg: #f8f9fa; 
+      --card-bg: #ffffff; 
+      --border: #e9ecef; 
+      --text: #212529; 
+      --text-muted: #6c757d; 
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .image-wrapper {
+  margin-bottom: 16px;
+}
+.image-wrapper .main-image {
+  margin-bottom: 4px; /* Zmniejsza odstęp między plakatem a podpisem */
+}
+.image-caption {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  padding: 0 4px;
+}
+.image-caption a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+    /* Baza mobilna */
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.5; 
+      padding-bottom: 40px; 
+    }
+    .nav-bar { 
+      background: #fff; 
+      border-bottom: 1px solid var(--border); 
+      padding: 10px 16px; 
+      font-size: 13px; 
+      color: var(--text-muted); 
+      margin-bottom: 16px; 
+    }
+    .nav-bar a { color: var(--primary); text-decoration: none; }
+    .layout-container { 
+      width: 100%; 
+      padding: 0 16px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 20px; 
+    }
+    .main-column, .sidebar-column { width: 100%; }
+
+    .badge { 
+      display: inline-block; 
+      background: #e7f1ff; 
+      color: var(--primary); 
+      padding: 4px 8px; 
+      border-radius: 4px; 
+      font-size: 11px; 
+      font-weight: 700; 
+      margin-right: 4px; 
+      margin-bottom: 8px; 
+    }
+    h1 { font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
+    .organizer-line { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .main-image {
+    width: 100%;
+   max-height: 70vh; /* Zapobiega zajęciu całego ekranu przez pionowe plakaty */
+    height: auto;
+    object-fit: contain; /* Pokazuje cały obraz bez kadrowania */
+    background: #f8fafc; /* Lekkie szare tło dla pustych przestrzeni po bokach */
+    border-radius: 8px;
+   margin-bottom: 16px;
+   border: 1px solid var(--border);
+    }
+
+    .quick-facts { 
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 8px; 
+      background: #fff; 
+      padding: 14px; 
+      border-radius: 8px; 
+      border: 1px solid var(--border); 
+      margin-bottom: 16px; 
+    }
+    .fact-item strong { display: block; color: var(--text-muted); font-size: 11px; text-transform: uppercase; }
+
+    .content-box, .b2b-card { 
+      background: #fff; 
+      padding: 16px; 
+      border-radius: 8px; 
+      border: 1px solid var(--border); 
+      margin-bottom: 16px; 
+    }
+    .content-box h2 { font-size: 18px; margin-bottom: 10px; border-bottom: 2px solid var(--bg); padding-bottom: 4px; }
+    .lead-text { font-size: 15px; font-weight: 500; margin-bottom: 12px; }
+    .bullets { margin-left: 20px; font-size: 14px; }
+    .bullets li { margin-bottom: 6px; }
+
+    .b2b-card.highlight { background: #f0f7ff; border-color: #cce5ff; }
+    .btn-action { 
+      display: block; 
+      width: 100%; 
+      text-align: center; 
+      background: var(--primary); 
+      color: #fff; 
+      padding: 14px; 
+      border-radius: 6px; 
+      text-decoration: none; 
+      font-weight: 700; 
+      margin-top: 10px; 
+    }
+    .meta-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+    .meta-row span:first-child { color: var(--text-muted); }
+
+    /* Progresywna rozbudowa: Tablety */
+    @media (min-width: 600px) {
+      h1 { font-size: 26px; }
+      .quick-facts { grid-template-columns: repeat(3, 1fr); }
+      .content-box, .b2b-card { padding: 20px; }
+    }
+
+    /* Progresywna rozbudowa: Desktop */
+    @media (min-width: 992px) {
+      .layout-container { 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        flex-direction: row; 
+        gap: 32px; 
+      }
+      .main-column { flex: 0 0 65%; max-width: 65%; }
+      .sidebar-column { flex: 0 0 35%; max-width: 35%; }
+      .sticky-wrapper { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-bar">
+    <a href="../../index.html">Miasta</a> &gt; 
+    <a href="../index.html">Bielsko-Biała</a> &gt; 
+    <strong>Kultura</strong>
+  </div>
+
+  <div class="layout-container">
+    
+    <!-- Kolumna główna (65%) -->
+    <main class="main-column">
+      
+        <span class="badge">Kultura</span>
+      
+        <span class="badge">kupbilecik_pl</span>
+      
+      
+      <h1>DiscoOpera przy świecach</h1>
+      <div class="organizer-line">Organizator: <strong>KupBilecik.pl</strong></div>
+
+      <div class="image-wrapper">
+  <img class="main-image" src="https://www.kupbilecik.pl/img/gal_baza/f3tqeg4ft09mhtkn_m.webp?t=1774952112" alt="DiscoOpera przy świecach">
+  <div class="image-caption">
+    Materiały promocyjne organizatora &bull; Źródło: <a href="https://www.kupbilecik.pl/imprezy/202308/Bielsko-Bia%C5%82a/DiscoOpera+przy+%C5%9Bwiecach/" target="_blank" rel="nofollow noopener">Serwis źródłowy</a>
+  </div>
+</div>
+      <div class="quick-facts">
+        <div class="fact-item"><strong>Czas trwania</strong> ~2h</div>
+        <div class="fact-item"><strong>Wiek</strong> Wszyscy</div>
+        <div class="fact-item"><strong>Parking</strong> Dostępny w pobliżu obiektu</div>
+      </div>
+
+      <section class="content-box">
+        <h2>O wydarzeniu</h2>
+        <div class="description-body">
+          
+          
+            <p class="lead-text" style="margin-bottom: 12px; font-weight: 400;">Wydarzenie biletowane: DiscoOpera przy świecach. Miejsce: Kamienica Pod Orłem -  Sala Redutowa.</p>
+          
+        </div>
+        
+        
+          <ul class="bullets" style="margin-top: 14px;">
+            
+              <li>Lokalizacja: Kamienica Pod Orłem -  Sala Redutowa</li>
+            
+              <li>Godzina rozpoczęcia: 20:30</li>
+            
+              <li>Cena / Bilety: Bilety płatne</li>
+            
+              <li>Więcej informacji na oficjalnej stronie organizatora</li>
+            
+          </ul>
+        
+      </section>
+
+      <!-- Slot B2B: Transport -->
+      <div class="b2b-card">
+        <h3>🚗 Dojazd i Transport</h3>
+        <p style="font-size: 14px; margin-top: 4px;">Wracasz wieczorem z wydarzenia? Skorzystaj z lokalnych przewoźników w Kędzierzynie-Koźlu.</p>
+        <a href="tel:+48771234567" class="btn-action" style="background:#28a745;">Zadzwoń po Taxi KK</a>
+      </div>
+
+      <!-- Lokalizacja -->
+      <section class="content-box">
+        <h2>Lokalizacja</h2>
+        <p><strong>Miejsce:</strong> Kamienica Pod Orłem -  Sala Redutowa</p>
+        <p><strong>Adres:</strong> Kamienica Pod Orłem -  Sala Redutowa, Bielsko-Biała</p>
+      </section>
+    </main>
+
+    <!-- Sidebar (35% Sticky) -->
+    <aside class="sidebar-column">
+      <div class="sticky-wrapper">
+        
+        <div class="b2b-card">
+          <h3 style="margin-bottom: 12px;">Szczegóły &amp; Wstęp</h3>
+          <div class="meta-row"><span>Data:</span> <strong>Pt, 4 wrz</strong></div>
+          <div class="meta-row"><span>Start:</span> <strong>20:30</strong></div>
+          
+          <div class="meta-row"><span>Cena:</span> <strong>Bilety płatne</strong></div>
+          
+          <a href="https://www.kupbilecik.pl/imprezy/202308/Bielsko-Bia%C5%82a/DiscoOpera+przy+%C5%9Bwiecach/" target="_blank" class="btn-action">Sprawdź / Kup Bilet</a>
+        </div>
+
+        <div class="b2b-card highlight">
+          <h3>🍽️ Gdzie na kolację?</h3>
+          <p style="font-size: 13px; margin-top: 6px;">Zarezerwuj stolik w pobliżu <strong>Kamienica Pod Orłem -  Sala Redutowa</strong>. 10% rabatu na hasło PORTAL.</p>
+          <a href="#" class="btn-action" style="background:#495057; font-size:13px; padding:10px;">Zarezerwuj stolik</a>
+        </div>
+
+        <div class="b2b-card">
+          <h3>Nie przegap wydarzeń!</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 6px 0 12px 0;">Otrzymuj cotygodniowe zestawienie imprez w Kędzierzynie-Koźlu.</p>
+          <input type="email" placeholder="Twój adres e-mail" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 8px;">
+          <button class="btn-action" style="border:none; cursor:pointer;">Zapisz się</button>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+</body>
+</html>

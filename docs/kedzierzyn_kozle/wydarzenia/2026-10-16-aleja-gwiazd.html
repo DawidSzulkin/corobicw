@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleja Gwiazd | Kędzierzyn-Koźle</title>
+  <style>
+    :root { 
+      --primary: #0056b3; 
+      --primary-hover: #004085; 
+      --bg: #f8f9fa; 
+      --card-bg: #ffffff; 
+      --border: #e9ecef; 
+      --text: #212529; 
+      --text-muted: #6c757d; 
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .image-wrapper {
+  margin-bottom: 16px;
+}
+.image-wrapper .main-image {
+  margin-bottom: 4px; /* Zmniejsza odstęp między plakatem a podpisem */
+}
+.image-caption {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  padding: 0 4px;
+}
+.image-caption a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+    /* Baza mobilna */
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.5; 
+      padding-bottom: 40px; 
+    }
+    .nav-bar { 
+      background: #fff; 
+      border-bottom: 1px solid var(--border); 
+      padding: 10px 16px; 
+      font-size: 13px; 
+      color: var(--text-muted); 
+      margin-bottom: 16px; 
+    }
+    .nav-bar a { color: var(--primary); text-decoration: none; }
+    .layout-container { 
+      width: 100%; 
+      padding: 0 16px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 20px; 
+    }
+    .main-column, .sidebar-column { width: 100%; }
+
+    .badge { 
+      display: inline-block; 
+      background: #e7f1ff; 
+      color: var(--primary); 
+      padding: 4px 8px; 
+      border-radius: 4px; 
+      font-size: 11px; 
+      font-weight: 700; 
+      margin-right: 4px; 
+      margin-bottom: 8px; 
+    }
+    h1 { font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
+    .organizer-line { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .main-image {
+    width: 100%;
+   max-height: 70vh; /* Zapobiega zajęciu całego ekranu przez pionowe plakaty */
+    height: auto;
+    object-fit: contain; /* Pokazuje cały obraz bez kadrowania */
+    background: #f8fafc; /* Lekkie szare tło dla pustych przestrzeni po bokach */
+    border-radius: 8px;
+   margin-bottom: 16px;
+   border: 1px solid var(--border);
+    }
+
+    .quick-facts { 
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 8px; 
+      background: #fff; 
+      padding: 14px; 
+      border-radius: 8px; 
+      border: 1px solid var(--border); 
+      margin-bottom: 16px; 
+    }
+    .fact-item strong { display: block; color: var(--text-muted); font-size: 11px; text-transform: uppercase; }
+
+    .content-box, .b2b-card { 
+      background: #fff; 
+      padding: 16px; 
+      border-radius: 8px; 
+      border: 1px solid var(--border); 
+      margin-bottom: 16px; 
+    }
+    .content-box h2 { font-size: 18px; margin-bottom: 10px; border-bottom: 2px solid var(--bg); padding-bottom: 4px; }
+    .lead-text { font-size: 15px; font-weight: 500; margin-bottom: 12px; }
+    .bullets { margin-left: 20px; font-size: 14px; }
+    .bullets li { margin-bottom: 6px; }
+
+    .b2b-card.highlight { background: #f0f7ff; border-color: #cce5ff; }
+    .btn-action { 
+      display: block; 
+      width: 100%; 
+      text-align: center; 
+      background: var(--primary); 
+      color: #fff; 
+      padding: 14px; 
+      border-radius: 6px; 
+      text-decoration: none; 
+      font-weight: 700; 
+      margin-top: 10px; 
+    }
+    .meta-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+    .meta-row span:first-child { color: var(--text-muted); }
+
+    /* Progresywna rozbudowa: Tablety */
+    @media (min-width: 600px) {
+      h1 { font-size: 26px; }
+      .quick-facts { grid-template-columns: repeat(3, 1fr); }
+      .content-box, .b2b-card { padding: 20px; }
+    }
+
+    /* Progresywna rozbudowa: Desktop */
+    @media (min-width: 992px) {
+      .layout-container { 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        flex-direction: row; 
+        gap: 32px; 
+      }
+      .main-column { flex: 0 0 65%; max-width: 65%; }
+      .sidebar-column { flex: 0 0 35%; max-width: 35%; }
+      .sticky-wrapper { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-bar">
+    <a href="../../index.html">Miasta</a> &gt; 
+    <a href="../index.html">Kędzierzyn-Koźle</a> &gt; 
+    <strong>Kultura</strong>
+  </div>
+
+  <div class="layout-container">
+    
+    <!-- Kolumna główna (65%) -->
+    <main class="main-column">
+      
+        <span class="badge">Kultura</span>
+      
+        <span class="badge">biletyna_pl</span>
+      
+      
+      <h1>Aleja Gwiazd</h1>
+      <div class="organizer-line">Organizator: <strong>Biletyna.pl</strong></div>
+
+      <div class="image-wrapper">
+  <img class="main-image" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2311998e%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2338ef7d%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300f2fe%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300f2fe%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22455%22%20cy%3D%22315%22%20r%3D%22194%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22890%22%20cy%3D%22409%22%20r%3D%22192%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Aleja Gwiazd">
+  <div class="image-caption">
+    Materiały promocyjne organizatora &bull; Źródło: <a href="https://biletyna.pl/koncert/Aleja-Gwiazd" target="_blank" rel="nofollow noopener">Serwis źródłowy</a>
+  </div>
+</div>
+      <div class="quick-facts">
+        <div class="fact-item"><strong>Czas trwania</strong> ~2h</div>
+        <div class="fact-item"><strong>Wiek</strong> Wszyscy</div>
+        <div class="fact-item"><strong>Parking</strong> Dostępny w pobliżu obiektu</div>
+      </div>
+
+      <section class="content-box">
+        <h2>O wydarzeniu</h2>
+        <div class="description-body">
+          
+          
+            <p class="lead-text" style="margin-bottom: 12px; font-weight: 400;">Wydarzenie biletowane: Aleja Gwiazd. Miejsce: Obiekt widowiskowy.</p>
+          
+        </div>
+        
+        
+          <ul class="bullets" style="margin-top: 14px;">
+            
+              <li>Lokalizacja: Obiekt widowiskowy</li>
+            
+              <li>Godzina rozpoczęcia: Według harmonogramu</li>
+            
+              <li>Cena / Bilety: Bilety płatne</li>
+            
+              <li>Więcej informacji na oficjalnej stronie organizatora</li>
+            
+          </ul>
+        
+      </section>
+
+      <!-- Slot B2B: Transport -->
+      <div class="b2b-card">
+        <h3>🚗 Dojazd i Transport</h3>
+        <p style="font-size: 14px; margin-top: 4px;">Wracasz wieczorem z wydarzenia? Skorzystaj z lokalnych przewoźników w Kędzierzynie-Koźlu.</p>
+        <a href="tel:+48771234567" class="btn-action" style="background:#28a745;">Zadzwoń po Taxi KK</a>
+      </div>
+
+      <!-- Lokalizacja -->
+      <section class="content-box">
+        <h2>Lokalizacja</h2>
+        <p><strong>Miejsce:</strong> Obiekt widowiskowy</p>
+        <p><strong>Adres:</strong> Obiekt widowiskowy, Kędzierzyn-Koźle</p>
+      </section>
+    </main>
+
+    <!-- Sidebar (35% Sticky) -->
+    <aside class="sidebar-column">
+      <div class="sticky-wrapper">
+        
+        <div class="b2b-card">
+          <h3 style="margin-bottom: 12px;">Szczegóły &amp; Wstęp</h3>
+          <div class="meta-row"><span>Data:</span> <strong>Pt, 16 paź</strong></div>
+          <div class="meta-row"><span>Start:</span> <strong>Według harmonogramu</strong></div>
+          
+          <div class="meta-row"><span>Cena:</span> <strong>Bilety płatne</strong></div>
+          
+          <a href="https://biletyna.pl/koncert/Aleja-Gwiazd" target="_blank" class="btn-action">Sprawdź / Kup Bilet</a>
+        </div>
+
+        <div class="b2b-card highlight">
+          <h3>🍽️ Gdzie na kolację?</h3>
+          <p style="font-size: 13px; margin-top: 6px;">Zarezerwuj stolik w pobliżu <strong>Obiekt widowiskowy</strong>. 10% rabatu na hasło PORTAL.</p>
+          <a href="#" class="btn-action" style="background:#495057; font-size:13px; padding:10px;">Zarezerwuj stolik</a>
+        </div>
+
+        <div class="b2b-card">
+          <h3>Nie przegap wydarzeń!</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 6px 0 12px 0;">Otrzymuj cotygodniowe zestawienie imprez w Kędzierzynie-Koźlu.</p>
+          <input type="email" placeholder="Twój adres e-mail" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 8px;">
+          <button class="btn-action" style="border:none; cursor:pointer;">Zapisz się</button>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+</body>
+</html>

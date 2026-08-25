@@ -1,0 +1,2913 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Wydarzeń: Bielsko-Biała</title>
+  <style>
+    :root {
+      --primary: #0056b3;
+      --primary-hover: #004085;
+      --accent: #dc2626;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .back-btn {
+      font-size: 13px;
+      text-decoration: none;
+      color: var(--muted);
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #e2e8f0; }
+
+    .main-container {
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .event-row {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      align-items: center;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .event-row:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Kontener miniatury z klockiem kalendarza */
+    .thumb-wrapper {
+      position: relative;
+      width: 140px;
+      height: 105px;
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+    .thumb-wrapper .event-thumb {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+      object-position: center top;
+      background: #f1f5f9;
+      display: block;
+    }
+
+    /* Klocek daty w stylu Pełnej Kultury */
+    .date-ribbon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 4px 8px;
+      border-bottom-right-radius: 6px;
+      border-top-left-radius: 6px;
+      text-align: center;
+      line-height: 1.1;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      z-index: 2;
+    }
+    .date-ribbon .ribbon-day {
+      font-size: 16px;
+      font-weight: 800;
+      display: block;
+    }
+    .date-ribbon .ribbon-month {
+      font-size: 9px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+      min-width: 0;
+    }
+    .event-category {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .date-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .badge-today { background: #fee2e2; color: #dc2626; }
+    .badge-tomorrow { background: #fef3c7; color: #d97706; }
+
+    .event-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .event-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .event-title a:hover { color: var(--primary); }
+
+    .event-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .event-meta {
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+    .event-price { font-weight: 600; color: #334155; }
+    .event-link {
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .event-link:hover { text-decoration: underline; }
+
+    @media (max-width: 560px) {
+      .event-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .thumb-wrapper {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <a href="index.html" class="logo">Wydarzenia Bielsko-Biała</a>
+      <a href="../index.html" class="back-btn">&larr; Zmień miasto</a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
+      <button class="filter-btn" onclick="filterEvents('today', this)">Dzisiaj</button>
+      <button class="filter-btn" onclick="filterEvents('tomorrow', this)">Jutro</button>
+      <button class="filter-btn" onclick="filterEvents('weekend', this)">W ten weekend</button>
+    </div>
+
+    <div id="events-agenda">
+      
+        <div class="event-item" data-start="2026-08-26" data-end="2026-08-26">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/160/id/335406" alt="Cyrk Zalewski - Widowisko 2026" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">26</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Śr, 26 sie &bull; 17:30</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-26-cyrk-zalewski-widowisko-2026.html">Cyrk Zalewski - Widowisko 2026</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Cyrk Zalewski - Widowisko 2026.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 74.34 zł</span>
+                <a href="wydarzenia/2026-08-26-cyrk-zalewski-widowisko-2026.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/6af0c6d11ud8r4o5_m.webp?t=1786017588" alt="Boeing Boeing" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 29 sie &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-08-29-boeing-boeing.html">Boeing Boeing</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Boeing Boeing - odlotowa komedia z udziałem gwiazd.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 94.52 zł</span>
+                <a href="wydarzenia/2026-08-29-boeing-boeing.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/jpknsb7hc767tl6a_m.webp?t=1757078289" alt="Cztery Pory Roku - Antonio Vivaldi przy świecach" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">04</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 4 wrz &bull; 16:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-04-cztery-pory-roku-antonio-vivaldi.html">Cztery Pory Roku - Antonio Vivaldi przy świecach</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Cztery Pory Roku - Antonio Vivaldi przy świecach.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-04-cztery-pory-roku-antonio-vivaldi.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/d3a4eph2xr8koewm_m.webp?t=1757078320" alt="Muzyczny życiorys Franka Sinatry przy świecach" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">04</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 4 wrz &bull; 17:30</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-04-muzyczny-zyciorys-franka-sinatry-pr.html">Muzyczny życiorys Franka Sinatry przy świecach</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Muzyczny życiorys Franka Sinatry przy świecach.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-04-muzyczny-zyciorys-franka-sinatry-pr.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/0qeawzcf1xojs1aa_m.webp?t=1757077707" alt="Freddie Mercury Rock-Operowo przy świecach (akustycznie)" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">04</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 4 wrz &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-04-freddie-mercury-rock-operowo-przy-s.html">Freddie Mercury Rock-Operowo przy świecach (akustycznie)</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Freddie Mercury Rock-Operowo przy świecach (akustycznie).</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-04-freddie-mercury-rock-operowo-przy-s.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/f3tqeg4ft09mhtkn_m.webp?t=1774952112" alt="DiscoOpera przy świecach" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">04</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 4 wrz &bull; 20:30</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-04-discoopera-przy-swiecach.html">DiscoOpera przy świecach</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: DiscoOpera przy świecach.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-04-discoopera-przy-swiecach.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/160/id/397708" alt="Koncert Pod Gwiazdami- Muzyka Końca Lata" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">04</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Koncert &bull; Pt, 4 wrz &bull; 20:30</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-04-koncert-pod-gwiazdami-muzyka-konca.html">Koncert Pod Gwiazdami- Muzyka Końca Lata</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Koncert Pod Gwiazdami- Muzyka Końca Lata.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 58.41 zł</span>
+                <a href="wydarzenia/2026-09-04-koncert-pod-gwiazdami-muzyka-konca.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-05" data-end="2026-09-05">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/d2yc2gnow3tvx49p_m.webp?t=1722858205" alt="Ludovico Einaudi Music" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">05</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 5 wrz &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-05-ludovico-einaudi-music.html">Ludovico Einaudi Music</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Ludovico Einaudi Music.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-05-ludovico-einaudi-music.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-11" data-end="2026-09-11">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/mw6mrwy2yax1bus6_m.webp?t=1779278433" alt="Lunamë" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">11</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 11 wrz &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-11-luname.html">Lunamë</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Lunamë.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-11-luname.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-12" data-end="2026-09-12">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_plakaty/xkrvqg2o8cr3qmsh_m.webp?t=1778240432" alt="Andrzej Poniedzielski" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">12</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 12 wrz &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-12-andrzej-poniedzielski.html">Andrzej Poniedzielski</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Andrzej Poniedzielski - Dobry wieczór...?.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 137.00 zł</span>
+                <a href="wydarzenia/2026-09-12-andrzej-poniedzielski.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-13" data-end="2026-09-13">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/2ucngd9egosuv9wr_m.webp?t=1787130429" alt="Depresja komika - Adam Woronowicz i Rafał Rutkowski" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">13</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 13 wrz &bull; 15:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-13-depresja-komika-adam-woronowicz-i.html">Depresja komika - Adam Woronowicz i Rafał Rutkowski</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Depresja komika - Adam Woronowicz i Rafał Rutkowski.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 126.38 zł</span>
+                <a href="wydarzenia/2026-09-13-depresja-komika-adam-woronowicz-i.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-17" data-end="2026-09-17">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/q8q1uwyyu3cyulov_m.webp?t=1779102592" alt="Frank Sinatra Tribute w wykonaniu Randolpha Matthewsa z Londynu" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">17</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Czw, 17 wrz &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-17-frank-sinatra-tribute-w-wykonaniu-r.html">Frank Sinatra Tribute w wykonaniu Randolpha Matthewsa z Londynu</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Frank Sinatra Tribute w wykonaniu Randolpha Matthewsa z Londynu.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-17-frank-sinatra-tribute-w-wykonaniu-r.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-19" data-end="2026-09-19">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/m40zsi3bkwaf9ayl_m.webp?t=1738144626" alt="Rodzinne rewolucje" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">19</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 19 wrz &bull; 16:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-19-rodzinne-rewolucje.html">Rodzinne rewolucje</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Rodzinne rewolucje.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 116.82 zł</span>
+                <a href="wydarzenia/2026-09-19-rodzinne-rewolucje.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-20" data-end="2026-09-20">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/1tlpu822jlt1xl5d_m.webp?t=1766058470" alt="Stand-up: Bartek Zajda" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">20</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 20 wrz &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-20-stand-up-bartek-zajda.html">Stand-up: Bartek Zajda</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Stand-up: Bartek Zajda.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-20-stand-up-bartek-zajda.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-25" data-end="2026-09-25">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_plakaty/lpz7m59mbixhshsw_m.webp?t=1785327094" alt="Zbrodnia i kara i Bóg" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">25</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 25 wrz &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-25-zbrodnia-i-kara-i-bog.html">Zbrodnia i kara i Bóg</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Zbrodnia i kara i Bóg.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-25-zbrodnia-i-kara-i-bog.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-26" data-end="2026-09-26">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/o0cgf16xfpatm0hu_m.webp?t=1763374586" alt="Wpadka" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">26</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 26 wrz &bull; 16:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-26-wpadka.html">Wpadka</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Wpadka.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 116.82 zł</span>
+                <a href="wydarzenia/2026-09-26-wpadka.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-26" data-end="2026-09-26">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_plakaty/ba7abhtetp8vml1e_m.webp?t=1787651525" alt="Koncert przy świecach: Muzyka filmowa - Hans Zimmer i inni" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">26</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kino &bull; Sob, 26 wrz &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-26-koncert-przy-swiecach-muzyka-filmo.html">Koncert przy świecach: Muzyka filmowa - Hans Zimmer i inni</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Candle Live Music: Koncert przy świecachKoncert przy świecach: Muzyka filmowa - Hans Zimmer i inni.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 95.58 zł</span>
+                <a href="wydarzenia/2026-09-26-koncert-przy-swiecach-muzyka-filmo.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-27" data-end="2026-09-27">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_plakaty/jdagvg9egloi24km_m.webp?t=1780477099" alt="Kabaret Neo-Nówka" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">27</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 27 wrz &bull; 15:30</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-27-kabaret-neo-nowka.html">Kabaret Neo-Nówka</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Kabaret Neo-Nówka - Pokolenie DNA.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 191.16 zł</span>
+                <a href="wydarzenia/2026-09-27-kabaret-neo-nowka.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-09-27" data-end="2026-09-27">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/2msnvgx2xmbu7r21_m.webp?t=1784013703" alt="Soundesign - Roger Eno, Daniel Bloom i Gaba Kulka" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">27</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 27 wrz &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-09-27-soundesign-roger-eno-daniel-bloo.html">Soundesign - Roger Eno, Daniel Bloom i Gaba Kulka</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Soundesign - Roger Eno, Daniel Bloom i Gaba Kulka.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-09-27-soundesign-roger-eno-daniel-bloo.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-02" data-end="2026-10-02">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/pcuoaomic9l1e9o6_m.webp?t=1776243707" alt="Nene Heroine" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">02</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 2 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-02-nene-heroine.html">Nene Heroine</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Nene Heroine.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-02-nene-heroine.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-02" data-end="2026-10-02">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/i14qy9v3d4teic53_m.webp?t=1764923335" alt="BAiKA" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">02</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 2 paź &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-02-baika.html">BAiKA</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: BAiKA.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-02-baika.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-02" data-end="2026-10-02">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/qey1fnxzwrojoveo_m.webp?t=1783931355" alt="Orkiestra Księżniczek - Koncert Wiedeński 4 (Największe Przeboje)" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">02</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Koncert &bull; Pt, 2 paź &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-02-orkiestra-ksiezniczek-koncert-wie.html">Orkiestra Księżniczek - Koncert Wiedeński 4 (Największe Przeboje)</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Orkiestra Księżniczek - Koncert Wiedeński 4 (Największe Przeboje).</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 209.75 zł</span>
+                <a href="wydarzenia/2026-10-02-orkiestra-ksiezniczek-koncert-wie.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-03" data-end="2026-10-03">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_plakaty/l4t3e81ojja1g3dd_m.webp?t=1761815478" alt="Krzysztof Cugowski" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">03</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 3 paź &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-03-krzysztof-cugowski.html">Krzysztof Cugowski</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Krzysztof Cugowski - Wiek to tylko liczbaKRZYSZTOF CUGOWSKI Z ZESPOŁEM MISTRZÓW W CAVATINA HALL.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 168.86 zł</span>
+                <a href="wydarzenia/2026-10-03-krzysztof-cugowski.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-03" data-end="2026-10-03">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/1rimiybo0yidruze_m.webp?t=1769081437" alt="Piotr Bałtroczyk" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">03</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 3 paź &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-03-piotr-batroczyk.html">Piotr Bałtroczyk</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Piotr Bałtroczyk Stand-up.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 83.27 zł</span>
+                <a href="wydarzenia/2026-10-03-piotr-batroczyk.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-07" data-end="2026-10-07">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/0zee2l55pz2fgk3y_m.webp?t=1767787713" alt="Stand-up: Maciej Brudzewski" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">07</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Śr, 7 paź &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-07-stand-up-maciej-brudzewski.html">Stand-up: Maciej Brudzewski</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Stand-up: Maciej Brudzewski.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-07-stand-up-maciej-brudzewski.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-07" data-end="2026-10-07">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/gi0bf2xu3xv2d4za_m.webp?t=1679658731" alt="Stand-up: Arkadiusz Jaksa Jakszewicz" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">07</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Śr, 7 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-07-stand-up-arkadiusz-jaksa-jakszewic.html">Stand-up: Arkadiusz Jaksa Jakszewicz</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Stand-up: Arkadiusz Jaksa Jakszewicz.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-07-stand-up-arkadiusz-jaksa-jakszewic.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-09" data-end="2026-10-09">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234b6cb7%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23182848%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22327%22%20cy%3D%22176%22%20r%3D%22182%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22786%22%20cy%3D%22406%22%20r%3D%22181%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Fokus & Rahim" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">09</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 9 paź &bull; 21:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-09-fokus-rahim.html">Fokus & Rahim</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Fokus & Rahim.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-09-fokus-rahim.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-09" data-end="2026-10-09">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/338615/filename/04d3643c5d8e09ec090286639457bf25.jpg" alt="Terapia dla par" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">09</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 9 paź &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-09-terapia-dla-par.html">Terapia dla par</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Terapia dla par.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 158.24 zł</span>
+                <a href="wydarzenia/2026-10-09-terapia-dla-par.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-10" data-end="2026-10-10">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/kvcr4wx0721mhcb5_m.webp?t=1781774689" alt="Wymyśliłem Ciebie - Koncert Pamięci Andrzeja Zauchy" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">10</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Koncert &bull; Sob, 10 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-10-wymysliem-ciebie-koncert-pamieci.html">Wymyśliłem Ciebie - Koncert Pamięci Andrzeja Zauchy</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Wymyśliłem Ciebie - Koncert Pamięci Andrzeja Zauchy.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 190.10 zł</span>
+                <a href="wydarzenia/2026-10-10-wymysliem-ciebie-koncert-pamieci.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-14" data-end="2026-10-14">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień I" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">14</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Śr, 14 paź &bull; 09:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-14-karate-world-championships-2026-cad.html">Karate World Championships 2026 Cadet, Junior, U21 - Dzień I</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Karate World Championships 2026 Cadet, Junior, U21 - Karnet na wszystkie dni.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-14-karate-world-championships-2026-cad.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-15" data-end="2026-10-15">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień II" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">15</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Czw, 15 paź &bull; 09:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-15-karate-world-championships-2026-cad.html">Karate World Championships 2026 Cadet, Junior, U21 - Dzień II</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Karate World Championships 2026 Cadet, Junior, U21 - Dzień II.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-15-karate-world-championships-2026-cad.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-16" data-end="2026-10-16">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień III" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">16</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 16 paź &bull; 09:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-16-karate-world-championships-2026-cad.html">Karate World Championships 2026 Cadet, Junior, U21 - Dzień III</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Karate World Championships 2026 Cadet, Junior, U21 - Dzień III.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-16-karate-world-championships-2026-cad.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-16" data-end="2026-10-16">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/rck9fbaau8ki9t6j_m.webp?t=1747915176" alt="Edyta Geppert - Recital" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">16</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 16 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-16-edyta-geppert-recital.html">Edyta Geppert - Recital</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Edyta Geppert - Recital.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 211.34 zł</span>
+                <a href="wydarzenia/2026-10-16-edyta-geppert-recital.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-17" data-end="2026-10-17">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień IV (Finały)" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">17</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 17 paź &bull; 09:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-17-karate-world-championships-2026-cad.html">Karate World Championships 2026 Cadet, Junior, U21 - Dzień IV (Finały)</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Karate World Championships 2026 Cadet, Junior, U21 - Dzień IV (Finały).</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-17-karate-world-championships-2026-cad.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-17" data-end="2026-10-17">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/3lu2icskmczy1xu5_m.webp?t=1781261696" alt="DING DONG czyli KARMA WRACA – farsa małżeńska z rewanżem!" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">17</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 17 paź &bull; 16:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-17-ding-dong-czyli-karma-wraca-farsa.html">DING DONG czyli KARMA WRACA – farsa małżeńska z rewanżem!</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: DING DONG czyli KARMA WRACA – farsa małżeńska z rewanżem!.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 116.82 zł</span>
+                <a href="wydarzenia/2026-10-17-ding-dong-czyli-karma-wraca-farsa.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-17" data-end="2026-10-17">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/nppya623yeo82isk_m.webp?t=1733827203" alt="Tajemnica 16. piętra" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">17</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 17 paź &bull; 17:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-17-tajemnica-16-pietra.html">Tajemnica 16. piętra</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Tajemnica 16 piętra - komedia na najwyższym poziomie.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 106.20 zł</span>
+                <a href="wydarzenia/2026-10-17-tajemnica-16-pietra.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-18" data-end="2026-10-18">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień V (Finały)" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">18</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 18 paź &bull; 09:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-18-karate-world-championships-2026-cad.html">Karate World Championships 2026 Cadet, Junior, U21 - Dzień V (Finały)</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Karate World Championships 2026 Cadet, Junior, U21 - Dzień V (Finały).</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-18-karate-world-championships-2026-cad.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-18" data-end="2026-10-18">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/8x7yb5tvmgu7wk8l_m.webp?t=1725870654" alt="Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">18</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 18 paź &bull; 14:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-18-teatr-baniek-mydlanych-tajemnica-b.html">Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia".</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 90.27 zł</span>
+                <a href="wydarzenia/2026-10-18-teatr-baniek-mydlanych-tajemnica-b.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-18" data-end="2026-10-18">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/ob57qaswgm0mvbec_m.webp?t=1751962193" alt="Dżentelmeni Polskiej Piosenki" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">18</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 18 paź &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-18-dzentelmeni-polskiej-piosenki.html">Dżentelmeni Polskiej Piosenki</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: DŻENTELMENI POLSKIEJ PIOSENKI - Koncert-Hołd Legendom Polskiej Muzyki.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 105.14 zł</span>
+                <a href="wydarzenia/2026-10-18-dzentelmeni-polskiej-piosenki.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-18" data-end="2026-10-18">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232c3e50%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%233498db%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ecf0f1%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ecf0f1%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22342%22%20cy%3D%22158%22%20r%3D%22219%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22700%22%20cy%3D%22338%22%20r%3D%22187%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Zakopower" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">18</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 18 paź &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-18-zakopower.html">Zakopower</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Zakopower.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-18-zakopower.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-19" data-end="2026-10-19">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/06065re4vzdtrie2_m.webp?t=1753341275" alt="Stand-up: Tomasz Boras" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">19</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pon, 19 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-19-stand-up-tomasz-boras.html">Stand-up: Tomasz Boras</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Stand-up: Tomasz Boras.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-19-stand-up-tomasz-boras.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-19" data-end="2026-10-19">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/160/id/279032" alt="Tomasz Boras - Kairos" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">19</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pon, 19 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-19-tomasz-boras-kairos.html">Tomasz Boras - Kairos</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Tomasz Boras - Kairos.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 95.58 zł</span>
+                <a href="wydarzenia/2026-10-19-tomasz-boras-kairos.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-21" data-end="2026-10-21">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/u6hg3cy90qtk23i8_m.webp?t=1781684831" alt="Jezioro Łabędzie - Classical Etoile Ballet" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">21</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Śr, 21 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-21-jezioro-abedzie-classical-etoile.html">Jezioro Łabędzie - Classical Etoile Ballet</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Jezioro Łabędzie - Classical Etoile Ballet.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 138.06 zł</span>
+                <a href="wydarzenia/2026-10-21-jezioro-abedzie-classical-etoile.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-22" data-end="2026-10-22">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/fno86z4w0s6c1ejc_m.webp?t=1738941048" alt="Koncert Królewski - Majestat Klasyki" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">22</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Koncert &bull; Czw, 22 paź &bull; 17:30</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-22-koncert-krolewski-majestat-klasyk.html">Koncert Królewski - Majestat Klasyki</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Koncert Królewski - Majestat Klasyki.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 94.52 zł</span>
+                <a href="wydarzenia/2026-10-22-koncert-krolewski-majestat-klasyk.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-22" data-end="2026-10-22">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/8ckujfvm98o74iey_m.webp?t=1774261489" alt="Pop Opera - od Opery do Musicalu" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">22</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Czw, 22 paź &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-22-pop-opera-od-opery-do-musicalu.html">Pop Opera - od Opery do Musicalu</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Pop Opera - od Opery do Musicalu.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 94.52 zł</span>
+                <a href="wydarzenia/2026-10-22-pop-opera-od-opery-do-musicalu.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-23" data-end="2026-10-23">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_plakaty/69yr5cbsqflysc75_m.webp?t=1774442484" alt="Wolna Grupa Bukowina" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">23</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 23 paź &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-23-wolna-grupa-bukowina.html">Wolna Grupa Bukowina</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Wolna Grupa Bukowina.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-23-wolna-grupa-bukowina.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-23" data-end="2026-10-23">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/ojtqy57fis0wz2l3_m.webp?t=1679663398" alt="23 października 2026" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">23</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 23 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-23-23-pazdziernika-2026.html">23 października 2026</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: 23 października 2026.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-23-23-pazdziernika-2026.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-23" data-end="2026-10-23">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_plakaty/kpmn73hpoqmft3qj_m.webp?t=1786017738" alt="Włochaty & Darek Dusza i Demony" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">23</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 23 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-23-wochaty-darek-dusza-i-demony.html">Włochaty & Darek Dusza i Demony</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Włochaty & Darek Dusza i Demony.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-23-wochaty-darek-dusza-i-demony.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-23" data-end="2026-10-23">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/160/id/305764" alt="Ira - Koncert ElektrycznyIRA WRACA DO CAVATINA HALL - KONCERT ELEKTRYCZNY" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">23</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Koncert &bull; Pt, 23 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-23-ira-koncert-elektrycznyira-wraca.html">Ira - Koncert ElektrycznyIRA WRACA DO CAVATINA HALL - KONCERT ELEKTRYCZNY</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Ira - Koncert ElektrycznyIRA WRACA DO CAVATINA HALL - KONCERT ELEKTRYCZNY.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 179.48 zł</span>
+                <a href="wydarzenia/2026-10-23-ira-koncert-elektrycznyira-wraca.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-24" data-end="2026-10-24">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/341993/filename/2554cad892bb2d598b1b7eddccacd981.jpg" alt="Pikantni" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">24</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 24 paź &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-24-pikantni.html">Pikantni</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Pikantni.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 126.38 zł</span>
+                <a href="wydarzenia/2026-10-24-pikantni.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-24" data-end="2026-10-24">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/160/id/346210" alt="Trasa ILLUSION, HOSTIA, IRON HEAD 2026" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">24</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 24 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-24-trasa-illusion-hostia-iron-head-2.html">Trasa ILLUSION, HOSTIA, IRON HEAD 2026</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Trasa ILLUSION, HOSTIA, IRON HEAD 2026.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 127.44 zł</span>
+                <a href="wydarzenia/2026-10-24-trasa-illusion-hostia-iron-head-2.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-26" data-end="2026-10-26">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/fgsxlwt7z4uwj7e5_m.webp?t=1782806616" alt="Anita Lipnicka" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">26</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pon, 26 paź &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-26-anita-lipnicka.html">Anita Lipnicka</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Anita Lipnicka | Trasa jubileuszowa: 30 lat "Wszystko się może zdarzyć".</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 211.34 zł</span>
+                <a href="wydarzenia/2026-10-26-anita-lipnicka.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-30" data-end="2026-10-30">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/359146/filename/4c706dce0bcd80379301c076d8dd5b0b.jpg" alt="Justyna Steczkowska - Roma Symphonica" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">30</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 30 paź &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-30-justyna-steczkowska-roma-symphoni.html">Justyna Steczkowska - Roma Symphonica</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Justyna Steczkowska - Roma Symphonica.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 276.12 zł</span>
+                <a href="wydarzenia/2026-10-30-justyna-steczkowska-roma-symphoni.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-31" data-end="2026-10-31">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234b6cb7%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23182848%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22227%22%20cy%3D%22239%22%20r%3D%22150%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22882%22%20cy%3D%22309%22%20r%3D%22259%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Natalia Kukulska" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">31</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 31 paź &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-31-natalia-kukulska.html">Natalia Kukulska</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Natalia Kukulska.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-10-31-natalia-kukulska.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-10-31" data-end="2026-10-31">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/353669/filename/5ed46a3d9d7a58bddf26b617e0c725dc.png" alt="Closterkeller" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">31</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 31 paź &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-10-31-closterkeller.html">Closterkeller</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Closterkellerkoncert na 30lecie płyty Cyan (promocja płyty reCYAN).</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 95.58 zł</span>
+                <a href="wydarzenia/2026-10-31-closterkeller.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-06" data-end="2026-11-06">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/266071/filename/bc51667b849f82d20114f5e0d4154286.jpg" alt="Dżem" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">06</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 6 lis &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-06-dzem.html">Dżem</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Dżem.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-06-dzem.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-08" data-end="2026-11-08">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23232526%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23414345%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22481%22%20cy%3D%22311%22%20r%3D%22196%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22878%22%20cy%3D%22429%22%20r%3D%22244%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Grzegorz Turnau" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">08</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 8 lis &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-08-grzegorz-turnau.html">Grzegorz Turnau</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Grzegorz Turnau.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-08-grzegorz-turnau.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-14" data-end="2026-11-14">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/332093/filename/35ad942c0cc1af54230dac69f2ff548a.jpg" alt="Polska Noc Kabaretowa 2026" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">14</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 14 lis &bull; 17:30</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-14-polska-noc-kabaretowa-2026.html">Polska Noc Kabaretowa 2026</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Polska Noc Kabaretowa 2026.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 74.34 zł</span>
+                <a href="wydarzenia/2026-11-14-polska-noc-kabaretowa-2026.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-14" data-end="2026-11-14">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/355668/filename/791a57630ed6f199a77f69879577ed2d.png" alt="Kasia Kowalska akustycznie" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">14</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 14 lis &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-14-kasia-kowalska-akustycznie.html">Kasia Kowalska akustycznie</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Kasia Kowalska akustycznie.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-14-kasia-kowalska-akustycznie.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-15" data-end="2026-11-15">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/ef3q3aqa54e02xbe_m.webp?t=1776241441" alt="Kacper Ruciński" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">15</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 15 lis &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-15-kacper-rucinski.html">Kacper Ruciński</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Kacper Ruciński.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-15-kacper-rucinski.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-15" data-end="2026-11-15">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/356337/filename/1915ccdd6565355c5b104e377058d217.jpg" alt="O mało co... - Anna Mucha i Michał Sitarski w kultowej komedii" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">15</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 15 lis &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-15-o-mao-co-anna-mucha-i-micha.html">O mało co... - Anna Mucha i Michał Sitarski w kultowej komedii</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: O mało co..</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-15-o-mao-co-anna-mucha-i-micha.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-19" data-end="2026-11-19">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/158779/filename/0fe16c5ca1b8396765bf5648e39e93ec.jpg" alt="Czerwone Gitary - Diamentowa Trasa 60-lecia na BIS" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">19</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Czw, 19 lis &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-19-czerwone-gitary-diamentowa-trasa.html">Czerwone Gitary - Diamentowa Trasa 60-lecia na BIS</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Czerwone Gitary - Diamentowa Trasa 60-lecia na BIS.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-19-czerwone-gitary-diamentowa-trasa.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-22" data-end="2026-11-22">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/ulekrxep7myjf3xq_m.webp?t=1744296622" alt="International Grand Ballet - Jezioro Łabędzie" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">22</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 22 lis &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-22-international-grand-ballet-jezior.html">International Grand Ballet - Jezioro Łabędzie</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: International Grand Ballet - Jezioro Łabędzie.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-22-international-grand-ballet-jezior.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-25" data-end="2026-11-25">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ee0979%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ff6a00%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffd200%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffd200%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22273%22%20cy%3D%22279%22%20r%3D%22193%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22742%22%20cy%3D%22387%22%20r%3D%22273%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Igor Herbut" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">25</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Śr, 25 lis &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-25-igor-herbut.html">Igor Herbut</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Igor Herbut.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-25-igor-herbut.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-27" data-end="2026-11-27">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/272160/filename/66dea0fa8c9e75573d83386e5f97af31.jpg" alt="Alicja Majewska & Włodzimierz Korcz & Warsaw String Quartet - Jubileusz" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">27</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 27 lis &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-27-alicja-majewska-wodzimierz-korcz.html">Alicja Majewska & Włodzimierz Korcz & Warsaw String Quartet - Jubileusz</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Alicja Majewska & Włodzimierz Korcz & Warsaw String Quartet - Jubileusz.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-27-alicja-majewska-wodzimierz-korcz.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-28" data-end="2026-11-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/329554/filename/76945703b32b3914538d0db45471198b.jpeg" alt="The Strings 2 jadą do USA!" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Sob, 28 lis &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-28-the-strings-2-jada-do-usa.html">The Strings 2 jadą do USA!</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: The Strings 2 jadą do USA!.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-28-the-strings-2-jada-do-usa.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-11-29" data-end="2026-11-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23232526%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23414345%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22249%22%20cy%3D%22165%22%20r%3D%22144%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22675%22%20cy%3D%22342%22%20r%3D%22255%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Krzysztof Zalewski" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 29 lis &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-11-29-krzysztof-zalewski.html">Krzysztof Zalewski</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Krzysztof Zalewski.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-11-29-krzysztof-zalewski.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-12-13" data-end="2026-12-13">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%233a1c71%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23d76d77%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffaf7b%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffaf7b%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22318%22%20cy%3D%22188%22%20r%3D%22169%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22748%22%20cy%3D%22285%22%20r%3D%22283%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="TARJA TURUNEN" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">13</span>
+                <span class="ribbon-month">
+                  
+                  GRU
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 13 gru &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-12-13-tarja-turunen.html">TARJA TURUNEN</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: TARJA TURUNEN.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-12-13-tarja-turunen.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-12-14" data-end="2026-12-14">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/364776/filename/102491f73a4c5249506e4d85be0e68c1.png" alt="PATRYCJA MARKOWSKA 25 lat na scenie - KONCERT JUBILEUSZOWY" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">14</span>
+                <span class="ribbon-month">
+                  
+                  GRU
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Koncert &bull; Pon, 14 gru &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-12-14-patrycja-markowska-25-lat-na-scenie.html">PATRYCJA MARKOWSKA 25 lat na scenie - KONCERT JUBILEUSZOWY</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: PATRYCJA MARKOWSKA 25 lat na scenie - KONCERT JUBILEUSZOWY.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-12-14-patrycja-markowska-25-lat-na-scenie.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-12-17" data-end="2026-12-17">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/d5kz6lwra0ecoufv_m.webp?t=1777891961" alt="Stand-up: Adam Van Bendler" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">17</span>
+                <span class="ribbon-month">
+                  
+                  GRU
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Czw, 17 gru &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-12-17-stand-up-adam-van-bendler.html">Stand-up: Adam Van Bendler</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Stand-up: Adam Van Bendler.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-12-17-stand-up-adam-van-bendler.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2026-12-18" data-end="2026-12-18">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://www.kupbilecik.pl/img/gal_baza/pl7b4t6l3df9jv55_m.webp?t=1747730828" alt="Łydka Grubasa" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">18</span>
+                <span class="ribbon-month">
+                  
+                  GRU
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 18 gru &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2026-12-18-ydka-grubasa.html">Łydka Grubasa</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Łydka Grubasa.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2026-12-18-ydka-grubasa.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-01-05" data-end="2027-01-05">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234b6cb7%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23182848%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22355%22%20cy%3D%22315%22%20r%3D%22162%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22828%22%20cy%3D%22365%22%20r%3D%22263%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Matt Dusk" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">05</span>
+                <span class="ribbon-month">
+                  
+                  STY
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Wt, 5 sty &bull; 20:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-01-05-matt-dusk.html">Matt Dusk</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Matt Dusk.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-01-05-matt-dusk.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-01-08" data-end="2027-01-08">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/213606/filename/4e36882b4b543ff9b226e1433d184ce9.jpg" alt="Filharmonia Dowcipu & Waldemar Malicki - Filmowy Świat" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">08</span>
+                <span class="ribbon-month">
+                  
+                  STY
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kino &bull; Pt, 8 sty &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-01-08-filharmonia-dowcipu-waldemar-mali.html">Filharmonia Dowcipu & Waldemar Malicki - Filmowy Świat</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Filharmonia Dowcipu & Waldemar Malicki - Filmowy Świat.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-01-08-filharmonia-dowcipu-waldemar-mali.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-01-10" data-end="2027-01-10">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/365913/filename/ff3de60378afd11b82469af44a3165d7.jpg" alt="Noworoczna Gala - Koncert Wiedeński 2027" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">10</span>
+                <span class="ribbon-month">
+                  
+                  STY
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Koncert &bull; Ndz, 10 sty &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-01-10-noworoczna-gala-koncert-wiedenski.html">Noworoczna Gala - Koncert Wiedeński 2027</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Noworoczna Gala - Koncert Wiedeński 2027.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-01-10-noworoczna-gala-koncert-wiedenski.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-01-15" data-end="2027-01-15">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/365034/filename/053b69fb40d358db80bb470fae6fd5ab.jpg" alt="TGD Kolędy Świata – trasa 2026/2027" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">15</span>
+                <span class="ribbon-month">
+                  
+                  STY
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 15 sty &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-01-15-tgd-koledy-swiata-trasa-20262027.html">TGD Kolędy Świata – trasa 2026/2027</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: TGD Kolędy Świata – trasa 2026/2027.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-01-15-tgd-koledy-swiata-trasa-20262027.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-01-20" data-end="2027-01-20">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/201937/filename/7d0d5352b200db12593c6412b84d4ae9.jpg" alt="Don Vasyl z zespołem - 55-lecie" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">20</span>
+                <span class="ribbon-month">
+                  
+                  STY
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Śr, 20 sty &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-01-20-don-vasyl-z-zespoem-55-lecie.html">Don Vasyl z zespołem - 55-lecie</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Don Vasyl z zespołem - 55-lecie.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-01-20-don-vasyl-z-zespoem-55-lecie.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-02-17" data-end="2027-02-17">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%238e2de2%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%234a00e0%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f72585%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23f72585%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22351%22%20cy%3D%22340%22%20r%3D%22179%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22739%22%20cy%3D%22410%22%20r%3D%22208%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Pasión de Buena Vista" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">17</span>
+                <span class="ribbon-month">
+                  
+                  LUT
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Śr, 17 lut &bull; 19:00</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-02-17-pasion-de-buena-vista.html">Pasión de Buena Vista</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Pasión de Buena Vista.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-02-17-pasion-de-buena-vista.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-03-08" data-end="2027-03-08">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/367701/filename/c20577fdb98b757e2e2ee713b36a0caa.jpg" alt="Varius Manx & Kasia Stankiewicz - SUPER EGO TOUR" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">08</span>
+                <span class="ribbon-month">
+                  
+                  MAR
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pon, 8 mar &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-03-08-varius-manx-kasia-stankiewicz-s.html">Varius Manx & Kasia Stankiewicz - SUPER EGO TOUR</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Varius Manx & Kasia Stankiewicz - SUPER EGO TOUR.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-03-08-varius-manx-kasia-stankiewicz-s.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-03-11" data-end="2027-03-11">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/391248/filename/756555ed88af3388b3e50029ec0d7911.jpg" alt="Klimakterium ... i już" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">11</span>
+                <span class="ribbon-month">
+                  
+                  MAR
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Czw, 11 mar &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-03-11-klimakterium-i-juz.html">Klimakterium ... i już</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Klimakterium ..</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-03-11-klimakterium-i-juz.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-05-23" data-end="2027-05-23">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/356043/filename/28181dbb720c00197c9f16afb3f20376.png" alt="URSZULA - Szafirowa Trasa. 45 Jubileusz Artystyczny" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">23</span>
+                <span class="ribbon-month">
+                  
+                  MAJ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Ndz, 23 maj &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-05-23-urszula-szafirowa-trasa-45-jubil.html">URSZULA - Szafirowa Trasa. 45 Jubileusz Artystyczny</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: URSZULA - Szafirowa Trasa.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-05-23-urszula-szafirowa-trasa-45-jubil.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="event-item" data-start="2027-10-22" data-end="2027-10-22">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              <img class="event-thumb" src="https://biletyna.pl/file/get/w/260/id/206360/filename/80c3bb675ac75bc71ce0e916e2edd4ed.jpg" alt="Igor Kwiatkowski - Introwertyk" loading="lazy">
+              <div class="date-ribbon">
+                <span class="ribbon-day">22</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura &bull; Pt, 22 paź &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="wydarzenia/2027-10-22-igor-kwiatkowski-introwertyk.html">Igor Kwiatkowski - Introwertyk</a></h3>
+                <p class="event-desc">Wydarzenie biletowane: Igor Kwiatkowski - Introwertyk.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <a href="wydarzenia/2027-10-22-igor-kwiatkowski-introwertyk.html" class="event-link">Szczegóły &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+    </div>
+
+  </div>
+
+  <script>
+    function initDynamicBadges() {
+      const now = new Date();
+      const todayStr = now.toISOString().slice(0, 10);
+      
+      const tomorrow = new Date();
+      tomorrow.setDate(now.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end');
+        const badgeContainer = el.querySelector('.badge-container');
+
+        if (!badgeContainer) return;
+
+        if (start === todayStr || (start <= todayStr && end >= todayStr)) {
+          badgeContainer.innerHTML = '<span class="date-badge badge-today">DZIŚ</span>';
+        } else if (start === tomorrowStr) {
+          badgeContainer.innerHTML = '<span class="date-badge badge-tomorrow">JUTRO</span>';
+        } else {
+          badgeContainer.innerHTML = '';
+        }
+      });
+    }
+
+    function filterEvents(mode, clickedBtn) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (clickedBtn) clickedBtn.classList.add('active');
+
+      const now = new Date();
+      const todayStr = now.toISOString().slice(0, 10);
+      
+      const tomorrow = new Date();
+      tomorrow.setDate(now.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end');
+
+        if (mode === 'all') {
+          el.style.display = 'block';
+        } else if (mode === 'today') {
+          el.style.display = (start === todayStr || (start <= todayStr && end >= todayStr)) ? 'block' : 'none';
+        } else if (mode === 'tomorrow') {
+          el.style.display = (start === tomorrowStr) ? 'block' : 'none';
+        } else if (mode === 'weekend') {
+          const d = new Date(start);
+          const day = d.getDay();
+          el.style.display = (day === 0 || day === 6) ? 'block' : 'none';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initDynamicBadges);
+  </script>
+</body>
+</html>

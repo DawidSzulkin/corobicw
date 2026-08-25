@@ -1,6 +1,7 @@
 from typing import List
 
 # Scrapery ogólnopolskie
+from src.scrapers.national.biletyna_pl import BiletynaPlScraper
 from src.scrapers.national.kupbilecik_pl import KupBilecikPlScraper
 
 # Scrapery dedykowane: Kędzierzyn-Koźle
@@ -18,13 +19,14 @@ LOCAL_SCRAPERS = {
         MbpKkPlScraper,
     ],
     "bielsko_biala": [
-        # W kolejnym kroku: dedykowane instytucje miejskie (BCK, Teatr Polski)
+        # Dedykowane instytucje miejskie (BCK, Teatr Polski itp.)
     ],
 }
 
 # Parser-agregatory ogólnopolskie uruchamiane dla każdego aktywnego miasta
 NATIONAL_SCRAPERS = [
     KupBilecikPlScraper,
+    BiletynaPlScraper,
 ]
 
 

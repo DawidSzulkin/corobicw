@@ -1,5 +1,7 @@
+import hashlib
 import io
 import json
+from pathlib import Path
 import re
 import sqlite3
 from PIL import Image
@@ -12,6 +14,30 @@ try:
     _ocr_engine = RapidOCR()
 except ImportError:
     _ocr_engine = None
+
+CACHE_FILE = Path("data/ocr_cache.json")
+
+
+def _load_cache() -> dict:
+    if CACHE_FILE.exists():
+        try:
+            with open(CACHE_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return {}
+    return {}
+
+
+def _save_cache(cache: dict):
+    CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    temp_file = CACHE_FILE.with_suffix(".tmp")
+    with open(temp_file, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=2)
+    temp_file.replace(CACHE_FILE)
+
+
+def _get_url_hash(url: str) -> str:
+    return hashlib.md5(url.strip().encode("utf-8")).hexdigest()
 
 
 def clean_ocr_with_ollama(raw_text: str, model_name: str = "qwen2.5:3b") -> str:
@@ -45,7 +71,6 @@ def clean_ocr_with_ollama(raw_text: str, model_name: str = "qwen2.5:3b") -> str:
             data = json.loads(resp.json().get("response", "{}"))
             clean_text = data.get("description", "").strip()
 
-            # Druga linia obrony: usunięcie ewentualnych prefiksów
             clean_text = re.sub(
                 r"^(oto|poniżej|zadanie|poprawion[ay]|zredagowan[ay]|tekst|informacj[ae]|zgodnie|na podstawie).*?:\s*",
                 "",
@@ -59,7 +84,7 @@ def clean_ocr_with_ollama(raw_text: str, model_name: str = "qwen2.5:3b") -> str:
     except Exception as e:
         print(f"    [Ollama Błąd]: {e}")
 
-    # Fallback w razie niedostępności LLM
+    # Fallback w razie błędu Ollamy
     fallback = re.sub(r"\s+", " ", raw_text).strip()
     return fallback[:250]
 
@@ -68,7 +93,7 @@ def extract_text_from_image(image_url: str) -> str:
     if not _ocr_engine or not image_url.startswith(("http://", "https://")):
         return ""
     try:
-        resp = requests.get(image_url, timeout=8)
+        resp = requests.get(image_url, timeout=10)
         if resp.status_code != 200:
             return ""
         img = Image.open(io.BytesIO(resp.content)).convert("RGB")
@@ -83,8 +108,30 @@ def extract_text_from_image(image_url: str) -> str:
         return ""
 
 
+def process_image_with_cache(image_url: str, cache: dict) -> str:
+    """Sprawdza pamięć podręczną; wykonuje OCR i LLM tylko dla nowych grafik."""
+    img_hash = _get_url_hash(image_url)
+
+    if img_hash in cache:
+        return cache[img_hash]
+
+    print(f"  [OCR/LLM] Analiza nowego plakatu: {image_url}")
+    raw_ocr = extract_text_from_image(image_url)
+    
+    cleaned_desc = ""
+    if len(raw_ocr.strip()) > 30:
+        cleaned_desc = clean_ocr_with_ollama(raw_ocr)
+    
+    # Zapisujemy wynik do cache (nawet pusty "", aby nie badać grafiki ponownie)
+    cache[img_hash] = cleaned_desc
+    _save_cache(cache)
+    return cleaned_desc
+
+
 def enrich_missing_descriptions(city_tag: str):
-    print("\n=== FAZA 3: WZBOGACANIE TREŚCI (OCR + LLM) ===")
+    print(f"\n=== FAZA 3: WZBOGACANIE TREŚCI (OCR + LLM) ({city_tag}) ===")
+
+    cache = _load_cache()
 
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
@@ -95,20 +142,22 @@ def enrich_missing_descriptions(city_tag: str):
         for event_id, title, payload_json in rows:
             try:
                 event = json.loads(payload_json)
-                lead = event.get("analysis", {}).get("editorial_lead", "")
+                analysis = event.setdefault("analysis", {})
+                lead = analysis.get("editorial_lead", "")
                 img_url = event.get("image_url", "")
 
-                is_real_remote_image = img_url.startswith(("http://", "https://")) and "unsplash" not in img_url
+                is_real_remote_image = (
+                    img_url.startswith(("http://", "https://")) 
+                    and "unsplash" not in img_url
+                )
                 needs_enrichment = not lead or lead.startswith("Wydarzenie miejskie:")
 
                 if needs_enrichment and is_real_remote_image:
-                    print(f"  [OCR/LLM] Analiza plakatu dla: {title[:35]}...")
-                    raw_ocr = extract_text_from_image(img_url)
+                    cleaned_desc = process_image_with_cache(img_url, cache)
 
-                    if len(raw_ocr.strip()) > 30:
-                        cleaned_desc = clean_ocr_with_ollama(raw_ocr)
-                        event["analysis"]["editorial_lead"] = cleaned_desc
-                        event["analysis"]["full_description"] = cleaned_desc
+                    if cleaned_desc:
+                        analysis["editorial_lead"] = cleaned_desc
+                        analysis["full_description"] = cleaned_desc
 
                         cursor.execute(
                             "UPDATE events SET payload = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
@@ -120,4 +169,4 @@ def enrich_missing_descriptions(city_tag: str):
                 print(f"  [Błąd rekordu {event_id}]: {err}")
                 continue
 
-    print(f"[ENRICHER] Wzbogacono pomyślnie: {enriched_count} rekordów.")
+    print(f"[ENRICHER] Zaktualizowano w bazie: {enriched_count} rekordów.")
