@@ -1,5 +1,6 @@
-from typing import List, Type
+from typing import List
 from src.scrapers.kedzierzyn_kozle.kedzierzynkozle_pl import KedzierzynKozlePlScraper
+from src.scrapers.kedzierzyn_kozle.mbpkk_pl import MbpKkPlScraper
 from src.scrapers.kedzierzyn_kozle.mok_kkozle_pl import MokKkozlePlScraper
 from src.scrapers.kedzierzyn_kozle.mosirkk_pl import MosirKkPlScraper
 
@@ -8,9 +9,8 @@ SCRAPER_REGISTRY = {
         MokKkozlePlScraper,
         KedzierzynKozlePlScraper,
         MosirKkPlScraper,
+        MbpKkPlScraper,
     ],
-    # Dodanie kolejnego miasta wymaga wpisania tylko nowej pozycji tutaj:
-    # "krakow": [KrakowPlScraper, KupBilecikKrakowScraper],
 }
 
 
