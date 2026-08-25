@@ -4,6 +4,9 @@ from typing import List
 from src.scrapers.national.biletyna_pl import BiletynaPlScraper
 from src.scrapers.national.kupbilecik_pl import KupBilecikPlScraper
 
+# Scrapery dedykowane: Bielsko-Biała
+from src.scrapers.bielsko_biala.teatr_bielsko_pl import TeatrBielskoPlScraper
+
 # Scrapery dedykowane: Kędzierzyn-Koźle
 from src.scrapers.kedzierzyn_kozle.kedzierzynkozle_pl import KedzierzynKozlePlScraper
 from src.scrapers.kedzierzyn_kozle.mbpkk_pl import MbpKkPlScraper
@@ -19,7 +22,7 @@ LOCAL_SCRAPERS = {
         MbpKkPlScraper,
     ],
     "bielsko_biala": [
-        # Dedykowane instytucje miejskie (BCK, Teatr Polski itp.)
+        TeatrBielskoPlScraper,
     ],
 }
 

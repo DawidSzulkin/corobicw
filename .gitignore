@@ -9,3 +9,5 @@ __pycache__/
 debug_*.html
 debug_*.py
 inspect_*.py
+
+events.db
