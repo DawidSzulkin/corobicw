@@ -1,5 +1,11 @@
+# Środowisko i cache
 venv/
 .venv/
 __pycache__/
 *.pyc
 .env
+
+# Dane tymczasowe i zrzuty debugera
+debug_*.html
+debug_*.py
+inspect_*.py
