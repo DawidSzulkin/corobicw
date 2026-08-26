@@ -1,4 +1,4 @@
-from typing import List, Optional
+﻿from typing import List, Optional
 from pydantic import BaseModel
 
 
@@ -18,8 +18,8 @@ class EventAnalysis(BaseModel):
     category: str
     badges: List[str]
     organizer: str
-    editorial_lead: str           # Krótka zajawka na kafelki (bez limitu psującego walidację)
-    full_description: str        # Kompletny, nieskrócony opis do widoku "O wydarzeniu"
+    editorial_lead: str
+    full_description: str
     details_bullets: List[str]
     quick_facts: QuickFacts
     ticket_info: TicketInfo

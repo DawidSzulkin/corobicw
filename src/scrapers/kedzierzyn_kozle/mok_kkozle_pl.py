@@ -1,12 +1,15 @@
-from datetime import datetime
+﻿from datetime import datetime
+import os
 import re
+import sys
 import time
 from typing import Any, Dict, List, Optional, Set
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
-import requests
 import urllib3
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 
 from src.scrapers.base import BaseScraper
 
@@ -19,7 +22,6 @@ class MokKkozlePlScraper(BaseScraper):
             source_name="mok_kkozle_pl",
             base_url="https://www.mok.kedzierzyn-kozle.com.pl"
         )
-        self.session = requests.Session()
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             "X-Requested-With": "XMLHttpRequest",
@@ -39,7 +41,7 @@ class MokKkozlePlScraper(BaseScraper):
         }
 
     def _get_soup(self, url: str) -> BeautifulSoup:
-        resp = self.session.get(url, timeout=12, verify=False)
+        resp = self.session.get(url, timeout=(3.0, 12.0), verify=False)
         resp.raise_for_status()
         return BeautifulSoup(resp.text, "html.parser")
 
@@ -47,7 +49,7 @@ class MokKkozlePlScraper(BaseScraper):
         return re.sub(r"\s+", " ", text).strip()
 
     def _extract_event_date(self, text: str) -> Optional[str]:
-        current_year = datetime.now().year
+        now = datetime.now()
 
         # 1. Format DD.MM.YYYY
         match_full = re.search(r"\b([0-3]?[0-9])\.([0-1]?[0-9])\.(20\d{2})\b", text)
@@ -55,26 +57,36 @@ class MokKkozlePlScraper(BaseScraper):
             d, m, y = match_full.groups()
             return f"{y}-{int(m):02d}-{int(d):02d}"
 
-        # 2. Słowny format polski (np. "29 sierpnia 2026" lub "15 września")
+        # 2. Słowny format polski
         match_named = re.search(r"\b([0-3]?[0-9])\s+([a-ząćęłńóśźż]+)(?:\s+(20\d{2}))?\b", text, re.IGNORECASE)
         if match_named:
             day = int(match_named.group(1))
             month_str = match_named.group(2).lower()
-            year = int(match_named.group(3)) if match_named.group(3) else current_year
-
-            for prefix, month_num in self.months_map.items():
+            month_num = None
+            for prefix, m_idx in self.months_map.items():
                 if month_str.startswith(prefix):
-                    return f"{year}-{month_num:02d}-{day:02d}"
+                    month_num = m_idx
+                    break
 
-        # 3. Format "w dniu DD.MM" lub "termin: DD.MM" (uzupełniamy bieżącym rokiem)
+            if month_num:
+                if match_named.group(3):
+                    year = int(match_named.group(3))
+                else:
+                    year = now.year if month_num >= now.month else now.year + 1
+                return f"{year}-{month_num:02d}-{day:02d}"
+
+        # 3. Format "w dniu DD.MM" lub "termin: DD.MM"
         match_short = re.search(r"(?:dnia|dzień|termin|w dniu|odbędzie się)\s*([0-3]?[0-9])\.([0-1]?[0-9])", text, re.IGNORECASE)
         if match_short:
             d, m = match_short.groups()
-            return f"{current_year}-{int(m):02d}-{int(d):02d}"
+            m_val = int(m)
+            year = now.year if m_val >= now.month else now.year + 1
+            return f"{year}-{m_val:02d}-{int(d):02d}"
 
         return None
 
-    def _fetch_details(self, event_url: str, fallback_img: str) -> Optional[Dict[str, Any]]:
+    def _fetch_details(self, event_url: str, title: str, fallback_img: str) -> Optional[Dict[str, Any]]:
+        default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
         try:
             time.sleep(0.05)
             soup = self._get_soup(event_url)
@@ -102,7 +114,7 @@ class MokKkozlePlScraper(BaseScraper):
             valid_p = [self._clean_text(p.get_text()) for p in paragraphs if len(p.get_text().strip()) > 20]
             description = "\n\n".join(valid_p) if valid_p else self._clean_text(container_text)
 
-            image_url = fallback_img
+            raw_image = fallback_img
             for img in container.select("img"):
                 src = img.get("src", "")
                 if not src:
@@ -110,8 +122,10 @@ class MokKkozlePlScraper(BaseScraper):
                 src_lower = src.lower()
                 if any(bad in src_lower for bad in ["logo", "bip", "icon", "arrow", "social", "cookie", "banner"]):
                     continue
-                image_url = urljoin(self.base_url, src)
+                raw_image = urljoin(self.base_url, src)
                 break
+
+            thumb_path = self.save_thumbnail(raw_image, title, prefix="mok_kk") if (raw_image and "unsplash" not in raw_image) else ""
 
             price_range = "Sprawdź bilety / Wstęp wolny"
             price_match = re.search(r"(?:koszt|cena|bilet[yw]?|wstęp)[\s\w]*?[-:]\s*(\d+[\s,-]*zł|wstęp wolny|bezpłatn\w+)", container_text, re.IGNORECASE)
@@ -134,7 +148,7 @@ class MokKkozlePlScraper(BaseScraper):
             return {
                 "date_start": real_date,
                 "description": description,
-                "image_url": image_url,
+                "image_url": thumb_path or raw_image or default_img,
                 "time_start": time_start,
                 "price_range": price_range,
                 "venue": venue,
@@ -154,7 +168,7 @@ class MokKkozlePlScraper(BaseScraper):
         for page in range(1, 5):
             api_url = f"{self.base_url}/index.php?option=com_minitekwall&task=masonry.getContent&widget_id=1&page={page}"
             try:
-                resp = self.session.get(api_url, timeout=10, verify=False)
+                resp = self.session.get(api_url, timeout=(3.0, 10.0), verify=False)
                 if resp.status_code != 200 or not resp.text.strip():
                     break
 
@@ -199,11 +213,10 @@ class MokKkozlePlScraper(BaseScraper):
 
         valid_events = []
         for item in pending_items:
-            details = self._fetch_details(item["source_url"], fallback_img=item["thumb_img"])
+            details = self._fetch_details(item["source_url"], item["title"], fallback_img=item["thumb_img"])
             if not details:
                 continue
 
-            # Odrzucenie wydarzeń przeszłych
             if details["date_start"] < today_iso:
                 continue
 
@@ -212,14 +225,16 @@ class MokKkozlePlScraper(BaseScraper):
             valid_events.append({
                 "title": item["title"],
                 "date_start": details["date_start"],
-                "source_url": item["source_url"],
+                "date_end": details["date_start"],
                 "time_start": details["time_start"],
-                "description": details["description"],
-                "image_url": details["image_url"],
                 "venue": details["venue"],
                 "address": details["address"],
                 "price_range": details["price_range"],
-                "source": self.source_name
+                "description": details["description"],
+                "image_url": details["image_url"],
+                "source_url": item["source_url"],
+                "source": self.source_name,
+                "organizer": "Miejski Ośrodek Kultury w Kędzierzynie-Koźlu"
             })
 
         print(f"[{self.source_name}] Zwrócono {len(valid_events)} aktywnych wydarzeń.")

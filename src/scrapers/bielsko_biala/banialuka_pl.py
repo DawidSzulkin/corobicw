@@ -1,14 +1,11 @@
-from concurrent.futures import ThreadPoolExecutor, as_completed
+﻿from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
-import io
-import json
 import os
 import re
 import sys
 from typing import Any, Dict, List, Set, Tuple
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
-from PIL import Image
 import urllib3
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
@@ -27,28 +24,18 @@ class BanialukaPlScraper(BaseScraper):
         self.ajax_url = f"{self.base_url}/ajax/get-repertoire"
         self.repertoire_page_url = f"{self.base_url}/repertuar"
         self.seen_signatures: Set[str] = set()
-        self.posters_cache: Dict[str, Tuple[str, str]] = {}
+        self.posters_cache: Dict[str, str] = {}
 
-    def _fetch_poster_for_url(self, item: Tuple[str, str]) -> Tuple[str, Tuple[str, str]]:
-        """Pobiera i generuje miniaturę dla pojedynczego spektaklu (wywoływane w wątku)."""
+    def _fetch_poster_for_url(self, item: Tuple[str, str]) -> Tuple[str, str]:
         show_url, title = item
-        safe_slug = re.sub(r"[^a-zA-Z0-9_\-]", "_", title.lower()).strip("_")
-        filename = f"banialuka_{safe_slug}.webp"
-        disk_path = os.path.join(self.thumb_dir, filename)
-        web_path = f"/assets/thumbnails/{filename}"
-
-        # Szybka ścieżka: miniatura już istnieje na dysku
-        if os.path.exists(disk_path):
-            return show_url, ("", web_path)
-
         if not show_url or show_url == self.repertoire_page_url:
-            return show_url, ("", "")
+            return show_url, ""
 
-        raw_image_url = ""
         try:
-            resp = self.session.get(show_url, timeout=(1.5, 4.0), verify=False)
+            resp = self.session.get(show_url, timeout=(2.0, 5.0), verify=False)
             if resp.status_code == 200:
                 soup = BeautifulSoup(resp.text, "html.parser")
+                raw_image_url = ""
                 for img in soup.select("img[src*='/uploads/attachments/']"):
                     src = img.get("src", "")
                     if not any(ign in src.lower() for ign in ["logo", "herb", "sponsor", "bank", "pko", "slider", "decoration"]):
@@ -60,22 +47,14 @@ class BanialukaPlScraper(BaseScraper):
                     if og and og.get("content"):
                         raw_image_url = urljoin(self.base_url, og["content"])
 
-                if raw_image_url and not os.path.exists(disk_path):
-                    img_resp = self.session.get(raw_image_url, timeout=(1.5, 5.0), verify=False)
-                    if img_resp.status_code == 200:
-                        img = Image.open(io.BytesIO(img_resp.content)).convert("RGB")
-                        max_w = 400
-                        if img.width > max_w:
-                            ratio = max_w / float(img.width)
-                            new_h = int(float(img.height) * float(ratio))
-                            img = img.resize((max_w, new_h), Image.Resampling.LANCZOS)
-                        img.save(disk_path, "WEBP", quality=75, optimize=True)
+                if raw_image_url:
+                    thumb_path = self.save_thumbnail(raw_image_url, title, prefix="banialuka")
+                    return show_url, (thumb_path or raw_image_url)
 
         except Exception as e:
             print(f"[{self.source_name}] Pominięto plakat dla '{title[:30]}': {e}")
 
-        thumb_result = web_path if os.path.exists(disk_path) else ""
-        return show_url, (raw_image_url, thumb_result)
+        return show_url, ""
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         today_iso = datetime.now().strftime("%Y-%m-%d")
@@ -99,11 +78,10 @@ class BanialukaPlScraper(BaseScraper):
         raw_entries = []
         unique_shows: Dict[str, str] = {}
 
-        # KROK 1: Pobranie tabel repertuaru (4 zapytania AJAX)
         for year, month in months_to_check:
             try:
                 payload = {"year": year, "month": month}
-                resp = self.session.post(self.ajax_url, data=payload, headers=ajax_headers, timeout=(2.0, 4.0), verify=False)
+                resp = self.session.post(self.ajax_url, data=payload, headers=ajax_headers, timeout=(2.0, 5.0), verify=False)
                 if resp.status_code != 200:
                     continue
 
@@ -125,7 +103,7 @@ class BanialukaPlScraper(BaseScraper):
                         if d_match:
                             d, m = d_match.groups()
                             date_val = f"{year}-{int(m):02d}-{int(d):02d}"
-                    
+
                     if not date_val or date_val < today_iso:
                         continue
 
@@ -165,54 +143,36 @@ class BanialukaPlScraper(BaseScraper):
                         unique_shows[event_url] = title
 
             except Exception as e:
-                print(f"[{self.source_name}] Błąd przetwarzania {year}-{month:02d}: {e}")
+                print(f"[{self.source_name}] Błąd pobierania {year}-{month:02d}: {e}")
 
-        # KROK 2: Równoległe pobieranie plakatów dla unikalnych spektakli
         if unique_shows:
             with ThreadPoolExecutor(max_workers=4) as executor:
                 futures = [executor.submit(self._fetch_poster_for_url, (url, title)) for url, title in unique_shows.items()]
                 for fut in as_completed(futures):
                     try:
-                        u, data = fut.result()
-                        self.posters_cache[u] = data
+                        u, img = fut.result()
+                        if img:
+                            self.posters_cache[u] = img
                     except Exception:
                         pass
 
-        # KROK 3: Złożenie gotowych obiektów
         events = []
         for entry in raw_entries:
-            full_remote_img, thumb_path = self.posters_cache.get(entry["url"], ("", ""))
-            
-            # Rezerwowa ścieżka miniatury z dysku, jeśli URL był z cache
-            if not thumb_path:
-                safe_slug = re.sub(r"[^a-zA-Z0-9_\-]", "_", entry["title"].lower()).strip("_")
-                disk_path = os.path.join(self.thumb_dir, f"banialuka_{safe_slug}.webp")
-                if os.path.exists(disk_path):
-                    thumb_path = f"/assets/thumbnails/banialuka_{safe_slug}.webp"
-
+            img_path = self.posters_cache.get(entry["url"], "")
             events.append({
                 "title": entry["title"],
-                "date": entry["date"],
+                "date_start": entry["date"],
+                "date_end": entry["date"],
                 "time_start": entry["time_start"],
                 "venue": "Teatr Lalek Banialuka",
                 "address": "ul. Mickiewicza 20, Bielsko-Biała",
                 "price_range": "Bilety płatne (Kasa / Bilety24)",
                 "description": f"Spektakl Teatru Lalek Banialuka: {entry['title']}{entry['age_info']}.",
-                "image_url": full_remote_img,
-                "thumbnail_url": thumb_path,
-                "url": entry["url"],
+                "image_url": img_path,
+                "source_url": entry["url"],
                 "source": self.source_name,
                 "organizer": "Teatr Lalek Banialuka"
             })
 
         print(f"[{self.source_name}] Pomyślnie sparsowano {len(events)} spektakli.")
         return events
-
-
-if __name__ == "__main__":
-    scraper = BanialukaPlScraper()
-    results = scraper.fetch_events()
-    print(f"\nŁącznie sparsowano: {len(results)} aktywnych spektakli")
-    if results:
-        print("\nPrzykładowy rekord:")
-        print(json.dumps(results[0], indent=2, ensure_ascii=False))

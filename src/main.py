@@ -1,9 +1,8 @@
-import argparse
+﻿import argparse
 from pathlib import Path
 import sys
 import yaml
 
-# Ścieżka bazowa do głównego katalogu projektu
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
@@ -38,18 +37,30 @@ def main():
         return
 
     config_files = sorted(list(config_dir.glob("*.yaml")) + list(config_dir.glob("*.yml")))
-    active_cities = []
-
+    
+    # 1. Pobierz wszystkie poprawnie zdefiniowane miasta do HUB-a
+    all_configured_cities = []
     for cfg_path in config_files:
         city_cfg = load_yaml(cfg_path)
         city_tag = city_cfg.get("city_tag")
         city_name = city_cfg.get("city")
 
         if not city_tag or not city_name:
-            # Pomiń pliki globalne / szablony bez ostrzeżeń
             if cfg_path.stem not in ["global", "schema"]:
                 print(f"[POMINIĘTO] Plik {cfg_path.name} nie zawiera wymaganych pól 'city_tag' oraz 'city'.")
             continue
+
+        all_configured_cities.append({
+            "name": city_name,
+            "tag": city_tag,
+            "cfg": city_cfg
+        })
+
+    # 2. Przetwarzanie miast (z opcją filtrowania)
+    for item in all_configured_cities:
+        city_tag = item["tag"]
+        city_name = item["name"]
+        city_cfg = item["cfg"]
 
         if args.city and args.city.lower() != city_tag.lower():
             continue
@@ -64,14 +75,14 @@ def main():
                 source_filter=args.source,
                 skip_enrich=args.skip_enrich
             )
-            active_cities.append({"name": city_name, "tag": city_tag})
         except Exception as e:
             print(f"[BŁĄD MIASTA] Nie udało się przetworzyć '{city_name}': {e}")
 
-    # Renderowanie strony głównej (HUB)
-    if not args.source and active_cities:
+    # 3. HUB zawsze uwzględnia wszystkie skonfigurowane miasta
+    if not args.source and all_configured_cities:
         print("\n=== GENEROWANIE STRONY GŁÓWNEJ (HUB) ===")
-        renderer.render_portal_hub(active_cities=active_cities, output_dir=str(output_dir))
+        hub_cities = [{"name": c["name"], "tag": c["tag"]} for c in all_configured_cities]
+        renderer.render_portal_hub(active_cities=hub_cities, output_dir=str(output_dir))
 
     print("\n[SUKCES] Synchronizacja zakończona.")
 

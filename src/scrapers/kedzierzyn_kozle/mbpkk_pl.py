@@ -1,30 +1,33 @@
-from datetime import datetime
+﻿from datetime import datetime
 import json
+import os
 import re
+import sys
 from typing import Any, Dict, List
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
-import requests
 import urllib3
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 
 from src.scrapers.base import BaseScraper
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 POLISH_MONTH_MAP = {
-    "stycznia": 1, "styczeń": 1,
-    "lutego": 2, "luty": 2,
-    "marca": 3, "marzec": 3,
-    "kwietnia": 4, "kwiecień": 4,
+    "stycznia": 1, "styczeń": 1, "sty": 1,
+    "lutego": 2, "luty": 2, "lut": 2,
+    "marca": 3, "marzec": 3, "mar": 3,
+    "kwietnia": 4, "kwiecień": 4, "kwi": 4,
     "maja": 5, "maj": 5,
-    "czerwca": 6, "czerwiec": 6,
-    "lipca": 7, "lipiec": 7,
-    "sierpnia": 8, "sierpień": 8,
-    "września": 9, "wrzesień": 9,
-    "października": 10, "październik": 10,
-    "listopada": 11, "listopad": 11,
-    "grudnia": 12, "grudzień": 12,
+    "czerwca": 6, "czerwiec": 6, "cze": 6,
+    "lipca": 7, "lipiec": 7, "lip": 7,
+    "sierpnia": 8, "sierpień": 8, "sie": 8,
+    "września": 9, "wrzesień": 9, "wrz": 9,
+    "października": 10, "październik": 10, "paź": 10, "paz": 10,
+    "listopada": 11, "listopad": 11, "lis": 11,
+    "grudnia": 12, "grudzień": 12, "gru": 12,
 }
 
 IGNORE_TITLES = [
@@ -44,31 +47,39 @@ class MbpKkPlScraper(BaseScraper):
             base_url="https://mbpkk.pl"
         )
         self.events_url = "https://mbpkk.pl/aktualne-wydarzenia/"
-        self.session = requests.Session()
-        self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        })
 
     def _parse_polish_date(self, text: str) -> str:
-        # Priorytet: szukanie frazy "Termin: DD.MM.YYYY"
+        now = datetime.now()
+
+        # 1. Termin: DD.MM.YYYY
         termin_match = re.search(r"Termin:\s*(\d{1,2})\.(\d{1,2})\.(\d{4})", text, re.IGNORECASE)
         if termin_match:
             d, m, y = termin_match.groups()
             return f"{y}-{int(m):02d}-{int(d):02d}"
 
-        # Standardowy format DD.MM.YYYY
+        # 2. Standardowy format DD.MM.YYYY
         d_match = re.search(r"\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b", text)
         if d_match:
             d, m, y = d_match.groups()
             return f"{y}-{int(m):02d}-{int(d):02d}"
 
-        # Słowny format DD [miesiąc] YYYY
+        # 3. Słowny format DD [miesiąc] (YYYY)
         month_pattern = "|".join(POLISH_MONTH_MAP.keys())
-        word_match = re.search(rf"\b(\d{{1,2}})\s+({month_pattern})\s+(\d{{4}})\b", text, re.IGNORECASE)
+        word_match = re.search(rf"\b(\d{{1,2}})\s+({month_pattern})(?:\s+(\d{{4}}))?\b", text, re.IGNORECASE)
         if word_match:
             d, m_name, y = word_match.groups()
             m = POLISH_MONTH_MAP[m_name.lower()]
-            return f"{y}-{m:02d}-{int(d):02d}"
+            year = int(y) if y else (now.year if m >= now.month else now.year + 1)
+            return f"{year}-{m:02d}-{int(d):02d}"
+
+        # 4. DD.MM bez roku
+        short_dot = re.search(r"\b(\d{1,2})\.(\d{1,2})\b", text)
+        if short_dot:
+            d, m = short_dot.groups()
+            m_val = int(m)
+            if 1 <= m_val <= 12 and 1 <= int(d) <= 31:
+                year = now.year if m_val >= now.month else now.year + 1
+                return f"{year}-{m_val:02d}-{int(d):02d}"
 
         return ""
 
@@ -86,7 +97,7 @@ class MbpKkPlScraper(BaseScraper):
 
         try:
             print(f"\n[{self.source_name}] Skanowanie wydarzeń MBP Kędzierzyn-Koźle...")
-            resp = self.session.get(self.events_url, timeout=12, verify=False)
+            resp = self.session.get(self.events_url, timeout=(3.0, 12.0), verify=False)
             if resp.status_code != 200:
                 print(f"[{self.source_name}] Błąd HTTP {resp.status_code}")
                 return events
@@ -106,14 +117,12 @@ class MbpKkPlScraper(BaseScraper):
                     continue
 
                 title = title_el.get_text(strip=True)
-
                 if len(title) < 5 or any(ignored in title.lower() for ignored in IGNORE_TITLES):
                     continue
 
                 card_text = card.get_text(" ", strip=True)
                 date_str = self._parse_polish_date(card_text)
 
-                # Odrzucamy brak daty lub wydarzenia archiwalne
                 if not date_str or date_str < today_iso:
                     continue
 
@@ -123,11 +132,13 @@ class MbpKkPlScraper(BaseScraper):
                 url = urljoin(self.base_url, link_el["href"]) if link_el else self.events_url
 
                 img_el = card.select_one("img[src]")
-                image_url = default_img
+                raw_image = ""
                 if img_el:
                     src = img_el.get("src", "")
                     if src and not src.startswith("data:"):
-                        image_url = urljoin(self.base_url, src)
+                        raw_image = urljoin(self.base_url, src)
+
+                thumb_path = self.save_thumbnail(raw_image, title, prefix="mbpkk") if raw_image else ""
 
                 desc_el = card.select_one("p, .entry-summary, .elementor-post__excerpt")
                 raw_desc = desc_el.get_text(" ", strip=True) if desc_el else card_text
@@ -140,12 +151,13 @@ class MbpKkPlScraper(BaseScraper):
                 events.append({
                     "title": title,
                     "date_start": date_str,
+                    "date_end": date_str,
                     "time_start": time_start,
                     "venue": "Miejska Biblioteka Publiczna w Kędzierzynie-Koźlu",
                     "address": "Rynek 3, Kędzierzyn-Koźle",
                     "price_range": "Wstęp wolny",
-                    "description": clean_desc,
-                    "image_url": image_url,
+                    "description": clean_desc or f"Wydarzenie w MBP Kędzierzyn-Koźle: {title}.",
+                    "image_url": thumb_path or raw_image or default_img,
                     "source_url": url,
                     "source": self.source_name,
                     "organizer": "Miejska Biblioteka Publiczna"

@@ -1,4 +1,4 @@
-from datetime import datetime
+﻿from datetime import datetime
 import json
 import os
 import re
@@ -47,12 +47,6 @@ class KupBilecikPlScraper(BaseScraper):
         self.city_patterns = CITY_MATCH_PATTERNS.get(self.city_tag, [self.city_tag.replace("_", "")])
         self.events_url = f"{self.base_url}/szukaj/?q={quote_plus(self.city_query)}"
 
-        self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-            "Accept-Language": "pl-PL,pl;q=0.9,en;q=0.8",
-        })
-
     def _format_url(self, raw_url: str) -> str:
         clean_url = urljoin(self.base_url, raw_url)
         if self.partner_id:
@@ -65,8 +59,6 @@ class KupBilecikPlScraper(BaseScraper):
         return any(pattern in norm for pattern in self.city_patterns)
 
     def _parse_date(self, text: str) -> str:
-        current_year = datetime.now().year
-
         dot_match = re.search(r"\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b", text)
         if dot_match:
             d, m, y = dot_match.groups()
@@ -163,21 +155,19 @@ class KupBilecikPlScraper(BaseScraper):
                     if not src.startswith("data:"):
                         image_url = urljoin(self.base_url, src)
 
-                thumb_path = ""
-                if image_url and hasattr(self, "save_thumbnail"):
-                    thumb_path = self.save_thumbnail(image_url, title)
+                thumb_path = self.save_thumbnail(image_url, title, prefix=f"kupbilecik_{self.city_tag}") if image_url else ""
 
                 events.append({
                     "title": title,
-                    "date": date_str,
+                    "date_start": date_str,
+                    "date_end": date_str,
                     "time_start": time_start,
                     "venue": venue,
                     "address": f"{venue}, {self.city_query}",
                     "price_range": "Bilety płatne",
                     "description": f"Wydarzenie biletowane: {title}. Miejsce: {venue}.",
-                    "image_url": image_url,
-                    "thumbnail_url": thumb_path,
-                    "url": full_url,
+                    "image_url": thumb_path or image_url,
+                    "source_url": full_url,
                     "source": self.source_name,
                     "organizer": "KupBilecik.pl"
                 })
@@ -185,14 +175,5 @@ class KupBilecikPlScraper(BaseScraper):
         except Exception as e:
             print(f"[{self.source_name}] Błąd parsowania: {e}")
 
-        print(f"[{self.source_name}] Sparsowano {len(events)} wydarzeń.")
+        print(f"[{self.source_name}] Sparsowano {len(events)} wydarzeń dla '{self.city_tag}'.")
         return events
-
-
-if __name__ == "__main__":
-    test_city = sys.argv[1] if len(sys.argv) > 1 else "bielsko_biala"
-    scraper = KupBilecikPlScraper(city_tag=test_city)
-    data = scraper.fetch_events()
-    print(f"\n[{test_city.upper()}] Pobrano wydarzeń: {len(data)}\n")
-    if data:
-        print(json.dumps(data[0], indent=2, ensure_ascii=False))

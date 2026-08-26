@@ -1,6 +1,7 @@
-from datetime import datetime
-import os
+﻿import os
 import re
+import unicodedata
+from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from src.db import get_active_events, save_event
@@ -9,6 +10,18 @@ from src.enricher import enrich_missing_descriptions
 from src.models import FullEventPage
 from src.renderer import HTMLRenderer
 from src.scrapers.registry import get_scrapers_for_city
+
+
+def slugify(text: str) -> str:
+    """Konwertuje tekst do bezpiecznego formatu URL (ASCII, lowercase, myślniki)."""
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(c for c in text if not unicodedata.combining(c))
+    # Zamiana znaków specyficznych dla języka polskiego nieobsługiwanych przez NFKD
+    pl_map = {"ł": "l", "Ł": "l"}
+    for pl_char, ascii_char in pl_map.items():
+        text = text.replace(pl_char, ascii_char)
+    text = re.sub(r"[^\w\s-]", "", text.lower()).strip()
+    return re.sub(r"[-\s]+", "-", text)
 
 
 def _prepare_event_models(events: List[Any]) -> List[Any]:
@@ -32,18 +45,24 @@ def _prepare_event_models(events: List[Any]) -> List[Any]:
                     },
                     "ticket_info": {
                         "time_start": e.get("time_start") or "Według harmonogramu",
-                        "venue_name": e.get("venue") or "Kędzierzyn-Koźle",
+                        "venue_name": e.get("venue") or "Wydarzenie",
                         "price_range": e.get("price_range") or "Sprawdź bilety / Wstęp wolny"
                     },
-                    "address": e.get("address") or e.get("venue") or "Kędzierzyn-Koźle"
+                    "address": e.get("address") or e.get("venue") or ""
                 }
 
-            if "slug" not in e or not e.get("slug"):
-                slug_clean = re.sub(r"[^\w\s-]", "", e.get("title", "").lower()).strip()
-                e["slug"] = re.sub(r"[-\s]+", "-", slug_clean) or "wydarzenie"
-            if "date_end" not in e:
+            date_start = str(e.get("date_start", "")).strip()[:10]
+            existing_slug = e.get("slug", "")
+
+            if not existing_slug:
+                title_slug = slugify(e.get("title", ""))[:60].strip("-")
+                e["slug"] = f"{date_start}-{title_slug}" if date_start else (title_slug or "wydarzenie")
+            else:
+                e["slug"] = slugify(existing_slug)
+
+            if "date_end" not in e or not e.get("date_end"):
                 e["date_end"] = e.get("date_start", "")
-            if "date_formatted" not in e:
+            if "date_formatted" not in e or not e.get("date_formatted"):
                 e["date_formatted"] = e.get("date_start", "")
             if "image_url" not in e or not e.get("image_url"):
                 e["image_url"] = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
@@ -52,7 +71,8 @@ def _prepare_event_models(events: List[Any]) -> List[Any]:
 
             try:
                 models.append(FullEventPage(**e))
-            except Exception:
+            except Exception as err:
+                print(f"[PIPELINE] Błąd walidacji rekordu {e.get('title')}: {err}")
                 models.append(e)
         else:
             models.append(e)
@@ -80,7 +100,7 @@ def run_city_pipeline(
     print(f"  URUCHAMIANIE PIPELINE: {city_name.upper()} ({city_tag})")
     print(f"==========================================")
 
-    # --- TRYB: TYLKO RENDEROWANIE (pomija fazy 1-3) ---
+    # --- TRYB: TYLKO RENDEROWANIE ---
     if render_only:
         print("\n--- FAZA 4: SZYBKIE GENEROWANIE HTML (render-only z bazy) ---")
         raw_events = get_active_events(city_tag=city_tag, min_date=today_iso)

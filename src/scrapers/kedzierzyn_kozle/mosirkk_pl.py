@@ -1,11 +1,14 @@
-from datetime import datetime
+﻿from datetime import datetime
+import os
 import re
+import sys
 from typing import Any, Dict, List
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
-import requests
 import urllib3
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 
 from src.scrapers.base import BaseScraper
 
@@ -19,10 +22,6 @@ class MosirKkPlScraper(BaseScraper):
             base_url="https://www.mosirkk.pl"
         )
         self.events_url = "https://www.mosirkk.pl"
-        self.session = requests.Session()
-        self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        })
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         events = []
@@ -31,7 +30,7 @@ class MosirKkPlScraper(BaseScraper):
 
         try:
             print(f"\n[{self.source_name}] Skanowanie wydarzeń MOSiR Kędzierzyn-Koźle...")
-            resp = self.session.get(self.events_url, timeout=12, verify=False)
+            resp = self.session.get(self.events_url, timeout=(3.0, 12.0), verify=False)
             if resp.status_code != 200:
                 print(f"[{self.source_name}] Błąd HTTP {resp.status_code}")
                 return events
@@ -87,11 +86,13 @@ class MosirKkPlScraper(BaseScraper):
                 url = urljoin(self.base_url, link_el["href"]) if link_el else self.base_url
 
                 img_el = card.select_one("img[src]")
-                image_url = default_img
+                raw_image = ""
                 if img_el:
                     src = img_el.get("src", "")
                     if src and not src.startswith("data:"):
-                        image_url = urljoin(self.base_url, src)
+                        raw_image = urljoin(self.base_url, src)
+
+                thumb_path = self.save_thumbnail(raw_image, title, prefix="mosirkk") if raw_image else ""
 
                 desc_el = card.select_one("p, .introtext, .desc")
                 desc = desc_el.get_text(" ", strip=True) if desc_el else card_text[:300]
@@ -102,14 +103,16 @@ class MosirKkPlScraper(BaseScraper):
                 events.append({
                     "title": title,
                     "date_start": date_str,
+                    "date_end": date_str,
                     "time_start": time_start,
                     "venue": "Obiekty MOSiR Kędzierzyn-Koźle",
                     "address": "al. Jana Pawła II 29, Kędzierzyn-Koźle",
                     "price_range": "Sprawdź cennik / Wstęp wolny",
-                    "description": desc,
-                    "image_url": image_url,
+                    "description": desc or f"Wydarzenie sportowe: {title}.",
+                    "image_url": thumb_path or raw_image or default_img,
                     "source_url": url,
-                    "source": self.source_name
+                    "source": self.source_name,
+                    "organizer": "MOSiR Kędzierzyn-Koźle"
                 })
 
             print(f"[{self.source_name}] Pomyślnie pobrano {len(events)} pozycji.")

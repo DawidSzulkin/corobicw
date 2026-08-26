@@ -1,14 +1,10 @@
-from datetime import datetime
+﻿from datetime import datetime
 import html
-import io
-import json
 import os
 import re
 import sys
 from typing import Any, Dict, List, Set
 from bs4 import BeautifulSoup
-from PIL import Image
-import requests
 import urllib3
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
@@ -25,65 +21,22 @@ class CavatinaHallPlScraper(BaseScraper):
             base_url="https://cavatinahall.pl"
         )
         self.api_url = f"{self.base_url}/wp-json/wp/v2/events"
-        self.session = requests.Session()
-        self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-            "Accept": "application/json, text/plain, */*"
-        })
         self.seen_signatures: Set[str] = set()
-        self.posters_cache: Dict[str, str] = {}
-
-        self.thumb_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../docs/assets/thumbnails"))
-        os.makedirs(self.thumb_dir, exist_ok=True)
-
-    def _optimize_and_save_thumbnail(self, remote_img_url: str, title: str) -> str:
-        if not remote_img_url:
-            return ""
-
-        safe_slug = re.sub(r"[^a-zA-Z0-9_\-]", "_", title.lower()).strip("_")
-        filename = f"cavatina_{safe_slug}.webp"
-        disk_path = os.path.join(self.thumb_dir, filename)
-        web_path = f"/assets/thumbnails/{filename}"
-
-        if os.path.exists(disk_path):
-            return web_path
-
-        if title in self.posters_cache:
-            return self.posters_cache[title]
-
-        try:
-            print(f"[{self.source_name}] Kompresja miniatury: {title[:40]}...")
-            resp = self.session.get(remote_img_url, timeout=(3.05, 8), verify=False)
-            if resp.status_code == 200:
-                img = Image.open(io.BytesIO(resp.content)).convert("RGB")
-                max_w = 400
-                if img.width > max_w:
-                    ratio = max_w / float(img.width)
-                    new_h = int(float(img.height) * float(ratio))
-                    img = img.resize((max_w, new_h), Image.Resampling.LANCZOS)
-
-                img.save(disk_path, "WEBP", quality=75, optimize=True)
-                self.posters_cache[title] = web_path
-                return web_path
-        except Exception as e:
-            print(f"[{self.source_name}] Błąd miniatury dla '{title}': {e}")
-
-        return ""
 
     def _parse_event_datetime(self, item: Dict[str, Any]) -> tuple:
         acf = item.get("acf") or {}
         event_dt_str = acf.get("event_datetime")
-        
+
         if event_dt_str:
             try:
-                dt = datetime.strptime(event_dt_str.strip(), "%Y-%m-%d %H:%M:%S")
+                dt = datetime.strptime(str(event_dt_str).strip(), "%Y-%m-%d %H:%M:%S")
                 return dt.strftime("%Y-%m-%d"), dt.strftime("%H:%M")
             except ValueError:
                 pass
 
         event_date_raw = acf.get("event_date")
         event_time_raw = acf.get("event_time", "19:00:00")
-        
+
         if event_date_raw and len(str(event_date_raw)) == 8:
             try:
                 dt = datetime.strptime(str(event_date_raw), "%Y%m%d")
@@ -99,13 +52,11 @@ class CavatinaHallPlScraper(BaseScraper):
         return "", "19:00"
 
     def _extract_image_url(self, item: Dict[str, Any]) -> str:
-        # 1. Próba z lekkiego obiektu Yoast SEO
         yoast = item.get("yoast_head_json") or {}
         og_images = yoast.get("og_image") or []
         if og_images and isinstance(og_images, list) and og_images[0].get("url"):
             return og_images[0]["url"]
 
-        # 2. Próba z _embedded
         embedded = item.get("_embedded") or {}
         featured = embedded.get("wp:featuredmedia") or []
         if featured and isinstance(featured, list) and featured[0].get("source_url"):
@@ -125,13 +76,12 @@ class CavatinaHallPlScraper(BaseScraper):
 
         while page <= max_pages:
             params = {
-                "per_page": 20,
+                "per_page": 50,
                 "page": page
             }
             try:
-                print(f"[{self.source_name}] Pobieranie strony API {page}...")
                 resp = self.session.get(self.api_url, params=params, timeout=(4.0, 10.0), verify=False)
-                
+
                 if resp.status_code in [400, 404]:
                     break
                 if resp.status_code != 200:
@@ -142,7 +92,6 @@ class CavatinaHallPlScraper(BaseScraper):
                 if not items or not isinstance(items, list):
                     break
 
-                future_on_page = 0
                 for item in items:
                     raw_title = item.get("title", {}).get("rendered", "")
                     title = html.unescape(raw_title).strip()
@@ -153,7 +102,6 @@ class CavatinaHallPlScraper(BaseScraper):
                     if not date_iso or date_iso < today_iso:
                         continue
 
-                    future_on_page += 1
                     sig = f"{date_iso}_{time_str}_{title.lower()}"
                     if sig in self.seen_signatures:
                         continue
@@ -161,7 +109,7 @@ class CavatinaHallPlScraper(BaseScraper):
 
                     event_url = item.get("link", f"{self.base_url}/wydarzenia/")
                     full_remote_img = self._extract_image_url(item)
-                    thumb_path = self._optimize_and_save_thumbnail(full_remote_img, title)
+                    thumb_path = self.save_thumbnail(full_remote_img, title, prefix="cavatina")
 
                     raw_content = item.get("content", {}).get("rendered", "")
                     if raw_content:
@@ -175,15 +123,15 @@ class CavatinaHallPlScraper(BaseScraper):
 
                     events.append({
                         "title": title,
-                        "date": date_iso,
+                        "date_start": date_iso,
+                        "date_end": date_iso,
                         "time_start": time_str,
                         "venue": "Cavatina Hall",
                         "address": "ul. Dworkowa 2, Bielsko-Biała",
                         "price_range": "Bilety płatne (Kasa / Eventim / Cavatina)",
                         "description": desc,
-                        "image_url": full_remote_img,
-                        "thumbnail_url": thumb_path,
-                        "url": event_url,
+                        "image_url": thumb_path or full_remote_img,
+                        "source_url": event_url,
                         "source": self.source_name,
                         "organizer": "Cavatina Hall"
                     })
@@ -194,14 +142,5 @@ class CavatinaHallPlScraper(BaseScraper):
                 print(f"[{self.source_name}] Błąd strony {page}: {e}")
                 break
 
-        print(f"[{self.source_name}] Pomyślnie sparsowano {len(events)} nadchodzących wydarzeń Cavatina Hall.")
+        print(f"[{self.source_name}] Pomyślnie sparsowano {len(events)} aktywnych wydarzeń Cavatina Hall.")
         return events
-
-
-if __name__ == "__main__":
-    scraper = CavatinaHallPlScraper()
-    results = scraper.fetch_events()
-    print(f"\nŁącznie sparsowano: {len(results)} aktywnych wydarzeń Cavatina Hall")
-    if results:
-        print("\nPrzykładowy rekord:")
-        print(json.dumps(results[0], indent=2, ensure_ascii=False))

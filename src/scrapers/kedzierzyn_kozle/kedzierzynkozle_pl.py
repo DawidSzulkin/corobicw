@@ -1,12 +1,15 @@
-from datetime import datetime
+﻿from datetime import datetime
+import os
 import re
+import sys
 import time
 from typing import Any, Dict, List, Set
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
-import requests
 import urllib3
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 
 from src.scrapers.base import BaseScraper
 
@@ -19,14 +22,10 @@ class KedzierzynKozlePlScraper(BaseScraper):
             source_name="kedzierzynkozle_pl",
             base_url="https://kedzierzynkozle.pl"
         )
-        self.session = requests.Session()
-        self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        })
         self.seen_urls: Set[str] = set()
 
     def _get_soup(self, url: str) -> BeautifulSoup:
-        resp = self.session.get(url, timeout=10, verify=False)
+        resp = self.session.get(url, timeout=(3.0, 10.0), verify=False)
         resp.raise_for_status()
         return BeautifulSoup(resp.text, "html.parser")
 
@@ -39,7 +38,7 @@ class KedzierzynKozlePlScraper(BaseScraper):
         )
         return cleaned.strip()
 
-    def _fetch_details(self, event_url: str) -> Dict[str, Any]:
+    def _fetch_details(self, event_url: str, title: str) -> Dict[str, Any]:
         default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
         try:
             time.sleep(0.03)
@@ -55,13 +54,11 @@ class KedzierzynKozlePlScraper(BaseScraper):
 
             article_text = article.get_text(separator="\n")
 
-            # 1. Godzina rozpoczęcia
             time_start = "Według harmonogramu"
             time_match = re.search(r"(\b[0-2]?[0-9]:[0-5][0-9]\b)", article_text)
             if time_match:
                 time_start = time_match.group(1)
 
-            # 2. Miejsce wydarzenia
             venue = "Kędzierzyn-Koźle"
             drupal_venue = article.select_one(".field-name-field-miejsce-wydarzenia .field-item, .field-name-field-miejsce .field-item")
             if drupal_venue:
@@ -76,8 +73,7 @@ class KedzierzynKozlePlScraper(BaseScraper):
                             venue = candidate
                             break
 
-            # 3. Wykrycie plakatu
-            image_url = default_img
+            raw_image = ""
             for img in article.select("img"):
                 src = img.get("src", "")
                 if not src:
@@ -85,26 +81,27 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 src_lower = src.lower()
                 if any(ignored in src_lower for ignored in ["logo", "bip", "unia", "herb", "koziolk", "budzet", "icon"]):
                     continue
-                image_url = urljoin(self.base_url, src)
+                raw_image = urljoin(self.base_url, src)
                 break
 
-            # 4. Pobranie surowego opisu tekstowego
+            thumb_path = self.save_thumbnail(raw_image, title, prefix="kedzierzynkozle") if raw_image else ""
+
             paragraphs = article.find_all("p")
             valid_paragraphs = [p.get_text(strip=True) for p in paragraphs if len(p.get_text(strip=True)) > 20]
-            description = "\n\n".join(valid_paragraphs) if valid_paragraphs else ""
+            description = "\n\n".join(valid_paragraphs) if valid_paragraphs else f"Wydarzenie w Kędzierzynie-Koźlu: {title}."
 
             return {
                 "description": description,
-                "image_url": image_url,
+                "image_url": thumb_path or raw_image or default_img,
                 "time_start": time_start,
-                "price_range": "Sprawdź bilety / Wstęp wolny",
+                "price_range": "Wstęp wolny / Sprawdź bilety",
                 "venue": venue,
-                "address": venue
+                "address": f"{venue}, Kędzierzyn-Koźle" if "Kędzierzyn" not in venue else venue
             }
         except Exception as e:
             print(f"    [Błąd pobierania {event_url}]: {e}")
             return {
-                "description": "",
+                "description": f"Wydarzenie: {title}.",
                 "image_url": default_img,
                 "time_start": "Według harmonogramu",
                 "price_range": "Sprawdź bilety",
@@ -126,7 +123,6 @@ class KedzierzynKozlePlScraper(BaseScraper):
         cells = soup.select(".view-calendar td, .calendar-calendar td")
 
         for cell in cells:
-            # Wyciągnięcie daty z nagłówka dnia w komórce kalendarza
             current_date = None
             day_link = cell.select_one("a[href*='/calendar-node-field-date/day/']")
             if day_link and day_link.get("href"):
@@ -134,7 +130,6 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 if date_match:
                     current_date = date_match.group(0)
 
-            # TWARDE ODCIĘCIE: Jeśli komórka nie ma daty lub data jest wcześniejsza niż dziś -> OMIJAMY
             if not current_date or current_date < today_iso:
                 continue
 
@@ -160,20 +155,21 @@ class KedzierzynKozlePlScraper(BaseScraper):
 
         new_events = []
         for item in pending_events:
-            print(f"  [Pobieranie] {item['date_start']} | {item['title'][:40]}...")
-            details = self._fetch_details(item["source_url"])
+            details = self._fetch_details(item["source_url"], item["title"])
 
             new_events.append({
                 "title": item["title"],
                 "date_start": item["date_start"],
-                "source_url": item["source_url"],
-                "description": details["description"],
-                "image_url": details["image_url"],
+                "date_end": item["date_start"],
                 "time_start": details["time_start"],
-                "price_range": details["price_range"],
                 "venue": details["venue"],
                 "address": details["address"],
-                "source": self.source_name
+                "price_range": details["price_range"],
+                "description": details["description"],
+                "image_url": details["image_url"],
+                "source_url": item["source_url"],
+                "source": self.source_name,
+                "organizer": "Urząd Miasta Kędzierzyn-Koźle"
             })
 
         return new_events
@@ -184,7 +180,7 @@ class KedzierzynKozlePlScraper(BaseScraper):
         now = datetime.now()
         all_events = []
 
-        for offset in range(2):
+        for offset in range(3):
             target_month = (now.month - 1 + offset) % 12 + 1
             target_year = now.year + ((now.month - 1 + offset) // 12)
             all_events.extend(self.scrape_month(target_year, target_month, today_iso))
