@@ -5,6 +5,7 @@ from src.scrapers.national.biletyna_pl import BiletynaPlScraper
 from src.scrapers.national.kupbilecik_pl import KupBilecikPlScraper
 
 # Scrapery dedykowane: Bielsko-Biała
+from src.scrapers.bielsko_biala.banialuka_pl import BanialukaPlScraper
 from src.scrapers.bielsko_biala.teatr_bielsko_pl import TeatrBielskoPlScraper
 
 # Scrapery dedykowane: Kędzierzyn-Koźle
@@ -23,6 +24,7 @@ LOCAL_SCRAPERS = {
     ],
     "bielsko_biala": [
         TeatrBielskoPlScraper,
+        BanialukaPlScraper,
     ],
 }
 

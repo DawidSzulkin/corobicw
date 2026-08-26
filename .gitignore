@@ -1,13 +1,36 @@
-# Środowisko i cache
+# Środowisko wirtualne i konfiguracja
 venv/
 .venv/
-__pycache__/
-*.pyc
+env/
 .env
+.env.*
 
-# Dane tymczasowe i zrzuty debugera
-debug_*.html
-debug_*.py
-inspect_*.py
+# Pamięć podręczna Pythona
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
 
+# Bazy danych i pliki stanu (runtime)
+*.db
+*.sqlite
+*.sqlite3
 events.db
+data/*.db
+
+# Skrypty diagnostyczne, testy jednorazowe i zrzuty
+debug_*.*
+diag_*.*
+inspect_*.*
+test_*.py
+find_*.*
+*.log
+
+# Środowiska IDE i system operacyjny
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

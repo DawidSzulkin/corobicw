@@ -17,23 +17,22 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     .image-wrapper {
-  margin-bottom: 16px;
-}
-.image-wrapper .main-image {
-  margin-bottom: 4px; /* Zmniejsza odstęp między plakatem a podpisem */
-}
-.image-caption {
-  font-size: 11px;
-  color: var(--text-muted);
-  text-align: right;
-  padding: 0 4px;
-}
-.image-caption a {
-  color: inherit;
-  text-decoration: underline;
-}
+      margin-bottom: 16px;
+    }
+    .image-wrapper .main-image {
+      margin-bottom: 4px;
+    }
+    .image-caption {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: right;
+      padding: 0 4px;
+    }
+    .image-caption a {
+      color: inherit;
+      text-decoration: underline;
+    }
 
-    /* Baza mobilna */
     body { 
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       background: var(--bg); 
@@ -73,14 +72,14 @@
     h1 { font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
     .organizer-line { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
     .main-image {
-    width: 100%;
-   max-height: 70vh; /* Zapobiega zajęciu całego ekranu przez pionowe plakaty */
-    height: auto;
-    object-fit: contain; /* Pokazuje cały obraz bez kadrowania */
-    background: #f8fafc; /* Lekkie szare tło dla pustych przestrzeni po bokach */
-    border-radius: 8px;
-   margin-bottom: 16px;
-   border: 1px solid var(--border);
+      width: 100%;
+      max-height: 70vh;
+      height: auto;
+      object-fit: contain;
+      background: #f8fafc;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
     }
 
     .quick-facts { 
@@ -123,14 +122,12 @@
     .meta-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
     .meta-row span:first-child { color: var(--text-muted); }
 
-    /* Progresywna rozbudowa: Tablety */
     @media (min-width: 600px) {
       h1 { font-size: 26px; }
       .quick-facts { grid-template-columns: repeat(3, 1fr); }
       .content-box, .b2b-card { padding: 20px; }
     }
 
-    /* Progresywna rozbudowa: Desktop */
     @media (min-width: 992px) {
       .layout-container { 
         max-width: 1200px; 
@@ -166,11 +163,15 @@
       <div class="organizer-line">Organizator: <strong>KupBilecik.pl</strong></div>
 
       <div class="image-wrapper">
-  <img class="main-image" src="https://www.kupbilecik.pl/img/gal_plakaty/lpz7m59mbixhshsw_m.webp?t=1785327094" alt="Zbrodnia i kara i Bóg">
-  <div class="image-caption">
-    Materiały promocyjne organizatora &bull; Źródło: <a href="https://www.kupbilecik.pl/imprezy/214052/Bielsko-Bia%C5%82a/Zbrodnia+i+kara+i+B%C3%B3g/" target="_blank" rel="nofollow noopener">Serwis źródłowy</a>
-  </div>
-</div>
+        
+        
+        
+        <img class="main-image" src="https://www.kupbilecik.pl/img/gal_plakaty/lpz7m59mbixhshsw_m.webp?t=1785327094" alt="Zbrodnia i kara i Bóg" decoding="async">
+        <div class="image-caption">
+          Materiały promocyjne organizatora &bull; Źródło: <a href="https://www.kupbilecik.pl/imprezy/214052/Bielsko-Bia%C5%82a/Zbrodnia+i+kara+i+B%C3%B3g/" target="_blank" rel="nofollow noopener">Serwis źródłowy</a>
+        </div>
+      </div>
+
       <div class="quick-facts">
         <div class="fact-item"><strong>Czas trwania</strong> ~2h</div>
         <div class="fact-item"><strong>Wiek</strong> Wszyscy</div>
@@ -180,7 +181,6 @@
       <section class="content-box">
         <h2>O wydarzeniu</h2>
         <div class="description-body">
-          
           
             <p class="lead-text" style="margin-bottom: 12px; font-weight: 400;">Wydarzenie biletowane: Zbrodnia i kara i Bóg. Miejsce: Bielska Scena Reja.</p>
           
@@ -204,8 +204,8 @@
       <!-- Slot B2B: Transport -->
       <div class="b2b-card">
         <h3>🚗 Dojazd i Transport</h3>
-        <p style="font-size: 14px; margin-top: 4px;">Wracasz wieczorem z wydarzenia? Skorzystaj z lokalnych przewoźników w Kędzierzynie-Koźlu.</p>
-        <a href="tel:+48771234567" class="btn-action" style="background:#28a745;">Zadzwoń po Taxi KK</a>
+        <p style="font-size: 14px; margin-top: 4px;">Wracasz wieczorem z wydarzenia? Skorzystaj z lokalnych przewoźników w Bielsko-Biała.</p>
+        <a href="tel:+48771234567" class="btn-action" style="background:#28a745;">Zadzwoń po Taxi</a>
       </div>
 
       <!-- Lokalizacja -->
@@ -238,7 +238,7 @@
 
         <div class="b2b-card">
           <h3>Nie przegap wydarzeń!</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin: 6px 0 12px 0;">Otrzymuj cotygodniowe zestawienie imprez w Kędzierzynie-Koźlu.</p>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 6px 0 12px 0;">Otrzymuj cotygodniowe zestawienie imprez w Bielsko-Biała.</p>
           <input type="email" placeholder="Twój adres e-mail" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 8px;">
           <button class="btn-action" style="border:none; cursor:pointer;">Zapisz się</button>
         </div>

@@ -109,7 +109,6 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
-    /* Kontener miniatury z klockiem kalendarza */
     .thumb-wrapper {
       position: relative;
       width: 140px;
@@ -127,7 +126,6 @@
       display: block;
     }
 
-    /* Klocek daty w stylu Pełnej Kultury */
     .date-ribbon {
       position: absolute;
       top: 0;
@@ -260,7 +258,13 @@
           <div class="event-row">
             
             <div class="thumb-wrapper">
-              <img class="event-thumb" src="{{ ev.image_url }}" alt="{{ ev.title }}" loading="lazy">
+              {# Mapowanie ścieżki na relatywną dla serwera statycznego / Live Servera #}
+              {% set img_src = ev.image_url %}
+              {% if img_src.startswith('/assets/') %}
+                {% set img_src = '../' + img_src[1:] %}
+              {% endif %}
+              <img class="event-thumb" src="{{ img_src }}" alt="{{ ev.title }}" loading="lazy" decoding="async">
+              
               <div class="date-ribbon">
                 <span class="ribbon-day">{{ ev.date_start.split('-')[2] }}</span>
                 <span class="ribbon-month">
