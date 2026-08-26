@@ -1,8 +1,16 @@
+from datetime import datetime
 import json
 import re
+from typing import Any, Dict, List
 from urllib.parse import urljoin
+
 from bs4 import BeautifulSoup
 import requests
+import urllib3
+
+from src.scrapers.base import BaseScraper
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 POLISH_MONTH_MAP = {
     "stycznia": 1, "styczeń": 1,
@@ -29,14 +37,17 @@ IGNORE_TITLES = [
 ]
 
 
-class MbpKkPlScraper:
-    def __init__(self):
-        self.source_name = "mbpkk_pl"
-        self.base_url = "https://mbpkk.pl"
+class MbpKkPlScraper(BaseScraper):
+    def __init__(self, city_tag: str = "kedzierzyn_kozle", partner_id: str = ""):
+        super().__init__(
+            source_name="mbpkk_pl",
+            base_url="https://mbpkk.pl"
+        )
         self.events_url = "https://mbpkk.pl/aktualne-wydarzenia/"
-        self.headers = {
+        self.session = requests.Session()
+        self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        }
+        })
 
     def _parse_polish_date(self, text: str) -> str:
         # Priorytet: szukanie frazy "Termin: DD.MM.YYYY"
@@ -62,29 +73,31 @@ class MbpKkPlScraper:
         return ""
 
     def _parse_event_time(self, text: str) -> str:
-        # Celujemy precyzyjnie w zapis po słowie godzina/godz. (np. "godz. 16:00", "godz 17.00")
         time_match = re.search(r"godz(?:ina|\.)?\s*([01]?[0-9]|2[0-3])[:.]([0-5][0-9])", text, re.IGNORECASE)
         if time_match:
             h, m = time_match.groups()
             return f"{int(h):02d}:{m}"
         return "Według harmonogramu"
 
-    def fetch_events(self) -> list[dict]:
+    def fetch_events(self) -> List[Dict[str, Any]]:
         events = []
+        today_iso = datetime.now().strftime("%Y-%m-%d")
+        default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
+
         try:
-            resp = requests.get(self.events_url, headers=self.headers, timeout=12)
+            print(f"\n[{self.source_name}] Skanowanie wydarzeń MBP Kędzierzyn-Koźle...")
+            resp = self.session.get(self.events_url, timeout=12, verify=False)
             if resp.status_code != 200:
+                print(f"[{self.source_name}] Błąd HTTP {resp.status_code}")
                 return events
 
             soup = BeautifulSoup(resp.text, "html.parser")
-            
-            # Wyszukiwanie kontenerów z wpisami
+
             cards = soup.select("article, .post, .elementor-post, .event-item")
             if not cards:
                 cards = soup.select(".content-area div.col-md-4, .site-main > div")
 
             for card in cards:
-                # Usunięcie metadanych redakcyjnych (autor, data publikacji wpisu)
                 for meta in card.select(".entry-meta, .post-meta, .author, .posted-on, time"):
                     meta.decompose()
 
@@ -93,15 +106,15 @@ class MbpKkPlScraper:
                     continue
 
                 title = title_el.get_text(strip=True)
-                
-                # Odrzucenie zbyt krótkich nazw i wpisów technicznych
+
                 if len(title) < 5 or any(ignored in title.lower() for ignored in IGNORE_TITLES):
                     continue
 
                 card_text = card.get_text(" ", strip=True)
                 date_str = self._parse_polish_date(card_text)
 
-                if not date_str:
+                # Odrzucamy brak daty lub wydarzenia archiwalne
+                if not date_str or date_str < today_iso:
                     continue
 
                 time_start = self._parse_event_time(card_text)
@@ -110,41 +123,37 @@ class MbpKkPlScraper:
                 url = urljoin(self.base_url, link_el["href"]) if link_el else self.events_url
 
                 img_el = card.select_one("img[src]")
-                image_url = ""
+                image_url = default_img
                 if img_el:
                     src = img_el.get("src", "")
-                    if not src.startswith("data:"):
+                    if src and not src.startswith("data:"):
                         image_url = urljoin(self.base_url, src)
 
                 desc_el = card.select_one("p, .entry-summary, .elementor-post__excerpt")
                 raw_desc = desc_el.get_text(" ", strip=True) if desc_el else card_text
-                
-                # Czyszczenie opisu z pozostałości znaczników czasowych i autorów
+
                 clean_desc = re.sub(r"^[A-ZŁŚŻŹ][a-ząćęłńóśźż]+\s+[A-ZŁŚŻŹ][a-ząćęłńóśźż]+\s+\d{4}-\d{2}-\d{2}T[^\s]+", "", raw_desc)
                 clean_desc = clean_desc.replace("Czytaj więcej", "").strip(" |–- \n\t")
 
+                print(f"  [MBP] {date_str} | {time_start} | {title[:35]}...")
+
                 events.append({
                     "title": title,
-                    "date": date_str,
+                    "date_start": date_str,
                     "time_start": time_start,
                     "venue": "Miejska Biblioteka Publiczna w Kędzierzynie-Koźlu",
                     "address": "Rynek 3, Kędzierzyn-Koźle",
                     "price_range": "Wstęp wolny",
                     "description": clean_desc,
                     "image_url": image_url,
-                    "url": url,
+                    "source_url": url,
                     "source": self.source_name,
                     "organizer": "Miejska Biblioteka Publiczna"
                 })
+
+            print(f"[{self.source_name}] Pomyślnie pobrano {len(events)} pozycji.")
 
         except Exception as e:
             print(f"[{self.source_name}] Błąd parsowania: {e}")
 
         return events
-
-
-if __name__ == "__main__":
-    scraper = MbpKkPlScraper()
-    results = scraper.fetch_events()
-    print(f"\nZnaleziono poprawnych wydarzeń: {len(results)}\n")
-    print(json.dumps(results, indent=2, ensure_ascii=False))

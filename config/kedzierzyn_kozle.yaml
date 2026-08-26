@@ -1,7 +1,24 @@
-city: "Kędzierzyn-Koźle"
 city_tag: "kedzierzyn_kozle"
-active_scrapers:
-  - "kedzierzynkozle_pl"
+city: "Kędzierzyn-Koźle"
+description: "Wydarzenia, koncerty, spektakle i seanse kinowe w Kędzierzynie-Koźlu. Sprawdź aktualny repertuar MOK, kina Chemik i imprez miejskich."
+seo_keywords: "Kędzierzyn-Koźle wydarzenia, koncerty Kędzierzyn, kino Chemik, imprezy Koźle, spektakle MOK, bilety Kędzierzyn"
+social_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg/800px-POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg.png"
+logo_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg/800px-POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg.png"
+color_primary: "#1A365D"
+color_secondary: "#2B6CB0"
+color_accent: "#E53E3E"
+theme: "modern"
+
+sources:
+  kedzierzynkozle_pl:
+    enabled: true
+    name: "Miejski Ośrodek Kultury / Urząd Miasta"
+  biletyna_pl:
+    enabled: true
+    name: "Biletyna (Kędzierzyn-Koźle)"
+  kupbilecik_pl:
+    enabled: true
+    name: "KupBilecik (Kędzierzyn-Koźle)"
 
 prompts:
   system: |

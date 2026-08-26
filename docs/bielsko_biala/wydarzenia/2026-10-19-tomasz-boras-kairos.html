@@ -6,13 +6,13 @@
   <title>Tomasz Boras - Kairos | Bielsko-Biała</title>
   <style>
     :root { 
-      --primary: #0056b3; 
-      --primary-hover: #004085; 
-      --bg: #f8f9fa; 
+      --primary: #0369a1; 
+      --primary-hover: #0284c7; 
+      --bg: #f8fafc; 
       --card-bg: #ffffff; 
-      --border: #e9ecef; 
-      --text: #212529; 
-      --text-muted: #6c757d; 
+      --border: #cbd5e1; 
+      --text: #0f172a; 
+      --text-muted: #475569; 
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,10 +20,12 @@
       margin-bottom: 16px;
     }
     .image-wrapper .main-image {
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      user-select: none;
+      -webkit-user-drag: none;
     }
     .image-caption {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-muted);
       text-align: right;
       padding: 0 4px;
@@ -37,18 +39,18 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       background: var(--bg); 
       color: var(--text); 
-      line-height: 1.5; 
+      line-height: 1.6; 
       padding-bottom: 40px; 
     }
     .nav-bar { 
       background: #fff; 
       border-bottom: 1px solid var(--border); 
-      padding: 10px 16px; 
-      font-size: 13px; 
+      padding: 12px 16px; 
+      font-size: 14px; 
       color: var(--text-muted); 
-      margin-bottom: 16px; 
+      margin-bottom: 20px; 
     }
-    .nav-bar a { color: var(--primary); text-decoration: none; }
+    .nav-bar a { color: var(--primary); text-decoration: none; font-weight: 600; }
     .layout-container { 
       width: 100%; 
       padding: 0 16px; 
@@ -60,23 +62,23 @@
 
     .badge { 
       display: inline-block; 
-      background: #e7f1ff; 
-      color: var(--primary); 
-      padding: 4px 8px; 
+      background: #e0f2fe; 
+      color: #0369a1; 
+      padding: 5px 10px; 
       border-radius: 4px; 
-      font-size: 11px; 
+      font-size: 12px; 
       font-weight: 700; 
-      margin-right: 4px; 
-      margin-bottom: 8px; 
+      margin-right: 6px; 
+      margin-bottom: 10px; 
     }
-    h1 { font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
-    .organizer-line { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    h1 { font-size: 26px; line-height: 1.3; margin-bottom: 8px; color: #0f172a; }
+    .organizer-line { font-size: 14.5px; color: var(--text-muted); margin-bottom: 16px; }
     .main-image {
       width: 100%;
       max-height: 70vh;
       height: auto;
       object-fit: contain;
-      background: #f8fafc;
+      background: #0f172a;
       border-radius: 8px;
       margin-bottom: 16px;
       border: 1px solid var(--border);
@@ -85,28 +87,28 @@
     .quick-facts { 
       display: grid; 
       grid-template-columns: 1fr; 
-      gap: 8px; 
-      background: #fff; 
-      padding: 14px; 
-      border-radius: 8px; 
-      border: 1px solid var(--border); 
-      margin-bottom: 16px; 
-    }
-    .fact-item strong { display: block; color: var(--text-muted); font-size: 11px; text-transform: uppercase; }
-
-    .content-box, .b2b-card { 
+      gap: 12px; 
       background: #fff; 
       padding: 16px; 
       border-radius: 8px; 
       border: 1px solid var(--border); 
       margin-bottom: 16px; 
     }
-    .content-box h2 { font-size: 18px; margin-bottom: 10px; border-bottom: 2px solid var(--bg); padding-bottom: 4px; }
-    .lead-text { font-size: 15px; font-weight: 500; margin-bottom: 12px; }
-    .bullets { margin-left: 20px; font-size: 14px; }
-    .bullets li { margin-bottom: 6px; }
+    .fact-item strong { display: block; color: var(--text-muted); font-size: 12px; text-transform: uppercase; margin-bottom: 2px; }
 
-    .b2b-card.highlight { background: #f0f7ff; border-color: #cce5ff; }
+    .content-box, .b2b-card { 
+      background: #fff; 
+      padding: 20px; 
+      border-radius: 8px; 
+      border: 1px solid var(--border); 
+      margin-bottom: 16px; 
+    }
+    .content-box h2 { font-size: 20px; margin-bottom: 12px; border-bottom: 2px solid var(--bg); padding-bottom: 6px; }
+    .lead-text { font-size: 15.5px; line-height: 1.6; margin-bottom: 12px; color: #1e293b; }
+    .bullets { margin-left: 20px; font-size: 15px; }
+    .bullets li { margin-bottom: 8px; }
+
+    .b2b-card.highlight { background: #f0f9ff; border-color: #bae6fd; }
     .btn-action { 
       display: block; 
       width: 100%; 
@@ -117,15 +119,18 @@
       border-radius: 6px; 
       text-decoration: none; 
       font-weight: 700; 
-      margin-top: 10px; 
+      font-size: 15px;
+      margin-top: 12px; 
+      transition: background 0.15s;
     }
-    .meta-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+    .btn-action:hover { background: var(--primary-hover); }
+    .btn-action:focus-visible { outline: 3px solid #0f172a; outline-offset: 2px; }
+    .meta-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; }
     .meta-row span:first-child { color: var(--text-muted); }
 
     @media (min-width: 600px) {
-      h1 { font-size: 26px; }
+      h1 { font-size: 28px; }
       .quick-facts { grid-template-columns: repeat(3, 1fr); }
-      .content-box, .b2b-card { padding: 20px; }
     }
 
     @media (min-width: 992px) {
@@ -143,15 +148,14 @@
 </head>
 <body>
 
-  <div class="nav-bar">
+  <nav class="nav-bar" aria-label="Ścieżka powrotu">
     <a href="../../index.html">Miasta</a> &gt; 
     <a href="../index.html">Bielsko-Biała</a> &gt; 
     <strong>Kultura</strong>
-  </div>
+  </nav>
 
   <div class="layout-container">
     
-    <!-- Kolumna główna (65%) -->
     <main class="main-column">
       
         <span class="badge">Kultura</span>
@@ -165,8 +169,7 @@
       <div class="image-wrapper">
         
         
-        
-        <img class="main-image" src="https://biletyna.pl/file/get/w/160/id/279032" alt="Tomasz Boras - Kairos" decoding="async">
+        <img class="main-image" src="https://biletyna.pl/file/get/w/160/id/279032" alt="Plakat: Tomasz Boras - Kairos" decoding="async" draggable="false">
         <div class="image-caption">
           Materiały promocyjne organizatora &bull; Źródło: <a href="https://biletyna.pl/stand-up/Tomasz-Boras-Kairos" target="_blank" rel="nofollow noopener">Serwis źródłowy</a>
         </div>
@@ -182,12 +185,12 @@
         <h2>O wydarzeniu</h2>
         <div class="description-body">
           
-            <p class="lead-text" style="margin-bottom: 12px; font-weight: 400;">Wydarzenie biletowane: Tomasz Boras - Kairos. Miejsce: Bielsko-BiałaKlub Miasto.</p>
+            <p class="lead-text">Wydarzenie biletowane: Tomasz Boras - Kairos. Miejsce: Bielsko-BiałaKlub Miasto.</p>
           
         </div>
         
         
-          <ul class="bullets" style="margin-top: 14px;">
+          <ul class="bullets">
             
               <li>Lokalizacja: Bielsko-BiałaKlub Miasto</li>
             
@@ -201,45 +204,42 @@
         
       </section>
 
-      <!-- Slot B2B: Transport -->
       <div class="b2b-card">
         <h3>🚗 Dojazd i Transport</h3>
-        <p style="font-size: 14px; margin-top: 4px;">Wracasz wieczorem z wydarzenia? Skorzystaj z lokalnych przewoźników w Bielsko-Biała.</p>
-        <a href="tel:+48771234567" class="btn-action" style="background:#28a745;">Zadzwoń po Taxi</a>
+        <p style="font-size: 14.5px; margin-top: 6px;">Wracasz wieczorem z wydarzenia? Skorzystaj z lokalnych przewoźników w Bielsko-Biała.</p>
+        <a href="tel:+48771234567" class="btn-action" style="background:#15803d;">Zadzwoń po Taxi</a>
       </div>
 
-      <!-- Lokalizacja -->
       <section class="content-box">
         <h2>Lokalizacja</h2>
-        <p><strong>Miejsce:</strong> Bielsko-BiałaKlub Miasto</p>
+        <p style="margin-bottom: 6px;"><strong>Miejsce:</strong> Bielsko-BiałaKlub Miasto</p>
         <p><strong>Adres:</strong> Bielsko-BiałaKlub Miasto, Bielsko-Biała</p>
       </section>
     </main>
 
-    <!-- Sidebar (35% Sticky) -->
     <aside class="sidebar-column">
       <div class="sticky-wrapper">
         
         <div class="b2b-card">
-          <h3 style="margin-bottom: 12px;">Szczegóły &amp; Wstęp</h3>
+          <h3 style="margin-bottom: 14px;">Szczegóły &amp; Wstęp</h3>
           <div class="meta-row"><span>Data:</span> <strong>Pon, 19 paź</strong></div>
           <div class="meta-row"><span>Start:</span> <strong>19:00</strong></div>
           
           <div class="meta-row"><span>Cena:</span> <strong>Od 95.58 zł</strong></div>
           
-          <a href="https://biletyna.pl/stand-up/Tomasz-Boras-Kairos" target="_blank" class="btn-action">Sprawdź / Kup Bilet</a>
+          <a href="https://biletyna.pl/stand-up/Tomasz-Boras-Kairos" target="_blank" rel="noopener noreferrer" class="btn-action">Sprawdź / Kup Bilet</a>
         </div>
 
         <div class="b2b-card highlight">
           <h3>🍽️ Gdzie na kolację?</h3>
-          <p style="font-size: 13px; margin-top: 6px;">Zarezerwuj stolik w pobliżu <strong>Bielsko-BiałaKlub Miasto</strong>. 10% rabatu na hasło PORTAL.</p>
-          <a href="#" class="btn-action" style="background:#495057; font-size:13px; padding:10px;">Zarezerwuj stolik</a>
+          <p style="font-size: 14px; margin-top: 6px;">Zarezerwuj stolik w pobliżu <strong>Bielsko-BiałaKlub Miasto</strong>. 10% rabatu na hasło PORTAL.</p>
+          <a href="#" class="btn-action" style="background:#334155; font-size:14px; padding:12px;">Zarezerwuj stolik</a>
         </div>
 
         <div class="b2b-card">
           <h3>Nie przegap wydarzeń!</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin: 6px 0 12px 0;">Otrzymuj cotygodniowe zestawienie imprez w Bielsko-Biała.</p>
-          <input type="email" placeholder="Twój adres e-mail" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 8px;">
+          <p style="font-size: 14px; color: var(--text-muted); margin: 6px 0 12px 0;">Otrzymuj cotygodniowe zestawienie imprez w Bielsko-Biała.</p>
+          <input type="email" placeholder="Twój adres e-mail" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 8px; font-size: 14px;">
           <button class="btn-action" style="border:none; cursor:pointer;">Zapisz się</button>
         </div>
 

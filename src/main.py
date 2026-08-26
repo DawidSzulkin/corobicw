@@ -20,7 +20,10 @@ def load_yaml(path: Path) -> dict:
 
 def main():
     parser = argparse.ArgumentParser(description="Generator portalu wydarzeń miejskich")
-    parser.add_argument("--city", type=str, help="Uruchom tylko dla wybranego city_tag (np. kedzierzyn_kozle)")
+    parser.add_argument("--city", type=str, help="Uruchom tylko dla wybranego city_tag (np. bielsko_biala, kedzierzyn_kozle)")
+    parser.add_argument("--render-only", action="store_true", help="Pomiń scraping i LLM – generuj HTML bezpośrednio z bazy danych")
+    parser.add_argument("--source", type=str, help="Uruchom tylko wybrany scraper (np. cavatinahall_pl, banialuka_pl)")
+    parser.add_argument("--skip-enrich", action="store_true", help="Pomiń fazę wzbogacania LLM/OCR")
     args = parser.parse_args()
 
     init_db()
@@ -43,7 +46,9 @@ def main():
         city_name = city_cfg.get("city")
 
         if not city_tag or not city_name:
-            print(f"[POMINIĘTO] Plik {cfg_path.name} nie zawiera wymaganych pól 'city_tag' oraz 'city'.")
+            # Pomiń pliki globalne / szablony bez ostrzeżeń
+            if cfg_path.stem not in ["global", "schema"]:
+                print(f"[POMINIĘTO] Plik {cfg_path.name} nie zawiera wymaganych pól 'city_tag' oraz 'city'.")
             continue
 
         if args.city and args.city.lower() != city_tag.lower():
@@ -51,13 +56,20 @@ def main():
 
         print(f"\n{'='*20} PRZETWARZANIE: {city_name.upper()} ({city_tag}) {'='*20}")
         try:
-            run_city_pipeline(city_cfg, renderer=renderer, output_dir=str(output_dir))
+            run_city_pipeline(
+                city_cfg,
+                renderer=renderer,
+                output_dir=str(output_dir),
+                render_only=args.render_only,
+                source_filter=args.source,
+                skip_enrich=args.skip_enrich
+            )
             active_cities.append({"name": city_name, "tag": city_tag})
         except Exception as e:
             print(f"[BŁĄD MIASTA] Nie udało się przetworzyć '{city_name}': {e}")
 
-    # Renderowanie strony głównej (HUB) tylko przy pełnym przebiegu
-    if not args.city and active_cities:
+    # Renderowanie strony głównej (HUB)
+    if not args.source and active_cities:
         print("\n=== GENEROWANIE STRONY GŁÓWNEJ (HUB) ===")
         renderer.render_portal_hub(active_cities=active_cities, output_dir=str(output_dir))
 

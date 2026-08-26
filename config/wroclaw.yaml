@@ -1,0 +1,1 @@
+Remove-Item config/wroclaw.yaml -ErrorAction SilentlyContinue

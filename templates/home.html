@@ -6,14 +6,14 @@
   <title>Agenda Wydarzeń: {{ city }}</title>
   <style>
     :root {
-      --primary: #0056b3;
-      --primary-hover: #004085;
-      --accent: #dc2626;
+      --primary: #0369a1;
+      --primary-hover: #0284c7;
+      --accent: #b91c1c;
       --bg: #f8fafc;
       --card: #ffffff;
-      --border: #e2e8f0;
+      --border: #cbd5e1;
       --text: #0f172a;
-      --muted: #64748b;
+      --text-muted: #334155;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,17 +41,21 @@
       align-items: center;
     }
     .logo {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
       color: var(--primary);
       text-decoration: none;
     }
+    .logo:focus-visible, .back-btn:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
     .back-btn {
-      font-size: 13px;
+      font-size: 14px;
       text-decoration: none;
-      color: var(--muted);
+      color: var(--text-muted);
       background: #f1f5f9;
-      padding: 6px 12px;
+      padding: 8px 14px;
       border-radius: 6px;
       font-weight: 600;
       transition: background 0.15s;
@@ -66,7 +70,7 @@
 
     .filter-bar {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       overflow-x: auto;
       padding-bottom: 12px;
       margin-bottom: 16px;
@@ -75,17 +79,21 @@
     .filter-bar::-webkit-scrollbar { display: none; }
     .filter-btn {
       background: #ffffff;
-      border: 1px solid var(--border);
-      padding: 8px 16px;
+      border: 1.5px solid var(--border);
+      padding: 9px 18px;
       border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 700;
       color: var(--text);
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.15s ease;
     }
     .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
     .filter-btn.active {
       background: var(--primary);
       color: #ffffff;
@@ -93,60 +101,68 @@
     }
 
     .event-row {
+      position: relative;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 12px;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 14px;
       display: flex;
       flex-direction: row;
-      gap: 16px;
+      gap: 18px;
       align-items: center;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
     }
     .event-row:hover {
       border-color: var(--primary);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      transform: translateY(-2px);
+    }
+    .event-row:focus-within {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
     }
 
     .thumb-wrapper {
       position: relative;
-      width: 140px;
-      height: 105px;
-      min-width: 140px;
+      width: 170px;
+      height: 125px;
+      min-width: 170px;
       flex-shrink: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0f172a;
     }
     .thumb-wrapper .event-thumb {
       width: 100%;
       height: 100%;
-      border-radius: 6px;
       object-fit: cover;
       object-position: center top;
-      background: #f1f5f9;
       display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .date-ribbon {
       position: absolute;
       top: 0;
       left: 0;
-      background: #0f172a;
+      background: rgba(15, 23, 42, 0.92);
       color: #ffffff;
-      padding: 4px 8px;
-      border-bottom-right-radius: 6px;
-      border-top-left-radius: 6px;
+      padding: 5px 9px;
+      border-bottom-right-radius: 8px;
       text-align: center;
       line-height: 1.1;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
       z-index: 2;
     }
     .date-ribbon .ribbon-day {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 800;
       display: block;
     }
     .date-ribbon .ribbon-month {
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 700;
       color: #38bdf8;
       text-transform: uppercase;
@@ -162,65 +178,76 @@
       min-width: 0;
     }
     .event-category {
-      font-size: 11px;
+      font-size: 13.5px;
       font-weight: 700;
       color: var(--primary);
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 6px;
+      flex-wrap: wrap;
     }
     .date-badge {
-      font-size: 10px;
-      padding: 2px 6px;
+      font-size: 11px;
+      padding: 2px 7px;
       border-radius: 4px;
       font-weight: 800;
       text-transform: uppercase;
     }
-    .badge-today { background: #fee2e2; color: #dc2626; }
-    .badge-tomorrow { background: #fef3c7; color: #d97706; }
+    .badge-today { background: #fee2e2; color: #991b1b; }
+    .badge-tomorrow { background: #fef3c7; color: #92400e; }
 
     .event-title {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 700;
       line-height: 1.3;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      color: #0f172a;
     }
+    
+    /* Rozszerzenie obszaru klikalnego na cały kafelek */
     .event-title a {
       color: inherit;
       text-decoration: none;
     }
-    .event-title a:hover { color: var(--primary); }
+    .event-title a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      cursor: pointer;
+    }
 
     .event-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.4;
-      margin-bottom: 10px;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
     .event-meta {
-      font-size: 12px;
+      font-size: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-top: 1px solid var(--border);
-      padding-top: 8px;
+      padding-top: 10px;
     }
-    .event-price { font-weight: 600; color: #334155; }
+    .event-price { font-weight: 700; color: #0f172a; }
     .event-link {
-      font-weight: 700;
+      font-weight: 800;
       color: var(--primary);
-      text-decoration: none;
-      font-size: 13px;
+      font-size: 14.5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
-    .event-link:hover { text-decoration: underline; }
 
-    @media (max-width: 560px) {
+    @media (max-width: 600px) {
       .event-row {
         flex-direction: column;
         align-items: stretch;
@@ -228,8 +255,7 @@
       .thumb-wrapper {
         width: 100%;
         min-width: 100%;
-        max-width: 100%;
-        height: 180px;
+        height: 190px;
       }
     }
   </style>
@@ -243,29 +269,35 @@
     </div>
   </header>
 
-  <div class="main-container">
+  <main class="main-container">
     
-    <div class="filter-bar">
+    <nav class="filter-bar" aria-label="Filtry dat wydarzeń">
       <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
       <button class="filter-btn" onclick="filterEvents('today', this)">Dzisiaj</button>
       <button class="filter-btn" onclick="filterEvents('tomorrow', this)">Jutro</button>
       <button class="filter-btn" onclick="filterEvents('weekend', this)">W ten weekend</button>
-    </div>
+    </nav>
 
     <div id="events-agenda">
       {% for ev in events %}
-        <div class="event-item" data-start="{{ ev.date_start }}" data-end="{{ ev.date_end }}">
+        <article class="event-item" data-start="{{ ev.date_start }}" data-end="{{ ev.date_end }}">
           <div class="event-row">
             
             <div class="thumb-wrapper">
-              {# Mapowanie ścieżki na relatywną dla serwera statycznego / Live Servera #}
-              {% set img_src = ev.image_url %}
-              {% if img_src.startswith('/assets/') %}
+              {% set img_src = ev.thumbnail_url or ev.image_url %}
+              {% if img_src and img_src.startswith('/assets/') %}
                 {% set img_src = '../' + img_src[1:] %}
               {% endif %}
-              <img class="event-thumb" src="{{ img_src }}" alt="{{ ev.title }}" loading="lazy" decoding="async">
+              <img 
+                class="event-thumb" 
+                src="{{ img_src }}" 
+                alt="Plakat: {{ ev.title }}" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
               
-              <div class="date-ribbon">
+              <div class="date-ribbon" aria-hidden="true">
                 <span class="ribbon-day">{{ ev.date_start.split('-')[2] }}</span>
                 <span class="ribbon-month">
                   {% set m = ev.date_start.split('-')[1] %}
@@ -280,21 +312,23 @@
                   <span class="badge-container"></span>
                   <span>{{ ev.analysis.category }} &bull; {{ ev.date_formatted }} &bull; {{ ev.analysis.ticket_info.time_start }}</span>
                 </div>
-                <h3 class="event-title"><a href="wydarzenia/{{ ev.slug }}.html">{{ ev.title }}</a></h3>
+                <h3 class="event-title">
+                  <a href="wydarzenia/{{ ev.slug }}.html">{{ ev.title }}</a>
+                </h3>
                 <p class="event-desc">{{ ev.analysis.editorial_lead }}</p>
               </div>
               <div class="event-meta">
                 <span class="event-price">🎟️ {{ ev.analysis.ticket_info.price_range }}</span>
-                <a href="wydarzenia/{{ ev.slug }}.html" class="event-link">Szczegóły &rarr;</a>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
               </div>
             </div>
 
           </div>
-        </div>
+        </article>
       {% endfor %}
     </div>
 
-  </div>
+  </main>
 
   <script>
     function initDynamicBadges() {

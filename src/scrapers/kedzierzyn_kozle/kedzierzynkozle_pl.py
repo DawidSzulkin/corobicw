@@ -14,13 +14,15 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class KedzierzynKozlePlScraper(BaseScraper):
-    def __init__(self):
+    def __init__(self, city_tag: str = "kedzierzyn_kozle", partner_id: str = ""):
         super().__init__(
             source_name="kedzierzynkozle_pl",
             base_url="https://kedzierzynkozle.pl"
         )
         self.session = requests.Session()
-        self.session.headers.update(self.headers)
+        self.session.headers.update({
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        })
         self.seen_urls: Set[str] = set()
 
     def _get_soup(self, url: str) -> BeautifulSoup:
@@ -44,8 +46,8 @@ class KedzierzynKozlePlScraper(BaseScraper):
             soup = self._get_soup(event_url)
 
             article = (
-                soup.find("article") or 
-                soup.find("div", class_="node-content") or 
+                soup.find("article") or
+                soup.find("div", class_="node-content") or
                 soup.find("div", class_="field-name-body") or
                 soup.find("div", id="content") or
                 soup
@@ -113,7 +115,7 @@ class KedzierzynKozlePlScraper(BaseScraper):
     def scrape_month(self, year: int, month: int, today_iso: str) -> List[Dict[str, Any]]:
         url = f"{self.base_url}/pl/calendar-node-field-date/month/{year}-{month:02d}"
         print(f"\n[{self.source_name}] Skanowanie widoku kalendarza: {year}-{month:02d}")
-        
+
         try:
             soup = self._get_soup(url)
         except Exception as e:
@@ -150,21 +152,21 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 if title:
                     pending_events.append({
                         "title": title,
-                        "date": current_date,
-                        "url": full_url
+                        "date_start": current_date,
+                        "source_url": full_url
                     })
 
         print(f"[{self.source_name}] Wykryto {len(pending_events)} nadchodzących wydarzeń (>= {today_iso}).")
 
         new_events = []
         for item in pending_events:
-            print(f"  [Pobieranie] {item['date']} | {item['title'][:40]}...")
-            details = self._fetch_details(item["url"])
+            print(f"  [Pobieranie] {item['date_start']} | {item['title'][:40]}...")
+            details = self._fetch_details(item["source_url"])
 
             new_events.append({
                 "title": item["title"],
-                "date": item["date"],
-                "url": item["url"],
+                "date_start": item["date_start"],
+                "source_url": item["source_url"],
                 "description": details["description"],
                 "image_url": details["image_url"],
                 "time_start": details["time_start"],
@@ -181,11 +183,10 @@ class KedzierzynKozlePlScraper(BaseScraper):
         today_iso = datetime.now().strftime("%Y-%m-%d")
         now = datetime.now()
         all_events = []
-        
-        # Skanujemy tylko bieżący i następny miesiąc
+
         for offset in range(2):
             target_month = (now.month - 1 + offset) % 12 + 1
             target_year = now.year + ((now.month - 1 + offset) // 12)
             all_events.extend(self.scrape_month(target_year, target_month, today_iso))
-            
+
         return all_events

@@ -1,51 +1,60 @@
-from typing import List
+import importlib
+import inspect
+from pathlib import Path
+from typing import List, Type
 
-# Scrapery ogólnopolskie
-from src.scrapers.national.biletyna_pl import BiletynaPlScraper
-from src.scrapers.national.kupbilecik_pl import KupBilecikPlScraper
+from src.scrapers.base import BaseScraper
 
-# Scrapery dedykowane: Bielsko-Biała
-from src.scrapers.bielsko_biala.banialuka_pl import BanialukaPlScraper
-from src.scrapers.bielsko_biala.teatr_bielsko_pl import TeatrBielskoPlScraper
-
-# Scrapery dedykowane: Kędzierzyn-Koźle
-from src.scrapers.kedzierzyn_kozle.kedzierzynkozle_pl import KedzierzynKozlePlScraper
-from src.scrapers.kedzierzyn_kozle.mbpkk_pl import MbpKkPlScraper
-from src.scrapers.kedzierzyn_kozle.mok_kkozle_pl import MokKkozlePlScraper
-from src.scrapers.kedzierzyn_kozle.mosirkk_pl import MosirKkPlScraper
-
-# Rejestr parserów przypisanych do konkretnego miasta
-LOCAL_SCRAPERS = {
-    "kedzierzyn_kozle": [
-        MokKkozlePlScraper,
-        KedzierzynKozlePlScraper,
-        MosirKkPlScraper,
-        MbpKkPlScraper,
-    ],
-    "bielsko_biala": [
-        TeatrBielskoPlScraper,
-        BanialukaPlScraper,
-    ],
-}
-
-# Parser-agregatory ogólnopolskie uruchamiane dla każdego aktywnego miasta
-NATIONAL_SCRAPERS = [
-    KupBilecikPlScraper,
-    BiletynaPlScraper,
-]
+SCRAPERS_DIR = Path(__file__).resolve().parent
 
 
-def get_scrapers_for_city(city_tag: str, partner_id: str = "") -> List:
+def _discover_scraper_classes(package_path: str, dir_path: Path) -> List[Type[BaseScraper]]:
+    """Automatycznie importuje moduły z katalogu i zwraca zdefiniowane w nich klasy potomne BaseScraper."""
+    classes = []
+    if not dir_path.exists() or not dir_path.is_dir():
+        return classes
+
+    for py_file in sorted(dir_path.glob("*.py")):
+        if py_file.name.startswith("__") or py_file.name.startswith("debug_"):
+            continue
+
+        module_name = f"{package_path}.{py_file.stem}"
+        try:
+            mod = importlib.import_module(module_name)
+            for _, obj in inspect.getmembers(mod, inspect.isclass):
+                if issubclass(obj, BaseScraper) and obj is not BaseScraper and obj.__module__ == module_name:
+                    classes.append(obj)
+        except Exception as e:
+            print(f"[REGISTRY] Błąd importu modułu '{module_name}': {e}")
+
+    return classes
+
+
+def get_scrapers_for_city(city_tag: str, partner_id: str = "") -> List[BaseScraper]:
     normalized_tag = city_tag.strip().lower()
-    scrapers = []
+    scrapers: List[BaseScraper] = []
 
-    # 1. Instancjonowanie scraperów lokalnych
-    local_classes = LOCAL_SCRAPERS.get(normalized_tag, [])
+    # 1. Auto-discovery scraperów lokalnych: src/scrapers/<city_tag>/*.py
+    city_dir = SCRAPERS_DIR / normalized_tag
+    local_classes = _discover_scraper_classes(f"src.scrapers.{normalized_tag}", city_dir)
     for cls in local_classes:
-        scrapers.append(cls())
+        try:
+            scrapers.append(cls())
+        except Exception as e:
+            print(f"[REGISTRY] Błąd inicjalizacji {cls.__name__}: {e}")
 
-    # 2. Instancjonowanie scraperów ogólnopolskich z parametrem miasta
-    for cls in NATIONAL_SCRAPERS:
-        scrapers.append(cls(city_tag=normalized_tag, partner_id=partner_id))
+    # 2. Auto-discovery scraperów ogólnopolskich: src/scrapers/national/*.py
+    national_dir = SCRAPERS_DIR / "national"
+    national_classes = _discover_scraper_classes("src.scrapers.national", national_dir)
+    for cls in national_classes:
+        try:
+            scrapers.append(cls(city_tag=normalized_tag, partner_id=partner_id))
+        except TypeError:
+            try:
+                scrapers.append(cls(city_tag=normalized_tag))
+            except TypeError:
+                scrapers.append(cls())
+        except Exception as e:
+            print(f"[REGISTRY] Błąd inicjalizacji ogólnopolskiego {cls.__name__}: {e}")
 
     return scrapers

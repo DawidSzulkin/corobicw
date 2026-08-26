@@ -1,24 +1,18 @@
 from datetime import datetime
 import json
+import os
 import re
+import sys
+from typing import Any, Dict, List, Optional
 from urllib.parse import quote_plus, urljoin
 from bs4 import BeautifulSoup
-import requests
+import urllib3
 
-MONTH_MAP = {
-    "stycznia": 1, "styczeń": 1, "sty": 1,
-    "lutego": 2, "luty": 2, "lut": 2,
-    "marca": 3, "marzec": 3, "mar": 3,
-    "kwietnia": 4, "kwiecień": 4, "kwi": 4,
-    "maja": 5, "maj": 5,
-    "czerwca": 6, "czerwiec": 6, "cze": 6,
-    "lipca": 7, "lipiec": 7, "lip": 7,
-    "sierpnia": 8, "sierpień": 8, "sie": 8,
-    "września": 9, "wrzesień": 9, "wrz": 9,
-    "października": 10, "październik": 10, "paź": 10, "paz": 10,
-    "listopada": 11, "listopad": 11, "lis": 11,
-    "grudnia": 12, "grudzień": 12, "gru": 12,
-}
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
+
+from src.scrapers.base import BaseScraper
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 CITY_SEARCH_QUERIES = {
     "kedzierzyn_kozle": "Kędzierzyn Koźle",
@@ -41,19 +35,18 @@ CITY_MATCH_PATTERNS = {
 }
 
 
-class KupBilecikPlScraper:
+class KupBilecikPlScraper(BaseScraper):
     def __init__(self, city_tag: str = "kedzierzyn_kozle", partner_id: str = ""):
-        self.city_tag = city_tag
+        super().__init__(
+            source_name="kupbilecik_pl",
+            base_url="https://www.kupbilecik.pl"
+        )
+        self.city_tag = city_tag.strip().lower()
         self.partner_id = partner_id
-        self.source_name = f"kupbilecik_{city_tag}"
-        self.base_url = "https://www.kupbilecik.pl"
-        self.city_query = CITY_SEARCH_QUERIES.get(city_tag, city_tag.replace("_", " ").title())
-        self.city_patterns = CITY_MATCH_PATTERNS.get(city_tag, [city_tag.replace("_", "")])
-        
-        # Zapytanie do wyszukiwarki serwisu
-        self.events_url = f"https://www.kupbilecik.pl/szukaj/?q={quote_plus(self.city_query)}"
+        self.city_query = CITY_SEARCH_QUERIES.get(self.city_tag, self.city_tag.replace("_", " ").title())
+        self.city_patterns = CITY_MATCH_PATTERNS.get(self.city_tag, [self.city_tag.replace("_", "")])
+        self.events_url = f"{self.base_url}/szukaj/?q={quote_plus(self.city_query)}"
 
-        self.session = requests.Session()
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -64,7 +57,7 @@ class KupBilecikPlScraper:
         clean_url = urljoin(self.base_url, raw_url)
         if self.partner_id:
             separator = "&" if "?" in clean_url else "?"
-            return f"{clean_url}{separator}ref={self.partner_id}"
+            return f"{clean_url}{separator}pv={self.partner_id}"
         return clean_url
 
     def _is_matching_city(self, text: str) -> bool:
@@ -74,24 +67,11 @@ class KupBilecikPlScraper:
     def _parse_date(self, text: str) -> str:
         current_year = datetime.now().year
 
-        # 1. DD [miesiąc słownie] YYYY
-        month_pattern = "|".join(MONTH_MAP.keys())
-        word_match = re.search(rf"\b(\d{{1,2}})\s+({month_pattern})(?:\s+(\d{{4}}))?\b", text, re.IGNORECASE)
-        if word_match:
-            d, m_name, y = word_match.groups()
-            m = MONTH_MAP[m_name.lower()]
-            year = int(y) if y else current_year
-            if not y and m < datetime.now().month:
-                year += 1
-            return f"{year}-{m:02d}-{int(d):02d}"
-
-        # 2. DD.MM.YYYY
-        dot_match = re.search(r"\b(\d{{1,2}})\.(\d{{1,2}})\.(\d{{4}})\b", text)
+        dot_match = re.search(r"\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b", text)
         if dot_match:
             d, m, y = dot_match.groups()
             return f"{y}-{int(m):02d}-{int(d):02d}"
 
-        # 3. YYYY-MM-DD
         iso_match = re.search(r"\b(202\d-\d{2}-\d{2})\b", text)
         if iso_match:
             return iso_match.group(1)
@@ -109,18 +89,18 @@ class KupBilecikPlScraper:
 
         return "Według harmonogramu"
 
-    def fetch_events(self) -> list[dict]:
+    def fetch_events(self) -> List[Dict[str, Any]]:
         events = []
+        today_iso = datetime.now().strftime("%Y-%m-%d")
+
         try:
-            resp = self.session.get(self.events_url, timeout=15)
+            resp = self.session.get(self.events_url, timeout=(3.05, 10), verify=False)
             if resp.status_code != 200:
                 print(f"[{self.source_name}] Błąd HTTP {resp.status_code}")
                 return events
 
             soup = BeautifulSoup(resp.text, "html.parser")
             seen_urls = set()
-
-            # Szukamy linków do zakupu biletu lub podstron imprez
             event_links = soup.select("a[href*='/imprezy/'], a[href*='/wydarzenia/'], a[href*='/bilet/']")
 
             for a_tag in event_links:
@@ -132,7 +112,6 @@ class KupBilecikPlScraper:
                 if full_url in seen_urls:
                     continue
 
-                # Wspinaczka do wiersza wynikowego tabeli
                 row = a_tag
                 for _ in range(5):
                     parent = row.parent
@@ -143,19 +122,14 @@ class KupBilecikPlScraper:
                         break
 
                 row_text = row.get_text(" ", strip=True)
-
-                # Weryfikacja czy wiersz dotyczy szukanego miasta
                 if not self._is_matching_city(row_text):
                     continue
 
-                # Parsowanie daty
                 date_str = self._parse_date(row_text)
-                if not date_str:
+                if not date_str or date_str < today_iso:
                     continue
 
-                # Parsowanie tytułu
                 title = ""
-                # Szukamy linku z nazwą wydarzenia (innego niż przycisk "Kup bilet")
                 for link in row.select("a[href*='/imprezy/'], a[href*='/wydarzenia/']"):
                     txt = link.get_text(strip=True)
                     if len(txt) > 3 and txt.lower() not in ["kup bilet", "bilety", "szczegóły", "więcej"]:
@@ -173,24 +147,25 @@ class KupBilecikPlScraper:
                 seen_urls.add(full_url)
                 time_start = self._parse_time(row_text)
 
-                # Parsowanie sali / obiektu (np. Hotel Hugo, Klub Kameleon, Hala Sportowa Śródmieście)
                 venue = "Obiekt widowiskowy"
                 venue_el = row.select_one("a[href*='/obiekty/']")
                 if venue_el:
                     venue = venue_el.get_text(strip=True)
                 else:
-                    # Szukanie nazwy obiektu występującej po nazwie miasta w wierszu
                     m_loc = re.search(rf"(?:{self.city_query}|Koźle)\s*[\n\r,·-]?\s*([A-ZŁŚŻŹ0-9][\w\s.\-–]+?)(?:Kup bilet|Od\s*\d|\d+\s*zł|$)", row_text)
                     if m_loc and 2 < len(m_loc.group(1).strip()) < 50:
                         venue = m_loc.group(1).strip(" –-.,")
 
-                # Parsowanie zdjęcia
                 image_url = ""
                 img_el = row.select_one("img[src], img[data-src]")
                 if img_el:
                     src = img_el.get("data-src") or img_el.get("src", "")
                     if not src.startswith("data:"):
                         image_url = urljoin(self.base_url, src)
+
+                thumb_path = ""
+                if image_url and hasattr(self, "save_thumbnail"):
+                    thumb_path = self.save_thumbnail(image_url, title)
 
                 events.append({
                     "title": title,
@@ -201,21 +176,23 @@ class KupBilecikPlScraper:
                     "price_range": "Bilety płatne",
                     "description": f"Wydarzenie biletowane: {title}. Miejsce: {venue}.",
                     "image_url": image_url,
+                    "thumbnail_url": thumb_path,
                     "url": full_url,
-                    "source": "kupbilecik_pl",
+                    "source": self.source_name,
                     "organizer": "KupBilecik.pl"
                 })
 
         except Exception as e:
             print(f"[{self.source_name}] Błąd parsowania: {e}")
 
+        print(f"[{self.source_name}] Sparsowano {len(events)} wydarzeń.")
         return events
 
 
 if __name__ == "__main__":
-    import sys
-    test_city = sys.argv[1] if len(sys.argv) > 1 else "kedzierzyn_kozle"
+    test_city = sys.argv[1] if len(sys.argv) > 1 else "bielsko_biala"
     scraper = KupBilecikPlScraper(city_tag=test_city)
     data = scraper.fetch_events()
     print(f"\n[{test_city.upper()}] Pobrano wydarzeń: {len(data)}\n")
-    print(json.dumps(data, indent=2, ensure_ascii=False))
+    if data:
+        print(json.dumps(data[0], indent=2, ensure_ascii=False))

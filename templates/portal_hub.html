@@ -5,19 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal Wydarzeń Miejskich</title>
   <style>
-    :root { --primary: #0056b3; --bg: #f8fafc; --card: #ffffff; --border: #e2e8f0; --text: #0f172a; --muted: #64748b; }
+    :root { 
+      --primary: #0369a1; 
+      --bg: #f8fafc; 
+      --card: #ffffff; 
+      --border: #cbd5e1; 
+      --text: #0f172a; 
+      --muted: #475569; 
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); padding: 40px 16px; }
     .hub-container { max-width: 900px; margin: 0 auto; }
     header { text-align: center; margin-bottom: 48px; }
-    h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
-    p.lead { color: var(--muted); font-size: 16px; }
-    .city-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-    .city-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.15s, border-color 0.15s; }
-    .city-card:hover { transform: translateY(-3px); border-color: var(--primary); }
-    .city-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-    .city-count { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 16px; }
-    .city-status { font-size: 12px; color: var(--muted); background: #f1f5f9; padding: 4px 8px; border-radius: 6px; width: fit-content; }
+    h1 { font-size: 34px; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+    p.lead { color: var(--muted); font-size: 17px; }
+    .city-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .city-card { 
+      background: var(--card); 
+      border: 1.5px solid var(--border); 
+      border-radius: 12px; 
+      padding: 26px; 
+      text-decoration: none; 
+      color: inherit; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; 
+    }
+    .city-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+    .city-card:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+    .city-name { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .city-count { font-size: 14.5px; color: var(--primary); font-weight: 700; margin-bottom: 20px; }
+    .city-status { font-size: 12.5px; font-weight: 600; color: #1e293b; background: #e2e8f0; padding: 5px 10px; border-radius: 6px; width: fit-content; }
   </style>
 </head>
 <body>
@@ -26,7 +45,7 @@
       <h1>Co Robić w Mieście</h1>
       <p class="lead">Wybierz miasto, aby przejść do bazy wydarzeń.</p>
     </header>
-    <div class="city-grid">
+    <main class="city-grid">
       {% for city in cities %}
         <a href="{{ city.tag }}/index.html" class="city-card">
           <div>
@@ -36,7 +55,7 @@
           <span class="city-status">Wydanie aktywne</span>
         </a>
       {% endfor %}
-    </div>
+    </main>
   </div>
 </body>
 </html>

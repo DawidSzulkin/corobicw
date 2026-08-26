@@ -1,6 +1,6 @@
+from datetime import datetime
 import re
 import time
-from datetime import datetime
 from typing import Any, Dict, List, Optional, Set
 from urllib.parse import urljoin
 
@@ -14,7 +14,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class MokKkozlePlScraper(BaseScraper):
-    def __init__(self):
+    def __init__(self, city_tag: str = "kedzierzyn_kozle", partner_id: str = ""):
         super().__init__(
             source_name="mok_kkozle_pl",
             base_url="https://www.mok.kedzierzyn-kozle.com.pl"
@@ -26,11 +26,17 @@ class MokKkozlePlScraper(BaseScraper):
             "Referer": "https://www.mok.kedzierzyn-kozle.com.pl/wydarzenia"
         })
         self.seen_urls: Set[str] = set()
-        
+
         self.junk_keywords = [
             "poszukiwany", "poszukujemy", "rekrutacja", "sanepid", "informacja",
             "stuknęło", "jubileusz", "wspomnienia", "zapisy", "sekcje", "e-skarbonka", "mapa strony"
         ]
+
+        self.months_map = {
+            "stycz": 1, "lut": 2, "mar": 3, "kwie": 4, "maj": 5, "czerw": 6,
+            "lip": 7, "sierp": 8, "wrzes": 9, "wrześ": 9, "paźdz": 10, "pazdz": 10,
+            "listop": 11, "grud": 12
+        }
 
     def _get_soup(self, url: str) -> BeautifulSoup:
         resp = self.session.get(url, timeout=12, verify=False)
@@ -40,24 +46,35 @@ class MokKkozlePlScraper(BaseScraper):
     def _clean_text(self, text: str) -> str:
         return re.sub(r"\s+", " ", text).strip()
 
-    def _extract_event_date(self, text: str, fallback_date: str) -> str:
+    def _extract_event_date(self, text: str) -> Optional[str]:
         current_year = datetime.now().year
-        
-        # Format DD.MM.YYYY
-        match_full = re.search(r"(\b[0-3]?[0-9]\.[0-1]?[0-9]\.(?:20\d{2})\b)", text)
+
+        # 1. Format DD.MM.YYYY
+        match_full = re.search(r"\b([0-3]?[0-9])\.([0-1]?[0-9])\.(20\d{2})\b", text)
         if match_full:
-            d, m, y = match_full.group(1).split(".")
+            d, m, y = match_full.groups()
             return f"{y}-{int(m):02d}-{int(d):02d}"
 
-        # Format DD.MM (uzupełniamy bieżącym rokiem)
-        match_short = re.search(r"(?:dnia|dzień|termin|w dniu|odbędzie się)\s*([0-3]?[0-9]\.[0-1]?[0-9])", text, re.IGNORECASE)
+        # 2. Słowny format polski (np. "29 sierpnia 2026" lub "15 września")
+        match_named = re.search(r"\b([0-3]?[0-9])\s+([a-ząćęłńóśźż]+)(?:\s+(20\d{2}))?\b", text, re.IGNORECASE)
+        if match_named:
+            day = int(match_named.group(1))
+            month_str = match_named.group(2).lower()
+            year = int(match_named.group(3)) if match_named.group(3) else current_year
+
+            for prefix, month_num in self.months_map.items():
+                if month_str.startswith(prefix):
+                    return f"{year}-{month_num:02d}-{day:02d}"
+
+        # 3. Format "w dniu DD.MM" lub "termin: DD.MM" (uzupełniamy bieżącym rokiem)
+        match_short = re.search(r"(?:dnia|dzień|termin|w dniu|odbędzie się)\s*([0-3]?[0-9])\.([0-1]?[0-9])", text, re.IGNORECASE)
         if match_short:
-            d, m = match_short.group(1).split(".")
+            d, m = match_short.groups()
             return f"{current_year}-{int(m):02d}-{int(d):02d}"
 
-        return fallback_date
+        return None
 
-    def _fetch_details(self, event_url: str, fallback_img: str, initial_date: str) -> Optional[Dict[str, Any]]:
+    def _fetch_details(self, event_url: str, fallback_img: str) -> Optional[Dict[str, Any]]:
         try:
             time.sleep(0.05)
             soup = self._get_soup(event_url)
@@ -68,7 +85,9 @@ class MokKkozlePlScraper(BaseScraper):
             container = soup.select_one(".item-page, article, main, #content") or soup
             container_text = container.get_text(separator="\n")
 
-            real_date = self._extract_event_date(container_text, initial_date)
+            real_date = self._extract_event_date(container_text)
+            if not real_date:
+                return None
 
             time_start = "Według harmonogramu"
             time_match = re.search(r"(?:godz\.?|godzinie)\s*([0-2]?[0-9][:.][0-5][0-9])", container_text, re.IGNORECASE)
@@ -94,7 +113,7 @@ class MokKkozlePlScraper(BaseScraper):
                 image_url = urljoin(self.base_url, src)
                 break
 
-            price_range = "Sprawdź bilety"
+            price_range = "Sprawdź bilety / Wstęp wolny"
             price_match = re.search(r"(?:koszt|cena|bilet[yw]?|wstęp)[\s\w]*?[-:]\s*(\d+[\s,-]*zł|wstęp wolny|bezpłatn\w+)", container_text, re.IGNORECASE)
             if price_match:
                 price_range = price_match.group(1).strip()
@@ -113,7 +132,7 @@ class MokKkozlePlScraper(BaseScraper):
                 venue = "DK Koźle (ul. Skarbowa 10)"
 
             return {
-                "date": real_date,
+                "date_start": real_date,
                 "description": description,
                 "image_url": image_url,
                 "time_start": time_start,
@@ -132,7 +151,7 @@ class MokKkozlePlScraper(BaseScraper):
 
         print(f"\n[{self.source_name}] Skanowanie aktualnego repertuaru MOK...")
 
-        for page in range(1, 4):
+        for page in range(1, 5):
             api_url = f"{self.base_url}/index.php?option=com_minitekwall&task=masonry.getContent&widget_id=1&page={page}"
             try:
                 resp = self.session.get(api_url, timeout=10, verify=False)
@@ -143,8 +162,6 @@ class MokKkozlePlScraper(BaseScraper):
                 items = soup.select(".mnwall-item")
                 if not items:
                     break
-
-                stop_scraping = False
 
                 for item in items:
                     data_id = item.get("data-id")
@@ -157,15 +174,6 @@ class MokKkozlePlScraper(BaseScraper):
 
                     if any(junk in title.lower() for junk in self.junk_keywords):
                         continue
-
-                    raw_date = item.get("data-start") or item.get("data-date") or ""
-                    date_match = re.search(r"\d{4}-\d{2}-\d{2}", raw_date)
-                    fallback_date = date_match.group(0) if date_match else today_iso
-
-                    # Twarde odcięcie: jeśli data wpisu jest sprzed dzisiejszego dnia
-                    if fallback_date < today_iso:
-                        stop_scraping = True
-                        break
 
                     full_url = f"{self.base_url}/index.php?option=com_content&view=article&id={data_id}"
                     if full_url in self.seen_urls:
@@ -181,13 +189,9 @@ class MokKkozlePlScraper(BaseScraper):
 
                     pending_items.append({
                         "title": title_clean,
-                        "fallback_date": fallback_date,
-                        "url": full_url,
+                        "source_url": full_url,
                         "thumb_img": thumb_img
                     })
-
-                if stop_scraping:
-                    break
 
             except Exception as e:
                 print(f"  [Błąd pobierania strony {page}]: {e}")
@@ -195,20 +199,20 @@ class MokKkozlePlScraper(BaseScraper):
 
         valid_events = []
         for item in pending_items:
-            details = self._fetch_details(item["url"], fallback_img=item["thumb_img"], initial_date=item["fallback_date"])
+            details = self._fetch_details(item["source_url"], fallback_img=item["thumb_img"])
             if not details:
                 continue
 
-            # Sprawdzenie ostatecznej daty wyciągniętej z treści artykułu
-            if details["date"] < today_iso:
+            # Odrzucenie wydarzeń przeszłych
+            if details["date_start"] < today_iso:
                 continue
 
-            print(f"  [MOK] {details['date']} | {details['time_start']} | {details['price_range']} | {item['title'][:35]}...")
+            print(f"  [MOK] {details['date_start']} | {details['time_start']} | {details['price_range']} | {item['title'][:35]}...")
 
             valid_events.append({
                 "title": item["title"],
-                "date": details["date"],
-                "url": item["url"],
+                "date_start": details["date_start"],
+                "source_url": item["source_url"],
                 "time_start": details["time_start"],
                 "description": details["description"],
                 "image_url": details["image_url"],

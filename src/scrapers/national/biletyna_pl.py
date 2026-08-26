@@ -1,9 +1,18 @@
 from datetime import datetime
 import json
+import os
 import re
+import sys
+from typing import Any, Dict, List, Optional
 from urllib.parse import quote_plus, urljoin
 from bs4 import BeautifulSoup
-import requests
+import urllib3
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
+
+from src.scrapers.base import BaseScraper
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 MONTH_MAP = {
     "stycznia": 1, "styczeń": 1, "sty": 1,
@@ -41,16 +50,20 @@ CITY_NAMES = {
 }
 
 
-class BiletynaPlScraper:
+class BiletynaPlScraper(BaseScraper):
     def __init__(self, city_tag: str = "kedzierzyn_kozle", partner_id: str = ""):
-        self.city_tag = city_tag
+        super().__init__(
+            source_name="biletyna_pl",
+            base_url="https://biletyna.pl"
+        )
+        self.city_tag = city_tag.strip().lower()
         self.partner_id = partner_id
-        self.source_name = f"biletyna_{city_tag}"
-        self.base_url = "https://biletyna.pl"
-        self.city_name = CITY_NAMES.get(city_tag, city_tag.replace("_", " ").title())
-        self.events_url = CITY_URL_MAP.get(city_tag, f"https://biletyna.pl/szukaj?q={quote_plus(self.city_name)}")
-
-        self.session = requests.Session()
+        self.city_name = CITY_NAMES.get(self.city_tag, self.city_tag.replace("_", " ").title())
+        self.events_url = CITY_URL_MAP.get(
+            self.city_tag, 
+            f"https://biletyna.pl/szukaj?q={quote_plus(self.city_name)}"
+        )
+        
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -117,7 +130,7 @@ class BiletynaPlScraper:
             return f"Od {match.group(1).replace(',', '.')} zł"
         return "Bilety płatne"
 
-    def _parse_json_ld(self, soup: BeautifulSoup) -> list[dict]:
+    def _parse_json_ld(self, soup: BeautifulSoup) -> List[Dict[str, Any]]:
         events = []
         for script in soup.find_all("script", type="application/ld+json"):
             if not script.string:
@@ -165,6 +178,10 @@ class BiletynaPlScraper:
                     img = item.get("image", "")
                     image_url = img[0] if isinstance(img, list) and img else (img.get("url", "") if isinstance(img, dict) else str(img))
 
+                    thumb_path = ""
+                    if image_url and hasattr(self, "save_thumbnail"):
+                        thumb_path = self.save_thumbnail(image_url, title)
+
                     event_url = self._format_url(item.get("url", ""))
 
                     events.append({
@@ -176,35 +193,43 @@ class BiletynaPlScraper:
                         "price_range": price_range,
                         "description": item.get("description") or f"Wydarzenie biletowane: {title}. Obiekt: {venue}.",
                         "image_url": image_url,
+                        "thumbnail_url": thumb_path,
                         "url": event_url,
-                        "source": "biletyna_pl",
+                        "source": self.source_name,
                         "organizer": "Biletyna.pl"
                     })
             except Exception:
                 continue
         return events
 
-    def fetch_events(self) -> list[dict]:
+    def fetch_events(self) -> List[Dict[str, Any]]:
         events = []
+        today_iso = datetime.now().strftime("%Y-%m-%d")
+
         try:
-            resp = self.session.get(self.events_url, timeout=15)
+            resp = self.session.get(self.events_url, timeout=(3.05, 10), verify=False)
             if resp.status_code != 200:
-                print(f"[{self.source_name}] Błąd HTTP {resp.status_code}")
+                print(f"[{self.source_name}] Błąd HTTP {resp.status_code} dla {self.events_url}")
                 return events
 
             soup = BeautifulSoup(resp.text, "html.parser")
 
-            # 1. Próba parsowania JSON-LD
+            # 1. Parsowanie JSON-LD
             ld_events = self._parse_json_ld(soup)
             if ld_events:
-                return ld_events
+                valid_ld = [e for e in ld_events if e["date"] >= today_iso]
+                print(f"[{self.source_name}] Sparsowano {len(valid_ld)} pozycji z JSON-LD.")
+                return valid_ld
 
             # 2. Parsowanie kafelków HTML
             cards = soup.select(".event-box, .single-event, .event-card, .event-item, div[class*='event']")
             seen_urls = set()
 
             for card in cards:
-                link_el = card.select_one("a[href*='/event/'], a[href*='/spektakl/'], a[href*='/koncert/'], a[href*='/film/'], a[href*='/kabaret/'], a[href*='/stand-up/']")
+                link_el = card.select_one(
+                    "a[href*='/event/'], a[href*='/spektakl/'], a[href*='/koncert/'], "
+                    "a[href*='/film/'], a[href*='/kabaret/'], a[href*='/stand-up/']"
+                )
                 if not link_el or not link_el.get("href"):
                     continue
 
@@ -214,7 +239,7 @@ class BiletynaPlScraper:
 
                 card_text = card.get_text(" ", strip=True)
                 date_str = self._parse_date(card_text)
-                if not date_str:
+                if not date_str or date_str < today_iso:
                     continue
 
                 title_el = card.select_one("h2, h3, h4, .title, .event-title, strong")
@@ -242,6 +267,10 @@ class BiletynaPlScraper:
                     if not src.startswith("data:"):
                         image_url = urljoin(self.base_url, src)
 
+                thumb_path = ""
+                if image_url and hasattr(self, "save_thumbnail"):
+                    thumb_path = self.save_thumbnail(image_url, title)
+
                 events.append({
                     "title": title,
                     "date": date_str,
@@ -251,21 +280,23 @@ class BiletynaPlScraper:
                     "price_range": price_range,
                     "description": f"Wydarzenie biletowane: {title}. Miejsce: {venue}.",
                     "image_url": image_url,
+                    "thumbnail_url": thumb_path,
                     "url": full_url,
-                    "source": "biletyna_pl",
+                    "source": self.source_name,
                     "organizer": "Biletyna.pl"
                 })
 
         except Exception as e:
-            print(f"[{self.source_name}] Błąd: {e}")
+            print(f"[{self.source_name}] Błąd przetwarzania: {e}")
 
+        print(f"[{self.source_name}] Sparsowano {len(events)} wydarzeń z HTML.")
         return events
 
 
 if __name__ == "__main__":
-    import sys
-    test_city = sys.argv[1] if len(sys.argv) > 1 else "kedzierzyn_kozle"
+    test_city = sys.argv[1] if len(sys.argv) > 1 else "bielsko_biala"
     scraper = BiletynaPlScraper(city_tag=test_city)
     data = scraper.fetch_events()
     print(f"\n[{test_city.upper()}] Pobrano wydarzeń: {len(data)}\n")
-    print(json.dumps(data, indent=2, ensure_ascii=False))
+    if data:
+        print(json.dumps(data[0], indent=2, ensure_ascii=False))
