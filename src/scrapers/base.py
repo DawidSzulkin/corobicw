@@ -45,7 +45,7 @@ class BaseScraper(ABC):
         full_url = urljoin(self.base_url, url)
         resp = self.session.get(full_url, params=params, timeout=20, verify=False)
         resp.raise_for_status()
-        return BeautifulSoup(resp.content, "html.parser")
+        return BeautifulSoup(resp.content, "html.parser", from_encoding="utf-8")
 
     def save_thumbnail(self, remote_img_url: str, title: str, prefix: str = "") -> str:
         """Pobiera i kompresuje plakat do WebP tylko jeśli nie ma go jeszcze na dysku."""

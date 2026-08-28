@@ -1,4 +1,4 @@
-﻿from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 import os
 import re

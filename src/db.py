@@ -1,4 +1,4 @@
-﻿from difflib import SequenceMatcher
+from difflib import SequenceMatcher
 import json
 from pathlib import Path
 import re

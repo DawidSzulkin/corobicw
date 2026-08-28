@@ -1,4 +1,4 @@
-﻿import json
+import json
 import math
 import os
 import re
@@ -17,7 +17,7 @@ from src.scrapers.registry import get_scrapers_for_city
 VENUE_MATCH_RULES = {
     "kedzierzyn_kozle": [
         {"keywords": ["parkrun", "bieg parkrun"], "target_id": "kk-park-orderu-usmiechu"},
-        {"keywords": ["droga do bullerbyn", "mity i opowie", "mikołajek opowiada", "tajemnicza biblioteka", "brzechw", "zawody marzeń", "oddział dla dzieci", "oddzia? dla dzieci", "rynek 3"], "target_id": "kk-mbp-rynek"},
+        {"keywords": ["droga do bullerbyn", "mity i opowie", "mikołajek opowiada", "tajemnicza biblioteka", "brzechw", "zawody marzeń", "oddział dla dzieci", "rynek 3"], "target_id": "kk-mbp-rynek"},
         {"keywords": ["narodowe czytanie", "dyskusyjny klub", "spotkanie autorskie", "wśród zieleni", "mbp", "bibliotek"], "target_id": "kk-mbp-glowna"},
         {"keywords": ["sławięcic", "slawiecic", "plener malarski"], "target_id": "kk-park-slawiecice"},
         {"keywords": ["hotel hugo", "hugo"], "target_id": "kk-hotel-hugo"},
@@ -56,13 +56,29 @@ def slugify(text: str) -> str:
     text = re.sub(r"[^\w\s-]", "", text.lower()).strip()
     return re.sub(r"[-\s]+", "-", text)
 
-def _sanitize_llm_string(val: Any) -> str:
+MOJIBAKE_PATTERN = re.compile(
+    r"(�|&#65533;|Ä…|Ä‡|Ä™|Å‚|Å„|Ã³|Å›|Åº|Å¼|Ä„|Ä†|Ä˜|Å|Åƒ|Ã“|Åš|Å¹|Å»|Ãł|Åş|Åź|ÃŠ|[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,}\?[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,})"
+)
+
+def assert_clean_utf8(text: str, context: str = "") -> str:
+    if not text:
+        return ""
+    m = MOJIBAKE_PATTERN.search(text)
+    if m:
+        raise ValueError(
+            f"[BŁĄD KODOWANIA UTF-8] Wykryto uszkodzony fragment '{m.group()}' w polu: '{context}'.\n"
+            f"Pełna wartość: {text[:160]}"
+        )
+    return text
+
+def _sanitize_llm_string(val: Any, context: str = "") -> str:
     if not val:
         return ""
     val = str(val).strip()
     val = re.sub(r"^np\.\s*", "", val, flags=re.IGNORECASE)
     val = re.sub(r"\s*lub Całodniowe", "", val, flags=re.IGNORECASE)
-    return val.strip()
+    val = val.strip()
+    return assert_clean_utf8(val, context)
 
 def _get_geo_coords(place: Dict[str, Any]) -> Optional[tuple[float, float]]:
     geo = place.get("geo") if isinstance(place.get("geo"), dict) else {}
