@@ -10,7 +10,7 @@
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Parking podziemny p?atny",
+          "fee_label": "Parking podziemny płatny",
           "distance_m": 20,
           "street": "Dworkowa"
         }
@@ -21,23 +21,23 @@
     "place_id": "bb-bck",
     "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
     "category": "Kultura i Muzyka",
-    "street": "Juliusza S?owackiego",
+    "street": "Juliusza Słowackiego",
     "housenumber": "27",
     "lat": 49.8208,
     "lon": 19.0392,
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Miejski bezp?atny po 17:00",
+          "fee_label": "Miejski bezpłatny po 17:00",
           "distance_m": 50,
-          "street": "S?owackiego"
+          "street": "Słowackiego"
         }
       ]
     }
   },
   {
     "place_id": "bb-teatr-polski",
-    "name": "Teatr Polski w Bielsku-Bia?ej",
+    "name": "Teatr Polski w Bielsku-Białej",
     "category": "Teatr",
     "street": "1 Maja",
     "housenumber": "1",
@@ -82,7 +82,7 @@
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "P?atny przy ulicy",
+          "fee_label": "Płatny przy ulicy",
           "distance_m": 30,
           "street": "3 Maja"
         }
@@ -100,7 +100,7 @@
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Miejski p?atny",
+          "fee_label": "Miejski płatny",
           "distance_m": 80,
           "street": "Zamkowa"
         }
@@ -118,7 +118,7 @@
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Du?y bezp?atny",
+          "fee_label": "Du?y bezpłatny",
           "distance_m": 30,
           "street": "Karbowa"
         }
@@ -163,9 +163,9 @@
   },
   {
     "place_id": "bb-kawiarnia-przelom",
-    "name": "Kawiarnia Prze?om",
+    "name": "Kawiarnia Przełom",
     "category": "Kawiarnia speciality",
-    "street": "Juliusza S?owackiego",
+    "street": "Juliusza Słowackiego",
     "housenumber": "21",
     "lat": 49.8211,
     "lon": 19.0401

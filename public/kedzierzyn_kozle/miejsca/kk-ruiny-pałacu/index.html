@@ -1,110 +1,90 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ruiny pałacu | Kędzierzyn-Koźle - CoRobićW</title>
   <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Ruiny pałacu w Kędzierzyn-Koźle.">
-  
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
 
   <style>
-    :root {
-      --primary: #1A365D;
-      --secondary: #2B6CB0;
-      --accent: #E53E3E;
-      --bg: #F7FAFC;
-      --text: #2D3748;
-      --card-bg: #FFFFFF;
-      --border: #E2E8F0;
+    
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
+      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
+      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+      --badge-bg: #000000; --badge-text: #ffffff;
+      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
     }
+    :root[data-theme="light"] {
+      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
+      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
+      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+      --badge-bg: #09090b; --badge-text: #ffffff;
+      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+      -webkit-font-smoothing: antialiased; font-size: 16px;
     }
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header a { color: white; text-decoration: none; font-weight: bold; }
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-    }
-    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
-    .main-content {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      border: 1px solid var(--border);
-    }
-    .badge {
-      display: inline-block;
-      background: #EBF8FF;
-      color: var(--secondary);
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 0.3rem 0.7rem;
-      border-radius: 6px;
-      margin-bottom: 0.8rem;
-    }
-    h1 { margin: 0 0 1rem 0; color: var(--primary); font-size: 2rem; }
-    .sidebar .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      border: 1px solid var(--border);
-    }
-    .sidebar h3 {
-      margin-top: 0;
-      font-size: 1.1rem;
-      color: var(--primary);
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 0.5rem;
-    }
-    .info-row { display: flex; margin-bottom: 0.8rem; font-size: 0.95rem; }
-    .info-label { width: 35%; font-weight: 600; color: #718096; }
-    .info-val { width: 65%; font-weight: 500; }
-    .event-card {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: inherit;
-    }
-    .event-card:last-child { border-bottom: none; }
-    .event-card:hover h4 { color: var(--secondary); }
-    .event-thumb {
-      width: 90px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 6px;
-      background: #CBD5E0;
-    }
-    .event-meta { font-size: 0.85rem; color: #718096; }
-    .event-title { margin: 0 0 0.3rem 0; font-size: 1rem; font-weight: bold; }
-    #map { height: 260px; width: 100%; border-radius: 8px; margin-top: 1rem; border: 1px solid var(--border); }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .container-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
+    .main-content { background: var(--card-bg); border: 1px solid var(--border); padding: 32px; }
+    .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    h1 { margin: 0 0 12px 0; color: var(--text); font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; }
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; }
+    .sidebar h3 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; }
+    .info-row { display: flex; margin-bottom: 14px; font-size: 0.95rem; }
+    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+    .info-val { width: 65%; font-weight: 500; color: var(--text); }
+    .event-card-mini { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; align-items: center; transition: transform 0.2s; }
+    .event-card-mini:last-child { border-bottom: none; }
+    .event-card-mini:hover { transform: translateX(4px); }
+    .event-card-mini:hover h4 { color: var(--text); }
+    .event-thumb-mini { width: 100px; height: 75px; object-fit: cover; background: #18181b; flex-shrink: 0; }
+    .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
+    #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
   </style>
 </head>
 <body>
-
   
   
   
@@ -113,69 +93,100 @@
   
 
   <header>
-    <a href="/kedzierzyn_kozle/">← Wróć do agendy: Kędzierzyn-Koźle</a>
-    <span>CoRobićW</span>
-  </header>
-
-  <div class="container">
-    <main class="main-content">
-      <span class="badge">ruins</span>
-      <h1>Ruiny pałacu</h1>
-      <p style="color: #4A5568; font-size: 1.1rem;">
-        📍 Ruiny pałacu, Kędzierzyn-Koźle
-      </p>
-
-      
-        <div id="map"></div>
-      
-
-      <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
-
-      <h3>📅 Nadchodzące wydarzenia w tym miejscu (0)</h3>
-      
-        <p style="color: #718096; font-style: italic;">Brak zaplanowanych wydarzeń w najbliższym czasie.</p>
-      
-    </main>
-
-    <aside class="sidebar">
-      <div class="card">
-        <h3>Logistyka i Dojazd</h3>
-        <div class="info-row">
-          <div class="info-label">📍 Adres</div>
-          <div class="info-val">Brak numeru ulicy</div>
-        </div>
-        <div class="info-row">
-          <div class="info-label">🚗 Parking</div>
-          <div class="info-val">
-            
-              Dostępny w strefie miejskiej
-            
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-label">♿ Dostępność</div>
-          <div class="info-val">
-            Brak danych
-          </div>
-        </div>
+    <div class="nav-container">
+      <a href="/kedzierzyn_kozle/" class="brand">CoRobićW <span>Kędzierzyn-Koźle</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw"><span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span></button>
+        <a href="/kedzierzyn_kozle/" class="btn-nav">&larr; Wróć do agendy</a>
       </div>
-    </aside>
-  </div>
+    </div>
+  </header>
+  <main>
+    <nav class="breadcrumbs">
+      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">Ruiny pałacu</span>
+    </nav>
+    <div class="container-grid">
+      <div class="main-content">
+        <span class="badge">ruins</span>
+        <h1>Ruiny pałacu</h1>
+        <p style="color: var(--text-muted); font-size: 1.05rem;">📍 Ruiny pałacu, Kędzierzyn-Koźle</p>
+        <div id="map"></div>
+        <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
+        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (0)</h3>
+        
+          <p style="color: var(--text-muted); font-style: italic;">Brak zaplanowanych wydarzeń w najbliższym czasie.</p>
+        
+      </div>
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Logistyka i Dojazd</h3>
+          <div class="info-row"><div class="info-label">Adres</div><div class="info-val">Brak numeru ulicy</div></div>
+          <div class="info-row">
+            <div class="info-label">Parking</div>
+            <div class="info-val">
+              Dostępny w strefie miejskiej
+            </div>
+          </div>
+          <div class="info-row"><div class="info-label">Dostępność</div><div class="info-val">Brak danych</div></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col"><h4>CoRobićW Kędzierzyn-Koźle</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li></ul></div>
+      <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li></ul></div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW.</span><span>Obiekt: Ruiny pałacu (Kędzierzyn-Koźle)</span></div>
+  </footer>
+  
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+  </script>
 
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const lat = 50.3766848;
-      const lon = 18.3178569;
+      const lat = 50.3766848; const lon = 18.3178569;
       const map = L.map('map').setView([lat, lon], 15);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-      }).addTo(map);
+      
+      let tileUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+         tileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+      }
+      
+      const layer = L.tileLayer(tileUrl, { maxZoom: 19, attribution: '© OpenStreetMap © CARTO' }).addTo(map);
       L.marker([lat, lon]).addTo(map).bindPopup("<b>Ruiny pałacu</b>").openPopup();
+      
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'data-theme') {
+            const newTheme = document.documentElement.getAttribute('data-theme');
+            layer.setUrl(newTheme === 'dark' ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
+          }
+        });
+      });
+      observer.observe(document.documentElement, { attributes: true });
     });
   </script>
   
-
 </body>
 </html>

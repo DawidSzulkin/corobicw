@@ -1,110 +1,90 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bielskie Centrum Kultury im. Marii Koterbskiej | Bielsko-Biała - CoRobićW</title>
   <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Bielskie Centrum Kultury im. Marii Koterbskiej w Bielsko-Biała.">
-  
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
 
   <style>
-    :root {
-      --primary: #1A365D;
-      --secondary: #2B6CB0;
-      --accent: #E53E3E;
-      --bg: #F7FAFC;
-      --text: #2D3748;
-      --card-bg: #FFFFFF;
-      --border: #E2E8F0;
+    
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
+      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
+      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+      --badge-bg: #000000; --badge-text: #ffffff;
+      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
     }
+    :root[data-theme="light"] {
+      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
+      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
+      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+      --badge-bg: #09090b; --badge-text: #ffffff;
+      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+      -webkit-font-smoothing: antialiased; font-size: 16px;
     }
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header a { color: white; text-decoration: none; font-weight: bold; }
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-    }
-    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
-    .main-content {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      border: 1px solid var(--border);
-    }
-    .badge {
-      display: inline-block;
-      background: #EBF8FF;
-      color: var(--secondary);
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 0.3rem 0.7rem;
-      border-radius: 6px;
-      margin-bottom: 0.8rem;
-    }
-    h1 { margin: 0 0 1rem 0; color: var(--primary); font-size: 2rem; }
-    .sidebar .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      border: 1px solid var(--border);
-    }
-    .sidebar h3 {
-      margin-top: 0;
-      font-size: 1.1rem;
-      color: var(--primary);
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 0.5rem;
-    }
-    .info-row { display: flex; margin-bottom: 0.8rem; font-size: 0.95rem; }
-    .info-label { width: 35%; font-weight: 600; color: #718096; }
-    .info-val { width: 65%; font-weight: 500; }
-    .event-card {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: inherit;
-    }
-    .event-card:last-child { border-bottom: none; }
-    .event-card:hover h4 { color: var(--secondary); }
-    .event-thumb {
-      width: 90px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 6px;
-      background: #CBD5E0;
-    }
-    .event-meta { font-size: 0.85rem; color: #718096; }
-    .event-title { margin: 0 0 0.3rem 0; font-size: 1rem; font-weight: bold; }
-    #map { height: 260px; width: 100%; border-radius: 8px; margin-top: 1rem; border: 1px solid var(--border); }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .container-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
+    .main-content { background: var(--card-bg); border: 1px solid var(--border); padding: 32px; }
+    .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    h1 { margin: 0 0 12px 0; color: var(--text); font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; }
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; }
+    .sidebar h3 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; }
+    .info-row { display: flex; margin-bottom: 14px; font-size: 0.95rem; }
+    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+    .info-val { width: 65%; font-weight: 500; color: var(--text); }
+    .event-card-mini { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; align-items: center; transition: transform 0.2s; }
+    .event-card-mini:last-child { border-bottom: none; }
+    .event-card-mini:hover { transform: translateX(4px); }
+    .event-card-mini:hover h4 { color: var(--text); }
+    .event-thumb-mini { width: 100px; height: 75px; object-fit: cover; background: #18181b; flex-shrink: 0; }
+    .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
+    #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
   </style>
 </head>
 <body>
-
   
   
   
@@ -113,519 +93,542 @@
   
 
   <header>
-    <a href="/bielsko_biala/">← Wróć do agendy: Bielsko-Biała</a>
-    <span>CoRobićW</span>
-  </header>
-
-  <div class="container">
-    <main class="main-content">
-      <span class="badge">Kultura i Muzyka</span>
-      <h1>Bielskie Centrum Kultury im. Marii Koterbskiej</h1>
-      <p style="color: #4A5568; font-size: 1.1rem;">
-        📍 ul. Juliusza S?owackiego 27, Bielsko-Biała
-      </p>
-
-      
-        <div id="map"></div>
-      
-
-      <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
-
-      <h3>📅 Nadchodzące wydarzenia w tym miejscu (50)</h3>
-      
-        
-        <a href="/bielsko_biala/wydarzenia/2026-08-28-art-square-cumbancheros/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_art_square___cumbancheros.webp" alt="ART SQUARE | Cumbancheros" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-08-28 • ⏰ 18:00</div>
-            <div class="event-title">ART SQUARE | Cumbancheros</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Wstęp wolny</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-08-29-art-square-grzybowski-band-zpit-bielsko/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_art_square___grzybowski_band___zpit_bielsko.webp" alt="ART SQUARE | Grzybowski Band & ZPiT Bielsko" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-08-29 • ⏰ 18:00</div>
-            <div class="event-title">ART SQUARE | Grzybowski Band & ZPiT Bielsko</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Wstęp wolny</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-08-29-dumni-z-bb-kult/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_dumni_z_bb_-_kult.webp" alt="DUMNI z BB - Kult" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-08-29 • ⏰ 20:00</div>
-            <div class="event-title">DUMNI z BB - Kult</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Wstęp wolny</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-09-05-ludovico-einaudi-music/" class="event-card">
-          <img src="https://www.kupbilecik.pl/img/gal_baza/d2yc2gnow3tvx49p_m.webp?t=1722858205" alt="Ludovico Einaudi Music" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Sob, 5 wrz • ⏰ 19:00</div>
-            <div class="event-title">Ludovico Einaudi Music</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-09-11-luname-feat-paulina-przybysz/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_lunam__feat__paulina_przybysz.webp" alt="Lunamë feat. Paulina Przybysz" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-09-11 • ⏰ 19:00</div>
-            <div class="event-title">Lunamë feat. Paulina Przybysz</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-09-12-andrzej-poniedzielski-dobry-wieczo/" class="event-card">
-          <img src="https://www.bck.bielsko.pl/sites/default/files/styles/obraz_przyciety_16_9/public/images/2026/Bez%20nazwy_12.jpg.webp?h=40e21954&itok=posxBj93" alt="Andrzej Poniedzielski „Dobry wieczór…?”" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Sob, 12 wrz • ⏰ 19:00</div>
-            <div class="event-title">Andrzej Poniedzielski „Dobry wieczór…?”</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 137.00 zł</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-09-13-spektakl-depresja-komika-g-1500/" class="event-card">
-          <img src="https://www.bck.bielsko.pl/sites/default/files/styles/obraz_przyciety_16_9/public/images/2026/d1_0.jpg.webp?h=62acee84&itok=XhfnLljT" alt="spektakl DEPRESJA KOMIKA g. 15.00" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Ndz, 13 wrz • ⏰ 15:00</div>
-            <div class="event-title">spektakl DEPRESJA KOMIKA g. 15.00</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-09-13-depresja-komika-adam-woronowicz-i/" class="event-card">
-          <img src="https://www.kupbilecik.pl/img/gal_baza/2ucngd9egosuv9wr_m.webp?t=1787130429" alt="Depresja komika - Adam Woronowicz i Rafał Rutkowski" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Ndz, 13 wrz • ⏰ 15:00</div>
-            <div class="event-title">Depresja komika - Adam Woronowicz i Rafał Rutkowski</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 126.38 zł</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-09-16-offbeat-organ-natalia-niemen/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_offbeat_organ_-_natalia_niemen.webp" alt="OFFBEAT ORGAN - Natalia Niemen" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-09-16 • ⏰ 18:00</div>
-            <div class="event-title">OFFBEAT ORGAN - Natalia Niemen</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-09-19-rodzinne-rewolucje/" class="event-card">
-          <img src="https://www.kupbilecik.pl/img/gal_baza/m40zsi3bkwaf9ayl_m.webp?t=1738144626" alt="Rodzinne rewolucje" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Sob, 19 wrz • ⏰ 16:00</div>
-            <div class="event-title">Rodzinne rewolucje</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 116.82 zł</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-09-24-grupa-furmana-30-lat-na-scenie/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_grupa_furmana_-_30_lat_na_scenie.webp" alt="GRUPA FURMANA - 30 lat na scenie" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-09-24 • ⏰ 19:00</div>
-            <div class="event-title">GRUPA FURMANA - 30 lat na scenie</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-09-27-soundesign-roger-eno-daniel-bloom-i-gaba-kulka/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_soundesign_-_roger_eno__daniel_bloom_i_gaba_kulka.webp" alt="Soundesign - Roger Eno, Daniel Bloom i Gaba Kulka" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-09-27 • ⏰ 18:00</div>
-            <div class="event-title">Soundesign - Roger Eno, Daniel Bloom i Gaba Kulka</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-02-nene-heroine/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_nene_heroine.webp" alt="NENE HEROINE" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-02 • ⏰ 19:00</div>
-            <div class="event-title">NENE HEROINE</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-03-piotr-batroczyk/" class="event-card">
-          <img src="https://www.kupbilecik.pl/img/gal_baza/1rimiybo0yidruze_m.webp?t=1769081437" alt="Piotr Bałtroczyk" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Sob, 3 paź • ⏰ 18:00</div>
-            <div class="event-title">Piotr Bałtroczyk</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 83.27 zł</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-08-festiwal-kompozytorow-polskich-koncert-inauguracyjny/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_festiwal_kompozytor_w_polskich_-_koncert_inauguracyjny.webp" alt="Festiwal Kompozytorów Polskich - koncert inauguracyjny" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-08 • ⏰ 19:00</div>
-            <div class="event-title">Festiwal Kompozytorów Polskich - koncert inauguracyjny</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-09-festiwal-kompozytorow-polskich-muzyka-teatralna-filmowa/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_festiwal_kompozytor_w_polskich_-_muzyka_teatralna___filmowa.webp" alt="Festiwal Kompozytorów Polskich - Muzyka teatralna & filmowa" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-09 • ⏰ 19:00</div>
-            <div class="event-title">Festiwal Kompozytorów Polskich - Muzyka teatralna & filmowa</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-10-festiwal-kompozytorow-polskich-gala-finalowa/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_festiwal_kompozytor_w_polskich_-_gala_fina_owa.webp" alt="Festiwal Kompozytorów Polskich - Gala finałowa" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-10 • ⏰ 19:00</div>
-            <div class="event-title">Festiwal Kompozytorów Polskich - Gala finałowa</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-17-spektakl-tajemnica-16-pietra/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl_tajemnica_16_pi_tra.webp" alt="spektakl TAJEMNICA 16 PIĘTRA" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-17 • ⏰ 17:00</div>
-            <div class="event-title">spektakl TAJEMNICA 16 PIĘTRA</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-17-tajemnica-16-pietra-komedia-na-najwyzszym-poziomie/" class="event-card">
-          <img src="/assets/thumbnails/biletyna_bielsko_biala_biletyna_pl_tajemnica_16_pi_tra_-_komedia_na_najwy_szym_poziomie.webp" alt="Tajemnica 16 piętra - komedia na najwyższym poziomie" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-17 • ⏰ 17:00</div>
-            <div class="event-title">Tajemnica 16 piętra - komedia na najwyższym poziomie</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 106.20 zł</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-21-jezioro-abedzie-classical-etoile/" class="event-card">
-          <img src="https://www.bck.bielsko.pl/sites/default/files/styles/obraz_przyciety_16_9/public/images/2026/Bez%20nazwy.png.webp?h=e8fec03e&itok=VvCRc0ap" alt="Jezioro Łabędzie - Classical Etoile Ballet" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Śr, 21 paź • ⏰ 19:00</div>
-            <div class="event-title">Jezioro Łabędzie - Classical Etoile Ballet</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 138.06 zł</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-22-koncert-krolewski-od-mozarta-po-straussa/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_koncert_kr_lewski__od_mozarta_po_straussa.webp" alt="KONCERT KRÓLEWSKI: Od Mozarta po Straussa" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-22 • ⏰ 17:30</div>
-            <div class="event-title">KONCERT KRÓLEWSKI: Od Mozarta po Straussa</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-22-pop-opera-od-opery-do-musicalu/" class="event-card">
-          <img src="https://www.bck.bielsko.pl/sites/default/files/styles/obraz_przyciety_16_9/public/images/2026/popopera.jpg.webp?h=ccc4db35&itok=W8WWDXSt" alt="POP OPERA - Od Opery do Musicalu" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Czw, 22 paź • ⏰ 20:00</div>
-            <div class="event-title">POP OPERA - Od Opery do Musicalu</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 94.52 zł</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-22-koncert-krolewski-majestat-klasyki/" class="event-card">
-          <img src="/assets/thumbnails/biletyna_bielsko_biala_biletyna_pl_koncert_kr_lewski_-_majestat_klasyki.webp" alt="Koncert Królewski - Majestat Klasyki" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-22 • ⏰ 17:30</div>
-            <div class="event-title">Koncert Królewski - Majestat Klasyki</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 94.52 zł</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-23-wolna-grupa-bukowina/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_wolna_grupa_bukowina.webp" alt="WOLNA GRUPA BUKOWINA" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-23 • ⏰ 18:00</div>
-            <div class="event-title">WOLNA GRUPA BUKOWINA</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-24-pikantni/" class="event-card">
-          <img src="https://biletyna.pl/file/get/w/260/id/341993/filename/2554cad892bb2d598b1b7eddccacd981.jpg" alt="Pikantni" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Sob, 24 paź • ⏰ Według harmonogramu</div>
-            <div class="event-title">Pikantni</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 126.38 zł</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-10-30-siesta-w-drodze-gala-fado-marta-pereira-da-costa-and-friends-nani-medeiros-duarte/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_siesta_w_drodze__gala_fado_marta_pereira_da_costa_and_friends__nani_medeiros___duarte.webp" alt="Siesta w Drodze: GALA FADO Marta Pereira da Costa and Friends: Nani Medeiros & Duarte" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-10-30 • ⏰ 19:00</div>
-            <div class="event-title">Siesta w Drodze: GALA FADO Marta Pereira da Costa and Friends: Nani Medeiros & Duarte</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-04-jazzowa-jesien-w-bielsku-bialej/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_jazzowa_jesie__w_bielsku-bia_ej.webp" alt="Jazzowa Jesień w Bielsku-Białej" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-11-04 • ⏰ 18:00</div>
-            <div class="event-title">Jazzowa Jesień w Bielsku-Białej</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-04-hiromi-the-trio-project-jazzowa-jesien/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_hiromi__the_trio_project_-_jazzowa_jesie.webp" alt="HIROMI: The Trio Project - Jazzowa Jesień" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-11-04 • ⏰ 18:00</div>
-            <div class="event-title">HIROMI: The Trio Project - Jazzowa Jesień</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-13-ralph-kaminski-gora/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_ralph_kaminski_-_g_ra.webp" alt="Ralph Kaminski - Góra" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-11-13 • ⏰ 20:00</div>
-            <div class="event-title">Ralph Kaminski - Góra</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-18-nie-dokazuj-najwieksze-przeboje-marka-grechuty/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_nie_dokazuj__najwi_ksze_przeboje_marka_grechuty.webp" alt="Nie dokazuj! Największe przeboje Marka Grechuty" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-11-18 • ⏰ 19:00</div>
-            <div class="event-title">Nie dokazuj! Największe przeboje Marka Grechuty</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-19-czerwone-gitary/" class="event-card">
-          <img src="https://www.bck.bielsko.pl/sites/default/files/styles/obraz_przyciety_16_9/public/images/2025/CzGitary_plakat_Baner_60lecie%20%281%29.jpg.webp?h=24b3e4fb&itok=6W90vArc" alt="Czerwone Gitary" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Czw, 19 lis • ⏰ 19:00</div>
-            <div class="event-title">Czerwone Gitary</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-20-raz-dwa-trzy/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_raz_dwa_trzy.webp" alt="RAZ DWA TRZY" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-11-20 • ⏰ 19:00</div>
-            <div class="event-title">RAZ DWA TRZY</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-21-spektakl-zona-do-adopcji/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl__ona_do_adopcji.webp" alt="spektakl ŻONA DO ADOPCJI" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-11-21 • ⏰ 17:00</div>
-            <div class="event-title">spektakl ŻONA DO ADOPCJI</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-22-international-grand-ballet-jezioro-labedzie/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_international_grand_ballet___jezioro__ab_dzie.webp" alt="International Grand Ballet – Jezioro Łabędzie" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-11-22 • ⏰ 18:00</div>
-            <div class="event-title">International Grand Ballet – Jezioro Łabędzie</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-26-spektakl-nie-wszystko-ci-oddam/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl__nie__wszystko_ci_oddam.webp" alt="spektakl (NIE) WSZYSTKO CI ODDAM" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-11-26 • ⏰ 18:00</div>
-            <div class="event-title">spektakl (NIE) WSZYSTKO CI ODDAM</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-11-28-spektakl-puapka-g-1600/" class="event-card">
-          <img src="https://www.bck.bielsko.pl/sites/default/files/styles/obraz_przyciety_16_9/public/images/2026/Clipboard01.png.webp?h=9b5b0227&itok=UqLVC1pD" alt="spektakl PUŁAPKA g. 16.00" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Sob, 28 lis • ⏰ 16:00</div>
-            <div class="event-title">spektakl PUŁAPKA g. 16.00</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-12-02-dziadek-do-orzechow-ucb/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_dziadek_do_orzech_w_-_ucb.webp" alt="Dziadek do orzechów - UCB" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-12-02 • ⏰ 19:00</div>
-            <div class="event-title">Dziadek do orzechów - UCB</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-12-05-spektakl-przesyka-z-zaswiatow-g-1/" class="event-card">
-          <img src="https://www.bck.bielsko.pl/sites/default/files/styles/obraz_przyciety_16_9/public/images/2026/Przesy%C5%82ka%201600x1000_0.jpg.webp?h=ccc4db35&itok=mL2pRm1e" alt="spektakl PRZESYŁKA Z ZAŚWIATÓW g. 16.00" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Sob, 5 gru • ⏰ 16:00</div>
-            <div class="event-title">spektakl PRZESYŁKA Z ZAŚWIATÓW g. 16.00</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2026-12-09-potega-milosci/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_pot_ga_mi_o_ci.webp" alt="POTĘGA MIŁOŚCI" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2026-12-09 • ⏰ 18:00</div>
-            <div class="event-title">POTĘGA MIŁOŚCI</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-01-09-wielka-gala-noworoczna/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_wielka_gala_noworoczna.webp" alt="WIELKA GALA NOWOROCZNA" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2027-01-09 • ⏰ 17:00</div>
-            <div class="event-title">WIELKA GALA NOWOROCZNA</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-01-10-balet-dziadek-do-orzechow-familijny-spektakl-baletowy/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_balet_dziadek_do_orzech_w___familijny_spektakl_baletowy.webp" alt="BALET DZIADEK DO ORZECHÓW – familijny spektakl baletowy" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2027-01-10 • ⏰ 14:00</div>
-            <div class="event-title">BALET DZIADEK DO ORZECHÓW – familijny spektakl baletowy</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-01-23-wiedenska-noc-gala-noworoczna-z-grand-etoile-orchestra/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_wiede_ska_noc__gala_noworoczna_z_grand__toile_orchestra.webp" alt="Wiedeńska Noc: Gala Noworoczna z Grand Étoile Orchestra" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2027-01-23 • ⏰ 18:00</div>
-            <div class="event-title">Wiedeńska Noc: Gala Noworoczna z Grand Étoile Orchestra</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-01-28-operetka-ksiezniczka-czardasza/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_operetka_ksi__niczka_czardasza.webp" alt="Operetka KSIĘŻNICZKA CZARDASZA" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2027-01-28 • ⏰ 18:30</div>
-            <div class="event-title">Operetka KSIĘŻNICZKA CZARDASZA</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-02-27-jezioro-labedzie-ucb/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_jezioro__ab_dzie_-_ucb.webp" alt="Jezioro łabędzie - UCB" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2027-02-27 • ⏰ 19:00</div>
-            <div class="event-title">Jezioro łabędzie - UCB</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-03-11-spektakl-klimakterium-i-juz/" class="event-card">
-          <img src="https://www.bck.bielsko.pl/sites/default/files/styles/obraz_przyciety_16_9/public/images/2026/Clipboard01_4.jpg.webp?h=8f7fe178&itok=I4HdNxe_" alt="spektakl Klimakterium i już" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Czw, 11 mar • ⏰ 19:00</div>
-            <div class="event-title">spektakl Klimakterium i już</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-03-20-czarodziej-magiczny-spektakl-familijny/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_czarodziej___magiczny_spektakl_familijny.webp" alt="CZARODZIEJ – MAGICZNY SPEKTAKL FAMILIJNY" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2027-03-20 • ⏰ 14:00</div>
-            <div class="event-title">CZARODZIEJ – MAGICZNY SPEKTAKL FAMILIJNY</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-04-11-balet-jezioro-labedzie-familijny-spektakl-baletowy/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_balet_jezioro__ab_dzie_-_familijny_spektakl_baletowy.webp" alt="BALET JEZIORO ŁABĘDZIE - FAMILIJNY SPEKTAKL BALETOWY" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2027-04-11 • ⏰ 14:00</div>
-            <div class="event-title">BALET JEZIORO ŁABĘDZIE - FAMILIJNY SPEKTAKL BALETOWY</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-05-23-urszula-szafirowa-trasa-45-jubil/" class="event-card">
-          <img src="https://www.bck.bielsko.pl/sites/default/files/styles/obraz_przyciety_16_9/public/images/2026/Bez%20nazwy_17.jpg.webp?h=8dd96ee3&itok=cQm9lQKH" alt="URSZULA - Szafirowa Trasa 45. Jubileusz Artystyczny" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ Ndz, 23 maj • ⏰ 19:30</div>
-            <div class="event-title">URSZULA - Szafirowa Trasa 45. Jubileusz Artystyczny</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-12-04-nutkosfera-cezik-dzieciom-4-grudnia-2027-g-1600/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_nutkosfera___cezik_dzieciom__4_grudnia_2027_g__16_00.webp" alt="NutkoSfera – CeZik dzieciom, 4 grudnia 2027 g. 16.00" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2027-12-04 • ⏰ 16:00</div>
-            <div class="event-title">NutkoSfera – CeZik dzieciom, 4 grudnia 2027 g. 16.00</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-        <a href="/bielsko_biala/wydarzenia/2027-12-05-nutkosfera-cezik-dzieciom-5-grudnia-2027-g-1100/" class="event-card">
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_nutkosfera___cezik_dzieciom__5_grudnia_2027_g__11_00.webp" alt="NutkoSfera – CeZik dzieciom, 5 grudnia 2027 g. 11.00" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-          <div>
-            <div class="event-meta">🗓️ 2027-12-05 • ⏰ 11:00</div>
-            <div class="event-title">NutkoSfera – CeZik dzieciom, 5 grudnia 2027 g. 11.00</div>
-            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (BCK Bilety)</div>
-          </div>
-        </a>
-        
-      
-    </main>
-
-    <aside class="sidebar">
-      <div class="card">
-        <h3>Logistyka i Dojazd</h3>
-        <div class="info-row">
-          <div class="info-label">📍 Adres</div>
-          <div class="info-val">ul. Juliusza S?owackiego 27</div>
-        </div>
-        <div class="info-row">
-          <div class="info-label">🚗 Parking</div>
-          <div class="info-val">
-            
-              Miejski bezp?atny po 17:00 (50m)
-            
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-label">♿ Dostępność</div>
-          <div class="info-val">
-            Brak danych
-          </div>
-        </div>
+    <div class="nav-container">
+      <a href="/bielsko_biala/" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw"><span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span></button>
+        <a href="/bielsko_biala/" class="btn-nav">&larr; Wróć do agendy</a>
       </div>
-    </aside>
-  </div>
+    </div>
+  </header>
+  <main>
+    <nav class="breadcrumbs">
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">Bielskie Centrum Kultury im. Marii Koterbskiej</span>
+    </nav>
+    <div class="container-grid">
+      <div class="main-content">
+        <span class="badge">Kultura i Muzyka</span>
+        <h1>Bielskie Centrum Kultury im. Marii Koterbskiej</h1>
+        <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. Juliusza Słowackiego 27, Bielsko-Biała</p>
+        <div id="map"></div>
+        <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
+        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (49)</h3>
+        
+          
+          <a href="/bielsko_biala/wydarzenia/2026-08-28-art-square-cumbancheros/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_art_square___cumbancheros.webp" alt="ART SQUARE | Cumbancheros" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-08-28 &bull; 18:00</div>
+              <div class="event-title-mini">ART SQUARE | Cumbancheros</div>
+              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-08-29-art-square-grzybowski-band-zpit-bielsko/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_art_square___grzybowski_band___zpit_bielsko.webp" alt="ART SQUARE | Grzybowski Band & ZPiT Bielsko" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-08-29 &bull; 18:00</div>
+              <div class="event-title-mini">ART SQUARE | Grzybowski Band & ZPiT Bielsko</div>
+              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-08-29-dumni-z-bb-kult/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_dumni_z_bb_-_kult.webp" alt="DUMNI z BB - Kult" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-08-29 &bull; 20:00</div>
+              <div class="event-title-mini">DUMNI z BB - Kult</div>
+              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-09-05-ludovico-einaudi-music/" class="event-card-mini">
+            <img src="https://www.kupbilecik.pl/img/gal_baza/d2yc2gnow3tvx49p_m.webp?t=1722858205" alt="Ludovico Einaudi Music" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">Sob, 5 wrz &bull; 19:00</div>
+              <div class="event-title-mini">Ludovico Einaudi Music</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-09-11-luname-feat-paulina-przybysz/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_lunam__feat__paulina_przybysz.webp" alt="Lunamë feat. Paulina Przybysz" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-11 &bull; 19:00</div>
+              <div class="event-title-mini">Lunamë feat. Paulina Przybysz</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-09-12-andrzej-poniedzielski-dobry-wieczor/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_andrzej_poniedzielski__dobry_wiecz_r.webp" alt="Andrzej Poniedzielski „Dobry wieczór…?”" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-12 &bull; 19:00</div>
+              <div class="event-title-mini">Andrzej Poniedzielski „Dobry wieczór…?”</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 137.00 zł</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-09-13-spektakl-depresja-komika-g-1500/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl_depresja_komika_g__15_00.webp" alt="spektakl DEPRESJA KOMIKA g. 15.00" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-13 &bull; 15:00</div>
+              <div class="event-title-mini">spektakl DEPRESJA KOMIKA g. 15.00</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-09-13-depresja-komika-adam-woronowicz-i/" class="event-card-mini">
+            <img src="https://www.kupbilecik.pl/img/gal_baza/2ucngd9egosuv9wr_m.webp?t=1787130429" alt="Depresja komika - Adam Woronowicz i Rafał Rutkowski" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">Ndz, 13 wrz &bull; 15:00</div>
+              <div class="event-title-mini">Depresja komika - Adam Woronowicz i Rafał Rutkowski</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 126.38 zł</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-09-16-offbeat-organ-natalia-niemen/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_offbeat_organ_-_natalia_niemen.webp" alt="OFFBEAT ORGAN - Natalia Niemen" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-16 &bull; 18:00</div>
+              <div class="event-title-mini">OFFBEAT ORGAN - Natalia Niemen</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-09-19-rodzinne-rewolucje/" class="event-card-mini">
+            <img src="https://www.kupbilecik.pl/img/gal_baza/m40zsi3bkwaf9ayl_m.webp?t=1738144626" alt="Rodzinne rewolucje" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">Sob, 19 wrz &bull; 16:00</div>
+              <div class="event-title-mini">Rodzinne rewolucje</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 116.82 zł</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-09-24-grupa-furmana-30-lat-na-scenie/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_grupa_furmana_-_30_lat_na_scenie.webp" alt="GRUPA FURMANA - 30 lat na scenie" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-24 &bull; 19:00</div>
+              <div class="event-title-mini">GRUPA FURMANA - 30 lat na scenie</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-09-27-soundesign-roger-eno-daniel-bloom-i-gaba-kulka/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_soundesign_-_roger_eno__daniel_bloom_i_gaba_kulka.webp" alt="Soundesign - Roger Eno, Daniel Bloom i Gaba Kulka" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-27 &bull; 18:00</div>
+              <div class="event-title-mini">Soundesign - Roger Eno, Daniel Bloom i Gaba Kulka</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-02-nene-heroine/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_nene_heroine.webp" alt="NENE HEROINE" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-02 &bull; 19:00</div>
+              <div class="event-title-mini">NENE HEROINE</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-03-piotr-batroczyk/" class="event-card-mini">
+            <img src="https://www.kupbilecik.pl/img/gal_baza/1rimiybo0yidruze_m.webp?t=1769081437" alt="Piotr Bałtroczyk" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">Sob, 3 paź &bull; 18:00</div>
+              <div class="event-title-mini">Piotr Bałtroczyk</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 83.27 zł</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-08-festiwal-kompozytorow-polskich-koncert-inauguracyjny/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_festiwal_kompozytor_w_polskich_-_koncert_inauguracyjny.webp" alt="Festiwal Kompozytorów Polskich - koncert inauguracyjny" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-08 &bull; 19:00</div>
+              <div class="event-title-mini">Festiwal Kompozytorów Polskich - koncert inauguracyjny</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-09-festiwal-kompozytorow-polskich-muzyka-teatralna-filmowa/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_festiwal_kompozytor_w_polskich_-_muzyka_teatralna___filmowa.webp" alt="Festiwal Kompozytorów Polskich - Muzyka teatralna & filmowa" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-09 &bull; 19:00</div>
+              <div class="event-title-mini">Festiwal Kompozytorów Polskich - Muzyka teatralna & filmowa</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-10-festiwal-kompozytorow-polskich-gala-finalowa/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_festiwal_kompozytor_w_polskich_-_gala_fina_owa.webp" alt="Festiwal Kompozytorów Polskich - Gala finałowa" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-10 &bull; 19:00</div>
+              <div class="event-title-mini">Festiwal Kompozytorów Polskich - Gala finałowa</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-17-spektakl-tajemnica-16-pietra/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl_tajemnica_16_pi_tra.webp" alt="spektakl TAJEMNICA 16 PIĘTRA" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-17 &bull; 17:00</div>
+              <div class="event-title-mini">spektakl TAJEMNICA 16 PIĘTRA</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-17-tajemnica-16-pietra-komedia-na-najwyzszym-poziomie/" class="event-card-mini">
+            <img src="/assets/thumbnails/biletyna_bielsko_biala_biletyna_pl_tajemnica_16_pi_tra_-_komedia_na_najwy_szym_poziomie.webp" alt="Tajemnica 16 piętra - komedia na najwyższym poziomie" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-17 &bull; 17:00</div>
+              <div class="event-title-mini">Tajemnica 16 piętra - komedia na najwyższym poziomie</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 106.20 zł</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-21-jezioro-labedzie-classical-etoile-ballet/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_jezioro__ab_dzie_-_classical_etoile_ballet.webp" alt="Jezioro Łabędzie - Classical Etoile Ballet" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-21 &bull; 19:00</div>
+              <div class="event-title-mini">Jezioro Łabędzie - Classical Etoile Ballet</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 138.06 zł</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-22-koncert-krolewski-od-mozarta-po-straussa/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_koncert_kr_lewski__od_mozarta_po_straussa.webp" alt="KONCERT KRÓLEWSKI: Od Mozarta po Straussa" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-22 &bull; 17:30</div>
+              <div class="event-title-mini">KONCERT KRÓLEWSKI: Od Mozarta po Straussa</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-22-pop-opera-od-opery-do-musicalu/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_pop_opera_-_od_opery_do_musicalu.webp" alt="POP OPERA - Od Opery do Musicalu" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-22 &bull; 20:00</div>
+              <div class="event-title-mini">POP OPERA - Od Opery do Musicalu</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 94.52 zł</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-22-koncert-krolewski-majestat-klasyki/" class="event-card-mini">
+            <img src="/assets/thumbnails/biletyna_bielsko_biala_biletyna_pl_koncert_kr_lewski_-_majestat_klasyki.webp" alt="Koncert Królewski - Majestat Klasyki" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-22 &bull; 17:30</div>
+              <div class="event-title-mini">Koncert Królewski - Majestat Klasyki</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 94.52 zł</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-23-wolna-grupa-bukowina/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_wolna_grupa_bukowina.webp" alt="WOLNA GRUPA BUKOWINA" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-23 &bull; 18:00</div>
+              <div class="event-title-mini">WOLNA GRUPA BUKOWINA</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-10-30-siesta-w-drodze-gala-fado-marta-pereira-da-costa-and-friends-nani-medeiros-duarte/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_siesta_w_drodze__gala_fado_marta_pereira_da_costa_and_friends__nani_medeiros___duarte.webp" alt="Siesta w Drodze: GALA FADO Marta Pereira da Costa and Friends: Nani Medeiros & Duarte" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-30 &bull; 19:00</div>
+              <div class="event-title-mini">Siesta w Drodze: GALA FADO Marta Pereira da Costa and Friends: Nani Medeiros & Duarte</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-04-jazzowa-jesien-w-bielsku-bialej/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_jazzowa_jesie__w_bielsku-bia_ej.webp" alt="Jazzowa Jesień w Bielsku-Białej" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-04 &bull; 18:00</div>
+              <div class="event-title-mini">Jazzowa Jesień w Bielsku-Białej</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-04-hiromi-the-trio-project-jazzowa-jesien/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_hiromi__the_trio_project_-_jazzowa_jesie.webp" alt="HIROMI: The Trio Project - Jazzowa Jesień" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-04 &bull; 18:00</div>
+              <div class="event-title-mini">HIROMI: The Trio Project - Jazzowa Jesień</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-13-ralph-kaminski-gora/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_ralph_kaminski_-_g_ra.webp" alt="Ralph Kaminski - Góra" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-13 &bull; 20:00</div>
+              <div class="event-title-mini">Ralph Kaminski - Góra</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-18-nie-dokazuj-najwieksze-przeboje-marka-grechuty/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_nie_dokazuj__najwi_ksze_przeboje_marka_grechuty.webp" alt="Nie dokazuj! Największe przeboje Marka Grechuty" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-18 &bull; 19:00</div>
+              <div class="event-title-mini">Nie dokazuj! Największe przeboje Marka Grechuty</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-19-czerwone-gitary/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_czerwone_gitary.webp" alt="Czerwone Gitary" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-19 &bull; 19:00</div>
+              <div class="event-title-mini">Czerwone Gitary</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-20-raz-dwa-trzy/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_raz_dwa_trzy.webp" alt="RAZ DWA TRZY" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-20 &bull; 19:00</div>
+              <div class="event-title-mini">RAZ DWA TRZY</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-21-spektakl-zona-do-adopcji/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl__ona_do_adopcji.webp" alt="spektakl ŻONA DO ADOPCJI" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-21 &bull; 17:00</div>
+              <div class="event-title-mini">spektakl ŻONA DO ADOPCJI</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-22-international-grand-ballet-jezioro-labedzie/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_international_grand_ballet___jezioro__ab_dzie.webp" alt="International Grand Ballet – Jezioro Łabędzie" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-22 &bull; 18:00</div>
+              <div class="event-title-mini">International Grand Ballet – Jezioro Łabędzie</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-26-spektakl-nie-wszystko-ci-oddam/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl__nie__wszystko_ci_oddam.webp" alt="spektakl (NIE) WSZYSTKO CI ODDAM" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-26 &bull; 18:00</div>
+              <div class="event-title-mini">spektakl (NIE) WSZYSTKO CI ODDAM</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-11-28-spektakl-pulapka-g-1600/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl_pu_apka_g__16_00.webp" alt="spektakl PUŁAPKA g. 16.00" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-28 &bull; 16:00</div>
+              <div class="event-title-mini">spektakl PUŁAPKA g. 16.00</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-12-02-dziadek-do-orzechow-ucb/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_dziadek_do_orzech_w_-_ucb.webp" alt="Dziadek do orzechów - UCB" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-12-02 &bull; 19:00</div>
+              <div class="event-title-mini">Dziadek do orzechów - UCB</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-12-05-spektakl-przesylka-z-zaswiatow-g-1600/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl_przesy_ka_z_za_wiat_w_g__16_00.webp" alt="spektakl PRZESYŁKA Z ZAŚWIATÓW g. 16.00" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-12-05 &bull; 16:00</div>
+              <div class="event-title-mini">spektakl PRZESYŁKA Z ZAŚWIATÓW g. 16.00</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2026-12-09-potega-milosci/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_pot_ga_mi_o_ci.webp" alt="POTĘGA MIŁOŚCI" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-12-09 &bull; 18:00</div>
+              <div class="event-title-mini">POTĘGA MIŁOŚCI</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-01-09-wielka-gala-noworoczna/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_wielka_gala_noworoczna.webp" alt="WIELKA GALA NOWOROCZNA" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-01-09 &bull; 17:00</div>
+              <div class="event-title-mini">WIELKA GALA NOWOROCZNA</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-01-10-balet-dziadek-do-orzechow-familijny-spektakl-baletowy/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_balet_dziadek_do_orzech_w___familijny_spektakl_baletowy.webp" alt="BALET DZIADEK DO ORZECHÓW – familijny spektakl baletowy" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-01-10 &bull; 14:00</div>
+              <div class="event-title-mini">BALET DZIADEK DO ORZECHÓW – familijny spektakl baletowy</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-01-23-wiedenska-noc-gala-noworoczna-z-grand-etoile-orchestra/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_wiede_ska_noc__gala_noworoczna_z_grand__toile_orchestra.webp" alt="Wiedeńska Noc: Gala Noworoczna z Grand Étoile Orchestra" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-01-23 &bull; 18:00</div>
+              <div class="event-title-mini">Wiedeńska Noc: Gala Noworoczna z Grand Étoile Orchestra</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-01-28-operetka-ksiezniczka-czardasza/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_operetka_ksi__niczka_czardasza.webp" alt="Operetka KSIĘŻNICZKA CZARDASZA" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-01-28 &bull; 18:30</div>
+              <div class="event-title-mini">Operetka KSIĘŻNICZKA CZARDASZA</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-02-27-jezioro-labedzie-ucb/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_jezioro__ab_dzie_-_ucb.webp" alt="Jezioro łabędzie - UCB" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-02-27 &bull; 19:00</div>
+              <div class="event-title-mini">Jezioro łabędzie - UCB</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-03-11-spektakl-klimakterium-i-juz/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl_klimakterium_i_ju.webp" alt="spektakl Klimakterium i już" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-03-11 &bull; 19:00</div>
+              <div class="event-title-mini">spektakl Klimakterium i już</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-03-20-czarodziej-magiczny-spektakl-familijny/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_czarodziej___magiczny_spektakl_familijny.webp" alt="CZARODZIEJ – MAGICZNY SPEKTAKL FAMILIJNY" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-03-20 &bull; 14:00</div>
+              <div class="event-title-mini">CZARODZIEJ – MAGICZNY SPEKTAKL FAMILIJNY</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-04-11-balet-jezioro-labedzie-familijny-spektakl-baletowy/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_balet_jezioro__ab_dzie_-_familijny_spektakl_baletowy.webp" alt="BALET JEZIORO ŁABĘDZIE - FAMILIJNY SPEKTAKL BALETOWY" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-04-11 &bull; 14:00</div>
+              <div class="event-title-mini">BALET JEZIORO ŁABĘDZIE - FAMILIJNY SPEKTAKL BALETOWY</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-05-23-urszula-szafirowa-trasa-45-jubileusz-artystyczny/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_urszula_-_szafirowa_trasa_45__jubileusz_artystyczny.webp" alt="URSZULA - Szafirowa Trasa 45. Jubileusz Artystyczny" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-05-23 &bull; 19:30</div>
+              <div class="event-title-mini">URSZULA - Szafirowa Trasa 45. Jubileusz Artystyczny</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-12-04-nutkosfera-cezik-dzieciom-4-grudnia-2027-g-1600/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_nutkosfera___cezik_dzieciom__4_grudnia_2027_g__16_00.webp" alt="NutkoSfera – CeZik dzieciom, 4 grudnia 2027 g. 16.00" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-12-04 &bull; 16:00</div>
+              <div class="event-title-mini">NutkoSfera – CeZik dzieciom, 4 grudnia 2027 g. 16.00</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/2027-12-05-nutkosfera-cezik-dzieciom-5-grudnia-2027-g-1100/" class="event-card-mini">
+            <img src="/assets/thumbnails/bck_bck_bielsko_pl_nutkosfera___cezik_dzieciom__5_grudnia_2027_g__11_00.webp" alt="NutkoSfera – CeZik dzieciom, 5 grudnia 2027 g. 11.00" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2027-12-05 &bull; 11:00</div>
+              <div class="event-title-mini">NutkoSfera – CeZik dzieciom, 5 grudnia 2027 g. 11.00</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (BCK Bilety)</div>
+            </div>
+          </a>
+          
+        
+      </div>
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Logistyka i Dojazd</h3>
+          <div class="info-row"><div class="info-label">Adres</div><div class="info-val">ul. Juliusza Słowackiego 27</div></div>
+          <div class="info-row">
+            <div class="info-label">Parking</div>
+            <div class="info-val">
+              Miejski bezpłatny po 17:00 (50m)
+              
+            </div>
+          </div>
+          <div class="info-row"><div class="info-label">Dostępność</div><div class="info-val">Brak danych</div></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col"><h4>CoRobićW Bielsko-Biała</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li></ul></div>
+      <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li></ul></div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW.</span><span>Obiekt: Bielskie Centrum Kultury im. Marii Koterbskiej (Bielsko-Biała)</span></div>
+  </footer>
+  
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+  </script>
 
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const lat = 49.8208;
-      const lon = 19.0392;
+      const lat = 49.8208; const lon = 19.0392;
       const map = L.map('map').setView([lat, lon], 15);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-      }).addTo(map);
+      
+      let tileUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+         tileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+      }
+      
+      const layer = L.tileLayer(tileUrl, { maxZoom: 19, attribution: '© OpenStreetMap © CARTO' }).addTo(map);
       L.marker([lat, lon]).addTo(map).bindPopup("<b>Bielskie Centrum Kultury im. Marii Koterbskiej</b>").openPopup();
+      
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'data-theme') {
+            const newTheme = document.documentElement.getAttribute('data-theme');
+            layer.setUrl(newTheme === 'dark' ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
+          }
+        });
+      });
+      observer.observe(document.documentElement, { attributes: true });
     });
   </script>
   
-
 </body>
 </html>

@@ -3931,7 +3931,7 @@
   },
   {
     "place_id": "kk-mbp-rynek",
-    "name": "Miejska Biblioteka Publiczna - Oddzia? dla Dzieci",
+    "name": "Miejska Biblioteka Publiczna - Oddział dla Dzieci",
     "category": "Kultura",
     "street": "Rynek",
     "housenumber": "3",
@@ -3939,7 +3939,7 @@
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "P?atny w dni robocze",
+          "fee_label": "Płatny w dni robocze",
           "distance_m": 30,
           "street": "Rynek"
         }
@@ -3950,17 +3950,17 @@
   },
   {
     "place_id": "kk-mbp-glowna",
-    "name": "Miejska Biblioteka Publiczna (G??wna)",
+    "name": "Miejska Biblioteka Publiczna (Główna)",
     "category": "Kultura",
-    "street": "Jana Paw?a II",
+    "street": "Jana Pawła II",
     "housenumber": "27",
     "wheelchair": "yes",
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Bezp?atny",
+          "fee_label": "Bezpłatny",
           "distance_m": 50,
-          "street": "Jana Paw?a II"
+          "street": "Jana Pawła II"
         }
       ]
     },
@@ -3977,7 +3977,7 @@
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Bezp?atny",
+          "fee_label": "Bezpłatny",
           "distance_m": 80,
           "street": "S?awi?cicka"
         }
@@ -3990,15 +3990,15 @@
     "place_id": "kk-hala-srodmiescie",
     "name": "Hala Sportowa ?r?dmie?cie",
     "category": "Sport",
-    "street": "al. Jana Paw?a II",
+    "street": "al. Jana Pawła II",
     "housenumber": "29",
     "wheelchair": "yes",
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Bezp?atny",
+          "fee_label": "Bezpłatny",
           "distance_m": 40,
-          "street": "al. Jana Paw?a II"
+          "street": "al. Jana Pawła II"
         }
       ]
     },
@@ -4015,7 +4015,7 @@
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Bezp?atny",
+          "fee_label": "Bezpłatny",
           "distance_m": 50,
           "street": "Kraszewskiego"
         }
@@ -4034,7 +4034,7 @@
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "P?atny",
+          "fee_label": "Płatny",
           "distance_m": 30,
           "street": "Dworcowa"
         }
