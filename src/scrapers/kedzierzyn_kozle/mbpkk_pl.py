@@ -1,19 +1,13 @@
-from datetime import datetime
-import json
-import os
+﻿import os
 import re
 import sys
+from datetime import datetime
 from typing import Any, Dict, List
 from urllib.parse import urljoin
-
 from bs4 import BeautifulSoup
-import urllib3
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
-
 from src.scrapers.base import BaseScraper
-
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 POLISH_MONTH_MAP = {
     "stycznia": 1, "styczeń": 1, "sty": 1,
@@ -31,14 +25,9 @@ POLISH_MONTH_MAP = {
 }
 
 IGNORE_TITLES = [
-    "informacja",
-    "godziny pracy",
-    "komunikat",
-    "życzenia",
-    "regulamin",
-    "deklaracja dostępności"
+    "informacja", "godziny pracy", "komunikat", "życzenia",
+    "regulamin", "deklaracja dostępności", "ankieta", "e-skarbonka"
 ]
-
 
 class MbpKkPlScraper(BaseScraper):
     def __init__(self, city_tag: str = "kedzierzyn_kozle", partner_id: str = ""):
@@ -46,31 +35,41 @@ class MbpKkPlScraper(BaseScraper):
             source_name="mbpkk_pl",
             base_url="https://mbpkk.pl"
         )
-        self.events_url = "https://mbpkk.pl/aktualne-wydarzenia/"
+        self.events_url = "/aktualne-wydarzenia/"
 
-    def _parse_polish_date(self, text: str) -> str:
+    def _parse_polish_date(self, text: str) -> tuple[str | None, str | None]:
         now = datetime.now()
 
-        # 1. Termin: DD.MM.YYYY
-        termin_match = re.search(r"Termin:\s*(\d{1,2})\.(\d{1,2})\.(\d{4})", text, re.IGNORECASE)
-        if termin_match:
-            d, m, y = termin_match.groups()
-            return f"{y}-{int(m):02d}-{int(d):02d}"
+        # 1. Zakres dat: DD.MM - DD.MM.YYYY
+        range_match = re.search(r"(\d{1,2})\.(\d{1,2})\s*[-–]\s*(\d{1,2})\.(\d{1,2})\.(\d{4})", text)
+        if range_match:
+            d1, m1, d2, m2, y = range_match.groups()
+            return f"{y}-{int(m1):02d}-{int(d1):02d}", f"{y}-{int(m2):02d}-{int(d2):02d}"
 
-        # 2. Standardowy format DD.MM.YYYY
-        d_match = re.search(r"\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b", text)
+        # 2. Termin: DD.MM.YYYY lub pojedyncza data DD.MM.YYYY
+        d_match = re.search(r"(?:Termin:\s*)?\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b", text, re.IGNORECASE)
         if d_match:
             d, m, y = d_match.groups()
-            return f"{y}-{int(m):02d}-{int(d):02d}"
+            iso_d = f"{y}-{int(m):02d}-{int(d):02d}"
+            return iso_d, iso_d
 
-        # 3. Słowny format DD [miesiąc] (YYYY)
+        # 3. Słowny format: DD [miesiąc] (YYYY)
         month_pattern = "|".join(POLISH_MONTH_MAP.keys())
         word_match = re.search(rf"\b(\d{{1,2}})\s+({month_pattern})(?:\s+(\d{{4}}))?\b", text, re.IGNORECASE)
         if word_match:
             d, m_name, y = word_match.groups()
             m = POLISH_MONTH_MAP[m_name.lower()]
-            year = int(y) if y else (now.year if m >= now.month else now.year + 1)
-            return f"{year}-{m:02d}-{int(d):02d}"
+            if y:
+                year = int(y)
+            else:
+                if m >= now.month:
+                    year = now.year
+                elif now.month >= 11 and m <= 2:
+                    year = now.year + 1
+                else:
+                    year = now.year
+            iso_d = f"{year}-{m:02d}-{int(d):02d}"
+            return iso_d, iso_d
 
         # 4. DD.MM bez roku
         short_dot = re.search(r"\b(\d{1,2})\.(\d{1,2})\b", text)
@@ -78,10 +77,16 @@ class MbpKkPlScraper(BaseScraper):
             d, m = short_dot.groups()
             m_val = int(m)
             if 1 <= m_val <= 12 and 1 <= int(d) <= 31:
-                year = now.year if m_val >= now.month else now.year + 1
-                return f"{year}-{m_val:02d}-{int(d):02d}"
+                if m_val >= now.month:
+                    year = now.year
+                elif now.month >= 11 and m_val <= 2:
+                    year = now.year + 1
+                else:
+                    year = now.year
+                iso_d = f"{year}-{m_val:02d}-{int(d):02d}"
+                return iso_d, iso_d
 
-        return ""
+        return None, None
 
     def _parse_event_time(self, text: str) -> str:
         time_match = re.search(r"godz(?:ina|\.)?\s*([01]?[0-9]|2[0-3])[:.]([0-5][0-9])", text, re.IGNORECASE)
@@ -92,21 +97,24 @@ class MbpKkPlScraper(BaseScraper):
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         events = []
+        seen_urls = set()
         today_iso = datetime.now().strftime("%Y-%m-%d")
         default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
 
-        try:
-            print(f"\n[{self.source_name}] Skanowanie wydarzeń MBP Kędzierzyn-Koźle...")
-            resp = self.session.get(self.events_url, timeout=(3.0, 12.0), verify=False)
-            if resp.status_code != 200:
-                print(f"[{self.source_name}] Błąd HTTP {resp.status_code}")
-                return events
+        print(f"[{self.source_name}] Skanowanie wydarzeń MBP Kędzierzyn-Koźle...")
 
-            soup = BeautifulSoup(resp.text, "html.parser")
+        for page in range(1, 4):
+            page_url = f"{self.events_url}page/{page}/" if page > 1 else self.events_url
+            try:
+                soup = self.get_soup(page_url)
+            except Exception:
+                break
 
             cards = soup.select("article, .post, .elementor-post, .event-item")
             if not cards:
                 cards = soup.select(".content-area div.col-md-4, .site-main > div")
+            if not cards:
+                break
 
             for card in cards:
                 for meta in card.select(".entry-meta, .post-meta, .author, .posted-on, time"):
@@ -116,20 +124,24 @@ class MbpKkPlScraper(BaseScraper):
                 if not title_el:
                     continue
 
-                title = title_el.get_text(strip=True)
+                title = re.sub(r"\s+", " ", title_el.get_text()).strip()
                 if len(title) < 5 or any(ignored in title.lower() for ignored in IGNORE_TITLES):
                     continue
 
                 card_text = card.get_text(" ", strip=True)
-                date_str = self._parse_polish_date(card_text)
+                d_start, d_end = self._parse_polish_date(card_text)
 
-                if not date_str or date_str < today_iso:
+                check_date = d_end or d_start
+                if not check_date or check_date < today_iso:
                     continue
 
-                time_start = self._parse_event_time(card_text)
-
                 link_el = card.select_one("a[href]")
-                url = urljoin(self.base_url, link_el["href"]) if link_el else self.events_url
+                full_url = urljoin(self.base_url, link_el["href"]) if link_el else self.base_url
+                if full_url in seen_urls:
+                    continue
+                seen_urls.add(full_url)
+
+                time_start = self._parse_event_time(card_text)
 
                 img_el = card.select_one("img[src]")
                 raw_image = ""
@@ -142,30 +154,33 @@ class MbpKkPlScraper(BaseScraper):
 
                 desc_el = card.select_one("p, .entry-summary, .elementor-post__excerpt")
                 raw_desc = desc_el.get_text(" ", strip=True) if desc_el else card_text
-
-                clean_desc = re.sub(r"^[A-ZŁŚŻŹ][a-ząćęłńóśźż]+\s+[A-ZŁŚŻŹ][a-ząćęłńóśźż]+\s+\d{4}-\d{2}-\d{2}T[^\s]+", "", raw_desc)
+                clean_desc = re.sub(r"^[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ]+\s+\d{4}-\d{2}-\d{2}T[^\s]+", "", raw_desc)
                 clean_desc = clean_desc.replace("Czytaj więcej", "").strip(" |–- \n\t")
 
-                print(f"  [MBP] {date_str} | {time_start} | {title[:35]}...")
+                # Rozpoznawanie filii MBP
+                venue = "Miejska Biblioteka Publiczna w Kędzierzynie-Koźlu"
+                address = "Rynek 3, Kędzierzyn-Koźle"
+                lower_card = card_text.lower()
+                filia_match = re.search(r"filia\s*(?:nr\s*)?(\d+)", lower_card)
+                if filia_match:
+                    filia_nr = filia_match.group(1)
+                    venue = f"MBP Filia nr {filia_nr}"
+                    address = f"MBP Filia nr {filia_nr}, Kędzierzyn-Koźle"
 
                 events.append({
                     "title": title,
-                    "date_start": date_str,
-                    "date_end": date_str,
+                    "date_start": d_start,
+                    "date_end": d_end,
                     "time_start": time_start,
-                    "venue": "Miejska Biblioteka Publiczna w Kędzierzynie-Koźlu",
-                    "address": "Rynek 3, Kędzierzyn-Koźle",
+                    "venue": venue,
+                    "address": address,
                     "price_range": "Wstęp wolny",
                     "description": clean_desc or f"Wydarzenie w MBP Kędzierzyn-Koźle: {title}.",
                     "image_url": thumb_path or raw_image or default_img,
-                    "source_url": url,
+                    "source_url": full_url,
                     "source": self.source_name,
                     "organizer": "Miejska Biblioteka Publiczna"
                 })
 
-            print(f"[{self.source_name}] Pomyślnie pobrano {len(events)} pozycji.")
-
-        except Exception as e:
-            print(f"[{self.source_name}] Błąd parsowania: {e}")
-
+        print(f"[{self.source_name}] Zwrócono {len(events)} pozycji.")
         return events
