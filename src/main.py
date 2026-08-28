@@ -28,7 +28,8 @@ def main():
     init_db()
     renderer = HTMLRenderer()
     
-    output_dir = BASE_DIR / "docs"
+    # Zmiana z "docs" na "public", aby wszystko lądowało w jednym spójnym folderze
+    output_dir = BASE_DIR / "public"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     config_dir = BASE_DIR / "config"
@@ -83,6 +84,9 @@ def main():
         print("\n=== GENEROWANIE STRONY GŁÓWNEJ (HUB) ===")
         hub_cities = [{"name": c["name"], "tag": c["tag"]} for c in all_configured_cities]
         renderer.render_portal_hub(active_cities=hub_cities, output_dir=str(output_dir))
+        
+        # Wpięcie automatycznego generowania mapy witryny i SEO (przeniesione z usuniętego build_all.py)
+        renderer.render_seo_files(output_dir=str(output_dir), base_url="https://corobicw.pl")
 
     print("\n[SUKCES] Synchronizacja zakończona.")
 

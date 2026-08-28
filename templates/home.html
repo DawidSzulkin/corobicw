@@ -1,390 +1,214 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agenda Wydarzeń: {{ city }}</title>
+  <title>Agenda Wydarzeń: {{ city }} | CoRobićW</title>
+  <meta name="description" content="Aktualny harmonogram spektakli, koncertów i wydarzeń w {{ city }}.">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
   <style>
-    :root {
-      --primary: #0369a1;
-      --primary-hover: #0284c7;
-      --accent: #b91c1c;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --border: #cbd5e1;
-      --text: #0f172a;
-      --text-muted: #334155;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      padding-bottom: 60px;
-    }
-
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      padding: 14px 16px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header-content {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-size: 19px;
-      font-weight: 800;
-      color: var(--primary);
-      text-decoration: none;
-    }
-    .logo:focus-visible, .back-btn:focus-visible {
-      outline: 3px solid var(--primary);
-      outline-offset: 2px;
-    }
-    .back-btn {
-      font-size: 14px;
-      text-decoration: none;
-      color: var(--text-muted);
-      background: #f1f5f9;
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: background 0.15s;
-    }
-    .back-btn:hover { background: #e2e8f0; }
-
-    .main-container {
-      max-width: 900px;
-      margin: 20px auto 0;
-      padding: 0 16px;
-    }
-
-    .filter-bar {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      margin-bottom: 16px;
-      scrollbar-width: none;
-    }
-    .filter-bar::-webkit-scrollbar { display: none; }
-    .filter-btn {
-      background: #ffffff;
-      border: 1.5px solid var(--border);
-      padding: 9px 18px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.15s ease;
-    }
-    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
-    .filter-btn:focus-visible {
-      outline: 3px solid var(--primary);
-      outline-offset: 2px;
-    }
-    .filter-btn.active {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-    }
-
-    .event-row {
-      position: relative;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 14px;
-      display: flex;
-      flex-direction: row;
-      gap: 18px;
-      align-items: center;
-      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
-    }
-    .event-row:hover {
-      border-color: var(--primary);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-      transform: translateY(-2px);
-    }
-    .event-row:focus-within {
-      outline: 3px solid var(--primary);
-      outline-offset: 3px;
-    }
-
-    .thumb-wrapper {
-      position: relative;
-      width: 170px;
-      height: 125px;
-      min-width: 170px;
-      flex-shrink: 0;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #0f172a;
-    }
-    .thumb-wrapper .event-thumb {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      user-select: none;
-      -webkit-user-drag: none;
-      pointer-events: none;
-    }
-
-    .date-ribbon {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: rgba(15, 23, 42, 0.92);
-      color: #ffffff;
-      padding: 5px 9px;
-      border-bottom-right-radius: 8px;
-      text-align: center;
-      line-height: 1.1;
-      z-index: 2;
-    }
-    .date-ribbon .ribbon-day {
-      font-size: 17px;
-      font-weight: 800;
-      display: block;
-    }
-    .date-ribbon .ribbon-month {
-      font-size: 10px;
-      font-weight: 700;
-      color: #38bdf8;
-      text-transform: uppercase;
-      display: block;
-      letter-spacing: 0.5px;
-    }
-
-    .event-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex-grow: 1;
-      min-width: 0;
-    }
-    .event-category {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--primary);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    .date-badge {
-      font-size: 11px;
-      padding: 2px 7px;
-      border-radius: 4px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-    .badge-today { background: #fee2e2; color: #991b1b; }
-    .badge-tomorrow { background: #fef3c7; color: #92400e; }
-
-    .event-title {
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 8px;
-      color: #0f172a;
-    }
     
-    .event-title a {
-      color: inherit;
-      text-decoration: none;
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
+      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
+      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+      --badge-bg: #000000; --badge-text: #ffffff;
+      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
     }
-    .event-title a::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      cursor: pointer;
+    :root[data-theme="light"] {
+      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
+      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
+      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+      --badge-bg: #09090b; --badge-text: #ffffff;
+      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
     }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+      -webkit-font-smoothing: antialiased; font-size: 16px;
+    }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
 
-    .event-desc {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 12px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .event-meta {
-      font-size: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--border);
-      padding-top: 10px;
-    }
-    .event-price { font-weight: 700; color: #0f172a; }
-    .event-link {
-      font-weight: 800;
-      color: var(--primary);
-      font-size: 14.5px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    @media (max-width: 600px) {
-      .event-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .thumb-wrapper {
-        width: 100%;
-        min-width: 100%;
-        height: 190px;
-      }
-    }
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; }
+    .filter-bar { display: flex; gap: 8px; overflow-x: auto; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 28px; scrollbar-width: none; }
+    .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 8px 18px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; white-space: nowrap; }
+    .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
+    .filter-btn.active { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
+    .event-card { background: var(--card-bg); border: 1px solid var(--border); margin-bottom: 16px; display: flex; position: relative; }
+    .event-card:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(4px); }
+    .thumb-wrap { width: 240px; min-width: 240px; position: relative; overflow: hidden; background: #18181b; }
+    .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s ease; display: block; }
+    .event-card:hover .thumb-wrap img { transform: scale(1.04); }
+    .date-badge { position: absolute; top: 0; left: 0; background: var(--badge-bg); color: var(--badge-text); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 6px 12px; text-align: center; line-height: 1; z-index: 2; }
+    .date-badge .day { font-size: 1.2rem; font-weight: 900; display: block; }
+    .date-badge .month { font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; color: var(--text-muted); }
+    .event-content { padding: 24px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .meta-top { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tag-highlight { background: var(--tag-inv-bg); color: var(--tag-inv-text); padding: 2px 6px; font-size: 0.75rem; font-weight: 900; letter-spacing: 1px; }
+    .event-title { font-size: 1.35rem; font-weight: 800; line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .event-title a { color: var(--text); text-decoration: none; }
+    .event-title a::after { content: ""; position: absolute; inset: 0; }
+    .event-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .meta-bottom { border-top: 1px solid var(--border); padding-top: 12px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+    .price { font-weight: 800; color: var(--text); letter-spacing: 0.5px; }
+    .arrow-link { font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+    .event-card:hover .arrow-link { color: var(--text); }
+    @media (max-width: 768px) { .event-card { flex-direction: column; } .thumb-wrap { width: 100%; min-width: 100%; height: 200px; } .btn-nav { display: none; } }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="header-content">
-      <a href="index.html" class="logo">Wydarzenia {{ city }}</a>
-      <a href="../index.html" class="back-btn">&larr; Zmień miasto</a>
+    <div class="nav-container">
+      <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city }}</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
+          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
+        </button>
+        <a href="/" class="btn-nav">Miasta</a>
+        <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
+      </div>
     </div>
   </header>
-
-  <main class="main-container">
-    
-    <nav class="filter-bar" aria-label="Filtry dat wydarzeń">
+  <main>
+    <nav class="breadcrumbs">
+      <a href="/">Polska</a><span>/</span><span class="current">{{ city }}</span>
+    </nav>
+    <div class="filter-bar">
       <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
       <button class="filter-btn" onclick="filterEvents('today', this)">Dzisiaj</button>
       <button class="filter-btn" onclick="filterEvents('tomorrow', this)">Jutro</button>
       <button class="filter-btn" onclick="filterEvents('weekend', this)">W ten weekend</button>
-    </nav>
-
+    </div>
     <div id="events-agenda">
       {% for ev in events %}
         <article class="event-item" data-start="{{ ev.date_start }}" data-end="{{ ev.date_end }}">
-          <div class="event-row">
-            
-            <div class="thumb-wrapper">
-              {% set img_src = ev.thumbnail_url or ev.image_url %}
-              {% if img_src and img_src.startswith('/assets/') %}
-                {% set img_src = '../' + img_src[1:] %}
-              {% endif %}
-              <img 
-                class="event-thumb" 
-                src="{{ img_src }}" 
-                alt="Plakat: {{ ev.title }}" 
-                loading="lazy" 
-                decoding="async"
-                draggable="false"
-              >
-              
-              <div class="date-ribbon" aria-hidden="true">
-                <span class="ribbon-day">{{ ev.date_start.split('-')[2] }}</span>
-                <span class="ribbon-month">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">{{ ev.date_start.split('-')[2] }}</span>
+                <span class="month">
                   {% set m = ev.date_start.split('-')[1] %}
                   {% if m == '01' %}STY{% elif m == '02' %}LUT{% elif m == '03' %}MAR{% elif m == '04' %}KWI{% elif m == '05' %}MAJ{% elif m == '06' %}CZE{% elif m == '07' %}LIP{% elif m == '08' %}SIE{% elif m == '09' %}WRZ{% elif m == '10' %}PAŹ{% elif m == '11' %}LIS{% elif m == '12' %}GRU{% endif %}
                 </span>
               </div>
+              <img src="{{ ev.image_url }}" alt="Plakat: {{ ev.title }}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80'">
             </div>
-
-            <div class="event-info">
+            <div class="event-content">
               <div>
-                <div class="event-category">
+                <div class="meta-top">
                   <span class="badge-container"></span>
                   <span>{{ ev.analysis.category }} &bull; {{ ev.date_formatted }} &bull; {{ ev.analysis.ticket_info.time_start }}</span>
                 </div>
-                <h3 class="event-title">
-                  <a href="wydarzenia/{{ ev.slug }}/">{{ ev.title }}</a>
-                </h3>
+                <h3 class="event-title"><a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/">{{ ev.title }}</a></h3>
                 <p class="event-desc">{{ ev.analysis.editorial_lead }}</p>
               </div>
-              <div class="event-meta">
-                <span class="event-price">🎟️ {{ ev.analysis.ticket_info.price_range }}</span>
-                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              <div class="meta-bottom">
+                <span class="price">{{ ev.analysis.ticket_info.price_range }}</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
-
           </div>
         </article>
       {% endfor %}
     </div>
-
   </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>CoRobićW {{ city }}</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny harmonogram wydarzeń miejskich. Wszystkie wydarzenia pobierane bezpośrednio ze scen i galerii.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li><li><a href="#">Współpraca lokalna</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li><li><a href="#">kontakt@corobicw.pl</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW.</span><span>Agenda {{ city }}</span></div>
+  </footer>
+  
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+  </script>
 
   <script>
     function getLocalDateStr(offsetDays = 0) {
-      const d = new Date();
-      d.setDate(d.getDate() + offsetDays);
-      const year = d.getFullYear();
-      const month = String(d.getMonth() + 1).padStart(2, '0');
-      const day = String(d.getDate()).padStart(2, '0');
-      return `${year}-${month}-${day}`;
+      const d = new Date(); d.setDate(d.getDate() + offsetDays);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     }
-
     function initDynamicBadges() {
-      const todayStr = getLocalDateStr(0);
-      const tomorrowStr = getLocalDateStr(1);
-
+      const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
       document.querySelectorAll('.event-item').forEach(el => {
-        const start = el.getAttribute('data-start');
-        const end = el.getAttribute('data-end') || start;
-        const badgeContainer = el.querySelector('.badge-container');
-
-        if (!badgeContainer) return;
-
-        if (start === todayStr || (start <= todayStr && end >= todayStr)) {
-          badgeContainer.innerHTML = '<span class="date-badge badge-today">DZIŚ</span>';
-        } else if (start === tomorrowStr) {
-          badgeContainer.innerHTML = '<span class="date-badge badge-tomorrow">JUTRO</span>';
-        } else {
-          badgeContainer.innerHTML = '';
-        }
+        const start = el.getAttribute('data-start'), end = el.getAttribute('data-end') || start;
+        const badge = el.querySelector('.badge-container');
+        if (!badge) return;
+        if (start === today || (start <= today && end >= today)) badge.innerHTML = '<span class="tag-highlight">DZIŚ</span>';
+        else if (start === tomorrow) badge.innerHTML = '<span class="tag-highlight">JUTRO</span>';
+        else badge.innerHTML = '';
       });
     }
-
-    function filterEvents(mode, clickedBtn) {
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      if (clickedBtn) clickedBtn.classList.add('active');
-
-      const todayStr = getLocalDateStr(0);
-      const tomorrowStr = getLocalDateStr(1);
-
+    function filterEvents(mode, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
       document.querySelectorAll('.event-item').forEach(el => {
-        const start = el.getAttribute('data-start');
-        const end = el.getAttribute('data-end') || start;
-
-        if (mode === 'all') {
-          el.style.display = 'block';
-        } else if (mode === 'today') {
-          el.style.display = (start === todayStr || (start <= todayStr && end >= todayStr)) ? 'block' : 'none';
-        } else if (mode === 'tomorrow') {
-          el.style.display = (start === tomorrowStr) ? 'block' : 'none';
-        } else if (mode === 'weekend') {
-          const d = new Date(start + 'T00:00:00');
-          const day = d.getDay();
-          el.style.display = (day === 0 || day === 6) ? 'block' : 'none';
-        }
+        const start = el.getAttribute('data-start'), end = el.getAttribute('data-end') || start;
+        if (mode === 'all') el.style.display = 'block';
+        else if (mode === 'today') el.style.display = (start === today || (start <= today && end >= today)) ? 'block' : 'none';
+        else if (mode === 'tomorrow') el.style.display = (start === tomorrow) ? 'block' : 'none';
+        else if (mode === 'weekend') { const day = new Date(start + 'T00:00:00').getDay(); el.style.display = (day === 0 || day === 6) ? 'block' : 'none'; }
       });
     }
-
     document.addEventListener('DOMContentLoaded', initDynamicBadges);
   </script>
 </body>

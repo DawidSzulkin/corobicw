@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
-from datetime import datetime, timedelta
+from datetime import timedelta
 import io
 import os
 import re
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 from urllib.parse import urljoin
+from bs4 import BeautifulSoup
 from PIL import Image
 import requests_cache
 import urllib3
@@ -17,16 +18,15 @@ class BaseScraper(ABC):
         self.source_name = source_name
         self.base_url = base_url
         
-        # Centralna miniatura WebP
-        self.thumb_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../docs/assets/thumbnails"))
+        # Centralna miniatura WebP w katalogu public
+        self.thumb_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../public/assets/thumbnails"))
         os.makedirs(self.thumb_dir, exist_ok=True)
         
-        # Centralna baza cache dla zapytań HTTP (zapisywana w data/.http_cache.sqlite)
+        # Centralna baza cache dla zapytań HTTP
         cache_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../data"))
         os.makedirs(cache_dir, exist_ok=True)
         cache_path = os.path.join(cache_dir, "http_cache")
 
-        # Automatyczny cache HTTP na 12 godzin dla wszystkich żądań GET
         self.session = requests_cache.CachedSession(
             cache_path,
             backend="sqlite",
@@ -40,6 +40,13 @@ class BaseScraper(ABC):
             "Accept-Language": "pl,en-US;q=0.7,en;q=0.3"
         })
 
+    def get_soup(self, url: str, params: Optional[dict] = None) -> BeautifulSoup:
+        """Pobiera stronę i zwraca BeautifulSoup na bazie surowych bajtów UTF-8."""
+        full_url = urljoin(self.base_url, url)
+        resp = self.session.get(full_url, params=params, timeout=20, verify=False)
+        resp.raise_for_status()
+        return BeautifulSoup(resp.content, "html.parser")
+
     def save_thumbnail(self, remote_img_url: str, title: str, prefix: str = "") -> str:
         """Pobiera i kompresuje plakat do WebP tylko jeśli nie ma go jeszcze na dysku."""
         if not remote_img_url:
@@ -51,7 +58,6 @@ class BaseScraper(ABC):
         disk_path = os.path.join(self.thumb_dir, filename)
         web_path = f"/assets/thumbnails/{filename}"
 
-        # 1. Zero zapytań sieciowych jeśli miniatura już istnieje na dysku
         if os.path.exists(disk_path):
             return web_path
 
