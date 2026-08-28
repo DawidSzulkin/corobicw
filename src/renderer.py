@@ -1,3 +1,4 @@
+import hashlib
 from datetime import datetime
 import os
 from pathlib import Path
@@ -8,6 +9,30 @@ from src.models import FullEventPage
 
 
 class HTMLRenderer:
+
+    def _load_build_cache(self) -> dict:
+        cache_path = Path("data/.build_cache.json")
+        if cache_path.exists():
+            try:
+                with open(cache_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                return {"places": {}, "events": {}}
+        return {"places": {}, "events": {}}
+
+    def _save_build_cache(self, cache: dict):
+        cache_path = Path("data/.build_cache.json")
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(cache, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print(f"[CACHE] Błąd zapisu cache: {e}")
+
+    def _calculate_hash(self, data: any) -> str:
+        serialized = json.dumps(data, sort_keys=True, ensure_ascii=False, default=str)
+        return hashlib.md5(serialized.encode("utf-8")).hexdigest()
+
     def __init__(self, template_dir: str = "templates"):
         self.env = Environment(loader=FileSystemLoader(template_dir))
 
@@ -54,8 +79,6 @@ class HTMLRenderer:
                 f.write(single_html)
 
         # 2. Czyszczenie i renderowanie podstron stałych miejsc
-        if places_dir.exists():
-            shutil.rmtree(places_dir)
         places_dir.mkdir(parents=True, exist_ok=True)
 
         place_template = self.env.get_template("place_page.html")
