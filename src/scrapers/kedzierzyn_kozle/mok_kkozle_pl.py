@@ -1,20 +1,33 @@
-from datetime import datetime
-import os
+﻿import os
 import re
 import sys
-import time
+from datetime import datetime
 from typing import Any, Dict, List, Optional, Set
 from urllib.parse import urljoin
-
 from bs4 import BeautifulSoup
-import urllib3
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
-
 from src.scrapers.base import BaseScraper
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+MONTHS_PL = {
+    'stycznia': 1, 'styczeń': 1, 'sty': 1,
+    'lutego': 2, 'luty': 2, 'lut': 2,
+    'marca': 3, 'marzec': 3, 'mar': 3,
+    'kwietnia': 4, 'kwiecień': 4, 'kwi': 4,
+    'maja': 5, 'maj': 5,
+    'czerwca': 6, 'czerwiec': 6, 'cze': 6,
+    'lipca': 7, 'lipiec': 7, 'lip': 7,
+    'sierpnia': 8, 'sierpień': 8, 'sie': 8,
+    'września': 9, 'wrzesień': 9, 'wrz': 9,
+    'października': 10, 'październik': 10, 'paź': 10, 'paz': 10,
+    'listopada': 11, 'listopad': 11, 'lis': 11,
+    'grudnia': 12, 'grudzień': 12, 'gru': 12
+}
 
+JUNK_KEYWORDS = [
+    "poszukiwany", "poszukujemy", "rekrutacja", "sanepid", "informacja",
+    "stuknęło", "jubileusz", "wspomnienia", "zapisy", "sekcje", "e-skarbonka", "mapa strony"
+]
 
 class MokKkozlePlScraper(BaseScraper):
     def __init__(self, city_tag: str = "kedzierzyn_kozle", partner_id: str = ""):
@@ -23,27 +36,10 @@ class MokKkozlePlScraper(BaseScraper):
             base_url="https://www.mok.kedzierzyn-kozle.com.pl"
         )
         self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             "X-Requested-With": "XMLHttpRequest",
             "Referer": "https://www.mok.kedzierzyn-kozle.com.pl/wydarzenia"
         })
         self.seen_urls: Set[str] = set()
-
-        self.junk_keywords = [
-            "poszukiwany", "poszukujemy", "rekrutacja", "sanepid", "informacja",
-            "stuknęło", "jubileusz", "wspomnienia", "zapisy", "sekcje", "e-skarbonka", "mapa strony"
-        ]
-
-        self.months_map = {
-            "stycz": 1, "lut": 2, "mar": 3, "kwie": 4, "maj": 5, "czerw": 6,
-            "lip": 7, "sierp": 8, "wrzes": 9, "wrześ": 9, "paźdz": 10, "pazdz": 10,
-            "listop": 11, "grud": 12
-        }
-
-    def _get_soup(self, url: str) -> BeautifulSoup:
-        resp = self.session.get(url, timeout=(3.0, 12.0), verify=False)
-        resp.raise_for_status()
-        return BeautifulSoup(resp.text, "html.parser")
 
     def _clean_text(self, text: str) -> str:
         return re.sub(r"\s+", " ", text).strip()
@@ -57,39 +53,51 @@ class MokKkozlePlScraper(BaseScraper):
             d, m, y = match_full.groups()
             return f"{y}-{int(m):02d}-{int(d):02d}"
 
-        # 2. Słowny format polski
+        # 2. Słowny format polski: DD [Miesiąc] (YYYY)
         match_named = re.search(r"\b([0-3]?[0-9])\s+([a-ząćęłńóśźż]+)(?:\s+(20\d{2}))?\b", text, re.IGNORECASE)
         if match_named:
             day = int(match_named.group(1))
             month_str = match_named.group(2).lower()
             month_num = None
-            for prefix, m_idx in self.months_map.items():
-                if month_str.startswith(prefix):
-                    month_num = m_idx
+
+            for name, idx in MONTHS_PL.items():
+                if month_str.startswith(name) or name.startswith(month_str):
+                    month_num = idx
                     break
 
             if month_num:
                 if match_named.group(3):
                     year = int(match_named.group(3))
                 else:
-                    year = now.year if month_num >= now.month else now.year + 1
+                    # Anty-zombie: nie dodajemy roku w przód, chyba że jesteśmy na przełomie roku
+                    if month_num >= now.month:
+                        year = now.year
+                    elif now.month >= 11 and month_num <= 2:
+                        year = now.year + 1
+                    else:
+                        year = now.year
                 return f"{year}-{month_num:02d}-{day:02d}"
 
-        # 3. Format "w dniu DD.MM" lub "termin: DD.MM"
+        # 3. Format "dnia DD.MM" lub "termin: DD.MM"
         match_short = re.search(r"(?:dnia|dzień|termin|w dniu|odbędzie się)\s*([0-3]?[0-9])\.([0-1]?[0-9])", text, re.IGNORECASE)
         if match_short:
             d, m = match_short.groups()
             m_val = int(m)
-            year = now.year if m_val >= now.month else now.year + 1
-            return f"{year}-{m_val:02d}-{int(d):02d}"
+            if 1 <= m_val <= 12 and 1 <= int(d) <= 31:
+                if m_val >= now.month:
+                    year = now.year
+                elif now.month >= 11 and m_val <= 2:
+                    year = now.year + 1
+                else:
+                    year = now.year
+                return f"{year}-{m_val:02d}-{int(d):02d}"
 
         return None
 
     def _fetch_details(self, event_url: str, title: str, fallback_img: str) -> Optional[Dict[str, Any]]:
         default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
         try:
-            time.sleep(0.05)
-            soup = self._get_soup(event_url)
+            soup = self.get_soup(event_url)
 
             for unwanted in soup.select("header, footer, nav, script, style, .sidebar, #sidebar, .moduletable, .nav"):
                 unwanted.decompose()
@@ -106,13 +114,13 @@ class MokKkozlePlScraper(BaseScraper):
             if time_match:
                 time_start = time_match.group(1).replace(".", ":")
             else:
-                generic_time = re.search(r"(\b[0-2]?[0-9]:[0-5][0-9]\b)", container_text)
+                generic_time = re.search(r"\b([0-2]?[0-9]:[0-5][0-9])\b", container_text)
                 if generic_time:
                     time_start = generic_time.group(1)
 
             paragraphs = container.find_all("p")
             valid_p = [self._clean_text(p.get_text()) for p in paragraphs if len(p.get_text().strip()) > 20]
-            description = "\n\n".join(valid_p) if valid_p else self._clean_text(container_text)
+            description = "\n\n".join(valid_p) if valid_p else self._clean_text(container_text)[:600]
 
             raw_image = fallback_img
             for img in container.select("img"):
@@ -140,10 +148,10 @@ class MokKkozlePlScraper(BaseScraper):
                 venue = "Park w Sławięcicach"
             elif "chemik" in lower_text or "jana pawła" in lower_text:
                 venue = "DK Chemik (al. Jana Pawła II 27)"
-            elif "twierdz" in lower_text or "skarbowa" in lower_text:
-                venue = "Kino Twierdza (ul. Skarbowa 10)"
-            elif "koźle" in lower_text:
-                venue = "DK Koźle (ul. Skarbowa 10)"
+            elif "twierdz" in lower_text or "skarbowa" in lower_text or "koźle" in lower_text:
+                venue = "DK Koźle / Kino Twierdza (ul. Skarbowa 10)"
+            elif "lech" in lower_text or "wyzwolenia" in lower_text:
+                venue = "DK Lech (ul. Wyzwolenia 7)"
 
             return {
                 "date_start": real_date,
@@ -155,7 +163,7 @@ class MokKkozlePlScraper(BaseScraper):
                 "address": venue
             }
         except Exception as e:
-            print(f"    [Błąd pobierania detali MOK]: {e}")
+            print(f"    [Błąd pobierania detali MOK {event_url}]: {e}")
             return None
 
     def fetch_events(self) -> List[Dict[str, Any]]:
@@ -163,16 +171,12 @@ class MokKkozlePlScraper(BaseScraper):
         pending_items = []
         today_iso = datetime.now().strftime("%Y-%m-%d")
 
-        print(f"\n[{self.source_name}] Skanowanie aktualnego repertuaru MOK...")
+        print(f"[{self.source_name}] Skanowanie repertuaru MOK Kędzierzyn-Koźle...")
 
         for page in range(1, 5):
-            api_url = f"{self.base_url}/index.php?option=com_minitekwall&task=masonry.getContent&widget_id=1&page={page}"
+            api_url = f"/index.php?option=com_minitekwall&task=masonry.getContent&widget_id=1&page={page}"
             try:
-                resp = self.session.get(api_url, timeout=(3.0, 10.0), verify=False)
-                if resp.status_code != 200 or not resp.text.strip():
-                    break
-
-                soup = BeautifulSoup(resp.text, "html.parser")
+                soup = self.get_soup(api_url)
                 items = soup.select(".mnwall-item")
                 if not items:
                     break
@@ -184,9 +188,9 @@ class MokKkozlePlScraper(BaseScraper):
                     if not data_id or not title:
                         continue
 
-                    title_clean = self._clean_text(title).title()
+                    title_clean = self._clean_text(title)
 
-                    if any(junk in title.lower() for junk in self.junk_keywords):
+                    if any(junk in title.lower() for junk in JUNK_KEYWORDS):
                         continue
 
                     full_url = f"{self.base_url}/index.php?option=com_content&view=article&id={data_id}"
@@ -219,8 +223,6 @@ class MokKkozlePlScraper(BaseScraper):
 
             if details["date_start"] < today_iso:
                 continue
-
-            print(f"  [MOK] {details['date_start']} | {details['time_start']} | {details['price_range']} | {item['title'][:35]}...")
 
             valid_events.append({
                 "title": item["title"],
