@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoRobićW | Przewodnik Miejski</title>
-  <meta name="description" content="Niezależny przewodnik kulturalny. Sprawdź aktualne wydarzenia, spektakle i obiekty w Twoim mieście.">
+  <title>CoRobiÄ‡W | Przewodnik Miejski</title>
+  <meta name="description" content="NiezaleĹĽny przewodnik kulturalny. SprawdĹş aktualne wydarzenia, spektakle i obiekty w Twoim mieĹ›cie.">
   
   <script>
     (function() {
@@ -74,26 +74,26 @@
 <body>
   <header>
     <div class="nav-container">
-      <a href="/" class="brand">CoRobićW <span>Polska</span></a>
+      <a href="/" class="brand">CoRobiÄ‡W <span>Polska</span></a>
       <div class="nav-actions">
-        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="ZmieĹ„ motyw">
+          <span id="themeIcon">â€ď¸Ź</span> <span id="themeLabel">Jasny</span>
         </button>
-        <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
+        <a href="mailto:kontakt@corobicw.pl?subject=ZgĹ‚oszenie" class="btn-add">+ Dodaj</a>
       </div>
     </div>
   </header>
   <main>
     <div class="hero">
       <h1>Wybierz Miasto</h1>
-      <p>Niezależny harmonogram wydarzeń, spektakli, koncertów oraz baza obiektów.</p>
+      <p>NiezaleĹĽny harmonogram wydarzeĹ„, spektakli, koncertĂłw oraz baza obiektĂłw.</p>
     </div>
     <div class="city-grid">
       
         <a href="/bielsko_biala/" class="city-card">
           <div>
             <div class="city-name">Bielsko-Biała</div>
-            <div class="city-action">Otwórz agendę &rarr;</div>
+            <div class="city-action">OtwĂłrz agendÄ™ &rarr;</div>
           </div>
           <span class="city-badge">Wydanie aktywne</span>
         </a>
@@ -101,7 +101,7 @@
         <a href="/kedzierzyn_kozle/" class="city-card">
           <div>
             <div class="city-name">Kędzierzyn-Koźle</div>
-            <div class="city-action">Otwórz agendę &rarr;</div>
+            <div class="city-action">OtwĂłrz agendÄ™ &rarr;</div>
           </div>
           <span class="city-badge">Wydanie aktywne</span>
         </a>
@@ -111,8 +111,8 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-col">
-        <h4>CoRobićW</h4>
-        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Surowy, nowoczesny przewodnik miejski. Agregujemy kulturę i logistykę bez zbędnego szumu.</p>
+        <h4>CoRobiÄ‡W</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Surowy, nowoczesny przewodnik miejski. Agregujemy kulturÄ™ i logistykÄ™ bez zbÄ™dnego szumu.</p>
       </div>
       <div class="footer-col">
         <h4>Scena</h4>
@@ -120,11 +120,11 @@
       </div>
       <div class="footer-col">
         <h4>Kontakt</h4>
-        <ul><li><a href="#">Zgłoś błąd</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
+        <ul><li><a href="#">ZgĹ‚oĹ› bĹ‚Ä…d</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
       </div>
     </div>
     <div class="footer-copy">
-      <span>&copy; 2026 CoRobićW.</span><span>Automatyczna agregacja danych</span>
+      <span>&copy; 2026 CoRobiÄ‡W.</span><span>Automatyczna agregacja danych</span>
     </div>
   </footer>
   
@@ -140,14 +140,15 @@
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = 'â€ď¸Ź'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = 'đźŚ™'; label.textContent = 'Ciemny'; }
       }
     }
     document.addEventListener('DOMContentLoaded', () => {
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
 
 </body>
 </html>
