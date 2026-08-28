@@ -1,17 +1,12 @@
-from datetime import datetime
-import os
-import re
-import sys
-from typing import Any, Dict, List, Set
+﻿import re
 import urllib3
+from datetime import datetime
+from typing import Any, Dict, List, Set
 
 try:
     from zoneinfo import ZoneInfo
 except ImportError:
     ZoneInfo = None
-
-# Zapewnia widoczność katalogu głównego projektu
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 
 from src.scrapers.base import BaseScraper
 
@@ -19,14 +14,16 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class TeatrBielskoPlScraper(BaseScraper):
-    def __init__(self):
+    def __init__(self, city_tag: str = "bielsko_biala"):
         super().__init__(
             source_name="teatr_bielsko_pl",
             base_url="https://teatr.bielsko.pl"
         )
+        self.city_tag = city_tag
         self.api_url = f"{self.base_url}/api/repertoire"
         self.seen_signatures: Set[str] = set()
         self.posters_cache: Dict[str, str] = {}
+        self.default_og_image = "https://teatr.bielsko.pl/ogimage.jpg"
 
     def _parse_datetime(self, iso_str: str) -> tuple:
         """Konwertuje timestamp ISO UTC na datę i godzinę w strefie Europe/Warsaw."""
@@ -46,10 +43,11 @@ class TeatrBielskoPlScraper(BaseScraper):
     def _get_poster_for_slug(self, slug: str, title: str) -> str:
         """Pobiera główny URL plakatu spektaklu ze strumienia RSC i tworzy miniaturę."""
         if not slug:
-            return ""
+            return self.save_thumbnail(self.default_og_image, title, prefix="teatrbielsko") or self.default_og_image
         if slug in self.posters_cache:
             return self.posters_cache[slug]
 
+        poster_url = ""
         try:
             show_url = f"{self.base_url}/spektakl/{slug}"
             rsc_headers = {
@@ -68,20 +66,22 @@ class TeatrBielskoPlScraper(BaseScraper):
                 if not cdn_images:
                     cdn_images = [
                         img for img in re.findall(r'https?://[^\s"\'<>]+\.(?:jpg|jpeg|png|webp)', resp.text, re.IGNORECASE)
-                        if not any(ign in img.lower() for ign in ["ogimage", "logo", "favicon", "icon", "placeholder"])
+                        if not any(ign in img.lower() for ign in ["logo", "favicon", "icon", "placeholder"])
                     ]
 
                 if cdn_images:
                     poster_url = cdn_images[0]
-                    thumb = self.save_thumbnail(poster_url, title, prefix="teatrbielsko")
-                    result_img = thumb or poster_url
-                    self.posters_cache[slug] = result_img
-                    return result_img
         except Exception as e:
             print(f"[{self.source_name}] Błąd pobierania grafiki dla {slug}: {e}")
 
-        self.posters_cache[slug] = ""
-        return ""
+        # Fallback do oficjalnego ogimage jeśli spektakl nie ma własnego plakatu
+        if not poster_url:
+            poster_url = self.default_og_image
+
+        thumb = self.save_thumbnail(poster_url, title, prefix="teatrbielsko")
+        result_img = thumb or poster_url
+        self.posters_cache[slug] = result_img
+        return result_img
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         events = []
@@ -149,7 +149,8 @@ class TeatrBielskoPlScraper(BaseScraper):
                     "image_url": image_url,
                     "source_url": event_url,
                     "source": self.source_name,
-                    "organizer": "Teatr Polski w Bielsku-Białej"
+                    "organizer": "Teatr Polski w Bielsku-Białej",
+                    "city": self.city_tag
                 })
 
         except Exception as e:
