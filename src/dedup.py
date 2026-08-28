@@ -114,7 +114,8 @@ def process_events(
         date = extract_date(event)
 
         # Odrzucanie starych wydarzeń
-        if filter_past_events and date and date < today_str:
+        end_date = str(event.get("date_end") or date or "").strip()[:10]
+        if filter_past_events and end_date and end_date < today_str:
             continue
 
         valid_events_count += 1
