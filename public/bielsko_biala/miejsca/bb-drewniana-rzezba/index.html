@@ -168,9 +168,9 @@
       const lat = 49.7828147; const lon = 19.044007;
       const map = L.map('map').setView([lat, lon], 15);
       
-      let tileUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+      let tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       if (document.documentElement.getAttribute('data-theme') === 'dark') {
-         tileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+         tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       }
       
       const layer = L.tileLayer(tileUrl, { maxZoom: 19, attribution: '© OpenStreetMap © CARTO' }).addTo(map);
@@ -180,7 +180,7 @@
         mutations.forEach((mutation) => {
           if (mutation.attributeName === 'data-theme') {
             const newTheme = document.documentElement.getAttribute('data-theme');
-            layer.setUrl(newTheme === 'dark' ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
+            layer.setUrl(newTheme === 'dark' ? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
           }
         });
       });
