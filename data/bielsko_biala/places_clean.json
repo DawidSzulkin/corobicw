@@ -46,7 +46,7 @@
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Strefa p?atna",
+          "fee_label": "Strefa płatna",
           "distance_m": 40,
           "street": "1 Maja"
         }
@@ -77,8 +77,8 @@
     "category": "Sztuka",
     "street": "3 Maja",
     "housenumber": "11",
-    "lat": 49.8248,
-    "lon": 19.0452,
+    "lat": 49.8236,
+    "lon": 19.0441,
     "logistics": {
       "parking_details": [
         {
@@ -91,12 +91,12 @@
   },
   {
     "place_id": "bb-zamek-sulkowskich",
-    "name": "Zamek Ksi???t Su?kowskich",
+    "name": "Zamek Książąt Sułkowskich",
     "category": "Kultura",
-    "street": "Wzg?rze",
+    "street": "Wzgórze",
     "housenumber": "16",
-    "lat": 49.8222,
-    "lon": 19.0438,
+    "lat": 49.8219,
+    "lon": 19.0444,
     "logistics": {
       "parking_details": [
         {
@@ -109,16 +109,16 @@
   },
   {
     "place_id": "bb-hala-pod-debowcem",
-    "name": "Hala Wielofunkcyjna pod D?bowcem",
+    "name": "Hala Wielofunkcyjna pod Dębowcem",
     "category": "Sport i Rozrywka",
     "street": "Karbowa",
     "housenumber": "26",
-    "lat": 49.785,
+    "lat": 49.7852,
     "lon": 19.0185,
     "logistics": {
       "parking_details": [
         {
-          "fee_label": "Du?y bezpłatny",
+          "fee_label": "Duży bezpłatny",
           "distance_m": 30,
           "street": "Karbowa"
         }
@@ -131,8 +131,8 @@
     "category": "Klub Muzyczny",
     "street": "1 Maja",
     "housenumber": "20",
-    "lat": 49.8155,
-    "lon": 19.0498,
+    "lat": 49.8189,
+    "lon": 19.0482,
     "logistics": {
       "parking_details": [
         {
@@ -149,8 +149,9 @@
     "category": "Restauracja / Kuchnia autorska",
     "street": "Dworkowa",
     "housenumber": "2",
-    "lat": 49.8169,
-    "lon": 19.0496
+    "lat": 49.8168,
+    "lon": 19.0495,
+    "logistics": null
   },
   {
     "place_id": "bb-browar-miejski",
@@ -158,8 +159,9 @@
     "category": "Restauracja / Browar",
     "street": "Piwowarska",
     "housenumber": "2",
-    "lat": 49.822,
-    "lon": 19.0425
+    "lat": 49.8225,
+    "lon": 19.0435,
+    "logistics": null
   },
   {
     "place_id": "bb-kawiarnia-przelom",
@@ -168,7 +170,8 @@
     "street": "Juliusza Słowackiego",
     "housenumber": "21",
     "lat": 49.8211,
-    "lon": 19.0401
+    "lon": 19.0398,
+    "logistics": null
   },
   {
     "place_id": "bb-restauracja-celna-10",
@@ -176,8 +179,9 @@
     "category": "Bistro / Kawiarnia",
     "street": "Celna",
     "housenumber": "10",
-    "lat": 49.8218,
-    "lon": 19.0435
+    "lat": 49.8205,
+    "lon": 19.0431,
+    "logistics": null
   },
   {
     "place_id": "bb-restauracja-pigal",
@@ -185,16 +189,18 @@
     "category": "Restauracja / Lunch",
     "street": "1 Maja",
     "housenumber": "4",
-    "lat": 49.821,
-    "lon": 19.0462
+    "lat": 49.8211,
+    "lon": 19.0461,
+    "logistics": null
   },
   {
     "place_id": "bb-bistro-debowiec",
-    "name": "Restauracja D?bowo",
+    "name": "Restauracja Dębowo",
     "category": "Restauracja",
     "street": "Karbowa",
     "housenumber": "24",
-    "lat": 49.7853,
-    "lon": 19.019
+    "lat": 49.7856,
+    "lon": 19.0181,
+    "logistics": null
   }
 ]
