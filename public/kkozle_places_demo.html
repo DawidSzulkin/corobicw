@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Co Robić w Kędzierzynie-Koźlu | Katalog Miejsc OSM</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --coral: #ff385c;
+            --coral-hover: #e00b41;
+            --green-badge: #059669;
+            --green-bg: #ecfdf5;
+            --blue-badge: #0284c7;
+            --blue-bg: #f0f9ff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg); color: var(--text-main); padding: 24px 16px; display: flex; justify-content: center; }
+        .wrapper { max-width: 760px; width: 100%; }
+        .brand-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+        .brand-logo { font-size: 1.2rem; font-weight: 800; color: var(--coral); text-decoration: none; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .pill { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; }
+        .pill-coral { background: #fff1f2; color: var(--coral); }
+        .pill-green { background: var(--green-bg); color: var(--green-badge); }
+        .pill-blue { background: var(--blue-bg); color: var(--blue-badge); }
+        .bus-badge { background: #e0f2fe; color: #0369a1; font-size: 0.72rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; border: 1px solid #bae6fd; }
+        .event-title { font-size: 1.35rem; font-weight: 800; margin-bottom: 4px; }
+        .event-location-sub { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; }
+        .section-title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+        .logistics-table { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+        @media (max-width: 540px) { .logistics-table { grid-template-columns: 1fr; } }
+        .log-cell { border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: #fafafa; }
+        .log-title { font-size: 0.7rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+        .log-data { font-size: 0.85rem; font-weight: 600; margin-top: 2px; }
+        .card-actions { display: flex; gap: 10px; }
+        .btn { flex: 1; padding: 10px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; text-align: center; text-decoration: none; }
+        .btn-primary { background: var(--coral); color: #fff; }
+        .btn-outline { background: #fff; border: 1px solid var(--border); color: var(--text-main); }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <header class="brand-header">
+        <a href="https://corobicw.pl" class="brand-logo">corobicw.pl</a>
+        <span>Kędzierzyn-Koźle • Baza POI (141 miejsc)</span>
+    </header>
+    
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Inne</span>
+                <span class="pill pill-coral">Plener / Outdoor</span>
+                
+            </div>
+            <h2 class="event-title">Kędzierzyn-Koźle Azoty</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 262m | Darmowy • 324m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Zakłady Azotowe (63)</strong> <span style="color:#64748b;">(425m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Zakłady Azotowe (62)</strong> <span style="color:#64748b;">(458m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3106905,18.2396074" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Inne</span>
+                <span class="pill pill-coral">Plener / Outdoor</span>
+                
+            </div>
+            <h2 class="event-title">Kędzierzyn-Koźle</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Płatny • 120m | Darmowy • 148m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Kędzierzyn Dworzec Kolejowy (915)</strong> <span style="color:#64748b;">(157m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Kędzierzyn Dworzec Kolejowy (914)</strong> <span style="color:#64748b;">(165m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3450593,18.2046067" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Kultura i Rozrywka</span>
+                <span class="pill pill-blue">Zadaszone 100%</span>
+                
+            </div>
+            <h2 class="event-title">Chemik</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 27m | Darmowy • 43m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Dom Kultury "Chemik" (230)</strong> <span style="color:#64748b;">(68m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Dom Kultury "Chemik" (231)</strong> <span style="color:#64748b;">(71m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3474181,18.2154132" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Gastronomia</span>
+                <span class="pill pill-blue">Zadaszone 100%</span>
+                
+            </div>
+            <h2 class="event-title">miKafka</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 9m | Darmowy • 30m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Kozielska MZK (111)</strong> <span style="color:#64748b;">(89m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Reja (112)</strong> <span style="color:#64748b;">(121m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3428945,18.2046644" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Gastronomia</span>
+                <span class="pill pill-blue">Zadaszone 100%</span>
+                
+            </div>
+            <h2 class="event-title">Street Bar</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 22m | Darmowy • 43m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Pionierów (94)</strong> <span style="color:#64748b;">(82m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Hala Sportowa (86)</strong> <span style="color:#64748b;">(89m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3460641,18.217339" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Gastronomia</span>
+                <span class="pill pill-blue">Zadaszone 100%</span>
+                
+            </div>
+            <h2 class="event-title">Lion Kebab</h2>
+            <div class="event-location-sub">
+                <span>📍 Aleja Jana Pawła II 25</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 28m | Darmowy • 65m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Dom Kultury "Chemik" (231)</strong> <span style="color:#64748b;">(80m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Dom Kultury "Chemik" (230)</strong> <span style="color:#64748b;">(93m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3470053,18.215049" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Gastronomia</span>
+                <span class="pill pill-blue">Zadaszone 100%</span>
+                
+            </div>
+            <h2 class="event-title">Da Ci Kumo Sushi</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 6m | Darmowy • 39m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Hala Sportowa (85)</strong> <span style="color:#64748b;">(83m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Pionierów 2 (942)</strong> <span style="color:#64748b;">(125m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Mo-Su 13:00-24:00</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3476214,18.2190328" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Gastronomia</span>
+                <span class="pill pill-blue">Zadaszone 100%</span>
+                
+            </div>
+            <h2 class="event-title">Gruby Benek</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 34m | Darmowy • 75m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Osiedle Piastów 2 (78)</strong> <span style="color:#64748b;">(182m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Osiedle Piastów 2 (77)</strong> <span style="color:#64748b;">(200m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.349528,18.2322799" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Inne</span>
+                <span class="pill pill-coral">Plener / Outdoor</span>
+                
+            </div>
+            <h2 class="event-title">Sławięcice</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Brak parkingu <500m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data">Brak przystanku <700m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3513782,18.3138179" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Historia i Zabytki</span>
+                <span class="pill pill-coral">Plener / Outdoor</span>
+                
+            </div>
+            <h2 class="event-title">Ruiny pałacu</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 365m | Darmowy • 373m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Sławięcice Technikum (7)</strong> <span style="color:#64748b;">(339m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Sławięcice Technikum (6)</strong> <span style="color:#64748b;">(356m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3766848,18.3178569" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Historia i Zabytki</span>
+                <span class="pill pill-coral">Plener / Outdoor</span>
+                
+            </div>
+            <h2 class="event-title">Ruiny śluzy nr 6 dawnego Kanału Kłodnickiego</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Brak parkingu <500m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Blachownia Bar 'Magia' n/ż (25)</strong> <span style="color:#64748b;">(311m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Blachownia Bar 'Magia' n/ż (24)</strong> <span style="color:#64748b;">(343m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3656624,18.27643" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Inne</span>
+                <span class="pill pill-coral">Plener / Outdoor</span>
+                
+            </div>
+            <h2 class="event-title">Kędzierzyn-Koźle Przystanek</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 113m | Darmowy • 157m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Kofama (163)</strong> <span style="color:#64748b;">(181m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Kofama (162)</strong> <span style="color:#64748b;">(200m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.350645,18.154749" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Inne</span>
+                <span class="pill pill-coral">Plener / Outdoor</span>
+                
+            </div>
+            <h2 class="event-title">Raszowa</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Brak parkingu <500m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data">Brak przystanku <700m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3884992,18.160431" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Inne</span>
+                <span class="pill pill-coral">Plener / Outdoor</span>
+                
+            </div>
+            <h2 class="event-title">Bierawa</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 281m | Darmowy • 411m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Azoty OXO (70)</strong> <span style="color:#64748b;">(249m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Przystanek MZK</strong> <span style="color:#64748b;">(350m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.2943546,18.2561042" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+        <article class="card">
+            <div class="tag-row">
+                <span class="pill pill-coral">Gastronomia</span>
+                <span class="pill pill-blue">Zadaszone 100%</span>
+                
+            </div>
+            <h2 class="event-title">Big Boom</h2>
+            <div class="event-location-sub">
+                <span>📍 Kędzierzyn-Koźle</span>
+            </div>
+            
+            <div class="section-title">Weryfikacja Logistyczna (OSM Spatial)</div>
+            <div class="logistics-table">
+                <div class="log-cell">
+                    <div class="log-title">Parkingi w pobliżu</div>
+                    <div class="log-data">Darmowy • 70m | Darmowy • 71m</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Komunikacja Miejska (Top 2)</div>
+                    <div class="log-data"><div style="margin-bottom:6px;"><strong>Blachownia Biurowiec Z.Ch. (28)</strong> <span style="color:#64748b;">(172m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div><div style="margin-bottom:6px;"><strong>Szkoła Podstawowa nr 10 (27)</strong> <span style="color:#64748b;">(190m)</span><br><div style="margin-top:2px; display:flex; gap:4px; flex-wrap:wrap; align-items:center;"><span style="color:#94a3b8; font-size:0.75rem;">brak linii w OSM</span></div></div></div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Dostępność</div>
+                    <div class="log-data">Brak danych / Schody</div>
+                </div>
+                <div class="log-cell">
+                    <div class="log-title">Godziny Otwarcia</div>
+                    <div class="log-data">Brak danych</div>
+                </div>
+            </div>
+            
+            <div class="card-actions">
+                <a href="https://maps.google.com/?q=50.3568831,18.2655872" target="_blank" rel="noopener" class="btn btn-outline">Wyznacz trasę GPS</a>
+                
+            </div>
+        </article>
+        
+</div>
+</body>
+</html>

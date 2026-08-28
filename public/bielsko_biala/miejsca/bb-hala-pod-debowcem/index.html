@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hala Wielofunkcyjna pod D?bowcem | Bielsko-Biała - CoRobićW</title>
+  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Hala Wielofunkcyjna pod D?bowcem w Bielsko-Biała.">
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style>
+    :root {
+      --primary: #1A365D;
+      --secondary: #2B6CB0;
+      --accent: #E53E3E;
+      --bg: #F7FAFC;
+      --text: #2D3748;
+      --card-bg: #FFFFFF;
+      --border: #E2E8F0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a { color: white; text-decoration: none; font-weight: bold; }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    .main-content {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .badge {
+      display: inline-block;
+      background: #EBF8FF;
+      color: var(--secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+    }
+    h1 { margin: 0 0 1rem 0; color: var(--primary); font-size: 2rem; }
+    .sidebar .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .sidebar h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: var(--primary);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .info-row { display: flex; margin-bottom: 0.8rem; font-size: 0.95rem; }
+    .info-label { width: 35%; font-weight: 600; color: #718096; }
+    .info-val { width: 65%; font-weight: 500; }
+    .event-card {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+    }
+    .event-card:last-child { border-bottom: none; }
+    .event-card:hover h4 { color: var(--secondary); }
+    .event-thumb {
+      width: 90px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #CBD5E0;
+    }
+    .event-meta { font-size: 0.85rem; color: #718096; }
+    .event-title { margin: 0 0 0.3rem 0; font-size: 1rem; font-weight: bold; }
+    #map { height: 260px; width: 100%; border-radius: 8px; margin-top: 1rem; border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+  
+  
+  
+  
+  
+  
+
+  <header>
+    <a href="/bielsko_biala/">← Wróć do agendy: Bielsko-Biała</a>
+    <span>CoRobićW</span>
+  </header>
+
+  <div class="container">
+    <main class="main-content">
+      <span class="badge">Sport i Rozrywka</span>
+      <h1>Hala Wielofunkcyjna pod D?bowcem</h1>
+      <p style="color: #4A5568; font-size: 1.1rem;">
+        📍 ul. Karbowa 26, Bielsko-Biała
+      </p>
+
+      
+        <div id="map"></div>
+      
+
+      <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
+
+      <h3>📅 Nadchodzące wydarzenia w tym miejscu (5)</h3>
+      
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-14-karate-world-championships-2026-cad/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień I" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Śr, 14 paź • ⏰ 09:00</div>
+            <div class="event-title">Karate World Championships 2026 Cadet, Junior, U21 - Dzień I</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-15-karate-world-championships-2026-cad/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień II" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 15 paź • ⏰ 09:00</div>
+            <div class="event-title">Karate World Championships 2026 Cadet, Junior, U21 - Dzień II</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-16-karate-world-championships-2026-cad/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień III" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 16 paź • ⏰ 09:00</div>
+            <div class="event-title">Karate World Championships 2026 Cadet, Junior, U21 - Dzień III</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-17-karate-world-championships-2026-cad/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień IV (Finały)" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 17 paź • ⏰ 09:00</div>
+            <div class="event-title">Karate World Championships 2026 Cadet, Junior, U21 - Dzień IV (Finały)</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-18-karate-world-championships-2026-cad/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/s5rg0bldttzvgjag_m.webp?t=1772788292" alt="Karate World Championships 2026 Cadet, Junior, U21 - Dzień V (Finały)" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 18 paź • ⏰ 09:00</div>
+            <div class="event-title">Karate World Championships 2026 Cadet, Junior, U21 - Dzień V (Finały)</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+      
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <h3>Logistyka i Dojazd</h3>
+        <div class="info-row">
+          <div class="info-label">📍 Adres</div>
+          <div class="info-val">ul. Karbowa 26</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">🚗 Parking</div>
+          <div class="info-val">
+            
+              Du?y bezp?atny (30m)
+            
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">♿ Dostępność</div>
+          <div class="info-val">
+            Brak danych
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const lat = 49.785;
+      const lon = 19.0185;
+      const map = L.map('map').setView([lat, lon], 15);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+      L.marker([lat, lon]).addTo(map).bindPopup("<b>Hala Wielofunkcyjna pod D?bowcem</b>").openPopup();
+    });
+  </script>
+  
+
+</body>
+</html>

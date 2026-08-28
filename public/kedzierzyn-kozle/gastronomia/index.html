@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>[STAGING] Gdzie zjeść w Kędzierzyn-Koźle? Lokale i Kawiarnie</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --coral: #ff385c;
+            --coral-hover: #e00b41;
+            --green-badge: #059669;
+            --green-bg: #ecfdf5;
+            --blue-badge: #0284c7;
+            --blue-bg: #f0f9ff;
+            --orange-badge: #d97706;
+            --orange-bg: #fffbeb;
+            --purple-badge: #7c3aed;
+            --purple-bg: #f5f3ff;
+            --slate-badge: #475569;
+            --slate-bg: #f1f5f9;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg); color: var(--text-main); padding: 24px 16px; display: flex; justify-content: center; }
+        .wrapper { max-width: 760px; width: 100%; }
+        .brand-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+        .brand-logo { font-size: 1.2rem; font-weight: 800; color: var(--coral); text-decoration: none; }
+        .nav-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 24px; }
+        .nav-pill { font-size: 0.82rem; font-weight: 600; padding: 8px 14px; border-radius: 9999px; background: #ffffff; border: 1px solid var(--border); color: var(--text-main); text-decoration: none; white-space: nowrap; transition: all 0.15s ease; cursor: pointer; }
+        .nav-pill:hover { background: #f1f5f9; }
+        .nav-active { background: var(--coral) !important; color: #ffffff !important; border-color: var(--coral) !important; }
+        .page-h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+        .page-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; line-height: 1.4; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .pill { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; }
+        .pill-coral { background: #fff1f2; color: var(--coral); }
+        .pill-green { background: var(--green-bg); color: var(--green-badge); }
+        .pill-blue { background: var(--blue-bg); color: var(--blue-badge); }
+        .pill-orange { background: var(--orange-bg); color: var(--orange-badge); }
+        .pill-purple { background: var(--purple-bg); color: var(--purple-badge); }
+        .pill-slate { background: var(--slate-bg); color: var(--slate-badge); }
+        .place-title { font-size: 1.35rem; font-weight: 800; margin-bottom: 4px; }
+        .place-location { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; }
+        
+        .events-section { background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+        .events-section .section-title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #6b21a8; margin-bottom: 8px; }
+        .events-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .event-item { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; }
+        .event-date { font-weight: 700; font-size: 0.78rem; background: #ffffff; border: 1px solid #d8b4fe; padding: 2px 8px; border-radius: 6px; color: #6b21a8; white-space: nowrap; }
+        .event-title-link { color: #1e1b4b; text-decoration: none; font-weight: 700; }
+        .event-title-link:hover { color: var(--coral); text-decoration: underline; }
+
+        .logistics-table { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+        @media (max-width: 540px) { .logistics-table { grid-template-columns: 1fr; } }
+        .log-cell { border: 1px solid var(--border); border-radius: 10px; padding: 12px; background: #fafafa; }
+        .log-title { font-size: 0.7rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+        .log-data { font-size: 0.85rem; font-weight: 600; color: var(--text-main); }
+        .phone-link { color: var(--coral); text-decoration: none; font-weight: 700; }
+        .card-actions { display: flex; gap: 10px; margin-top: 16px; }
+        .btn { flex: 1; padding: 10px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; text-align: center; text-decoration: none; transition: opacity 0.15s; }
+        .btn:hover { opacity: 0.9; }
+        .btn-primary { background: var(--coral); color: #fff; }
+        .btn-outline { background: #fff; border: 1px solid var(--border); color: var(--text-main); }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <header class="brand-header">
+        <a href="../" class="brand-logo">corobicw.pl</a>
+        <span style="font-size:0.85rem; font-weight:600; color:var(--text-muted);">Kędzierzyn-Koźle [DEV]</span>
+    </header>
+    
+    <nav class="nav-bar" id="category-nav">
+        <a href="../" class="nav-pill " data-spoke="wszystko" data-folder="">Wszystko</a><a href="../w-deszczu/" class="nav-pill " data-spoke="w-deszczu" data-folder="w-deszczu">W deszczu</a><a href="../z-dzieckiem/" class="nav-pill " data-spoke="z-dzieckiem" data-folder="z-dzieckiem">Z dzieckiem</a><a href="../z-psem/" class="nav-pill " data-spoke="z-psem" data-folder="z-psem">Z psem</a><a href="../za-darmo/" class="nav-pill " data-spoke="za-darmo" data-folder="za-darmo">Za darmo</a><a href="../gastronomia/" class="nav-pill nav-active" data-spoke="gastronomia" data-folder="gastronomia">Gastronomia</a>
+    </nav>
+
+    <main>
+        <h1 class="page-h1" id="main-h1">Gastronomia i Restauracje: Kędzierzyn-Koźle</h1>
+        <p class="page-desc" id="main-desc">Katalog restauracji, kawiarni, pizzerii i barów w Kędzierzyn-Koźle z dojazdem i parkingiem. Znaleziono: <strong id="count-display">72</strong> miejsc.</p>
+        <div id="places-container">
+            
+        <article class="card place-card" id="osm_way_149779933" data-categories="wszystko w-deszczu" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-purple">🎉 Wydarzenia (4)</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Stadion Miejski Kuźniczka</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+                <div class="events-section">
+                    <div class="section-title">Nadchodzące Wydarzenia w tym Miejscu</div>
+                    <ul class="events-list">
+                        <li class="event-item"><span class="event-date">📅 2026-08-01</span><a href="../wydarzenia/2026-08-01-parkrun-kedzierzyn-kozle/" class="event-title-link">parkrun Kędzierzyn-kOŹLE</a></li><li class="event-item"><span class="event-date">📅 2026-08-08</span><a href="../wydarzenia/2026-08-08-parkrun-kedzierzyn-kozle/" class="event-title-link">parkrun Kędzierzyn-Koźle</a></li><li class="event-item"><span class="event-date">📅 2026-08-15</span><a href="../wydarzenia/2026-08-15-parkrun-kedzierzyn-kozle/" class="event-title-link">parkrun Kędzierzyn-Koźle</a></li>
+                    </ul>
+                </div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Grunwaldzka) • 148m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3516542,18.2060336" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_12361704586" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-purple">🎉 Wydarzenia (3)</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Klub Kameleon</h2>
+            <div class="place-location"><span>📍 ul. Dworcowa 1a, Kędzierzyn-Koźle</span></div>
+            
+                <div class="events-section">
+                    <div class="section-title">Nadchodzące Wydarzenia w tym Miejscu</div>
+                    <ul class="events-list">
+                        <li class="event-item"><span class="event-date">📅 2026-08-13</span><a href="../wydarzenia/2026-08-13-otwarta-proba-generalna-oshan-deya-jahfreecan-klub-kameleon/" class="event-title-link">Otwarta Próba Generalna: Oshan Deya & JahFreecan – Klub Kameleon</a></li><li class="event-item"><span class="event-date">📅 2026-08-20</span><a href="../wydarzenia/2026-08-20-rekreacya-homecoming-klub-kameleon/" class="event-title-link">REKREACYA homecoming – Klub Kameleon</a></li><li class="event-item"><span class="event-date">📅 2026-08-30</span><a href="../wydarzenia/2026-08-30-metro-tomek-zdyb-the-untold-stories-klub-kameleon/" class="event-title-link">Metro & Tomek Zdyb "The untold stories" – Klub Kameleon</a></li>
+                    </ul>
+                </div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Dworcowa) • 23m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3442508,18.2060774" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_317153597" data-categories="wszystko w-deszczu" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-purple">🎉 Wydarzenia (3)</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Hala Sportowa</h2>
+            <div class="place-location"><span>📍 ul. Władysława Planetorza 23, Kędzierzyn-Koźle</span></div>
+            
+                <div class="events-section">
+                    <div class="section-title">Nadchodzące Wydarzenia w tym Miejscu</div>
+                    <ul class="events-list">
+                        <li class="event-item"><span class="event-date">📅 2026-08-01</span><a href="../wydarzenia/2026-08-01-wielki-final-30-grand-prix-opolszczyzny-w-siatkowce-plazowej-kobiet-i-mezczyzn/" class="event-title-link">Wielki Finał 30 Grand Prix Opolszczyzny w siatkówce plażowej kobiet i mężczyzn</a></li><li class="event-item"><span class="event-date">📅 2026-08-02</span><a href="../wydarzenia/2026-08-02-wielki-final-30-grand-prix-opolszczyzny-w-siatkowce-plazowej-kobiet-i-mezczyzn/" class="event-title-link">WIELKI FINAŁ 30 GRAND PRIX OPOLSZCZYZNY W SIATKÓWCE PLAŻOWEJ KOBIET I MĘŻCZYZN</a></li><li class="event-item"><span class="event-date">📅 2026-08-22</span><a href="../wydarzenia/2026-08-22-ivbe-2026-amatorski-turniej-w-siatkowke-plazowa/" class="event-title-link">IVBE 2026 – amatorski turniej w siatkówkę plażową</a></li>
+                    </ul>
+                </div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Harcerska) • 233m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.2798121,18.2043643" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_909217368" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Chemik</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 27, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 27m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3474181,18.2154132" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_1286468699" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: regional</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">miKafka</h2>
+            <div class="place-location"><span>📍 ul. Mikołaja Reja 2, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Mikołaja Reja) • 9m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3428945,18.2046644" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_1628381189" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Street Bar</h2>
+            <div class="place-location"><span>📍 ul. Pionierów 3E, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Pionierów) • 22m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3460641,18.217339" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_1628381201" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Lion Kebab</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 25, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 28m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3470053,18.215049" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_1629676346" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: sushi</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Da Ci Kumo Sushi</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 36F, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 6m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Mo-Su 13:00-24:00</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3476214,18.2190328" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_1761138238" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: pizza;italian</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Gruby Benek</h2>
+            <div class="place-location"><span>📍 ul. Kazimierza Wielkiego 9, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kazimierza Wielkiego) • 34m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.349528,18.2322799" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_1920887311" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Ruiny pałacu</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sadowa) • 365m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3766848,18.3178569" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_1921441857" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Ruiny śluzy nr 6 dawnego Kanału Kłodnickiego</h2>
+            <div class="place-location"><span>📍 ul. Stara Śluza 14, Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3656624,18.27643" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_2260593976" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Big Boom</h2>
+            <div class="place-location"><span>📍 ul. Szkolna 9, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 70m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3568831,18.2655872" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_2260669246" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Restauracja - Damian Kania</h2>
+            <div class="place-location"><span>📍 ul. Góry Świętej Anny 86, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Góry Świętej Anny) • 23m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3936765,18.1756065" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_2260669367" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Restauracja Viktorjan</h2>
+            <div class="place-location"><span>📍 ul. Góry Świętej Anny 94, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kościelna) • 66m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3920448,18.1746925" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_2409017895" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: fish_and_chips</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Hula-Gula</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 26m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Mo-Sa 12:00-21:00; Su 12:00-20:00</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3173101,18.1512234" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_2932868990" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Magdalena Zalewska</h2>
+            <div class="place-location"><span>📍 ul. Piastowska 7, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Płatny (Piastowska) • 19m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Tu-Fr 08:00-16:00; Sa 08:00-16:00</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3356527,18.1425212" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_2932905121" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Pod Lwami</h2>
+            <div class="place-location"><span>📍 ul. Piastowska 1, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Józefa Ignacego Kraszewskiego) • 37m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Mo-Su 18:00+</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3352659,18.1430354" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_2935557568" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">GastroFazza</h2>
+            <div class="place-location"><span>📍 ul. Anny 8, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Anny) • 64m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3344522,18.1469083" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_2956937788" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Garden - Cafe</h2>
+            <div class="place-location"><span>📍 ul. Władysława Planetorza 58, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Władysława Planetorza) • 65m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.2848183,18.2036105" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_2956941888" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Harcerska)</h2>
+            <div class="place-location"><span>📍 ul. Harcerska 9, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Władysława Planetorza) • 36m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.2811686,18.2023136" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_4328212100" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Ofiarom II Wojny Światowej</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 140m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3476492,18.2130019" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_4486421588" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: regional</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Spichlerz</h2>
+            <div class="place-location"><span>📍 ul. Kościelna 4, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kościelna) • 84m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">11:00-22:00</div></div><div class="log-cell"><div class="log-title">Kontakt</div><div class="log-data"><a href="tel:+48 77 416 90 13" class="phone-link">+48 77 416 90 13</a></div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3932133,18.1736329" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_4486422989" data-categories="wszystko" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Turystyka i Atrakcje</span><span class="pill pill-orange">Plener</span></div>
+            <h2 class="place-title">Syfon Kłodnicy</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3573815,18.2283803" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_4486436989" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: regional</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Hotel Hugo</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Władysława Orkana) • 12m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">12:00-22:00</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3749178,18.3276963" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_4505200616" data-categories="wszystko w-deszczu" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Infiniti</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 58, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 45m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Mo-Fr 07:00-22:00; Sa, Su 07:00-20:00</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3516246,18.2346434" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://infiniti-fit.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_4799874815" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Villa Vanilla</h2>
+            <div class="place-location"><span>📍 ul. Sławięcicka 78, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Stanisława Staszica) • 447m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3780573,18.3222874" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_4962250614" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: italian</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Trattoria da Stella</h2>
+            <div class="place-location"><span>📍 ul. Kosmonautów 2, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kosmonautów) • 17m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3475998,18.21935" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_4962259690" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: grill;czeska;regional</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Grzesznia</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 36G, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 12m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3476454,18.2191268" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5225404037" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Wieża strażnicza i brama wjazdowa do obozu</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3587408,18.3187555" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5225404039" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Pomnik Martyrologii Więźniów</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3584813,18.3220655" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5228528658" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: kebab;lebanese</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Kebab Inn</h2>
+            <div class="place-location"><span>📍 ul. Wojska Polskiego 7, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wojska Polskiego) • 31m</div></div><div class="log-cell"><div class="log-title">Kontakt</div><div class="log-data"><a href="tel:+48 511 582 770" class="phone-link">+48 511 582 770</a></div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3466844,18.2189693" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://www.kebabinn.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5228625611" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Sobieski</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 29A, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wojska Polskiego) • 115m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3483421,18.2173369" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5229021477" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: polish;ukrainian</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Gospoda Solocha</h2>
+            <div class="place-location"><span>📍 ul. Pionierów 3G, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Pionierów) • 14m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.346584,18.2178407" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5229021478" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Athena</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 27, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 44m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3472836,18.2155251" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5268750579" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Barnatka</h2>
+            <div class="place-location"><span>📍 ul. Aleksandra Głowackiego 6, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 82m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3452913,18.208395" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5268750583" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Kosmos</h2>
+            <div class="place-location"><span>📍 ul. 1 Maja 2A, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (1 Maja) • 24m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Mo-Su,PH 12:00-22:00</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3463652,18.2143075" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5268750592" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Bar Górniczy</h2>
+            <div class="place-location"><span>📍 ul. Grunwaldzka 8, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Płatny (Grunwaldzka) • 37m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.344918,18.206811" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5271950668" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Spółdzielczy Dom Kultury RSM "Chemik"</h2>
+            <div class="place-location"><span>📍 ul. 9 Maja 6, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (9 Maja) • 26m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3479506,18.2226763" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5368731323" data-categories="wszystko" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Turystyka i Atrakcje</span><span class="pill pill-orange">Plener</span></div>
+            <h2 class="place-title">Belweder</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sadowa) • 305m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3794277,18.3095666" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5908663646" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Cisowianka</h2>
+            <div class="place-location"><span>📍 ul. Aleksandra Fredry 18, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Jana Brzechwy) • 207m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3814799,18.2438511" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_5973004260" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Piekiełko</h2>
+            <div class="place-location"><span>📍 ul. Starowiejska 12, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gajowa) • 116m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3573679,18.2076485" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_7020854998" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Helios</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Armii Krajowej) • 53m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.342095,18.1917911" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_8279643351" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: regional</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">U Freda</h2>
+            <div class="place-location"><span>📍 ul. Kłodnicka 76, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sportowa) • 395m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3548592,18.1648817" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_9089896555" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Krukafe</h2>
+            <div class="place-location"><span>📍 ul. Marii Skłodowskiej-Curie 1, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Płatny (Targowa) • 96m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Mo-Th 10:00-21:00; Fr,Sa 10:00-22:00; Su 11:00-21:00</div></div><div class="log-cell"><div class="log-title">Kontakt</div><div class="log-data"><a href="tel:+48 530 396 133" class="phone-link">+48 530 396 133</a></div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3328969,18.1460698" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_9244140472" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Budynek kapitanatu</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 351m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3530215,18.1539919" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10161704651" data-categories="wszystko" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Turystyka i Atrakcje</span><span class="pill pill-orange">Plener</span></div>
+            <h2 class="place-title">Tężnia solankowa</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Filtrowa) • 74m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3364386,18.1362515" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10180330132" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Dom ogrodnika</h2>
+            <div class="place-location"><span>📍 ul. Sadowa 2, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sadowa) • 86m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3779218,18.3117989" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10180330133" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Mauzoleum</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sadowa) • 302m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3780711,18.3087465" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10926253517" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: italian</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Pancia Piena Pizza & Pasta</h2>
+            <div class="place-location"><span>📍 ul. Harcerska 15, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Harcerska) • 24m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3454531,18.2214414" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10926253518" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: italian;pizza;polish;georgian</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Aroma Vero</h2>
+            <div class="place-location"><span>📍 ul. Pionierów 4a, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Pionierów) • 42m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3462962,18.2184584" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10926253519" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: kebab</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Kebabian</h2>
+            <div class="place-location"><span>📍 ul. Wojska Polskiego 19, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wojska Polskiego) • 53m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3455596,18.2203189" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10926253521" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: chicken;burger</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Chicken of the City</h2>
+            <div class="place-location"><span>📍 ul. Kozielska 20, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kozielska) • 54m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Mo-Sa 11:00-22:00</div></div><div class="log-cell"><div class="log-title">Kontakt</div><div class="log-data"><a href="tel:+48 513 732 111" class="phone-link">+48 513 732 111</a></div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3415766,18.1932466" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://chickenofthecity.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10983543690" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: burger</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Blood Burger</h2>
+            <div class="place-location"><span>📍 ul. Kozielska 46, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kozielska) • 34m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3388019,18.1880656" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10983543691" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: chicken</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Kurcze Pieczone</h2>
+            <div class="place-location"><span>📍 ul. Kozielska 36, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kozielska) • 43m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3401097,18.1910415" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10983543692" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: kebab</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Kebab Inn</h2>
+            <div class="place-location"><span>📍 ul. Marii Skłodowskiej-Curie 4A, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Płatny (Targowa) • 130m</div></div><div class="log-cell"><div class="log-title">Kontakt</div><div class="log-data"><a href="tel:+48 452 966 579" class="phone-link">+48 452 966 579</a></div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3327547,18.1465655" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://www.kebabinn.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10983543693" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: kebab</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Big Kebab's</h2>
+            <div class="place-location"><span>📍 ul. Marii Skłodowskiej-Curie 10, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Antoniego Czechowa) • 91m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3323512,18.1471903" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_10983543694" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: sushi</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">SushiTU Kędzierzyn-Koźle</h2>
+            <div class="place-location"><span>📍 ul. Henryka Sienkiewicza 6, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Płatny (Targowa) • 50m</div></div><div class="log-cell"><div class="log-title">Kontakt</div><div class="log-data"><a href="tel:+48 533 113 902" class="phone-link">+48 533 113 902</a></div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.332796,18.1454358" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://sushitu.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_11092027115" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Stanisława Staszica)</h2>
+            <div class="place-location"><span>📍 ul. Stanisława Staszica 2, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Stanisława Staszica) • 49m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3796224,18.3171889" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_11249162626" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: kebab</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Raju Kebab</h2>
+            <div class="place-location"><span>📍 ul. Rynek 5, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Grzegorza Piramowicza) • 130m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3339492,18.1456186" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_11283903952" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Zapiekana</h2>
+            <div class="place-location"><span>📍 ul. Antoniego Czechowa, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Antoniego Czechowa) • 64m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3325175,18.1475747" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_11284644068" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Bistro Czarno na Białym</h2>
+            <div class="place-location"><span>📍 ul. Grzegorza Piramowicza 8, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Grzegorza Piramowicza) • 51m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3341363,18.1469163" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_11872705926" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Lazzaro</h2>
+            <div class="place-location"><span>📍 ul. Jana Matejki 12C, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Jana Matejki) • 51m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3432606,18.2101794" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_12361704582" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: kebab</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Kebab u Pajdy</h2>
+            <div class="place-location"><span>📍 ul. Kozielska 81, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kozielska) • 38m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3388416,18.1898045" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_12792321891" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Skansen Lubieszowska Izba</h2>
+            <div class="place-location"><span>📍 ul. Bierawska 1, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 44m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.2657392,18.2669589" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13136890070" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: kebab</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Mimi Kebab</h2>
+            <div class="place-location"><span>📍 ul. Mikołaja Reja 2, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kozielska) • 28m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.343083,18.2043095" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13136898369" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: italian;pizza</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Casa di Romano</h2>
+            <div class="place-location"><span>📍 ul. Harcerska 24, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (9 Maja) • 91m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3459645,18.2234248" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340064520" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Laguna</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 13, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 119m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3450675,18.209287" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340074020" data-categories="wszystko gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-orange">Plener</span></div>
+            <h2 class="place-title">Sopelek</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 36 D, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 26m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3474861,18.2186743" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340111061" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Śląski Kredens</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 58, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 50m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3516851,18.2348867" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340127425" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Mała Czarna</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 64, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 25m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3518212,18.2358164" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340143652" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Naleśnikarnia Słodko & Słono</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 12a, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Plac Wolności) • 111m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3449097,18.2098835" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340181526" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Affogato</h2>
+            <div class="place-location"><span>📍 ul. Jana Matejki 2, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 81m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3443804,18.208727" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340289933" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Hot Baby</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 17, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Plac Wolności) • 126m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3452445,18.2098796" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340299529" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Miejska Biblioteka Publiczna - Filia nr 5</h2>
+            <div class="place-location"><span>📍 ul. Konstantego Damrota 32E, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (1 Maja) • 60m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3446353,18.2144928" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://mbpkk.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340302564" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Miejska Biblioteka Publiczna - Filia nr 1</h2>
+            <div class="place-location"><span>📍 ul. Juliusza Słowackiego 6, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Tadeusza Kościuszki) • 108m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3374397,18.1952038" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://mbpkk.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340307787" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Miejska Biblioteka Publiczna - Filia nr 4</h2>
+            <div class="place-location"><span>📍 ul. Wyzwolenia 7B, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wyzwolenia) • 24m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3547565,18.2609033" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://mbpkk.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340403971" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Miejska Biblioteka Publiczna - Filia nr 10</h2>
+            <div class="place-location"><span>📍 ul. Ignacego Krasickiego 1, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gminna) • 113m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3475381,18.1702628" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://mbpkk.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340407110" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Phoenix</h2>
+            <div class="place-location"><span>📍 ul. Wojska Polskiego 15, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wojska Polskiego) • 36m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3459415,18.2198677" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340429279" data-categories="wszystko w-deszczu" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">U Ani Aktywnie</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 64, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 21m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3517914,18.2357154" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340446680" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: pizza</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Telepizzeria Lupo</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 39I, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 21m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3520345,18.2339643" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13340861026" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Biesiada</h2>
+            <div class="place-location"><span>📍 ul. Kłodnicka 12, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gminna) • 72m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.34798,18.1693395" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13401316972" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Koło Ognia</h2>
+            <div class="place-location"><span>📍 ul. Grunwaldzka 12, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Płatny (Grunwaldzka) • 28m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3451452,18.206483" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13403262432" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Reduta</h2>
+            <div class="place-location"><span>📍 ul. Piotra Skargi 14A, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Piotra Skargi) • 66m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3391557,18.2033887" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13404494357" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Pod Arkadami</h2>
+            <div class="place-location"><span>📍 ul. Józefa Poniatowskiego 2A, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Płatny (Targowa) • 81m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3336401,18.1449369" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13409582778" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: pizza</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Forno d'Oro</h2>
+            <div class="place-location"><span>📍 ul. Ignacego Paderewskiego 10, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Płatny (Tadeusza Kościuszki) • 76m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3391152,18.1977563" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_node_13594639359" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Przechodnia)</h2>
+            <div class="place-location"><span>📍 ul. Przechodnia 6B, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kozielska) • 145m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3377723,18.1889999" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_135860945" data-categories="wszystko z-dzieckiem z-psem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Parki i Natura</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Z psem: Tak</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Park Orderu Uśmiechu</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (9 Maja) • 167m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3462844,18.2251255" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_146959849" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: burger</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">McDonald's</h2>
+            <div class="place-location"><span>📍 ul. Aleja Armii Krajowej 42, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Armii Krajowej) • 20m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3425663,18.1924978" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://mcdonalds.pl/restauracje/opolskie/kedzierzyn-kozle/kedzierzyn-kozle-ul-armii-krajowej-42" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_149860940" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Ogrodowa</h2>
+            <div class="place-location"><span>📍 ul. Gliwicka 24, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gliwicka) • 23m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3331831,18.1933047" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_149869315" data-categories="wszystko z-dzieckiem z-psem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Parki i Natura</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Z psem: Tak</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Park Pojednania</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 134m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3470799,18.2128814" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_149869318" data-categories="wszystko w-deszczu" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Kryta Pływalnia</h2>
+            <div class="place-location"><span>📍 ul. Aleja Jana Pawła II 31, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 44m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3488161,18.2203212" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_178070330" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Dawna strzelnica (ruiny)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3306834,18.2285352" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_178228832" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Ruiny śluzy Kanału Kłodnickiego</h2>
+            <div class="place-location"><span>📍 ul. Kłodnicka 28, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gminna) • 239m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3497482,18.1689442" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_181501248" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Ruiny śluzy nr 5 dawnego Kanału Kłodnickiego</h2>
+            <div class="place-location"><span>📍 ul. Nowowiejska 2a, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Przyjaźni) • 286m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3571938,18.2444927" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_181673403" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Ruiny strzelnicy</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.375656,18.3195999" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_181678429" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Zielna)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3669012,18.3132012" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_181713316" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Śluza nr 6 Kanału Kłodnickiego</h2>
+            <div class="place-location"><span>📍 ul. Stara Śluza 14, Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3656836,18.2766753" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_181981027" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Władysława Łokietka) • 157m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3475787,18.2255239" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_181994510" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sadowa) • 411m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3760165,18.3181025" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_252615866" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Dom Kultury Koźle</h2>
+            <div class="place-location"><span>📍 ul. Skarbowa 10, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Skarbowa) • 81m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3304626,18.1452649" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_271964865" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Piastowska)</h2>
+            <div class="place-location"><span>📍 ul. Piastowska 71, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Piastowska) • 55m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3423465,18.1338595" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_276338233" data-categories="wszystko z-dzieckiem z-psem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Parki i Natura</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Z psem: Tak</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Planty Kozielskie</h2>
+            <div class="place-location"><span>📍 ul. Marii Konopnickiej 5c, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Spółdzielców) • 82m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.333029,18.1420884" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_285540383" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Italia</h2>
+            <div class="place-location"><span>📍 ul. Piastowska 39, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Piastowska) • 142m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3385784,18.1387681" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_289737851" data-categories="wszystko z-dzieckiem z-psem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Parki i Natura</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Z psem: Tak</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac Rady Europy</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Grzegorza Piramowicza) • 41m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3367344,18.1426347" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_290024350" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: pizza</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Pizza z Pasją</h2>
+            <div class="place-location"><span>📍 ul. Grzegorza Piramowicza 11, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Anny) • 88m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3345217,18.1460811" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_305286450" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Bojowników o Wyzwolenie Śląska</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Isaaka Dunajewskiego) • 89m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3354698,18.1491868" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_312622404" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Duży</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 175m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.316583,18.2434226" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_312622405" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Brodzik</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 162m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3167292,18.2436965" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_318228873" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Pod Akacjami</h2>
+            <div class="place-location"><span>📍 ul. Piotra Skargi 45a, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Bławatków) • 105m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Tu-Su 12:00-22:00</div></div><div class="log-cell"><div class="log-title">Kontakt</div><div class="log-data"><a href="tel:+48774849138" class="phone-link">+48774849138</a></div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3363734,18.1956019" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://restauracjapodakacjami.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_318229723" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Grota</h2>
+            <div class="place-location"><span>📍 ul. Elizy Orzeszkowej 12, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gliwicka) • 274m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3354596,18.1915182" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_322249848" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: kebab</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Kebab Inn</h2>
+            <div class="place-location"><span>📍 ul. Kozielska 27, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Koszykowa) • 105m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.341745,18.1995166" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_430892718" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Tibo</h2>
+            <div class="place-location"><span>📍 ul. Główna 27a, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Dostępność</div><div class="log-data">Częściowy dostęp</div></div><div class="log-cell"><div class="log-title">Kontakt</div><div class="log-data"><a href="tel:+48 77 4829122" class="phone-link">+48 77 4829122</a></div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.2819797,18.1487618" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="http://www.tibo.of.pl/" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_431752653" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Beczka</h2>
+            <div class="place-location"><span>📍 ul. Mikołaja Reja 11, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Mikołaja Reja) • 118m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3411236,18.2048792" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_446864794" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Raciborska)</h2>
+            <div class="place-location"><span>📍 ul. Raciborska 23, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Pawłowicka) • 285m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3141811,18.1282435" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_449361729" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Dom Kultury Bierawa</h2>
+            <div class="place-location"><span>📍 ul. Powstańców 1, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Powstańców) • 32m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.2798995,18.2409947" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_539634882" data-categories="wszystko z-dzieckiem z-psem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Parki i Natura</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Z psem: Tak</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Park im. Lotników 15 Armii Powietrznej Stanów Zjednoczonych</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Juliana Tuwima) • 76m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3543395,18.2595267" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_539634887" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Dom Kultury "Lech"</h2>
+            <div class="place-location"><span>📍 ul. Wyzwolenia, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wyzwolenia) • 22m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3547069,18.2610415" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_539842681" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Dom Działkowca "Zacisze"</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Władysława Broniewskiego) • 133m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3541228,18.250173" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_540051376" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Józefa Bema)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Plac Jana Surzyckiego) • 74m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3387363,18.205716" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_540051387" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Aleja Partyzantów)</h2>
+            <div class="place-location"><span>📍 ul. Aleja Partyzantów 30, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Zielona) • 104m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.336014,18.1993517" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_540059978" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Plac Jana Surzyckiego)</h2>
+            <div class="place-location"><span>📍 ul. Plac Jana Surzyckiego 3, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wierzbowa) • 60m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3373017,18.2043344" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_540071173" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Szkolna)</h2>
+            <div class="place-location"><span>📍 ul. Szkolna 3, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Szkolna) • 103m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3584387,18.265214" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_541550125" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. 11 Listopada)</h2>
+            <div class="place-location"><span>📍 ul. 11 Listopada 4E, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (11 Listopada) • 102m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3439094,18.2177417" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_542464992" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Przyjaźni)</h2>
+            <div class="place-location"><span>📍 ul. Przyjaźni 18, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 495m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3636186,18.2802587" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_542487987" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Basen w Kłodnicy</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sportowa) • 82m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3576223,18.1692861" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_542487988" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Brodzik basenu</h2>
+            <div class="place-location"><span>📍 ul. Sportowa 15, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sportowa) • 75m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3575583,18.1697058" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_544376233" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Kościelna)</h2>
+            <div class="place-location"><span>📍 ul. Kościelna 11, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Grunwaldzka) • 98m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3469991,18.2094644" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_550631131" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Pałac w Sławięcicach</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sadowa) • 410m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3763668,18.3183388" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_558221264" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Piotra Skargi)</h2>
+            <div class="place-location"><span>📍 ul. Piotra Skargi 25, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Zielona) • 33m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3370443,18.1984103" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_560122902" data-categories="wszystko w-deszczu" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Kozielska Muszla Koncertowa</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Isaaka Dunajewskiego) • 136m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3346023,18.1506293" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_567548129" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Muzeum Bitwy o Benzynę - Strefa Historii i Inspiracji</h2>
+            <div class="place-location"><span>📍 ul. Zwycięstwa 3, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Zwycięstwa) • 83m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3533327,18.2619323" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_570883842" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Bar STOP</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 27m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.2850086,18.289285" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_575662401" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Leszka Białego)</h2>
+            <div class="place-location"><span>📍 ul. Leszka Białego 7, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Leszka Białego) • 37m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3485693,18.2294074" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_575662403" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Miasteczko Ruchu Drogowego</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Augustyna Kośnego) • 85m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3446855,18.233647" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_575662410" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Mieszka I)</h2>
+            <div class="place-location"><span>📍 ul. Mieszka I 8A, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Przemysława II) • 100m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3492004,18.2355718" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_586289891" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. 1 Maja)</h2>
+            <div class="place-location"><span>📍 ul. 1 Maja 4B, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (1 Maja) • 24m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3458127,18.2142829" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_617822908" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Gajowa)</h2>
+            <div class="place-location"><span>📍 ul. Gajowa 6, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gajowa) • 11m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3566249,18.2067035" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_617822909" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Jodłowa)</h2>
+            <div class="place-location"><span>📍 ul. Jodłowa 41, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gajowa) • 58m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3570368,18.2065021" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_622057654" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Tadeusza Kościuszki)</h2>
+            <div class="place-location"><span>📍 ul. Tadeusza Kościuszki 21, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Tadeusza Kościuszki) • 149m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3396809,18.2010954" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_622057655" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Jana Sobieskiego)</h2>
+            <div class="place-location"><span>📍 ul. Jana Sobieskiego 22B, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Piotra Skargi) • 108m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3391863,18.2009469" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_634344429" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Klub Wiejski w Raszowej</h2>
+            <div class="place-location"><span>📍 ul. Góry Świętej Anny 127, Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3872389,18.1756408" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_642849925" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Kanonierów)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Archimedesa) • 77m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3422846,18.1307623" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_676728062" data-categories="wszystko za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Parowóz Ty2-2118</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Romualda Traugutta) • 56m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3437529,18.2069296" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_676728065" data-categories="wszystko z-dzieckiem z-psem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Parki i Natura</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Z psem: Tak</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">skwer Kolejarzy</h2>
+            <div class="place-location"><span>📍 ul. Romualda Traugutta 4, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Romualda Traugutta) • 53m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3437244,18.2069922" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_711045944" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Kozielska)</h2>
+            <div class="place-location"><span>📍 ul. Kozielska 3, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kozielska) • 43m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3425112,18.2036125" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_763172742" data-categories="wszystko z-dzieckiem z-psem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Parki i Natura</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Z psem: Tak</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Wybieg dla psów</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 73m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3487029,18.2160425" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_862222558" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wyzwolenia) • 84m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3541625,18.2602861" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_863272986" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Główna)</h2>
+            <div class="place-location"><span>📍 ul. Główna 51, Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3014644,18.1991484" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_875022999" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Skarbowa)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Skarbowa) • 87m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3300976,18.1450316" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_976273940" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Augustyna Kośnego)</h2>
+            <div class="place-location"><span>📍 ul. Augustyna Kośnego 12B, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Augustyna Kośnego) • 46m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3447804,18.2341895" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1021143090" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 64m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3472847,18.2139698" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1021143091" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Jana Pawła II) • 132m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3472634,18.2130079" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1025572658" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Władysława Grabskiego) • 177m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3267424,18.2439245" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1034851280" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Barbary)</h2>
+            <div class="place-location"><span>📍 ul. Barbary 1, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 57m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3798297,18.2469705" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1050312130" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Władysława Planetorza) • 63m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.2835703,18.2038906" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1070237304" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Sportowa)</h2>
+            <div class="place-location"><span>📍 ul. Sportowa 14, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Sportowa) • 144m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3561069,18.1678461" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1090759630" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Wodne Okko Basen Kryty</h2>
+            <div class="place-location"><span>📍 ul. Mostowa 1A, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (w pobliżu) • 134m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3168092,18.2441691" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1107391520" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. 1 Maja)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Józefa Lompy) • 53m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3432559,18.2151488" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1110578556" data-categories="wszystko" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Turystyka i Atrakcje</span><span class="pill pill-orange">Plener</span></div>
+            <h2 class="place-title">Tężnia solankowa</h2>
+            <div class="place-location"><span>📍 ul. Augustyna Kośnego 8B, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Augustyna Kośnego) • 80m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3454179,18.2338765" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1137840577" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: chicken</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">KFC</h2>
+            <div class="place-location"><span>📍 ul. Kozielska 6A, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kozielska) • 24m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Mo-Su 08:00-23:00</div></div><div class="log-cell"><div class="log-title">Kontakt</div><div class="log-data"><a href="tel:+48 571 420 821" class="phone-link">+48 571 420 821</a></div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3431233,18.2029778" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1206722260" data-categories="wszystko w-deszczu z-dzieckiem" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Kultura i Rozrywka</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Muzeum Ziemi Kozielskiej</h2>
+            <div class="place-location"><span>📍 ul. Józefa Ignacego Kraszewskiego 5b, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Józefa Ignacego Kraszewskiego) • 19m</div></div><div class="log-cell"><div class="log-title">Godziny Otwarcia</div><div class="log-data">Tu-Fr 09:00-13:00; Sa-Su 13:00-17:00</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3346449,18.1423786" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1206722261" data-categories="wszystko" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span></div>
+            <h2 class="place-title">Zamek Piastów Kozielskich</h2>
+            <div class="place-location"><span>📍 ul. Józefa Ignacego Kraszewskiego 5b, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Józefa Ignacego Kraszewskiego) • 32m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3345937,18.1422204" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1264526087" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Wolności)</h2>
+            <div class="place-location"><span>📍 ul. Wolności 26, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wolności) • 452m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3925845,18.1361541" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1265791417" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Zofii Nałkowskiej)</h2>
+            <div class="place-location"><span>📍 ul. Zofii Nałkowskiej 19, Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3609278,18.2395998" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1307771022" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Aleja Armii Krajowej)</h2>
+            <div class="place-location"><span>📍 ul. Aleja Armii Krajowej 42, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Aleja Armii Krajowej) • 12m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3427957,18.1923817" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1348721726" data-categories="wszystko w-deszczu gastronomia" style="display: block;">
+            <div class="tag-row"><span class="pill pill-coral">Gastronomia</span><span class="pill pill-slate">Kuchnia: burger</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">McDonald's</h2>
+            <div class="place-location"><span>📍 ul. Kozielska 33, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kozielska) • 25m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3240155,18.1423055" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://mcdonalds.pl/restauracje/opolskie/renska-wies/renska-wies-ul-kozielska-33" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1383011800" data-categories="wszystko z-dzieckiem z-psem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Parki i Natura</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Z psem: Tak</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Leśny ośrodek edukacyjny Stampnica</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.2910134,18.3164796" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1390924078" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Zwycięstwa)</h2>
+            <div class="place-location"><span>📍 ul. Zwycięstwa 40, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Zwycięstwa) • 38m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3522165,18.2506933" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1390924079" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Zwycięstwa) • 66m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3522,18.2574833" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1446966436" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Wincentego Witosa) • 81m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3235995,18.2474496" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1446990882" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Piastowska)</h2>
+            <div class="place-location"><span>📍 ul. Piastowska 10, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Grzegorza Piramowicza) • 83m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3371872,18.1420276" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1447223071" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Stoczniowców)</h2>
+            <div class="place-location"><span>📍 ul. Stoczniowców 9, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Stoczniowców) • 72m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3564966,18.1284313" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1447230948" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Harcerska)</h2>
+            <div class="place-location"><span>📍 ul. Harcerska 14, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Harcerska) • 126m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3456547,18.223515" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1454981029" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Ignacego Krasickiego)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gminna) • 194m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3466758,18.1710816" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1454984135" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Gminna)</h2>
+            <div class="place-location"><span>📍 ul. Gminna 2, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Gminna) • 22m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3476852,18.1673842" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1455012042" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. 9 Maja)</h2>
+            <div class="place-location"><span>📍 ul. 9 Maja 4, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (9 Maja) • 51m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3473447,18.2232301" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1455012045" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. 9 Maja)</h2>
+            <div class="place-location"><span>📍 ul. 9 Maja 4, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (9 Maja) • 19m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.347603,18.2230377" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1455869116" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Mikołaja Reja)</h2>
+            <div class="place-location"><span>📍 ul. Mikołaja Reja 14, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Mikołaja Reja) • 40m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3418396,18.2040091" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1462122084" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Tadeusza Kościuszki)</h2>
+            <div class="place-location"><span>📍 ul. Tadeusza Kościuszki 43B, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Tadeusza Kościuszki) • 33m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3375646,18.1962625" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1466764957" data-categories="wszystko z-dzieckiem z-psem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Parki i Natura</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Z psem: Tak</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Park Kieszonkowy</h2>
+            <div class="place-location"><span>📍 ul. Tadeusza Kościuszki 43B, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Tadeusza Kościuszki) • 60m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3378308,18.1960255" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1472733021" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Kazimierza Wielkiego)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Leszka Białego) • 34m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3490402,18.231017" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1474327890" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Chemików)</h2>
+            <div class="place-location"><span>📍 ul. Chemików 6, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Chemików) • 24m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3192127,18.2407478" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1481639842" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Pionierów)</h2>
+            <div class="place-location"><span>📍 ul. Pionierów 3C, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Pionierów) • 51m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3463294,18.2164693" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1495959951" data-categories="wszystko w-deszczu" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Tenis Club</h2>
+            <div class="place-location"><span>📍 ul. Bolesława Śmiałego 2, Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Mieszka I) • 146m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3486853,18.2375323" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1497498816" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (osiedlowy)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Kosmonautów) • 70m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3484269,18.2194828" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_way_1531213526" data-categories="wszystko w-deszczu" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Sport i Rekreacja</span><span class="pill pill-blue">Zadaszone 100%</span></div>
+            <h2 class="place-title">Pełnowymiarowe boisko piłkarskie</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Szkolna) • 90m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3577539,18.2666656" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_relation_4447857" data-categories="wszystko z-dzieckiem za-darmo" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Dla Dzieci</span><span class="pill pill-orange">Plener</span><span class="pill pill-green">Wstęp darmowy</span></div>
+            <h2 class="place-title">Plac zabaw (ul. Mieszka I)</h2>
+            <div class="place-location"><span>📍 Kędzierzyn-Koźle</span></div>
+            
+            <div class="logistics-table"><div class="log-cell"><div class="log-title">Parking</div><div class="log-data">Bezpłatny (Przemysława II) • 88m</div></div></div>
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3498426,18.2336738" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a></div>
+        </article>
+        
+        <article class="card place-card" id="osm_relation_6404133" data-categories="wszystko" style="display: none;">
+            <div class="tag-row"><span class="pill pill-coral">Historia i Zabytki</span><span class="pill pill-orange">Plener</span></div>
+            <h2 class="place-title">Fort Rondel</h2>
+            <div class="place-location"><span>📍 ul. Portowa 26, Kędzierzyn-Koźle</span></div>
+            
+            
+            <div class="card-actions"><a href="https://maps.google.com/?q=50.3434594,18.1564963" target="_blank" rel="noopener" class="btn btn-outline">Nawiguj GPS</a><a href="https://zabytek.pl/pl/obiekty/kedzierzyn-kozle-fort-fryderyka-wilhelma-(fort-rondel-baszta-mo" target="_blank" rel="noopener" class="btn btn-primary">Strona WWW</a></div>
+        </article>
+        
+        </div>
+    </main>
+</div>
+
+<script>
+    document.querySelectorAll('.nav-pill').forEach(function(pill) {
+        pill.addEventListener('click', function(e) {
+            if (window.location.protocol.startsWith('http')) {
+                e.preventDefault();
+                var targetSpoke = this.getAttribute('data-spoke');
+                var targetFolder = this.getAttribute('data-folder') || '';
+
+                document.querySelectorAll('.nav-pill').forEach(function(p) {
+                    p.classList.remove('nav-active');
+                });
+                this.classList.add('nav-active');
+
+                var count = 0;
+                document.querySelectorAll('.place-card').forEach(function(card) {
+                    var cats = (card.getAttribute('data-categories') || '').split(' ');
+                    if (cats.indexOf(targetSpoke) !== -1) {
+                        card.style.display = 'block';
+                        count++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                var countEl = document.getElementById('count-display');
+                if (countEl) countEl.innerText = count;
+
+                var currentPath = window.location.pathname;
+                var baseMatch = currentPath.match(/^(.*?\/kedzierzyn-kozle\/)/);
+                var basePath = baseMatch ? baseMatch[1] : '/kedzierzyn-kozle/';
+                var nextPath = basePath + (targetFolder ? targetFolder + '/' : '');
+                window.history.pushState({}, '', nextPath);
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,4 +1,5 @@
 ﻿import os
+import shutil
 from pathlib import Path
 from typing import Any, Dict, List
 from jinja2 import Environment, FileSystemLoader
@@ -9,49 +10,78 @@ class HTMLRenderer:
     def __init__(self, template_dir: str = "templates"):
         self.env = Environment(loader=FileSystemLoader(template_dir))
 
-    def render_portal_hub(self, active_cities: List[Dict[str, str]], output_dir: str = "docs"):
-        os.makedirs(output_dir, exist_ok=True)
+    def _sync_assets(self, output_dir: str):
+        out_assets = Path(output_dir) / "assets"
+        src_assets = Path("docs/assets") if Path("docs/assets").exists() else Path("assets")
+        if src_assets.exists():
+            out_assets.mkdir(parents=True, exist_ok=True)
+            shutil.copytree(src_assets, out_assets, dirs_exist_ok=True)
+
+    def render_portal_hub(self, active_cities: List[Dict[str, str]], output_dir: str = "public"):
+        out_path = Path(output_dir)
+        out_path.mkdir(parents=True, exist_ok=True)
+        self._sync_assets(output_dir)
+
         template = self.env.get_template("portal_hub.html")
         html_out = template.render(cities=active_cities)
 
-        hub_path = os.path.join(output_dir, "index.html")
-        with open(hub_path, "w", encoding="utf-8") as f:
+        hub_file = out_path / "index.html"
+        with open(hub_file, "w", encoding="utf-8") as f:
             f.write(html_out)
-        print(f"[RENDERER] Strona główna portalu (Wybór miast): {hub_path}")
+        print(f"[RENDERER] Strona główna portalu (Wybór miast): {hub_file}")
 
-    def render_city(self, city_name: str, city_tag: str, events: List[FullEventPage], output_dir: str = "docs"):
+    def render_city(self, city_name: str, city_tag: str, events: List[FullEventPage], places: Dict[str, Dict[str, Any]], output_dir: str = "public"):
         city_dir = Path(output_dir) / city_tag
         events_dir = city_dir / "wydarzenia"
+        places_dir = city_dir / "miejsca"
+
+        self._sync_assets(output_dir)
+
+        # 1. Czyszczenie i renderowanie podstron wydarzeń
+        if events_dir.exists():
+            shutil.rmtree(events_dir)
         events_dir.mkdir(parents=True, exist_ok=True)
 
-        # 1. Podstrony pojedynczych aktywnych wydarzeń
         event_template = self.env.get_template("event_page.html")
-        active_filenames = set()
-
         for ev in events:
-            filename = f"{ev.slug}.html"
-            active_filenames.add(filename)
+            single_folder = events_dir / ev.slug
+            single_folder.mkdir(parents=True, exist_ok=True)
+            single_file = single_folder / "index.html"
+            
             single_html = event_template.render(city=city_name, city_tag=city_tag, event=ev)
-            single_file = events_dir / filename
             with open(single_file, "w", encoding="utf-8") as f:
                 f.write(single_html)
 
-        # 2. Czyszczenie osieroconych plików HTML (retencja)
-        removed_count = 0
-        for existing_file in events_dir.glob("*.html"):
-            if existing_file.name not in active_filenames:
-                try:
-                    existing_file.unlink()
-                    removed_count += 1
-                except Exception as e:
-                    print(f"[RENDERER] Błąd usuwania osieroconego pliku {existing_file.name}: {e}")
+        # 2. Czyszczenie i renderowanie podstron stałych miejsc
+        if places_dir.exists():
+            shutil.rmtree(places_dir)
+        places_dir.mkdir(parents=True, exist_ok=True)
 
-        # 3. Katalog miejski (siatka kafelków)
+        place_template = self.env.get_template("place_page.html")
+        rendered_places = 0
+        for place_id, place_data in places.items():
+            # Filtrujemy wydarzenia odbywające się w tym obiekcie
+            upcoming = [ev for ev in events if ev.place_id == place_id or ev.analysis.ticket_info.place_id == place_id]
+            
+            p_folder = places_dir / place_id
+            p_folder.mkdir(parents=True, exist_ok=True)
+            p_file = p_folder / "index.html"
+
+            p_html = place_template.render(
+                city=city_name,
+                city_tag=city_tag,
+                place=place_data,
+                upcoming_events=upcoming
+            )
+            with open(p_file, "w", encoding="utf-8") as f:
+                f.write(p_html)
+            rendered_places += 1
+
+        # 3. Renderowanie agendy miasta
         home_template = self.env.get_template("home.html")
         home_html = home_template.render(city=city_name, city_tag=city_tag, events=events)
         home_file = city_dir / "index.html"
         with open(home_file, "w", encoding="utf-8") as f:
             f.write(home_html)
 
-        print(f"[RENDERER] Katalog miasta ({city_name}): {home_file}")
-        print(f"[RENDERER] Wygenerowano {len(events)} podstron, usunięto {removed_count} nieaktywnych w: {events_dir}/")
+        print(f"[RENDERER] {city_name}: Wygenerowano {len(events)} wydarzeń oraz {rendered_places} wizytówek miejsc.")

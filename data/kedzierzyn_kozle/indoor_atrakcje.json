@@ -1,0 +1,236 @@
+[
+  {
+    "name": "Muzeum Ziemi Kozielskiej",
+    "category": "museum",
+    "coordinates": {
+      "lat": 50.334645,
+      "lon": 18.142379
+    },
+    "logistics": {
+      "parking_distance_meters": 20,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Dom Kultury \"Lech\"",
+    "category": "community_centre",
+    "coordinates": {
+      "lat": 50.354707,
+      "lon": 18.261042
+    },
+    "logistics": {
+      "parking_distance_meters": 22,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Spółdzielczy Dom Kultury RSM \"Chemik\"",
+    "category": "community_centre",
+    "coordinates": {
+      "lat": 50.347951,
+      "lon": 18.222676
+    },
+    "logistics": {
+      "parking_distance_meters": 26,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Chemik",
+    "category": "cinema",
+    "coordinates": {
+      "lat": 50.347418,
+      "lon": 18.215413
+    },
+    "logistics": {
+      "parking_distance_meters": 28,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Sala Urodzinowa \"Bailando\"",
+    "category": "indoor_play",
+    "coordinates": {
+      "lat": 50.347929,
+      "lon": 18.222504
+    },
+    "logistics": {
+      "parking_distance_meters": 33,
+      "wheelchair": "Brak danych",
+      "age_group": "1 - 8 lat"
+    }
+  },
+  {
+    "name": "Dom Kultury Bierawa",
+    "category": "community_centre",
+    "coordinates": {
+      "lat": 50.279899,
+      "lon": 18.240995
+    },
+    "logistics": {
+      "parking_distance_meters": 33,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Arcadia",
+    "category": "indoor_play",
+    "coordinates": {
+      "lat": 50.351721,
+      "lon": 18.235071
+    },
+    "logistics": {
+      "parking_distance_meters": 38,
+      "wheelchair": "Brak danych",
+      "age_group": "1 - 8 lat"
+    }
+  },
+  {
+    "name": "Kryta Pływalnia",
+    "category": "sports_centre",
+    "coordinates": {
+      "lat": 50.348816,
+      "lon": 18.220321
+    },
+    "logistics": {
+      "parking_distance_meters": 45,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Helios",
+    "category": "cinema",
+    "coordinates": {
+      "lat": 50.342095,
+      "lon": 18.191791
+    },
+    "logistics": {
+      "parking_distance_meters": 54,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Dżungla",
+    "category": "indoor_play",
+    "coordinates": {
+      "lat": 50.345986,
+      "lon": 18.222649
+    },
+    "logistics": {
+      "parking_distance_meters": 82,
+      "wheelchair": "Brak danych",
+      "age_group": "1 - 8 lat"
+    }
+  },
+  {
+    "name": "Dom Kultury Koźle",
+    "category": "community_centre",
+    "coordinates": {
+      "lat": 50.330463,
+      "lon": 18.145265
+    },
+    "logistics": {
+      "parking_distance_meters": 82,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Muzeum Bitwy o Benzynę - Strefa Historii i Inspiracji",
+    "category": "museum",
+    "coordinates": {
+      "lat": 50.353333,
+      "lon": 18.261932
+    },
+    "logistics": {
+      "parking_distance_meters": 84,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Pełnowymiarowe boisko piłkarskie",
+    "category": "sports_centre",
+    "coordinates": {
+      "lat": 50.357754,
+      "lon": 18.266666
+    },
+    "logistics": {
+      "parking_distance_meters": 90,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Tenis Club",
+    "category": "sports_centre",
+    "coordinates": {
+      "lat": 50.348685,
+      "lon": 18.237532
+    },
+    "logistics": {
+      "parking_distance_meters": 127,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Dom Działkowca \"Zacisze\"",
+    "category": "community_centre",
+    "coordinates": {
+      "lat": 50.354123,
+      "lon": 18.250173
+    },
+    "logistics": {
+      "parking_distance_meters": 133,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Kozielska Muszla Koncertowa",
+    "category": "theatre",
+    "coordinates": {
+      "lat": 50.334602,
+      "lon": 18.150629
+    },
+    "logistics": {
+      "parking_distance_meters": 136,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Stadion Miejski Kuźniczka",
+    "category": "sports_centre",
+    "coordinates": {
+      "lat": 50.351654,
+      "lon": 18.206034
+    },
+    "logistics": {
+      "parking_distance_meters": 149,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  },
+  {
+    "name": "Hala Sportowa",
+    "category": "sports_centre",
+    "coordinates": {
+      "lat": 50.279812,
+      "lon": 18.204364
+    },
+    "logistics": {
+      "parking_distance_meters": 234,
+      "wheelchair": "Brak danych",
+      "age_group": "Bez ograniczeń"
+    }
+  }
+]

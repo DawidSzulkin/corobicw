@@ -1,0 +1,4222 @@
+[
+  {
+    "osm_id": "node/1335982655",
+    "geo": {
+      "lat": 50.2858578,
+      "lon": 18.2830879
+    },
+    "capacity": "30",
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "node/1400251224",
+    "geo": {
+      "lat": 50.3359495,
+      "lon": 18.3224129
+    },
+    "capacity": "10",
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "node/1628381112",
+    "geo": {
+      "lat": 50.3413132,
+      "lon": 18.1926038
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "node/1879025774",
+    "geo": {
+      "lat": 50.3173481,
+      "lon": 18.1508597
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "node/1881095584",
+    "geo": {
+      "lat": 50.3099723,
+      "lon": 18.1256755
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "node/1916438884",
+    "geo": {
+      "lat": 50.3463901,
+      "lon": 18.2328911
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "node/1928581030",
+    "geo": {
+      "lat": 50.3535087,
+      "lon": 18.2073846
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "node/2019077897",
+    "geo": {
+      "lat": 50.3464313,
+      "lon": 18.2382211
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "node/2956941889",
+    "geo": {
+      "lat": 50.2811946,
+      "lon": 18.2018064
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/149779931",
+    "geo": {
+      "lat": 50.3526,
+      "lon": 18.2075205
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/149864153",
+    "geo": {
+      "lat": 50.3437151,
+      "lon": 18.2049806
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/149869386",
+    "geo": {
+      "lat": 50.3384128,
+      "lon": 18.2048019
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/189090001",
+    "geo": {
+      "lat": 50.3221781,
+      "lon": 18.153307
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/189090002",
+    "geo": {
+      "lat": 50.3222126,
+      "lon": 18.1517634
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/232464296",
+    "geo": {
+      "lat": 50.3206949,
+      "lon": 18.1433311
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/232557064",
+    "geo": {
+      "lat": 50.3135328,
+      "lon": 18.1533594
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/232557066",
+    "geo": {
+      "lat": 50.3209207,
+      "lon": 18.1443953
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/243379352",
+    "geo": {
+      "lat": 50.3324431,
+      "lon": 18.1484718
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267613677",
+    "geo": {
+      "lat": 50.3258505,
+      "lon": 18.2472836
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267613678",
+    "geo": {
+      "lat": 50.3261302,
+      "lon": 18.2475094
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267613679",
+    "geo": {
+      "lat": 50.3252914,
+      "lon": 18.2471574
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267613680",
+    "geo": {
+      "lat": 50.3251003,
+      "lon": 18.247272
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267613681",
+    "geo": {
+      "lat": 50.3269503,
+      "lon": 18.2464029
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267613682",
+    "geo": {
+      "lat": 50.326662,
+      "lon": 18.2469785
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267613683",
+    "geo": {
+      "lat": 50.3255766,
+      "lon": 18.2473963
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267613684",
+    "geo": {
+      "lat": 50.3253873,
+      "lon": 18.2473388
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267613685",
+    "geo": {
+      "lat": 50.3258979,
+      "lon": 18.247459
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/267615898",
+    "geo": {
+      "lat": 50.2804456,
+      "lon": 18.2384888
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/268834605",
+    "geo": {
+      "lat": 50.3557698,
+      "lon": 18.2542385
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/268834606",
+    "geo": {
+      "lat": 50.3527063,
+      "lon": 18.2498605
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/268834607",
+    "geo": {
+      "lat": 50.3522048,
+      "lon": 18.2497008
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/268834608",
+    "geo": {
+      "lat": 50.3540483,
+      "lon": 18.2526526
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/268834609",
+    "geo": {
+      "lat": 50.356151,
+      "lon": 18.2539215
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/268834611",
+    "geo": {
+      "lat": 50.3546491,
+      "lon": 18.2533057
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/271979395",
+    "geo": {
+      "lat": 50.3553318,
+      "lon": 18.128184
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/271979396",
+    "geo": {
+      "lat": 50.3556427,
+      "lon": 18.1283509
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/276338232",
+    "geo": {
+      "lat": 50.3306454,
+      "lon": 18.1441519
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/285543242",
+    "geo": {
+      "lat": 50.3419026,
+      "lon": 18.1355467
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/289742918",
+    "geo": {
+      "lat": 50.3356192,
+      "lon": 18.1427946
+    },
+    "capacity": null,
+    "fee": true,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/289748965",
+    "geo": {
+      "lat": 50.3349929,
+      "lon": 18.1439134
+    },
+    "capacity": null,
+    "fee": true,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/290011760",
+    "geo": {
+      "lat": 50.3369247,
+      "lon": 18.1431374
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/290015086",
+    "geo": {
+      "lat": 50.3356792,
+      "lon": 18.1444999
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/290163371",
+    "geo": {
+      "lat": 50.3330174,
+      "lon": 18.1443379
+    },
+    "capacity": null,
+    "fee": true,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/290163373",
+    "geo": {
+      "lat": 50.332741,
+      "lon": 18.1447288
+    },
+    "capacity": null,
+    "fee": true,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/290398609",
+    "geo": {
+      "lat": 50.333814,
+      "lon": 18.1474465
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/298489842",
+    "geo": {
+      "lat": 50.3404402,
+      "lon": 18.1386616
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/305286349",
+    "geo": {
+      "lat": 50.3362707,
+      "lon": 18.1466731
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/314551168",
+    "geo": {
+      "lat": 50.3525566,
+      "lon": 18.2369258
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/315427157",
+    "geo": {
+      "lat": 50.3192254,
+      "lon": 18.2404037
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/320673762",
+    "geo": {
+      "lat": 50.3415883,
+      "lon": 18.1923828
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/320673763",
+    "geo": {
+      "lat": 50.3410449,
+      "lon": 18.1928274
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/334565835",
+    "geo": {
+      "lat": 50.349515,
+      "lon": 18.1531095
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/334565837",
+    "geo": {
+      "lat": 50.3491888,
+      "lon": 18.1565012
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/334684779",
+    "geo": {
+      "lat": 50.2991878,
+      "lon": 18.2546846
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/350352134",
+    "geo": {
+      "lat": 50.3449188,
+      "lon": 18.2062848
+    },
+    "capacity": "57",
+    "fee": true,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/375498867",
+    "geo": {
+      "lat": 50.2980374,
+      "lon": 18.255607
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/375498869",
+    "geo": {
+      "lat": 50.2937705,
+      "lon": 18.2599659
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/389015490",
+    "geo": {
+      "lat": 50.3163148,
+      "lon": 18.245894
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/389015491",
+    "geo": {
+      "lat": 50.317581,
+      "lon": 18.2457113
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/389089805",
+    "geo": {
+      "lat": 50.3420726,
+      "lon": 18.1927137
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/389089812",
+    "geo": {
+      "lat": 50.3412642,
+      "lon": 18.1940691
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/389089813",
+    "geo": {
+      "lat": 50.3397269,
+      "lon": 18.1909497
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/487533270",
+    "geo": {
+      "lat": 50.3892173,
+      "lon": 18.3468017
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539634928",
+    "geo": {
+      "lat": 50.3563331,
+      "lon": 18.2660687
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539634929",
+    "geo": {
+      "lat": 50.3550434,
+      "lon": 18.2670229
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539634932",
+    "geo": {
+      "lat": 50.3601242,
+      "lon": 18.2685609
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712467",
+    "geo": {
+      "lat": 50.3542015,
+      "lon": 18.2642199
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712476",
+    "geo": {
+      "lat": 50.3551929,
+      "lon": 18.2568335
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712507",
+    "geo": {
+      "lat": 50.3544752,
+      "lon": 18.2524329
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712510",
+    "geo": {
+      "lat": 50.354284,
+      "lon": 18.2536813
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712514",
+    "geo": {
+      "lat": 50.3529258,
+      "lon": 18.2503128
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712515",
+    "geo": {
+      "lat": 50.3528965,
+      "lon": 18.2507397
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712520",
+    "geo": {
+      "lat": 50.3550788,
+      "lon": 18.2533463
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712521",
+    "geo": {
+      "lat": 50.355216,
+      "lon": 18.2537802
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712522",
+    "geo": {
+      "lat": 50.3554299,
+      "lon": 18.2539362
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712525",
+    "geo": {
+      "lat": 50.3548875,
+      "lon": 18.2611732
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712526",
+    "geo": {
+      "lat": 50.3545687,
+      "lon": 18.2616171
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539712528",
+    "geo": {
+      "lat": 50.3541997,
+      "lon": 18.2614826
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539842593",
+    "geo": {
+      "lat": 50.3542192,
+      "lon": 18.2524395
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539842614",
+    "geo": {
+      "lat": 50.3539834,
+      "lon": 18.2585168
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539842615",
+    "geo": {
+      "lat": 50.3537294,
+      "lon": 18.259042
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539842645",
+    "geo": {
+      "lat": 50.3524529,
+      "lon": 18.2585371
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539842646",
+    "geo": {
+      "lat": 50.3524114,
+      "lon": 18.2583562
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539842679",
+    "geo": {
+      "lat": 50.353231,
+      "lon": 18.2524638
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539842707",
+    "geo": {
+      "lat": 50.3554321,
+      "lon": 18.2527569
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539986313",
+    "geo": {
+      "lat": 50.3551596,
+      "lon": 18.2540641
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539986347",
+    "geo": {
+      "lat": 50.3577378,
+      "lon": 18.2561291
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539986349",
+    "geo": {
+      "lat": 50.3574268,
+      "lon": 18.2560028
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539986350",
+    "geo": {
+      "lat": 50.3571496,
+      "lon": 18.2561732
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539986381",
+    "geo": {
+      "lat": 50.3571195,
+      "lon": 18.2523197
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539986432",
+    "geo": {
+      "lat": 50.3539055,
+      "lon": 18.2439745
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/539986440",
+    "geo": {
+      "lat": 50.3532835,
+      "lon": 18.2444924
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540051346",
+    "geo": {
+      "lat": 50.3511079,
+      "lon": 18.2340527
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540051347",
+    "geo": {
+      "lat": 50.3513294,
+      "lon": 18.2337584
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540051348",
+    "geo": {
+      "lat": 50.3510435,
+      "lon": 18.2339281
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540051349",
+    "geo": {
+      "lat": 50.3508047,
+      "lon": 18.2340684
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540051361",
+    "geo": {
+      "lat": 50.337664,
+      "lon": 18.201596
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540051364",
+    "geo": {
+      "lat": 50.3375406,
+      "lon": 18.2016742
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540059956",
+    "geo": {
+      "lat": 50.3343695,
+      "lon": 18.2112907
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540059957",
+    "geo": {
+      "lat": 50.3344045,
+      "lon": 18.211867
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540059958",
+    "geo": {
+      "lat": 50.334712,
+      "lon": 18.2108123
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540059963",
+    "geo": {
+      "lat": 50.334701,
+      "lon": 18.2106381
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540059987",
+    "geo": {
+      "lat": 50.3466432,
+      "lon": 18.2172124
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540059995",
+    "geo": {
+      "lat": 50.345667,
+      "lon": 18.2174707
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540071140",
+    "geo": {
+      "lat": 50.3575205,
+      "lon": 18.2654495
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540237635",
+    "geo": {
+      "lat": 50.3339546,
+      "lon": 18.2110118
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540237642",
+    "geo": {
+      "lat": 50.3615839,
+      "lon": 18.2683461
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540237648",
+    "geo": {
+      "lat": 50.3616558,
+      "lon": 18.2698169
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540237650",
+    "geo": {
+      "lat": 50.361241,
+      "lon": 18.271654
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540237668",
+    "geo": {
+      "lat": 50.358511,
+      "lon": 18.2602466
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540447544",
+    "geo": {
+      "lat": 50.3460826,
+      "lon": 18.2179493
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540447547",
+    "geo": {
+      "lat": 50.3464638,
+      "lon": 18.2179169
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540510680",
+    "geo": {
+      "lat": 50.3465834,
+      "lon": 18.219972
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540510683",
+    "geo": {
+      "lat": 50.3464915,
+      "lon": 18.220042
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/540510688",
+    "geo": {
+      "lat": 50.3470613,
+      "lon": 18.2205023
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541154084",
+    "geo": {
+      "lat": 50.3475207,
+      "lon": 18.2306021
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541154085",
+    "geo": {
+      "lat": 50.3475941,
+      "lon": 18.2314346
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541154086",
+    "geo": {
+      "lat": 50.3469389,
+      "lon": 18.230249
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541154087",
+    "geo": {
+      "lat": 50.3465152,
+      "lon": 18.2317836
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541154088",
+    "geo": {
+      "lat": 50.3464144,
+      "lon": 18.2312564
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541154089",
+    "geo": {
+      "lat": 50.3457956,
+      "lon": 18.2309843
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541154092",
+    "geo": {
+      "lat": 50.3460835,
+      "lon": 18.2303026
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541155310",
+    "geo": {
+      "lat": 50.3483981,
+      "lon": 18.2276004
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541155312",
+    "geo": {
+      "lat": 50.3484574,
+      "lon": 18.2289137
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541155314",
+    "geo": {
+      "lat": 50.3479813,
+      "lon": 18.2276567
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541571084",
+    "geo": {
+      "lat": 50.3444327,
+      "lon": 18.2198138
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541571085",
+    "geo": {
+      "lat": 50.3446879,
+      "lon": 18.2194731
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541571086",
+    "geo": {
+      "lat": 50.3448211,
+      "lon": 18.2175476
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541571088",
+    "geo": {
+      "lat": 50.3460347,
+      "lon": 18.2170262
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541571095",
+    "geo": {
+      "lat": 50.3438639,
+      "lon": 18.2132004
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541571101",
+    "geo": {
+      "lat": 50.3446447,
+      "lon": 18.2114014
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541663833",
+    "geo": {
+      "lat": 50.341995,
+      "lon": 18.1972742
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/541672526",
+    "geo": {
+      "lat": 50.3390268,
+      "lon": 18.1883928
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/542470036",
+    "geo": {
+      "lat": 50.3510189,
+      "lon": 18.2310833
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/542470037",
+    "geo": {
+      "lat": 50.3505585,
+      "lon": 18.2313769
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/542470040",
+    "geo": {
+      "lat": 50.3488909,
+      "lon": 18.2302153
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/542470041",
+    "geo": {
+      "lat": 50.3489139,
+      "lon": 18.2304361
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/542487989",
+    "geo": {
+      "lat": 50.356893,
+      "lon": 18.1694622
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/544370825",
+    "geo": {
+      "lat": 50.3457565,
+      "lon": 18.212722
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/544370826",
+    "geo": {
+      "lat": 50.3458742,
+      "lon": 18.2130989
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/544376227",
+    "geo": {
+      "lat": 50.347137,
+      "lon": 18.2080866
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/544376229",
+    "geo": {
+      "lat": 50.3469206,
+      "lon": 18.2080733
+    },
+    "capacity": "6",
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/544383867",
+    "geo": {
+      "lat": 50.3399479,
+      "lon": 18.1410447
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/545443791",
+    "geo": {
+      "lat": 50.3480481,
+      "lon": 18.220272
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/545443799",
+    "geo": {
+      "lat": 50.3474781,
+      "lon": 18.2182379
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/545443801",
+    "geo": {
+      "lat": 50.347643,
+      "lon": 18.2189463
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/545443803",
+    "geo": {
+      "lat": 50.3476131,
+      "lon": 18.2195907
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/545443812",
+    "geo": {
+      "lat": 50.3476574,
+      "lon": 18.2221498
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/545443813",
+    "geo": {
+      "lat": 50.3477511,
+      "lon": 18.2228782
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/545482978",
+    "geo": {
+      "lat": 50.341696,
+      "lon": 18.2243286
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/547481897",
+    "geo": {
+      "lat": 50.3432721,
+      "lon": 18.2027278
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/550642033",
+    "geo": {
+      "lat": 50.3746437,
+      "lon": 18.3284139
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/552341132",
+    "geo": {
+      "lat": 50.3341186,
+      "lon": 18.2103411
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/556546739",
+    "geo": {
+      "lat": 50.3777647,
+      "lon": 18.3129875
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/556552229",
+    "geo": {
+      "lat": 50.3534373,
+      "lon": 18.2367772
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/556552233",
+    "geo": {
+      "lat": 50.3516061,
+      "lon": 18.2339961
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/556807624",
+    "geo": {
+      "lat": 50.3326852,
+      "lon": 18.1822414
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/556846388",
+    "geo": {
+      "lat": 50.3616163,
+      "lon": 18.2865035
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/556846414",
+    "geo": {
+      "lat": 50.3596025,
+      "lon": 18.2861056
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/557419602",
+    "geo": {
+      "lat": 50.3529402,
+      "lon": 18.3034562
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/557419627",
+    "geo": {
+      "lat": 50.3525485,
+      "lon": 18.303785
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/557740541",
+    "geo": {
+      "lat": 50.3537261,
+      "lon": 18.2677107
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558046411",
+    "geo": {
+      "lat": 50.3324415,
+      "lon": 18.1428024
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558054985",
+    "geo": {
+      "lat": 50.33278,
+      "lon": 18.1513914
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558054993",
+    "geo": {
+      "lat": 50.3345227,
+      "lon": 18.1417691
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558057619",
+    "geo": {
+      "lat": 50.3330704,
+      "lon": 18.1484118
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558080979",
+    "geo": {
+      "lat": 50.367435,
+      "lon": 18.3010387
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558080992",
+    "geo": {
+      "lat": 50.3672008,
+      "lon": 18.3002014
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558087709",
+    "geo": {
+      "lat": 50.3370501,
+      "lon": 18.1989367
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558087710",
+    "geo": {
+      "lat": 50.3372156,
+      "lon": 18.1991774
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558087711",
+    "geo": {
+      "lat": 50.3374295,
+      "lon": 18.1996645
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558087713",
+    "geo": {
+      "lat": 50.337479,
+      "lon": 18.1990521
+    },
+    "capacity": null,
+    "fee": true,
+    "access": "permissive"
+  },
+  {
+    "osm_id": "way/558087725",
+    "geo": {
+      "lat": 50.3365517,
+      "lon": 18.2015607
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558087727",
+    "geo": {
+      "lat": 50.3377246,
+      "lon": 18.2006404
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558217898",
+    "geo": {
+      "lat": 50.342614,
+      "lon": 18.1928717
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558217900",
+    "geo": {
+      "lat": 50.3421306,
+      "lon": 18.1929956
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/558221267",
+    "geo": {
+      "lat": 50.3401784,
+      "lon": 18.1985215
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/559892823",
+    "geo": {
+      "lat": 50.3259562,
+      "lon": 18.1419106
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/559892832",
+    "geo": {
+      "lat": 50.3288376,
+      "lon": 18.1505253
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/560126771",
+    "geo": {
+      "lat": 50.3433535,
+      "lon": 18.2108839
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/560126774",
+    "geo": {
+      "lat": 50.3443772,
+      "lon": 18.2152397
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/560126780",
+    "geo": {
+      "lat": 50.3437055,
+      "lon": 18.2153988
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/560126781",
+    "geo": {
+      "lat": 50.3433894,
+      "lon": 18.2160771
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/560126782",
+    "geo": {
+      "lat": 50.3429303,
+      "lon": 18.2160195
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/560126785",
+    "geo": {
+      "lat": 50.3432559,
+      "lon": 18.2138913
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/560129635",
+    "geo": {
+      "lat": 50.3408204,
+      "lon": 18.2154136
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/560129636",
+    "geo": {
+      "lat": 50.3405552,
+      "lon": 18.2151384
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/567567667",
+    "geo": {
+      "lat": 50.3109035,
+      "lon": 18.2432956
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/567567672",
+    "geo": {
+      "lat": 50.3108454,
+      "lon": 18.2441752
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/567567681",
+    "geo": {
+      "lat": 50.3113387,
+      "lon": 18.2459741
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/567567684",
+    "geo": {
+      "lat": 50.3125226,
+      "lon": 18.2446629
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/567567688",
+    "geo": {
+      "lat": 50.3131992,
+      "lon": 18.2459018
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/570883836",
+    "geo": {
+      "lat": 50.2849618,
+      "lon": 18.2896695
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/572612847",
+    "geo": {
+      "lat": 50.3147196,
+      "lon": 18.2472588
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/572612848",
+    "geo": {
+      "lat": 50.3148602,
+      "lon": 18.2477131
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/575633364",
+    "geo": {
+      "lat": 50.3053498,
+      "lon": 18.2301433
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/575662384",
+    "geo": {
+      "lat": 50.3495844,
+      "lon": 18.2318039
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/575662394",
+    "geo": {
+      "lat": 50.3479454,
+      "lon": 18.235465
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/575662414",
+    "geo": {
+      "lat": 50.3519228,
+      "lon": 18.235498
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/575662419",
+    "geo": {
+      "lat": 50.3500827,
+      "lon": 18.2278631
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/575662420",
+    "geo": {
+      "lat": 50.3498888,
+      "lon": 18.2270627
+    },
+    "capacity": null,
+    "fee": true,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/575663938",
+    "geo": {
+      "lat": 50.3468554,
+      "lon": 18.2377825
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/575677036",
+    "geo": {
+      "lat": 50.3158591,
+      "lon": 18.2473877
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/586268558",
+    "geo": {
+      "lat": 50.3497938,
+      "lon": 18.1556419
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/586285011",
+    "geo": {
+      "lat": 50.3513282,
+      "lon": 18.1628672
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/586285012",
+    "geo": {
+      "lat": 50.3509218,
+      "lon": 18.1626293
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/586285013",
+    "geo": {
+      "lat": 50.351037,
+      "lon": 18.1626925
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/586289887",
+    "geo": {
+      "lat": 50.3456376,
+      "lon": 18.2147673
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/586289888",
+    "geo": {
+      "lat": 50.3461454,
+      "lon": 18.2143631
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/586289889",
+    "geo": {
+      "lat": 50.3460619,
+      "lon": 18.2141204
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/586289890",
+    "geo": {
+      "lat": 50.3456162,
+      "lon": 18.2144465
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/606278332",
+    "geo": {
+      "lat": 50.351327,
+      "lon": 18.2377816
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/606278333",
+    "geo": {
+      "lat": 50.3504441,
+      "lon": 18.2362436
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/615335003",
+    "geo": {
+      "lat": 50.3519424,
+      "lon": 18.2336762
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/617810542",
+    "geo": {
+      "lat": 50.338577,
+      "lon": 18.2036368
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/617822910",
+    "geo": {
+      "lat": 50.3565256,
+      "lon": 18.2066791
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/618242295",
+    "geo": {
+      "lat": 50.3568894,
+      "lon": 18.2011197
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/618242297",
+    "geo": {
+      "lat": 50.3565354,
+      "lon": 18.19985
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/618242298",
+    "geo": {
+      "lat": 50.3564004,
+      "lon": 18.1998538
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/618476378",
+    "geo": {
+      "lat": 50.3351514,
+      "lon": 18.2122564
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/620344443",
+    "geo": {
+      "lat": 50.3180457,
+      "lon": 18.2424775
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/620884808",
+    "geo": {
+      "lat": 50.3192768,
+      "lon": 18.2425052
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/620884810",
+    "geo": {
+      "lat": 50.3195107,
+      "lon": 18.2399921
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/622057623",
+    "geo": {
+      "lat": 50.3416969,
+      "lon": 18.2015575
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/622057642",
+    "geo": {
+      "lat": 50.3391833,
+      "lon": 18.1956953
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/632622293",
+    "geo": {
+      "lat": 50.3350883,
+      "lon": 18.1008235
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/632622295",
+    "geo": {
+      "lat": 50.3355562,
+      "lon": 18.1024089
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/632622299",
+    "geo": {
+      "lat": 50.3377301,
+      "lon": 18.1053965
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/636928994",
+    "geo": {
+      "lat": 50.3937657,
+      "lon": 18.1673429
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/636934340",
+    "geo": {
+      "lat": 50.3926084,
+      "lon": 18.1743657
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/639959980",
+    "geo": {
+      "lat": 50.3936106,
+      "lon": 18.1759222
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/642722452",
+    "geo": {
+      "lat": 50.3373723,
+      "lon": 18.1301925
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/642728666",
+    "geo": {
+      "lat": 50.3367972,
+      "lon": 18.1455928
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/642849924",
+    "geo": {
+      "lat": 50.3422174,
+      "lon": 18.1318446
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/643942887",
+    "geo": {
+      "lat": 50.3397263,
+      "lon": 18.1355691
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/657546239",
+    "geo": {
+      "lat": 50.3096892,
+      "lon": 18.1256403
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/657551322",
+    "geo": {
+      "lat": 50.3164507,
+      "lon": 18.1263765
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/657551327",
+    "geo": {
+      "lat": 50.3188728,
+      "lon": 18.1290762
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/657577688",
+    "geo": {
+      "lat": 50.2903809,
+      "lon": 18.2618037
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/667686332",
+    "geo": {
+      "lat": 50.3487308,
+      "lon": 18.2209394
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/667686339",
+    "geo": {
+      "lat": 50.3480725,
+      "lon": 18.2157335
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/669549573",
+    "geo": {
+      "lat": 50.3505293,
+      "lon": 18.2098521
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/672260317",
+    "geo": {
+      "lat": 50.3443368,
+      "lon": 18.2063735
+    },
+    "capacity": "5",
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/676010265",
+    "geo": {
+      "lat": 50.3438395,
+      "lon": 18.2077177
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/676010270",
+    "geo": {
+      "lat": 50.3435161,
+      "lon": 18.2085716
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/676728071",
+    "geo": {
+      "lat": 50.3431561,
+      "lon": 18.2051706
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/676728072",
+    "geo": {
+      "lat": 50.3429448,
+      "lon": 18.2047806
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/676728078",
+    "geo": {
+      "lat": 50.3423713,
+      "lon": 18.2052922
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/691490350",
+    "geo": {
+      "lat": 50.2844393,
+      "lon": 18.2028998
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/691490354",
+    "geo": {
+      "lat": 50.2815894,
+      "lon": 18.2012704
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/691742667",
+    "geo": {
+      "lat": 50.2815327,
+      "lon": 18.2024745
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/708936483",
+    "geo": {
+      "lat": 50.3409083,
+      "lon": 18.201948
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/711017804",
+    "geo": {
+      "lat": 50.3421372,
+      "lon": 18.2043425
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/711646164",
+    "geo": {
+      "lat": 50.3426064,
+      "lon": 18.2045416
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/745665987",
+    "geo": {
+      "lat": 50.2820681,
+      "lon": 18.2433884
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/745665990",
+    "geo": {
+      "lat": 50.2818726,
+      "lon": 18.2438699
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/745665995",
+    "geo": {
+      "lat": 50.2823268,
+      "lon": 18.2437081
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/763170180",
+    "geo": {
+      "lat": 50.3555394,
+      "lon": 18.2055351
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/766757436",
+    "geo": {
+      "lat": 50.3241491,
+      "lon": 18.2466809
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/768103642",
+    "geo": {
+      "lat": 50.3300747,
+      "lon": 18.109165
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/789354210",
+    "geo": {
+      "lat": 50.3367409,
+      "lon": 18.198423
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/817809166",
+    "geo": {
+      "lat": 50.3472377,
+      "lon": 18.214874
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/862222556",
+    "geo": {
+      "lat": 50.3531261,
+      "lon": 18.260798
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/862294378",
+    "geo": {
+      "lat": 50.3474976,
+      "lon": 18.1686603
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/874655211",
+    "geo": {
+      "lat": 50.3349323,
+      "lon": 18.1430434
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/874655213",
+    "geo": {
+      "lat": 50.3363396,
+      "lon": 18.1372923
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/876532925",
+    "geo": {
+      "lat": 50.3347709,
+      "lon": 18.142577
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/880069859",
+    "geo": {
+      "lat": 50.3320614,
+      "lon": 18.1436048
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/880071399",
+    "geo": {
+      "lat": 50.3310759,
+      "lon": 18.1419829
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/880991025",
+    "geo": {
+      "lat": 50.3166274,
+      "lon": 18.1493835
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/880992856",
+    "geo": {
+      "lat": 50.3157292,
+      "lon": 18.149512
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/926392458",
+    "geo": {
+      "lat": 50.3914573,
+      "lon": 18.3494136
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/930296015",
+    "geo": {
+      "lat": 50.323421,
+      "lon": 18.1415225
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/954658398",
+    "geo": {
+      "lat": 50.3519413,
+      "lon": 18.2342311
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/965934697",
+    "geo": {
+      "lat": 50.3145453,
+      "lon": 18.1530901
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/985059163",
+    "geo": {
+      "lat": 50.3212334,
+      "lon": 18.1401691
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/985059166",
+    "geo": {
+      "lat": 50.3212404,
+      "lon": 18.1416733
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/985132630",
+    "geo": {
+      "lat": 50.3132663,
+      "lon": 18.1538391
+    },
+    "capacity": "25",
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/993643074",
+    "geo": {
+      "lat": 50.3502391,
+      "lon": 18.238171
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/993643075",
+    "geo": {
+      "lat": 50.3520449,
+      "lon": 18.2379113
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/993643078",
+    "geo": {
+      "lat": 50.3513075,
+      "lon": 18.2380132
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1008832979",
+    "geo": {
+      "lat": 50.3123734,
+      "lon": 18.2265827
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1021099983",
+    "geo": {
+      "lat": 50.3212031,
+      "lon": 18.2265733
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1023668231",
+    "geo": {
+      "lat": 50.3375486,
+      "lon": 18.1023292
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1024250945",
+    "geo": {
+      "lat": 50.3172808,
+      "lon": 18.1309572
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1033473382",
+    "geo": {
+      "lat": 50.3376655,
+      "lon": 18.1213697
+    },
+    "capacity": "5",
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/1034851266",
+    "geo": {
+      "lat": 50.3825539,
+      "lon": 18.2462437
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1034851275",
+    "geo": {
+      "lat": 50.3822813,
+      "lon": 18.239347
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1034851281",
+    "geo": {
+      "lat": 50.380335,
+      "lon": 18.2467992
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1034851282",
+    "geo": {
+      "lat": 50.3804296,
+      "lon": 18.2477685
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1034851299",
+    "geo": {
+      "lat": 50.3827587,
+      "lon": 18.2473691
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1097992134",
+    "geo": {
+      "lat": 50.3951561,
+      "lon": 18.1313276
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1097992135",
+    "geo": {
+      "lat": 50.3950975,
+      "lon": 18.1311311
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1097992177",
+    "geo": {
+      "lat": 50.3962666,
+      "lon": 18.1415518
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1097992178",
+    "geo": {
+      "lat": 50.3960719,
+      "lon": 18.1417525
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1098016942",
+    "geo": {
+      "lat": 50.3966105,
+      "lon": 18.1433795
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/1098025186",
+    "geo": {
+      "lat": 50.3727056,
+      "lon": 18.1217987
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1107391508",
+    "geo": {
+      "lat": 50.3526497,
+      "lon": 18.2510919
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1107391514",
+    "geo": {
+      "lat": 50.347588,
+      "lon": 18.2151256
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1107391522",
+    "geo": {
+      "lat": 50.3425345,
+      "lon": 18.2137042
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1112671819",
+    "geo": {
+      "lat": 50.3502773,
+      "lon": 18.1593273
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1115987345",
+    "geo": {
+      "lat": 50.3864064,
+      "lon": 18.339531
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1115987346",
+    "geo": {
+      "lat": 50.3866953,
+      "lon": 18.3394895
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1115987347",
+    "geo": {
+      "lat": 50.386529,
+      "lon": 18.3397977
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1115987348",
+    "geo": {
+      "lat": 50.3865711,
+      "lon": 18.3395291
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1173848008",
+    "geo": {
+      "lat": 50.343925,
+      "lon": 18.2217054
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1173848022",
+    "geo": {
+      "lat": 50.3439338,
+      "lon": 18.2219644
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1182818563",
+    "geo": {
+      "lat": 50.356249,
+      "lon": 18.1996973
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1187679995",
+    "geo": {
+      "lat": 50.3456714,
+      "lon": 18.2195848
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1190036801",
+    "geo": {
+      "lat": 50.2825109,
+      "lon": 18.3142646
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/1191663508",
+    "geo": {
+      "lat": 50.3566112,
+      "lon": 18.1446134
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1192233192",
+    "geo": {
+      "lat": 50.341689,
+      "lon": 18.2161724
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1192233193",
+    "geo": {
+      "lat": 50.3454088,
+      "lon": 18.2217778
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1192237323",
+    "geo": {
+      "lat": 50.33753,
+      "lon": 18.1548164
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1192938488",
+    "geo": {
+      "lat": 50.3481902,
+      "lon": 18.2327732
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1192938489",
+    "geo": {
+      "lat": 50.3488498,
+      "lon": 18.2323741
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1192938490",
+    "geo": {
+      "lat": 50.3459585,
+      "lon": 18.2382395
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1192938510",
+    "geo": {
+      "lat": 50.3478646,
+      "lon": 18.2341907
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1193461617",
+    "geo": {
+      "lat": 50.3548687,
+      "lon": 18.2462401
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1193463108",
+    "geo": {
+      "lat": 50.3748579,
+      "lon": 18.3281246
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1193463109",
+    "geo": {
+      "lat": 50.3748251,
+      "lon": 18.3277918
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1193463110",
+    "geo": {
+      "lat": 50.3751173,
+      "lon": 18.3282467
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1195045525",
+    "geo": {
+      "lat": 50.3809252,
+      "lon": 18.3134936
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1195045526",
+    "geo": {
+      "lat": 50.3810871,
+      "lon": 18.3134692
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1195049975",
+    "geo": {
+      "lat": 50.3799629,
+      "lon": 18.3167304
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/1207583282",
+    "geo": {
+      "lat": 50.3369403,
+      "lon": 18.204981
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1207583283",
+    "geo": {
+      "lat": 50.3369608,
+      "lon": 18.2051571
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209858757",
+    "geo": {
+      "lat": 50.359621,
+      "lon": 18.286857
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209858758",
+    "geo": {
+      "lat": 50.3599949,
+      "lon": 18.2872488
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209858760",
+    "geo": {
+      "lat": 50.3501716,
+      "lon": 18.2988553
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209858761",
+    "geo": {
+      "lat": 50.3491465,
+      "lon": 18.2984411
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867522",
+    "geo": {
+      "lat": 50.342277,
+      "lon": 18.2144157
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867524",
+    "geo": {
+      "lat": 50.342698,
+      "lon": 18.216167
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867555",
+    "geo": {
+      "lat": 50.3424441,
+      "lon": 18.2157149
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867556",
+    "geo": {
+      "lat": 50.3423929,
+      "lon": 18.2158534
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867557",
+    "geo": {
+      "lat": 50.3422994,
+      "lon": 18.2153603
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867558",
+    "geo": {
+      "lat": 50.342299,
+      "lon": 18.2149469
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867559",
+    "geo": {
+      "lat": 50.3419245,
+      "lon": 18.2151255
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867560",
+    "geo": {
+      "lat": 50.3422078,
+      "lon": 18.2148747
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867561",
+    "geo": {
+      "lat": 50.3430428,
+      "lon": 18.2143754
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867562",
+    "geo": {
+      "lat": 50.3426669,
+      "lon": 18.2144504
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867563",
+    "geo": {
+      "lat": 50.3440601,
+      "lon": 18.2149274
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209867564",
+    "geo": {
+      "lat": 50.3441929,
+      "lon": 18.215209
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1209894855",
+    "geo": {
+      "lat": 50.2800015,
+      "lon": 18.2405606
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1225496002",
+    "geo": {
+      "lat": 50.3060303,
+      "lon": 18.3362048
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1225515874",
+    "geo": {
+      "lat": 50.2961519,
+      "lon": 18.3468347
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1226230125",
+    "geo": {
+      "lat": 50.3617699,
+      "lon": 18.2232395
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1236097501",
+    "geo": {
+      "lat": 50.3781496,
+      "lon": 18.3492301
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/1272351420",
+    "geo": {
+      "lat": 50.3309701,
+      "lon": 18.13929
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1296691123",
+    "geo": {
+      "lat": 50.3451622,
+      "lon": 18.2361773
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1296691124",
+    "geo": {
+      "lat": 50.3449739,
+      "lon": 18.2352355
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1296691125",
+    "geo": {
+      "lat": 50.3451531,
+      "lon": 18.2350463
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1296691126",
+    "geo": {
+      "lat": 50.3441302,
+      "lon": 18.235054
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1296691127",
+    "geo": {
+      "lat": 50.3441957,
+      "lon": 18.2350696
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1296691128",
+    "geo": {
+      "lat": 50.344356,
+      "lon": 18.2353621
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1296691129",
+    "geo": {
+      "lat": 50.3447718,
+      "lon": 18.2352756
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1296691130",
+    "geo": {
+      "lat": 50.3449735,
+      "lon": 18.2347665
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1303289732",
+    "geo": {
+      "lat": 50.3044112,
+      "lon": 18.3396083
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1351674724",
+    "geo": {
+      "lat": 50.3482252,
+      "lon": 18.2517901
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1351674725",
+    "geo": {
+      "lat": 50.3491861,
+      "lon": 18.2518793
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1380004843",
+    "geo": {
+      "lat": 50.3354704,
+      "lon": 18.1336034
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1445464213",
+    "geo": {
+      "lat": 50.3415832,
+      "lon": 18.1964248
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446227699",
+    "geo": {
+      "lat": 50.3431024,
+      "lon": 18.2208551
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446227700",
+    "geo": {
+      "lat": 50.3433163,
+      "lon": 18.2212791
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446227708",
+    "geo": {
+      "lat": 50.3428982,
+      "lon": 18.2199266
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446227716",
+    "geo": {
+      "lat": 50.3422682,
+      "lon": 18.2195917
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446227717",
+    "geo": {
+      "lat": 50.3421874,
+      "lon": 18.2200015
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446227721",
+    "geo": {
+      "lat": 50.3426876,
+      "lon": 18.2197231
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446227722",
+    "geo": {
+      "lat": 50.3427787,
+      "lon": 18.2196045
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446227723",
+    "geo": {
+      "lat": 50.3431935,
+      "lon": 18.2190671
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446227730",
+    "geo": {
+      "lat": 50.3425943,
+      "lon": 18.2192051
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446980629",
+    "geo": {
+      "lat": 50.3427563,
+      "lon": 18.1343057
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1446985371",
+    "geo": {
+      "lat": 50.3376601,
+      "lon": 18.2036586
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1447223075",
+    "geo": {
+      "lat": 50.3570841,
+      "lon": 18.1288741
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1454978101",
+    "geo": {
+      "lat": 50.345619,
+      "lon": 18.168001
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1454984125",
+    "geo": {
+      "lat": 50.3478757,
+      "lon": 18.16729
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1454984126",
+    "geo": {
+      "lat": 50.348005,
+      "lon": 18.1664367
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1454984127",
+    "geo": {
+      "lat": 50.3479599,
+      "lon": 18.1667307
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1455009508",
+    "geo": {
+      "lat": 50.3447001,
+      "lon": 18.2076974
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1455013156",
+    "geo": {
+      "lat": 50.3467098,
+      "lon": 18.2228625
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1455326383",
+    "geo": {
+      "lat": 50.3390948,
+      "lon": 18.1364331
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1455326404",
+    "geo": {
+      "lat": 50.3393362,
+      "lon": 18.1366012
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1455565103",
+    "geo": {
+      "lat": 50.3347243,
+      "lon": 18.1487174
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1455568948",
+    "geo": {
+      "lat": 50.3333676,
+      "lon": 18.1516413
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1455872845",
+    "geo": {
+      "lat": 50.342571,
+      "lon": 18.204411
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1457286901",
+    "geo": {
+      "lat": 50.350002,
+      "lon": 18.2373937
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1461674145",
+    "geo": {
+      "lat": 50.3374734,
+      "lon": 18.1440621
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1461674151",
+    "geo": {
+      "lat": 50.3367973,
+      "lon": 18.1437186
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1461676320",
+    "geo": {
+      "lat": 50.3342055,
+      "lon": 18.1437593
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1461809101",
+    "geo": {
+      "lat": 50.335027,
+      "lon": 18.1470365
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1461932271",
+    "geo": {
+      "lat": 50.3364969,
+      "lon": 18.1970716
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1461939720",
+    "geo": {
+      "lat": 50.3388556,
+      "lon": 18.1967509
+    },
+    "capacity": null,
+    "fee": true,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1462122083",
+    "geo": {
+      "lat": 50.3375125,
+      "lon": 18.1967238
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1469926566",
+    "geo": {
+      "lat": 50.3518734,
+      "lon": 18.2506623
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1469950729",
+    "geo": {
+      "lat": 50.349993,
+      "lon": 18.2349002
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1472100739",
+    "geo": {
+      "lat": 50.3362989,
+      "lon": 18.1979092
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1472136104",
+    "geo": {
+      "lat": 50.3428663,
+      "lon": 18.2016476
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1472136107",
+    "geo": {
+      "lat": 50.3431156,
+      "lon": 18.2018106
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1472138295",
+    "geo": {
+      "lat": 50.342166,
+      "lon": 18.1981904
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1472733001",
+    "geo": {
+      "lat": 50.3487337,
+      "lon": 18.2310595
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1473319564",
+    "geo": {
+      "lat": 50.3499473,
+      "lon": 18.1528218
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929088",
+    "geo": {
+      "lat": 50.3438451,
+      "lon": 18.2203423
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929089",
+    "geo": {
+      "lat": 50.3436627,
+      "lon": 18.2199799
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929090",
+    "geo": {
+      "lat": 50.3429775,
+      "lon": 18.2200164
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929091",
+    "geo": {
+      "lat": 50.3431448,
+      "lon": 18.2198085
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929096",
+    "geo": {
+      "lat": 50.3431747,
+      "lon": 18.220424
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929097",
+    "geo": {
+      "lat": 50.34335,
+      "lon": 18.2202092
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929098",
+    "geo": {
+      "lat": 50.3433313,
+      "lon": 18.2208639
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929099",
+    "geo": {
+      "lat": 50.3433965,
+      "lon": 18.2207913
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929101",
+    "geo": {
+      "lat": 50.34356,
+      "lon": 18.2205873
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929103",
+    "geo": {
+      "lat": 50.3437468,
+      "lon": 18.2209977
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1475929105",
+    "geo": {
+      "lat": 50.3435657,
+      "lon": 18.2212191
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1481631157",
+    "geo": {
+      "lat": 50.337769,
+      "lon": 18.2014386
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1481631158",
+    "geo": {
+      "lat": 50.3378124,
+      "lon": 18.2016069
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1481631159",
+    "geo": {
+      "lat": 50.3378798,
+      "lon": 18.201376
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1481631160",
+    "geo": {
+      "lat": 50.3379322,
+      "lon": 18.2015903
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1481631165",
+    "geo": {
+      "lat": 50.3382714,
+      "lon": 18.2014796
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1516213978",
+    "geo": {
+      "lat": 50.3545343,
+      "lon": 18.2541301
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1516217618",
+    "geo": {
+      "lat": 50.3531359,
+      "lon": 18.2364483
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1539811195",
+    "geo": {
+      "lat": 50.3381718,
+      "lon": 18.1031226
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1544909035",
+    "geo": {
+      "lat": 50.3763177,
+      "lon": 18.332908
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/1544914743",
+    "geo": {
+      "lat": 50.3393764,
+      "lon": 18.160515
+    },
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  }
+]

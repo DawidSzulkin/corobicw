@@ -1,0 +1,4046 @@
+[
+  {
+    "id": "kk_kultura_001",
+    "name": "Chemik",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3474181,
+      "lon": 18.2154132
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cinema",
+    "place_id": "kk-chemik",
+    "lat": 50.3442,
+    "lon": 18.2285
+  },
+  {
+    "id": "kk_gastronomia_002",
+    "name": "miKafka",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3428945,
+      "lon": 18.2046644
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "place_id": "kk-mikafka",
+    "lat": 50.3438,
+    "lon": 18.2275
+  },
+  {
+    "id": "kk_gastronomia_003",
+    "name": "Street Bar",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3460641,
+      "lon": 18.217339
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-street-bar",
+    "lat": 50.3441,
+    "lon": 18.226
+  },
+  {
+    "id": "kk_gastronomia_005",
+    "name": "Da Ci Kumo Sushi",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3476214,
+      "lon": 18.2190328
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Su 13:00-24:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-da-ci-kumo-sushi"
+  },
+  {
+    "id": "kk_gastronomia_006",
+    "name": "Gruby Benek",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.349528,
+      "lon": 18.2322799
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-gruby-benek"
+  },
+  {
+    "id": "kk_historia_007",
+    "name": "Ruiny pałacu",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3766848,
+      "lon": 18.3178569
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-ruiny-pałacu"
+  },
+  {
+    "id": "kk_historia_008",
+    "name": "Ruiny śluzy nr 6 dawnego Kanału Kłodnickiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3656624,
+      "lon": 18.27643
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-ruiny-sluzy-nr-6-dawnego-kanału-kłodnickiego"
+  },
+  {
+    "id": "kk_historia_009",
+    "name": "Były obóz koncentracyjny w Sławięcicach",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3595133,
+      "lon": 18.3200575
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-były-oboz-koncentracyjny-w-sławiecicach"
+  },
+  {
+    "id": "kk_gastronomia_010",
+    "name": "Big Boom",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3568831,
+      "lon": 18.2655872
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "place_id": "kk-big-boom"
+  },
+  {
+    "id": "kk_gastronomia_011",
+    "name": "Restauracja - Damian Kania",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3936765,
+      "lon": 18.1756065
+    },
+    "address": {
+      "street": "Góry Świętej Anny",
+      "housenumber": "86",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-restauracja-damian-kania"
+  },
+  {
+    "id": "kk_gastronomia_012",
+    "name": "Restauracja Viktorjan",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3920448,
+      "lon": 18.1746925
+    },
+    "address": {
+      "street": "Góry Świętej Anny",
+      "housenumber": "94",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-restauracja-viktorjan"
+  },
+  {
+    "id": "kk_historia_013",
+    "name": "Pomnik poległych w I wojnie światowej",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3745174,
+      "lon": 18.0838244
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-pomnik-poległych-w-i-wojnie-swiatowej"
+  },
+  {
+    "id": "kk_gastronomia_014",
+    "name": "Karzsma",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3748572,
+      "lon": 18.084288
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "place_id": "kk-karzsma"
+  },
+  {
+    "id": "kk_gastronomia_015",
+    "name": "Hula-Gula",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3173101,
+      "lon": 18.1512234
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Sa 12:00-21:00; Su 12:00-20:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-hula-gula"
+  },
+  {
+    "id": "kk_historia_016",
+    "name": "Mogiła 21 Powstańców",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3781797,
+      "lon": 18.1984926
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-mogiła-21-powstancow"
+  },
+  {
+    "id": "kk_gastronomia_017",
+    "name": "Magdalena Zalewska",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3356527,
+      "lon": 18.1425212
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Tu-Fr 08:00-16:00; Sa 08:00-16:00",
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "place_id": "kk-magdalena-zalewska"
+  },
+  {
+    "id": "kk_gastronomia_018",
+    "name": "Pod Lwami",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3352659,
+      "lon": 18.1430354
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Su 18:00+",
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "place_id": "kk-pod-lwami"
+  },
+  {
+    "id": "kk_historia_019",
+    "name": "Powódź tysiąclecia",
+    "group": "historia",
+    "geo": {
+      "lat": 50.335098,
+      "lon": 18.1435584
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-powodz-tysiaclecia"
+  },
+  {
+    "id": "kk_historia_020",
+    "name": "Henryk Sienkiewicz",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3374638,
+      "lon": 18.1428957
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-henryk-sienkiewicz"
+  },
+  {
+    "id": "kk_gastronomia_021",
+    "name": "GastroFazza",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3344522,
+      "lon": 18.1469083
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-gastrofazza"
+  },
+  {
+    "id": "kk_gastronomia_022",
+    "name": "Garden - Cafe",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.2848183,
+      "lon": 18.2036105
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "place_id": "kk-garden-cafe"
+  },
+  {
+    "id": "kk_historia_023",
+    "name": "Dostrzegalnia pożarowa \"Kędzierzyn\"",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3331251,
+      "lon": 18.3062094
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": null,
+    "place_id": "kk-dostrzegalnia-pozarowa-kedzierzyn"
+  },
+  {
+    "id": "kk_historia_024",
+    "name": "grób nieznanego powstańca 1921",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3782029,
+      "lon": 18.2821292
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-grob-nieznanego-powstanca-1921"
+  },
+  {
+    "id": "kk_historia_025",
+    "name": "Ofiarom II Wojny Światowej",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3476492,
+      "lon": 18.2130019
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "monument",
+    "place_id": "kk-ofiarom-ii-wojny-swiatowej"
+  },
+  {
+    "id": "kk_gastronomia_026",
+    "name": "Lucio's Jack and Restaurant",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.4015068,
+      "lon": 18.1253805
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-lucios-jack-and-restaurant"
+  },
+  {
+    "id": "kk_gastronomia_027",
+    "name": "Spichlerz",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3932133,
+      "lon": 18.1736329
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": "+48 77 416 90 13",
+    "opening_hours": "11:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-spichlerz"
+  },
+  {
+    "id": "kk_gastronomia_028",
+    "name": "Magiczny Zakątek",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3974726,
+      "lon": 18.162694
+    },
+    "address": {
+      "street": "Młyńska",
+      "housenumber": "22",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-magiczny-zakatek"
+  },
+  {
+    "id": "kk_inne_029",
+    "name": "Syfon Kłodnicy",
+    "group": "inne",
+    "geo": {
+      "lat": 50.3573815,
+      "lon": 18.2283803
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "attraction",
+    "place_id": "kk-syfon-kłodnicy"
+  },
+  {
+    "id": "kk_gastronomia_030",
+    "name": "Hotel Hugo",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3749178,
+      "lon": 18.3276963
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "12:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-hotel-hugo",
+    "lat": 50.3795,
+    "lon": 18.309
+  },
+  {
+    "id": "kk_sport_031",
+    "name": "Infiniti",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3516246,
+      "lon": 18.2346434
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": "https://infiniti-fit.pl/",
+    "phone": null,
+    "opening_hours": "Mo-Fr 07:00-22:00; Sa, Su 07:00-20:00",
+    "wheelchair": null,
+    "raw_amenity": "fitness_centre",
+    "place_id": "kk-infiniti"
+  },
+  {
+    "id": "kk_gastronomia_032",
+    "name": "Villa Vanilla",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3780573,
+      "lon": 18.3222874
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "place_id": "kk-villa-vanilla"
+  },
+  {
+    "id": "kk_kultura_033",
+    "name": "Dom Kultury",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3891322,
+      "lon": 18.3489948
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "place_id": "kk-dom-kultury"
+  },
+  {
+    "id": "kk_gastronomia_034",
+    "name": "Trattoria da Stella",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3475998,
+      "lon": 18.21935
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-trattoria-da-stella"
+  },
+  {
+    "id": "kk_gastronomia_035",
+    "name": "Grzesznia",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3476454,
+      "lon": 18.2191268
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "place_id": "kk-grzesznia"
+  },
+  {
+    "id": "kk_historia_036",
+    "name": "Wieża strażnicza i brama wjazdowa do obozu",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3587408,
+      "lon": 18.3187555
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-wieza-straznicza-i-brama-wjazdowa-do-obozu"
+  },
+  {
+    "id": "kk_historia_037",
+    "name": "Pomnik Martyrologii Więźniów",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3584813,
+      "lon": 18.3220655
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "monument",
+    "place_id": "kk-pomnik-martyrologii-wiezniow"
+  },
+  {
+    "id": "kk_gastronomia_038",
+    "name": "Kebab Inn",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3466844,
+      "lon": 18.2189693
+    },
+    "address": {
+      "street": "Wojska Polskiego",
+      "housenumber": "7",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://www.kebabinn.pl/",
+    "phone": "+48 511 582 770",
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-kebab-inn"
+  },
+  {
+    "id": "kk_gastronomia_039",
+    "name": "Sobieski",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3483421,
+      "lon": 18.2173369
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-sobieski"
+  },
+  {
+    "id": "kk_gastronomia_040",
+    "name": "Gospoda Solocha",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.346584,
+      "lon": 18.2178407
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-gospoda-solocha"
+  },
+  {
+    "id": "kk_gastronomia_041",
+    "name": "Restauracja Athena",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3472836,
+      "lon": 18.2155251
+    },
+    "address": {
+      "street": "al. Jana Pawła II",
+      "housenumber": "27",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-athena"
+  },
+  {
+    "id": "kk_gastronomia_042",
+    "name": "Barnatka",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3452913,
+      "lon": 18.208395
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "place_id": "kk-barnatka"
+  },
+  {
+    "id": "kk_gastronomia_043",
+    "name": "Kosmos",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3463652,
+      "lon": 18.2143075
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Su,PH 12:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-kosmos"
+  },
+  {
+    "id": "kk_gastronomia_044",
+    "name": "Bar Górniczy",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.344918,
+      "lon": 18.206811
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-bar-gorniczy"
+  },
+  {
+    "id": "kk_kultura_045",
+    "name": "Spółdzielczy Dom Kultury RSM \"Chemik\"",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3479506,
+      "lon": 18.2226763
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "place_id": "kk-społdzielczy-dom-kultury-rsm-chemik"
+  },
+  {
+    "id": "kk_inne_046",
+    "name": "Belweder",
+    "group": "inne",
+    "geo": {
+      "lat": 50.3794277,
+      "lon": 18.3095666
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "attraction",
+    "place_id": "kk-belweder"
+  },
+  {
+    "id": "kk_sport_047",
+    "name": "Strzelnica",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3534835,
+      "lon": 18.2658721
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "place_id": "kk-strzelnica"
+  },
+  {
+    "id": "kk_historia_048",
+    "name": "Pomnik pomordowanych na terenie zakładu w latach 1939-1945",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3544418,
+      "lon": 18.2660736
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-pomnik-pomordowanych-na-terenie-zakładu-w-lat"
+  },
+  {
+    "id": "kk_gastronomia_049",
+    "name": "Cisowianka",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3814799,
+      "lon": 18.2438511
+    },
+    "address": {
+      "street": "Aleksandra Fredry",
+      "housenumber": "18",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-cisowianka"
+  },
+  {
+    "id": "kk_kultura_050",
+    "name": "Klub Wiejski",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3988477,
+      "lon": 18.2110249
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "place_id": "kk-klub-wiejski"
+  },
+  {
+    "id": "kk_gastronomia_051",
+    "name": "Piekiełko",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3573679,
+      "lon": 18.2076485
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "place_id": "kk-piekiełko"
+  },
+  {
+    "id": "kk_historia_052",
+    "name": "Pamięci więźniów hitlerowskich obozów pracy",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3184642,
+      "lon": 18.2449878
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-pamieci-wiezniow-hitlerowskich-obozow-pracy"
+  },
+  {
+    "id": "kk_historia_053",
+    "name": "Papież Jan Paweł II",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3465112,
+      "lon": 18.2131884
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-papiez-jan-paweł-ii"
+  },
+  {
+    "id": "kk_kultura_054",
+    "name": "Helios",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.342095,
+      "lon": 18.1917911
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cinema",
+    "place_id": "kk-helios"
+  },
+  {
+    "id": "kk_historia_055",
+    "name": "Pomnik Powstańców Śląskich poległych w bitwie o Kędzierzyn",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3563007,
+      "lon": 18.198046
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-pomnik-powstancow-slaskich-poległych-w-bitwie"
+  },
+  {
+    "id": "kk_historia_056",
+    "name": "Marszałek Józef Piłsudski",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3364666,
+      "lon": 18.1423254
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-marszałek-jozef-piłsudski"
+  },
+  {
+    "id": "kk_historia_057",
+    "name": "Pomnik Powodzian",
+    "group": "historia",
+    "geo": {
+      "lat": 50.338391,
+      "lon": 18.1440566
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-pomnik-powodzian"
+  },
+  {
+    "id": "kk_historia_058",
+    "name": "Upamiętniający przybycie do Koźla pierwszej grupy organizatorów administracji państwowej w powiecie kozielskim",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3330918,
+      "lon": 18.1537038
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-upamietniajacy-przybycie-do-kozla-pierwszej-g"
+  },
+  {
+    "id": "kk_gastronomia_059",
+    "name": "U Freda",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3548592,
+      "lon": 18.1648817
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-u-freda"
+  },
+  {
+    "id": "kk_gastronomia_060",
+    "name": "Krukafe",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3328969,
+      "lon": 18.1460698
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": "+48 530 396 133",
+    "opening_hours": "Mo-Th 10:00-21:00; Fr,Sa 10:00-22:00; Su 11:00-21:00",
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "place_id": "kk-krukafe"
+  },
+  {
+    "id": "kk_historia_061",
+    "name": "Nad wodą;Kaczki",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3152977,
+      "lon": 18.1417363
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-nad-wodakaczki"
+  },
+  {
+    "id": "kk_historia_062",
+    "name": "Budynek kapitanatu",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3530215,
+      "lon": 18.1539919
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-budynek-kapitanatu"
+  },
+  {
+    "id": "kk_inne_063",
+    "name": "Tężnia solankowa",
+    "group": "inne",
+    "geo": {
+      "lat": 50.3364386,
+      "lon": 18.1362515
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "attraction",
+    "place_id": "kk-teznia-solankowa"
+  },
+  {
+    "id": "kk_historia_064",
+    "name": "Dom ogrodnika",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3779218,
+      "lon": 18.3117989
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-dom-ogrodnika"
+  },
+  {
+    "id": "kk_historia_065",
+    "name": "Mauzoleum",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3780711,
+      "lon": 18.3087465
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-mauzoleum"
+  },
+  {
+    "id": "kk_gastronomia_066",
+    "name": "Pancia Piena Pizza & Pasta",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3454531,
+      "lon": 18.2214414
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-pancia-piena-pizza-pasta"
+  },
+  {
+    "id": "kk_gastronomia_067",
+    "name": "Aroma Vero",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3462962,
+      "lon": 18.2184584
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-aroma-vero"
+  },
+  {
+    "id": "kk_gastronomia_068",
+    "name": "Kebabian",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3455596,
+      "lon": 18.2203189
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-kebabian"
+  },
+  {
+    "id": "kk_gastronomia_069",
+    "name": "Chicken of the City",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3415766,
+      "lon": 18.1932466
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "20",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://chickenofthecity.pl/",
+    "phone": "+48 513 732 111",
+    "opening_hours": "Mo-Sa 11:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-chicken-of-the-city"
+  },
+  {
+    "id": "kk_gastronomia_070",
+    "name": "Blood Burger",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3388019,
+      "lon": 18.1880656
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-blood-burger"
+  },
+  {
+    "id": "kk_gastronomia_071",
+    "name": "Kurcze Pieczone",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3401097,
+      "lon": 18.1910415
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-kurcze-pieczone"
+  },
+  {
+    "id": "kk_gastronomia_072",
+    "name": "Kebab Inn",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3327547,
+      "lon": 18.1465655
+    },
+    "address": {
+      "street": "Marii Skłodowskiej-Curie",
+      "housenumber": "4A",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://www.kebabinn.pl/",
+    "phone": "+48 452 966 579",
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-kebab-inn-2"
+  },
+  {
+    "id": "kk_gastronomia_073",
+    "name": "Big Kebab's",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3323512,
+      "lon": 18.1471903
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-big-kebabs"
+  },
+  {
+    "id": "kk_gastronomia_074",
+    "name": "SushiTU Kędzierzyn-Koźle",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.332796,
+      "lon": 18.1454358
+    },
+    "address": {
+      "street": "Henryka Sienkiewicza",
+      "housenumber": "6",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://sushitu.pl/",
+    "phone": "+48 533 113 902",
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-sushitu-kedzierzyn-kozle"
+  },
+  {
+    "id": "kk_historia_075",
+    "name": "Tablica upamiętniająca walkę o Kędzierzyn",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3442529,
+      "lon": 18.2061164
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-tablica-upamietniajaca-walke-o-kedzierzyn"
+  },
+  {
+    "id": "kk_gastronomia_076",
+    "name": "No. 9 Cafe Bar",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3884931,
+      "lon": 18.3491072
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "place_id": "kk-no-9-cafe-bar"
+  },
+  {
+    "id": "kk_gastronomia_077",
+    "name": "Raju Kebab",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3339492,
+      "lon": 18.1456186
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-raju-kebab"
+  },
+  {
+    "id": "kk_gastronomia_078",
+    "name": "Zapiekana",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3325175,
+      "lon": 18.1475747
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-zapiekana"
+  },
+  {
+    "id": "kk_gastronomia_079",
+    "name": "Bistro Czarno na Białym",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3341363,
+      "lon": 18.1469163
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-bistro-czarno-na-białym"
+  },
+  {
+    "id": "kk_historia_080",
+    "name": "II WŚ",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3925879,
+      "lon": 18.3506408
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-ii-ws"
+  },
+  {
+    "id": "kk_historia_081",
+    "name": "Pomnik pamięci Księdza Karola Bujary",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3863707,
+      "lon": 18.1405837
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-pomnik-pamieci-ksiedza-karola-bujary"
+  },
+  {
+    "id": "kk_historia_082",
+    "name": "800 lecie wsi Januszkowice",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3922978,
+      "lon": 18.135891
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-800-lecie-wsi-januszkowice"
+  },
+  {
+    "id": "kk_gastronomia_083",
+    "name": "Lazzaro",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3432606,
+      "lon": 18.2101794
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-lazzaro"
+  },
+  {
+    "id": "kk_historia_084",
+    "name": "Mirosław Szubiński",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3071074,
+      "lon": 18.3398902
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-mirosław-szubinski"
+  },
+  {
+    "id": "kk_gastronomia_085",
+    "name": "Ada",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3355589,
+      "lon": 18.1020695
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://hotelada.pl/#gastronomia",
+    "phone": "+48 77 4722 121",
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-ada"
+  },
+  {
+    "id": "kk_gastronomia_086",
+    "name": "Kebab u Pajdy",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3388416,
+      "lon": 18.1898045
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "81",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-kebab-u-pajdy"
+  },
+  {
+    "id": "kk_gastronomia_087",
+    "name": "Klub Kameleon",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3442508,
+      "lon": 18.2060774
+    },
+    "address": {
+      "street": "Dworcowa",
+      "housenumber": "1a",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "place_id": "kk-klub-kameleon",
+    "lat": 50.345,
+    "lon": 18.229
+  },
+  {
+    "id": "kk_historia_088",
+    "name": "Einmannbunker",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3176396,
+      "lon": 18.2746723
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bunker",
+    "place_id": "kk-einmannbunker"
+  },
+  {
+    "id": "kk_gastronomia_089",
+    "name": "Mimi Kebab",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.343083,
+      "lon": 18.2043095
+    },
+    "address": {
+      "street": "Mikołaja Reja",
+      "housenumber": "2",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-mimi-kebab"
+  },
+  {
+    "id": "kk_gastronomia_090",
+    "name": "Casa di Romano",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3459645,
+      "lon": 18.2234248
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-casa-di-romano"
+  },
+  {
+    "id": "kk_historia_091",
+    "name": "Kadetom Uczestnikom III Powstania Śląskiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3391172,
+      "lon": 18.1389109
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-kadetom-uczestnikom-iii-powstania-slaskiego"
+  },
+  {
+    "id": "kk_gastronomia_092",
+    "name": "Laguna",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3450675,
+      "lon": 18.209287
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-laguna"
+  },
+  {
+    "id": "kk_gastronomia_093",
+    "name": "Sopelek",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3474861,
+      "lon": 18.2186743
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ice_cream",
+    "place_id": "kk-sopelek"
+  },
+  {
+    "id": "kk_gastronomia_094",
+    "name": "Śląski Kredens",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3516851,
+      "lon": 18.2348867
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-slaski-kredens"
+  },
+  {
+    "id": "kk_gastronomia_095",
+    "name": "Mała Czarna",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3518212,
+      "lon": 18.2358164
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "place_id": "kk-mała-czarna"
+  },
+  {
+    "id": "kk_gastronomia_096",
+    "name": "Naleśnikarnia Słodko & Słono",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3449097,
+      "lon": 18.2098835
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-nalesnikarnia-słodko-słono"
+  },
+  {
+    "id": "kk_gastronomia_097",
+    "name": "Affogato",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3443804,
+      "lon": 18.208727
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "place_id": "kk-affogato"
+  },
+  {
+    "id": "kk_kultura_098",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 8",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3747424,
+      "lon": 18.3299899
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-8"
+  },
+  {
+    "id": "kk_gastronomia_099",
+    "name": "Hot Baby",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3452445,
+      "lon": 18.2098796
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-hot-baby"
+  },
+  {
+    "id": "kk_kultura_100",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 5",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3446353,
+      "lon": 18.2144928
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-5"
+  },
+  {
+    "id": "kk_kultura_101",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 1",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3374397,
+      "lon": 18.1952038
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-1"
+  },
+  {
+    "id": "kk_kultura_102",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 4",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3547565,
+      "lon": 18.2609033
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-4"
+  },
+  {
+    "id": "kk_kultura_103",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 10",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3475381,
+      "lon": 18.1702628
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-10"
+  },
+  {
+    "id": "kk_gastronomia_104",
+    "name": "Phoenix",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3459415,
+      "lon": 18.2198677
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-phoenix"
+  },
+  {
+    "id": "kk_sport_105",
+    "name": "U Ani Aktywnie",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3517914,
+      "lon": 18.2357154
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fitness_centre",
+    "place_id": "kk-u-ani-aktywnie"
+  },
+  {
+    "id": "kk_gastronomia_106",
+    "name": "Telepizzeria Lupo",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3520345,
+      "lon": 18.2339643
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-telepizzeria-lupo"
+  },
+  {
+    "id": "kk_gastronomia_107",
+    "name": "Biesiada",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.34798,
+      "lon": 18.1693395
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "place_id": "kk-biesiada"
+  },
+  {
+    "id": "kk_gastronomia_108",
+    "name": "Koło Ognia",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3451452,
+      "lon": 18.206483
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-koło-ognia"
+  },
+  {
+    "id": "kk_gastronomia_109",
+    "name": "Reduta",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3391557,
+      "lon": 18.2033887
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "place_id": "kk-reduta"
+  },
+  {
+    "id": "kk_gastronomia_110",
+    "name": "Pod Arkadami",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3336401,
+      "lon": 18.1449369
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-pod-arkadami"
+  },
+  {
+    "id": "kk_gastronomia_111",
+    "name": "Forno d'Oro",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3391152,
+      "lon": 18.1977563
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-forno-doro"
+  },
+  {
+    "id": "kk_historia_112",
+    "name": "Pomnik poległych w I i II wojnie światowej",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3864242,
+      "lon": 18.1793093
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-pomnik-poległych-w-i-i-ii-wojnie-swiatowej"
+  },
+  {
+    "id": "kk_historia_113",
+    "name": "Dobry Pasterz",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3382416,
+      "lon": 18.1029009
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-dobry-pasterz"
+  },
+  {
+    "id": "kk_historia_114",
+    "name": "Dostrzegalnia pożarowa \"Stara Kuźnia\"",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3043066,
+      "lon": 18.3398841
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": null,
+    "place_id": "kk-dostrzegalnia-pozarowa-stara-kuznia"
+  },
+  {
+    "id": "kk_natura_115",
+    "name": "Park Orderu Uśmiechu",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3462844,
+      "lon": 18.2251255
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "place_id": "kk-park-orderu-usmiechu",
+    "lat": 50.3475,
+    "lon": 18.231
+  },
+  {
+    "id": "kk_gastronomia_116",
+    "name": "McDonald's",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3425663,
+      "lon": 18.1924978
+    },
+    "address": {
+      "street": "Aleja Armii Krajowej",
+      "housenumber": "42",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mcdonalds.pl/restauracje/opolskie/kedzierzyn-kozle/kedzierzyn-kozle-ul-armii-krajowej-42",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-mcdonalds"
+  },
+  {
+    "id": "kk_sport_117",
+    "name": "Stadion Miejski Kuźniczka",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3516542,
+      "lon": 18.2060336
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "place_id": "kk-stadion-miejski-kuzniczka"
+  },
+  {
+    "id": "kk_gastronomia_118",
+    "name": "Ogrodowa",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3331831,
+      "lon": 18.1933047
+    },
+    "address": {
+      "street": "Gliwicka",
+      "housenumber": "24",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-ogrodowa"
+  },
+  {
+    "id": "kk_natura_119",
+    "name": "Park Pojednania",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3470799,
+      "lon": 18.2128814
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "place_id": "kk-park-pojednania"
+  },
+  {
+    "id": "kk_sport_120",
+    "name": "Kryta Pływalnia",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3488161,
+      "lon": 18.2203212
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": "31",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "place_id": "kk-kryta-pływalnia"
+  },
+  {
+    "id": "kk_sport_121",
+    "name": "LKS Korzonek",
+    "group": "sport",
+    "geo": {
+      "lat": 50.284414,
+      "lon": 18.2812663
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "place_id": "kk-lks-korzonek"
+  },
+  {
+    "id": "kk_sport_122",
+    "name": "LKS Śląsk Reńska Wieś",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3096142,
+      "lon": 18.1245356
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "place_id": "kk-lks-slask-renska-wies"
+  },
+  {
+    "id": "kk_historia_123",
+    "name": "Dawna strzelnica (ruiny)",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3306834,
+      "lon": 18.2285352
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-dawna-strzelnica-ruiny"
+  },
+  {
+    "id": "kk_historia_124",
+    "name": "Ruiny śluzy Kanału Kłodnickiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3497482,
+      "lon": 18.1689442
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-ruiny-sluzy-kanału-kłodnickiego"
+  },
+  {
+    "id": "kk_historia_125",
+    "name": "Ruiny śluzy nr 5 dawnego Kanału Kłodnickiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3571938,
+      "lon": 18.2444927
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-ruiny-sluzy-nr-5-dawnego-kanału-kłodnickiego"
+  },
+  {
+    "id": "kk_historia_126",
+    "name": "Ruiny strzelnicy",
+    "group": "historia",
+    "geo": {
+      "lat": 50.375656,
+      "lon": 18.3195999
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-ruiny-strzelnicy"
+  },
+  {
+    "id": "kk_historia_127",
+    "name": "Śluza nr 6 Kanału Kłodnickiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3656836,
+      "lon": 18.2766753
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-sluza-nr-6-kanału-kłodnickiego"
+  },
+  {
+    "id": "kk_sport_128",
+    "name": "KS Sławęcice",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3751415,
+      "lon": 18.3144474
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "place_id": "kk-ks-sławecice"
+  },
+  {
+    "id": "kk_gastronomia_129",
+    "name": "Restauracja Pałac Większyce",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3379138,
+      "lon": 18.1048768
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "15",
+      "city": "Większyce"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-restauracja-pałac-wiekszyce"
+  },
+  {
+    "id": "kk_sport_130",
+    "name": "boisko Orlik",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3300385,
+      "lon": 18.1444745
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "place_id": "kk-boisko-orlik"
+  },
+  {
+    "id": "kk_kultura_131",
+    "name": "Dom Kultury Koźle",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3304626,
+      "lon": 18.1452649
+    },
+    "address": {
+      "street": "Skarbowa",
+      "housenumber": "10",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "place_id": "kk-dom-kultury-kozle"
+  },
+  {
+    "id": "kk_natura_132",
+    "name": "Planty Kozielskie",
+    "group": "natura",
+    "geo": {
+      "lat": 50.333029,
+      "lon": 18.1420884
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "place_id": "kk-planty-kozielskie"
+  },
+  {
+    "id": "kk_historia_133",
+    "name": "Zabytkowa wieża ciśnień",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3373938,
+      "lon": 18.1378422
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": null,
+    "place_id": "kk-zabytkowa-wieza-cisnien"
+  },
+  {
+    "id": "kk_gastronomia_134",
+    "name": "Italia",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3385784,
+      "lon": 18.1387681
+    },
+    "address": {
+      "street": "Piastowska",
+      "housenumber": "39",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-italia"
+  },
+  {
+    "id": "kk_natura_135",
+    "name": "Plac Rady Europy",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3367344,
+      "lon": 18.1426347
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "place_id": "kk-plac-rady-europy"
+  },
+  {
+    "id": "kk_gastronomia_136",
+    "name": "Pizza z Pasją",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3345217,
+      "lon": 18.1460811
+    },
+    "address": {
+      "street": "Grzegorza Piramowicza",
+      "housenumber": "11",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-pizza-z-pasja"
+  },
+  {
+    "id": "kk_historia_137",
+    "name": "Bojowników o Wyzwolenie Śląska",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3354698,
+      "lon": 18.1491868
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "monument",
+    "place_id": "kk-bojownikow-o-wyzwolenie-slaska"
+  },
+  {
+    "id": "kk_sport_138",
+    "name": "Stare Boisko",
+    "group": "sport",
+    "geo": {
+      "lat": 50.394465,
+      "lon": 18.2143462
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "place_id": "kk-stare-boisko"
+  },
+  {
+    "id": "kk_sport_139",
+    "name": "Zarośnięte Boisko",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3160151,
+      "lon": 18.2403662
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "place_id": "kk-zarosniete-boisko"
+  },
+  {
+    "id": "kk_sport_140",
+    "name": "Duży",
+    "group": "sport",
+    "geo": {
+      "lat": 50.316583,
+      "lon": 18.2434226
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "swimming_pool",
+    "place_id": "kk-duzy"
+  },
+  {
+    "id": "kk_sport_141",
+    "name": "Brodzik",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3167292,
+      "lon": 18.2436965
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "swimming_pool",
+    "place_id": "kk-brodzik"
+  },
+  {
+    "id": "kk_sport_142",
+    "name": "Hala Sportowa",
+    "group": "sport",
+    "geo": {
+      "lat": 50.2798121,
+      "lon": 18.2043643
+    },
+    "address": {
+      "street": "Władysława Planetorza",
+      "housenumber": "23",
+      "city": "Cisek"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "place_id": "kk-hala-sportowa",
+    "lat": 50.329,
+    "lon": 18.267
+  },
+  {
+    "id": "kk_gastronomia_143",
+    "name": "Pod Akacjami",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3363734,
+      "lon": 18.1956019
+    },
+    "address": {
+      "street": "Piotra Skargi",
+      "housenumber": "45a",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://restauracjapodakacjami.pl/",
+    "phone": "+48774849138",
+    "opening_hours": "Tu-Su 12:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "place_id": "kk-pod-akacjami"
+  },
+  {
+    "id": "kk_gastronomia_144",
+    "name": "Grota",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3354596,
+      "lon": 18.1915182
+    },
+    "address": {
+      "street": "Elizy Orzeszkowej",
+      "housenumber": "12",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "place_id": "kk-grota"
+  },
+  {
+    "id": "kk_gastronomia_145",
+    "name": "Kebab Inn",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.341745,
+      "lon": 18.1995166
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-kebab-inn-3"
+  },
+  {
+    "id": "kk_historia_146",
+    "name": "Powstańców Śląskich",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3368113,
+      "lon": 18.1971581
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "place_id": "kk-powstancow-slaskich"
+  },
+  {
+    "id": "kk_natura_147",
+    "name": "Kaczy Dół",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3480614,
+      "lon": 18.2593028
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "place_id": "kk-kaczy-doł"
+  },
+  {
+    "id": "kk_natura_148",
+    "name": "Oczko za składnicą",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3504837,
+      "lon": 18.3122113
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "place_id": "kk-oczko-za-składnica"
+  },
+  {
+    "id": "kk_natura_149",
+    "name": "Ostojnik",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3635889,
+      "lon": 18.3060801
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "place_id": "kk-ostojnik"
+  },
+  {
+    "id": "kk_natura_150",
+    "name": "Żabi Dół",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3305678,
+      "lon": 18.2402943
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "place_id": "kk-zabi-doł"
+  },
+  {
+    "id": "kk_gastronomia_151",
+    "name": "Tibo",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.2819797,
+      "lon": 18.1487618
+    },
+    "address": {
+      "street": "Główna",
+      "housenumber": "27a",
+      "city": "Długomiłowice"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "http://www.tibo.of.pl/",
+    "phone": "+48 77 4829122",
+    "opening_hours": null,
+    "wheelchair": "limited",
+    "raw_amenity": "restaurant",
+    "place_id": "kk-tibo"
+  },
+  {
+    "id": "kk_gastronomia_152",
+    "name": "Beczka",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3411236,
+      "lon": 18.2048792
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "place_id": "kk-beczka"
+  },
+  {
+    "id": "kk_kultura_153",
+    "name": "Dom Kultury Bierawa",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.2798995,
+      "lon": 18.2409947
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "place_id": "kk-dom-kultury-bierawa"
+  },
+  {
+    "id": "kk_historia_154",
+    "name": "Zamek biskupów wrocławskich",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3909859,
+      "lon": 18.3491744
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "castle",
+    "place_id": "kk-zamek-biskupow-wrocławskich"
+  },
+  {
+    "id": "kk_natura_155",
+    "name": "Park im. Lotników 15 Armii Powietrznej Stanów Zjednoczonych",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3543395,
+      "lon": 18.2595267
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "place_id": "kk-park-im-lotnikow-15-armii-powietrznej-stanow"
+  },
+  {
+    "id": "kk_kultura_156",
+    "name": "Dom Kultury \"Lech\"",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3547069,
+      "lon": 18.2610415
+    },
+    "address": {
+      "street": "Wyzwolenia",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "place_id": "kk-dom-kultury-lech"
+  },
+  {
+    "id": "kk_kultura_157",
+    "name": "Dom Działkowca \"Zacisze\"",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3541228,
+      "lon": 18.250173
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "place_id": "kk-dom-działkowca-zacisze"
+  },
+  {
+    "id": "kk_historia_158",
+    "name": "Basen w Kłodnicy",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3576223,
+      "lon": 18.1692861
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-basen-w-kłodnicy"
+  },
+  {
+    "id": "kk_historia_159",
+    "name": "Brodzik basenu",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3575583,
+      "lon": 18.1697058
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-brodzik-basenu"
+  },
+  {
+    "id": "kk_historia_160",
+    "name": "Pałac w Sławięcicach",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3763668,
+      "lon": 18.3183388
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-pałac-w-sławiecicach"
+  },
+  {
+    "id": "kk_kultura_161",
+    "name": "Kozielska Muszla Koncertowa",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3346023,
+      "lon": 18.1506293
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "theatre",
+    "place_id": "kk-kozielska-muszla-koncertowa"
+  },
+  {
+    "id": "kk_kultura_162",
+    "name": "Muzeum Bitwy o Benzynę - Strefa Historii i Inspiracji",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3533327,
+      "lon": 18.2619323
+    },
+    "address": {
+      "street": "Zwycięstwa",
+      "housenumber": "3",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "museum",
+    "place_id": "kk-muzeum-bitwy-o-benzyne-strefa-historii-i-insp"
+  },
+  {
+    "id": "kk_gastronomia_163",
+    "name": "Bar STOP",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.2850086,
+      "lon": 18.289285
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "place_id": "kk-bar-stop"
+  },
+  {
+    "id": "kk_kultura_164",
+    "name": "Klub Wiejski w Raszowej",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3872389,
+      "lon": 18.1756408
+    },
+    "address": {
+      "street": "Góry Świętej Anny",
+      "housenumber": "127",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "place_id": "kk-klub-wiejski-w-raszowej"
+  },
+  {
+    "id": "kk_historia_165",
+    "name": "Parowóz Ty2-2118",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3437529,
+      "lon": 18.2069296
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "monument",
+    "place_id": "kk-parowoz-ty2-2118"
+  },
+  {
+    "id": "kk_natura_166",
+    "name": "skwer Kolejarzy",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3437244,
+      "lon": 18.2069922
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "place_id": "kk-skwer-kolejarzy"
+  },
+  {
+    "id": "kk_sport_167",
+    "name": "Wodne Okko Basen Kryty",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3168092,
+      "lon": 18.2441691
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "swimming_pool",
+    "place_id": "kk-wodne-okko-basen-kryty"
+  },
+  {
+    "id": "kk_inne_168",
+    "name": "Tężnia solankowa",
+    "group": "inne",
+    "geo": {
+      "lat": 50.3454179,
+      "lon": 18.2338765
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "attraction",
+    "place_id": "kk-teznia-solankowa-2"
+  },
+  {
+    "id": "kk_gastronomia_169",
+    "name": "KFC",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3431233,
+      "lon": 18.2029778
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "6A",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": "+48 571 420 821",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-kfc"
+  },
+  {
+    "id": "kk_kultura_170",
+    "name": "Muzeum Ziemi Kozielskiej",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3346449,
+      "lon": 18.1423786
+    },
+    "address": {
+      "street": "Józefa Ignacego Kraszewskiego",
+      "housenumber": "5b",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Tu-Fr 09:00-13:00; Sa-Su 13:00-17:00",
+    "wheelchair": null,
+    "raw_amenity": "museum",
+    "place_id": "kk-muzeum-ziemi-kozielskiej"
+  },
+  {
+    "id": "kk_historia_171",
+    "name": "Zamek Piastów Kozielskich",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3345937,
+      "lon": 18.1422204
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "castle",
+    "place_id": "kk-zamek-piastow-kozielskich"
+  },
+  {
+    "id": "kk_gastronomia_172",
+    "name": "McDonald's",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3240155,
+      "lon": 18.1423055
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "33",
+      "city": "Reńska Wieś"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mcdonalds.pl/restauracje/opolskie/renska-wies/renska-wies-ul-kozielska-33",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "place_id": "kk-mcdonalds-2"
+  },
+  {
+    "id": "kk_natura_173",
+    "name": "Leśny ośrodek edukacyjny Stampnica",
+    "group": "natura",
+    "geo": {
+      "lat": 50.2910134,
+      "lon": 18.3164796
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "place_id": "kk-lesny-osrodek-edukacyjny-stampnica"
+  },
+  {
+    "id": "kk_natura_174",
+    "name": "Park Kieszonkowy",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3378308,
+      "lon": 18.1960255
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "place_id": "kk-park-kieszonkowy"
+  },
+  {
+    "id": "kk_historia_175",
+    "name": "manmade",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3561595,
+      "lon": 18.3335583
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "place_id": "kk-manmade"
+  },
+  {
+    "id": "kk_sport_176",
+    "name": "Tenis Club",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3486853,
+      "lon": 18.2375323
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "place_id": "kk-tenis-club"
+  },
+  {
+    "id": "kk_sport_177",
+    "name": "Pełnowymiarowe boisko piłkarskie",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3577539,
+      "lon": 18.2666656
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "place_id": "kk-pełnowymiarowe-boisko-piłkarskie"
+  },
+  {
+    "id": "kk_natura_178",
+    "name": "Gacek",
+    "group": "natura",
+    "geo": {
+      "lat": 50.31878,
+      "lon": 18.2162048
+    },
+    "address": {
+      "street": null,
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "place_id": "kk-gacek"
+  },
+  {
+    "id": "kk_historia_179",
+    "name": "Fort Rondel",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3434594,
+      "lon": 18.1564963
+    },
+    "address": {
+      "street": "Portowa",
+      "housenumber": "26",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": true,
+    "website": "https://zabytek.pl/pl/obiekty/kedzierzyn-kozle-fort-fryderyka-wilhelma-(fort-rondel-baszta-mo",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "castle",
+    "place_id": "kk-fort-rondel"
+  },
+  {
+    "place_id": "kk-mbp-rynek",
+    "name": "Miejska Biblioteka Publiczna - Oddzia? dla Dzieci",
+    "category": "Kultura",
+    "street": "Rynek",
+    "housenumber": "3",
+    "wheelchair": "yes",
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "P?atny w dni robocze",
+          "distance_m": 30,
+          "street": "Rynek"
+        }
+      ]
+    },
+    "lat": 50.334,
+    "lon": 18.1435
+  },
+  {
+    "place_id": "kk-mbp-glowna",
+    "name": "Miejska Biblioteka Publiczna (G??wna)",
+    "category": "Kultura",
+    "street": "Jana Paw?a II",
+    "housenumber": "27",
+    "wheelchair": "yes",
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Bezp?atny",
+          "distance_m": 50,
+          "street": "Jana Paw?a II"
+        }
+      ]
+    },
+    "lat": 50.3445,
+    "lon": 18.228
+  },
+  {
+    "place_id": "kk-park-slawiecice",
+    "name": "Park w S?awi?cicach",
+    "category": "Parki i Rekreacja",
+    "street": "S?awi?cicka",
+    "housenumber": "",
+    "wheelchair": "limited",
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Bezp?atny",
+          "distance_m": 80,
+          "street": "S?awi?cicka"
+        }
+      ]
+    },
+    "lat": 50.378,
+    "lon": 18.315
+  },
+  {
+    "place_id": "kk-hala-srodmiescie",
+    "name": "Hala Sportowa ?r?dmie?cie",
+    "category": "Sport",
+    "street": "al. Jana Paw?a II",
+    "housenumber": "29",
+    "wheelchair": "yes",
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Bezp?atny",
+          "distance_m": 40,
+          "street": "al. Jana Paw?a II"
+        }
+      ]
+    },
+    "lat": 50.344,
+    "lon": 18.225
+  },
+  {
+    "place_id": "kk-zamek-piastowski",
+    "name": "Zamek Piastowski - Muzeum Ziemi Kozielskiej",
+    "category": "Kultura",
+    "street": "Kraszewskiego",
+    "housenumber": "1",
+    "wheelchair": "yes",
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Bezp?atny",
+          "distance_m": 50,
+          "street": "Kraszewskiego"
+        }
+      ]
+    },
+    "lat": 50.3348,
+    "lon": 18.142
+  },
+  {
+    "place_id": "kk-dworzec-pkp",
+    "name": "Przystanek MZK / Dworzec Kolejowy",
+    "category": "Transport",
+    "street": "Dworcowa",
+    "housenumber": "1",
+    "wheelchair": "yes",
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "P?atny",
+          "distance_m": 30,
+          "street": "Dworcowa"
+        }
+      ]
+    },
+    "lat": 50.353,
+    "lon": 18.217
+  }
+]

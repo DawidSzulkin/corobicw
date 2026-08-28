@@ -1,0 +1,2494 @@
+[
+  {
+    "id": "poi_n_909217368",
+    "name": "Chemik",
+    "coordinates": {
+      "lat": 50.347418,
+      "lon": 18.215413
+    },
+    "cluster": "rozrywka_kultura",
+    "sub_category": "kino",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 909217368,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_1920887311",
+    "name": "Ruiny pałacu",
+    "coordinates": {
+      "lat": 50.376685,
+      "lon": 18.317857
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 1920887311,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_1921441857",
+    "name": "Ruiny śluzy nr 6 dawnego Kanału Kłodnickiego",
+    "coordinates": {
+      "lat": 50.365662,
+      "lon": 18.27643
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 1921441857,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_1979987964",
+    "name": "Były obóz koncentracyjny w Sławięcicach",
+    "coordinates": {
+      "lat": 50.359513,
+      "lon": 18.320058
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 1979987964,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_2932932478",
+    "name": "Powódź tysiąclecia",
+    "coordinates": {
+      "lat": 50.335098,
+      "lon": 18.143558
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 2932932478,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_2935500306",
+    "name": "Henryk Sienkiewicz",
+    "coordinates": {
+      "lat": 50.337464,
+      "lon": 18.142896
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 2935500306,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_3215455482",
+    "name": "Gril u Irrasa",
+    "coordinates": {
+      "lat": 50.319195,
+      "lon": 18.239856
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 3215455482,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_3383249243",
+    "name": "grób nieznanego powstańca 1921",
+    "coordinates": {
+      "lat": 50.378203,
+      "lon": 18.282129
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 3383249243,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_4328212100",
+    "name": "Ofiarom II Wojny Światowej",
+    "coordinates": {
+      "lat": 50.347649,
+      "lon": 18.213002
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 4328212100,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_4486422989",
+    "name": "Syfon Kłodnicy",
+    "coordinates": {
+      "lat": 50.357382,
+      "lon": 18.22838
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "inzynieria_wodna",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 4486422989,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_4948549090",
+    "name": "Osiedle Zachód",
+    "coordinates": {
+      "lat": 50.341801,
+      "lon": 18.13627
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 4948549090,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_4948549094",
+    "name": "Hala Sportowa Śródmieście",
+    "coordinates": {
+      "lat": 50.347972,
+      "lon": 18.216936
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 4948549094,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_4948549095",
+    "name": "Bolesława Krzywoustego",
+    "coordinates": {
+      "lat": 50.34792,
+      "lon": 18.233942
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 4948549095,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5225404037",
+    "name": "Wieża strażnicza i brama wjazdowa do obozu",
+    "coordinates": {
+      "lat": 50.358741,
+      "lon": 18.318756
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5225404037,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5225404039",
+    "name": "Pomnik Martyrologii Więźniów",
+    "coordinates": {
+      "lat": 50.358481,
+      "lon": 18.322066
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5225404039,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5368731323",
+    "name": "Belweder",
+    "coordinates": {
+      "lat": 50.379428,
+      "lon": 18.309567
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5368731323,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5655366594",
+    "name": "Osiedle Blachownia",
+    "coordinates": {
+      "lat": 50.354622,
+      "lon": 18.261367
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5655366594,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5655366595",
+    "name": "Hala Sportowa Azoty",
+    "coordinates": {
+      "lat": 50.31647,
+      "lon": 18.245035
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5655366595,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5655366596",
+    "name": "Osiedle Kłodnica",
+    "coordinates": {
+      "lat": 50.348084,
+      "lon": 18.166572
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5655366596,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5655366597",
+    "name": "Plac Raciborski",
+    "coordinates": {
+      "lat": 50.332476,
+      "lon": 18.148223
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5655366597,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5655366598",
+    "name": "Plac Rodła",
+    "coordinates": {
+      "lat": 50.336912,
+      "lon": 18.196986
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5655366598,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5667545737",
+    "name": "Odrzańskie Ogrody",
+    "coordinates": {
+      "lat": 50.342546,
+      "lon": 18.191358
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5667545737,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5667545738",
+    "name": "Kędzierzyn Stacja Kolejowa",
+    "coordinates": {
+      "lat": 50.344127,
+      "lon": 18.20665
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5667545738,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5736946204",
+    "name": "Osiedle Cisowa",
+    "coordinates": {
+      "lat": 50.380421,
+      "lon": 18.246185
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5736946204,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5736946205",
+    "name": "Osiedle Sławięcice",
+    "coordinates": {
+      "lat": 50.371837,
+      "lon": 18.321508
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5736946205,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5736946206",
+    "name": "Mieszka I",
+    "coordinates": {
+      "lat": 50.35154,
+      "lon": 18.233508
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5736946206,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5736946207",
+    "name": "Wojska Polskiego",
+    "coordinates": {
+      "lat": 50.342924,
+      "lon": 18.222896
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5736946207,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5898758414",
+    "name": "Strzelnica",
+    "coordinates": {
+      "lat": 50.353484,
+      "lon": 18.265872
+    },
+    "cluster": "aktywnosc_adrenalina",
+    "sub_category": "strzelectwo_militaria",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5898758414,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_5898761629",
+    "name": "Pomnik pomordowanych na terenie zakładu w latach 1939-1945",
+    "coordinates": {
+      "lat": 50.354442,
+      "lon": 18.266074
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 5898761629,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_7018324587",
+    "name": "Pamięci więźniów hitlerowskich obozów pracy",
+    "coordinates": {
+      "lat": 50.318464,
+      "lon": 18.244988
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 7018324587,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_7020854997",
+    "name": "Papież Jan Paweł II",
+    "coordinates": {
+      "lat": 50.346511,
+      "lon": 18.213188
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 7020854997,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_7020854998",
+    "name": "Helios",
+    "coordinates": {
+      "lat": 50.342095,
+      "lon": 18.191791
+    },
+    "cluster": "rozrywka_kultura",
+    "sub_category": "kino",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 7020854998,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_7020855015",
+    "name": "Pomnik Powstańców Śląskich poległych w bitwie o Kędzierzyn",
+    "coordinates": {
+      "lat": 50.356301,
+      "lon": 18.198046
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 7020855015,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_7020887038",
+    "name": "Marszałek Józef Piłsudski",
+    "coordinates": {
+      "lat": 50.336467,
+      "lon": 18.142325
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 7020887038,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_7020887039",
+    "name": "Pomnik Powodzian",
+    "coordinates": {
+      "lat": 50.338391,
+      "lon": 18.144057
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 7020887039,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_8186418367",
+    "name": "Upamiętniający przybycie do Koźla pierwszej grupy organizatorów administracji państwowej w powiecie kozielskim",
+    "coordinates": {
+      "lat": 50.333092,
+      "lon": 18.153704
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 8186418367,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_9244140472",
+    "name": "Budynek kapitanatu",
+    "coordinates": {
+      "lat": 50.353021,
+      "lon": 18.153992
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 9244140472,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_10161704651",
+    "name": "Tężnia solankowa",
+    "coordinates": {
+      "lat": 50.336439,
+      "lon": 18.136252
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 10161704651,
+      "wikipedia": null,
+      "wikidata": "Q124022301",
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_10180330132",
+    "name": "Dom ogrodnika",
+    "coordinates": {
+      "lat": 50.377922,
+      "lon": 18.311799
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 10180330132,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_10180330133",
+    "name": "Mauzoleum",
+    "coordinates": {
+      "lat": 50.378071,
+      "lon": 18.308747
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 10180330133,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_10926253520",
+    "name": "Pomnik zwycięzców siatkarskiej Ligi Mistrzów 2021",
+    "coordinates": {
+      "lat": 50.34711,
+      "lon": 18.213498
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 10926253520,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_10983543696",
+    "name": "Tablica upamiętniająca walkę o Kędzierzyn",
+    "coordinates": {
+      "lat": 50.344253,
+      "lon": 18.206116
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 10983543696,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_11182018963",
+    "name": "Sala Urodzinowa \"Bailando\"",
+    "coordinates": {
+      "lat": 50.347929,
+      "lon": 18.222504
+    },
+    "cluster": "rodzina_dzieci",
+    "sub_category": "sala_zabaw",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 11182018963,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_11343371999",
+    "name": "Koziołek kolejarz",
+    "coordinates": {
+      "lat": 50.343849,
+      "lon": 18.206764
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 11343371999,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_11343383871",
+    "name": "Postument kinematografii i amatorskiego ruchu filmowego",
+    "coordinates": {
+      "lat": 50.347169,
+      "lon": 18.215221
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 11343383871,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_12804281189",
+    "name": "Einmannbunker",
+    "coordinates": {
+      "lat": 50.31764,
+      "lon": 18.274672
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": false
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 12804281189,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_13276294769",
+    "name": "Kadetom Uczestnikom III Powstania Śląskiego",
+    "coordinates": {
+      "lat": 50.339117,
+      "lon": 18.138911
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 13276294769,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_13340111062",
+    "name": "Arcadia",
+    "coordinates": {
+      "lat": 50.351721,
+      "lon": 18.235071
+    },
+    "cluster": "rodzina_dzieci",
+    "sub_category": "sala_zabaw",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 13340111062,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_n_13816221380",
+    "name": "Dżungla",
+    "coordinates": {
+      "lat": 50.345986,
+      "lon": 18.222649
+    },
+    "cluster": "rodzina_dzieci",
+    "sub_category": "sala_zabaw",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "node",
+      "osm_id": 13816221380,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_135860945",
+    "name": "Park Orderu Uśmiechu",
+    "coordinates": {
+      "lat": 50.346284,
+      "lon": 18.225126
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 135860945,
+      "wikipedia": null,
+      "wikidata": "Q126366020",
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_149869315",
+    "name": "Park Pojednania",
+    "coordinates": {
+      "lat": 50.34708,
+      "lon": 18.212881
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 149869315,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_149869318",
+    "name": "Kryta Pływalnia",
+    "coordinates": {
+      "lat": 50.348816,
+      "lon": 18.220321
+    },
+    "cluster": "woda_rekreacja",
+    "sub_category": "basen_aquapark",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 149869318,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_178070330",
+    "name": "Dawna strzelnica (ruiny)",
+    "coordinates": {
+      "lat": 50.330683,
+      "lon": 18.228535
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 178070330,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_178228832",
+    "name": "Ruiny śluzy Kanału Kłodnickiego",
+    "coordinates": {
+      "lat": 50.349748,
+      "lon": 18.168944
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 178228832,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_181501248",
+    "name": "Ruiny śluzy nr 5 dawnego Kanału Kłodnickiego",
+    "coordinates": {
+      "lat": 50.357194,
+      "lon": 18.244493
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 181501248,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_181673403",
+    "name": "Ruiny strzelnicy",
+    "coordinates": {
+      "lat": 50.375656,
+      "lon": 18.3196
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 181673403,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_181713316",
+    "name": "Śluza nr 6 Kanału Kłodnickiego",
+    "coordinates": {
+      "lat": 50.365684,
+      "lon": 18.276675
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 181713316,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_276338233",
+    "name": "Planty Kozielskie",
+    "coordinates": {
+      "lat": 50.333029,
+      "lon": 18.142088
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 276338233,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_285538617",
+    "name": "Zabytkowa wieża ciśnień",
+    "coordinates": {
+      "lat": 50.337394,
+      "lon": 18.137842
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "inzynieria_wodna",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 285538617,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_289737851",
+    "name": "Plac Rady Europy",
+    "coordinates": {
+      "lat": 50.336734,
+      "lon": 18.142635
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 289737851,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_305286450",
+    "name": "Bojowników o Wyzwolenie Śląska",
+    "coordinates": {
+      "lat": 50.33547,
+      "lon": 18.149187
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 305286450,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_312622404",
+    "name": "Duży",
+    "coordinates": {
+      "lat": 50.316583,
+      "lon": 18.243423
+    },
+    "cluster": "woda_rekreacja",
+    "sub_category": "basen_aquapark",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 312622404,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_312622405",
+    "name": "Brodzik",
+    "coordinates": {
+      "lat": 50.316729,
+      "lon": 18.243696
+    },
+    "cluster": "woda_rekreacja",
+    "sub_category": "basen_aquapark",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 312622405,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_326045030",
+    "name": "Powstańców Śląskich",
+    "coordinates": {
+      "lat": 50.336811,
+      "lon": 18.197158
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 326045030,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_423722163",
+    "name": "Kaczy Dół",
+    "coordinates": {
+      "lat": 50.348061,
+      "lon": 18.259303
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 423722163,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_423722455",
+    "name": "Oczko za składnicą",
+    "coordinates": {
+      "lat": 50.350484,
+      "lon": 18.312211
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 423722455,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_423722478",
+    "name": "Ostojnik",
+    "coordinates": {
+      "lat": 50.363589,
+      "lon": 18.30608
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 423722478,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_423724011",
+    "name": "Żabi Dół",
+    "coordinates": {
+      "lat": 50.330568,
+      "lon": 18.240294
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 423724011,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_539634882",
+    "name": "Park im. Lotników 15 Armii Powietrznej Stanów Zjednoczonych",
+    "coordinates": {
+      "lat": 50.35434,
+      "lon": 18.259527
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 539634882,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_542487987",
+    "name": "Basen w Kłodnicy",
+    "coordinates": {
+      "lat": 50.357622,
+      "lon": 18.169286
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 542487987,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_542487988",
+    "name": "Brodzik basenu",
+    "coordinates": {
+      "lat": 50.357558,
+      "lon": 18.169706
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 542487988,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_550631131",
+    "name": "Pałac w Sławięcicach",
+    "coordinates": {
+      "lat": 50.376367,
+      "lon": 18.318339
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 550631131,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_560122902",
+    "name": "Kozielska Muszla Koncertowa",
+    "coordinates": {
+      "lat": 50.334602,
+      "lon": 18.150629
+    },
+    "cluster": "rozrywka_kultura",
+    "sub_category": "instytucja_kultury",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 560122902,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_567548129",
+    "name": "Muzeum Bitwy o Benzynę - Strefa Historii i Inspiracji",
+    "coordinates": {
+      "lat": 50.353333,
+      "lon": 18.261932
+    },
+    "cluster": "rozrywka_kultura",
+    "sub_category": "instytucja_kultury",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 567548129,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_575662403",
+    "name": "Miasteczko Ruchu Drogowego",
+    "coordinates": {
+      "lat": 50.344685,
+      "lon": 18.233647
+    },
+    "cluster": "rodzina_dzieci",
+    "sub_category": "plac_zabaw",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 575662403,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_676728062",
+    "name": "Parowóz Ty2-2118",
+    "coordinates": {
+      "lat": 50.343753,
+      "lon": 18.20693
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 676728062,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_676728065",
+    "name": "skwer Kolejarzy",
+    "coordinates": {
+      "lat": 50.343724,
+      "lon": 18.206992
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 676728065,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_1090759630",
+    "name": "Wodne Okko Basen Kryty",
+    "coordinates": {
+      "lat": 50.316809,
+      "lon": 18.244169
+    },
+    "cluster": "woda_rekreacja",
+    "sub_category": "basen_aquapark",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 1090759630,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_1206722260",
+    "name": "Muzeum Ziemi Kozielskiej",
+    "coordinates": {
+      "lat": 50.334645,
+      "lon": 18.142379
+    },
+    "cluster": "rozrywka_kultura",
+    "sub_category": "instytucja_kultury",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 1206722260,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_1206722261",
+    "name": "Zamek Piastów Kozielskich",
+    "coordinates": {
+      "lat": 50.334594,
+      "lon": 18.14222
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 1206722261,
+      "wikipedia": "pl:Zamek w Kędzierzynie-Koźlu",
+      "wikidata": "Q86685278",
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_1466764957",
+    "name": "Park Kieszonkowy",
+    "coordinates": {
+      "lat": 50.337831,
+      "lon": 18.196026
+    },
+    "cluster": "natura_relaks",
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 1466764957,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_w_1475755758",
+    "name": "manmade",
+    "coordinates": {
+      "lat": 50.356159,
+      "lon": 18.333558
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "way",
+      "osm_id": 1475755758,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  },
+  {
+    "id": "poi_r_6404133",
+    "name": "Fort Rondel",
+    "coordinates": {
+      "lat": 50.343459,
+      "lon": 18.156496
+    },
+    "cluster": "historia_inzynieria",
+    "sub_category": "militaria_fortyfikacje",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "osm_metadata": {
+      "osm_type": "relation",
+      "osm_id": 6404133,
+      "wikipedia": null,
+      "wikidata": null,
+      "wheelchair": null
+    }
+  }
+]

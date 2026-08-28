@@ -1,0 +1,7959 @@
+[
+  {
+    "id": "kk_kultura_001",
+    "name": "Chemik",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3474181,
+      "lon": 18.2154132
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cinema",
+    "nearest_parking": {
+      "distance_m": 27,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.347588,
+        "lon": 18.2151256
+      }
+    },
+    "sub_category": "kino",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "rodzina",
+        "randka"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_002",
+    "name": "miKafka",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3428945,
+      "lon": 18.2046644
+    },
+    "address": {
+      "street": "Mikołaja Reja",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 10,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3429448,
+        "lon": 18.2047806
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_003",
+    "name": "Street Bar",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3460641,
+      "lon": 18.217339
+    },
+    "address": {
+      "street": "Pionierów",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 22,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3460347,
+        "lon": 18.2170262
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_005",
+    "name": "Da Ci Kumo Sushi",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3476214,
+      "lon": 18.2190328
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Su 13:00-24:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 6,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.347643,
+        "lon": 18.2189463
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_006",
+    "name": "Gruby Benek",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.349528,
+      "lon": 18.2322799
+    },
+    "address": {
+      "street": "Kazimierza Wielkiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Piastów"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 34,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3495844,
+        "lon": 18.2318039
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_007",
+    "name": "Ruiny pałacu",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3766848,
+      "lon": 18.3178569
+    },
+    "address": {
+      "street": "Sadowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 365,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3777647,
+        "lon": 18.3129875
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_008",
+    "name": "Ruiny śluzy nr 6 dawnego Kanału Kłodnickiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3656624,
+      "lon": 18.27643
+    },
+    "address": {
+      "street": "Przyjaźni",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Stara Blachownia"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 597,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.361241,
+        "lon": 18.271654
+      }
+    },
+    "sub_category": "inzynieria_wodna",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_009",
+    "name": "Były obóz koncentracyjny w Sławięcicach",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3595133,
+      "lon": 18.3200575
+    },
+    "address": {
+      "street": "Spacerowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 1386,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3529402,
+        "lon": 18.3034562
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_010",
+    "name": "Big Boom",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3568831,
+      "lon": 18.2655872
+    },
+    "address": {
+      "street": "Szkolna",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Miedary"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "nearest_parking": {
+      "distance_m": 70,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3563331,
+        "lon": 18.2660687
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_011",
+    "name": "Restauracja - Damian Kania",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3936765,
+      "lon": 18.1756065
+    },
+    "address": {
+      "street": "Góry Świętej Anny",
+      "housenumber": "86",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 23,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3936106,
+        "lon": 18.1759222
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_012",
+    "name": "Restauracja Viktorjan",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3920448,
+      "lon": 18.1746925
+    },
+    "address": {
+      "street": "Góry Świętej Anny",
+      "housenumber": "94",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 66,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3926084,
+        "lon": 18.1743657
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_013",
+    "name": "Pomnik poległych w I wojnie światowej",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3745174,
+      "lon": 18.0838244
+    },
+    "address": {
+      "street": "Chałupki",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Chałupki"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 2700,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3727056,
+        "lon": 18.1217987
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_014",
+    "name": "Karzsma",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3748572,
+      "lon": 18.084288
+    },
+    "address": {
+      "street": "Krapkowicka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Ubierzy"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "nearest_parking": {
+      "distance_m": 2670,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3727056,
+        "lon": 18.1217987
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_015",
+    "name": "Hula-Gula",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3173101,
+      "lon": 18.1512234
+    },
+    "address": {
+      "street": "Spacerowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Dębowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Sa 12:00-21:00; Su 12:00-20:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 26,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3173481,
+        "lon": 18.1508597
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_016",
+    "name": "Mogiła 21 Powstańców",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3781797,
+      "lon": 18.1984926
+    },
+    "address": {
+      "street": "Droga leśna utwardzona",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Raszowa"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 2345,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3926084,
+        "lon": 18.1743657
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_017",
+    "name": "Magdalena Zalewska",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3356527,
+      "lon": 18.1425212
+    },
+    "address": {
+      "street": "Piastowska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Tu-Fr 08:00-16:00; Sa 08:00-16:00",
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 19,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.3356192,
+        "lon": 18.1427946
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_018",
+    "name": "Pod Lwami",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3352659,
+      "lon": 18.1430354
+    },
+    "address": {
+      "street": "Józefa Ignacego Kraszewskiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Su 18:00+",
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "nearest_parking": {
+      "distance_m": 37,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3349323,
+        "lon": 18.1430434
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_019",
+    "name": "Powódź tysiąclecia",
+    "group": "historia",
+    "geo": {
+      "lat": 50.335098,
+      "lon": 18.1435584
+    },
+    "address": {
+      "street": "Pamięci Sybiraków",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 27,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.3349929,
+        "lon": 18.1439134
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_020",
+    "name": "Henryk Sienkiewicz",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3374638,
+      "lon": 18.1428957
+    },
+    "address": {
+      "street": "Grzegorza Piramowicza",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 62,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3369247,
+        "lon": 18.1431374
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_021",
+    "name": "GastroFazza",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3344522,
+      "lon": 18.1469083
+    },
+    "address": {
+      "street": "Anny",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 64,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.335027,
+        "lon": 18.1470365
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_022",
+    "name": "Garden - Cafe",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.2848183,
+      "lon": 18.2036105
+    },
+    "address": {
+      "street": "Władysława Planetorza",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Bełk"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 65,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.2844393,
+        "lon": 18.2028998
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_023",
+    "name": "Dostrzegalnia pożarowa \"Kędzierzyn\"",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3331251,
+      "lon": 18.3062094
+    },
+    "address": {
+      "street": "Gazowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": null,
+    "nearest_parking": {
+      "distance_m": 1192,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3359495,
+        "lon": 18.3224129
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_024",
+    "name": "grób nieznanego powstańca 1921",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3782029,
+      "lon": 18.2821292
+    },
+    "address": {
+      "street": "Szpaków",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 1771,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3672008,
+        "lon": 18.3002014
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_025",
+    "name": "Ofiarom II Wojny Światowej",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3476492,
+      "lon": 18.2130019
+    },
+    "address": {
+      "street": "Kościelna",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "monument",
+    "nearest_parking": {
+      "distance_m": 140,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3472377,
+        "lon": 18.214874
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_026",
+    "name": "Lucio's Jack and Restaurant",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.4015068,
+      "lon": 18.1253805
+    },
+    "address": {
+      "street": "Wolności",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Wielmierzowice"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 821,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3950975,
+        "lon": 18.1311311
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_027",
+    "name": "Spichlerz",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3932133,
+      "lon": 18.1736329
+    },
+    "address": {
+      "street": "Kościelna",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Rokicie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": "+48 77 416 90 13",
+    "opening_hours": "11:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 85,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3926084,
+        "lon": 18.1743657
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_028",
+    "name": "Magiczny Zakątek",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3974726,
+      "lon": 18.162694
+    },
+    "address": {
+      "street": "Młyńska",
+      "housenumber": "22",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 527,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3937657,
+        "lon": 18.1673429
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_inne_029",
+    "name": "Syfon Kłodnicy",
+    "group": "inne",
+    "geo": {
+      "lat": 50.3573815,
+      "lon": 18.2283803
+    },
+    "address": {
+      "street": "Syfon Kłodnicy",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "attraction",
+    "nearest_parking": {
+      "distance_m": 609,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3617699,
+        "lon": 18.2232395
+      }
+    },
+    "sub_category": "inzynieria_wodna",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_030",
+    "name": "Hotel Hugo",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3749178,
+      "lon": 18.3276963
+    },
+    "address": {
+      "street": "Władysława Orkana",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "12:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 12,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3748251,
+        "lon": 18.3277918
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_031",
+    "name": "Infiniti",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3516246,
+      "lon": 18.2346434
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Piastów"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": "https://infiniti-fit.pl/",
+    "phone": null,
+    "opening_hours": "Mo-Fr 07:00-22:00; Sa, Su 07:00-20:00",
+    "wheelchair": null,
+    "raw_amenity": "fitness_centre",
+    "nearest_parking": {
+      "distance_m": 45,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3519413,
+        "lon": 18.2342311
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_032",
+    "name": "Villa Vanilla",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3780573,
+      "lon": 18.3222874
+    },
+    "address": {
+      "street": "Sławięcicka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 447,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3799629,
+        "lon": 18.3167304
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_033",
+    "name": "Dom Kultury",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3891322,
+      "lon": 18.3489948
+    },
+    "address": {
+      "street": "3 Maja",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Ujazd"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "nearest_parking": {
+      "distance_m": 155,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3892173,
+        "lon": 18.3468017
+      }
+    },
+    "sub_category": "instytucja_kultury",
+    "tags": {
+      "context": [
+        "dorosli",
+        "dzieci_mlodsze",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_034",
+    "name": "Trattoria da Stella",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3475998,
+      "lon": 18.21935
+    },
+    "address": {
+      "street": "Kosmonautów",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 17,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3476131,
+        "lon": 18.2195907
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_035",
+    "name": "Grzesznia",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3476454,
+      "lon": 18.2191268
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "nearest_parking": {
+      "distance_m": 12,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.347643,
+        "lon": 18.2189463
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_036",
+    "name": "Wieża strażnicza i brama wjazdowa do obozu",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3587408,
+      "lon": 18.3187555
+    },
+    "address": {
+      "street": "Spacerowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 1262,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3529402,
+        "lon": 18.3034562
+      }
+    },
+    "sub_category": "inzynieria_wodna",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_037",
+    "name": "Pomnik Martyrologii Więźniów",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3584813,
+      "lon": 18.3220655
+    },
+    "address": {
+      "street": "Spacerowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "monument",
+    "nearest_parking": {
+      "distance_m": 1455,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3525485,
+        "lon": 18.303785
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_038",
+    "name": "Kebab Inn",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3466844,
+      "lon": 18.2189693
+    },
+    "address": {
+      "street": "Wojska Polskiego",
+      "housenumber": "7",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://www.kebabinn.pl/",
+    "phone": "+48 511 582 770",
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 72,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3465834,
+        "lon": 18.219972
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_039",
+    "name": "Sobieski",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3483421,
+      "lon": 18.2173369
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 115,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3474781,
+        "lon": 18.2182379
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_040",
+    "name": "Gospoda Solocha",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.346584,
+      "lon": 18.2178407
+    },
+    "address": {
+      "street": "Wojska Polskiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 14,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3464638,
+        "lon": 18.2179169
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_041",
+    "name": "Athena",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3472836,
+      "lon": 18.2155251
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 44,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.347588,
+        "lon": 18.2151256
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_042",
+    "name": "Barnatka",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3452913,
+      "lon": 18.208395
+    },
+    "address": {
+      "street": "Jana Dzierżonia",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "nearest_parking": {
+      "distance_m": 82,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3447001,
+        "lon": 18.2076974
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_043",
+    "name": "Kosmos",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3463652,
+      "lon": 18.2143075
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Su,PH 12:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 24,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3461454,
+        "lon": 18.2143631
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_044",
+    "name": "Bar Górniczy",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.344918,
+      "lon": 18.206811
+    },
+    "address": {
+      "street": "Grunwaldzka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 37,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.3449188,
+        "lon": 18.2062848
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_045",
+    "name": "Spółdzielczy Dom Kultury RSM \"Chemik\"",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3479506,
+      "lon": 18.2226763
+    },
+    "address": {
+      "street": "9 Maja",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "nearest_parking": {
+      "distance_m": 26,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3477511,
+        "lon": 18.2228782
+      }
+    },
+    "sub_category": "instytucja_kultury",
+    "tags": {
+      "context": [
+        "dorosli",
+        "dzieci_mlodsze",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_inne_046",
+    "name": "Belweder",
+    "group": "inne",
+    "geo": {
+      "lat": 50.3794277,
+      "lon": 18.3095666
+    },
+    "address": {
+      "street": "Sławięcicka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "attraction",
+    "nearest_parking": {
+      "distance_m": 305,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3777647,
+        "lon": 18.3129875
+      }
+    },
+    "sub_category": "inne",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_047",
+    "name": "Strzelnica",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3534835,
+      "lon": 18.2658721
+    },
+    "address": {
+      "street": "Zwycięstwa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Blachownia Śląska"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "nearest_parking": {
+      "distance_m": 133,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3537261,
+        "lon": 18.2677107
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_048",
+    "name": "Pomnik pomordowanych na terenie zakładu w latach 1939-1945",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3544418,
+      "lon": 18.2660736
+    },
+    "address": {
+      "street": "Zwycięstwa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 94,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3550434,
+        "lon": 18.2670229
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_049",
+    "name": "Cisowianka",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3814799,
+      "lon": 18.2438511
+    },
+    "address": {
+      "street": "Aleksandra Fredry",
+      "housenumber": "18",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 207,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3825539,
+        "lon": 18.2462437
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_050",
+    "name": "Klub Wiejski",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3988477,
+      "lon": 18.2110249
+    },
+    "address": {
+      "street": "1 Maja",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Łąki Kozielskie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "nearest_parking": {
+      "distance_m": 2555,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3936106,
+        "lon": 18.1759222
+      }
+    },
+    "sub_category": "inne",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_051",
+    "name": "Piekiełko",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3573679,
+      "lon": 18.2076485
+    },
+    "address": {
+      "street": "Starowiejska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kuźniczka"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "nearest_parking": {
+      "distance_m": 116,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3565256,
+        "lon": 18.2066791
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_052",
+    "name": "Pamięci więźniów hitlerowskich obozów pracy",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3184642,
+      "lon": 18.2449878
+    },
+    "address": {
+      "street": "Mostowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Zacisze"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 110,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.317581,
+        "lon": 18.2457113
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_053",
+    "name": "Papież Jan Paweł II",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3465112,
+      "lon": 18.2131884
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 71,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3458742,
+        "lon": 18.2130989
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_054",
+    "name": "Helios",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.342095,
+      "lon": 18.1917911
+    },
+    "address": {
+      "street": "Doktora Anatola Majchera",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Pogorzelec"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cinema",
+    "nearest_parking": {
+      "distance_m": 65,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3420726,
+        "lon": 18.1927137
+      }
+    },
+    "sub_category": "kino",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "rodzina",
+        "randka"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_055",
+    "name": "Pomnik Powstańców Śląskich poległych w bitwie o Kędzierzyn",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3563007,
+      "lon": 18.198046
+    },
+    "address": {
+      "street": "Po starych torach",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Żabieniec"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 117,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.356249,
+        "lon": 18.1996973
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_056",
+    "name": "Marszałek Józef Piłsudski",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3364666,
+      "lon": 18.1423254
+    },
+    "address": {
+      "street": "Piastowska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 76,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3369247,
+        "lon": 18.1431374
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_057",
+    "name": "Pomnik Powodzian",
+    "group": "historia",
+    "geo": {
+      "lat": 50.338391,
+      "lon": 18.1440566
+    },
+    "address": {
+      "street": "Promenada Księdza Ludwika Rutyny",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 102,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3374734,
+        "lon": 18.1440621
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_058",
+    "name": "Upamiętniający przybycie do Koźla pierwszej grupy organizatorów administracji państwowej w powiecie kozielskim",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3330918,
+      "lon": 18.1537038
+    },
+    "address": {
+      "street": "Franklina Delano Roosevelta",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 149,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3333676,
+        "lon": 18.1516413
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_059",
+    "name": "U Freda",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3548592,
+      "lon": 18.1648817
+    },
+    "address": {
+      "street": "Sportowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 395,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.356893,
+        "lon": 18.1694622
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_060",
+    "name": "Krukafe",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3328969,
+      "lon": 18.1460698
+    },
+    "address": {
+      "street": "Marii Skłodowskiej-Curie",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": "+48 530 396 133",
+    "opening_hours": "Mo-Th 10:00-21:00; Fr,Sa 10:00-22:00; Su 11:00-21:00",
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 96,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.332741,
+        "lon": 18.1447288
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_061",
+    "name": "Nad wodą;Kaczki",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3152977,
+      "lon": 18.1417363
+    },
+    "address": {
+      "street": "Spacerowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Reńska Wieś"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 554,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3157292,
+        "lon": 18.149512
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_062",
+    "name": "Budynek kapitanatu",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3530215,
+      "lon": 18.1539919
+    },
+    "address": {
+      "street": "Marynarska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 351,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3499473,
+        "lon": 18.1528218
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_inne_063",
+    "name": "Tężnia solankowa",
+    "group": "inne",
+    "geo": {
+      "lat": 50.3364386,
+      "lon": 18.1362515
+    },
+    "address": {
+      "street": "Leopolda Staffa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "attraction",
+    "nearest_parking": {
+      "distance_m": 74,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3363396,
+        "lon": 18.1372923
+      }
+    },
+    "sub_category": "inne",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_064",
+    "name": "Dom ogrodnika",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3779218,
+      "lon": 18.3117989
+    },
+    "address": {
+      "street": "Sadowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 86,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3777647,
+        "lon": 18.3129875
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_065",
+    "name": "Mauzoleum",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3780711,
+      "lon": 18.3087465
+    },
+    "address": {
+      "street": "Sadowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 302,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3777647,
+        "lon": 18.3129875
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_066",
+    "name": "Pancia Piena Pizza & Pasta",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3454531,
+      "lon": 18.2214414
+    },
+    "address": {
+      "street": "Kosmonautów",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 24,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3454088,
+        "lon": 18.2217778
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_067",
+    "name": "Aroma Vero",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3462962,
+      "lon": 18.2184584
+    },
+    "address": {
+      "street": "Pionierów",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 42,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3464638,
+        "lon": 18.2179169
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_068",
+    "name": "Kebabian",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3455596,
+      "lon": 18.2203189
+    },
+    "address": {
+      "street": "Wojska Polskiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 53,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3456714,
+        "lon": 18.2195848
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_069",
+    "name": "Chicken of the City",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3415766,
+      "lon": 18.1932466
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "20",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://chickenofthecity.pl/",
+    "phone": "+48 513 732 111",
+    "opening_hours": "Mo-Sa 11:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 54,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3413132,
+        "lon": 18.1926038
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_070",
+    "name": "Blood Burger",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3388019,
+      "lon": 18.1880656
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 34,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3390268,
+        "lon": 18.1883928
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_071",
+    "name": "Kurcze Pieczone",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3401097,
+      "lon": 18.1910415
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Pogorzelec"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 43,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3397269,
+        "lon": 18.1909497
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_072",
+    "name": "Kebab Inn",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3327547,
+      "lon": 18.1465655
+    },
+    "address": {
+      "street": "Marii Skłodowskiej-Curie",
+      "housenumber": "4A",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://www.kebabinn.pl/",
+    "phone": "+48 452 966 579",
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 130,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.332741,
+        "lon": 18.1447288
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_073",
+    "name": "Big Kebab's",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3323512,
+      "lon": 18.1471903
+    },
+    "address": {
+      "street": "Marii Skłodowskiej-Curie",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 91,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3324431,
+        "lon": 18.1484718
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_074",
+    "name": "SushiTU Kędzierzyn-Koźle",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.332796,
+      "lon": 18.1454358
+    },
+    "address": {
+      "street": "Henryka Sienkiewicza",
+      "housenumber": "6",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://sushitu.pl/",
+    "phone": "+48 533 113 902",
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 50,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.332741,
+        "lon": 18.1447288
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_075",
+    "name": "Tablica upamiętniająca walkę o Kędzierzyn",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3442529,
+      "lon": 18.2061164
+    },
+    "address": {
+      "street": "Dworcowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 20,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3443368,
+        "lon": 18.2063735
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_076",
+    "name": "No. 9 Cafe Bar",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3884931,
+      "lon": 18.3491072
+    },
+    "address": {
+      "street": "3 Maja",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Ujazd"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 182,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3892173,
+        "lon": 18.3468017
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_077",
+    "name": "Raju Kebab",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3339492,
+      "lon": 18.1456186
+    },
+    "address": {
+      "street": "Rynek",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 130,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.333814,
+        "lon": 18.1474465
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_078",
+    "name": "Zapiekana",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3325175,
+      "lon": 18.1475747
+    },
+    "address": {
+      "street": "Doktora Wojciecha Czerwińskiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 64,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3324431,
+        "lon": 18.1484718
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_079",
+    "name": "Bistro Czarno na Białym",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3341363,
+      "lon": 18.1469163
+    },
+    "address": {
+      "street": "Grzegorza Piramowicza",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 52,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.333814,
+        "lon": 18.1474465
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_080",
+    "name": "II WŚ",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3925879,
+      "lon": 18.3506408
+    },
+    "address": {
+      "street": "Strzelecka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Ujazd"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 152,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3914573,
+        "lon": 18.3494136
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_081",
+    "name": "Pomnik pamięci Księdza Karola Bujary",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3863707,
+      "lon": 18.1405837
+    },
+    "address": {
+      "street": "Wolności",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Januszkowice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 1081,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3960719,
+        "lon": 18.1417525
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_082",
+    "name": "800 lecie wsi Januszkowice",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3922978,
+      "lon": 18.135891
+    },
+    "address": {
+      "street": "Wolności",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Wielmierzowice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 453,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3951561,
+        "lon": 18.1313276
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_083",
+    "name": "Lazzaro",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3432606,
+      "lon": 18.2101794
+    },
+    "address": {
+      "street": "Jana Matejki",
+      "housenumber": "12C",
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 51,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3433535,
+        "lon": 18.2108839
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_084",
+    "name": "Mirosław Szubiński",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3071074,
+      "lon": 18.3398902
+    },
+    "address": {
+      "street": "Dojazd pożarowy 22 - Noworudziniecka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Stara Kuźnia"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 287,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3060303,
+        "lon": 18.3362048
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_085",
+    "name": "Ada",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3355589,
+      "lon": 18.1020695
+    },
+    "address": {
+      "street": "Głogowska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Większyce"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://hotelada.pl/#gastronomia",
+    "phone": "+48 77 4722 121",
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 24,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3355562,
+        "lon": 18.1024089
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_086",
+    "name": "Kebab u Pajdy",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3388416,
+      "lon": 18.1898045
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "81",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 102,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3390268,
+        "lon": 18.1883928
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_087",
+    "name": "Klub Kameleon",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3442508,
+      "lon": 18.2060774
+    },
+    "address": {
+      "street": "Dworcowa",
+      "housenumber": "1a",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "nearest_parking": {
+      "distance_m": 23,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3443368,
+        "lon": 18.2063735
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_088",
+    "name": "Einmannbunker",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3176396,
+      "lon": 18.2746723
+    },
+    "address": {
+      "street": "Aleja Dąbrowa Leśna",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Dąbrowa"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bunker",
+    "nearest_parking": {
+      "distance_m": 1939,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3148602,
+        "lon": 18.2477131
+      }
+    },
+    "sub_category": "schron_militaria",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": false
+    }
+  },
+  {
+    "id": "kk_gastronomia_089",
+    "name": "Mimi Kebab",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.343083,
+      "lon": 18.2043095
+    },
+    "address": {
+      "street": "Mikołaja Reja",
+      "housenumber": "2",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 36,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3429448,
+        "lon": 18.2047806
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_090",
+    "name": "Casa di Romano",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3459645,
+      "lon": 18.2234248
+    },
+    "address": {
+      "street": "Harcerska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 92,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3467098,
+        "lon": 18.2228625
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_091",
+    "name": "Kadetom Uczestnikom III Powstania Śląskiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3391172,
+      "lon": 18.1389109
+    },
+    "address": {
+      "street": "Piastowska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 148,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3404402,
+        "lon": 18.1386616
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_092",
+    "name": "Laguna",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3450675,
+      "lon": 18.209287
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 120,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3447001,
+        "lon": 18.2076974
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_093",
+    "name": "Sopelek",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3474861,
+      "lon": 18.2186743
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ice_cream",
+    "nearest_parking": {
+      "distance_m": 26,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.347643,
+        "lon": 18.2189463
+      }
+    },
+    "sub_category": "lodziarnia",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "randka"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "lato",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_094",
+    "name": "Śląski Kredens",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3516851,
+      "lon": 18.2348867
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Piastów"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 50,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3519228,
+        "lon": 18.235498
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_095",
+    "name": "Mała Czarna",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3518212,
+      "lon": 18.2358164
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Piastów"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 25,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3519228,
+        "lon": 18.235498
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_096",
+    "name": "Naleśnikarnia Słodko & Słono",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3449097,
+      "lon": 18.2098835
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 111,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3446447,
+        "lon": 18.2114014
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_097",
+    "name": "Affogato",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3443804,
+      "lon": 18.208727
+    },
+    "address": {
+      "street": "Jana Matejki",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 81,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3447001,
+        "lon": 18.2076974
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_098",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 8",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3747424,
+      "lon": 18.3299899
+    },
+    "address": {
+      "street": "Stefana Batorego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "nearest_parking": {
+      "distance_m": 112,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3746437,
+        "lon": 18.3284139
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_099",
+    "name": "Hot Baby",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3452445,
+      "lon": 18.2098796
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 126,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3446447,
+        "lon": 18.2114014
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_100",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 5",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3446353,
+      "lon": 18.2144928
+    },
+    "address": {
+      "street": "Konstantego Damrota",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "nearest_parking": {
+      "distance_m": 60,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3443772,
+        "lon": 18.2152397
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_101",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 1",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3374397,
+      "lon": 18.1952038
+    },
+    "address": {
+      "street": "Juliusza Słowackiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Pogorzelec"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "nearest_parking": {
+      "distance_m": 108,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3375125,
+        "lon": 18.1967238
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_102",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 4",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3547565,
+      "lon": 18.2609033
+    },
+    "address": {
+      "street": "Wyzwolenia",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Blachownia Śląska"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "nearest_parking": {
+      "distance_m": 24,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3548875,
+        "lon": 18.2611732
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_103",
+    "name": "Miejska Biblioteka Publiczna - Filia nr 10",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3475381,
+      "lon": 18.1702628
+    },
+    "address": {
+      "street": "Ignacego Krasickiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mbpkk.pl/",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "library",
+    "nearest_parking": {
+      "distance_m": 113,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3474976,
+        "lon": 18.1686603
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_104",
+    "name": "Phoenix",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3459415,
+      "lon": 18.2198677
+    },
+    "address": {
+      "street": "Wojska Polskiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 36,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3456714,
+        "lon": 18.2195848
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_105",
+    "name": "U Ani Aktywnie",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3517914,
+      "lon": 18.2357154
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Piastów"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fitness_centre",
+    "nearest_parking": {
+      "distance_m": 21,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3519228,
+        "lon": 18.235498
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_106",
+    "name": "Telepizzeria Lupo",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3520345,
+      "lon": 18.2339643
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Piastów"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 21,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3519413,
+        "lon": 18.2342311
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_107",
+    "name": "Biesiada",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.34798,
+      "lon": 18.1693395
+    },
+    "address": {
+      "street": "Kłodnicka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "nearest_parking": {
+      "distance_m": 72,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3474976,
+        "lon": 18.1686603
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_108",
+    "name": "Koło Ognia",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3451452,
+      "lon": 18.206483
+    },
+    "address": {
+      "street": "Grunwaldzka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 28,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.3449188,
+        "lon": 18.2062848
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_109",
+    "name": "Reduta",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3391557,
+      "lon": 18.2033887
+    },
+    "address": {
+      "street": "Piotra Skargi",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Leśna"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "nearest_parking": {
+      "distance_m": 66,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.338577,
+        "lon": 18.2036368
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_110",
+    "name": "Pod Arkadami",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3336401,
+      "lon": 18.1449369
+    },
+    "address": {
+      "street": "Józefa Poniatowskiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 81,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.3330174,
+        "lon": 18.1443379
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_111",
+    "name": "Forno d'Oro",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3391152,
+      "lon": 18.1977563
+    },
+    "address": {
+      "street": "Tadeusza Kościuszki",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Pogorzelec"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 77,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.3388556,
+        "lon": 18.1967509
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_112",
+    "name": "Pomnik poległych w I i II wojnie światowej",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3864242,
+      "lon": 18.1793093
+    },
+    "address": {
+      "street": "Góry Świętej Anny",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Rokicie"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 771,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3926084,
+        "lon": 18.1743657
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_113",
+    "name": "Dobry Pasterz",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3382416,
+      "lon": 18.1029009
+    },
+    "address": {
+      "street": "Szkolna",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Większyce"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 17,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3381718,
+        "lon": 18.1031226
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_114",
+    "name": "Dostrzegalnia pożarowa \"Stara Kuźnia\"",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3043066,
+      "lon": 18.3398841
+    },
+    "address": {
+      "street": "Brzozowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Stara Kuźnia"
+    },
+    "is_free": true,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": null,
+    "nearest_parking": {
+      "distance_m": 22,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3044112,
+        "lon": 18.3396083
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_natura_115",
+    "name": "Park Orderu Uśmiechu",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3462844,
+      "lon": 18.2251255
+    },
+    "address": {
+      "street": "Park Orderu Uśmiechu",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "nearest_parking": {
+      "distance_m": 167,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3467098,
+        "lon": 18.2228625
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_gastronomia_116",
+    "name": "McDonald's",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3425663,
+      "lon": 18.1924978
+    },
+    "address": {
+      "street": "Aleja Armii Krajowej",
+      "housenumber": "42",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mcdonalds.pl/restauracje/opolskie/kedzierzyn-kozle/kedzierzyn-kozle-ul-armii-krajowej-42",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 27,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.342614,
+        "lon": 18.1928717
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_117",
+    "name": "Stadion Miejski Kuźniczka",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3516542,
+      "lon": 18.2060336
+    },
+    "address": {
+      "street": "Aleja Maciejkowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kuźniczka"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "nearest_parking": {
+      "distance_m": 149,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3526,
+        "lon": 18.2075205
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_118",
+    "name": "Ogrodowa",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3331831,
+      "lon": 18.1933047
+    },
+    "address": {
+      "street": "Gliwicka",
+      "housenumber": "24",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 455,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3364969,
+        "lon": 18.1970716
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_natura_119",
+    "name": "Park Pojednania",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3470799,
+      "lon": 18.2128814
+    },
+    "address": {
+      "street": "Park Pojednania",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "nearest_parking": {
+      "distance_m": 135,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3458742,
+        "lon": 18.2130989
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_sport_120",
+    "name": "Kryta Pływalnia",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3488161,
+      "lon": 18.2203212
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": "31",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "nearest_parking": {
+      "distance_m": 44,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3487308,
+        "lon": 18.2209394
+      }
+    },
+    "sub_category": "sport_basen",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_121",
+    "name": "LKS Korzonek",
+    "group": "sport",
+    "geo": {
+      "lat": 50.284414,
+      "lon": 18.2812663
+    },
+    "address": {
+      "street": "Nowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Korzonek"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "nearest_parking": {
+      "distance_m": 206,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.2858578,
+        "lon": 18.2830879
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_122",
+    "name": "LKS Śląsk Reńska Wieś",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3096142,
+      "lon": 18.1245356
+    },
+    "address": {
+      "street": "Sportowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Reńska Wieś"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "nearest_parking": {
+      "distance_m": 78,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3096892,
+        "lon": 18.1256403
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_123",
+    "name": "Dawna strzelnica (ruiny)",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3306834,
+      "lon": 18.2285352
+    },
+    "address": {
+      "street": "Mostowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Rasek"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 1063,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3212031,
+        "lon": 18.2265733
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_124",
+    "name": "Ruiny śluzy Kanału Kłodnickiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3497482,
+      "lon": 18.1689442
+    },
+    "address": {
+      "street": "Żabieniecka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 239,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3478757,
+        "lon": 18.16729
+      }
+    },
+    "sub_category": "inzynieria_wodna",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_125",
+    "name": "Ruiny śluzy nr 5 dawnego Kanału Kłodnickiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3571938,
+      "lon": 18.2444927
+    },
+    "address": {
+      "street": "Nowowiejska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Nowa Wieś"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 286,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3548687,
+        "lon": 18.2462401
+      }
+    },
+    "sub_category": "inzynieria_wodna",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_126",
+    "name": "Ruiny strzelnicy",
+    "group": "historia",
+    "geo": {
+      "lat": 50.375656,
+      "lon": 18.3195999
+    },
+    "address": {
+      "street": "Roberta Kocha",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 520,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3799629,
+        "lon": 18.3167304
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_127",
+    "name": "Śluza nr 6 Kanału Kłodnickiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3656836,
+      "lon": 18.2766753
+    },
+    "address": {
+      "street": "Przyjaźni",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Stara Blachownia"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 609,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.361241,
+        "lon": 18.271654
+      }
+    },
+    "sub_category": "inzynieria_wodna",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_128",
+    "name": "KS Sławęcice",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3751415,
+      "lon": 18.3144474
+    },
+    "address": {
+      "street": "Sadowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "nearest_parking": {
+      "distance_m": 309,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3777647,
+        "lon": 18.3129875
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_129",
+    "name": "Restauracja Pałac Większyce",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3379138,
+      "lon": 18.1048768
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "15",
+      "city": "Większyce"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 42,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3377301,
+        "lon": 18.1053965
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_130",
+    "name": "boisko Orlik",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3300385,
+      "lon": 18.1444745
+    },
+    "address": {
+      "street": "Skarbowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "nearest_parking": {
+      "distance_m": 71,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3306454,
+        "lon": 18.1441519
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_131",
+    "name": "Dom Kultury Koźle",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3304626,
+      "lon": 18.1452649
+    },
+    "address": {
+      "street": "Skarbowa",
+      "housenumber": "10",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "nearest_parking": {
+      "distance_m": 81,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3306454,
+        "lon": 18.1441519
+      }
+    },
+    "sub_category": "instytucja_kultury",
+    "tags": {
+      "context": [
+        "dorosli",
+        "dzieci_mlodsze",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_natura_132",
+    "name": "Planty Kozielskie",
+    "group": "natura",
+    "geo": {
+      "lat": 50.333029,
+      "lon": 18.1420884
+    },
+    "address": {
+      "street": "Marii Konopnickiej",
+      "housenumber": "5c",
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "nearest_parking": {
+      "distance_m": 82,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3324415,
+        "lon": 18.1428024
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_historia_133",
+    "name": "Zabytkowa wieża ciśnień",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3373938,
+      "lon": 18.1378422
+    },
+    "address": {
+      "street": "Filtrowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": null,
+    "nearest_parking": {
+      "distance_m": 123,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3363396,
+        "lon": 18.1372923
+      }
+    },
+    "sub_category": "inzynieria_wodna",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_134",
+    "name": "Italia",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3385784,
+      "lon": 18.1387681
+    },
+    "address": {
+      "street": "Piastowska",
+      "housenumber": "39",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 175,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3390948,
+        "lon": 18.1364331
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_natura_135",
+    "name": "Plac Rady Europy",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3367344,
+      "lon": 18.1426347
+    },
+    "address": {
+      "street": "Plac Rady Europy",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "nearest_parking": {
+      "distance_m": 41,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3369247,
+        "lon": 18.1431374
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_gastronomia_136",
+    "name": "Pizza z Pasją",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3345217,
+      "lon": 18.1460811
+    },
+    "address": {
+      "street": "Grzegorza Piramowicza",
+      "housenumber": "11",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 88,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.335027,
+        "lon": 18.1470365
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_137",
+    "name": "Bojowników o Wyzwolenie Śląska",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3354698,
+      "lon": 18.1491868
+    },
+    "address": {
+      "street": "Most Józefa Długosza",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "monument",
+    "nearest_parking": {
+      "distance_m": 89,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3347243,
+        "lon": 18.1487174
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_138",
+    "name": "Stare Boisko",
+    "group": "sport",
+    "geo": {
+      "lat": 50.394465,
+      "lon": 18.2143462
+    },
+    "address": {
+      "street": "1 Maja",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Łąki Kozielskie"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "nearest_parking": {
+      "distance_m": 2230,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3822813,
+        "lon": 18.239347
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_139",
+    "name": "Zarośnięte Boisko",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3160151,
+      "lon": 18.2403662
+    },
+    "address": {
+      "street": "Mostowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Zacisze"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pitch",
+    "nearest_parking": {
+      "distance_m": 271,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3180457,
+        "lon": 18.2424775
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_140",
+    "name": "Duży",
+    "group": "sport",
+    "geo": {
+      "lat": 50.316583,
+      "lon": 18.2434226
+    },
+    "address": {
+      "street": "Mostowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Zacisze"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "swimming_pool",
+    "nearest_parking": {
+      "distance_m": 175,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3180457,
+        "lon": 18.2424775
+      }
+    },
+    "sub_category": "sport_basen",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_141",
+    "name": "Brodzik",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3167292,
+      "lon": 18.2436965
+    },
+    "address": {
+      "street": "Mostowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Zacisze"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "swimming_pool",
+    "nearest_parking": {
+      "distance_m": 162,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3163148,
+        "lon": 18.245894
+      }
+    },
+    "sub_category": "sport_basen",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_142",
+    "name": "Hala Sportowa",
+    "group": "sport",
+    "geo": {
+      "lat": 50.2798121,
+      "lon": 18.2043643
+    },
+    "address": {
+      "street": "Władysława Planetorza",
+      "housenumber": "23",
+      "city": "Cisek"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "nearest_parking": {
+      "distance_m": 233,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.2815327,
+        "lon": 18.2024745
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_143",
+    "name": "Pod Akacjami",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3363734,
+      "lon": 18.1956019
+    },
+    "address": {
+      "street": "Piotra Skargi",
+      "housenumber": "45a",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://restauracjapodakacjami.pl/",
+    "phone": "+48774849138",
+    "opening_hours": "Tu-Su 12:00-22:00",
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 105,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3364969,
+        "lon": 18.1970716
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_144",
+    "name": "Grota",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3354596,
+      "lon": 18.1915182
+    },
+    "address": {
+      "street": "Elizy Orzeszkowej",
+      "housenumber": "12",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "nearest_parking": {
+      "distance_m": 410,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3364969,
+        "lon": 18.1970716
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_145",
+    "name": "Kebab Inn",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.341745,
+      "lon": 18.1995166
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Pogorzelec"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 105,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.342166,
+        "lon": 18.1981904
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_146",
+    "name": "Powstańców Śląskich",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3368113,
+      "lon": 18.1971581
+    },
+    "address": {
+      "street": "Plac Pamięci Rodła",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Pogorzelec"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 35,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3364969,
+        "lon": 18.1970716
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_natura_147",
+    "name": "Kaczy Dół",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3480614,
+      "lon": 18.2593028
+    },
+    "address": {
+      "street": "Kaczy Dół",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "nearest_parking": {
+      "distance_m": 488,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3524114,
+        "lon": 18.2583562
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_natura_148",
+    "name": "Oczko za składnicą",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3504837,
+      "lon": 18.3122113
+    },
+    "address": {
+      "street": "Oczko za składnicą",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "nearest_parking": {
+      "distance_m": 640,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3525485,
+        "lon": 18.303785
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_natura_149",
+    "name": "Ostojnik",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3635889,
+      "lon": 18.3060801
+    },
+    "address": {
+      "street": "Ostojnik",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "nearest_parking": {
+      "distance_m": 557,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.367435,
+        "lon": 18.3010387
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_natura_150",
+    "name": "Żabi Dół",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3305678,
+      "lon": 18.2402943
+    },
+    "address": {
+      "street": "Żabi Dół",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "nearest_parking": {
+      "distance_m": 591,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3269503,
+        "lon": 18.2464029
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_gastronomia_151",
+    "name": "Tibo",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.2819797,
+      "lon": 18.1487618
+    },
+    "address": {
+      "street": "Główna",
+      "housenumber": "27a",
+      "city": "Długomiłowice"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "http://www.tibo.of.pl/",
+    "phone": "+48 77 4829122",
+    "opening_hours": null,
+    "wheelchair": "limited",
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 3491,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3096892,
+        "lon": 18.1256403
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_152",
+    "name": "Beczka",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3411236,
+      "lon": 18.2048792
+    },
+    "address": {
+      "street": "Mikołaja Reja",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Leśna"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "nearest_parking": {
+      "distance_m": 119,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3421372,
+        "lon": 18.2043425
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_153",
+    "name": "Dom Kultury Bierawa",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.2798995,
+      "lon": 18.2409947
+    },
+    "address": {
+      "street": "Powstańców Śląskich",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kąt"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "nearest_parking": {
+      "distance_m": 32,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.2800015,
+        "lon": 18.2405606
+      }
+    },
+    "sub_category": "instytucja_kultury",
+    "tags": {
+      "context": [
+        "dorosli",
+        "dzieci_mlodsze",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_154",
+    "name": "Zamek biskupów wrocławskich",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3909859,
+      "lon": 18.3491744
+    },
+    "address": {
+      "street": "Plac Zamkowy",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Ujazd"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "castle",
+    "nearest_parking": {
+      "distance_m": 55,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3914573,
+        "lon": 18.3494136
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_natura_155",
+    "name": "Park im. Lotników 15 Armii Powietrznej Stanów Zjednoczonych",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3543395,
+      "lon": 18.2595267
+    },
+    "address": {
+      "street": "Park im. Lotników 15 Armii Powietrznej Stanów Zjednoczonych",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "nearest_parking": {
+      "distance_m": 76,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3537294,
+        "lon": 18.259042
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_kultura_156",
+    "name": "Dom Kultury \"Lech\"",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3547069,
+      "lon": 18.2610415
+    },
+    "address": {
+      "street": "Wyzwolenia",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "nearest_parking": {
+      "distance_m": 22,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3548875,
+        "lon": 18.2611732
+      }
+    },
+    "sub_category": "instytucja_kultury",
+    "tags": {
+      "context": [
+        "dorosli",
+        "dzieci_mlodsze",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_157",
+    "name": "Dom Działkowca \"Zacisze\"",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3541228,
+      "lon": 18.250173
+    },
+    "address": {
+      "street": "Władysława Broniewskiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Blachownia Śląska"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "nearest_parking": {
+      "distance_m": 133,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3529258,
+        "lon": 18.2503128
+      }
+    },
+    "sub_category": "inne",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_158",
+    "name": "Basen w Kłodnicy",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3576223,
+      "lon": 18.1692861
+    },
+    "address": {
+      "street": "Na Basen",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 82,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.356893,
+        "lon": 18.1694622
+      }
+    },
+    "sub_category": "sport_basen",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_159",
+    "name": "Brodzik basenu",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3575583,
+      "lon": 18.1697058
+    },
+    "address": {
+      "street": "Na Basen",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 76,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.356893,
+        "lon": 18.1694622
+      }
+    },
+    "sub_category": "sport_basen",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_160",
+    "name": "Pałac w Sławięcicach",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3763668,
+      "lon": 18.3183388
+    },
+    "address": {
+      "street": "Sadowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 410,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3777647,
+        "lon": 18.3129875
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_161",
+    "name": "Kozielska Muszla Koncertowa",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3346023,
+      "lon": 18.1506293
+    },
+    "address": {
+      "street": "Jana Smolenia",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "theatre",
+    "nearest_parking": {
+      "distance_m": 136,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3347243,
+        "lon": 18.1487174
+      }
+    },
+    "sub_category": "inne",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_162",
+    "name": "Muzeum Bitwy o Benzynę - Strefa Historii i Inspiracji",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3533327,
+      "lon": 18.2619323
+    },
+    "address": {
+      "street": "Zwycięstwa",
+      "housenumber": "3",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "museum",
+    "nearest_parking": {
+      "distance_m": 83,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3531261,
+        "lon": 18.260798
+      }
+    },
+    "sub_category": "muzeum",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_163",
+    "name": "Bar STOP",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.2850086,
+      "lon": 18.289285
+    },
+    "address": {
+      "street": "Gliwicka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Korzonek"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "nearest_parking": {
+      "distance_m": 27,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.2849618,
+        "lon": 18.2896695
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_164",
+    "name": "Klub Wiejski w Raszowej",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3872389,
+      "lon": 18.1756408
+    },
+    "address": {
+      "street": "Góry Świętej Anny",
+      "housenumber": "127",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "community_centre",
+    "nearest_parking": {
+      "distance_m": 603,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3926084,
+        "lon": 18.1743657
+      }
+    },
+    "sub_category": "inne",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_165",
+    "name": "Parowóz Ty2-2118",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3437529,
+      "lon": 18.2069296
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "monument",
+    "nearest_parking": {
+      "distance_m": 56,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3438395,
+        "lon": 18.2077177
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_natura_166",
+    "name": "skwer Kolejarzy",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3437244,
+      "lon": 18.2069922
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "nearest_parking": {
+      "distance_m": 53,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3438395,
+        "lon": 18.2077177
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_sport_167",
+    "name": "Wodne Okko Basen Kryty",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3168092,
+      "lon": 18.2441691
+    },
+    "address": {
+      "street": "Mostowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Zacisze"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "swimming_pool",
+    "nearest_parking": {
+      "distance_m": 134,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3163148,
+        "lon": 18.245894
+      }
+    },
+    "sub_category": "sport_basen",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "nastolatki",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_inne_168",
+    "name": "Tężnia solankowa",
+    "group": "inne",
+    "geo": {
+      "lat": 50.3454179,
+      "lon": 18.2338765
+    },
+    "address": {
+      "street": "Wojciecha Korfantego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Piastów"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "attraction",
+    "nearest_parking": {
+      "distance_m": 80,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3449735,
+        "lon": 18.2347665
+      }
+    },
+    "sub_category": "inne",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_169",
+    "name": "KFC",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3431233,
+      "lon": 18.2029778
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "6A",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": "+48 571 420 821",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 24,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3432721,
+        "lon": 18.2027278
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_kultura_170",
+    "name": "Muzeum Ziemi Kozielskiej",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3346449,
+      "lon": 18.1423786
+    },
+    "address": {
+      "street": "Józefa Ignacego Kraszewskiego",
+      "housenumber": "5b",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Tu-Fr 09:00-13:00; Sa-Su 13:00-17:00",
+    "wheelchair": null,
+    "raw_amenity": "museum",
+    "nearest_parking": {
+      "distance_m": 19,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3347709,
+        "lon": 18.142577
+      }
+    },
+    "sub_category": "muzeum",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_historia_171",
+    "name": "Zamek Piastów Kozielskich",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3345937,
+      "lon": 18.1422204
+    },
+    "address": {
+      "street": "Józefa Ignacego Kraszewskiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "castle",
+    "nearest_parking": {
+      "distance_m": 32,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3347709,
+        "lon": 18.142577
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_gastronomia_172",
+    "name": "McDonald's",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3240155,
+      "lon": 18.1423055
+    },
+    "address": {
+      "street": "Kozielska",
+      "housenumber": "33",
+      "city": "Reńska Wieś"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": "https://mcdonalds.pl/restauracje/opolskie/renska-wies/renska-wies-ul-kozielska-33",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 86,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.323421,
+        "lon": 18.1415225
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_natura_173",
+    "name": "Leśny ośrodek edukacyjny Stampnica",
+    "group": "natura",
+    "geo": {
+      "lat": 50.2910134,
+      "lon": 18.3164796
+    },
+    "address": {
+      "street": "Leśny ośrodek edukacyjny Stampnica",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Ortowice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "nearest_parking": {
+      "distance_m": 958,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.2825109,
+        "lon": 18.3142646
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_natura_174",
+    "name": "Park Kieszonkowy",
+    "group": "natura",
+    "geo": {
+      "lat": 50.3378308,
+      "lon": 18.1960255
+    },
+    "address": {
+      "street": "Park Kieszonkowy",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "park",
+    "nearest_parking": {
+      "distance_m": 60,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3375125,
+        "lon": 18.1967238
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_historia_175",
+    "name": "manmade",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3561595,
+      "lon": 18.3335583
+    },
+    "address": {
+      "street": "Czarna",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 2087,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3746437,
+        "lon": 18.3284139
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_176",
+    "name": "Tenis Club",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3486853,
+      "lon": 18.2375323
+    },
+    "address": {
+      "street": "Bolesława Krzywoustego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Piastów"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "nearest_parking": {
+      "distance_m": 146,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.350002,
+        "lon": 18.2373937
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_sport_177",
+    "name": "Pełnowymiarowe boisko piłkarskie",
+    "group": "sport",
+    "geo": {
+      "lat": 50.3577539,
+      "lon": 18.2666656
+    },
+    "address": {
+      "street": "Szkolna",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Miedary"
+    },
+    "is_free": false,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "sports_centre",
+    "nearest_parking": {
+      "distance_m": 90,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3575205,
+        "lon": 18.2654495
+      }
+    },
+    "sub_category": "sport_rekreacja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  },
+  {
+    "id": "kk_natura_178",
+    "name": "Gacek",
+    "group": "natura",
+    "geo": {
+      "lat": 50.31878,
+      "lon": 18.2162048
+    },
+    "address": {
+      "street": "Gacek",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Rasek"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "nature_reserve",
+    "nearest_parking": {
+      "distance_m": 783,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3212031,
+        "lon": 18.2265733
+      }
+    },
+    "sub_category": "park",
+    "tags": {
+      "context": [
+        "dzieci_mlodsze",
+        "rodzina",
+        "dorosli"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": true
+    }
+  },
+  {
+    "id": "kk_historia_179",
+    "name": "Fort Rondel",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3434594,
+      "lon": 18.1564963
+    },
+    "address": {
+      "street": "Portowa",
+      "housenumber": "26",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": true,
+    "website": "https://zabytek.pl/pl/obiekty/kedzierzyn-kozle-fort-fryderyka-wilhelma-(fort-rondel-baszta-mo",
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "castle",
+    "nearest_parking": {
+      "distance_m": 536,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3393764,
+        "lon": 18.160515
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    }
+  }
+]

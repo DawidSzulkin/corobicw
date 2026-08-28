@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kędzierzyn-Koźle: Co robić pod dachem? | corobicw.pl</title>
+  <style>
+    :root {
+      --bg: #f9fafb; --card-bg: #ffffff; --text-main: #111827; --text-muted: #6b7280;
+      --border: #e5e7eb; --accent: #2563eb; --accent-hover: #1d4ed8; --tag-bg: #f3f4f6;
+      --success-bg: #dcfce7; --success-text: #166534;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text-main); padding: 24px; line-height: 1.6; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .breadcrumbs { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
+    .breadcrumbs a { color: var(--text-main); text-decoration: none; font-weight: 500; }
+    header { border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 24px; }
+    h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .lead { color: var(--text-muted); font-size: 1.05rem; max-width: 800px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 32px; }
+    @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); display: flex; flex-direction: column; position: relative; }
+    .card.sponsored { border: 2px solid #fbbf24; background: #fffcf2; }
+    .badge-sponsored { position: absolute; top: -12px; left: 24px; background: #fbbf24; color: #78350f; font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 12px; text-transform: uppercase; }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+    .card-sub { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+    .card-title { font-size: 1.25rem; font-weight: 700; color: var(--text-main); line-height: 1.2; }
+    .score-badge { background: var(--success-bg); color: var(--success-text); font-weight: 700; font-size: 0.85rem; padding: 4px 8px; border-radius: 6px; }
+    .map-container { margin-bottom: 16px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .logistics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: var(--bg); padding: 16px; border-radius: 8px; margin-bottom: 16px; border: 1px solid var(--border); }
+    .log-row { display: flex; flex-direction: column; }
+    .log-label { color: var(--text-muted); font-size: 0.75rem; font-weight: 500; text-transform: uppercase; margin-bottom: 2px; }
+    .log-val { font-weight: 600; color: var(--text-main); font-size: 0.9rem; }
+    .desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; }
+    .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn { padding: 10px; text-align: center; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
+    .btn-outline:hover { background: var(--tag-bg); }
+    .btn-primary { background: var(--text-main); color: #fff; }
+    .btn-primary:hover { background: #000; }
+    .transparency-box { margin-top: 48px; padding: 24px; background: #fff; border: 1px solid var(--border); border-radius: 12px; font-size: 0.85rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="breadcrumbs">
+      <a href="/">Strona główna</a> / <a href="/kedzierzyn-kozle/">Kędzierzyn-Koźle</a> / <span>Atrakcje pod dachem</span>
+    </nav>
+    <header>
+      <h1>Kędzierzyn-Koźle: Co robić pod dachem?</h1>
+      <p class="lead">Zestawienie 18 zadaszonych obiektów z osadzonymi mapami i wyliczoną odległością do parkingów.</p>
+    </header>
+    <div class="grid">
+      
+      <article class="card sponsored">
+        <span class="badge-sponsored">Wybór Redakcji</span>
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Museum</span>
+              <h2 class="card-title">Muzeum Ziemi Kozielskiej</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.334645,18.142379&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">20 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.334645,18.142379" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Community Centre</span>
+              <h2 class="card-title">Dom Kultury "Lech"</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.354707,18.261042&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">22 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.354707,18.261042" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Community Centre</span>
+              <h2 class="card-title">Spółdzielczy Dom Kultury RSM "Chemik"</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.347951,18.222676&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">26 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.347951,18.222676" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Cinema</span>
+              <h2 class="card-title">Chemik</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.347418,18.215413&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">28 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.347418,18.215413" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Indoor Play</span>
+              <h2 class="card-title">Sala Urodzinowa "Bailando"</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.347929,18.222504&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">33 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">1 - 8 lat</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.347929,18.222504" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Community Centre</span>
+              <h2 class="card-title">Dom Kultury Bierawa</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.279899,18.240995&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">33 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.279899,18.240995" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Indoor Play</span>
+              <h2 class="card-title">Arcadia</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.351721,18.235071&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">38 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">1 - 8 lat</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.351721,18.235071" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Sports Centre</span>
+              <h2 class="card-title">Kryta Pływalnia</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.348816,18.220321&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">45 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.348816,18.220321" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Cinema</span>
+              <h2 class="card-title">Helios</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.342095,18.191791&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">54 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.342095,18.191791" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Indoor Play</span>
+              <h2 class="card-title">Dżungla</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.345986,18.222649&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">82 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">1 - 8 lat</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.345986,18.222649" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Community Centre</span>
+              <h2 class="card-title">Dom Kultury Koźle</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.330463,18.145265&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">82 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.330463,18.145265" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Museum</span>
+              <h2 class="card-title">Muzeum Bitwy o Benzynę - Strefa Historii i Inspiracji</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.353333,18.261932&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">84 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.353333,18.261932" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Sports Centre</span>
+              <h2 class="card-title">Pełnowymiarowe boisko piłkarskie</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.357754,18.266666&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">90 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.357754,18.266666" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Sports Centre</span>
+              <h2 class="card-title">Tenis Club</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.348685,18.237532&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">127 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.348685,18.237532" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Community Centre</span>
+              <h2 class="card-title">Dom Działkowca "Zacisze"</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.354123,18.250173&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">133 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.354123,18.250173" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Theatre</span>
+              <h2 class="card-title">Kozielska Muszla Koncertowa</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.334602,18.150629&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">136 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.334602,18.150629" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Sports Centre</span>
+              <h2 class="card-title">Stadion Miejski Kuźniczka</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.351654,18.206034&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">149 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.351654,18.206034" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+      <article class="card">
+        
+        <div>
+          <div class="card-header">
+            <div>
+              <span class="card-sub">Sports Centre</span>
+              <h2 class="card-title">Hala Sportowa</h2>
+            </div>
+            <span class="score-badge">95/100</span>
+          </div>
+          
+          
+        <div class="map-container">
+          <iframe 
+            width="100%" 
+            height="140" 
+            style="border:0; border-radius: 8px;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=50.279812,18.204364&z=15&output=embed">
+          </iframe>
+        </div>
+        
+
+          <div class="logistics-grid">
+            <div class="log-row"><span class="log-label">Parking:</span><span class="log-val">234 m</span></div>
+            <div class="log-row"><span class="log-label">Dla wózków:</span><span class="log-val">Brak danych</span></div>
+            <div class="log-row"><span class="log-label">Wiek:</span><span class="log-val">Bez ograniczeń</span></div>
+            <div class="log-row"><span class="log-label">Zadaszenie:</span><span class="log-val">Pełne (Indoor)</span></div>
+          </div>
+          <p class="desc">Zadaszony obiekt w Kędzierzynie-Koźlu zweryfikowany pod kątem dostępności logistycznej i bliskości stref parkowania.</p>
+        </div>
+        <div class="card-actions" style="margin-top: auto;">
+          <a href="https://maps.google.com/?q=50.279812,18.204364" target="_blank" rel="noopener" class="btn btn-outline">Otwórz w Mapach</a>
+          <a href="#" class="btn btn-primary">Szczegóły</a>
+        </div>
+      </article>
+        
+    </div>
+    <footer class="transparency-box">
+      <strong>Metodologia portalu:</strong> Współrzędne i logistykę wygenerowano automatycznie z bazy OpenStreetMap.
+    </footer>
+  </div>
+</body>
+</html>
