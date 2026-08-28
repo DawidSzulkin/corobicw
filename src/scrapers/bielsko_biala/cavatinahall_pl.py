@@ -1,4 +1,4 @@
-﻿from datetime import datetime
+from datetime import datetime
 import html
 import os
 import re
@@ -93,6 +93,12 @@ class CavatinaHallPlScraper(BaseScraper):
                     break
 
                 for item in items:
+                    event_url = item.get("link", f"{self.base_url}/wydarzenia/")
+                    
+                    # Odrzucenie angielskich duplikatów
+                    if "/en/" in event_url or "/en-" in event_url:
+                        continue
+
                     raw_title = item.get("title", {}).get("rendered", "")
                     title = html.unescape(raw_title).strip()
                     if len(title) < 2:
@@ -107,7 +113,6 @@ class CavatinaHallPlScraper(BaseScraper):
                         continue
                     self.seen_signatures.add(sig)
 
-                    event_url = item.get("link", f"{self.base_url}/wydarzenia/")
                     full_remote_img = self._extract_image_url(item)
                     thumb_path = self.save_thumbnail(full_remote_img, title, prefix="cavatina")
 
