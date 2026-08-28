@@ -32,11 +32,11 @@ VENUE_MATCH_RULES = {
     "bielsko_biala": [
         {"keywords": ["cavatina", "cavatina hall"], "target_id": "bb-cavatina-hall"},
         {"keywords": ["bck", "bielskie centrum kultury", "dom muzyki", "festiwal kompozytorów"], "target_id": "bb-bck"},
-        {"keywords": ["teatr polski", "teatru polskiego", "duża scena tp", "sąsiedzi z góry", "testosteron", "tina", "viva maria", "wanda"], "target_id": "bb-teatr-polski"},
+        {"keywords": ["plac teatralny", "teatr polski", "teatru polskiego", "duża scena tp", "carmen", "sąsiedzi z góry", "testosteron", "tina", "viva maria", "wanda"], "target_id": "bb-teatr-polski"},
         {"keywords": ["banialuka", "teatr lalek", "calineczka", "kamyk i księżyc", "mały książę", "królowa śniegu", "włosy mamy", "zagubiony chłopiec", "urodziny w nigdylandii", "narodziny", "tuwim i"], "target_id": "bb-teatr-banialuka"},
         {"keywords": ["galeria bielska", "galeria bwa", "bwa", "momenty graniczne", "dziadostwo", "święto lasu", "bojdys", "street artu", "wariacje goldbergowskie", "mazolewski"], "target_id": "bb-galeria-bielska-bwa"},
         {"keywords": ["zamek", "sułkowskich", "muzeum historyczne"], "target_id": "bb-zamek-sulkowskich"},
-        {"keywords": ["karate", "dębowiec", "hala pod dębowcem", "bbosir"], "target_id": "bb-hala-pod-debowcem"},
+        {"keywords": ["spartan", "karate", "dębowiec", "debowiec", "hala pod dębowcem", "hala pod debowcem", "bbosir"], "target_id": "bb-hala-pod-debowcem"},
         {"keywords": ["rudeboy", "rudeboy club", "illusion", "hostia", "iron head", "closterkeller"], "target_id": "bb-rudeboy-club"}
     ]
 }
