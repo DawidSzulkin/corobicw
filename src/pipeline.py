@@ -74,8 +74,10 @@ def _sanitize_llm_string(val: Any) -> str:
     return val.strip()
 
 def _get_geo_coords(place: Dict[str, Any]) -> Optional[tuple[float, float]]:
-    lat = place.get("lat") or place.get("geo", {}).get("lat") or place.get("coordinates", {}).get("lat")
-    lon = place.get("lon") or place.get("geo", {}).get("lon") or place.get("coordinates", {}).get("lon")
+    geo = place.get("geo") if isinstance(place.get("geo"), dict) else {}
+    coords = place.get("coordinates") if isinstance(place.get("coordinates"), dict) else {}
+    lat = geo.get("lat") or coords.get("lat") or place.get("lat")
+    lon = geo.get("lon") or coords.get("lon") or place.get("lon")
     if lat is not None and lon is not None:
         try:
             return float(lat), float(lon)
@@ -229,7 +231,8 @@ def _prepare_event_models(events: List[Any], city_tag: str, city_name: str, plac
         organizer = _sanitize_llm_string(analysis_raw.get("organizer") or e.get("source") or venue_name)
         lead = _sanitize_llm_string(analysis_raw.get("editorial_lead") or e.get("description", "")[:180] or (title + "."))
         full_desc = _sanitize_llm_string(analysis_raw.get("full_description") or e.get("description") or lead)
-        bullets = [_sanitize_llm_string(b) for b in (analysis_raw.get("details_bullets") or [title])]
+        raw_b = analysis_raw.get("details_bullets") or []
+        bullets = [_sanitize_llm_string(b) for b in raw_b if _sanitize_llm_string(b) and _sanitize_llm_string(b).lower() != title.lower()]
         badges = [_sanitize_llm_string(b) for b in analysis_raw.get("badges", [category]) if "np." not in b.lower()]
         if not badges:
             badges = [category]
