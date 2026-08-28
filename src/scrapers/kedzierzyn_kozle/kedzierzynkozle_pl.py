@@ -124,11 +124,17 @@ class KedzierzynKozlePlScraper(BaseScraper):
 
         for cell in cells:
             current_date = None
-            day_link = cell.select_one("a[href*='/calendar-node-field-date/day/']")
+            day_link = cell.select_one("a[href*='/calendar-node-field-date/day/'], a[href*='/day/'], .day a, .date-display-single")
             if day_link and day_link.get("href"):
                 date_match = re.search(r"\d{4}-\d{2}-\d{2}", day_link["href"])
                 if date_match:
                     current_date = date_match.group(0)
+            if not current_date:
+                # Próba wyciągnięcia z tekstu nagłówka komórki lub id/klasy
+                cell_id = cell.get("id", "") or cell.get("class", [""])[0]
+                m = re.search(r"\d{4}-\d{2}-\d{2}", str(cell))
+                if m:
+                    current_date = m.group(0)
 
             if not current_date or current_date < today_iso:
                 continue
