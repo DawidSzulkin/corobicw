@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hala Wielofunkcyjna pod D?bowcem | Bielsko-Biała - CoRobićW</title>
-  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Hala Wielofunkcyjna pod D?bowcem w Bielsko-Biała.">
+  <title>Hala Wielofunkcyjna pod Dębowcem | Bielsko-Biała - CoRobićW</title>
+  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Hala Wielofunkcyjna pod Dębowcem w Bielsko-Biała.">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   
@@ -103,12 +103,12 @@
   </header>
   <main>
     <nav class="breadcrumbs">
-      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">Hala Wielofunkcyjna pod D?bowcem</span>
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">Hala Wielofunkcyjna pod Dębowcem</span>
     </nav>
     <div class="container-grid">
       <div class="main-content">
         <span class="badge">Sport i Rozrywka</span>
-        <h1>Hala Wielofunkcyjna pod D?bowcem</h1>
+        <h1>Hala Wielofunkcyjna pod Dębowcem</h1>
         <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. Karbowa 26, Bielsko-Biała</p>
         <div id="map"></div>
         <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
@@ -187,7 +187,7 @@
           <div class="info-row">
             <div class="info-label">Parking</div>
             <div class="info-val">
-              Du?y bezpłatny (30m)
+              Duży bezpłatny (30m)
               
             </div>
           </div>
@@ -202,7 +202,7 @@
       <div class="footer-col"><h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li></ul></div>
       <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li></ul></div>
     </div>
-    <div class="footer-copy"><span>&copy; 2026 CoRobićW.</span><span>Obiekt: Hala Wielofunkcyjna pod D?bowcem (Bielsko-Biała)</span></div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW.</span><span>Obiekt: Hala Wielofunkcyjna pod Dębowcem (Bielsko-Biała)</span></div>
   </footer>
   
   <script>
@@ -229,7 +229,7 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const lat = 49.785; const lon = 19.0185;
+      const lat = 49.7852; const lon = 19.0185;
       const map = L.map('map').setView([lat, lon], 15);
       
       let tileUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
@@ -238,7 +238,7 @@
       }
       
       const layer = L.tileLayer(tileUrl, { maxZoom: 19, attribution: '© OpenStreetMap © CARTO' }).addTo(map);
-      L.marker([lat, lon]).addTo(map).bindPopup("<b>Hala Wielofunkcyjna pod D?bowcem</b>").openPopup();
+      L.marker([lat, lon]).addTo(map).bindPopup("<b>Hala Wielofunkcyjna pod Dębowcem</b>").openPopup();
       
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
