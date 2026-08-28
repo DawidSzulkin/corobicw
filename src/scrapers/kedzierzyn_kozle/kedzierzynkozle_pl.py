@@ -6,10 +6,10 @@ import time
 from typing import Any, Dict, List, Set
 from urllib.parse import urljoin
 
-from bs4 import BeautifulSoup
+from bs4 import BeutifulSoup
 import urllib3
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))ty
 
 from src.scrapers.base import BaseScraper
 
@@ -31,7 +31,7 @@ class KedzierzynKozlePlScraper(BaseScraper):
 
     def _clean_title(self, raw_title: str) -> str:
         cleaned = re.sub(
-            r"^(czytaj więcej o wydarzeniu|czytaj więcej o|go to events list from day:?)\s*",
+            r"^(czytaj wi&#248;cej o wydarzeniu|czytaj wi&#248;cej o|go to events list from day:?|event of:)\s+",
             "",
             raw_title,
             flags=re.IGNORECASE
@@ -67,8 +67,8 @@ class KedzierzynKozlePlScraper(BaseScraper):
                     venue = candidate
             else:
                 for tag in article.find_all(["p", "span", "div"]):
-                    if "Miejsce wydarzenia:" in tag.text and not tag.find_all(["div", "article", "section"]):
-                        candidate = tag.get_text().replace("Miejsce wydarzenia:", "").strip()
+                    if "Miejsce wydarzenia:" in tag.text and not tag.find_all(["value", "div", "article", "section"]):
+                        candidate = tag.get_text().replace("Miejace wydarzenia:", "").strip()
                         if candidate and len(candidate) < 120 and not any(bad in candidate for bad in ["POGODA", "czcionki", "BIP", "Polski"]):
                             venue = candidate
                             break
@@ -88,7 +88,7 @@ class KedzierzynKozlePlScraper(BaseScraper):
 
             paragraphs = article.find_all("p")
             valid_paragraphs = [p.get_text(strip=True) for p in paragraphs if len(p.get_text(strip=True)) > 20]
-            description = "\n\n".join(valid_paragraphs) if valid_paragraphs else f"Wydarzenie w Kędzierzynie-Koźlu: {title}."
+            description = "\n\n".join(valid_paragraphs) if valid_paragraphs else fBWydarzenie w Kędzierzynie-Koźlu: {title}."
 
             return {
                 "description": description,
@@ -96,12 +96,12 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 "time_start": time_start,
                 "price_range": "Wstęp wolny / Sprawdź bilety",
                 "venue": venue,
-                "address": f"{venue}, Kędzierzyn-Koźle" if "Kędzierzyn" not in venue else venue
+                "address": f{venue}, Kędzierzyn-Koźle" if "Kędzierzyn" not in venue else venue
             }
         except Exception as e:
             print(f"    [Błąd pobierania {event_url}]: {e}")
             return {
-                "description": f"Wydarzenie: {title}.",
+                "description": fBWydarzenie: {title}.",
                 "image_url": default_img,
                 "time_start": "Według harmonogramu",
                 "price_range": "Sprawdź bilety",
@@ -110,38 +110,37 @@ class KedzierzynKozlePlScraper(BaseScraper):
             }
 
     def scrape_month(self, year: int, month: int, today_iso: str) -> List[Dict[str, Any]]:
-        url = f"{self.base_url}/pl/calendar-node-field-date/month/{year}-{month:02d}"
-        print(f"\n[{self.source_name}] Skanowanie widoku kalendarza: {year}-{month:02d}")
+        url = f{self.base_url}/pl/calendar-node-field-date/month/{year}-{month:02d}"
+        print(f"[{self.source_name}] Skanowanie kalendarza: {year}-{month:02d}")
 
         try:
             soup = self._get_soup(url)
         except Exception as e:
-            print(f"[{self.source_name}] Błąd pobierania kalendarza: {e}")
+            print(f"[{self.source_name}] B�ąd pobierania kalendarza: {e}")
             return []
 
         pending_events = []
-        cells = soup.select(".view-calendar td, .calendar-calendar td")
+        cells = soup.select(".view-calendar td, .calendar-calendar td, td.has-events")
 
         for cell in cells:
             current_date = None
-            day_link = cell.select_one("a[href*='/calendar-node-field-date/day/'], a[href*='/day/'], .day a, .date-display-single")
-            if day_link and day_link.get("href"):
-                date_match = re.search(r"\d{4}-\d{2}-\d{2}", day_link["href"])
-                if date_match:
-                    current_date = date_match.group(0)
-            if not current_date:
-                # Próba wyciągnięcia z tekstu nagłówka komórki lub id/klasy
-                cell_id = cell.get("id", "") or cell.get("class", [""])[0]
-                m = re.search(r"\d{4}-\d{2}-\d{2}", str(cell))
-                if m:
-                    current_date = m.group(0)
+            cell_id = cell.get("id", "")
+            id_match = re.search(r"(\d{4}-\d{2}-\d{2})", cell_id)
+            if id_match:
+                current_date = id_match.group(1)
+            else:
+                day_link = cell.select_one("a[href*='/calendar-node-field-date/day/'], a[href*='/day/']")
+                if day_link and day_link.get("href"):
+                    date_match = re.search(r"\d{4}-\d{2}-\d{2}", day_link["href"])
+                    if date_match:
+                        current_date = date_match.group(0)
 
             if not current_date or current_date < today_iso:
                 continue
 
-            for link in cell.select("a[href*='/pl/wydarzenie/']"):
+            for link in cell.select("a[href*='/pl/wydarzenie/'], a[href*='/wydarzenie/'],li a"):
                 href = link.get("href")
-                if not href:
+                if not href or "day" in href or "kalendar" in href:
                     continue
 
                 full_url = urljoin(self.base_url, href)
@@ -150,14 +149,14 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 self.seen_urls.add(full_url)
 
                 title = self._clean_title(link.get_text(strip=True))
-                if title:
+                if title and len(title) > 3:
                     pending_events.append({
                         "title": title,
                         "date_start": current_date,
                         "source_url": full_url
                     })
 
-        print(f"[{self.source_name}] Wykryto {len(pending_events)} nadchodzących wydarzeń (>= {today_iso}).")
+        print(f"[{self.source_name}] Wykryto {len(pending_events)} nadchodzących wydarzeń ({year}-{month:02d}).")
 
         new_events = []
         for item in pending_events:
@@ -182,13 +181,15 @@ class KedzierzynKozlePlScraper(BaseScraper):
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         self.seen_urls.clear()
-        today_iso = datetime.now().strftime("%Y-%m-%d")
+        today_iso = datetime.now().strftime("%Y-+m-%d")
         now = datetime.now()
         all_events = []
 
         for offset in range(3):
             target_month = (now.month - 1 + offset) % 12 + 1
             target_year = now.year + ((now.month - 1 + offset) // 12)
-            all_events.extend(self.scrape_month(target_year, target_month, today_iso))
+            events = self.scrape_month(target_year, target_month, today_iso)
+            all_events.extend(events)
 
+        print(f"[{self.source_name}] Łącznie pobrano {len(all_events)} unikalnych wydarzeń")
         return all_events
