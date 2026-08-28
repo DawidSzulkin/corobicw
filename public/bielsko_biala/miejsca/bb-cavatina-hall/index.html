@@ -1,0 +1,1576 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cavatina Hall | Bielsko-Biała - CoRobićW</title>
+  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Cavatina Hall w Bielsko-Biała.">
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style>
+    :root {
+      --primary: #1A365D;
+      --secondary: #2B6CB0;
+      --accent: #E53E3E;
+      --bg: #F7FAFC;
+      --text: #2D3748;
+      --card-bg: #FFFFFF;
+      --border: #E2E8F0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a { color: white; text-decoration: none; font-weight: bold; }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    .main-content {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .badge {
+      display: inline-block;
+      background: #EBF8FF;
+      color: var(--secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+    }
+    h1 { margin: 0 0 1rem 0; color: var(--primary); font-size: 2rem; }
+    .sidebar .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .sidebar h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: var(--primary);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .info-row { display: flex; margin-bottom: 0.8rem; font-size: 0.95rem; }
+    .info-label { width: 35%; font-weight: 600; color: #718096; }
+    .info-val { width: 65%; font-weight: 500; }
+    .event-card {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+    }
+    .event-card:last-child { border-bottom: none; }
+    .event-card:hover h4 { color: var(--secondary); }
+    .event-thumb {
+      width: 90px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #CBD5E0;
+    }
+    .event-meta { font-size: 0.85rem; color: #718096; }
+    .event-title { margin: 0 0 0.3rem 0; font-size: 1rem; font-weight: bold; }
+    #map { height: 260px; width: 100%; border-radius: 8px; margin-top: 1rem; border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+  
+  
+  
+  
+  
+  
+
+  <header>
+    <a href="/bielsko_biala/">← Wróć do agendy: Bielsko-Biała</a>
+    <span>CoRobićW</span>
+  </header>
+
+  <div class="container">
+    <main class="main-content">
+      <span class="badge">Kultura i Muzyka</span>
+      <h1>Cavatina Hall</h1>
+      <p style="color: #4A5568; font-size: 1.1rem;">
+        📍 ul. Dworkowa 2, Bielsko-Biała
+      </p>
+
+      
+        <div id="map"></div>
+      
+
+      <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
+
+      <h3>📅 Nadchodzące wydarzenia w tym miejscu (155)</h3>
+      
+        
+        <a href="/bielsko_biala/wydarzenia/2026-08-28-lets-paint-on-the-rooftop/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_let_s_paint_on_the_rooftop.webp" alt="Let’s paint on the rooftop" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-08-28 • ⏰ 19:00</div>
+            <div class="event-title">Let’s paint on the rooftop</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-08-28-zmalujmy-na-dachu/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_zmalujmy_na_dachu.webp" alt="Zmalujmy na dachu" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-08-28 • ⏰ 18:00</div>
+            <div class="event-title">Zmalujmy na dachu</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-08-29-boeing-boeing/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/05/A4_Boeing-boeing-002.jpg" alt="Boeing Boeing" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 29 sie • ⏰ 19:00</div>
+            <div class="event-title">Boeing Boeing</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 94.52 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-08-30-cavatina-philharmonic-orchestra-c/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/05/1749714889-137.jpg" alt="Cavatina Philharmonic Orchestra – concert on the rooftop" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 30 sie • ⏰ 18:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – concert on the rooftop</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-05-tour-of-the-cavatina-hall-and-light-show/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_tour_of_the_cavatina_hall_and_light_show.webp" alt="Tour of the Cavatina Hall and light show" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-05 • ⏰ 18:00</div>
+            <div class="event-title">Tour of the Cavatina Hall and light show</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-05-zwiedzanie-cavatina-hall-i-pokaz-swiatla/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_zwiedzanie_cavatina_hall_i_pokaz__wiat_a.webp" alt="Zwiedzanie Cavatina Hall i pokaz światła" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-05 • ⏰ 18:00</div>
+            <div class="event-title">Zwiedzanie Cavatina Hall i pokaz światła</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-08-yoga-on-the-rooftop/" class="event-card">
+          <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Yoga on the Rooftop" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-08 • ⏰ 19:00</div>
+            <div class="event-title">Yoga on the Rooftop</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-08-joga-na-dachu/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_joga_na_dachu.webp" alt="joga na dachu" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-08 • ⏰ 19:00</div>
+            <div class="event-title">joga na dachu</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-09-tai-chi-na-dachu/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_tai_chi_na_dachu.webp" alt="Tai chi na dachu" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-09 • ⏰ 19:00</div>
+            <div class="event-title">Tai chi na dachu</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-11-grazyna-obaszewska/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1771510152-10-e1787043619285.png" alt="Grażyna Łobaszewska" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 11 wrz • ⏰ 19:00</div>
+            <div class="event-title">Grażyna Łobaszewska</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-12-see-you-on-the-rooftop/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_see_you_on_the_rooftop.webp" alt="See You on the Rooftop" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-12 • ⏰ 18:00</div>
+            <div class="event-title">See You on the Rooftop</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-12-wpadnij-na-dach/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_wpadnij_na_dach.webp" alt="Wpadnij na dach" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-12 • ⏰ 18:00</div>
+            <div class="event-title">Wpadnij na dach</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-13-see-you-on-the-rooftop/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_see_you_on_the_rooftop.webp" alt="See You on the Rooftop" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-13 • ⏰ 18:00</div>
+            <div class="event-title">See You on the Rooftop</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-13-wpadnij-na-dach/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_wpadnij_na_dach.webp" alt="Wpadnij na dach" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-13 • ⏰ 18:00</div>
+            <div class="event-title">Wpadnij na dach</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-16-pilates/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_pilates.webp" alt="Pilates" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-16 • ⏰ 19:00</div>
+            <div class="event-title">Pilates</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-17-cavatina-philharmonic-orchestra-film-music/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_cavatina_philharmonic_orchestra___film_music.webp" alt="Cavatina Philharmonic Orchestra – Film Music" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-17 • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Film Music</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-17-muzyka-z-wielkiego-ekranu-cavatina-philharmonic-orchestra-stanley-dodds/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_muzyka_z_wielkiego_ekranu___cavatina_philharmonic_orchestra___stanley_dodds.webp" alt="Muzyka z wielkiego ekranu – Cavatina Philharmonic Orchestra & Stanley Dodds" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-17 • ⏰ 19:00</div>
+            <div class="event-title">Muzyka z wielkiego ekranu – Cavatina Philharmonic Orchestra & Stanley Dodds</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-18-hania-derej-trio-and-guests/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786626157-7.jpeg" alt="Hania Derej Trio and Guests" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 18 wrz • ⏰ 19:00</div>
+            <div class="event-title">Hania Derej Trio and Guests</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-19-15th-gala-of-the-podbeskidzie-regional-womens-congress/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_15th_gala_of_the_podbeskidzie_regional_women_s_congress.webp" alt="15th Gala of the Podbeskidzie Regional Women’s Congress" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-19 • ⏰ 17:00</div>
+            <div class="event-title">15th Gala of the Podbeskidzie Regional Women’s Congress</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-19-xv-gala-regionalnego-kongresu-kobiet-podbeskidzia/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_xv_gala_regionalnego_kongresu_kobiet_podbeskidzia.webp" alt="XV Gala Regionalnego Kongresu Kobiet Podbeskidzia" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-19 • ⏰ 17:00</div>
+            <div class="event-title">XV Gala Regionalnego Kongresu Kobiet Podbeskidzia</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-22-yoga-on-the-rooftop/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_yoga_on_the_rooftop.webp" alt="Yoga on the Rooftop" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-22 • ⏰ 19:00</div>
+            <div class="event-title">Yoga on the Rooftop</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-22-joga-na-dachu/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_joga_na_dachu.webp" alt="joga na dachu" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-09-22 • ⏰ 19:00</div>
+            <div class="event-title">joga na dachu</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-24-cavatina-philharmonic-orchestra-s/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1778243045-10.png" alt="Cavatina Philharmonic Orchestra – Season Opening Gala 2026–2027" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 24 wrz • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Season Opening Gala 2026–2027</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-25-fisz-emade-tworzywo/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1774363189-9.jpg" alt="FISZ EMADE TWORZYWO" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 25 wrz • ⏰ 19:00</div>
+            <div class="event-title">FISZ EMADE TWORZYWO</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-26-wpadka-spektakl/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/04/grafiki-1920x1080-1.jpg" alt="Wpadka – spektakl" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 26 wrz • ⏰ 19:00</div>
+            <div class="event-title">Wpadka – spektakl</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 116.82 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-27-kabaret-neo-nowka/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_plakaty/jdagvg9egloi24km_m.webp?t=1780477099" alt="Kabaret Neo-Nówka" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 27 wrz • ⏰ 15:30</div>
+            <div class="event-title">Kabaret Neo-Nówka</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 191.16 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-30-cavatina-hall-art-show/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/05/Concert-Hall-2-Duzy-500x333-134.jpg" alt="Cavatina Hall art show" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Śr, 30 wrz • ⏰ 11:30</div>
+            <div class="event-title">Cavatina Hall art show</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-09-30-pokaz-artystyczny-cavatina-hall/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/04/Concert-Hall-2-Duzy-500x333-14.jpg" alt="Pokaz artystyczny Cavatina Hall" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Śr, 30 wrz • ⏰ 11:30</div>
+            <div class="event-title">Pokaz artystyczny Cavatina Hall</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-01-forced-to-mode/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1757499819-10.jpg" alt="Forced to Mode" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 1 paź • ⏰ 19:00</div>
+            <div class="event-title">Forced to Mode</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-02-orchestra-of-princesses/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_orchestra_of_princesses.webp" alt="Orchestra of Princesses" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-02 • ⏰ 20:00</div>
+            <div class="event-title">Orchestra of Princesses</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-02-orkiestra-ksiezniczek-koncert-wie/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/qey1fnxzwrojoveo_m.webp?t=1783931355" alt="Orkiestra Księżniczek - Koncert Wiedeński 4 (Największe Przeboje)" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 2 paź • ⏰ 20:00</div>
+            <div class="event-title">Orkiestra Księżniczek - Koncert Wiedeński 4 (Największe Przeboje)</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 209.75 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-03-silent-disco/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_silent_disco.webp" alt="Silent disco" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-03 • ⏰ 21:30</div>
+            <div class="event-title">Silent disco</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-03-krzysztof-cugowski/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_plakaty/l4t3e81ojja1g3dd_m.webp?t=1761815478" alt="Krzysztof Cugowski" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 3 paź • ⏰ 18:00</div>
+            <div class="event-title">Krzysztof Cugowski</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 168.86 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-04-the-jokes-are-over-mann-and-bukartyk/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_the_jokes_are_over__mann_and_bukartyk.webp" alt="The Jokes Are Over. Mann and Bukartyk." class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-04 • ⏰ 18:00</div>
+            <div class="event-title">The Jokes Are Over. Mann and Bukartyk.</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-04-skonczyly-sie-zarty-mann-i-bukartyk/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_sko_czy_y_si___arty__mann_i_bukartyk.webp" alt="Skończyły się żarty. Mann i Bukartyk." class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-04 • ⏰ 18:00</div>
+            <div class="event-title">Skończyły się żarty. Mann i Bukartyk.</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-07-tai-chi-w-foyer/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_tai_chi_w_foyer.webp" alt="Tai Chi w foyer" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-07 • ⏰ 19:00</div>
+            <div class="event-title">Tai Chi w foyer</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-08-cavatina-philharmonic-orchestra-spa/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1778242648-10.png" alt="Cavatina Philharmonic Orchestra Spanish Night" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 8 paź • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra Spanish Night</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-09-terapia-dla-par/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/06/2000x1300_terapia-dla-par.jpg" alt="Terapia dla par" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 9 paź • ⏰ 20:00</div>
+            <div class="event-title">Terapia dla par</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 158.24 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-10-i-imagined-you-a-concert-in-memory-of-andrzej-zaucha/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_i_imagined_you____a_concert_in_memory_of_andrzej_zaucha.webp" alt="“I Imagined You” – A Concert in Memory of Andrzej Zaucha" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-10 • ⏰ 19:00</div>
+            <div class="event-title">“I Imagined You” – A Concert in Memory of Andrzej Zaucha</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-10-wymysliem-ciebie/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/05/2000x1300.jpg" alt="Wymyśliłem Ciebie" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 10 paź • ⏰ 19:00</div>
+            <div class="event-title">Wymyśliłem Ciebie</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 190.10 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-11-kwatera-theatre-safari-adventure-a-show-for-children/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_kwatera_theatre___safari_adventure___a_show_for_children.webp" alt="KWATERA THEATRE – Safari adventure – a show for children" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-11 • ⏰ 16:00</div>
+            <div class="event-title">KWATERA THEATRE – Safari adventure – a show for children</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-11-teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_teatr_kwatera___przygoda_na_safari___spektakl_dla_dzieci.webp" alt="TEATR KWATERA – przygoda na Safari – spektakl dla dzieci" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-11 • ⏰ 16:00</div>
+            <div class="event-title">TEATR KWATERA – przygoda na Safari – spektakl dla dzieci</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-14-bodyart/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_bodyart.webp" alt="BODYART" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-14 • ⏰ 19:00</div>
+            <div class="event-title">BODYART</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-14-ewa-bem-loves-the-beatles-ft-grzech-piotrowski-band/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_ewa_bem__loves_the_beatles__ft__grzech_piotrowski_band.webp" alt="Ewa Bem „Loves The Beatles” ft. Grzech Piotrowski Band" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-14 • ⏰ 19:00</div>
+            <div class="event-title">Ewa Bem „Loves The Beatles” ft. Grzech Piotrowski Band</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-15-meditation-for-begginers/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_meditation_for_begginers.webp" alt="Meditation for begginers" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-15 • ⏰ 19:00</div>
+            <div class="event-title">Meditation for begginers</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-15-wprowadzenie-do-medytacji/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_wprowadzenie_do_medytacji.webp" alt="Wprowadzenie do medytacji" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-15 • ⏰ 19:00</div>
+            <div class="event-title">Wprowadzenie do medytacji</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-16-edyta-geppert-recital/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1778243435-10.png" alt="Edyta Geppert – Recital" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 16 paź • ⏰ 19:00</div>
+            <div class="event-title">Edyta Geppert – Recital</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 211.34 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-17-ding-dong-karma-comes-back/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786028022-9.png" alt="Ding Dong Karma comes back" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 17 paź • ⏰ 19:00</div>
+            <div class="event-title">Ding Dong Karma comes back</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 116.82 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-17-ding-dong-czyli-karma-wraca-farsa/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/3lu2icskmczy1xu5_m.webp?t=1781261696" alt="DING DONG czyli KARMA WRACA – farsa małżeńska z rewanżem!" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 17 paź • ⏰ 16:00</div>
+            <div class="event-title">DING DONG czyli KARMA WRACA – farsa małżeńska z rewanżem!</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-18-zakopower/" class="event-card">
+          <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232c3e50%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%233498db%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ecf0f1%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ecf0f1%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22342%22%20cy%3D%22158%22%20r%3D%22219%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22700%22%20cy%3D%22338%22%20r%3D%22187%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Zakopower" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 18 paź • ⏰ 20:00</div>
+            <div class="event-title">Zakopower</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-20-cavatina-hall-art-show/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/Concert-Hall-2-Duzy-500x333-45.jpg" alt="Cavatina Hall art show" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Wt, 20 paź • ⏰ 12:00</div>
+            <div class="event-title">Cavatina Hall art show</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-20-pokaz-artystyczny-cavatina-hall/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/04/Concert-Hall-2-Duzy-500x333-16.jpg" alt="Pokaz artystyczny Cavatina Hall" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Wt, 20 paź • ⏰ 12:00</div>
+            <div class="event-title">Pokaz artystyczny Cavatina Hall</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-20-yoga/" class="event-card">
+          <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Yoga" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-20 • ⏰ 19:00</div>
+            <div class="event-title">Yoga</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-20-joga-w-foyer/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_joga_w_foyer.webp" alt="Joga w foyer" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-20 • ⏰ 19:00</div>
+            <div class="event-title">Joga w foyer</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-23-23-pazdziernika-2026/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/ojtqy57fis0wz2l3_m.webp?t=1679663398" alt="23 października 2026" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 23 paź • ⏰ 19:00</div>
+            <div class="event-title">23 października 2026</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-23-ira-koncert-elektrycznyira-wraca-do-cavatina-hall-koncert-elektryczny/" class="event-card">
+          <img src="/assets/thumbnails/biletyna_bielsko_biala_biletyna_pl_ira_-_koncert_elektrycznyira_wraca_do_cavatina_hall_-_koncert_elektryczny.webp" alt="Ira - Koncert ElektrycznyIRA WRACA DO CAVATINA HALL - KONCERT ELEKTRYCZNY" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-23 • ⏰ 19:00</div>
+            <div class="event-title">Ira - Koncert ElektrycznyIRA WRACA DO CAVATINA HALL - KONCERT ELEKTRYCZNY</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 179.48 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-24-holistic-talk-2026/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_holistic_talk_2026.webp" alt="Holistic Talk 2026" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-24 • ⏰ 15:30</div>
+            <div class="event-title">Holistic Talk 2026</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-25-reckles-roses-tribute-guns-nroses/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/06/1780053914-6.png" alt="Reckles Roses Tribute Guns N’Roses" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 25 paź • ⏰ 18:00</div>
+            <div class="event-title">Reckles Roses Tribute Guns N’Roses</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-26-anita-lipnicka/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/06/1779367645-6.jpg" alt="Anita Lipnicka" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pon, 26 paź • ⏰ 19:00</div>
+            <div class="event-title">Anita Lipnicka</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 211.34 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-29-cavatina-philharmonic-orchestra-hor/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1780054039-10.png" alt="Cavatina Philharmonic Orchestra Horror and Thiriller Night" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 29 paź • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra Horror and Thiriller Night</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-30-justyna-steczkowska-roma-symfonic/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1776867571-10.png" alt="Justyna Steczkowska – ROMA SYMFONICA" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 30 paź • ⏰ 19:30</div>
+            <div class="event-title">Justyna Steczkowska – ROMA SYMFONICA</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 276.12 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-31-natalia-kukulska/" class="event-card">
+          <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234b6cb7%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23182848%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22227%22%20cy%3D%22239%22%20r%3D%22150%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22882%22%20cy%3D%22309%22%20r%3D%22259%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Natalia Kukulska" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 31 paź • ⏰ 20:00</div>
+            <div class="event-title">Natalia Kukulska</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-02-the-chopin-effect-mateusz-krzyzow/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1774425423-9.jpg" alt="The Chopin Effect – Mateusz Krzyżowski" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pon, 2 lis • ⏰ 19:00</div>
+            <div class="event-title">The Chopin Effect – Mateusz Krzyżowski</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-05-cavatina-philharmonic-orchestra-c/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1766161116-10.jpg" alt="Cavatina Philharmonic Orchestra – classical music hits" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 5 lis • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – classical music hits</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-05-tai-chi-w-sali-kameralnej/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_tai_chi_w_sali_kameralnej.webp" alt="Tai Chi w sali kameralnej" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-05 • ⏰ 19:00</div>
+            <div class="event-title">Tai Chi w sali kameralnej</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-06-dzem/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/04/dzem_2024_promo-scaled.jpg" alt="DŻEM" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 6 lis • ⏰ 19:00</div>
+            <div class="event-title">DŻEM</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-07-mietek-szczesniak-and-cavatina-phil/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1771510581-10.png" alt="Mietek Szcześniak and Cavatina Philharmonic Orchestra" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 7 lis • ⏰ 18:00</div>
+            <div class="event-title">Mietek Szcześniak and Cavatina Philharmonic Orchestra</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-08-grzegorz-turnau/" class="event-card">
+          <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23232526%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23414345%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22481%22%20cy%3D%22311%22%20r%3D%22196%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22878%22%20cy%3D%22429%22%20r%3D%22244%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Grzegorz Turnau" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 8 lis • ⏰ 18:00</div>
+            <div class="event-title">Grzegorz Turnau</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-09-the-chopin-effect-piotr-pawlak/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_the_chopin_effect_piotr_pawlak.webp" alt="The Chopin Effect Piotr Pawlak" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-09 • ⏰ 19:00</div>
+            <div class="event-title">The Chopin Effect Piotr Pawlak</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-09-efekt-chopina-adam-kaldunski/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_efekt_chopina_adam_ka_du_ski.webp" alt="Efekt Chopina Adam Kałduński" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-09 • ⏰ 19:00</div>
+            <div class="event-title">Efekt Chopina Adam Kałduński</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-11-andrzej-sikorowski-and-jacek-krolik/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786029160-4.png" alt="Andrzej Sikorowski and Jacek Królik" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Śr, 11 lis • ⏰ 17:00</div>
+            <div class="event-title">Andrzej Sikorowski and Jacek Królik</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-13-yamato-the-drummers-of-japan/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_yamato___the_drummers_of_japan.webp" alt="YAMATO – The Drummers of Japan" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-13 • ⏰ 19:00</div>
+            <div class="event-title">YAMATO – The Drummers of Japan</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-14-kasia-kowalska-akustycznie/" class="event-card">
+          <img src="/assets/thumbnails/biletyna_bielsko_biala_biletyna_pl_kasia_kowalska_akustycznie.webp" alt="Kasia Kowalska akustycznie" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-14 • ⏰ Według harmonogramu</div>
+            <div class="event-title">Kasia Kowalska akustycznie</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-15-queen-symphonically/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1778597585-10.png" alt="Queen Symphonically" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 15 lis • ⏰ 19:00</div>
+            <div class="event-title">Queen Symphonically</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-16-the-chopin-effect-yehuda-prokopow/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1774425724-9.jpg" alt="The Chopin Effect – Yehuda Prokopowicz" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pon, 16 lis • ⏰ 19:00</div>
+            <div class="event-title">The Chopin Effect – Yehuda Prokopowicz</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-19-cavatina-philharmonic-orchestra-r/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/06/1780053992-6.png" alt="Cavatina Philharmonic Orchestra – Romantic Landscapes" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 19 lis • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Romantic Landscapes</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-20-adam-bielecki-everest-dark/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_adam_bielecki_everest_dark.webp" alt="Adam Bielecki Everest Dark" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-20 • ⏰ 19:00</div>
+            <div class="event-title">Adam Bielecki Everest Dark</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-20-spotkanie-z-adamem-bieleckim/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_spotkanie_z_adamem_bieleckim.webp" alt="Spotkanie z Adamem Bieleckim" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-20 • ⏰ 19:00</div>
+            <div class="event-title">Spotkanie z Adamem Bieleckim</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-21-krol-lew-live-in-concert/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_kr_l_lew_live_in_concert.webp" alt="Król Lew Live in Concert" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-21 • ⏰ 18:00</div>
+            <div class="event-title">Król Lew Live in Concert</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-22-smolik-kev-fox-cavatina-philharmoni/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1787565394-1.jpg" alt="Smolik Kev Fox Cavatina Philharmonic Orchestra Bokka" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 22 lis • ⏰ 19:00</div>
+            <div class="event-title">Smolik Kev Fox Cavatina Philharmonic Orchestra Bokka</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-23-the-chopin-effect-piotr-pawlak/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1774425862-9.jpg" alt="The Chopin Effect Piotr Pawlak" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pon, 23 lis • ⏰ 19:00</div>
+            <div class="event-title">The Chopin Effect Piotr Pawlak</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-24-yoga/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_yoga.webp" alt="Yoga" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-24 • ⏰ 19:00</div>
+            <div class="event-title">Yoga</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-24-joga-w-foyer/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_joga_w_foyer.webp" alt="Joga w foyer" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-24 • ⏰ 19:00</div>
+            <div class="event-title">Joga w foyer</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-25-igor-herbut-zeremie/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_igor_herbut___eremie.webp" alt="Igor Herbut „Żeremie”" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-25 • ⏰ 20:00</div>
+            <div class="event-title">Igor Herbut „Żeremie”</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-26-a-dance-and-music-performance-featuring-stefano-terrazzino/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_a_dance_and_music_performance_featuring_stefano_terrazzino.webp" alt="A Dance and Music Performance Featuring Stefano Terrazzino" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-26 • ⏰ 19:30</div>
+            <div class="event-title">A Dance and Music Performance Featuring Stefano Terrazzino</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-26-maly-fiat-wielka-milosc-spektakl-taneczno-muzyczny-z-udzialem-stefano-terrazzino/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_ma_y_fiat_wielka_mi_o_____spektakl_taneczno-muzyczny_z_udzia_em_stefano_terrazzino.webp" alt="Mały Fiat Wielka Miłość – spektakl taneczno-muzyczny z udziałem Stefano Terrazzino" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-26 • ⏰ 19:30</div>
+            <div class="event-title">Mały Fiat Wielka Miłość – spektakl taneczno-muzyczny z udziałem Stefano Terrazzino</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-27-alicja-majewska-and-wodzimierz-kor/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1769184138-10.jpg" alt="Alicja Majewska and Włodzimierz Korcz and Warsaw String Quartet" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 27 lis • ⏰ 19:00</div>
+            <div class="event-title">Alicja Majewska and Włodzimierz Korcz and Warsaw String Quartet</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-28-the-strings-2-jada-do-usa/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/8_ST2_656x369.jpg" alt="THE STRINGS 2 jadą do USA" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 28 lis • ⏰ 19:00</div>
+            <div class="event-title">THE STRINGS 2 jadą do USA</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-28-andrzejkowe-silent-disco/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1757424864-1.jpg" alt="Andrzejkowe silent disco" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 28 lis • ⏰ 21:30</div>
+            <div class="event-title">Andrzejkowe silent disco</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-29-zalewski-solo-act/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_zalewski_solo_act.webp" alt="Zalewski Solo Act" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-11-29 • ⏰ 20:00</div>
+            <div class="event-title">Zalewski Solo Act</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-11-29-krzysztof-zalewski/" class="event-card">
+          <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23232526%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23414345%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300c6ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22249%22%20cy%3D%22165%22%20r%3D%22144%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22675%22%20cy%3D%22342%22%20r%3D%22255%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Krzysztof Zalewski" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 29 lis • ⏰ 20:00</div>
+            <div class="event-title">Krzysztof Zalewski</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-01-tre-voci/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/05/1920x1080_TRE-VOCI_Magia-Swiat.jpg" alt="TRE VOCI" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Wt, 1 gru • ⏰ 20:00</div>
+            <div class="event-title">TRE VOCI</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-02-mikoajkowy-pokaz-artystyczny-cavat/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/Concert-Hall-2-Duzy-500x333-43.jpg" alt="Mikołajkowy pokaz artystyczny Cavatina Hall" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Śr, 2 gru • ⏰ 12:30</div>
+            <div class="event-title">Mikołajkowy pokaz artystyczny Cavatina Hall</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-02-cavatina-hall-art-show/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/Concert-Hall-2-Duzy-500x333-48.jpg" alt="Cavatina Hall art show" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Śr, 2 gru • ⏰ 12:30</div>
+            <div class="event-title">Cavatina Hall art show</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-02-bodyart/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_bodyart.webp" alt="BODYART" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-02 • ⏰ 19:00</div>
+            <div class="event-title">BODYART</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-02-meditation-for-begginers/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_meditation_for_begginers.webp" alt="Meditation for begginers" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-02 • ⏰ 19:00</div>
+            <div class="event-title">Meditation for begginers</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-02-wprowadzenie-do-medytacji/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_wprowadzenie_do_medytacji.webp" alt="Wprowadzenie do medytacji" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-02 • ⏰ 19:00</div>
+            <div class="event-title">Wprowadzenie do medytacji</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-04-wilki-mystical/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_wilki_mystical.webp" alt="Wilki Mystical" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-04 • ⏰ 20:00</div>
+            <div class="event-title">Wilki Mystical</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-04-wilki-mistycznie-35-lecie-zespolu/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_wilki_mistycznie___35-lecie_zespo_u.webp" alt="Wilki Mistycznie – 35-lecie zespołu" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-04 • ⏰ 20:00</div>
+            <div class="event-title">Wilki Mistycznie – 35-lecie zespołu</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-05-cavatina-philharmonic-orchestra-s/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/07/1780054102-1.png" alt="Cavatina Philharmonic Orchestra – St. Nicholas Day concert" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 5 gru • ⏰ 16:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – St. Nicholas Day concert</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-06-the-nutcracker/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_the_nutcracker.webp" alt="The Nutcracker" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-06 • ⏰ 18:00</div>
+            <div class="event-title">The Nutcracker</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-06-dziadek-do-orzechow-krolewski-bal/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2025/06/dziadek-3-scaled_11zon-3.jpg" alt="Dziadek do orzechów – Królewski Balet Klasyczny" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 6 gru • ⏰ 18:00</div>
+            <div class="event-title">Dziadek do orzechów – Królewski Balet Klasyczny</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-08-yoga/" class="event-card">
+          <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Yoga" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-08 • ⏰ 19:00</div>
+            <div class="event-title">Yoga</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-08-mikolajkowa-joga-w-foyer/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_miko_ajkowa_joga_w_foyer.webp" alt="Mikołajkowa joga w foyer" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-08 • ⏰ 19:00</div>
+            <div class="event-title">Mikołajkowa joga w foyer</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-09-tai-chi-w-foyer/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_tai_chi_w_foyer.webp" alt="Tai Chi w foyer" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-09 • ⏰ 19:00</div>
+            <div class="event-title">Tai Chi w foyer</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-10-cavatina-philharmonic-orchestra-t/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/07/1781684050-1.png" alt="Cavatina Philharmonic Orchestra – Tchaikovsky’s Most Beautiful Melodies" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 10 gru • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Tchaikovsky’s Most Beautiful Melodies</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-11-maryla-rodowicz-najwieksze-przeboje/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_maryla_rodowicz___najwi_ksze_przeboje.webp" alt="Maryla Rodowicz – Największe przeboje" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-11 • ⏰ 19:00</div>
+            <div class="event-title">Maryla Rodowicz – Największe przeboje</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-13-tarja-turunen/" class="event-card">
+          <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%233a1c71%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23d76d77%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffaf7b%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffaf7b%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22318%22%20cy%3D%22188%22%20r%3D%22169%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22748%22%20cy%3D%22285%22%20r%3D%22283%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="TARJA TURUNEN" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 13 gru • ⏰ 20:00</div>
+            <div class="event-title">TARJA TURUNEN</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-14-patrycja-markowska/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1780053764-10.png" alt="Patrycja Markowska" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pon, 14 gru • ⏰ 19:00</div>
+            <div class="event-title">Patrycja Markowska</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-15-andrzej-piaseczny-kochajmy-sie-zima/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_andrzej_piaseczny__kochajmy_si__zim.webp" alt="Andrzej Piaseczny „Kochajmy się zimą”" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-15 • ⏰ 19:00</div>
+            <div class="event-title">Andrzej Piaseczny „Kochajmy się zimą”</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-17-glenn-miller-orchestra/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_glenn_miller_orchestra.webp" alt="Glenn Miller Orchestra" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-17 • ⏰ 19:00</div>
+            <div class="event-title">Glenn Miller Orchestra</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-18-aga-zaryan/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_aga_zaryan.webp" alt="Aga Zaryan" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-18 • ⏰ 19:00</div>
+            <div class="event-title">Aga Zaryan</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-19-jaromir-nohavica-robert-kusmierski-i-pavel-planka/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_jaromir_nohavica__robert_ku_mierski_i_pavel_planka.webp" alt="Jaromir Nohavica, Robert Kuśmierski i Pavel Planka" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-12-19 • ⏰ 18:00</div>
+            <div class="event-title">Jaromir Nohavica, Robert Kuśmierski i Pavel Planka</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-23-cavatina-philharmonic-orchestra-s/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/07/1780054167-1.png" alt="Cavatina Philharmonic Orchestra – Symphonic Christmas Concert" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Śr, 23 gru • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Symphonic Christmas Concert</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-02-cavatina-philharmonic-orchestra-koncert-noworoczny/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_cavatina_philharmonic_orchestra___koncert_noworoczny.webp" alt="Cavatina Philharmonic Orchestra – Koncert Noworoczny" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-01-02 • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Koncert Noworoczny</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-03-cavatina-philharmonic-orchestra-koncert-noworoczny/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_cavatina_philharmonic_orchestra___koncert_noworoczny.webp" alt="Cavatina Philharmonic Orchestra – Koncert Noworoczny" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-01-03 • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Koncert Noworoczny</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-05-matt-dusk/" class="event-card">
+          <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234b6cb7%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23182848%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22355%22%20cy%3D%22315%22%20r%3D%22162%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22828%22%20cy%3D%22365%22%20r%3D%22263%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Matt Dusk" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Wt, 5 sty • ⏰ 20:00</div>
+            <div class="event-title">Matt Dusk</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-08-philharmonic-of-wit-film-world/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1750160365-21.jpg" alt="Philharmonic of Wit – Film World" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 8 sty • ⏰ 20:30</div>
+            <div class="event-title">Philharmonic of Wit – Film World</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-08-filharmonia-dowcipu-filmowy-swiat/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/05/FD_GRANAT_2000x1300-BIELSKO-2027.jpg" alt="Filharmonia dowcipu – Filmowy świat" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 8 sty • ⏰ 20:30</div>
+            <div class="event-title">Filharmonia dowcipu – Filmowy świat</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-10-noworoczna-gala-koncert-wiedenski/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/NGKW-BIELSKO-10.01-1500x1000-1.jpg" alt="Noworoczna Gala – Koncert Wiedeński" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 10 sty • ⏰ 17:00</div>
+            <div class="event-title">Noworoczna Gala – Koncert Wiedeński</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-11-lords-of-the-sound-the-music-of-hans-zimmer-special-edition/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_lords_of_the_sound__the_music_of_hans_zimmer__special_edition.webp" alt="Lords of the Sound “THE MUSIC OF HANS ZIMMER” Special Edition" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-01-11 • ⏰ 20:00</div>
+            <div class="event-title">Lords of the Sound “THE MUSIC OF HANS ZIMMER” Special Edition</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-14-cavatina-philharmonic-orchestra-t/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786026232-4.png" alt="Cavatina Philharmonic Orchestra – The Most Beautiful Faces of Romanticism" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 14 sty • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – The Most Beautiful Faces of Romanticism</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-15-tgd-koledy-swiata/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/06/2000x1300_tgd-koledy-swiata.jpg" alt="TGD Kolędy świata" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 15 sty • ⏰ 20:00</div>
+            <div class="event-title">TGD Kolędy świata</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-23-artur-andrus-and-katarzyna-zak/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1787058512-2.png" alt="Artur Andrus and Katarzyna Żak" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 23 sty • ⏰ 18:00</div>
+            <div class="event-title">Artur Andrus and Katarzyna Żak</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-24-gala-noworoczna-wiedenski-nowy-rok-2027/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_gala_noworoczna___wiede_ski_nowy_rok_2027.webp" alt="Gala noworoczna – wiedeński Nowy Rok 2027" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-01-24 • ⏰ 18:00</div>
+            <div class="event-title">Gala noworoczna – wiedeński Nowy Rok 2027</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-29-new-years-gala-viennese-concert/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_new_year_s_gala___viennese_concert.webp" alt="New Year’s Gala – Viennese Concert" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-01-29 • ⏰ 18:00</div>
+            <div class="event-title">New Year’s Gala – Viennese Concert</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-29-noworoczna-gala-koncert-wiedenski/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_noworoczna_gala___koncert_wiede_ski.webp" alt="Noworoczna Gala – Koncert Wiedeński" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-01-29 • ⏰ 18:00</div>
+            <div class="event-title">Noworoczna Gala – Koncert Wiedeński</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-01-31-cavatina-philharmonic-orchestra-c/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/07/1766161116-3.jpg" alt="Cavatina Philharmonic Orchestra – classical music hits" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 31 sty • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – classical music hits</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-02-11-valentines-day-concert/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_valentine_s_day_concert.webp" alt="Valentine’s Day Concert" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-02-11 • ⏰ 19:00</div>
+            <div class="event-title">Valentine’s Day Concert</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-02-11-cavatina-philharmonic-orchestra-koncert-walentynkowy-tylko-mnie-kochaj-ze-specjalnym-udzialem-macieja-zakoscielnego/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_cavatina_philharmonic_orchestra___koncert_walentynkowy___tylko_mnie_kochaj__ze_specjalnym_udzia_em_macieja_zako_cielnego.webp" alt="Cavatina Philharmonic Orchestra – Koncert Walentynkowy – Tylko mnie kochaj, ze specjalnym udziałem Macieja Zakościelnego" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-02-11 • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Koncert Walentynkowy – Tylko mnie kochaj, ze specjalnym udziałem Macieja Zakościelnego</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-02-13-ray-wilson/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/Ray-Wilson-Genesis_Cavatina-Hall-1.jpg" alt="Ray Wilson" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 13 lut • ⏰ 19:00</div>
+            <div class="event-title">Ray Wilson</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-02-17-pasion-de-buena-vista/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786626473-7.jpg" alt="PASION DE BUENA VISTA" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Śr, 17 lut • ⏰ 19:00</div>
+            <div class="event-title">PASION DE BUENA VISTA</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-02-20-pawe-stasiak-and-papa-d-band/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1784035879-10.jpg" alt="Paweł Stasiak and Papa D band" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 20 lut • ⏰ 19:00</div>
+            <div class="event-title">Paweł Stasiak and Papa D band</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-02-25-cavatina-philharmonic-orchestra-s/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786026524-4.png" alt="Cavatina Philharmonic Orchestra – Symphonic World of Games" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 25 lut • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Symphonic World of Games</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-02-26-voo-voo/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/06/1780046050-6.jpg" alt="VOO VOO" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 26 lut • ⏰ 19:00</div>
+            <div class="event-title">VOO VOO</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-02-27-orskiestra-ksiezniczek-noworoczny-koncert-wiedenski/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_orskiestra_ksi__niczek___noworoczny_koncert_wiede_ski.webp" alt="Orskiestra Księżniczek – Noworoczny Koncert Wiedeński" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-02-27 • ⏰ 19:00</div>
+            <div class="event-title">Orskiestra Księżniczek – Noworoczny Koncert Wiedeński</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-03-04-cavatina-philharmonic-orchestra-n/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786026593-4.png" alt="Cavatina Philharmonic Orchestra – Nordic Tales" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 4 mar • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Nordic Tales</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-03-05-pectus-music-that-connects/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_pectus___music_that_connects.webp" alt="Pectus – music that connects" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-03-05 • ⏰ 19:00</div>
+            <div class="event-title">Pectus – music that connects</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-03-05-pectus-muzyka-ktora-laczy/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_pectus___muzyka_kt_ra___czy.webp" alt="Pectus – muzyka która łączy" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-03-05 • ⏰ 19:00</div>
+            <div class="event-title">Pectus – muzyka która łączy</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-03-08-super-ego-tour-varius-manx-kasia/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/06/1780303267-7.jpg" alt="SUPER EGO TOUR Varius Manx & Kasia Stankiewicz" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pon, 8 mar • ⏰ 19:00</div>
+            <div class="event-title">SUPER EGO TOUR Varius Manx & Kasia Stankiewicz</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-03-24-cavatina-philharmonic-orchestra-e/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786025857-4.png" alt="Cavatina Philharmonic Orchestra – Easter Concert" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Śr, 24 mar • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Easter Concert</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-04-04-the-doors-alive/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786025017-4.png" alt="The Doors Alive" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 4 kwi • ⏰ 19:00</div>
+            <div class="event-title">The Doors Alive</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-04-08-cavatina-philharmonic-orchestra-sch/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786025718-4.png" alt="Cavatina Philharmonic Orchestra Scheherazade" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 8 kwi • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra Scheherazade</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-04-22-cavatina-philharmonic-orchestra-a/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786025648-4.png" alt="Cavatina Philharmonic Orchestra – An Evening of Arias and Overtures" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 22 kwi • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – An Evening of Arias and Overtures</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-05-13-cavatina-philharmonic-orchestra-c/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786025562-4.png" alt="Cavatina Philharmonic Orchestra – Classicism and Romanticism in Music" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Czw, 13 maj • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Classicism and Romanticism in Music</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-05-20-cavatina-philharmonic-orchestra-and-szymon-nehring/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_cavatina_philharmonic_orchestra_and_szymon_nehring.webp" alt="Cavatina Philharmonic Orchestra and Szymon Nehring" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-05-20 • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra and Szymon Nehring</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-05-20-cavatina-philharmonic-orchestra-od-blasku-beethovena-do-fantazji-berlioza/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_cavatina_philharmonic_orchestra___od_blasku_beethovena_do_fantazji_berlioza.webp" alt="Cavatina Philharmonic Orchestra – Od blasku Beethovena do fantazji Berlioza" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-05-20 • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra – Od blasku Beethovena do fantazji Berlioza</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-05-22-cavatina-guitar-festival-two-day/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/07/1780054428-1.png" alt="Cavatina Guitar Festival – Two-Day Festival Pass, 22-23 May 2027" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 22 maj • ⏰ 17:00</div>
+            <div class="event-title">Cavatina Guitar Festival – Two-Day Festival Pass, 22-23 May 2027</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-05-23-cavatina-guitar-festival-one-day/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/07/1780054502-1.png" alt="Cavatina Guitar Festival – One-Day Pass, 23 May 2027" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 23 maj • ⏰ 17:00</div>
+            <div class="event-title">Cavatina Guitar Festival – One-Day Pass, 23 May 2027</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-05-30-cavatina-philharmonic-orchestra-dzien-dziecka/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_cavatina_philharmonic_orchestra_dzie__dziecka.webp" alt="Cavatina Philharmonic Orchestra Dzień dziecka" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-05-30 • ⏰ 16:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra Dzień dziecka</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-06-10-hity-muzyki-klasycznej-vivaldissimo/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_hity_muzyki_klasycznej___vivaldissimo.webp" alt="Hity Muzyki klasycznej – Vivaldissimo" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-06-10 • ⏰ 19:00</div>
+            <div class="event-title">Hity Muzyki klasycznej – Vivaldissimo</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-06-24-cavatina-philharmonic-orchestra-zakonczenie-sezonu/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_cavatina_philharmonic_orchestra_zako_czenie_sezonu.webp" alt="Cavatina Philharmonic Orchestra zakończenie sezonu" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-06-24 • ⏰ 19:00</div>
+            <div class="event-title">Cavatina Philharmonic Orchestra zakończenie sezonu</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-09-12-moja-tajemnica-daniel-midas-stand-up/" class="event-card">
+          <img src="/assets/thumbnails/cavatina_cavatinahall_pl_moja_tajemnica___daniel_midas___stand-up.webp" alt="Moja tajemnica – Daniel Midas – stand-up" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2027-09-12 • ⏰ 16:00</div>
+            <div class="event-title">Moja tajemnica – Daniel Midas – stand-up</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne (Kasa / Eventim / Cavatina)</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-09-12-stand-up-daniel-midas/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/jqgfg5sjq21kithr_m.webp?t=1779718000" alt="Stand-up: Daniel Midas" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Ndz, 12 wrz • ⏰ 16:00</div>
+            <div class="event-title">Stand-up: Daniel Midas</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2027-10-22-igor-kwiatkowski-introvert/" class="event-card">
+          <img src="https://cavatinahall.pl/wp-content/uploads/2026/08/1786025994-4.png" alt="Igor Kwiatkowski Introvert" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 22 paź • ⏰ 20:30</div>
+            <div class="event-title">Igor Kwiatkowski Introvert</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+      
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <h3>Logistyka i Dojazd</h3>
+        <div class="info-row">
+          <div class="info-label">📍 Adres</div>
+          <div class="info-val">ul. Dworkowa 2</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">🚗 Parking</div>
+          <div class="info-val">
+            
+              Parking podziemny p?atny (20m)
+            
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">♿ Dostępność</div>
+          <div class="info-val">
+            Brak danych
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const lat = 49.8168;
+      const lon = 19.0495;
+      const map = L.map('map').setView([lat, lon], 15);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+      L.marker([lat, lon]).addTo(map).bindPopup("<b>Cavatina Hall</b>").openPopup();
+    });
+  </script>
+  
+
+</body>
+</html>

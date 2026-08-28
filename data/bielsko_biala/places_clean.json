@@ -1,0 +1,200 @@
+[
+  {
+    "place_id": "bb-cavatina-hall",
+    "name": "Cavatina Hall",
+    "category": "Kultura i Muzyka",
+    "street": "Dworkowa",
+    "housenumber": "2",
+    "lat": 49.8168,
+    "lon": 19.0495,
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Parking podziemny p?atny",
+          "distance_m": 20,
+          "street": "Dworkowa"
+        }
+      ]
+    }
+  },
+  {
+    "place_id": "bb-bck",
+    "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+    "category": "Kultura i Muzyka",
+    "street": "Juliusza S?owackiego",
+    "housenumber": "27",
+    "lat": 49.8208,
+    "lon": 19.0392,
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Miejski bezp?atny po 17:00",
+          "distance_m": 50,
+          "street": "S?owackiego"
+        }
+      ]
+    }
+  },
+  {
+    "place_id": "bb-teatr-polski",
+    "name": "Teatr Polski w Bielsku-Bia?ej",
+    "category": "Teatr",
+    "street": "1 Maja",
+    "housenumber": "1",
+    "lat": 49.8214,
+    "lon": 19.0458,
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Strefa p?atna",
+          "distance_m": 40,
+          "street": "1 Maja"
+        }
+      ]
+    }
+  },
+  {
+    "place_id": "bb-teatr-banialuka",
+    "name": "Teatr Lalek Banialuka",
+    "category": "Teatr",
+    "street": "Mickiewicza",
+    "housenumber": "20",
+    "lat": 49.8242,
+    "lon": 19.0415,
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Strefa miejska",
+          "distance_m": 60,
+          "street": "Mickiewicza"
+        }
+      ]
+    }
+  },
+  {
+    "place_id": "bb-galeria-bielska-bwa",
+    "name": "Galeria Bielska BWA",
+    "category": "Sztuka",
+    "street": "3 Maja",
+    "housenumber": "11",
+    "lat": 49.8248,
+    "lon": 19.0452,
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "P?atny przy ulicy",
+          "distance_m": 30,
+          "street": "3 Maja"
+        }
+      ]
+    }
+  },
+  {
+    "place_id": "bb-zamek-sulkowskich",
+    "name": "Zamek Ksi???t Su?kowskich",
+    "category": "Kultura",
+    "street": "Wzg?rze",
+    "housenumber": "16",
+    "lat": 49.8222,
+    "lon": 19.0438,
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Miejski p?atny",
+          "distance_m": 80,
+          "street": "Zamkowa"
+        }
+      ]
+    }
+  },
+  {
+    "place_id": "bb-hala-pod-debowcem",
+    "name": "Hala Wielofunkcyjna pod D?bowcem",
+    "category": "Sport i Rozrywka",
+    "street": "Karbowa",
+    "housenumber": "26",
+    "lat": 49.785,
+    "lon": 19.0185,
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Du?y bezp?atny",
+          "distance_m": 30,
+          "street": "Karbowa"
+        }
+      ]
+    }
+  },
+  {
+    "place_id": "bb-rudeboy-club",
+    "name": "RudeBoy Club",
+    "category": "Klub Muzyczny",
+    "street": "1 Maja",
+    "housenumber": "20",
+    "lat": 49.8155,
+    "lon": 19.0498,
+    "logistics": {
+      "parking_details": [
+        {
+          "fee_label": "Parking przy klubie",
+          "distance_m": 20,
+          "street": "1 Maja"
+        }
+      ]
+    }
+  },
+  {
+    "place_id": "bb-restauracja-cavatina-wine",
+    "name": "Cavatina Wine & Food",
+    "category": "Restauracja / Kuchnia autorska",
+    "street": "Dworkowa",
+    "housenumber": "2",
+    "lat": 49.8169,
+    "lon": 19.0496
+  },
+  {
+    "place_id": "bb-browar-miejski",
+    "name": "Browar Miejski",
+    "category": "Restauracja / Browar",
+    "street": "Piwowarska",
+    "housenumber": "2",
+    "lat": 49.822,
+    "lon": 19.0425
+  },
+  {
+    "place_id": "bb-kawiarnia-przelom",
+    "name": "Kawiarnia Prze?om",
+    "category": "Kawiarnia speciality",
+    "street": "Juliusza S?owackiego",
+    "housenumber": "21",
+    "lat": 49.8211,
+    "lon": 19.0401
+  },
+  {
+    "place_id": "bb-restauracja-celna-10",
+    "name": "Celna 10 Cafe & Bar",
+    "category": "Bistro / Kawiarnia",
+    "street": "Celna",
+    "housenumber": "10",
+    "lat": 49.8218,
+    "lon": 19.0435
+  },
+  {
+    "place_id": "bb-restauracja-pigal",
+    "name": "Pigal Cafe & Food",
+    "category": "Restauracja / Lunch",
+    "street": "1 Maja",
+    "housenumber": "4",
+    "lat": 49.821,
+    "lon": 19.0462
+  },
+  {
+    "place_id": "bb-bistro-debowiec",
+    "name": "Restauracja D?bowo",
+    "category": "Restauracja",
+    "street": "Karbowa",
+    "housenumber": "24",
+    "lat": 49.7853,
+    "lon": 19.019
+  }
+]

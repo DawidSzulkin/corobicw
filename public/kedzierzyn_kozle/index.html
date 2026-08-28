@@ -1,0 +1,2051 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Wydarzeń: Kędzierzyn-Koźle</title>
+  <style>
+    :root {
+      --primary: #0369a1;
+      --primary-hover: #0284c7;
+      --accent: #b91c1c;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .logo:focus-visible, .back-btn:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+    .back-btn {
+      font-size: 14px;
+      text-decoration: none;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #e2e8f0; }
+
+    .main-container {
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      padding: 9px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .event-row {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: row;
+      gap: 18px;
+      align-items: center;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    }
+    .event-row:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      transform: translateY(-2px);
+    }
+    .event-row:focus-within {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    .thumb-wrapper {
+      position: relative;
+      width: 170px;
+      height: 125px;
+      min-width: 170px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0f172a;
+    }
+    .thumb-wrapper .event-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    .date-ribbon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(15, 23, 42, 0.92);
+      color: #ffffff;
+      padding: 5px 9px;
+      border-bottom-right-radius: 8px;
+      text-align: center;
+      line-height: 1.1;
+      z-index: 2;
+    }
+    .date-ribbon .ribbon-day {
+      font-size: 17px;
+      font-weight: 800;
+      display: block;
+    }
+    .date-ribbon .ribbon-month {
+      font-size: 10px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+      min-width: 0;
+    }
+    .event-category {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .date-badge {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .badge-today { background: #fee2e2; color: #991b1b; }
+    .badge-tomorrow { background: #fef3c7; color: #92400e; }
+
+    .event-title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+    
+    .event-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .event-title a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .event-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .event-meta {
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+    .event-price { font-weight: 700; color: #0f172a; }
+    .event-link {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 14.5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .event-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .thumb-wrapper {
+        width: 100%;
+        min-width: 100%;
+        height: 190px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <a href="index.html" class="logo">Wydarzenia Kędzierzyn-Koźle</a>
+      <a href="../index.html" class="back-btn">&larr; Zmień miasto</a>
+    </div>
+  </header>
+
+  <main class="main-container">
+    
+    <nav class="filter-bar" aria-label="Filtry dat wydarzeń">
+      <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
+      <button class="filter-btn" onclick="filterEvents('today', this)">Dzisiaj</button>
+      <button class="filter-btn" onclick="filterEvents('tomorrow', this)">Jutro</button>
+      <button class="filter-btn" onclick="filterEvents('weekend', this)">W ten weekend</button>
+    </nav>
+
+    <div id="events-agenda">
+      
+        <article class="event-item" data-start="2026-08-27" data-end="2026-08-27">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_wakacje_z_ksi__k__w_bibliotece__mity_i_opowie_ci_dla_ka_dego.webp" 
+                alt="Plakat: WAKACJE Z KSIĄŻKĄ W BIBLIOTECE: mity i opowieści dla każdego" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">27</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-27 &bull; 11:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-27-wakacje-z-ksiazka-w-bibliotece-mity-i-opowiesci-dla-kazdego/">WAKACJE Z KSIĄŻKĄ W BIBLIOTECE: mity i opowieści dla każdego</a>
+                </h3>
+                <p class="event-desc">Oddział dla dzieci, MBP, ul. Rynek 3
+
+ul. Piramowicza 3247-200 Kędzierzyn-Koźle
+
+e-mail:infoprom@kedzierzynkozle.pltelefon:77 40-50-311 (centrala)fax:77 40-50-305
+
+NIP Urzędu:749-0</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-28" data-end="2026-08-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_wakacje_z_ksi__k__w_bibliotece__miko_ajek_opowiada_nam_o_swoim_lecie.webp" 
+                alt="Plakat: WAKACJE Z KSIĄŻKĄ W BIBLIOTECE: Mikołajek opowiada nam o swoim lecie" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-28 &bull; 11:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-mikolajek-opowiada-nam-o-swoim-lecie/">WAKACJE Z KSIĄŻKĄ W BIBLIOTECE: Mikołajek opowiada nam o swoim lecie</a>
+                </h3>
+                <p class="event-desc">Oddział dla dzieci MBP, ul. Rynek 3
+
+ul. Piramowicza 3247-200 Kędzierzyn-Koźle
+
+e-mail:infoprom@kedzierzynkozle.pltelefon:77 40-50-311 (centrala)fax:77 40-50-305
+
+NIP Urzędu:749-00</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-28" data-end="2026-08-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_wakacje_z_ksi__k__w_bibliotece__tajemnicza_biblioteka___zagadki_detektywistyczne.webp" 
+                alt="Plakat: Wakacje z książką w bibliotece: Tajemnicza biblioteka – zagadki detektywistyczne" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-28 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-tajemnicza-biblioteka-zagadki-detektywistyczne/">Wakacje z książką w bibliotece: Tajemnicza biblioteka – zagadki detektywistyczne</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Wakacje z książką w bibliotece: Tajemnicza biblioteka – zagadki detektywistyczne.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-28" data-end="2026-08-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_wakacje_z_ksi__k__w_bibliotece___z_panem_brzechw__w_r_d_zwierz_t.webp" 
+                alt="Plakat: Wakacje z książką w bibliotece: "Z Panem Brzechwą wśród zwierząt"" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-28 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-z-panem-brzechwa-wsrod-zwierzat/">Wakacje z książką w bibliotece: "Z Panem Brzechwą wśród zwierząt"</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Wakacje z książką w bibliotece: "Z Panem Brzechwą wśród zwierząt".</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-28" data-end="2026-08-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_wakacje_z_ksi__k__w_bibliotece___zawody_marze_____zaj_cia_edukacyjno-plastyczne_z_ksi__k.webp" 
+                alt="Plakat: Wakacje z książką w bibliotece: „Zawody marzeń” – zajęcia edukacyjno-plastyczne z książką" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-28 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-zawody-marzen-zajecia-edukacyjno-plastyczne-z-ksiazka/">Wakacje z książką w bibliotece: „Zawody marzeń” – zajęcia edukacyjno-plastyczne z książką</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Wakacje z książką w bibliotece: „Zawody marzeń” – zajęcia edukacyjno-plastyczne z książką.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-28" data-end="2026-08-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_letnie_kino_plenerowe__jedno__ycie.webp" 
+                alt="Plakat: Letnie Kino Plenerowe "Jedno życie"" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-28 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-28-letnie-kino-plenerowe-jedno-zycie/">Letnie Kino Plenerowe "Jedno życie"</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Letnie Kino Plenerowe "Jedno życie".</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_podr__uj_z_mzk_-_zakopane.webp" 
+                alt="Plakat: Podróżuj z MZK - Zakopane" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-29 &bull; 07:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-29-podrozuj-z-mzk-zakopane/">Podróżuj z MZK - Zakopane</a>
+                </h3>
+                <p class="event-desc">Przystanek MZK przy Dworcu Kolejowym w Kędzierzynie
+
+ul. Piramowicza 3247-200 Kędzierzyn-Koźle
+
+e-mail:infoprom@kedzierzynkozle.pltelefon:77 40-50-311 (centrala)fax:77 40-50-305
+
+N</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_parkrun_k_dzierzyn-ko_le.webp" 
+                alt="Plakat: parkrun Kędzierzyn-kOŹLE" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-29 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-29-parkrun-kedzierzyn-kozle/">parkrun Kędzierzyn-kOŹLE</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: parkrun Kędzierzyn-kOŹLE.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+              <img 
+                class="event-thumb" 
+                src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80" 
+                alt="Plakat: Wieczór stunowy ZIOŁA i WITKI" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-29 &bull; 18:15</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-29-wieczor-stunowy-ziola-i-witki/">Wieczór stunowy ZIOŁA i WITKI</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Wieczór stunowy ZIOŁA i WITKI.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_osiedlowy_festyn_dla_dzieci.webp" 
+                alt="Plakat: Osiedlowy Festyn dla dzieci" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-29 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-29-osiedlowy-festyn-dla-dzieci/">Osiedlowy Festyn dla dzieci</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Osiedlowy Festyn dla dzieci.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/mok_kk_mok_kkozle_pl_coverowe_po_egnanie_lata_2026.webp" 
+                alt="Plakat: Coverowe Pożegnanie Lata 2026!" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-29 &bull; 17:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-29-coverowe-pozegnanie-lata-2026/">Coverowe Pożegnanie Lata 2026!</a>
+                </h3>
+                <p class="event-desc">Lato wypad pożegnać przy najlepszej muzyce! Zapraszamy na wyjątkowy koncert "Coverowe Pożegnanie Lata", podczas którego usłyszymy największe przeboje polskiej i światowej muzyki ro</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-29" data-end="2026-08-29">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_nightskating_-_nocne_rolkowanie_ulicami_miasta.webp" 
+                alt="Plakat: Nightskating - nocne rolkowanie ulicami miasta" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">29</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-29 &bull; 20:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-29-nightskating-nocne-rolkowanie-ulicami-miasta/">Nightskating - nocne rolkowanie ulicami miasta</a>
+                </h3>
+                <p class="event-desc">Start: parking przed Halą Sportową "Śródmieście", al. Jana Pawła II 29, Kędzierzyn-Koźle
+
+ul. Piramowicza 3247-200 Kędzierzyn-Koźle
+
+e-mail:infoprom@kedzierzynkozle.pltelefon:77 40</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-30" data-end="2026-08-30">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_mi_dzynarodowy_dzie__rom_w.webp" 
+                alt="Plakat: Międzynarodowy dzień Romów" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">30</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-30 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-30-miedzynarodowy-dzien-romow/">Międzynarodowy dzień Romów</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Międzynarodowy dzień Romów.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-30" data-end="2026-08-30">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_metro___tomek_zdyb__the_untold_stories____klub_kameleon.webp" 
+                alt="Plakat: Metro & Tomek Zdyb "The untold stories" – Klub Kameleon" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">30</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-30 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-30-metro-tomek-zdyb-the-untold-stories-klub-kameleon/">Metro & Tomek Zdyb "The untold stories" – Klub Kameleon</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Metro & Tomek Zdyb "The untold stories" – Klub Kameleon.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-08-30" data-end="2026-08-30">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kedzierzynkozle_kedzierzynkozle_pl_twierdza_triathlon_2026.webp" 
+                alt="Plakat: Twierdza Triathlon 2026" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">30</span>
+                <span class="ribbon-month">
+                  
+                  SIE
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-08-30 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-08-30-twierdza-triathlon-2026/">Twierdza Triathlon 2026</a>
+                </h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Twierdza Triathlon 2026.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny / Sprawdź bilety</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/mbpkk_mbpkk_pl_narodowe_czytanie____dziady__adama_mickiewicza.webp" 
+                alt="Plakat: Narodowe Czytanie – „Dziady” Adama Mickiewicza" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">04</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-04 &bull; 12:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-04-narodowe-czytanie-dziady-adama-mickiewicza/">Narodowe Czytanie – „Dziady” Adama Mickiewicza</a>
+                </h3>
+                <p class="event-desc">Termin: 04.09.2026 r., godz. 12:00</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/mok_kk_mok_kkozle_pl_rusza_letnie_kino_plenerowe_2026__zobacz__kiedy_zawitamy_na_twoje_osiedle.webp" 
+                alt="Plakat: Rusza Letnie Kino Plenerowe 2026! Zobacz, Kiedy Zawitamy Na Twoje Osiedle!" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">04</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-04 &bull; 21:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-04-rusza-letnie-kino-plenerowe-2026-zobacz-kiedy-zawitamy-na-twoje-osiedle/">Rusza Letnie Kino Plenerowe 2026! Zobacz, Kiedy Zawitamy Na Twoje Osiedle!</a>
+                </h3>
+                <p class="event-desc">Miejski Ośrodka Kultury w Kędzierzynie-Koźlu ma zaszczyt zaprosić wszystkich mieszkańców – na kolejną edycję wyjątkowego Letniego Kina Plenerowego! Przez cały lipiec, sierpień oraz</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+              <img 
+                class="event-thumb" 
+                src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" 
+                alt="Plakat: Najdroższy - spektakl komediowy" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">04</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-04 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-04-najdrozszy-spektakl-komediowy/">Najdroższy - spektakl komediowy</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Najdroższy - spektakl komediowy. Miejsce: Obiekt widowiskowy.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-06" data-end="2026-09-06">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/mbpkk_mbpkk_pl_koncert_pt___w_r_d_zieleni.webp" 
+                alt="Plakat: Koncert pt. „Wśród zieleni”" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">06</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-06 &bull; 16:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-06-koncert-pt-wsrod-zieleni/">Koncert pt. „Wśród zieleni”</a>
+                </h3>
+                <p class="event-desc">Termin: 06.09.2026 r., godz. 16:00</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-08" data-end="2026-09-08">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/mbpkk_mbpkk_pl_spotkanie_autorskie_z__magdalen__woch.webp" 
+                alt="Plakat: Spotkanie autorskie z  Magdaleną Woch" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">08</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-08 &bull; 16:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-08-spotkanie-autorskie-z-magdalena-woch/">Spotkanie autorskie z  Magdaleną Woch</a>
+                </h3>
+                <p class="event-desc">Termin: 08.09.2026 r., godz. 16:00</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-12" data-end="2026-09-12">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/mok_kk_mok_kkozle_pl_letni_plener_malarski_w_slawi_cicach.webp" 
+                alt="Plakat: Letni Plener Malarski W Slawięcicach" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">12</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-12 &bull; 10:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-12-letni-plener-malarski-w-slawiecicach/">Letni Plener Malarski W Slawięcicach</a>
+                </h3>
+                <p class="event-desc">Letni Plener Malarski w Slawięcicach Data i godzina wydarzenia: 12.09.2026 r. godz. 10.00 -14.00, Park Pojednania Serdecznie zapraszamy na Letni Plener Malarski, który odbędzie się</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ 100 zł</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-13" data-end="2026-09-13">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_candle_live_music__koncert_przy__wiecachkoncert_przy__wiecach__tribute_to_michael_jackson.webp" 
+                alt="Plakat: Candle Live Music: Koncert przy świecachKoncert przy świecach: Tribute to Michael Jackson" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">13</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-13 &bull; 19:30</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-13-candle-live-music-koncert-przy-swiecachkoncert-przy-swiecach-tribute-to-michael-jackson/">Candle Live Music: Koncert przy świecachKoncert przy świecach: Tribute to Michael Jackson</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Candle Live Music: Koncert przy świecachKoncert przy świecach: Tribute to Michael Jackson. Miejsce: Kędzierzyn KoźleHotel Hugo.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 95.58 zł</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-17" data-end="2026-09-17">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/mbpkk_mbpkk_pl_dyskusyjny_klub_ksi__ki.webp" 
+                alt="Plakat: Dyskusyjny Klub Książki" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">17</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-17 &bull; 16:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-17-dyskusyjny-klub-ksiazki/">Dyskusyjny Klub Książki</a>
+                </h3>
+                <p class="event-desc">Termin: 17.09.2026 r., godz. 16:00</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Wstęp wolny</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-24" data-end="2026-09-24">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_anatomia_zdarze___kieszenie_pe_ne_wspomnie__-_spektakl_-_v_og_lnopolski_festiwal_teatralny_off-ka.webp" 
+                alt="Plakat: ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">24</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-24 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-24-anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka/">ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka. Miejsce: V Ogólnopolski Festiwal Teatralny OFF-ka od 24.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-26" data-end="2026-09-26">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+              <img 
+                class="event-thumb" 
+                src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" 
+                alt="Plakat: "Pokój mojego dzieciństwa.  Hommage dla Marii Stangret” - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">26</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-26 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-26-pokoj-mojego-dziecinstwa-hommage-dla-marii-stangret-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka/">"Pokój mojego dzieciństwa.  Hommage dla Marii Stangret” - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: "Pokój mojego dzieciństwa.  Hommage dla Marii Stangret” - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka. Miejsce: V Ogólnopolski Festiwal Teatralny OFF</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-27" data-end="2026-09-27">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+              <img 
+                class="event-thumb" 
+                src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" 
+                alt="Plakat: Koncert Finałowy 21. Międzynarodowego Festiwalu im. G.G. Gorczyckiego - Łukasz Długosz & Capella Gedanensis" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">27</span>
+                <span class="ribbon-month">
+                  
+                  WRZ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-27 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-09-27-koncert-finalowy-21-miedzynarodowego-festiwalu-im-gg-gorczyckiego-lukasz-dlugosz-capella-gedanensis/">Koncert Finałowy 21. Międzynarodowego Festiwalu im. G.G. Gorczyckiego - Łukasz Długosz & Capella Gedanensis</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Koncert Finałowy 21. Międzynarodowego Festiwalu im. G.G. Gorczyckiego - Łukasz Długosz & Capella Gedanensis. Miejsce: Obiekt widowiskowy.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-01" data-end="2026-10-01">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_czes_aw_mozil.webp" 
+                alt="Plakat: Czesław Mozil" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">01</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-10-01 &bull; 19:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-10-01-czeslaw-mozil/">Czesław Mozil</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Czesław Mozil. Miejsce: Kędzierzyn KoźleKameleon Jazz Club.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 106.20 zł</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-02" data-end="2026-10-02">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+              <img 
+                class="event-thumb" 
+                src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" 
+                alt="Plakat: Rudy w rytmie agenta 007. Muzyka Jamesa Bonda, tajemnice Łowców cieni i nocny przejazd kolejką" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">02</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-10-02 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-10-02-rudy-w-rytmie-agenta-007-muzyka-jamesa-bonda-tajemnice-lowcow-cieni-i-nocny-przejazd-kolejka/">Rudy w rytmie agenta 007. Muzyka Jamesa Bonda, tajemnice Łowców cieni i nocny przejazd kolejką</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Rudy w rytmie agenta 007. Muzyka Jamesa Bonda, tajemnice Łowców cieni i nocny przejazd kolejką. Miejsce: Obiekt widowiskowy.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-10" data-end="2026-10-10">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+              <img 
+                class="event-thumb" 
+                src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" 
+                alt="Plakat: Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">10</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-10-10 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-10-10-rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim/">Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim. Miejsce: Obiekt widowiskowy.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-19" data-end="2026-10-19">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/mok_kk_mok_kkozle_pl_siesta_w_drodze__gala_fado__marta_pereira_da_costa_and_friends__nani_medeiros___duarte.webp" 
+                alt="Plakat: Siesta W Drodze: Gala Fado. Marta Pereira Da Costa And Friends: Nani Medeiros & Duarte" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">19</span>
+                <span class="ribbon-month">
+                  
+                  PAŹ
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-10-19 &bull; 18:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-10-19-siesta-w-drodze-gala-fado-marta-pereira-da-costa-and-friends-nani-medeiros-duarte/">Siesta W Drodze: Gala Fado. Marta Pereira Da Costa And Friends: Nani Medeiros & Duarte</a>
+                </h3>
+                <p class="event-desc">KUP ON-LINEJesień to czas nostalgii. Pora melancholii. Idealna aura dla sztuki fado. Siesta w drodze od lat prezentuje polskiej publiczności żarliwą muzykę starej Lizbony. Ten sezo</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Sprawdź bilety / Wstęp wolny</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-11-09" data-end="2026-11-09">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+              <img 
+                class="event-thumb" 
+                src="https://www.mok.kedzierzyn-kozle.com.pl/images/2026/06/29/sklep-z-facetami.jpg" 
+                alt="Plakat: Spektakl "Sklep Z Facetami" - Zapraszamy!" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">09</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-11-09 &bull; 18:30</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-11-09-spektakl-sklep-z-facetami-zapraszamy/">Spektakl "Sklep Z Facetami" - Zapraszamy!</a>
+                </h3>
+                <p class="event-desc">Spektakl "Sklep z facetami" - zapraszamy! Data i godzina wydarzenia: 9.11.2026 r., godz. 18.30, DK "Chemik", 100 zł/110 zł, bilety: SKLEP Z FACETAMI - KUP ON-LINE Gdy Marzena święt</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 116.82 zł</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-11-14" data-end="2026-11-14">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+              <img 
+                class="event-thumb" 
+                src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" 
+                alt="Plakat: Wielka Gala Wiedeńska Johann Strauss Show - CZ. II" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">14</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-11-14 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-11-14-wielka-gala-wiedenska-johann-strauss-show-cz-ii/">Wielka Gala Wiedeńska Johann Strauss Show - CZ. II</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Wielka Gala Wiedeńska Johann Strauss Show - CZ. II. Miejsce: Obiekt widowiskowy.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-11-21" data-end="2026-11-21">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_kabaret_skecz_w_m_cz_cych_-_wielcy_wracaj.webp" 
+                alt="Plakat: Kabaret Skeczów Męczących - Wielcy wracają" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">21</span>
+                <span class="ribbon-month">
+                  
+                  LIS
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-11-21 &bull; 17:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-11-21-kabaret-skeczow-meczacych-wielcy-wracaja/">Kabaret Skeczów Męczących - Wielcy wracają</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Kabaret Skeczów Męczących - Wielcy wracają. Miejsce: Kędzierzyn KoźleHala Widowiskowo-Sportowa.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 138.06 zł</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-12-08" data-end="2026-12-08">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/kupbilecik_kedzierzyn_kozle_kupbilecik_pl_cezary_jurkiewicz.webp" 
+                alt="Plakat: Cezary Jurkiewicz" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">08</span>
+                <span class="ribbon-month">
+                  
+                  GRU
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-12-08 &bull; 19:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-12-08-cezary-jurkiewicz/">Cezary Jurkiewicz</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Cezary Jurkiewicz. Miejsce: Klub Kameleon.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-12-31" data-end="2026-12-31">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+              <img 
+                class="event-thumb" 
+                src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" 
+                alt="Plakat: SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">31</span>
+                <span class="ribbon-month">
+                  
+                  GRU
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-12-31 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2026-12-31-sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy/">SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy. Miejsce: OD WIEDNIA DO RIO - koncert galowy od 31.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Bilety płatne</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2027-01-07" data-end="2027-01-07">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_katarzyna_piasecka_-_nowy_program_stand-up__bagus.webp" 
+                alt="Plakat: Katarzyna Piasecka - Nowy program stand-up „BAGUS”" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">07</span>
+                <span class="ribbon-month">
+                  
+                  STY
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2027-01-07 &bull; 18:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2027-01-07-katarzyna-piasecka-nowy-program-stand-up-bagus/">Katarzyna Piasecka - Nowy program stand-up „BAGUS”</a>
+                </h3>
+                <p class="event-desc">Wydarzenie biletowane: Katarzyna Piasecka - Nowy program stand-up „BAGUS”. Miejsce: Kędzierzyn KoźleKameleon Jazz Club.</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ Od 84.96 zł</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2027-02-28" data-end="2027-02-28">
+          <div class="event-row">
+            
+            <div class="thumb-wrapper">
+              
+              
+                
+              
+              <img 
+                class="event-thumb" 
+                src="../assets/thumbnails/mok_kk_mok_kkozle_pl_jacek_dew_dzki___d_em_session___spotkanie_z_prawdziw__histori__d_emu.webp" 
+                alt="Plakat: Jacek Dewódzki & Dżem Session – Spotkanie Z Prawdziwą Historią Dżemu!" 
+                loading="lazy" 
+                decoding="async"
+                draggable="false"
+              >
+              
+              <div class="date-ribbon" aria-hidden="true">
+                <span class="ribbon-day">28</span>
+                <span class="ribbon-month">
+                  
+                  LUT
+                </span>
+              </div>
+            </div>
+
+            <div class="event-info">
+              <div>
+                <div class="event-category">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2027-02-28 &bull; 17:00</span>
+                </div>
+                <h3 class="event-title">
+                  <a href="wydarzenia/2027-02-28-jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu/">Jacek Dewódzki & Dżem Session – Spotkanie Z Prawdziwą Historią Dżemu!</a>
+                </h3>
+                <p class="event-desc">KUP ON-LINEJacek Dewódzki – były wokalista Dżemu – razem z zespołem Dżem Session zabiera publiczność w muzyczną podróż przez największe przeboje z okresu Jacka w Dżemie, a także ni</p>
+              </div>
+              <div class="event-meta">
+                <span class="event-price">🎟️ 100 zł</span>
+                <span class="event-link" aria-hidden="true">Szczegóły &rarr;</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      
+    </div>
+
+  </main>
+
+  <script>
+    function getLocalDateStr(offsetDays = 0) {
+      const d = new Date();
+      d.setDate(d.getDate() + offsetDays);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    function initDynamicBadges() {
+      const todayStr = getLocalDateStr(0);
+      const tomorrowStr = getLocalDateStr(1);
+
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+        const badgeContainer = el.querySelector('.badge-container');
+
+        if (!badgeContainer) return;
+
+        if (start === todayStr || (start <= todayStr && end >= todayStr)) {
+          badgeContainer.innerHTML = '<span class="date-badge badge-today">DZIŚ</span>';
+        } else if (start === tomorrowStr) {
+          badgeContainer.innerHTML = '<span class="date-badge badge-tomorrow">JUTRO</span>';
+        } else {
+          badgeContainer.innerHTML = '';
+        }
+      });
+    }
+
+    function filterEvents(mode, clickedBtn) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (clickedBtn) clickedBtn.classList.add('active');
+
+      const todayStr = getLocalDateStr(0);
+      const tomorrowStr = getLocalDateStr(1);
+
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+
+        if (mode === 'all') {
+          el.style.display = 'block';
+        } else if (mode === 'today') {
+          el.style.display = (start === todayStr || (start <= todayStr && end >= todayStr)) ? 'block' : 'none';
+        } else if (mode === 'tomorrow') {
+          el.style.display = (start === tomorrowStr) ? 'block' : 'none';
+        } else if (mode === 'weekend') {
+          const d = new Date(start + 'T00:00:00');
+          const day = d.getDay();
+          el.style.display = (day === 0 || day === 6) ? 'block' : 'none';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initDynamicBadges);
+  </script>
+</body>
+</html>

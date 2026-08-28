@@ -1,0 +1,1045 @@
+[
+  {
+    "id": "kk_kultura_001",
+    "name": "Chemik",
+    "group": "kultura",
+    "geo": {
+      "lat": 50.3474181,
+      "lon": 18.2154132
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cinema",
+    "nearest_parking": {
+      "distance_m": 27,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.347588,
+        "lon": 18.2151256
+      }
+    },
+    "display_name": "Chemik, kina",
+    "sub_category": "kino",
+    "editorial": {
+      "lead": "Chemik to kina z dwiema salami, znajduje się w Osiedlu Mariana Buczka Drugim w Kędzierzynie-Koźlu. Oto konkretne zdania: Chemik oferuje wygodne siedzenie w dwiema salami pod dachem. Wiele osób wskazuje, że to miejsce jest idealne dla randkowania, szczególnie w wieczorze, kiedy jest otwarte do piwa. Wiele osób również zwraca uwagę na historię tego miejsca, które jest związane z kulturą i społeczeństwem.",
+      "insider_tip": "Spróbuj zjeść coś na randkę w Chemiku, szczególnie w wieczorze, kiedy jest otwarte do piwa."
+    },
+    "vibe_tags": [
+      "randka",
+      "piwo_wieczor",
+      "historia",
+      "kultura"
+    ],
+    "place_id": "kk-chemik"
+  },
+  {
+    "id": "kk_gastronomia_002",
+    "name": "miKafka",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3428945,
+      "lon": 18.2046644
+    },
+    "address": {
+      "street": "Mikołaja Reja",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 10,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3429448,
+        "lon": 18.2047806
+      }
+    },
+    "display_name": "miKafka, pełna nazwa własna miejsca",
+    "sub_category": "kawiarnia",
+    "editorial": {
+      "lead": "2 zasugerowane są 2 konkretne zdania o klimacie i specyfice miejsca. Zero banałów typu 'warto odwiedzić to malownicze miejsce'.",
+      "insider_tip": "1 konkretna wskazówka (np. czego spróbować, kiedy przyjść, na co uważać)."
+    },
+    "vibe_tags": [
+      "2-4 tagi z: randka, rodzina_dzieci, szybki_lunch, praca_zdalna, piwo_wieczor, historia, relaks_cisza, aktywnosc_sport"
+    ],
+    "place_id": "kk-mikafka"
+  },
+  {
+    "id": "kk_gastronomia_003",
+    "name": "Street Bar",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3460641,
+      "lon": 18.217339
+    },
+    "address": {
+      "street": "Pionierów",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 22,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3460347,
+        "lon": 18.2170262
+      }
+    },
+    "display_name": "Street Bar, pełna nazwa własna miejsca",
+    "sub_category": "fast_food",
+    "editorial": {
+      "lead": "Street Bar jest gaśniczką, gdzie można zjeść szybko coś do jedzenia. Pod dachem, co jest niezwykle przyjemne w nieprzewidywalnych pogodach. Zawsze warto zauważyć, że jest to miejsce dla osób pracujących zdalnie.",
+      "insider_tip": "Spróbuj ich specjalności, które często są dostarczane na ulubione miejsca pracy."
+    },
+    "vibe_tags": [
+      "randka",
+      "szybki_lunch",
+      "praca_zdalna"
+    ],
+    "place_id": "kk-street-bar"
+  },
+  {
+    "id": "kk_gastronomia_005",
+    "name": "Da Ci Kumo Sushi",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3476214,
+      "lon": 18.2190328
+    },
+    "address": {
+      "street": "Aleja Jana Pawła II",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Mariana Buczka Drugie"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Su 13:00-24:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 6,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.347643,
+        "lon": 18.2189463
+      }
+    },
+    "display_name": "Da Ci Kumo Sushi",
+    "sub_category": "fast_food",
+    "editorial": {
+      "lead": "Da Ci Kumo Sushi jest jednym z miejsc, gdzie można zjeść szybki lunch w stylu fast food. Lokal oferuje niezwykle smaczne posiłki w niezwykle przyjaznej atmosferze, idealnej zarówno dla osób pracujących zdalnie, jak i dla rodzin z dziećmi. Wiele osób zwraca uwagę na specjalizację w sushie, co jest niezwykle przyjemne.",
+      "insider_tip": "Spróbuj specjalizację w sushie, szczególnie jeśli jesteś faną tego typu posiłków."
+    },
+    "vibe_tags": [
+      "randka",
+      "szybki_lunch",
+      "relaks_cisza",
+      "historia"
+    ],
+    "place_id": "kk-da-ci-kumo-sushi"
+  },
+  {
+    "id": "kk_gastronomia_006",
+    "name": "Gruby Benek",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.349528,
+      "lon": 18.2322799
+    },
+    "address": {
+      "street": "Kazimierza Wielkiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Osiedle Piastów"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 34,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3495844,
+        "lon": 18.2318039
+      }
+    },
+    "display_name": "Gruby Benek, pełna nazwa własna miejsca",
+    "sub_category": "restauracja",
+    "editorial": {
+      "lead": "2 zasugerowane są 2 konkretne zdania o klimacie i specyfice miejsca. Zero banałów typu 'warto odwiedzić to malownicze miejsce'.",
+      "insider_tip": "1 konkretna wskazówka (np. czego spróbować, kiedy przyjść, na co uważać)."
+    },
+    "vibe_tags": [
+      "randka",
+      "relaks_cisza"
+    ],
+    "place_id": "kk-gruby-benek"
+  },
+  {
+    "id": "kk_historia_007",
+    "name": "Ruiny pałacu",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3766848,
+      "lon": 18.3178569
+    },
+    "address": {
+      "street": "Sadowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 365,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3777647,
+        "lon": 18.3129875
+      }
+    },
+    "display_name": "Ruiny pałacu, pełna nazwa własna miejsca",
+    "sub_category": "zabytek",
+    "editorial": {
+      "lead": "2 zwarte, konkretne zdania o klimacie i specyfice miejsca. Zero banałów typu 'warto odwiedzić to malownicze miejsce'.",
+      "insider_tip": "1 konkretna wskazówka (np. czego spróbować, kiedy przyjść, na co uważać)."
+    },
+    "vibe_tags": [
+      "historia",
+      "relaks_cisza"
+    ],
+    "place_id": "kk-ruiny-pałacu"
+  },
+  {
+    "id": "kk_historia_008",
+    "name": "Ruiny śluzy nr 6 dawnego Kanału Kłodnickiego",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3656624,
+      "lon": 18.27643
+    },
+    "address": {
+      "street": "Przyjaźni",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Stara Blachownia"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "ruins",
+    "nearest_parking": {
+      "distance_m": 597,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.361241,
+        "lon": 18.271654
+      }
+    },
+    "display_name": "Ruiny śluzy nr 6 dawnego Kanału Kłodnickiego, pełna nazwa własna miejsca",
+    "sub_category": "zabytek",
+    "editorial": {
+      "lead": "Elegancka, pełna nazwa własna miejsca. To miejsce jest pełne historii i jest jednym z najważniejszych zabytków Kanału Kłodnickiego. Względnie niezwykle cenne jest to miejsce dla miłośników historii i naukowców, którzy chcą zobaczyć rzeczywisty przykład historycznej budowy.",
+      "insider_tip": "Spróbuj przystąpić do historycznej grupy wycieczek, które organizuje Towarzystwo Kanału Kłodnickiego, aby dowiedzieć się więcej o historii śluzy i kanału."
+    },
+    "vibe_tags": [
+      "historia",
+      "relaks_cisza",
+      "praca_zdalna",
+      "piwo_wieczor"
+    ],
+    "place_id": "kk-ruiny-sluzy-nr-6-dawnego-kanału-kłodnickiego"
+  },
+  {
+    "id": "kk_historia_009",
+    "name": "Były obóz koncentracyjny w Sławięcicach",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3595133,
+      "lon": 18.3200575
+    },
+    "address": {
+      "street": "Spacerowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Sławięcice"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 1386,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3529402,
+        "lon": 18.3034562
+      }
+    },
+    "display_name": "Były obóz koncentracyjny w Sławięcicach, pełna nazwa własna miejsca",
+    "sub_category": "zabytek",
+    "editorial": {
+      "lead": "Warto przypomnieć się o historii, szczególnie dla osób, które są zainteresowane tematyką obózów koncentracyjnych. Miejsce to jest niezwykle cenne dla nauki i relaksu.",
+      "insider_tip": "Sprawdź historyczne dokumenty przed wizytą, aby zrozumieć historię dokładniej."
+    },
+    "vibe_tags": [
+      "historia",
+      "relaks_cisza",
+      "praca_zdalna"
+    ],
+    "place_id": "kk-były-oboz-koncentracyjny-w-sławiecicach"
+  },
+  {
+    "id": "kk_gastronomia_010",
+    "name": "Big Boom",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3568831,
+      "lon": 18.2655872
+    },
+    "address": {
+      "street": "Szkolna",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Miedary"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "bar",
+    "nearest_parking": {
+      "distance_m": 70,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3563331,
+        "lon": 18.2660687
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Big Boom",
+    "editorial": {
+      "lead": "Big Boom to lokal barowy położony w centrum Kędzierzyna-Koźla, oferujący wnętrze z wyraźnym stylizmem i atrakcyjnymi elementami. Lokal jest otwarty na wszystkie dni w roku, bez względu na pogodę.",
+      "insider_tip": "Zapraszamy do Big Boom, aby w pełni wykorzystać atrakcyjne wnętrze i serwis, niezależnie od tego, czy będzie panio wizyt w sezonie czy wiosenne dni."
+    },
+    "place_id": "kk-big-boom"
+  },
+  {
+    "id": "kk_gastronomia_011",
+    "name": "Restauracja - Damian Kania",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3936765,
+      "lon": 18.1756065
+    },
+    "address": {
+      "street": "Góry Świętej Anny",
+      "housenumber": "86",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 23,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3936106,
+        "lon": 18.1759222
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Restauracja - Damian Kania",
+    "editorial": {
+      "lead": "Restauracja Damian Kania oferuje smaczne posiłki w ciepłym wnętrzu, nawet podczas nieładnych warunków pogodowych.",
+      "insider_tip": "Zapraszamy do odwiedzenia wiosną lub jesienią, gdy zielone lasy i kwiaty zazwyczaj są w najlepszym stanie."
+    },
+    "place_id": "kk-restauracja-damian-kania"
+  },
+  {
+    "id": "kk_gastronomia_012",
+    "name": "Restauracja Viktorjan",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3920448,
+      "lon": 18.1746925
+    },
+    "address": {
+      "street": "Góry Świętej Anny",
+      "housenumber": "94",
+      "city": "Raszowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "restaurant",
+    "nearest_parking": {
+      "distance_m": 66,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3926084,
+        "lon": 18.1743657
+      }
+    },
+    "sub_category": "restauracja",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina",
+        "randka",
+        "znajomi"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Restauracja Viktorjan",
+    "editorial": {
+      "lead": "Restauracja Viktorjan oferuje smaczne posiłki w ciepłym wnętrzu, nawet podczas nieładnych warunków pogodowych. Jest otwarta przez cały rok.",
+      "insider_tip": "Zapraszamy do odwiedzenia wiosną, gdy park na Górze Świętej Anny jest pełen kwiatów."
+    },
+    "place_id": "kk-restauracja-viktorjan"
+  },
+  {
+    "id": "kk_historia_013",
+    "name": "Pomnik poległych w I wojnie światowej",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3745174,
+      "lon": 18.0838244
+    },
+    "address": {
+      "street": "Chałupki",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Chałupki"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 2700,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3727056,
+        "lon": 18.1217987
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Pomnik poległych w I wojnie światowej",
+    "editorial": {
+      "lead": "Pomnik poległych w I wojnie światowej w Chałupkach, Kędzierzyn-Koźle, jest miejscem pamięci dla żołnierzy polskich zginionych w 1914-1918 roku. Zawiera tablicę z listą imion i dat zginienia.",
+      "insider_tip": "Pojeźgij do pomnika i upamiętnij pamięcią żołnierzy, którzy zasługiwszy na pamięć, zginęli w czasie I wojny światowej."
+    },
+    "place_id": "kk-pomnik-poległych-w-i-wojnie-swiatowej"
+  },
+  {
+    "id": "kk_gastronomia_014",
+    "name": "Karzsma",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3748572,
+      "lon": 18.084288
+    },
+    "address": {
+      "street": "Krapkowicka",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Ubierzy"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "nearest_parking": {
+      "distance_m": 2670,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3727056,
+        "lon": 18.1217987
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Karzsma",
+    "editorial": {
+      "lead": "Karzsma to elegancki bar pub z interiorem w stylu klasycznym, idealny dla miłośników alkoholu, oferujący zarówno wnętrze z保暖ą jak i wyjścia na zewnątrz podczas sezonu.",
+      "insider_tip": "Znajdź najlepszy czas na odwiedzenie Karzsma, szczególnie w sezonie, kiedy możesz korzystać z wyjścia na zewnątrz."
+    },
+    "place_id": "kk-karzsma"
+  },
+  {
+    "id": "kk_gastronomia_015",
+    "name": "Hula-Gula",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3173101,
+      "lon": 18.1512234
+    },
+    "address": {
+      "street": "Spacerowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Dębowa"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Sa 12:00-21:00; Su 12:00-20:00",
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 26,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3173481,
+        "lon": 18.1508597
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Hula-Gula",
+    "editorial": {
+      "lead": "Hula-Gula to lokal z jedzeniem szybkim i przyjemnym w Spacerowej, Kędzierzyn-Koźle, oferuje wnętrze z保暖, a jest otwarty przez cały rok.",
+      "insider_tip": "Zapraszamy do Hula-Gula, aby zjeść szybko i zadowolić się smacznym posiłkiem w ciepłym wnętrzu, nawet podczas najgorszych warunków pogodowych."
+    },
+    "place_id": "kk-hula-gula"
+  },
+  {
+    "id": "kk_historia_016",
+    "name": "Mogiła 21 Powstańców",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3781797,
+      "lon": 18.1984926
+    },
+    "address": {
+      "street": "Droga leśna utwardzona",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Raszowa"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 2345,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3926084,
+        "lon": 18.1743657
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Mogiła 21 Powstańców",
+    "editorial": {
+      "lead": "Mogiła 21 Powstańców położona na Drodze Leśnej, jest miejscem pamięci dla obywateli Kędzierzyn-Koźla.",
+      "insider_tip": "Przebywając po obiekcie, upewnij się, że jest zasłonięty, szczególnie podczas deszczu lub w chmurach."
+    },
+    "place_id": "kk-mogiła-21-powstancow"
+  },
+  {
+    "id": "kk_gastronomia_017",
+    "name": "Magdalena Zalewska",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3356527,
+      "lon": 18.1425212
+    },
+    "address": {
+      "street": "Piastowska",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Tu-Fr 08:00-16:00; Sa 08:00-16:00",
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 19,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.3356192,
+        "lon": 18.1427946
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Magdalena Zalewska",
+    "editorial": {
+      "lead": "Magdalena Zalewska to elegancka kawiarnia z interiorem w stylu gotyckim, idealna dla miłośników kawy i artystycznej atmosfery. Pomiędzy ciepłym wnętrzem a zimnymi zewnątrz warunkami, kawiarnia oferuje wygodne miejsca do siedzenia.",
+      "insider_tip": "Zapraszamy do Magdaleny Zalewskiej w Piastowskiej, Kędzierzyn-Koźle, do posługiwania się kawą w ciepłym wnętrzu nawet podczas najmniej ciepłych dni."
+    },
+    "place_id": "kk-magdalena-zalewska"
+  },
+  {
+    "id": "kk_gastronomia_018",
+    "name": "Pod Lwami",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3352659,
+      "lon": 18.1430354
+    },
+    "address": {
+      "street": "Józefa Ignacego Kraszewskiego",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": "Mo-Su 18:00+",
+    "wheelchair": null,
+    "raw_amenity": "pub",
+    "nearest_parking": {
+      "distance_m": 37,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3349323,
+        "lon": 18.1430434
+      }
+    },
+    "sub_category": "bar_pub",
+    "tags": {
+      "context": [
+        "dorosli",
+        "znajomi"
+      ],
+      "time": [
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Pod Lwami",
+    "editorial": {
+      "lead": "Pod Lwami to elegancki bar pub, połączony z ulicą Józefa Ignacego Kraszewskiego. Zawiera pomieszczenia z interiorem, idealne dla wyjścia z domu w ciepły dzień.",
+      "insider_tip": "Znajdź najlepsze miejsce na wesołko w ciasnych pomieszczeniach, szczególnie w sezonie."
+    },
+    "place_id": "kk-pod-lwami"
+  },
+  {
+    "id": "kk_historia_019",
+    "name": "Powódź tysiąclecia",
+    "group": "historia",
+    "geo": {
+      "lat": 50.335098,
+      "lon": 18.1435584
+    },
+    "address": {
+      "street": "Pamięci Sybiraków",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 27,
+      "is_fee": true,
+      "geo": {
+        "lat": 50.3349929,
+        "lon": 18.1439134
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Powódź tysiąclecia",
+    "editorial": {
+      "lead": "Powódź tysiąclecia to miejsce pamięci, gdzie historyczna katastrofa przypomina o przebywaniu w Sybirze.",
+      "insider_tip": "Pamiętaj o ubraniu się w odpowiednie ubranie i obuwie na wypadek, że wczasze mogą być zimne."
+    },
+    "place_id": "kk-powodz-tysiaclecia"
+  },
+  {
+    "id": "kk_historia_020",
+    "name": "Henryk Sienkiewicz",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3374638,
+      "lon": 18.1428957
+    },
+    "address": {
+      "street": "Grzegorza Piramowicza",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "memorial",
+    "nearest_parking": {
+      "distance_m": 62,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3369247,
+        "lon": 18.1431374
+      }
+    },
+    "sub_category": "miejsce_pamieci",
+    "tags": {
+      "context": [
+        "dorosli",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Henryk Sienkiewicz",
+    "editorial": {
+      "lead": "Henryk Sienkiewicz, polski pisarz i powstalias, ma w Kędzierzynie-Koźlu pomnik na Grzegorza Piramowicza, który oferuje widok nad miastem i jest idealnym miejscem dla relaksu.",
+      "insider_tip": "Połóż się na ławce przy pomniku i obserwuj zmianę kolorów lasu podczas sezonu kolorowego, aby zaznajomić się z pięknem krajobrazu Kędzierzynu-Koźla."
+    },
+    "place_id": "kk-henryk-sienkiewicz"
+  },
+  {
+    "id": "kk_gastronomia_021",
+    "name": "GastroFazza",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.3344522,
+      "lon": 18.1469083
+    },
+    "address": {
+      "street": "Anny",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Koźle"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "fast_food",
+    "nearest_parking": {
+      "distance_m": 64,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.335027,
+        "lon": 18.1470365
+      }
+    },
+    "sub_category": "fast_food",
+    "tags": {
+      "context": [
+        "nastolatki",
+        "znajomi",
+        "solo"
+      ],
+      "time": [
+        "popoludnie",
+        "wieczor",
+        "noc"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "GastroFazza",
+    "editorial": {
+      "lead": "GastroFazza oferuje smaczne fast food w warunkach zimowych bez wyjścia na zewnątrz, idealny dla miłośników jadalni w any.",
+      "insider_tip": "Zapraszamy do GastroFazza, gdzie możesz odwiedzić wiosenną kulinarną wyprawę bez obaw o pogodę."
+    },
+    "place_id": "kk-gastrofazza"
+  },
+  {
+    "id": "kk_gastronomia_022",
+    "name": "Garden - Cafe",
+    "group": "gastronomia",
+    "geo": {
+      "lat": 50.2848183,
+      "lon": 18.2036105
+    },
+    "address": {
+      "street": "Władysława Planetorza",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Bełk"
+    },
+    "is_free": false,
+    "is_indoor": true,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": "cafe",
+    "nearest_parking": {
+      "distance_m": 65,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.2844393,
+        "lon": 18.2028998
+      }
+    },
+    "sub_category": "kawiarnia",
+    "tags": {
+      "context": [
+        "dorosli",
+        "randka",
+        "solo"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "indoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Garden - Cafe",
+    "editorial": {
+      "lead": "Garden - Cafe to kawiarnia z powolutką otwartą w centrum Kędzierzyn-Koźla, oferując bezpieczne miejsce do snu podczas nieletnich wyjazdów. Pomiędzy zimą a letnią sezonem, Garden - Cafe oferuje ciepłe pomieszczenia i ciepłe serwisy, idealne dla relaksu.",
+      "insider_tip": "Zapraszamy do Garden - Cafe, aby odzyskać siły po długim dniu w krajach sąsiednich. Serwujemy zimne napoje oraz posiada zasady bezpiecznego działania, takie jak wymuszanie odzyskania oddechu i ogrzewanie pomieszczeń."
+    },
+    "place_id": "kk-garden-cafe"
+  },
+  {
+    "id": "kk_historia_023",
+    "name": "Dostrzegalnia pożarowa \"Kędzierzyn\"",
+    "group": "historia",
+    "geo": {
+      "lat": 50.3331251,
+      "lon": 18.3062094
+    },
+    "address": {
+      "street": "Gazowa",
+      "housenumber": null,
+      "city": "Kędzierzyn-Koźle",
+      "district": "Kędzierzyn-Koźle"
+    },
+    "is_free": true,
+    "is_indoor": false,
+    "website": null,
+    "phone": null,
+    "opening_hours": null,
+    "wheelchair": null,
+    "raw_amenity": null,
+    "nearest_parking": {
+      "distance_m": 1192,
+      "is_fee": false,
+      "geo": {
+        "lat": 50.3359495,
+        "lon": 18.3224129
+      }
+    },
+    "sub_category": "zabytek",
+    "tags": {
+      "context": [
+        "dorosli",
+        "rodzina"
+      ],
+      "time": [
+        "poranek",
+        "popoludnie"
+      ],
+      "weather": "outdoor",
+      "season": "caly_rok",
+      "accessibility": null
+    },
+    "display_name": "Dostrzegalnia pożarowa \"Kędzierzyn\"",
+    "editorial": {
+      "lead": "Dostrzegalnia pożarowa 'Kędzierzyn' z 1930 roku jest zabytkiem zabytkowym, położonym w Gazowej, Kędzierzyn-Koźle, oferując dostęp do zabytkowych obiektów w pogodne dni.",
+      "insider_tip": "Znajdź lokalizację dostrzegalni na mapie Google, aby łatwo ją odwiedzić."
+    },
+    "place_id": "kk-dostrzegalnia-pozarowa-kedzierzyn"
+  }
+]

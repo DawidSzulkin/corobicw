@@ -12,6 +12,16 @@ class TicketInfo(BaseModel):
     time_start: str
     venue_name: str
     price_range: str
+    doors_open: Optional[str] = None
+    place_id: Optional[str] = None
+
+
+class NearbyGastro(BaseModel):
+    place_id: str
+    name: str
+    distance_m: int
+    walk_time_min: int
+    category: str
 
 
 class EventAnalysis(BaseModel):
@@ -34,4 +44,6 @@ class FullEventPage(BaseModel):
     date_formatted: str
     image_url: str
     source_url: str
+    place_id: Optional[str] = None
     analysis: EventAnalysis
+    nearby_gastro: List[NearbyGastro] = []

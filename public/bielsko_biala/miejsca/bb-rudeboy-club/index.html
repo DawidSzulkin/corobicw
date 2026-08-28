@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RudeBoy Club | Bielsko-Biała - CoRobićW</title>
+  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: RudeBoy Club w Bielsko-Biała.">
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style>
+    :root {
+      --primary: #1A365D;
+      --secondary: #2B6CB0;
+      --accent: #E53E3E;
+      --bg: #F7FAFC;
+      --text: #2D3748;
+      --card-bg: #FFFFFF;
+      --border: #E2E8F0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a { color: white; text-decoration: none; font-weight: bold; }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    .main-content {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .badge {
+      display: inline-block;
+      background: #EBF8FF;
+      color: var(--secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+    }
+    h1 { margin: 0 0 1rem 0; color: var(--primary); font-size: 2rem; }
+    .sidebar .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .sidebar h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: var(--primary);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .info-row { display: flex; margin-bottom: 0.8rem; font-size: 0.95rem; }
+    .info-label { width: 35%; font-weight: 600; color: #718096; }
+    .info-val { width: 65%; font-weight: 500; }
+    .event-card {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+    }
+    .event-card:last-child { border-bottom: none; }
+    .event-card:hover h4 { color: var(--secondary); }
+    .event-thumb {
+      width: 90px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #CBD5E0;
+    }
+    .event-meta { font-size: 0.85rem; color: #718096; }
+    .event-title { margin: 0 0 0.3rem 0; font-size: 1rem; font-weight: bold; }
+    #map { height: 260px; width: 100%; border-radius: 8px; margin-top: 1rem; border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+  
+  
+  
+  
+  
+  
+
+  <header>
+    <a href="/bielsko_biala/">← Wróć do agendy: Bielsko-Biała</a>
+    <span>CoRobićW</span>
+  </header>
+
+  <div class="container">
+    <main class="main-content">
+      <span class="badge">Klub Muzyczny</span>
+      <h1>RudeBoy Club</h1>
+      <p style="color: #4A5568; font-size: 1.1rem;">
+        📍 ul. 1 Maja 20, Bielsko-Biała
+      </p>
+
+      
+        <div id="map"></div>
+      
+
+      <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
+
+      <h3>📅 Nadchodzące wydarzenia w tym miejscu (5)</h3>
+      
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-09-fokus-rahim/" class="event-card">
+          <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20630%22%20width%3D%221200%22%20height%3D%22630%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234b6cb7%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23182848%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220.45%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300d2ff%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22blur%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2260%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20T%C5%82o%20bazowe%20--%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3C%21--%20Abstrakcyjne%20plamy%20%C5%9Bwietlne%20/%20Mesh%20--%3E%0A%20%20%3Ccircle%20cx%3D%22327%22%20cy%3D%22176%22%20r%3D%22182%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22786%22%20cy%3D%22406%22%20r%3D%22181%22%20fill%3D%22url%28%23glow%29%22%20filter%3D%22url%28%23blur%29%22/%3E%0A%0A%20%20%3C%21--%20Subtelna%20siatka%20dekoracyjna%20--%3E%0A%20%20%3Cg%20opacity%3D%220.06%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22157.5%22%20x2%3D%221200%22%20y2%3D%22157.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22315%22%20x2%3D%221200%22%20y2%3D%22315%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22472.5%22%20x2%3D%221200%22%20y2%3D%22472.5%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22300%22%20y1%3D%220%22%20x2%3D%22300%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22600%22%20y1%3D%220%22%20x2%3D%22600%22%20y2%3D%22630%22/%3E%0A%20%20%20%20%3Cline%20x1%3D%22900%22%20y1%3D%220%22%20x2%3D%22900%22%20y2%3D%22630%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Centralna%20kapsu%C5%82a%20z%20ikon%C4%85%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28600%2C%20315%29%22%3E%0A%20%20%20%20%3Ccircle%20r%3D%2276%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.12%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.25%22/%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%28-40%2C%20-40%29%20scale%283.33%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M12%203c-4.97%200-9%204.03-9%209%200%202.12.74%204.07%201.97%205.61L4.35%2019.4c-.39.39-.39%201.02%200%201.41.39.39%201.02.39%201.41%200l1.9-1.9C9.28%2019.58%2010.59%2020%2012%2020c4.97%200%209-4.03%209-9s-4.03-9-9-9zm0%2015c-3.31%200-6-2.69-6-6s2.69-6%206-6%206%202.69%206%206-2.69%206-6%206z%22%20fill%3D%22white%22%20opacity%3D%220.9%22/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Fokus & Rahim" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 9 paź • ⏰ 21:00</div>
+            <div class="event-title">Fokus & Rahim</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-23-wochaty-darek-dusza-i-demony/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_plakaty/kpmn73hpoqmft3qj_m.webp?t=1786017738" alt="Włochaty & Darek Dusza i Demony" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 23 paź • ⏰ 19:00</div>
+            <div class="event-title">Włochaty & Darek Dusza i Demony</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-24-trasa-illusion-hostia-iron-head-2026/" class="event-card">
+          <img src="/assets/thumbnails/biletyna_bielsko_biala_biletyna_pl_trasa_illusion__hostia__iron_head_2026.webp" alt="Trasa ILLUSION, HOSTIA, IRON HEAD 2026" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ 2026-10-24 • ⏰ 19:00</div>
+            <div class="event-title">Trasa ILLUSION, HOSTIA, IRON HEAD 2026</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 127.44 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-10-31-closterkeller/" class="event-card">
+          <img src="https://biletyna.pl/file/get/w/260/id/353669/filename/5ed46a3d9d7a58bddf26b617e0c725dc.png" alt="Closterkeller" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Sob, 31 paź • ⏰ Według harmonogramu</div>
+            <div class="event-title">Closterkeller</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Od 95.58 zł</div>
+          </div>
+        </a>
+        
+        <a href="/bielsko_biala/wydarzenia/2026-12-18-ydka-grubasa/" class="event-card">
+          <img src="https://www.kupbilecik.pl/img/gal_baza/pl7b4t6l3df9jv55_m.webp?t=1747730828" alt="Łydka Grubasa" class="event-thumb" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <div>
+            <div class="event-meta">🗓️ Pt, 18 gru • ⏰ 20:00</div>
+            <div class="event-title">Łydka Grubasa</div>
+            <div class="event-meta" style="color: var(--accent); font-weight: 600;">Bilety płatne</div>
+          </div>
+        </a>
+        
+      
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <h3>Logistyka i Dojazd</h3>
+        <div class="info-row">
+          <div class="info-label">📍 Adres</div>
+          <div class="info-val">ul. 1 Maja 20</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">🚗 Parking</div>
+          <div class="info-val">
+            
+              Parking przy klubie (20m)
+            
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">♿ Dostępność</div>
+          <div class="info-val">
+            Brak danych
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const lat = 49.8155;
+      const lon = 19.0498;
+      const map = L.map('map').setView([lat, lon], 15);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+      L.marker([lat, lon]).addTo(map).bindPopup("<b>RudeBoy Club</b>").openPopup();
+    });
+  </script>
+  
+
+</body>
+</html>
