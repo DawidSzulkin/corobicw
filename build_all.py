@@ -29,6 +29,10 @@ def main():
 
     # Renderowanie głównej strony portalu z wyborem miast
     renderer.render_portal_hub(active_cities=active_cities_hub, output_dir="public")
+
+    # Automatyczne generowanie sitemap.xml oraz robots.txt
+    renderer.render_seo_files(output_dir="public", base_url="https://corobicw.pl")
+
     print("\n[SUKCES] Portal wygenerowany kompletnie dla wszystkich miast.")
 
 if __name__ == "__main__":

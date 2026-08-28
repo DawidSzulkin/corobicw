@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://corobicw.pl/</loc>
@@ -62,10 +62,6 @@
   </url>
   <url>
     <loc>https://corobicw.pl/bielsko_biala/miejsca/bb-zamek-sulkowskich/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/bielsko_biala/wydarzenia/2026-08-27-art-square-silent-disco/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1109,6 +1105,46 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/gastronomia/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/w-deszczu/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/wydarzenia/2026-08-29-parkrun-kedzierzyn-kozle/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/wydarzenia/2026-09-05-parkrun-kedzierzyn-kozle/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/wydarzenia/2026-09-12-parkrun-kedzierzyn-kozle/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/wydarzenia/2026-09-19-parkrun-kedzierzyn-kozle/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/z-dzieckiem/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/z-psem/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn-kozle/za-darmo/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
@@ -1137,11 +1173,11 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-barnatka/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-bar-stop/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-bar-stop/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-barnatka/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1185,11 +1221,11 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-brodzik/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-brodzik-basenu/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-brodzik-basenu/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-brodzik/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1233,10 +1269,6 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-dom-kultury/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-dom-kultury-bierawa/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
@@ -1246,6 +1278,10 @@
   </url>
   <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-dom-kultury-lech/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-dom-kultury/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1365,14 +1401,6 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-kebabian/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-kebab-inn/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-kebab-inn-2/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
@@ -1381,7 +1409,15 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-kebab-inn/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-kebab-u-pajdy/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-kebabian/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1393,15 +1429,11 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-klub-wiejski/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-klub-wiejski-w-raszowej/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-koło-ognia/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-klub-wiejski/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1410,6 +1442,10 @@
   </url>
   <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-kozielska-muszla-koncertowa/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-koło-ognia/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1461,10 +1497,6 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-mała-czarna/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-manmade/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
@@ -1477,6 +1509,10 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-mała-czarna/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-mbp-glowna/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
@@ -1485,11 +1521,11 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-mcdonalds/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-mcdonalds-2/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-mcdonalds-2/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-mcdonalds/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1565,10 +1601,6 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-pałac-w-sławiecicach/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-pamieci-wiezniow-hitlerowskich-obozow-pracy/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
@@ -1602,6 +1634,10 @@
   </url>
   <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-parowoz-ty2-2118/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-pałac-w-sławiecicach/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1781,11 +1817,11 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-teznia-solankowa/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-teznia-solankowa-2/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-teznia-solankowa-2/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/miejsca/kk-teznia-solankowa/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1849,10 +1885,6 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/wydarzenia/2026-08-27-wakacje-z-ksiazka-w-bibliotece-mity-i-opowiesci-dla-kazdego/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/wydarzenia/2026-08-28-letnie-kino-plenerowe-jedno-zycie/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
@@ -1865,11 +1897,11 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-zawody-marzen-zajecia-edukacyjno-plastyczne-z-ksiazka/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-z-panem-brzechwa-wsrod-zwierzat/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://corobicw.pl/kedzierzyn_kozle/wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-z-panem-brzechwa-wsrod-zwierzat/</loc>
+    <loc>https://corobicw.pl/kedzierzyn_kozle/wydarzenia/2026-08-28-wakacje-z-ksiazka-w-bibliotece-zawody-marzen-zajecia-edukacyjno-plastyczne-z-ksiazka/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -1994,46 +2026,6 @@
   </url>
   <url>
     <loc>https://corobicw.pl/kedzierzyn_kozle/wydarzenia/2027-02-28-jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/gastronomia/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/w-deszczu/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/wydarzenia/2026-08-29-parkrun-kedzierzyn-kozle/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/wydarzenia/2026-09-05-parkrun-kedzierzyn-kozle/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/wydarzenia/2026-09-12-parkrun-kedzierzyn-kozle/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/wydarzenia/2026-09-19-parkrun-kedzierzyn-kozle/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/za-darmo/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/z-dzieckiem/</loc>
-    <lastmod>2026-08-28</lastmod>
-  </url>
-  <url>
-    <loc>https://corobicw.pl/kedzierzyn-kozle/z-psem/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
 </urlset>
