@@ -1,6 +1,7 @@
-﻿import os
-import shutil
+﻿from datetime import datetime
+import os
 from pathlib import Path
+import shutil
 from typing import Any, Dict, List
 from jinja2 import Environment, FileSystemLoader
 from src.models import FullEventPage
@@ -12,7 +13,7 @@ class HTMLRenderer:
 
     def _sync_assets(self, output_dir: str):
         out_assets = Path(output_dir) / "assets"
-        src_assets = Path("docs/assets") if Path("docs/assets").exists() else Path("assets")
+        src_assets = Path("assets") if Path("assets").exists() else Path("docs/assets")
         if src_assets.exists():
             out_assets.mkdir(parents=True, exist_ok=True)
             shutil.copytree(src_assets, out_assets, dirs_exist_ok=True)
@@ -60,7 +61,6 @@ class HTMLRenderer:
         place_template = self.env.get_template("place_page.html")
         rendered_places = 0
         for place_id, place_data in places.items():
-            # Filtrujemy wydarzenia odbywające się w tym obiekcie
             upcoming = [ev for ev in events if ev.place_id == place_id or ev.analysis.ticket_info.place_id == place_id]
             
             p_folder = places_dir / place_id
@@ -85,3 +85,33 @@ class HTMLRenderer:
             f.write(home_html)
 
         print(f"[RENDERER] {city_name}: Wygenerowano {len(events)} wydarzeń oraz {rendered_places} wizytówek miejsc.")
+
+    def render_seo_files(self, output_dir: str = "public", base_url: str = "https://corobicw.pl") -> None:
+        today_iso = datetime.now().strftime("%Y-%m-%d")
+        out_path = Path(output_dir)
+        
+        urls: List[str] = []
+        for root, _, files in os.walk(out_path):
+            if "index.html" in files:
+                rel = os.path.relpath(root, out_path)
+                url_path = "" if rel == "." else rel.replace("\\", "/") + "/"
+                urls.append(f"{base_url.rstrip('/')}/{url_path}")
+        
+        urls = sorted(set(urls))
+
+        # 1. Generowanie sitemap.xml
+        xml_entries = "\n".join([
+            f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{today_iso}</lastmod>\n  </url>"
+            for u in urls
+        ])
+        sitemap_content = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{xml_entries}\n</urlset>'
+        
+        with open(out_path / "sitemap.xml", "w", encoding="utf-8") as f:
+            f.write(sitemap_content)
+
+        # 2. Generowanie robots.txt
+        robots_content = f"User-agent: *\nAllow: /\n\nSitemap: {base_url.rstrip('/')}/sitemap.xml\n"
+        with open(out_path / "robots.txt", "w", encoding="utf-8") as f:
+            f.write(robots_content)
+
+        print(f"[SEO] Wygenerowano sitemap.xml ({len(urls)} adresów) oraz robots.txt.")
