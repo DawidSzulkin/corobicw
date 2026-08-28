@@ -19,14 +19,12 @@
       --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
       --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
       --badge-bg: #000000; --badge-text: #ffffff;
-      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
     }
     :root[data-theme="light"] {
       --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
       --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
       --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
       --badge-bg: #09090b; --badge-text: #ffffff;
-      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
     *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
@@ -73,7 +71,7 @@
 <body>
   <header>
     <div class="nav-container">
-      <a href="/" class="brand">CoRobićW <span>Polska</span></a>
+      <a href="index.html" class="brand">CoRobićW <span>Polska</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
           <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
@@ -88,23 +86,20 @@
       <p>Niezależny harmonogram wydarzeń, spektakli, koncertów oraz baza obiektów.</p>
     </div>
     <div class="city-grid">
-      
-        <a href="//" class="city-card">
-          <div>
-            <div class="city-name">Bielsko-Biała</div>
-            <div class="city-action">Otwórz agendę &rarr;</div>
-          </div>
-          <span class="city-badge">Wydanie aktywne</span>
-        </a>
-      
-        <a href="//" class="city-card">
-          <div>
-            <div class="city-name">Kędzierzyn-Koźle</div>
-            <div class="city-action">Otwórz agendę &rarr;</div>
-          </div>
-          <span class="city-badge">Wydanie aktywne</span>
-        </a>
-      
+      <a href="bielsko_biala/index.html" class="city-card">
+        <div>
+          <div class="city-name">Bielsko-Biała</div>
+          <div class="city-action">Otwórz agendę &rarr;</div>
+        </div>
+        <span class="city-badge">Wydanie aktywne</span>
+      </a>
+      <a href="kedzierzyn_kozle/index.html" class="city-card">
+        <div>
+          <div class="city-name">Kędzierzyn-Koźle</div>
+          <div class="city-action">Otwórz agendę &rarr;</div>
+        </div>
+        <span class="city-badge">Wydanie aktywne</span>
+      </a>
     </div>
   </main>
   <footer>
