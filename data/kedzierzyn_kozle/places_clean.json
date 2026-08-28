@@ -3969,9 +3969,9 @@
   },
   {
     "place_id": "kk-park-slawiecice",
-    "name": "Park w S?awi?cicach",
+    "name": "Park w Sławięcicach",
     "category": "Parki i Rekreacja",
-    "street": "S?awi?cicka",
+    "street": "Sławięcicka",
     "housenumber": "",
     "wheelchair": "limited",
     "logistics": {
@@ -3979,7 +3979,7 @@
         {
           "fee_label": "Bezpłatny",
           "distance_m": 80,
-          "street": "S?awi?cicka"
+          "street": "Sławięcicka"
         }
       ]
     },
@@ -3988,7 +3988,7 @@
   },
   {
     "place_id": "kk-hala-srodmiescie",
-    "name": "Hala Sportowa ?r?dmie?cie",
+    "name": "Hala Sportowa Śródmieście",
     "category": "Sport",
     "street": "al. Jana Pawła II",
     "housenumber": "29",

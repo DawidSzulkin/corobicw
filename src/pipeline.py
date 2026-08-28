@@ -62,15 +62,6 @@ def _sanitize_llm_string(val: Any) -> str:
     val = str(val).strip()
     val = re.sub(r"^np\.\s*", "", val, flags=re.IGNORECASE)
     val = re.sub(r"\s*lub Całodniowe", "", val, flags=re.IGNORECASE)
-    fixes = [
-        ("G??wna", "Główna"), ("G?ˇwna", "Główna"), ("G│ˇwna", "Główna"),
-        ("Oddzia?", "Oddział"), ("Oddzia│", "Oddział"),
-        ("P?atny", "Płatny"), ("P│atny", "Płatny"),
-        ("Bezp?atny", "Bezpłatny"), ("Bezp│atny", "Bezpłatny"),
-        ("Ko?le", "Koźle"), ("K?dzierzyn", "Kędzierzyn"), ("S?awi?cice", "Sławięcice")
-    ]
-    for bad, good in fixes:
-        val = val.replace(bad, good)
     return val.strip()
 
 def _get_geo_coords(place: Dict[str, Any]) -> Optional[tuple[float, float]]:
