@@ -347,8 +347,7 @@ def run_city_pipeline(
             for it in items:
                 it["city_tag"] = raw_tag
             raw_events.extend(items)
-            print(f"[{scraper.source_name}] Pomyślnie pobrano {len(items)} pozycji.")
-        except Exception as e:
+                    except Exception as e:
             print(f"[{scraper.source_name}] Błąd scrapera: {e}")
 
     deduped = process_events(raw_events)
