@@ -1,0 +1,158 @@
+[
+  {
+    "osm_id": "node/1156329714",
+    "geo": {
+      "lat": 49.8099213,
+      "lon": 19.0619462
+    },
+    "lat": 49.8099213,
+    "lon": 19.0619462,
+    "capacity": "50",
+    "fee": true,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/28658094",
+    "geo": {
+      "lat": 49.8233522,
+      "lon": 19.0537275
+    },
+    "lat": 49.8233522,
+    "lon": 19.0537275,
+    "capacity": null,
+    "fee": true,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/39131108",
+    "geo": {
+      "lat": 49.780958,
+      "lon": 19.0233247
+    },
+    "lat": 49.780958,
+    "lon": 19.0233247,
+    "capacity": null,
+    "fee": true,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/311801917",
+    "geo": {
+      "lat": 49.7620075,
+      "lon": 19.0739176
+    },
+    "lat": 49.7620075,
+    "lon": 19.0739176,
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/328535511",
+    "geo": {
+      "lat": 49.8490642,
+      "lon": 19.0400984
+    },
+    "lat": 49.8490642,
+    "lon": 19.0400984,
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/375732193",
+    "geo": {
+      "lat": 49.8749393,
+      "lon": 19.0265519
+    },
+    "lat": 49.8749393,
+    "lon": 19.0265519,
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/414126997",
+    "geo": {
+      "lat": 49.8334006,
+      "lon": 19.0562962
+    },
+    "lat": 49.8334006,
+    "lon": 19.0562962,
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/566214947",
+    "geo": {
+      "lat": 49.8316985,
+      "lon": 19.0729978
+    },
+    "lat": 49.8316985,
+    "lon": 19.0729978,
+    "capacity": null,
+    "fee": false,
+    "access": "public"
+  },
+  {
+    "osm_id": "way/608146859",
+    "geo": {
+      "lat": 49.793212,
+      "lon": 19.1293646
+    },
+    "lat": 49.793212,
+    "lon": 19.1293646,
+    "capacity": null,
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/710720433",
+    "geo": {
+      "lat": 49.7601014,
+      "lon": 19.0443496
+    },
+    "lat": 49.7601014,
+    "lon": 19.0443496,
+    "capacity": "27",
+    "fee": false,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/837614072",
+    "geo": {
+      "lat": 49.7823476,
+      "lon": 19.026087
+    },
+    "lat": 49.7823476,
+    "lon": 19.026087,
+    "capacity": "150",
+    "fee": true,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/978407166",
+    "geo": {
+      "lat": 49.8168675,
+      "lon": 19.0529863
+    },
+    "lat": 49.8168675,
+    "lon": 19.0529863,
+    "capacity": "148",
+    "fee": true,
+    "access": "yes"
+  },
+  {
+    "osm_id": "way/997854638",
+    "geo": {
+      "lat": 49.8244626,
+      "lon": 19.0549197
+    },
+    "lat": 49.8244626,
+    "lon": 19.0549197,
+    "capacity": "132",
+    "fee": true,
+    "access": "public"
+  }
+]
