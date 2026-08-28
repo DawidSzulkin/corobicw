@@ -1,20 +1,26 @@
-from datetime import datetime
-import os
+﻿import os
 import re
 import sys
-import time
+from datetime import datetime
 from typing import Any, Dict, List, Set
-from urllib.parse import urljoin
 
-from bs4 import BeutifulSoup
-import urllib3
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))ty
-
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 from src.scrapers.base import BaseScraper
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
+MONTHS_PL = {
+    'styczeń': '01', 'stycznia': '01',
+    'luty': '02', 'lutego': '02',
+    'marzec': '03', 'marca': '03',
+    'kwiecień': '04', 'kwietnia': '04',
+    'maj': '05', 'maja': '05',
+    'czerwiec': '06', 'czerwca': '06',
+    'lipiec': '07', 'lipca': '07',
+    'sierpień': '08', 'sierpnia': '08',
+    'wrzesień': '09', 'września': '09',
+    'październik': '10', 'października': '10',
+    'listopad': '11', 'listopada': '11',
+    'grudzień': '12', 'grudnia': '12'
+}
 
 class KedzierzynKozlePlScraper(BaseScraper):
     def __init__(self, city_tag: str = "kedzierzyn_kozle", partner_id: str = ""):
@@ -24,155 +30,124 @@ class KedzierzynKozlePlScraper(BaseScraper):
         )
         self.seen_urls: Set[str] = set()
 
-    def _get_soup(self, url: str) -> BeautifulSoup:
-        resp = self.session.get(url, timeout=(3.0, 10.0), verify=False)
-        resp.raise_for_status()
-        return BeautifulSoup(resp.text, "html.parser")
+    def _parse_date_str(self, text: str) -> str | None:
+        if not text:
+            return None
+        m = re.search(r'(\d{1,2})\s+([a-ząćęłńóśźż]+)\s+(\d{4})', text.strip(), re.IGNORECASE)
+        if m:
+            day, month_name, year = m.groups()
+            month_num = MONTHS_PL.get(month_name.lower())
+            if month_num:
+                return f"{year}-{month_num}-{int(day):02d}"
+        return None
 
-    def _clean_title(self, raw_title: str) -> str:
-        cleaned = re.sub(
-            r"^(czytaj wi&#248;cej o wydarzeniu|czytaj wi&#248;cej o|go to events list from day:?|event of:)\s+",
-            "",
-            raw_title,
-            flags=re.IGNORECASE
-        )
-        return cleaned.strip()
+    def _parse_date_block(self, date_block) -> dict:
+        res = {'start_date': None, 'end_date': None, 'start_time': None, 'end_time': None, 'is_all_day': False}
+        if not date_block:
+            return res
 
-    def _fetch_details(self, event_url: str, title: str) -> Dict[str, Any]:
-        default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
-        try:
-            time.sleep(0.03)
-            soup = self._get_soup(event_url)
+        date_values = date_block.select('.date-value')
+        if len(date_values) >= 1:
+            d_val = date_values[0]
+            start_el = d_val.select_one('.date-display-start')
+            end_el = d_val.select_one('.date-display-end')
+            single_el = d_val.select_one('.date-display-single')
 
-            article = (
-                soup.find("article") or
-                soup.find("div", class_="node-content") or
-                soup.find("div", class_="field-name-body") or
-                soup.find("div", id="content") or
-                soup
-            )
+            if start_el and end_el:
+                res['start_date'] = self._parse_date_str(start_el.get_text(strip=True))
+                res['end_date'] = self._parse_date_str(end_el.get_text(strip=True))
+            elif single_el:
+                res['start_date'] = self._parse_date_str(single_el.get_text(strip=True))
+                res['end_date'] = res['start_date']
 
-            article_text = article.get_text(separator="\n")
-
-            time_start = "Według harmonogramu"
-            time_match = re.search(r"(\b[0-2]?[0-9]:[0-5][0-9]\b)", article_text)
-            if time_match:
-                time_start = time_match.group(1)
-
-            venue = "Kędzierzyn-Koźle"
-            drupal_venue = article.select_one(".field-name-field-miejsce-wydarzenia .field-item, .field-name-field-miejsce .field-item")
-            if drupal_venue:
-                candidate = drupal_venue.get_text(strip=True)
-                if candidate and len(candidate) < 120:
-                    venue = candidate
+        if len(date_values) >= 2:
+            t_val = date_values[1]
+            t_text = t_val.get_text(separator=' ', strip=True).lower()
+            if 'całodzienne' in t_text:
+                res['is_all_day'] = True
             else:
-                for tag in article.find_all(["p", "span", "div"]):
-                    if "Miejsce wydarzenia:" in tag.text and not tag.find_all(["value", "div", "article", "section"]):
-                        candidate = tag.get_text().replace("Miejace wydarzenia:", "").strip()
-                        if candidate and len(candidate) < 120 and not any(bad in candidate for bad in ["POGODA", "czcionki", "BIP", "Polski"]):
-                            venue = candidate
-                            break
+                times = re.findall(r'\b(\d{1,2}:\d{2})\b', t_text)
+                if len(times) == 1:
+                    res['start_time'] = times[0]
+                elif len(times) >= 2:
+                    res['start_time'] = times[0]
+                    res['end_time'] = times[1]
 
-            raw_image = ""
-            for img in article.select("img"):
-                src = img.get("src", "")
-                if not src:
-                    continue
-                src_lower = src.lower()
-                if any(ignored in src_lower for ignored in ["logo", "bip", "unia", "herb", "koziolk", "budzet", "icon"]):
-                    continue
-                raw_image = urljoin(self.base_url, src)
-                break
+        return res
 
-            thumb_path = self.save_thumbnail(raw_image, title, prefix="kedzierzynkozle") if raw_image else ""
-
-            paragraphs = article.find_all("p")
-            valid_paragraphs = [p.get_text(strip=True) for p in paragraphs if len(p.get_text(strip=True)) > 20]
-            description = "\n\n".join(valid_paragraphs) if valid_paragraphs else fBWydarzenie w Kędzierzynie-Koźlu: {title}."
-
-            return {
-                "description": description,
-                "image_url": thumb_path or raw_image or default_img,
-                "time_start": time_start,
-                "price_range": "Wstęp wolny / Sprawdź bilety",
-                "venue": venue,
-                "address": f{venue}, Kędzierzyn-Koźle" if "Kędzierzyn" not in venue else venue
-            }
+    def _fetch_description(self, relative_url: str) -> str:
+        """Pobiera wyłącznie pełny opis z podstrony (miniatura i adres są z listy)."""
+        try:
+            soup = self.get_soup(relative_url)
+            article = soup.select_one(".field-name-body, .node-content, #content")
+            if article:
+                paragraphs = article.find_all("p")
+                valid_paragraphs = [p.get_text(strip=True) for p in paragraphs if len(p.get_text(strip=True)) > 20]
+                if valid_paragraphs:
+                    return " ".join(valid_paragraphs)
+                return article.get_text(separator=" ", strip=True)[:600]
         except Exception as e:
-            print(f"    [Błąd pobierania {event_url}]: {e}")
-            return {
-                "description": fBWydarzenie: {title}.",
-                "image_url": default_img,
-                "time_start": "Według harmonogramu",
-                "price_range": "Sprawdź bilety",
-                "venue": "Kędzierzyn-Koźle",
-                "address": "Kędzierzyn-Koźle"
-            }
+            print(f"[{self.source_name}] Błąd pobierania opisu {relative_url}: {e}")
+        return ""
 
     def scrape_month(self, year: int, month: int, today_iso: str) -> List[Dict[str, Any]]:
-        url = f{self.base_url}/pl/calendar-node-field-date/month/{year}-{month:02d}"
+        url = f"/pl/calendar-node-field-date/month/{year}-{month:02d}"
         print(f"[{self.source_name}] Skanowanie kalendarza: {year}-{month:02d}")
 
         try:
-            soup = self._get_soup(url)
+            soup = self.get_soup(url)
         except Exception as e:
-            print(f"[{self.source_name}] B�ąd pobierania kalendarza: {e}")
+            print(f"[{self.source_name}] Błąd pobierania kalendarza: {e}")
             return []
 
-        pending_events = []
-        cells = soup.select(".view-calendar td, .calendar-calendar td, td.has-events")
+        new_events = []
+        rows = soup.select('.view-Wydarzenia .views-row')
 
-        for cell in cells:
-            current_date = None
-            cell_id = cell.get("id", "")
-            id_match = re.search(r"(\d{4}-\d{2}-\d{2})", cell_id)
-            if id_match:
-                current_date = id_match.group(1)
-            else:
-                day_link = cell.select_one("a[href*='/calendar-node-field-date/day/'], a[href*='/day/']")
-                if day_link and day_link.get("href"):
-                    date_match = re.search(r"\d{4}-\d{2}-\d{2}", day_link["href"])
-                    if date_match:
-                        current_date = date_match.group(0)
+        for row in rows:
+            title_el = row.select_one('.views-field-title .field-content')
+            link_el = row.select_one('.view-read-more a')
 
-            if not current_date or current_date < today_iso:
+            if not title_el or not link_el:
                 continue
 
-            for link in cell.select("a[href*='/pl/wydarzenie/'], a[href*='/wydarzenie/'],li a"):
-                href = link.get("href")
-                if not href or "day" in href or "kalendar" in href:
-                    continue
+            relative_url = link_el.get('href', '')
+            full_url = f"{self.base_url}{relative_url}" if relative_url.startswith('/') else f"{self.base_url}/{relative_url}"
+            
+            if full_url in self.seen_urls:
+                continue
 
-                full_url = urljoin(self.base_url, href)
-                if full_url in self.seen_urls:
-                    continue
-                self.seen_urls.add(full_url)
+            date_block = row.select_one('.data-wydarzenia')
+            date_meta = self._parse_date_block(date_block)
+            
+            check_date = date_meta['end_date'] or date_meta['start_date']
+            if not check_date or check_date < today_iso:
+                continue
+                
+            self.seen_urls.add(full_url)
+            title = title_el.get_text(strip=True)
 
-                title = self._clean_title(link.get_text(strip=True))
-                if title and len(title) > 3:
-                    pending_events.append({
-                        "title": title,
-                        "date_start": current_date,
-                        "source_url": full_url
-                    })
+            location_el = row.select_one('.views-field-field-miejsce-wydarzenia .field-content')
+            venue = location_el.get_text(strip=True) if location_el else "Kędzierzyn-Koźle"
 
-        print(f"[{self.source_name}] Wykryto {len(pending_events)} nadchodzących wydarzeń ({year}-{month:02d}).")
+            img_el = row.select_one('.views-field-field-obrazek img')
+            raw_image = img_el.get('src') if img_el else ""
+            thumb_path = self.save_thumbnail(raw_image, title, prefix="kk") if raw_image else ""
 
-        new_events = []
-        for item in pending_events:
-            details = self._fetch_details(item["source_url"], item["title"])
+            description = self._fetch_description(relative_url)
+            if not description:
+                description = f"Wydarzenie w Kędzierzynie-Koźlu: {title}."
 
             new_events.append({
-                "title": item["title"],
-                "date_start": item["date_start"],
-                "date_end": item["date_start"],
-                "time_start": details["time_start"],
-                "venue": details["venue"],
-                "address": details["address"],
-                "price_range": details["price_range"],
-                "description": details["description"],
-                "image_url": details["image_url"],
-                "source_url": item["source_url"],
+                "title": title,
+                "date_start": date_meta['start_date'],
+                "date_end": date_meta['end_date'],
+                "time_start": date_meta['start_time'] or "Według harmonogramu",
+                "venue": venue,
+                "address": f"{venue}, Kędzierzyn-Koźle" if "Kędzierzyn" not in venue else venue,
+                "price_range": "Wstęp wolny / Sprawdź bilety",
+                "description": description,
+                "image_url": thumb_path or raw_image or "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80",
+                "source_url": full_url,
                 "source": self.source_name,
                 "organizer": "Urząd Miasta Kędzierzyn-Koźle"
             })
@@ -181,7 +156,7 @@ class KedzierzynKozlePlScraper(BaseScraper):
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         self.seen_urls.clear()
-        today_iso = datetime.now().strftime("%Y-+m-%d")
+        today_iso = datetime.now().strftime("%Y-%m-%d")
         now = datetime.now()
         all_events = []
 
@@ -191,5 +166,5 @@ class KedzierzynKozlePlScraper(BaseScraper):
             events = self.scrape_month(target_year, target_month, today_iso)
             all_events.extend(events)
 
-        print(f"[{self.source_name}] Łącznie pobrano {len(all_events)} unikalnych wydarzeń")
+        print(f"[{self.source_name}] Łącznie pobrano {len(all_events)} unikalnych wydarzeń.")
         return all_events
