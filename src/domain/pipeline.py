@@ -215,8 +215,12 @@ def _calculate_place_similarity(query_text: str, place_name: str, city_tag: str 
         for pt in p_distinct:
             if pt in q_set:
                 matches += 1
-            elif len(pt) >= 4 and any(SequenceMatcher(None, pt, qt).ratio() >= 0.85 for qt in q_distinct):
-                matches += 1
+            elif len(pt) >= 4:
+                for qt in q_distinct:
+                    if abs(len(pt) - len(qt)) <= 2 and pt[0] == qt[0]:
+                        if SequenceMatcher(None, pt, qt).ratio() >= 0.85:
+                            matches += 1
+                            break
         distinct_score = (matches / len(p_distinct)) * 0.85
 
     return max(jaccard, seq_ratio * 0.80, distinct_score)
