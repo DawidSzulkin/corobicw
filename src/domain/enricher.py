@@ -16,7 +16,7 @@ from src.infrastructure.db import DB_PATH
 try:
     from rapidocr_onnxruntime import RapidOCR
     _ocr_engine = RapidOCR()
-except ImportError:
+except Exception:
     _ocr_engine = None
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -39,7 +39,9 @@ def _load_cache() -> dict:
     if CACHE_FILE.exists():
         try:
             with open(CACHE_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
+                data = json.load(f)
+                # Zwracamy wyłącznie niepuste wpisy
+                return {k: v for k, v in data.items() if v and str(v).strip()}
         except Exception:
             return {}
     return {}
@@ -47,9 +49,10 @@ def _load_cache() -> dict:
 
 def _save_cache(cache: dict):
     CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    clean_cache = {k: v for k, v in cache.items() if v and str(v).strip()}
     temp_file = CACHE_FILE.with_suffix(".tmp")
     with open(temp_file, "w", encoding="utf-8") as f:
-        json.dump(cache, f, ensure_ascii=False, indent=2)
+        json.dump(clean_cache, f, ensure_ascii=False, indent=2)
     temp_file.replace(CACHE_FILE)
 
 
@@ -60,7 +63,7 @@ def _get_hash(val: str) -> str:
 def clean_ocr_with_ollama(raw_text: str, ollama_cfg: dict) -> str:
     url = ollama_cfg.get("url", "http://localhost:11434/api/generate")
     model_name = ollama_cfg.get("model", "qwen2.5:3b")
-    timeout = ollama_cfg.get("timeout", 20)
+    timeout = ollama_cfg.get("timeout", 40)
     temp = ollama_cfg.get("temperature", 0.2)
 
     system_instruction = (
@@ -128,15 +131,17 @@ def extract_text_from_image(image_path_or_url: str) -> str:
         img.thumbnail((1200, 1200))
         result, _ = _ocr_engine(img)
         if result:
-            lines = [line[1] for line in result if line[2] > 0.5]
+            lines = [line[1] for line in result if len(line) > 2 and line[2] > 0.4]
             return " ".join(lines)
-    except Exception as e:
-        print(f"    [OCR Błąd dla {image_path_or_url[:40]}]: {e}")
+    except Exception:
+        pass
 
     return ""
 
 
 def enrich_missing_descriptions(city_tag: str):
+    # Modu? ca?kowicie wy??czony
+    return
     cache = _load_cache()
     global_cfg = _load_global_config()
     ollama_cfg = global_cfg.get("ollama", {})
@@ -154,13 +159,16 @@ def enrich_missing_descriptions(city_tag: str):
             img_url = event.get("image_url", "").strip()
 
             is_valid_image = bool(img_url and "unsplash" not in img_url.lower())
+            
+            # Wykrywanie pustych, krótkich lub syntetycznych fallbacków
             is_boilerplate = (
                 not desc
-                or len(desc) < 60
+                or len(desc) < 70
                 or desc.lower().startswith((
                     "wydarzenie:", "wydarzenie biletowane:", "wydarzenie miejskie:",
                     "wydarzenie sportowe:", "spektakl w", "koncert w"
                 ))
+                or bool(re.search(r"\bczas:\s*\d{4}-\d{2}-\d{2}.*miejsce:", desc, re.IGNORECASE))
             )
 
             if is_boilerplate and is_valid_image:
@@ -169,8 +177,10 @@ def enrich_missing_descriptions(city_tag: str):
             continue
 
     if not tasks_to_enrich:
-        print(f"[ENRICHER] Brak brakujących opisów dla '{city_tag}'.")
+        print(f"[ENRICHER] Wszystkie opisy dla '{city_tag}' są kompletne.")
         return
+
+    print(f"[ENRICHER] '{city_tag}': Zakwalifikowano {len(tasks_to_enrich)} wydarzeń do wzbogacenia OCR/LLM...")
 
     def process_item(item: Tuple[int, dict, str]) -> Optional[Tuple[int, dict]]:
         ev_id, ev_data, img_identifier = item
@@ -179,11 +189,10 @@ def enrich_missing_descriptions(city_tag: str):
         cleaned_desc = cache.get(img_hash)
         if not cleaned_desc:
             raw_ocr = extract_text_from_image(img_identifier)
-            if len(raw_ocr.strip()) > 30:
+            if len(raw_ocr.strip()) > 20:
                 cleaned_desc = clean_ocr_with_ollama(raw_ocr, ollama_cfg)
-            else:
-                cleaned_desc = ""
-            cache[img_hash] = cleaned_desc
+                if cleaned_desc:
+                    cache[img_hash] = cleaned_desc
 
         if cleaned_desc:
             ev_data["description"] = cleaned_desc
@@ -194,7 +203,7 @@ def enrich_missing_descriptions(city_tag: str):
         return None
 
     enriched_records = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         results = executor.map(process_item, tasks_to_enrich)
         for res in results:
             if res:
@@ -212,4 +221,4 @@ def enrich_missing_descriptions(city_tag: str):
                 )
             conn.commit()
 
-    print(f"[ENRICHER] Zaktualizowano opisy w bazie: {len(enriched_records)} rekordów.")
+    print(f"[ENRICHER] Zaktualizowano opisy w bazie: {len(enriched_records)}/{len(tasks_to_enrich)} rekordów.")

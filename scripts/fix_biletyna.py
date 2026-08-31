@@ -1,6 +1,7 @@
-import json
+﻿import json
 import os
 import re
+import sqlite3
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -9,10 +10,43 @@ from urllib.parse import quote_plus, urljoin, urlparse
 from bs4 import BeautifulSoup
 import urllib3
 
-BASE_DIR = Path(__file__).resolve().parents[3]
-if str(BASE_DIR) not in sys.path:
-    sys.path.insert(0, str(BASE_DIR))
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+# 1. Czyszczenie bazy danych
+print("=== 1. CZYSZCZENIE BAZY DANYCH (data/events.db) ===")
+db_path = Path("data/events.db")
+if db_path.exists():
+    with sqlite3.connect(db_path) as conn:
+        cur = conn.cursor()
+        cur.execute("""
+            DELETE FROM events 
+            WHERE source_url LIKE '%biletyna.pl/%' 
+              AND (
+                  title LIKE '%2026/2027%' 
+                  OR title LIKE 'Koncerty %' 
+                  OR title LIKE 'Spektakle %'
+                  OR source_url LIKE '%/koncert/%' 
+                  OR source_url LIKE '%/spektakl/%'
+                  OR source_url LIKE '%#%'
+              )
+        """)
+        deleted = cur.rowcount
+        conn.commit()
+        print(f"Usunięto wadliwych rekordów: {deleted}")
+
+# 2. Zapis poprawionego kodu scrapera
+print("\n=== 2. AKTUALIZACJA src/infrastructure/scrapers/biletyna_pl.py ===")
+scraper_source = '''import json
+import os
+import re
+import sys
+from datetime import datetime
+from typing import Any, Dict, List, Optional
+from urllib.parse import quote_plus, urljoin, urlparse
+from bs4 import BeautifulSoup
+import urllib3
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 from src.infrastructure.scrapers.base import BaseScraper
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -38,15 +72,6 @@ class BiletynaPlScraper(BaseScraper):
         self.partner_id = partner_id
         self.city_name = CITY_NAMES.get(self.city_tag, self.city_tag.replace("_", " ").title())
         self.events_url = CITY_URL_MAP.get(self.city_tag, f"https://biletyna.pl/szukaj?q={quote_plus(self.city_name)}")
-        
-        self.city_slugs = [self.city_name.lower()]
-        if "bielsko" in self.city_tag:
-            self.city_slugs.extend(["bielsko", "bielsku", "bielsko-biała", "bielsko-biala"])
-        elif "kedzierzyn" in self.city_tag:
-            self.city_slugs.extend(["kędzierzyn", "kedzierzyn", "koźle", "kozle", "kędzierzynie"])
-        elif "opole" in self.city_tag:
-            self.city_slugs.extend(["opole", "opolu", "opolskie"])
-
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
@@ -72,18 +97,15 @@ class BiletynaPlScraper(BaseScraper):
     def _clean_seo_title(self, title: str) -> str:
         if not title:
             return "Wydarzenie"
-        title = re.split(r'\s*\|\s*(Bilety|Opis|Recenzje|Kup|202)', title, flags=re.IGNORECASE)[0]
-        city_pattern = rf'\s*-\s*(?:{re.escape(self.city_name)}|{re.escape(self.city_tag)}|Bielsko|Opole|Kędzierzyn|Koźle|Bilety|Kup|Rezerwuj)\b.*$'
-        title = re.sub(city_pattern, '', title, flags=re.IGNORECASE)
-        title = re.split(r'\s*-\s*(Bilety|Kup|Rezerwuj)', title, flags=re.IGNORECASE)[0]
-        return title.strip(" -|,\t\r\n")
+        title = re.split(r'\\s*\\|\\s*(Bilety|Opis|Recenzje|Kup|202)', title, flags=re.IGNORECASE)[0]
+        title = re.split(r'\\s*-\\s*(Bilety|Kup|Rezerwuj)', title, flags=re.IGNORECASE)[0]
+        return title.strip()
 
     def _parse_row_event(self, row: BeautifulSoup, full_desc: str, full_img: str, global_title: str, global_venue: str, event_url: str, row_idx: int = 1, total_rows: int = 1) -> Optional[Dict[str, Any]]:
         row_text = row.get_text(" ", strip=True)
-        row_text_clean = re.sub(r'\s+', ' ', row_text)
-        row_lower = row_text_clean.lower()
+        row_text_clean = re.sub(r'\\s+', ' ', row_text)
         
-        date_match = re.search(r"\b(\d{2})\.(\d{2})\.(\d{4})\b", row_text_clean)
+        date_match = re.search(r"\\b(\\d{2})\\.(\\d{2})\\.(\\d{4})\\b", row_text_clean)
         if not date_match:
             return None
         d, m, y = date_match.groups()
@@ -91,14 +113,8 @@ class BiletynaPlScraper(BaseScraper):
         if date_iso < datetime.now().strftime("%Y-%m-%d"):
             return None
 
-        time_match = re.search(r"\b([01]?[0-9]|2[0-3]):([0-5][0-9])\b", row_text_clean)
+        time_match = re.search(r"\\b([01]?[0-9]|2[0-3]):([0-5][0-9])\\b", row_text_clean)
         time_str = f"{int(time_match.group(1)):02d}:{time_match.group(2)}" if time_match else "Według harmonogramu"
-
-        if total_rows > 1:
-            has_city_in_row = any(slug in row_lower for slug in self.city_slugs)
-            has_city_in_url = any(slug in event_url.lower() for slug in self.city_slugs)
-            if not has_city_in_row and not has_city_in_url:
-                return None
 
         title_el = row.select_one("h2, h3, h4, strong, a.title")
         row_specific_title = self._clean_seo_title(title_el.get_text(strip=True)) if title_el else ""
@@ -107,7 +123,7 @@ class BiletynaPlScraper(BaseScraper):
         if title.lower() in [self.city_name.lower(), self.city_tag.lower(), "wydarzenie"]:
             title = global_title
 
-        if CATEGORY_TITLE_RE.search(title) and any(slug in title.lower() for slug in self.city_slugs):
+        if CATEGORY_TITLE_RE.search(title) and self.city_name.lower() in title.lower():
             return None
 
         venue = ""
@@ -115,24 +131,20 @@ class BiletynaPlScraper(BaseScraper):
         if venue_el:
             venue = venue_el.get_text(strip=True)
         else:
-            for c_slug in [self.city_name] + self.city_slugs:
-                v_match = re.search(rf"{re.escape(c_slug)}\s+(.*?)\s+(?:Dostępne|Bilety\s+od|KUP|Wyprzedane|Szczegóły|Kup\s+bilet|rezerwuj)", row_text_clean, re.IGNORECASE)
-                if v_match:
-                    venue = v_match.group(1).strip()
-                    break
+            v_match = re.search(rf"{re.escape(self.city_name)}\\s+(.*?)\\s+(?:Dostępne|Bilety\\s+od|KUP|Wyprzedane|Szczegóły)", row_text_clean, re.IGNORECASE)
+            if v_match:
+                venue = v_match.group(1).strip()
             if not venue:
                 venue = global_venue
 
-        if len(venue) > 60 or venue.lower() == self.city_name.lower() or any(venue.lower() == s for s in self.city_slugs):
+        if len(venue) > 60 or venue.lower() == self.city_name.lower():
             venue = ""
 
-        price_match = re.search(r"(?:Bilety\s+od|od)\s*(\d+(?:[.,]\d{2})?)\s*(?:zł|PLN)", row_text_clean, re.IGNORECASE)
+        price_match = re.search(r"(?:Bilety\\s+od|od)\\s*(\\d+(?:[.,]\\d{2})?)\\s*(?:zł|PLN)", row_text_clean, re.IGNORECASE)
         price_str = f"Od {price_match.group(1).replace(',', '.')} zł" if price_match else "Bilety płatne"
 
         thumb_path = self.save_thumbnail(full_img, title, prefix=f"biletyna_{self.city_tag}") if full_img else ""
-        desc = re.sub(r'\s+', ' ', full_desc).strip() if full_desc else f"{title}. Czas: {date_iso} {time_str}. Miejsce: {venue or 'Przestrzeń miejska'}."
-
-        final_url = f"{event_url}#{self.city_tag}-{row_idx}" if total_rows > 1 else f"{event_url}#{self.city_tag}"
+        desc = re.sub(r'\\s+', ' ', full_desc).strip() if full_desc else f"{title}. Czas: {date_iso} {time_str}. Miejsce: {venue or 'Przestrzeń miejska'}."
 
         return {
             "title": title,
@@ -143,7 +155,7 @@ class BiletynaPlScraper(BaseScraper):
             "price_range": price_str,
             "description": desc,
             "image_url": thumb_path or full_img,
-            "source_url": final_url,
+            "source_url": f"{event_url}#{row_idx}" if total_rows > 1 else event_url,
             "source": self.source_name,
             "organizer": "Biletyna.pl",
             "city_tag": self.city_tag
@@ -160,7 +172,7 @@ class BiletynaPlScraper(BaseScraper):
             h1_el = soup.select_one("h1")
             global_title = self._clean_seo_title(h1_el.get_text(strip=True)) if h1_el else self._clean_seo_title(fallback_title)
             
-            if CATEGORY_TITLE_RE.search(global_title) and (any(s in global_title.lower() for s in self.city_slugs) or "2026/2027" in global_title):
+            if CATEGORY_TITLE_RE.search(global_title) and (self.city_name.lower() in global_title.lower() or "2026/2027" in global_title):
                 return []
 
             global_desc = ""
@@ -251,3 +263,20 @@ class BiletynaPlScraper(BaseScraper):
             
         print(f"[{self.source_name}] Zakończono dla '{self.city_tag}'. Prawidłowo zebrano: {len(events)}.")
         return events
+'''
+
+Path("src/infrastructure/scrapers/biletyna_pl.py").write_text(scraper_source.strip() + "\n", encoding="utf-8")
+print("Plik src/infrastructure/scrapers/biletyna_pl.py został pomyślnie zaktualizowany w UTF-8 (bez BOM).")
+
+# 3. Test scrapera
+print("\n=== 3. TEST SCRAPERA DLA OPOLA ===")
+sys.path.insert(0, str(Path.cwd()))
+from src.infrastructure.scrapers.biletyna_pl import BiletynaPlScraper
+
+scraper = BiletynaPlScraper(city_tag="opole")
+events = scraper.fetch_events()
+
+print(f"\nPróbka zebranych wydarzeń ({len(events)}):")
+for idx, ev in enumerate(events[:10], 1):
+    print(f" {idx}. {ev['title']} | Data: {ev['date_start']} {ev['time_start']} | Miejsce: '{ev['venue']}'")
+    print(f"    URL: {ev['source_url']}")

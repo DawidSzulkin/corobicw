@@ -3,6 +3,7 @@ from datetime import timedelta
 import io
 import os
 import re
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
@@ -10,20 +11,24 @@ from PIL import Image
 import requests_cache
 import urllib3
 
+from src.utils.helpers import slugify
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+# Główny katalog projektu (portal/)
+ROOT_DIR = Path(__file__).resolve().parents[3]
 
 class BaseScraper(ABC):
     def __init__(self, source_name: str, base_url: str, cache_expire_hours: int = 12):
         self.source_name = source_name
         self.base_url = base_url
         
-        # Centralna miniatura WebP w katalogu public
-        self.thumb_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../public/assets/thumbnails"))
+        # Centralny katalog miniatur WebP w głównym public/
+        self.thumb_dir = os.path.abspath(ROOT_DIR / "public" / "assets" / "thumbnails")
         os.makedirs(self.thumb_dir, exist_ok=True)
         
-        # Centralna baza cache dla zapytań HTTP
-        cache_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../data"))
+        # Centralny kesz HTTP w głównym data/
+        cache_dir = os.path.abspath(ROOT_DIR / "data")
         os.makedirs(cache_dir, exist_ok=True)
         cache_path = os.path.join(cache_dir, "http_cache")
 
@@ -41,45 +46,40 @@ class BaseScraper(ABC):
         })
 
     def get_soup(self, url: str, params: Optional[dict] = None) -> BeautifulSoup:
-        """Pobiera stronę i zwraca BeautifulSoup na bazie surowych bajtów UTF-8."""
         full_url = urljoin(self.base_url, url)
-        resp = self.session.get(full_url, params=params, timeout=20, verify=False)
-        resp.raise_for_status()
-        return BeautifulSoup(resp.content, "html.parser", from_encoding="utf-8")
+        response = self.session.get(full_url, params=params, verify=False, timeout=(3.05, 10))
+        response.raise_for_status()
+        return BeautifulSoup(response.content, "html.parser")
 
-    def save_thumbnail(self, remote_img_url: str, title: str, prefix: str = "") -> str:
-        """Pobiera i kompresuje plakat do WebP tylko jeśli nie ma go jeszcze na dysku."""
-        if not remote_img_url:
+    def save_thumbnail(self, img_url: str, title: str, prefix: str = "") -> str:
+        if not img_url:
             return ""
 
-        tag = f"{prefix}_{self.source_name}" if prefix else self.source_name
-        safe_slug = re.sub(r"[^a-zA-Z0-9_\-]", "_", title.lower()).strip("_")
-        filename = f"{tag}_{safe_slug}.webp"
-        disk_path = os.path.join(self.thumb_dir, filename)
-        web_path = f"/assets/thumbnails/{filename}"
+        full_img_url = urljoin(self.base_url, img_url)
+        clean_title = slugify(title)
+        filename = f"{prefix}_{clean_title}.webp" if prefix else f"{clean_title}.webp"
+        target_path = os.path.join(self.thumb_dir, filename)
+        rel_path = f"/assets/thumbnails/{filename}"
 
-        if os.path.exists(disk_path):
-            return web_path
+        if os.path.exists(target_path) and os.path.getsize(target_path) > 0:
+            return rel_path
 
         try:
-            full_img_url = urljoin(self.base_url, remote_img_url)
-            resp = self.session.get(full_img_url, timeout=(3.0, 8.0), verify=False)
-            if resp.status_code == 200:
+            resp = self.session.get(full_img_url, timeout=(3.05, 10), verify=False)
+            if resp.status_code == 200 and resp.content:
                 img = Image.open(io.BytesIO(resp.content)).convert("RGB")
-                max_w = 400
-                if img.width > max_w:
-                    ratio = max_w / float(img.width)
-                    new_h = int(float(img.height) * float(ratio))
-                    img = img.resize((max_w, new_h), Image.Resampling.LANCZOS)
+                max_width = 600
+                if img.width > max_width:
+                    height = int((max_width / img.width) * img.height)
+                    img = img.resize((max_width, height), Image.Resampling.LANCZOS)
                 
-                img.save(disk_path, "WEBP", quality=75, optimize=True)
-                return web_path
-        except Exception as e:
-            print(f"[{self.source_name}] Błąd generowania miniatury dla '{title[:30]}': {e}")
+                img.save(target_path, "WEBP", quality=80)
+                return rel_path
+        except Exception:
+            pass
 
         return ""
 
     @abstractmethod
     def fetch_events(self) -> List[Dict[str, Any]]:
-        """Główna metoda pobierająca wydarzenia."""
         pass
