@@ -15,9 +15,9 @@ import yaml
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
-from src.db import init_db
-from src.pipeline import run_city_pipeline
-from src.renderer import HTMLRenderer
+from src.infrastructure.db import init_db
+from src.domain.pipeline import run_city_pipeline
+from src.infrastructure.renderer import HTMLRenderer
 
 
 def load_yaml(path: Path) -> dict:

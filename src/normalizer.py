@@ -1,19 +1,13 @@
+from src.utils.helpers import slugify
 from datetime import datetime
 import re
 import unicodedata
 
-from src.models import EventAnalysis, FullEventPage, QuickFacts, TicketInfo
+from src.core.models import EventAnalysis, FullEventPage, QuickFacts, TicketInfo
 from src.placeholders import generate_event_placeholder
 
 POLISH_DAYS = ["Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Ndz"]
 POLISH_MONTHS_GEN = ["", "sty", "lut", "mar", "kwi", "maj", "cze", "lip", "sie", "wrz", "paź", "lis", "gru"]
-
-
-def slugify(text: str) -> str:
-    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("utf-8")
-    text = text.lower()
-    text = re.sub(r"[^\w\s-]", "", text)
-    return re.sub(r"[-\s]+", "-", text).strip("-")
 
 
 def format_polish_date(date_iso: str) -> str:

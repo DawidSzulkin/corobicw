@@ -3,7 +3,7 @@ import requests
 import re
 from typing import Dict, Any, Optional
 from pydantic import ValidationError
-from src.models import EventAnalysis, FullEventPage
+from src.core.models import EventAnalysis, FullEventPage
 
 class EventEvaluator:
     def __init__(self, global_cfg: Dict[str, Any], city_cfg: Dict[str, Any]):
