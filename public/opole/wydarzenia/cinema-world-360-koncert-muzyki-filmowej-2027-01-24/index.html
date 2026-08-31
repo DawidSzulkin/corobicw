@@ -18,15 +18,11 @@
       --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
       --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
       --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
-      --badge-bg: #000000; --badge-text: #ffffff;
-      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
     }
     :root[data-theme="light"] {
       --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
       --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
       --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
-      --badge-bg: #09090b; --badge-text: #ffffff;
-      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
     *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
@@ -36,6 +32,7 @@
       overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
       -webkit-font-smoothing: antialiased; font-size: 16px;
     }
+    
     header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
     .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
     .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
@@ -45,26 +42,46 @@
     .btn-theme-toggle:hover { border-color: var(--border-strong); }
     .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
     .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
-    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
-    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    
     main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
-    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
-    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
-    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 10px; }
-    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
-    .footer-col ul a:hover { color: var(--text); }
-    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
-
+    
     .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
     .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .container-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; }
-    @media (max-width: 768px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
-    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; }
-    .event-img { width: 100%; height: 420px; object-fit: cover; display: block; background: #18181b; }
+    
+    /* UKŁAD DWUKOLUMNOWY */
+    .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+    @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
+    
+    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
+    
+    /* VOD BANNER (Top) */
+    .ambient-banner {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+      display: block;
+      background: #000;
+      border-bottom: 1px solid var(--border);
+    }
+    .ambient-bg {
+      position: absolute;
+      top: -5%; left: -5%; right: -5%; bottom: -5%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px) brightness(0.3);
+      z-index: 1;
+    }
+    .ambient-fg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      z-index: 2;
+    }
+    
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
@@ -74,7 +91,8 @@
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
     .action-btn:hover { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
-    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; }
+    
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; border-radius: 4px; }
     .sidebar h3 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; }
     .info-row { display: flex; margin-bottom: 14px; font-size: 0.95rem; }
     .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
@@ -85,24 +103,16 @@
     .gastro-dist { font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 4px; }
     .btn-ticket { display: block; width: 100%; text-align: center; background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); text-decoration: none; padding: 14px 0; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; transition: all 0.2s; }
     .btn-ticket:hover { background: transparent; color: var(--text); border-color: var(--text); }
-  
-/* Leaflet Dark Mode - CARTO Look */
-.leaflet-tile {
-    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
-}
-.leaflet-container {
-    background-color: #0b0f19 !important;
-}
-.leaflet-popup-content-wrapper, .leaflet-popup-tip {
-    background: #1e293b !important;
-    color: #f8fafc !important;
-    border: 1px solid #334155 !important;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
-}
-.leaflet-popup-content b { color: #38bdf8 !important; }
-.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
-
-</style>
+    
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+  </style>
 </head>
 <body>
   <header>
@@ -114,26 +124,38 @@
       </div>
     </div>
   </header>
+  
   <main>
     <nav class="breadcrumbs">
       <a href="/">Polska</a><span>/</span><a href="/opole/">Opole</a><span>/</span><span class="current">CINEMA WORLD 360° - Koncert Muzyki Filmowej</span>
     </nav>
+    
     <div class="container-grid">
+      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
-        <img src="/assets/thumbnails/biletyna_opole_biletyna_pl_cinema_world_360__-_koncert_muzyki_filmowej.webp" alt="CINEMA WORLD 360° - Koncert Muzyki Filmowej" class="event-img" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80'">
+        <a href="https://biletyna.pl/koncert/CINEMA-WORLD-360-Koncert-Muzyki-Filmowej#4" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_opole_biletyna_pl_cinema_world_360__-_koncert_muzyki_filmowej.webp');"></div>
+          <img src="/assets/thumbnails/biletyna_opole_biletyna_pl_cinema_world_360__-_koncert_muzyki_filmowej.webp" alt="Plakat: CINEMA WORLD 360° - Koncert Muzyki Filmowej" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+        </a>
+        
         <div class="event-body">
           <div><span class="badge">Kultura i Rozrywka</span></div>
           <h1>CINEMA WORLD 360° - Koncert Muzyki Filmowej</h1>
           <div class="lead">Największe w Polsce Widowisko Muzyki Filmowej na scenie 360 °. To immersyjne przeżycie, w którym muzyka, światło, obraz oraz nowoczesne efekty sceniczne tworzą jedno wciągające doś</div>
+          
           <div class="event-actions-bar">
             <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=CINEMA%20WORLD%20360%C2%B0%20-%20Koncert%20Muzyki%20Filmowej&details=Najwi%C4%99ksze%20w%20Polsce%20Widowisko%20Muzyki%20Filmowej%20na%20scenie%20360%20%C2%B0.%20To%20immersyjne%20prze%C5%BCycie%2C%20w%20kt%C3%B3rym%20muzyka%2C%20%C5%9Bwiat%C5%82o%2C%20obraz%20oraz%20nowoczesne%20efekty%20sceniczne%20tworz%C4%85%20jedno%20wci%C4%85gaj%C4%85ce%20do%C5%9B" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=CINEMA%20WORLD%20360%C2%B0%20-%20Koncert%20Muzyki%20Filmowej%20-%20https://corobicw.pl/opole/wydarzenia/cinema-world-360-koncert-muzyki-filmowej-2027-01-24/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
+          
           <h3 class="section-title">O wydarzeniu</h3>
           <p style="color: var(--text-muted); line-height: 1.7;">Największe w Polsce Widowisko Muzyki Filmowej na scenie 360 °. To immersyjne przeżycie, w którym muzyka, światło, obraz oraz nowoczesne efekty sceniczne tworzą jedno wciągające doświadczenie. 120 minut muzyki z kultowych ścieżek dźwiękowych w autorskich aranżacjach. Ponad 60 artystów na scenie – orkiestra, chór, wybitni soliści i wyjątkowi goście specjalni. Widowiskowe projekcje, spektakularna scenografia LED 360° oraz oprawa świetlna. Program koncertu oparty jest na kompozycjach instrumentalno - wokalnych, które w kilkuminutowych odsłonach zaprezentują ścieżki dźwiekowe i niezapomniane melodie inspirowane największymi dziełami muzyki filmowej. Aranżer, pianista i wykładowca akademicki: Tomasz Jachym, w swoich autorskich opracowaniach przeniesie Państwa do świata bohaterów, legend i wielkich emocji, przywołując ducha takich produkcji jak: Gladiator • Titanic • Harry Potter • Władca Pierścieni • Star Wars • Avatar • Ostatni Mohikanin • Piraci z Karaibów CINEMA WORLD 360° to także fascynująca opowieść o ewolucji muzyki filmowej. W nowoczesnych, brzmieniach, przedstawimy monumentalną muzykę współczesnego kina z takich filmów jak: Interstellar • Diuna • Oppenheimer • Stranger Things • Igrzyska Śmierci • Na Zachodzie bez zmian. To nie jest klasyczny koncert, podczas którego publiczność pozostaje biernym obserwatorem. To dynamiczne widowisko, w którym mocne brzmienie orkiestry, chóru i solistów współgra z obrazem, światłem oraz przestrzenią, tworząc prawdziwie filmowe doświadczenie na żywo. Na scenie pojawią się wybitni soliści reprezentujący różne muzyczne światy. Wyjątkowym gościem koncertu będzie „mistrz nastroju” , wirtuoz akordeonu - Marcin Wyrostek, który zaprezentuje niezapomniane interpretacje muzyki z kultowych tematów filmowych, nadając im metafizyczny wymiar. Ewa Siembida - polska wokalistka jazzowa i estradowa, trenerka wokalna oraz nauczyciel akademicki. Laureatka ogólnopolskich i międzynarodowych festiwali. Artystka, której twórczość oscyluje wokół soulu i jazzu w których odnajduje przestrzeń do interpretacyjnej swobody i emocjonalnej autentyczności. Sylwia Łyko - wokalistka, autorka muzyki i tekstów, finalistka piątej edycji The Voice of Poland w drużynie Justyny Steczkowskiej. Wielokrotna zwyciężczyni festiwali i konkursów wokalnych w kraju i za granicą. Jej głos zatrzymuje czas i porusza najczulsze struny. Jej muzyczna droga obejmuje zarówno działalność solową, jak i współpracę w charakterze back vocal z czołowymi artystami polskiej sceny muzycznej. Występowała u boku takich wykonawców jak Lanberry, Justyna Steczkowska, Kayah, Krzysztof Iwaneczko, Alicja Janosz, Marika, Monika Lewczuk czy Sławek Uniatowski. Narrację całego widowiska, poprowadzi dla Państwa zjawiskowy, kinowy Głos, który otworzy drzwi do niejednych wspomnień i największych filmowych momentów Tworząc CINEMA WORLD 360° interpretujemy najpiękniejsze muzyczne arcydzieła, implementujemy prawdziwe emocje, dzielimy się pasją. Zapraszamy Wszystkich Państwa, którzy chcieliby na chwilę zatrzymać czas i uwierzyć w magię kina. W koncercie wystąpią: CoReo Orchestra prowadzona przez Tomasza Jachyma Uni Jazz Voices Marcin Wyrostek Sargis Ewa Siembida Sylwia Łyko</p>
           
+          
         </div>
       </div>
+      
+      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>
@@ -151,9 +173,11 @@
           <a href="https://biletyna.pl/koncert/CINEMA-WORLD-360-Koncert-Muzyki-Filmowej#4" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
         </div>
         
+        
       </aside>
     </div>
   </main>
+  
   <footer>
     <div class="footer-inner">
       <div class="footer-col"><h4>CoRobićW Opole</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>

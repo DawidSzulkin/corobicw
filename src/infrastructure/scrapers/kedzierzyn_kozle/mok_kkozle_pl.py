@@ -95,7 +95,7 @@ class MokKkozlePlScraper(BaseScraper):
         return None
 
     def _fetch_details(self, event_url: str, title: str, fallback_img: str) -> Optional[Dict[str, Any]]:
-        default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
+        default_img = "/assets/placeholder.svg"
         try:
             soup = self.get_soup(event_url)
 
@@ -198,7 +198,7 @@ class MokKkozlePlScraper(BaseScraper):
                         continue
                     self.seen_urls.add(full_url)
 
-                    thumb_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
+                    thumb_img = "/assets/placeholder.svg"
                     photo_div = item.select_one(".mnwall-photo-link, .mnwall-item-photo")
                     if photo_div and photo_div.get("style"):
                         img_match = re.search(r"url\(['\"]?(.*?)['\"]?\)", photo_div["style"])

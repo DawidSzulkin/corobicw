@@ -1,0 +1,10 @@
+﻿venv/
+__pycache__/
+data/
+public/
+.github/
+*.html
+_*.py
+test_*.py
+*.sqlite3
+*.log

@@ -92,7 +92,7 @@ class MosirKkPlScraper(BaseScraper):
 
     def _scrape_calendar_table(self, today_iso: str, default_year: int) -> List[Dict[str, Any]]:
         events = []
-        default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
+        default_img = "/assets/placeholder.svg"
         
         try:
             soup = self.get_soup(self.calendar_url)
@@ -141,7 +141,7 @@ class MosirKkPlScraper(BaseScraper):
 
     def _scrape_news_feed(self, today_iso: str, default_year: int) -> List[Dict[str, Any]]:
         events = []
-        default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
+        default_img = "/assets/placeholder.svg"
 
         try:
             soup = self.get_soup(self.news_url)

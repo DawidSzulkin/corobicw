@@ -1,4 +1,4 @@
-﻿from src.utils.helpers import haversine, slugify
+from src.utils.helpers import haversine, slugify
 import json
 import os
 import re
@@ -398,7 +398,7 @@ def _prepare_event_models(events: List[Any], city_cfg: Dict[str, Any], city_name
         date_end = str(e.get("date_end", date_start)).strip()[:10]
         date_formatted = e.get("date_formatted") or date_start
         source_url = e.get("source_url") or e.get("url") or ""
-        thumb_url = e.get("thumbnail_url") or e.get("image_url") or "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80"
+        thumb_url = e.get("thumbnail_url") or e.get("image_url") or "/assets/placeholder.svg"
         analysis_raw = e.get("analysis") or {}
 
         time_start = _sanitize_llm_string(analysis_raw.get("ticket_info", {}).get("time_start") or e.get("time_start") or "18:00")

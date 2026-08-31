@@ -146,7 +146,7 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 "address": f"{venue}, Kędzierzyn-Koźle" if "Kędzierzyn" not in venue else venue,
                 "price_range": "Wstęp wolny / Sprawdź bilety",
                 "description": description,
-                "image_url": thumb_path or raw_image or "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80",
+                "image_url": thumb_path or raw_image or "/assets/placeholder.svg",
                 "source_url": full_url,
                 "source": self.source_name,
                 "organizer": "Urząd Miasta Kędzierzyn-Koźle"

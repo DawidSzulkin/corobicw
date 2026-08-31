@@ -1,0 +1,105 @@
+city_tag: opole
+city: Opole
+description: Wydarzenia, koncerty, spektakle i atrakcje w mieście Opole.
+seo_keywords: Opole wydarzenia, koncerty Opole, teatr Opole, imprezy Opole
+color_primary: '#1A365D'
+color_secondary: '#2B6CB0'
+color_accent: '#E53E3E'
+theme: modern
+sources:
+  kupbilecik_pl:
+    enabled: true
+    name: KupBilecik (Opole)
+  biletyna_pl:
+    enabled: true
+    name: Biletyna (Opole)
+venue_match_rules:
+- keywords:
+  - ncpp
+  - amfiteatr
+  - narodowe centrum polskiej piosenki
+  - kameralna
+  target_keywords:
+  - narodowe centrum polskiej piosenki
+- keywords:
+  - kochanowskiego
+  - teatr im. jana kochanowskiego
+  target_keywords:
+  - teatr dramatyczny im. jana kochanowskiego
+- keywords:
+  - filharmonia opolska
+  - elsnera
+  - filharmonii
+  target_keywords:
+  - filharmonia opolska
+- keywords:
+  - stegu arena
+  - okr?glak
+  target_keywords:
+  - stegu arena
+  - hala
+- keywords:
+  - centrum wystawienniczo
+  - cwk
+  target_keywords:
+  - centrum wystawienniczo
+  - kongresowe
+- keywords:
+  - teatr lalki
+  - lalki i aktora
+  target_keywords:
+  - teatr lalki i aktora
+- keywords:
+  - galeria sztuki wsp??czesnej
+  - gsw
+  target_keywords:
+  - galeria sztuki wsp??czesnej
+- keywords:
+  - muzeum ?l?ska opolskiego
+  target_keywords:
+  - muzeum ?l?ska opolskiego
+- keywords:
+  - muzeum polskiej piosenki
+  target_keywords:
+  - muzeum polskiej piosenki
+- keywords:
+  - studenckie centrum kultury
+  - sck
+  target_keywords:
+  - studenckie centrum kultury
+  - uniwersytet
+- keywords:
+  - szkoła muzyczna
+  - psm
+  - chopina
+  target_keywords:
+  - szkoła muzyczna
+  - państwowa szkoła
+- keywords:
+  - aula seminarium
+  target_keywords:
+  - seminarium
+  - kościół
+  - parafia
+- keywords:
+  - bar u kuby
+  target_keywords:
+  - bar
+  - restauracja
+- target_id: o-studenckie-centrum-kultury
+  keywords:
+  - studenckie centrum kultury
+- target_id: o-vinoteka-opole
+  keywords:
+  - vinoteka opole
+- target_id: o-klub-mango
+  keywords:
+  - klub mango opole
+premium_venues:
+- o-narodowe-centrum-polskiej-piosenki
+- o-teatr-dramatyczny-im-jana-kochanowskiego
+- o-filharmonia-opolska
+- o-opo
+- o-hala-sportowa-politechniki-opolskiej
+- o-muzeum-polskiej-piosenki
+- o-teatr-lalki-i-aktora
