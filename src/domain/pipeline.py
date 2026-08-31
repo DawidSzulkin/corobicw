@@ -11,7 +11,6 @@ import concurrent.futures
 from difflib import SequenceMatcher
 
 from src.infrastructure.db import get_active_events, save_events_batch, DB_PATH
-from src.domain.enricher import enrich_missing_descriptions
 from src.core.models import FullEventPage, EventAnalysis, QuickFacts, TicketInfo, NearbyGastro
 from src.infrastructure.renderer import HTMLRenderer
 from src.infrastructure.scrapers.registry import get_scrapers_for_city
@@ -569,8 +568,6 @@ def run_city_pipeline(
                 cursor.execute("UPDATE events SET payload = ? WHERE id = ?", (json.dumps(p_data, ensure_ascii=False), ev_id))
         conn.commit()
 
-    if not skip_enrich:
-        enrich_missing_descriptions(city_tag=raw_tag)
 
     active_db_events = get_active_events(city_tag=raw_tag, min_date=today_iso)
     deduped_events = deduplicate_events(active_db_events, city_name=city_name)
