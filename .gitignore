@@ -34,3 +34,6 @@ find_*.*
 .DS_Store
 Thumbs.db
 desktop.ini
+# Narz?dzia lokalne
+start_server.bat
+start_kwarantanna.bat
