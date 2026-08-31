@@ -82,7 +82,24 @@
     .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
     #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
-  </style>
+  
+/* Leaflet Dark Mode - CARTO Look */
+.leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
+}
+.leaflet-container {
+    background-color: #0b0f19 !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+.leaflet-popup-content b { color: #38bdf8 !important; }
+.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+</style>
 </head>
 <body>
   
@@ -112,28 +129,37 @@
         <p style="color: var(--text-muted); font-size: 1.05rem;">📍 Chemik, Kędzierzyn-Koźle</p>
         <div id="map"></div>
         <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
-        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (7)</h3>
+        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (8)</h3>
         
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-08-29-coverowe-pozegnanie-lata-2026/" class="event-card-mini">
-            <img src="/assets/thumbnails/mok_kk_mok_kkozle_pl_coverowe_po_egnanie_lata_2026.webp" alt="coverowe pożegnanie lata 2026!" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/wernisaz-wystawy-prac-czeslawy-szlazak-i-damiana-szlazaka-2026-09-04/" class="event-card-mini">
+            <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_wernisa__wystawy_prac_czes_awy_szl_zak_i_damiana_szl_zaka.webp" alt="Wernisaż wystawy prac Czesławy Szlązak i Damiana Szlązaka" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
-              <div class="event-meta-mini">2026-08-29 &bull; 17:00</div>
-              <div class="event-title-mini">coverowe pożegnanie lata 2026!</div>
-              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny</div>
+              <div class="event-meta-mini">2026-09-04 &bull; 18:00</div>
+              <div class="event-title-mini">Wernisaż wystawy prac Czesławy Szlązak i Damiana Szlązaka</div>
+              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny / Sprawdź bilety</div>
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-04-najdrozszy-spektakl-komediowy/" class="event-card-mini">
-            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Najdroższy - spektakl komediowy" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/podroze-sabiny-nowosielskiej-prezydent-jakiej-nie-znacie-2026-09-09/" class="event-card-mini">
+            <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_podr__e_sabiny_nowosielskiej_-_prezydent__jakiej_nie_znacie.webp" alt="Podróże Sabiny Nowosielskiej - Prezydent, jakiej nie znacie!" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
-              <div class="event-meta-mini">2026-09-04 &bull; Według harmonogramu</div>
-              <div class="event-title-mini">Najdroższy - spektakl komediowy</div>
-              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+              <div class="event-meta-mini">2026-09-09 &bull; 17:00</div>
+              <div class="event-title-mini">Podróże Sabiny Nowosielskiej - Prezydent, jakiej nie znacie!</div>
+              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny / Sprawdź bilety</div>
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-10-19-siesta-w-drodze-gala-fado-marta-pereira-da-costa-and-friends-nani-medeiros-duarte/" class="event-card-mini">
+          <a href="/kedzierzyn_kozle/wydarzenia/maz-mojej-zony-kreatywna-pantera-2026-10-12/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Mąż mojej żony - Kreatywna Pantera" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-12 &bull; 18:00</div>
+              <div class="event-title-mini">Mąż mojej żony - Kreatywna Pantera</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
+            </div>
+          </a>
+          
+          <a href="/kedzierzyn_kozle/wydarzenia/siesta-w-drodze-gala-fado-marta-pereira-da-costa-and-friends-nani-medeiros-duarte-2026-10-19/" class="event-card-mini">
             <img src="/assets/thumbnails/mok_kk_mok_kkozle_pl_siesta_w_drodze__gala_fado__marta_pereira_da_costa_and_friends__nani_medeiros___duarte.webp" alt="siesta w drodze: gala fado. marta pereira da costa and friends: nani medeiros & duarte" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-10-19 &bull; 18:00</div>
@@ -142,34 +168,34 @@
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-11-09-spektakl-sklep-z-facetami-zapraszamy/" class="event-card-mini">
+          <a href="/kedzierzyn_kozle/wydarzenia/spektakl-sklep-z-facetami-zapraszamy-2026-11-09/" class="event-card-mini">
             <img src="/assets/thumbnails/mok_kk_mok_kkozle_pl_spektakl__sklep_z_facetami__-_zapraszamy.webp" alt="spektakl "sklep z facetami" - zapraszamy!" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-11-09 &bull; 18:30</div>
               <div class="event-title-mini">spektakl "sklep z facetami" - zapraszamy!</div>
-              <div class="event-meta-mini" style="color: var(--text);">Od 116.82 zł</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety / Wstęp wolny</div>
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-11-14-wielka-gala-wiedenska-johann-strauss-show-cz-ii/" class="event-card-mini">
-            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Wielka Gala Wiedeńska Johann Strauss Show - CZ. II" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/rafal-rutkowski-2026-11-15/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Rafał Rutkowski" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
-              <div class="event-meta-mini">2026-11-14 &bull; Według harmonogramu</div>
-              <div class="event-title-mini">Wielka Gala Wiedeńska Johann Strauss Show - CZ. II</div>
-              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+              <div class="event-meta-mini">2026-11-15 &bull; 18:00</div>
+              <div class="event-title-mini">Rafał Rutkowski</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-12-31-sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy/" class="event-card-mini">
-            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/sklep-z-facetami-2027-02-27/" class="event-card-mini">
+            <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_sklep_z_facetami.webp" alt="Sklep z facetami" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
-              <div class="event-meta-mini">2026-12-31 &bull; Według harmonogramu</div>
-              <div class="event-title-mini">SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy</div>
-              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+              <div class="event-meta-mini">2027-02-27 &bull; 19:00</div>
+              <div class="event-title-mini">Sklep z facetami</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 95.58 zł</div>
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2027-02-28-jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu/" class="event-card-mini">
+          <a href="/kedzierzyn_kozle/wydarzenia/jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu-2027-02-28/" class="event-card-mini">
             <img src="/assets/thumbnails/mok_kk_mok_kkozle_pl_jacek_dew_dzki___d_em_session___spotkanie_z_prawdziw__histori__d_emu.webp" alt="jacek dewódzki & dżem session – spotkanie z prawdziwą historią dżemu!" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2027-02-28 &bull; 17:00</div>

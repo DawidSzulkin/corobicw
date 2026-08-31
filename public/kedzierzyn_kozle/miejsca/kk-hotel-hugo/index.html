@@ -82,7 +82,24 @@
     .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
     #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
-  </style>
+  
+/* Leaflet Dark Mode - CARTO Look */
+.leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
+}
+.leaflet-container {
+    background-color: #0b0f19 !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+.leaflet-popup-content b { color: #38bdf8 !important; }
+.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+</style>
 </head>
 <body>
   
@@ -115,12 +132,12 @@
         <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (1)</h3>
         
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-13-candle-live-music-koncert-przy-swiecachkoncert-przy-swiecach-tribute-to-michael-jackson/" class="event-card-mini">
-            <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_candle_live_music__koncert_przy__wiecachkoncert_przy__wiecach__tribute_to_michael_jackson.webp" alt="Candle Live Music: Koncert przy świecachKoncert przy świecach: Tribute to Michael Jackson" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/koncert-przy-swiecach-tribute-to-michael-jackson-2026-09-13/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Koncert przy świecach: Tribute to Michael Jackson" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-09-13 &bull; 19:30</div>
-              <div class="event-title-mini">Candle Live Music: Koncert przy świecachKoncert przy świecach: Tribute to Michael Jackson</div>
-              <div class="event-meta-mini" style="color: var(--text);">Od 95.58 zł</div>
+              <div class="event-title-mini">Koncert przy świecach: Tribute to Michael Jackson</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
             </div>
           </a>
           

@@ -1,4 +1,4 @@
-﻿import json
+import json
 from pathlib import Path
 import sys
 
@@ -118,3 +118,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -1,4 +1,4 @@
-﻿import json
+import json
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,3 +67,4 @@ with open(CLEAN_FILE, "w", encoding="utf-8") as f:
 
 print(f"[OK] Wyodrębniono {len(parkings)} parkingów -> data/kedzierzyn_kozle/parkings.json")
 print(f"[OK] Zbudowano czystą bazę {len(clean_places)} obiektów -> data/kedzierzyn_kozle/places_clean.json")
+

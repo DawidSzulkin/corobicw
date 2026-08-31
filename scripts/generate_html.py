@@ -1,4 +1,4 @@
-﻿import json
+import json
 from pathlib import Path
 
 JSON_PATH = Path("data/kedzierzyn_kozle/indoor_atrakcje.json")
@@ -142,3 +142,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

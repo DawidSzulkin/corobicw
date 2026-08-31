@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CoRobićW | Przewodnik Miejski</title>
   <meta name="description" content="Niezależny przewodnik kulturalny. Sprawdź aktualne wydarzenia, spektakle i obiekty w Twoim mieście.">
-  
+
   <script>
     (function() {
       const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
@@ -86,20 +86,15 @@
       <p>Niezależny harmonogram wydarzeń, spektakli, koncertów oraz baza obiektów.</p>
     </div>
     <div class="city-grid">
-      <a href="bielsko_biala/index.html" class="city-card">
+      {% for c in cities %}
+      <a href="{{ c.tag }}/index.html" class="city-card">
         <div>
-          <div class="city-name">Bielsko-Biała</div>
+          <div class="city-name">{{ c.name }}</div>
           <div class="city-action">Otwórz agendę &rarr;</div>
         </div>
         <span class="city-badge">Wydanie aktywne</span>
       </a>
-      <a href="kedzierzyn_kozle/index.html" class="city-card">
-        <div>
-          <div class="city-name">Kędzierzyn-Koźle</div>
-          <div class="city-action">Otwórz agendę &rarr;</div>
-        </div>
-        <span class="city-badge">Wydanie aktywne</span>
-      </a>
+      {% endfor %}
     </div>
   </main>
   <footer>
@@ -121,7 +116,7 @@
       <span>&copy; 2026 CoRobićW.</span><span>Automatyczna agregacja danych</span>
     </div>
   </footer>
-  
+
   <script>
     function toggleTheme() {
       const current = document.documentElement.getAttribute('data-theme');
@@ -134,7 +129,7 @@
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; }
         else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
       }
     }
@@ -144,3 +139,4 @@
   </script>
 </body>
 </html>
+

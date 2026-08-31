@@ -1,5 +1,5 @@
-[
-  {
+{
+  "kk-chemik": {
     "id": "kk_kultura_001",
     "name": "Chemik",
     "group": "kultura",
@@ -23,7 +23,7 @@
     "lat": 50.3442,
     "lon": 18.2285
   },
-  {
+  "kk-mikafka": {
     "id": "kk_gastronomia_002",
     "name": "miKafka",
     "group": "gastronomia",
@@ -47,7 +47,7 @@
     "lat": 50.3438,
     "lon": 18.2275
   },
-  {
+  "kk-street-bar": {
     "id": "kk_gastronomia_003",
     "name": "Street Bar",
     "group": "gastronomia",
@@ -71,7 +71,7 @@
     "lat": 50.3441,
     "lon": 18.226
   },
-  {
+  "kk-da-ci-kumo-sushi": {
     "id": "kk_gastronomia_005",
     "name": "Da Ci Kumo Sushi",
     "group": "gastronomia",
@@ -93,7 +93,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-da-ci-kumo-sushi"
   },
-  {
+  "kk-gruby-benek": {
     "id": "kk_gastronomia_006",
     "name": "Gruby Benek",
     "group": "gastronomia",
@@ -115,7 +115,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-gruby-benek"
   },
-  {
+  "kk-ruiny-pałacu": {
     "id": "kk_historia_007",
     "name": "Ruiny pałacu",
     "group": "historia",
@@ -137,7 +137,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-ruiny-pałacu"
   },
-  {
+  "kk-ruiny-sluzy-nr-6-dawnego-kanału-kłodnickiego": {
     "id": "kk_historia_008",
     "name": "Ruiny śluzy nr 6 dawnego Kanału Kłodnickiego",
     "group": "historia",
@@ -159,7 +159,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-ruiny-sluzy-nr-6-dawnego-kanału-kłodnickiego"
   },
-  {
+  "kk-były-oboz-koncentracyjny-w-sławiecicach": {
     "id": "kk_historia_009",
     "name": "Były obóz koncentracyjny w Sławięcicach",
     "group": "historia",
@@ -181,7 +181,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-były-oboz-koncentracyjny-w-sławiecicach"
   },
-  {
+  "kk-big-boom": {
     "id": "kk_gastronomia_010",
     "name": "Big Boom",
     "group": "gastronomia",
@@ -203,7 +203,7 @@
     "raw_amenity": "bar",
     "place_id": "kk-big-boom"
   },
-  {
+  "kk-restauracja-damian-kania": {
     "id": "kk_gastronomia_011",
     "name": "Restauracja - Damian Kania",
     "group": "gastronomia",
@@ -225,7 +225,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-restauracja-damian-kania"
   },
-  {
+  "kk-restauracja-viktorjan": {
     "id": "kk_gastronomia_012",
     "name": "Restauracja Viktorjan",
     "group": "gastronomia",
@@ -247,7 +247,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-restauracja-viktorjan"
   },
-  {
+  "kk-pomnik-poległych-w-i-wojnie-swiatowej": {
     "id": "kk_historia_013",
     "name": "Pomnik poległych w I wojnie światowej",
     "group": "historia",
@@ -269,7 +269,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-pomnik-poległych-w-i-wojnie-swiatowej"
   },
-  {
+  "kk-karzsma": {
     "id": "kk_gastronomia_014",
     "name": "Karzsma",
     "group": "gastronomia",
@@ -291,7 +291,7 @@
     "raw_amenity": "pub",
     "place_id": "kk-karzsma"
   },
-  {
+  "kk-hula-gula": {
     "id": "kk_gastronomia_015",
     "name": "Hula-Gula",
     "group": "gastronomia",
@@ -313,7 +313,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-hula-gula"
   },
-  {
+  "kk-mogiła-21-powstancow": {
     "id": "kk_historia_016",
     "name": "Mogiła 21 Powstańców",
     "group": "historia",
@@ -335,7 +335,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-mogiła-21-powstancow"
   },
-  {
+  "kk-magdalena-zalewska": {
     "id": "kk_gastronomia_017",
     "name": "Magdalena Zalewska",
     "group": "gastronomia",
@@ -357,7 +357,7 @@
     "raw_amenity": "cafe",
     "place_id": "kk-magdalena-zalewska"
   },
-  {
+  "kk-pod-lwami": {
     "id": "kk_gastronomia_018",
     "name": "Pod Lwami",
     "group": "gastronomia",
@@ -379,7 +379,7 @@
     "raw_amenity": "pub",
     "place_id": "kk-pod-lwami"
   },
-  {
+  "kk-powodz-tysiaclecia": {
     "id": "kk_historia_019",
     "name": "Powódź tysiąclecia",
     "group": "historia",
@@ -401,7 +401,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-powodz-tysiaclecia"
   },
-  {
+  "kk-henryk-sienkiewicz": {
     "id": "kk_historia_020",
     "name": "Henryk Sienkiewicz",
     "group": "historia",
@@ -423,7 +423,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-henryk-sienkiewicz"
   },
-  {
+  "kk-gastrofazza": {
     "id": "kk_gastronomia_021",
     "name": "GastroFazza",
     "group": "gastronomia",
@@ -445,7 +445,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-gastrofazza"
   },
-  {
+  "kk-garden-cafe": {
     "id": "kk_gastronomia_022",
     "name": "Garden - Cafe",
     "group": "gastronomia",
@@ -467,7 +467,7 @@
     "raw_amenity": "cafe",
     "place_id": "kk-garden-cafe"
   },
-  {
+  "kk-dostrzegalnia-pozarowa-kedzierzyn": {
     "id": "kk_historia_023",
     "name": "Dostrzegalnia pożarowa \"Kędzierzyn\"",
     "group": "historia",
@@ -489,7 +489,7 @@
     "raw_amenity": null,
     "place_id": "kk-dostrzegalnia-pozarowa-kedzierzyn"
   },
-  {
+  "kk-grob-nieznanego-powstanca-1921": {
     "id": "kk_historia_024",
     "name": "grób nieznanego powstańca 1921",
     "group": "historia",
@@ -511,7 +511,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-grob-nieznanego-powstanca-1921"
   },
-  {
+  "kk-ofiarom-ii-wojny-swiatowej": {
     "id": "kk_historia_025",
     "name": "Ofiarom II Wojny Światowej",
     "group": "historia",
@@ -533,7 +533,7 @@
     "raw_amenity": "monument",
     "place_id": "kk-ofiarom-ii-wojny-swiatowej"
   },
-  {
+  "kk-lucios-jack-and-restaurant": {
     "id": "kk_gastronomia_026",
     "name": "Lucio's Jack and Restaurant",
     "group": "gastronomia",
@@ -555,7 +555,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-lucios-jack-and-restaurant"
   },
-  {
+  "kk-spichlerz": {
     "id": "kk_gastronomia_027",
     "name": "Spichlerz",
     "group": "gastronomia",
@@ -577,7 +577,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-spichlerz"
   },
-  {
+  "kk-magiczny-zakatek": {
     "id": "kk_gastronomia_028",
     "name": "Magiczny Zakątek",
     "group": "gastronomia",
@@ -599,7 +599,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-magiczny-zakatek"
   },
-  {
+  "kk-syfon-kłodnicy": {
     "id": "kk_inne_029",
     "name": "Syfon Kłodnicy",
     "group": "inne",
@@ -621,7 +621,7 @@
     "raw_amenity": "attraction",
     "place_id": "kk-syfon-kłodnicy"
   },
-  {
+  "kk-hotel-hugo": {
     "id": "kk_gastronomia_030",
     "name": "Hotel Hugo",
     "group": "gastronomia",
@@ -645,7 +645,7 @@
     "lat": 50.3795,
     "lon": 18.309
   },
-  {
+  "kk-infiniti": {
     "id": "kk_sport_031",
     "name": "Infiniti",
     "group": "sport",
@@ -667,7 +667,7 @@
     "raw_amenity": "fitness_centre",
     "place_id": "kk-infiniti"
   },
-  {
+  "kk-villa-vanilla": {
     "id": "kk_gastronomia_032",
     "name": "Villa Vanilla",
     "group": "gastronomia",
@@ -689,7 +689,7 @@
     "raw_amenity": "cafe",
     "place_id": "kk-villa-vanilla"
   },
-  {
+  "kk-dom-kultury": {
     "id": "kk_kultura_033",
     "name": "Dom Kultury",
     "group": "kultura",
@@ -711,7 +711,7 @@
     "raw_amenity": "community_centre",
     "place_id": "kk-dom-kultury"
   },
-  {
+  "kk-trattoria-da-stella": {
     "id": "kk_gastronomia_034",
     "name": "Trattoria da Stella",
     "group": "gastronomia",
@@ -733,7 +733,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-trattoria-da-stella"
   },
-  {
+  "kk-grzesznia": {
     "id": "kk_gastronomia_035",
     "name": "Grzesznia",
     "group": "gastronomia",
@@ -755,7 +755,7 @@
     "raw_amenity": "pub",
     "place_id": "kk-grzesznia"
   },
-  {
+  "kk-wieza-straznicza-i-brama-wjazdowa-do-obozu": {
     "id": "kk_historia_036",
     "name": "Wieża strażnicza i brama wjazdowa do obozu",
     "group": "historia",
@@ -777,7 +777,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-wieza-straznicza-i-brama-wjazdowa-do-obozu"
   },
-  {
+  "kk-pomnik-martyrologii-wiezniow": {
     "id": "kk_historia_037",
     "name": "Pomnik Martyrologii Więźniów",
     "group": "historia",
@@ -799,7 +799,7 @@
     "raw_amenity": "monument",
     "place_id": "kk-pomnik-martyrologii-wiezniow"
   },
-  {
+  "kk-kebab-inn": {
     "id": "kk_gastronomia_038",
     "name": "Kebab Inn",
     "group": "gastronomia",
@@ -821,7 +821,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-kebab-inn"
   },
-  {
+  "kk-sobieski": {
     "id": "kk_gastronomia_039",
     "name": "Sobieski",
     "group": "gastronomia",
@@ -843,7 +843,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-sobieski"
   },
-  {
+  "kk-gospoda-solocha": {
     "id": "kk_gastronomia_040",
     "name": "Gospoda Solocha",
     "group": "gastronomia",
@@ -865,7 +865,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-gospoda-solocha"
   },
-  {
+  "kk-athena": {
     "id": "kk_gastronomia_041",
     "name": "Restauracja Athena",
     "group": "gastronomia",
@@ -887,7 +887,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-athena"
   },
-  {
+  "kk-barnatka": {
     "id": "kk_gastronomia_042",
     "name": "Barnatka",
     "group": "gastronomia",
@@ -909,7 +909,7 @@
     "raw_amenity": "bar",
     "place_id": "kk-barnatka"
   },
-  {
+  "kk-kosmos": {
     "id": "kk_gastronomia_043",
     "name": "Kosmos",
     "group": "gastronomia",
@@ -931,7 +931,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-kosmos"
   },
-  {
+  "kk-bar-gorniczy": {
     "id": "kk_gastronomia_044",
     "name": "Bar Górniczy",
     "group": "gastronomia",
@@ -953,7 +953,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-bar-gorniczy"
   },
-  {
+  "kk-społdzielczy-dom-kultury-rsm-chemik": {
     "id": "kk_kultura_045",
     "name": "Spółdzielczy Dom Kultury RSM \"Chemik\"",
     "group": "kultura",
@@ -975,7 +975,7 @@
     "raw_amenity": "community_centre",
     "place_id": "kk-społdzielczy-dom-kultury-rsm-chemik"
   },
-  {
+  "kk-belweder": {
     "id": "kk_inne_046",
     "name": "Belweder",
     "group": "inne",
@@ -997,7 +997,7 @@
     "raw_amenity": "attraction",
     "place_id": "kk-belweder"
   },
-  {
+  "kk-strzelnica": {
     "id": "kk_sport_047",
     "name": "Strzelnica",
     "group": "sport",
@@ -1019,7 +1019,7 @@
     "raw_amenity": "pitch",
     "place_id": "kk-strzelnica"
   },
-  {
+  "kk-pomnik-pomordowanych-na-terenie-zakładu-w-lat": {
     "id": "kk_historia_048",
     "name": "Pomnik pomordowanych na terenie zakładu w latach 1939-1945",
     "group": "historia",
@@ -1041,7 +1041,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-pomnik-pomordowanych-na-terenie-zakładu-w-lat"
   },
-  {
+  "kk-cisowianka": {
     "id": "kk_gastronomia_049",
     "name": "Cisowianka",
     "group": "gastronomia",
@@ -1063,7 +1063,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-cisowianka"
   },
-  {
+  "kk-klub-wiejski": {
     "id": "kk_kultura_050",
     "name": "Klub Wiejski",
     "group": "kultura",
@@ -1085,7 +1085,7 @@
     "raw_amenity": "community_centre",
     "place_id": "kk-klub-wiejski"
   },
-  {
+  "kk-piekiełko": {
     "id": "kk_gastronomia_051",
     "name": "Piekiełko",
     "group": "gastronomia",
@@ -1107,7 +1107,7 @@
     "raw_amenity": "bar",
     "place_id": "kk-piekiełko"
   },
-  {
+  "kk-pamieci-wiezniow-hitlerowskich-obozow-pracy": {
     "id": "kk_historia_052",
     "name": "Pamięci więźniów hitlerowskich obozów pracy",
     "group": "historia",
@@ -1129,7 +1129,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-pamieci-wiezniow-hitlerowskich-obozow-pracy"
   },
-  {
+  "kk-papiez-jan-paweł-ii": {
     "id": "kk_historia_053",
     "name": "Papież Jan Paweł II",
     "group": "historia",
@@ -1151,7 +1151,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-papiez-jan-paweł-ii"
   },
-  {
+  "kk-helios": {
     "id": "kk_kultura_054",
     "name": "Helios",
     "group": "kultura",
@@ -1173,7 +1173,7 @@
     "raw_amenity": "cinema",
     "place_id": "kk-helios"
   },
-  {
+  "kk-pomnik-powstancow-slaskich-poległych-w-bitwie": {
     "id": "kk_historia_055",
     "name": "Pomnik Powstańców Śląskich poległych w bitwie o Kędzierzyn",
     "group": "historia",
@@ -1195,7 +1195,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-pomnik-powstancow-slaskich-poległych-w-bitwie"
   },
-  {
+  "kk-marszałek-jozef-piłsudski": {
     "id": "kk_historia_056",
     "name": "Marszałek Józef Piłsudski",
     "group": "historia",
@@ -1217,7 +1217,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-marszałek-jozef-piłsudski"
   },
-  {
+  "kk-pomnik-powodzian": {
     "id": "kk_historia_057",
     "name": "Pomnik Powodzian",
     "group": "historia",
@@ -1239,7 +1239,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-pomnik-powodzian"
   },
-  {
+  "kk-upamietniajacy-przybycie-do-kozla-pierwszej-g": {
     "id": "kk_historia_058",
     "name": "Upamiętniający przybycie do Koźla pierwszej grupy organizatorów administracji państwowej w powiecie kozielskim",
     "group": "historia",
@@ -1261,7 +1261,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-upamietniajacy-przybycie-do-kozla-pierwszej-g"
   },
-  {
+  "kk-u-freda": {
     "id": "kk_gastronomia_059",
     "name": "U Freda",
     "group": "gastronomia",
@@ -1283,7 +1283,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-u-freda"
   },
-  {
+  "kk-krukafe": {
     "id": "kk_gastronomia_060",
     "name": "Krukafe",
     "group": "gastronomia",
@@ -1305,7 +1305,7 @@
     "raw_amenity": "cafe",
     "place_id": "kk-krukafe"
   },
-  {
+  "kk-nad-wodakaczki": {
     "id": "kk_historia_061",
     "name": "Nad wodą;Kaczki",
     "group": "historia",
@@ -1327,7 +1327,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-nad-wodakaczki"
   },
-  {
+  "kk-budynek-kapitanatu": {
     "id": "kk_historia_062",
     "name": "Budynek kapitanatu",
     "group": "historia",
@@ -1349,7 +1349,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-budynek-kapitanatu"
   },
-  {
+  "kk-teznia-solankowa": {
     "id": "kk_inne_063",
     "name": "Tężnia solankowa",
     "group": "inne",
@@ -1371,7 +1371,7 @@
     "raw_amenity": "attraction",
     "place_id": "kk-teznia-solankowa"
   },
-  {
+  "kk-dom-ogrodnika": {
     "id": "kk_historia_064",
     "name": "Dom ogrodnika",
     "group": "historia",
@@ -1393,7 +1393,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-dom-ogrodnika"
   },
-  {
+  "kk-mauzoleum": {
     "id": "kk_historia_065",
     "name": "Mauzoleum",
     "group": "historia",
@@ -1415,7 +1415,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-mauzoleum"
   },
-  {
+  "kk-pancia-piena-pizza-pasta": {
     "id": "kk_gastronomia_066",
     "name": "Pancia Piena Pizza & Pasta",
     "group": "gastronomia",
@@ -1437,7 +1437,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-pancia-piena-pizza-pasta"
   },
-  {
+  "kk-aroma-vero": {
     "id": "kk_gastronomia_067",
     "name": "Aroma Vero",
     "group": "gastronomia",
@@ -1459,7 +1459,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-aroma-vero"
   },
-  {
+  "kk-kebabian": {
     "id": "kk_gastronomia_068",
     "name": "Kebabian",
     "group": "gastronomia",
@@ -1481,7 +1481,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-kebabian"
   },
-  {
+  "kk-chicken-of-the-city": {
     "id": "kk_gastronomia_069",
     "name": "Chicken of the City",
     "group": "gastronomia",
@@ -1503,7 +1503,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-chicken-of-the-city"
   },
-  {
+  "kk-blood-burger": {
     "id": "kk_gastronomia_070",
     "name": "Blood Burger",
     "group": "gastronomia",
@@ -1525,7 +1525,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-blood-burger"
   },
-  {
+  "kk-kurcze-pieczone": {
     "id": "kk_gastronomia_071",
     "name": "Kurcze Pieczone",
     "group": "gastronomia",
@@ -1547,7 +1547,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-kurcze-pieczone"
   },
-  {
+  "kk-kebab-inn-2": {
     "id": "kk_gastronomia_072",
     "name": "Kebab Inn",
     "group": "gastronomia",
@@ -1569,7 +1569,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-kebab-inn-2"
   },
-  {
+  "kk-big-kebabs": {
     "id": "kk_gastronomia_073",
     "name": "Big Kebab's",
     "group": "gastronomia",
@@ -1591,7 +1591,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-big-kebabs"
   },
-  {
+  "kk-sushitu-kedzierzyn-kozle": {
     "id": "kk_gastronomia_074",
     "name": "SushiTU Kędzierzyn-Koźle",
     "group": "gastronomia",
@@ -1613,7 +1613,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-sushitu-kedzierzyn-kozle"
   },
-  {
+  "kk-tablica-upamietniajaca-walke-o-kedzierzyn": {
     "id": "kk_historia_075",
     "name": "Tablica upamiętniająca walkę o Kędzierzyn",
     "group": "historia",
@@ -1635,7 +1635,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-tablica-upamietniajaca-walke-o-kedzierzyn"
   },
-  {
+  "kk-no-9-cafe-bar": {
     "id": "kk_gastronomia_076",
     "name": "No. 9 Cafe Bar",
     "group": "gastronomia",
@@ -1657,7 +1657,7 @@
     "raw_amenity": "cafe",
     "place_id": "kk-no-9-cafe-bar"
   },
-  {
+  "kk-raju-kebab": {
     "id": "kk_gastronomia_077",
     "name": "Raju Kebab",
     "group": "gastronomia",
@@ -1679,7 +1679,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-raju-kebab"
   },
-  {
+  "kk-zapiekana": {
     "id": "kk_gastronomia_078",
     "name": "Zapiekana",
     "group": "gastronomia",
@@ -1701,7 +1701,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-zapiekana"
   },
-  {
+  "kk-bistro-czarno-na-białym": {
     "id": "kk_gastronomia_079",
     "name": "Bistro Czarno na Białym",
     "group": "gastronomia",
@@ -1723,7 +1723,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-bistro-czarno-na-białym"
   },
-  {
+  "kk-ii-ws": {
     "id": "kk_historia_080",
     "name": "II WŚ",
     "group": "historia",
@@ -1745,7 +1745,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-ii-ws"
   },
-  {
+  "kk-pomnik-pamieci-ksiedza-karola-bujary": {
     "id": "kk_historia_081",
     "name": "Pomnik pamięci Księdza Karola Bujary",
     "group": "historia",
@@ -1767,7 +1767,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-pomnik-pamieci-ksiedza-karola-bujary"
   },
-  {
+  "kk-800-lecie-wsi-januszkowice": {
     "id": "kk_historia_082",
     "name": "800 lecie wsi Januszkowice",
     "group": "historia",
@@ -1789,7 +1789,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-800-lecie-wsi-januszkowice"
   },
-  {
+  "kk-lazzaro": {
     "id": "kk_gastronomia_083",
     "name": "Lazzaro",
     "group": "gastronomia",
@@ -1811,7 +1811,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-lazzaro"
   },
-  {
+  "kk-mirosław-szubinski": {
     "id": "kk_historia_084",
     "name": "Mirosław Szubiński",
     "group": "historia",
@@ -1833,7 +1833,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-mirosław-szubinski"
   },
-  {
+  "kk-ada": {
     "id": "kk_gastronomia_085",
     "name": "Ada",
     "group": "gastronomia",
@@ -1855,7 +1855,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-ada"
   },
-  {
+  "kk-kebab-u-pajdy": {
     "id": "kk_gastronomia_086",
     "name": "Kebab u Pajdy",
     "group": "gastronomia",
@@ -1877,31 +1877,21 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-kebab-u-pajdy"
   },
-  {
-    "id": "kk_gastronomia_087",
+  "kk-klub-kameleon": {
+    "place_id": "kk-klub-kameleon",
     "name": "Klub Kameleon",
-    "group": "gastronomia",
+    "group": "inne",
+    "category": "venue",
+    "address": {
+      "street": "Dworcowa 1a",
+      "city": "Kedzierzyn Kozle"
+    },
     "geo": {
       "lat": 50.3442508,
       "lon": 18.2060774
-    },
-    "address": {
-      "street": "Dworcowa",
-      "housenumber": "1a",
-      "city": "Kędzierzyn-Koźle"
-    },
-    "is_free": false,
-    "is_indoor": true,
-    "website": null,
-    "phone": null,
-    "opening_hours": null,
-    "wheelchair": null,
-    "raw_amenity": "pub",
-    "place_id": "kk-klub-kameleon",
-    "lat": 50.345,
-    "lon": 18.229
+    }
   },
-  {
+  "kk-einmannbunker": {
     "id": "kk_historia_088",
     "name": "Einmannbunker",
     "group": "historia",
@@ -1923,7 +1913,7 @@
     "raw_amenity": "bunker",
     "place_id": "kk-einmannbunker"
   },
-  {
+  "kk-mimi-kebab": {
     "id": "kk_gastronomia_089",
     "name": "Mimi Kebab",
     "group": "gastronomia",
@@ -1945,7 +1935,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-mimi-kebab"
   },
-  {
+  "kk-casa-di-romano": {
     "id": "kk_gastronomia_090",
     "name": "Casa di Romano",
     "group": "gastronomia",
@@ -1967,7 +1957,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-casa-di-romano"
   },
-  {
+  "kk-kadetom-uczestnikom-iii-powstania-slaskiego": {
     "id": "kk_historia_091",
     "name": "Kadetom Uczestnikom III Powstania Śląskiego",
     "group": "historia",
@@ -1989,7 +1979,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-kadetom-uczestnikom-iii-powstania-slaskiego"
   },
-  {
+  "kk-laguna": {
     "id": "kk_gastronomia_092",
     "name": "Laguna",
     "group": "gastronomia",
@@ -2011,7 +2001,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-laguna"
   },
-  {
+  "kk-sopelek": {
     "id": "kk_gastronomia_093",
     "name": "Sopelek",
     "group": "gastronomia",
@@ -2033,7 +2023,7 @@
     "raw_amenity": "ice_cream",
     "place_id": "kk-sopelek"
   },
-  {
+  "kk-slaski-kredens": {
     "id": "kk_gastronomia_094",
     "name": "Śląski Kredens",
     "group": "gastronomia",
@@ -2055,7 +2045,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-slaski-kredens"
   },
-  {
+  "kk-mała-czarna": {
     "id": "kk_gastronomia_095",
     "name": "Mała Czarna",
     "group": "gastronomia",
@@ -2077,7 +2067,7 @@
     "raw_amenity": "cafe",
     "place_id": "kk-mała-czarna"
   },
-  {
+  "kk-nalesnikarnia-słodko-słono": {
     "id": "kk_gastronomia_096",
     "name": "Naleśnikarnia Słodko & Słono",
     "group": "gastronomia",
@@ -2099,7 +2089,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-nalesnikarnia-słodko-słono"
   },
-  {
+  "kk-affogato": {
     "id": "kk_gastronomia_097",
     "name": "Affogato",
     "group": "gastronomia",
@@ -2121,7 +2111,7 @@
     "raw_amenity": "cafe",
     "place_id": "kk-affogato"
   },
-  {
+  "kk-miejska-biblioteka-publiczna-filia-nr-8": {
     "id": "kk_kultura_098",
     "name": "Miejska Biblioteka Publiczna - Filia nr 8",
     "group": "kultura",
@@ -2143,7 +2133,7 @@
     "raw_amenity": "library",
     "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-8"
   },
-  {
+  "kk-hot-baby": {
     "id": "kk_gastronomia_099",
     "name": "Hot Baby",
     "group": "gastronomia",
@@ -2165,7 +2155,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-hot-baby"
   },
-  {
+  "kk-miejska-biblioteka-publiczna-filia-nr-5": {
     "id": "kk_kultura_100",
     "name": "Miejska Biblioteka Publiczna - Filia nr 5",
     "group": "kultura",
@@ -2187,7 +2177,7 @@
     "raw_amenity": "library",
     "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-5"
   },
-  {
+  "kk-miejska-biblioteka-publiczna-filia-nr-1": {
     "id": "kk_kultura_101",
     "name": "Miejska Biblioteka Publiczna - Filia nr 1",
     "group": "kultura",
@@ -2209,7 +2199,7 @@
     "raw_amenity": "library",
     "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-1"
   },
-  {
+  "kk-miejska-biblioteka-publiczna-filia-nr-4": {
     "id": "kk_kultura_102",
     "name": "Miejska Biblioteka Publiczna - Filia nr 4",
     "group": "kultura",
@@ -2231,7 +2221,7 @@
     "raw_amenity": "library",
     "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-4"
   },
-  {
+  "kk-miejska-biblioteka-publiczna-filia-nr-10": {
     "id": "kk_kultura_103",
     "name": "Miejska Biblioteka Publiczna - Filia nr 10",
     "group": "kultura",
@@ -2253,7 +2243,7 @@
     "raw_amenity": "library",
     "place_id": "kk-miejska-biblioteka-publiczna-filia-nr-10"
   },
-  {
+  "kk-phoenix": {
     "id": "kk_gastronomia_104",
     "name": "Phoenix",
     "group": "gastronomia",
@@ -2275,7 +2265,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-phoenix"
   },
-  {
+  "kk-u-ani-aktywnie": {
     "id": "kk_sport_105",
     "name": "U Ani Aktywnie",
     "group": "sport",
@@ -2297,7 +2287,7 @@
     "raw_amenity": "fitness_centre",
     "place_id": "kk-u-ani-aktywnie"
   },
-  {
+  "kk-telepizzeria-lupo": {
     "id": "kk_gastronomia_106",
     "name": "Telepizzeria Lupo",
     "group": "gastronomia",
@@ -2319,7 +2309,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-telepizzeria-lupo"
   },
-  {
+  "kk-biesiada": {
     "id": "kk_gastronomia_107",
     "name": "Biesiada",
     "group": "gastronomia",
@@ -2341,7 +2331,7 @@
     "raw_amenity": "pub",
     "place_id": "kk-biesiada"
   },
-  {
+  "kk-koło-ognia": {
     "id": "kk_gastronomia_108",
     "name": "Koło Ognia",
     "group": "gastronomia",
@@ -2363,7 +2353,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-koło-ognia"
   },
-  {
+  "kk-reduta": {
     "id": "kk_gastronomia_109",
     "name": "Reduta",
     "group": "gastronomia",
@@ -2385,7 +2375,7 @@
     "raw_amenity": "pub",
     "place_id": "kk-reduta"
   },
-  {
+  "kk-pod-arkadami": {
     "id": "kk_gastronomia_110",
     "name": "Pod Arkadami",
     "group": "gastronomia",
@@ -2407,7 +2397,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-pod-arkadami"
   },
-  {
+  "kk-forno-doro": {
     "id": "kk_gastronomia_111",
     "name": "Forno d'Oro",
     "group": "gastronomia",
@@ -2429,7 +2419,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-forno-doro"
   },
-  {
+  "kk-pomnik-poległych-w-i-i-ii-wojnie-swiatowej": {
     "id": "kk_historia_112",
     "name": "Pomnik poległych w I i II wojnie światowej",
     "group": "historia",
@@ -2451,7 +2441,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-pomnik-poległych-w-i-i-ii-wojnie-swiatowej"
   },
-  {
+  "kk-dobry-pasterz": {
     "id": "kk_historia_113",
     "name": "Dobry Pasterz",
     "group": "historia",
@@ -2473,7 +2463,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-dobry-pasterz"
   },
-  {
+  "kk-dostrzegalnia-pozarowa-stara-kuznia": {
     "id": "kk_historia_114",
     "name": "Dostrzegalnia pożarowa \"Stara Kuźnia\"",
     "group": "historia",
@@ -2495,7 +2485,7 @@
     "raw_amenity": null,
     "place_id": "kk-dostrzegalnia-pozarowa-stara-kuznia"
   },
-  {
+  "kk-park-orderu-usmiechu": {
     "id": "kk_natura_115",
     "name": "Park Orderu Uśmiechu",
     "group": "natura",
@@ -2519,7 +2509,7 @@
     "lat": 50.3475,
     "lon": 18.231
   },
-  {
+  "kk-mcdonalds": {
     "id": "kk_gastronomia_116",
     "name": "McDonald's",
     "group": "gastronomia",
@@ -2541,7 +2531,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-mcdonalds"
   },
-  {
+  "kk-stadion-miejski-kuzniczka": {
     "id": "kk_sport_117",
     "name": "Stadion Miejski Kuźniczka",
     "group": "sport",
@@ -2563,7 +2553,7 @@
     "raw_amenity": "sports_centre",
     "place_id": "kk-stadion-miejski-kuzniczka"
   },
-  {
+  "kk-ogrodowa": {
     "id": "kk_gastronomia_118",
     "name": "Ogrodowa",
     "group": "gastronomia",
@@ -2585,7 +2575,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-ogrodowa"
   },
-  {
+  "kk-park-pojednania": {
     "id": "kk_natura_119",
     "name": "Park Pojednania",
     "group": "natura",
@@ -2607,7 +2597,7 @@
     "raw_amenity": "park",
     "place_id": "kk-park-pojednania"
   },
-  {
+  "kk-kryta-pływalnia": {
     "id": "kk_sport_120",
     "name": "Kryta Pływalnia",
     "group": "sport",
@@ -2629,7 +2619,7 @@
     "raw_amenity": "sports_centre",
     "place_id": "kk-kryta-pływalnia"
   },
-  {
+  "kk-lks-korzonek": {
     "id": "kk_sport_121",
     "name": "LKS Korzonek",
     "group": "sport",
@@ -2651,7 +2641,7 @@
     "raw_amenity": "pitch",
     "place_id": "kk-lks-korzonek"
   },
-  {
+  "kk-lks-slask-renska-wies": {
     "id": "kk_sport_122",
     "name": "LKS Śląsk Reńska Wieś",
     "group": "sport",
@@ -2673,7 +2663,7 @@
     "raw_amenity": "pitch",
     "place_id": "kk-lks-slask-renska-wies"
   },
-  {
+  "kk-dawna-strzelnica-ruiny": {
     "id": "kk_historia_123",
     "name": "Dawna strzelnica (ruiny)",
     "group": "historia",
@@ -2695,7 +2685,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-dawna-strzelnica-ruiny"
   },
-  {
+  "kk-ruiny-sluzy-kanału-kłodnickiego": {
     "id": "kk_historia_124",
     "name": "Ruiny śluzy Kanału Kłodnickiego",
     "group": "historia",
@@ -2717,7 +2707,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-ruiny-sluzy-kanału-kłodnickiego"
   },
-  {
+  "kk-ruiny-sluzy-nr-5-dawnego-kanału-kłodnickiego": {
     "id": "kk_historia_125",
     "name": "Ruiny śluzy nr 5 dawnego Kanału Kłodnickiego",
     "group": "historia",
@@ -2739,7 +2729,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-ruiny-sluzy-nr-5-dawnego-kanału-kłodnickiego"
   },
-  {
+  "kk-ruiny-strzelnicy": {
     "id": "kk_historia_126",
     "name": "Ruiny strzelnicy",
     "group": "historia",
@@ -2761,7 +2751,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-ruiny-strzelnicy"
   },
-  {
+  "kk-sluza-nr-6-kanału-kłodnickiego": {
     "id": "kk_historia_127",
     "name": "Śluza nr 6 Kanału Kłodnickiego",
     "group": "historia",
@@ -2783,7 +2773,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-sluza-nr-6-kanału-kłodnickiego"
   },
-  {
+  "kk-ks-sławecice": {
     "id": "kk_sport_128",
     "name": "KS Sławęcice",
     "group": "sport",
@@ -2805,7 +2795,7 @@
     "raw_amenity": "pitch",
     "place_id": "kk-ks-sławecice"
   },
-  {
+  "kk-restauracja-pałac-wiekszyce": {
     "id": "kk_gastronomia_129",
     "name": "Restauracja Pałac Większyce",
     "group": "gastronomia",
@@ -2827,7 +2817,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-restauracja-pałac-wiekszyce"
   },
-  {
+  "kk-boisko-orlik": {
     "id": "kk_sport_130",
     "name": "boisko Orlik",
     "group": "sport",
@@ -2849,7 +2839,7 @@
     "raw_amenity": "pitch",
     "place_id": "kk-boisko-orlik"
   },
-  {
+  "kk-dom-kultury-kozle": {
     "id": "kk_kultura_131",
     "name": "Dom Kultury Koźle",
     "group": "kultura",
@@ -2871,7 +2861,7 @@
     "raw_amenity": "community_centre",
     "place_id": "kk-dom-kultury-kozle"
   },
-  {
+  "kk-planty-kozielskie": {
     "id": "kk_natura_132",
     "name": "Planty Kozielskie",
     "group": "natura",
@@ -2893,7 +2883,7 @@
     "raw_amenity": "park",
     "place_id": "kk-planty-kozielskie"
   },
-  {
+  "kk-zabytkowa-wieza-cisnien": {
     "id": "kk_historia_133",
     "name": "Zabytkowa wieża ciśnień",
     "group": "historia",
@@ -2915,7 +2905,7 @@
     "raw_amenity": null,
     "place_id": "kk-zabytkowa-wieza-cisnien"
   },
-  {
+  "kk-italia": {
     "id": "kk_gastronomia_134",
     "name": "Italia",
     "group": "gastronomia",
@@ -2937,7 +2927,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-italia"
   },
-  {
+  "kk-plac-rady-europy": {
     "id": "kk_natura_135",
     "name": "Plac Rady Europy",
     "group": "natura",
@@ -2959,7 +2949,7 @@
     "raw_amenity": "park",
     "place_id": "kk-plac-rady-europy"
   },
-  {
+  "kk-pizza-z-pasja": {
     "id": "kk_gastronomia_136",
     "name": "Pizza z Pasją",
     "group": "gastronomia",
@@ -2981,7 +2971,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-pizza-z-pasja"
   },
-  {
+  "kk-bojownikow-o-wyzwolenie-slaska": {
     "id": "kk_historia_137",
     "name": "Bojowników o Wyzwolenie Śląska",
     "group": "historia",
@@ -3003,7 +2993,7 @@
     "raw_amenity": "monument",
     "place_id": "kk-bojownikow-o-wyzwolenie-slaska"
   },
-  {
+  "kk-stare-boisko": {
     "id": "kk_sport_138",
     "name": "Stare Boisko",
     "group": "sport",
@@ -3025,7 +3015,7 @@
     "raw_amenity": "pitch",
     "place_id": "kk-stare-boisko"
   },
-  {
+  "kk-zarosniete-boisko": {
     "id": "kk_sport_139",
     "name": "Zarośnięte Boisko",
     "group": "sport",
@@ -3047,7 +3037,7 @@
     "raw_amenity": "pitch",
     "place_id": "kk-zarosniete-boisko"
   },
-  {
+  "kk-duzy": {
     "id": "kk_sport_140",
     "name": "Duży",
     "group": "sport",
@@ -3069,7 +3059,7 @@
     "raw_amenity": "swimming_pool",
     "place_id": "kk-duzy"
   },
-  {
+  "kk-brodzik": {
     "id": "kk_sport_141",
     "name": "Brodzik",
     "group": "sport",
@@ -3091,7 +3081,7 @@
     "raw_amenity": "swimming_pool",
     "place_id": "kk-brodzik"
   },
-  {
+  "kk-hala-sportowa": {
     "id": "kk_sport_142",
     "name": "Hala Sportowa",
     "group": "sport",
@@ -3115,7 +3105,7 @@
     "lat": 50.329,
     "lon": 18.267
   },
-  {
+  "kk-pod-akacjami": {
     "id": "kk_gastronomia_143",
     "name": "Pod Akacjami",
     "group": "gastronomia",
@@ -3137,7 +3127,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-pod-akacjami"
   },
-  {
+  "kk-grota": {
     "id": "kk_gastronomia_144",
     "name": "Grota",
     "group": "gastronomia",
@@ -3159,7 +3149,7 @@
     "raw_amenity": "bar",
     "place_id": "kk-grota"
   },
-  {
+  "kk-kebab-inn-3": {
     "id": "kk_gastronomia_145",
     "name": "Kebab Inn",
     "group": "gastronomia",
@@ -3181,7 +3171,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-kebab-inn-3"
   },
-  {
+  "kk-powstancow-slaskich": {
     "id": "kk_historia_146",
     "name": "Powstańców Śląskich",
     "group": "historia",
@@ -3203,7 +3193,7 @@
     "raw_amenity": "memorial",
     "place_id": "kk-powstancow-slaskich"
   },
-  {
+  "kk-kaczy-doł": {
     "id": "kk_natura_147",
     "name": "Kaczy Dół",
     "group": "natura",
@@ -3225,7 +3215,7 @@
     "raw_amenity": "nature_reserve",
     "place_id": "kk-kaczy-doł"
   },
-  {
+  "kk-oczko-za-składnica": {
     "id": "kk_natura_148",
     "name": "Oczko za składnicą",
     "group": "natura",
@@ -3247,7 +3237,7 @@
     "raw_amenity": "nature_reserve",
     "place_id": "kk-oczko-za-składnica"
   },
-  {
+  "kk-ostojnik": {
     "id": "kk_natura_149",
     "name": "Ostojnik",
     "group": "natura",
@@ -3269,7 +3259,7 @@
     "raw_amenity": "nature_reserve",
     "place_id": "kk-ostojnik"
   },
-  {
+  "kk-zabi-doł": {
     "id": "kk_natura_150",
     "name": "Żabi Dół",
     "group": "natura",
@@ -3291,7 +3281,7 @@
     "raw_amenity": "nature_reserve",
     "place_id": "kk-zabi-doł"
   },
-  {
+  "kk-tibo": {
     "id": "kk_gastronomia_151",
     "name": "Tibo",
     "group": "gastronomia",
@@ -3313,7 +3303,7 @@
     "raw_amenity": "restaurant",
     "place_id": "kk-tibo"
   },
-  {
+  "kk-beczka": {
     "id": "kk_gastronomia_152",
     "name": "Beczka",
     "group": "gastronomia",
@@ -3335,7 +3325,7 @@
     "raw_amenity": "pub",
     "place_id": "kk-beczka"
   },
-  {
+  "kk-dom-kultury-bierawa": {
     "id": "kk_kultura_153",
     "name": "Dom Kultury Bierawa",
     "group": "kultura",
@@ -3357,7 +3347,7 @@
     "raw_amenity": "community_centre",
     "place_id": "kk-dom-kultury-bierawa"
   },
-  {
+  "kk-zamek-biskupow-wrocławskich": {
     "id": "kk_historia_154",
     "name": "Zamek biskupów wrocławskich",
     "group": "historia",
@@ -3379,7 +3369,7 @@
     "raw_amenity": "castle",
     "place_id": "kk-zamek-biskupow-wrocławskich"
   },
-  {
+  "kk-park-im-lotnikow-15-armii-powietrznej-stanow": {
     "id": "kk_natura_155",
     "name": "Park im. Lotników 15 Armii Powietrznej Stanów Zjednoczonych",
     "group": "natura",
@@ -3401,7 +3391,7 @@
     "raw_amenity": "park",
     "place_id": "kk-park-im-lotnikow-15-armii-powietrznej-stanow"
   },
-  {
+  "kk-dom-kultury-lech": {
     "id": "kk_kultura_156",
     "name": "Dom Kultury \"Lech\"",
     "group": "kultura",
@@ -3423,7 +3413,7 @@
     "raw_amenity": "community_centre",
     "place_id": "kk-dom-kultury-lech"
   },
-  {
+  "kk-dom-działkowca-zacisze": {
     "id": "kk_kultura_157",
     "name": "Dom Działkowca \"Zacisze\"",
     "group": "kultura",
@@ -3445,7 +3435,7 @@
     "raw_amenity": "community_centre",
     "place_id": "kk-dom-działkowca-zacisze"
   },
-  {
+  "kk-basen-w-kłodnicy": {
     "id": "kk_historia_158",
     "name": "Basen w Kłodnicy",
     "group": "historia",
@@ -3467,7 +3457,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-basen-w-kłodnicy"
   },
-  {
+  "kk-brodzik-basenu": {
     "id": "kk_historia_159",
     "name": "Brodzik basenu",
     "group": "historia",
@@ -3489,7 +3479,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-brodzik-basenu"
   },
-  {
+  "kk-pałac-w-sławiecicach": {
     "id": "kk_historia_160",
     "name": "Pałac w Sławięcicach",
     "group": "historia",
@@ -3511,7 +3501,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-pałac-w-sławiecicach"
   },
-  {
+  "kk-kozielska-muszla-koncertowa": {
     "id": "kk_kultura_161",
     "name": "Kozielska Muszla Koncertowa",
     "group": "kultura",
@@ -3533,7 +3523,7 @@
     "raw_amenity": "theatre",
     "place_id": "kk-kozielska-muszla-koncertowa"
   },
-  {
+  "kk-muzeum-bitwy-o-benzyne-strefa-historii-i-insp": {
     "id": "kk_kultura_162",
     "name": "Muzeum Bitwy o Benzynę - Strefa Historii i Inspiracji",
     "group": "kultura",
@@ -3555,7 +3545,7 @@
     "raw_amenity": "museum",
     "place_id": "kk-muzeum-bitwy-o-benzyne-strefa-historii-i-insp"
   },
-  {
+  "kk-bar-stop": {
     "id": "kk_gastronomia_163",
     "name": "Bar STOP",
     "group": "gastronomia",
@@ -3577,7 +3567,7 @@
     "raw_amenity": "bar",
     "place_id": "kk-bar-stop"
   },
-  {
+  "kk-klub-wiejski-w-raszowej": {
     "id": "kk_kultura_164",
     "name": "Klub Wiejski w Raszowej",
     "group": "kultura",
@@ -3599,7 +3589,7 @@
     "raw_amenity": "community_centre",
     "place_id": "kk-klub-wiejski-w-raszowej"
   },
-  {
+  "kk-parowoz-ty2-2118": {
     "id": "kk_historia_165",
     "name": "Parowóz Ty2-2118",
     "group": "historia",
@@ -3621,7 +3611,7 @@
     "raw_amenity": "monument",
     "place_id": "kk-parowoz-ty2-2118"
   },
-  {
+  "kk-skwer-kolejarzy": {
     "id": "kk_natura_166",
     "name": "skwer Kolejarzy",
     "group": "natura",
@@ -3643,7 +3633,7 @@
     "raw_amenity": "park",
     "place_id": "kk-skwer-kolejarzy"
   },
-  {
+  "kk-wodne-okko-basen-kryty": {
     "id": "kk_sport_167",
     "name": "Wodne Okko Basen Kryty",
     "group": "sport",
@@ -3665,7 +3655,7 @@
     "raw_amenity": "swimming_pool",
     "place_id": "kk-wodne-okko-basen-kryty"
   },
-  {
+  "kk-teznia-solankowa-2": {
     "id": "kk_inne_168",
     "name": "Tężnia solankowa",
     "group": "inne",
@@ -3687,7 +3677,7 @@
     "raw_amenity": "attraction",
     "place_id": "kk-teznia-solankowa-2"
   },
-  {
+  "kk-kfc": {
     "id": "kk_gastronomia_169",
     "name": "KFC",
     "group": "gastronomia",
@@ -3709,29 +3699,21 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-kfc"
   },
-  {
-    "id": "kk_kultura_170",
+  "kk-muzeum-ziemi-kozielskiej": {
+    "place_id": "kk-muzeum-ziemi-kozielskiej",
     "name": "Muzeum Ziemi Kozielskiej",
-    "group": "kultura",
-    "geo": {
-      "lat": 50.3346449,
-      "lon": 18.1423786
-    },
+    "group": "inne",
+    "category": "venue",
     "address": {
-      "street": "Józefa Ignacego Kraszewskiego",
-      "housenumber": "5b",
-      "city": "Kędzierzyn-Koźle"
+      "street": "Józefa Ignacego Kraszewskiego 5",
+      "city": "Kedzierzyn Kozle"
     },
-    "is_free": false,
-    "is_indoor": true,
-    "website": null,
-    "phone": null,
-    "opening_hours": "Tu-Fr 09:00-13:00; Sa-Su 13:00-17:00",
-    "wheelchair": null,
-    "raw_amenity": "museum",
-    "place_id": "kk-muzeum-ziemi-kozielskiej"
+    "geo": {
+      "lat": 50.3347804,
+      "lon": 18.142145
+    }
   },
-  {
+  "kk-zamek-piastow-kozielskich": {
     "id": "kk_historia_171",
     "name": "Zamek Piastów Kozielskich",
     "group": "historia",
@@ -3753,7 +3735,7 @@
     "raw_amenity": "castle",
     "place_id": "kk-zamek-piastow-kozielskich"
   },
-  {
+  "kk-mcdonalds-2": {
     "id": "kk_gastronomia_172",
     "name": "McDonald's",
     "group": "gastronomia",
@@ -3775,7 +3757,7 @@
     "raw_amenity": "fast_food",
     "place_id": "kk-mcdonalds-2"
   },
-  {
+  "kk-lesny-osrodek-edukacyjny-stampnica": {
     "id": "kk_natura_173",
     "name": "Leśny ośrodek edukacyjny Stampnica",
     "group": "natura",
@@ -3797,7 +3779,7 @@
     "raw_amenity": "park",
     "place_id": "kk-lesny-osrodek-edukacyjny-stampnica"
   },
-  {
+  "kk-park-kieszonkowy": {
     "id": "kk_natura_174",
     "name": "Park Kieszonkowy",
     "group": "natura",
@@ -3819,7 +3801,7 @@
     "raw_amenity": "park",
     "place_id": "kk-park-kieszonkowy"
   },
-  {
+  "kk-manmade": {
     "id": "kk_historia_175",
     "name": "manmade",
     "group": "historia",
@@ -3841,7 +3823,7 @@
     "raw_amenity": "ruins",
     "place_id": "kk-manmade"
   },
-  {
+  "kk-tenis-club": {
     "id": "kk_sport_176",
     "name": "Tenis Club",
     "group": "sport",
@@ -3863,7 +3845,7 @@
     "raw_amenity": "sports_centre",
     "place_id": "kk-tenis-club"
   },
-  {
+  "kk-pełnowymiarowe-boisko-piłkarskie": {
     "id": "kk_sport_177",
     "name": "Pełnowymiarowe boisko piłkarskie",
     "group": "sport",
@@ -3885,7 +3867,7 @@
     "raw_amenity": "sports_centre",
     "place_id": "kk-pełnowymiarowe-boisko-piłkarskie"
   },
-  {
+  "kk-gacek": {
     "id": "kk_natura_178",
     "name": "Gacek",
     "group": "natura",
@@ -3907,7 +3889,7 @@
     "raw_amenity": "nature_reserve",
     "place_id": "kk-gacek"
   },
-  {
+  "kk-fort-rondel": {
     "id": "kk_historia_179",
     "name": "Fort Rondel",
     "group": "historia",
@@ -3929,7 +3911,7 @@
     "raw_amenity": "castle",
     "place_id": "kk-fort-rondel"
   },
-  {
+  "kk-mbp-rynek": {
     "place_id": "kk-mbp-rynek",
     "name": "Miejska Biblioteka Publiczna - Oddział dla Dzieci",
     "category": "Kultura",
@@ -3948,7 +3930,7 @@
     "lat": 50.334,
     "lon": 18.1435
   },
-  {
+  "kk-mbp-glowna": {
     "place_id": "kk-mbp-glowna",
     "name": "Miejska Biblioteka Publiczna (Główna)",
     "category": "Kultura",
@@ -3967,7 +3949,7 @@
     "lat": 50.3445,
     "lon": 18.228
   },
-  {
+  "kk-park-slawiecice": {
     "place_id": "kk-park-slawiecice",
     "name": "Park w Sławięcicach",
     "category": "Parki i Rekreacja",
@@ -3986,7 +3968,7 @@
     "lat": 50.378,
     "lon": 18.315
   },
-  {
+  "kk-hala-srodmiescie": {
     "place_id": "kk-hala-srodmiescie",
     "name": "Hala Sportowa Śródmieście",
     "category": "Sport",
@@ -4005,7 +3987,7 @@
     "lat": 50.344,
     "lon": 18.225
   },
-  {
+  "kk-zamek-piastowski": {
     "place_id": "kk-zamek-piastowski",
     "name": "Zamek Piastowski - Muzeum Ziemi Kozielskiej",
     "category": "Kultura",
@@ -4024,7 +4006,7 @@
     "lat": 50.3348,
     "lon": 18.142
   },
-  {
+  "kk-dworzec-pkp": {
     "place_id": "kk-dworzec-pkp",
     "name": "Przystanek MZK / Dworzec Kolejowy",
     "category": "Transport",
@@ -4042,5 +4024,181 @@
     },
     "lat": 50.353,
     "lon": 18.217
+  },
+  "kk-park-kozle": {
+    "place_id": "kk-park-kozle",
+    "name": "Park Koźle",
+    "group": "inne",
+    "category": "venue",
+    "address": {
+      "street": "Skarbowa 10",
+      "city": "Kedzierzyn Kozle"
+    },
+    "geo": {
+      "lat": 50.3304632,
+      "lon": 18.1452649
+    }
+  },
+  "kk-mok-kedzierzyn-kozle": {
+    "place_id": "kk-mok-kedzierzyn-kozle",
+    "name": "MOK Kędzierzyn-Koźle",
+    "group": "inne",
+    "category": "venue",
+    "address": {
+      "street": "Główna 54",
+      "city": "Kedzierzyn Kozle"
+    },
+    "geo": {
+      "lat": 50.3554868,
+      "lon": 18.1279894
+    }
+  },
+  "kk-park-w-slawiecicach": {
+    "place_id": "kk-park-w-slawiecicach",
+    "name": "Park w Sławięcicach",
+    "group": "inne",
+    "category": "venue",
+    "address": {
+      "street": "Piramowicza 32",
+      "city": "Kedzierzyn Kozle"
+    },
+    "geo": {
+      "lat": 50.3371456,
+      "lon": 18.1435897
+    }
+  },
+  "kk-dom-kultury-chemik": {
+    "place_id": "kk-dom-kultury-chemik",
+    "name": "Dom Kultury „Chemik\"",
+    "group": "inne",
+    "category": "venue",
+    "address": {
+      "street": "Jana Pawła II 27",
+      "city": "Kedzierzyn Kozle"
+    },
+    "geo": {
+      "lat": 50.2927892,
+      "lon": 18.2410529
+    }
+  },
+  "kk-oddzial-dla-dzieci-mbp": {
+    "place_id": "kk-oddzial-dla-dzieci-mbp",
+    "name": "Oddział dla dzieci, MBP",
+    "group": "inne",
+    "category": "venue",
+    "address": {
+      "street": "Rynek 3",
+      "city": "Kedzierzyn Kozle"
+    },
+    "geo": {
+      "lat": 50.3333921,
+      "lon": 18.1454251
+    }
+  },
+  "kk-orlik": {
+    "place_id": "kk-orlik",
+    "name": "Orlik",
+    "group": "inne",
+    "category": "venue",
+    "address": {
+      "street": "9 Maja 2",
+      "city": "Kedzierzyn Kozle"
+    },
+    "geo": {
+      "lat": 50.3467594,
+      "lon": 18.2230874
+    }
+  },
+  "kk-kkca-wodne-okko": {
+    "place_id": "kk-kkca-wodne-okko",
+    "name": "KKCA Wodne oKKo",
+    "group": "inne",
+    "category": "venue",
+    "address": {
+      "street": "Mostowa 1",
+      "city": "Kedzierzyn Kozle"
+    },
+    "geo": {
+      "lat": 50.3160119,
+      "lon": 18.2449649
+    }
+  },
+  "ke-mosir": {
+    "place_id": "ke-mosir",
+    "name": "MOSiR",
+    "category": "Kultura i Rozrywka",
+    "address": {
+      "street": "al. Jana Pawła II 29",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "geo": {
+      "lat": 50.3480825,
+      "lon": 18.2168327
+    }
+  },
+  "ke-dom-kultury-lech": {
+    "place_id": "ke-dom-kultury-lech",
+    "name": "Dom Kultury \"Lech\"",
+    "category": "Kultura i Rozrywka",
+    "address": {
+      "street": "",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "geo": {
+      "lat": 50.345463,
+      "lon": 18.2447945
+    }
+  },
+  "ke-ul-wyzwolenia-7": {
+    "place_id": "ke-ul-wyzwolenia-7",
+    "name": "ul. Wyzwolenia 7",
+    "category": "Kultura i Rozrywka",
+    "address": {
+      "street": "",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "geo": {
+      "lat": 50.345463,
+      "lon": 18.2447945
+    }
+  },
+  "ke-klub-bababoo": {
+    "place_id": "ke-klub-bababoo",
+    "name": "Klub Bababoo",
+    "category": "Kultura i Rozrywka",
+    "address": {
+      "street": "Damrota 34",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "geo": {
+      "lat": 50.3449505,
+      "lon": 18.2149923
+    }
+  },
+  "ke-urz-d-miasta-k-dzierzyn-ko-le": {
+    "place_id": "ke-urz-d-miasta-k-dzierzyn-ko-le",
+    "name": "Urząd Miasta Kędzierzyn-Koźle",
+    "category": "Kultura i Rozrywka",
+    "address": {
+      "street": "Grzegorza Piramowicza 32",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "geo": {
+      "lat": 50.3371456,
+      "lon": 18.1435897
+    }
+  },
+  "ke-zg-oszenia-przyjmowane-s-w-biurze-przy-ul-grunwaldzkiej-29-4-czwartki-i-pi-tki-godz-9-00-12-00-liczba-miejsc-jest-ograniczona": {
+    "place_id": "ke-zg-oszenia-przyjmowane-s-w-biurze-przy-ul-grunwaldzkiej-29-4-czwartki-i-pi-tki-godz-9-00-12-00-liczba-miejsc-jest-ograniczona",
+    "name": "Zgłoszenia przyjmowane są w biurze przy ul. Grunwaldzkiej 29/4 (czwartki i piątki, godz. 9:00–12:00). Liczba miejsc jest ograniczona!",
+    "category": "Kultura i Rozrywka",
+    "address": {
+      "street": "Zgłoszenia przyjmowane są w biurze przy ul. Grunwaldzkiej 29/4 (czwartki i piątki, godz. 9:00–12:00). Liczba miejsc jest ograniczona!",
+      "city": "Kędzierzyn-Koźle"
+    },
+    "geo": {
+      "lat": 50.0,
+      "lon": 19.0
+    }
   }
-]
+}

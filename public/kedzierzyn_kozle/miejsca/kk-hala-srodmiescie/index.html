@@ -82,7 +82,24 @@
     .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
     #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
-  </style>
+  
+/* Leaflet Dark Mode - CARTO Look */
+.leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
+}
+.leaflet-container {
+    background-color: #0b0f19 !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+.leaflet-popup-content b { color: #38bdf8 !important; }
+.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+</style>
 </head>
 <body>
   
@@ -112,19 +129,10 @@
         <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. al. Jana Pawła II 29, Kędzierzyn-Koźle</p>
         <div id="map"></div>
         <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
-        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (3)</h3>
+        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (6)</h3>
         
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-08-29-nightskating-nocne-rolkowanie-ulicami-miasta/" class="event-card-mini">
-            <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_nightskating_-_nocne_rolkowanie_ulicami_miasta.webp" alt="Nightskating - nocne rolkowanie ulicami miasta" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-            <div>
-              <div class="event-meta-mini">2026-08-29 &bull; 20:00</div>
-              <div class="event-title-mini">Nightskating - nocne rolkowanie ulicami miasta</div>
-              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny / Sprawdź bilety</div>
-            </div>
-          </a>
-          
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-13-gaz-system-na-piatke/" class="event-card-mini">
+          <a href="/kedzierzyn_kozle/wydarzenia/gaz-system-na-piatke-2026-09-13/" class="event-card-mini">
             <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_gaz_system_na_pi_tk.webp" alt="Gaz system na piątkę" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-09-13 &bull; 10:15</div>
@@ -133,12 +141,48 @@
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-10-17-ekspodycja-orientalna-w-kedzierzynie-kozlu/" class="event-card-mini">
+          <a href="/kedzierzyn_kozle/wydarzenia/baciary-2026-10-09/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Baciary" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-09 &bull; 19:00</div>
+              <div class="event-title-mini">Baciary</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
+            </div>
+          </a>
+          
+          <a href="/kedzierzyn_kozle/wydarzenia/ekspodycja-orientalna-w-kedzierzynie-kozlu-2026-10-17/" class="event-card-mini">
             <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_ekspodycja_orientalna_w_k_dzierzynie-ko_lu.webp" alt="Ekspodycja Orientalna w Kędzierzynie-Koźlu" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-10-17 &bull; 12:00</div>
               <div class="event-title-mini">Ekspodycja Orientalna w Kędzierzynie-Koźlu</div>
               <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny / Sprawdź bilety</div>
+            </div>
+          </a>
+          
+          <a href="/kedzierzyn_kozle/wydarzenia/ekspedycja-smaku-2026-10-17/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Ekspedycja Smaku" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-17 &bull; 12:00</div>
+              <div class="event-title-mini">Ekspedycja Smaku</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
+            </div>
+          </a>
+          
+          <a href="/kedzierzyn_kozle/wydarzenia/ekspedycja-smaku-2026-10-18/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Ekspedycja Smaku" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-18 &bull; 11:00</div>
+              <div class="event-title-mini">Ekspedycja Smaku</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
+            </div>
+          </a>
+          
+          <a href="/kedzierzyn_kozle/wydarzenia/kabaret-skeczow-meczacych-2026-11-21/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Kabaret Skeczów Męczących" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-21 &bull; 17:00</div>
+              <div class="event-title-mini">Kabaret Skeczów Męczących</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
             </div>
           </a>
           

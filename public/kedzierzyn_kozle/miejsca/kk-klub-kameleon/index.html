@@ -82,7 +82,24 @@
     .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
     #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
-  </style>
+  
+/* Leaflet Dark Mode - CARTO Look */
+.leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
+}
+.leaflet-container {
+    background-color: #0b0f19 !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+.leaflet-popup-content b { color: #38bdf8 !important; }
+.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+</style>
 </head>
 <body>
   
@@ -107,24 +124,15 @@
     </nav>
     <div class="container-grid">
       <div class="main-content">
-        <span class="badge">pub</span>
+        <span class="badge">venue</span>
         <h1>Klub Kameleon</h1>
-        <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. Dworcowa 1a, Kędzierzyn-Koźle</p>
+        <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. Dworcowa 1a , Kedzierzyn Kozle</p>
         <div id="map"></div>
         <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
         <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (5)</h3>
         
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-08-30-metro-tomek-zdyb-the-untold-stories-klub-kameleon/" class="event-card-mini">
-            <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_metro___tomek_zdyb__the_untold_stories____klub_kameleon.webp" alt="Metro & Tomek Zdyb "The untold stories" – Klub Kameleon" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-            <div>
-              <div class="event-meta-mini">2026-08-30 &bull; 18:00</div>
-              <div class="event-title-mini">Metro & Tomek Zdyb "The untold stories" – Klub Kameleon</div>
-              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny / Sprawdź bilety</div>
-            </div>
-          </a>
-          
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-25-metallica-night-klub-kameleon/" class="event-card-mini">
+          <a href="/kedzierzyn_kozle/wydarzenia/metallica-night-klub-kameleon-2026-09-25/" class="event-card-mini">
             <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_metallica_night___klub_kameleon.webp" alt="METALLICA NIGHT – Klub Kameleon" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-09-25 &bull; 20:00</div>
@@ -133,30 +141,39 @@
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-10-01-czeslaw-mozil/" class="event-card-mini">
-            <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_czes_aw_mozil.webp" alt="Czesław Mozil" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/czeslaw-mozil-2026-10-01/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Czesław Mozil" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-10-01 &bull; 19:00</div>
               <div class="event-title-mini">Czesław Mozil</div>
-              <div class="event-meta-mini" style="color: var(--text);">Od 106.20 zł</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-12-08-cezary-jurkiewicz/" class="event-card-mini">
-            <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_kupbilecik_pl_cezary_jurkiewicz.webp" alt="Cezary Jurkiewicz" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/damian-skora-stand-up-2026-10-18/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Damian Skóra Stand-up" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-18 &bull; 18:00</div>
+              <div class="event-title-mini">Damian Skóra Stand-up</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
+            </div>
+          </a>
+          
+          <a href="/kedzierzyn_kozle/wydarzenia/cezary-jurkiewicz-2026-12-08/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Cezary Jurkiewicz" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-12-08 &bull; 19:00</div>
               <div class="event-title-mini">Cezary Jurkiewicz</div>
-              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2027-01-07-katarzyna-piasecka-nowy-program-stand-up-bagus/" class="event-card-mini">
-            <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_katarzyna_piasecka_-_nowy_program_stand-up__bagus.webp" alt="Katarzyna Piasecka - Nowy program stand-up „BAGUS”" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/katarzyna-piasecka-stand-up-2027-01-07/" class="event-card-mini">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Katarzyna Piasecka stand-up" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2027-01-07 &bull; 18:00</div>
-              <div class="event-title-mini">Katarzyna Piasecka - Nowy program stand-up „BAGUS”</div>
-              <div class="event-meta-mini" style="color: var(--text);">Od 84.96 zł</div>
+              <div class="event-title-mini">Katarzyna Piasecka stand-up</div>
+              <div class="event-meta-mini" style="color: var(--text);">Sprawdź bilety</div>
             </div>
           </a>
           
@@ -165,7 +182,7 @@
       <aside class="sidebar">
         <div class="card">
           <h3>Logistyka i Dojazd</h3>
-          <div class="info-row"><div class="info-label">Adres</div><div class="info-val">ul. Dworcowa 1a</div></div>
+          <div class="info-row"><div class="info-label">Adres</div><div class="info-val">ul. Dworcowa 1a </div></div>
           <div class="info-row">
             <div class="info-label">Parking</div>
             <div class="info-val">
@@ -210,7 +227,7 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const lat = 50.345; const lon = 18.229;
+      const lat = 50.3442508; const lon = 18.2060774;
       const map = L.map('map').setView([lat, lon], 15);
       
       let tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';

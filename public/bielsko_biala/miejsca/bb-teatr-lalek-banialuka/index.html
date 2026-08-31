@@ -82,7 +82,24 @@
     .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
     #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
-  </style>
+  
+/* Leaflet Dark Mode - CARTO Look */
+.leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
+}
+.leaflet-container {
+    background-color: #0b0f19 !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+.leaflet-popup-content b { color: #38bdf8 !important; }
+.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+</style>
 </head>
 <body>
   
@@ -107,20 +124,119 @@
     </nav>
     <div class="container-grid">
       <div class="main-content">
-        <span class="badge">theatre</span>
+        <span class="badge">venue</span>
         <h1>Teatr Lalek Banialuka</h1>
-        <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. Adama Mickiewicza 20, Bielsko-Biała</p>
+        <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. Adama Mickiewicza 20 , Bielsko Biala</p>
         <div id="map"></div>
         <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
-        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (0)</h3>
+        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (11)</h3>
         
-          <p style="color: var(--text-muted); font-style: italic;">Brak zaplanowanych wydarzeń w najbliższym czasie.</p>
+          
+          <a href="/bielsko_biala/wydarzenia/kamyk-i-ksiezyc-2026-09-08/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_kamyk_i_ksi__yc.webp" alt="Kamyk I Księżyc" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-08 &bull; 09:00</div>
+              <div class="event-title-mini">Kamyk I Księżyc</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/calineczka-2026-09-28/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_calineczka.webp" alt="Calineczka" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-28 &bull; 11:00</div>
+              <div class="event-title-mini">Calineczka</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/wlosy-mamy-2026-10-06/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_w_osy_mamy.webp" alt="Włosy Mamy" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-06 &bull; 11:00</div>
+              <div class="event-title-mini">Włosy Mamy</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/zagubiony-chlopiec-2026-10-13/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_zagubiony_ch_opiec.webp" alt="Zagubiony Chłopiec" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-13 &bull; 11:30</div>
+              <div class="event-title-mini">Zagubiony Chłopiec</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/urodziny-w-nigdylandii-2026-10-21/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_urodziny_w_nigdylandii.webp" alt="Urodziny W Nigdylandii..." class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-21 &bull; 11:00</div>
+              <div class="event-title-mini">Urodziny W Nigdylandii...</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/empatia-2026-10-22/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_empatia.webp" alt="Empatia" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-22 &bull; 11:00</div>
+              <div class="event-title-mini">Empatia</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/tuwim-i-2026-10-28/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_tuwim_i.webp" alt="Tuwim I..." class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-28 &bull; 11:00</div>
+              <div class="event-title-mini">Tuwim I...</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/narodziny-2026-11-08/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_narodziny.webp" alt="Narodziny" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-08 &bull; 16:00</div>
+              <div class="event-title-mini">Narodziny</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/krolowa-sniegu-2026-11-19/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_kr_lowa__niegu.webp" alt="Królowa Śniegu" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-19 &bull; 11:30</div>
+              <div class="event-title-mini">Królowa Śniegu</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/maly-ksiaze-2026-11-25/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_ma_y_ksi.webp" alt="Mały Książę" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-25 &bull; 11:30</div>
+              <div class="event-title-mini">Mały Książę</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/amelka-bobr-i-krol-na-dachu-2026-11-30/" class="event-card-mini">
+            <img src="/assets/thumbnails/banialuka_banialuka_pl_amelka__b_br_i_kr_l_na_dachu.webp" alt="Amelka, Bóbr I Król Na Dachu" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-11-30 &bull; 11:00</div>
+              <div class="event-title-mini">Amelka, Bóbr I Król Na Dachu</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Bilety24)</div>
+            </div>
+          </a>
+          
         
       </div>
       <aside class="sidebar">
         <div class="card">
           <h3>Logistyka i Dojazd</h3>
-          <div class="info-row"><div class="info-label">Adres</div><div class="info-val">ul. Adama Mickiewicza 20</div></div>
+          <div class="info-row"><div class="info-label">Adres</div><div class="info-val">ul. Adama Mickiewicza 20 </div></div>
           <div class="info-row">
             <div class="info-label">Parking</div>
             <div class="info-val">
@@ -165,7 +281,7 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const lat = 49.8244169; const lon = 19.0444764;
+      const lat = 49.8244055; const lon = 19.0444876;
       const map = L.map('map').setView([lat, lon], 15);
       
       let tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
