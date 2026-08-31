@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dni Seniora 2026 – wycieczka | Kędzierzyn-Koźle - CoRobićW</title>
+  <meta name="description" content="Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 – wycieczka.">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <style>
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
+      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
+      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+      --badge-bg: #000000; --badge-text: #ffffff;
+      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
+    }
+    :root[data-theme="light"] {
+      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
+      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
+      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+      --badge-bg: #09090b; --badge-text: #ffffff;
+      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+      -webkit-font-smoothing: antialiased; font-size: 16px;
+    }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .container-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
+    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; }
+    .event-img { width: 100%; height: 420px; object-fit: cover; display: block; background: #18181b; }
+    .event-body { padding: 32px; }
+    .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
+    h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .lead { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); border-left: 2px solid var(--text); padding-left: 16px; margin: 24px 0; line-height: 1.6; }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 12px; font-weight: 800; color: var(--text); }
+    .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
+    .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
+    .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+    .action-btn:hover { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; }
+    .sidebar h3 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; }
+    .info-row { display: flex; margin-bottom: 14px; font-size: 0.95rem; }
+    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+    .info-val { width: 65%; font-weight: 500; color: var(--text); }
+    .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    .gastro-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .gastro-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .gastro-dist { font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 4px; }
+    .btn-ticket { display: block; width: 100%; text-align: center; background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); text-decoration: none; padding: 14px 0; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; transition: all 0.2s; }
+    .btn-ticket:hover { background: transparent; color: var(--text); border-color: var(--text); }
+  
+/* Leaflet Dark Mode - CARTO Look */
+.leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
+}
+.leaflet-container {
+    background-color: #0b0f19 !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+.leaflet-popup-content b { color: #38bdf8 !important; }
+.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/kedzierzyn_kozle/" class="brand">CoRobićW <span>Kędzierzyn-Koźle</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw"><span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span></button>
+        <a href="/kedzierzyn_kozle/" class="btn-nav">&larr; Agenda</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <nav class="breadcrumbs">
+      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">Dni Seniora 2026 – wycieczka</span>
+    </nav>
+    <div class="container-grid">
+      <div class="main-content">
+        <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_dni_seniora_2026___wycieczka.webp" alt="Dni Seniora 2026 – wycieczka" class="event-img" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80'">
+        <div class="event-body">
+          <div><span class="badge">Kultura i Rozrywka</span></div>
+          <h1>Dni Seniora 2026 – wycieczka</h1>
+          <div class="lead">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 – wycieczka.</div>
+          <div class="event-actions-bar">
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Dni%20Seniora%202026%20%E2%80%93%20wycieczka&details=Wydarzenie%20w%20K%C4%99dzierzynie-Ko%C5%BAlu%3A%20Dni%20Seniora%202026%20%E2%80%93%20wycieczka." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://wa.me/?text=Dni%20Seniora%202026%20%E2%80%93%20wycieczka%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-wycieczka-2026-09-08/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
+          </div>
+          <h3 class="section-title">O wydarzeniu</h3>
+          <p style="color: var(--text-muted); line-height: 1.7;">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 – wycieczka.</p>
+          
+        </div>
+      </div>
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Bilety i Organizacja</h3>
+          <div class="info-row"><div class="info-label">Data</div><div class="info-val">2026-09-08</div></div>
+          <div class="info-row"><div class="info-label">Start</div><div class="info-val">Według harmonogramu</div></div>
+          <div class="info-row">
+            <div class="info-label">Miejsce</div>
+            <div class="info-val">
+              <a href="/kedzierzyn_kozle/miejsca/ke-zg-oszenia-przyjmowane-s-w-biurze-przy-ul-grunwaldzkiej-29-4-czwartki-i-pi-tki-godz-9-00-12-00-liczba-miejsc-jest-ograniczona/" class="venue-link"><strong>Zgłoszenia przyjmowane są w biurze przy ul. Grunwaldzkiej 29/4 (czwartki i piątki, godz. 9:00–12:00). Liczba miejsc jest ograniczona!</strong></a>
+              
+              <br><small style="color: var(--text-muted);">ul. Zgłoszenia przyjmowane są w biurze przy ul. Grunwaldzkiej 29/4 (czwartki i piątki, godz. 9:00–12:00). Liczba miejsc jest ograniczona! , Kędzierzyn-Koźle</small>
+            </div>
+          </div>
+          <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
+          <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Wstęp wolny / Sprawdź bilety</div></div>
+          <a href="https://kedzierzynkozle.pl/pl/wydarzenie/dni-seniora-2026-wycieczka" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+        </div>
+        
+      </aside>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col"><h4>CoRobićW Kędzierzyn-Koźle</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li></ul></div>
+      <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda miejska</span></div>
+  </footer>
+  
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+  </script>
+</body>
+</html>
