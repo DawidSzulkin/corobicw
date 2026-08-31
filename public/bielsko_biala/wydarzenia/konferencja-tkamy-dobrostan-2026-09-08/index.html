@@ -18,15 +18,11 @@
       --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
       --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
       --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
-      --badge-bg: #000000; --badge-text: #ffffff;
-      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
     }
     :root[data-theme="light"] {
       --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
       --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
       --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
-      --badge-bg: #09090b; --badge-text: #ffffff;
-      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
     *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
@@ -36,6 +32,7 @@
       overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
       -webkit-font-smoothing: antialiased; font-size: 16px;
     }
+    
     header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
     .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
     .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
@@ -45,26 +42,46 @@
     .btn-theme-toggle:hover { border-color: var(--border-strong); }
     .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
     .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
-    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
-    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    
     main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
-    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
-    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
-    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 10px; }
-    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
-    .footer-col ul a:hover { color: var(--text); }
-    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
-
+    
     .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
     .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .container-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; }
-    @media (max-width: 768px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
-    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; }
-    .event-img { width: 100%; height: 420px; object-fit: cover; display: block; background: #18181b; }
+    
+    /* UKŁAD DWUKOLUMNOWY */
+    .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+    @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
+    
+    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
+    
+    /* VOD BANNER (Top) */
+    .ambient-banner {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+      display: block;
+      background: #000;
+      border-bottom: 1px solid var(--border);
+    }
+    .ambient-bg {
+      position: absolute;
+      top: -5%; left: -5%; right: -5%; bottom: -5%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px) brightness(0.3);
+      z-index: 1;
+    }
+    .ambient-fg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      z-index: 2;
+    }
+    
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
@@ -74,7 +91,8 @@
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
     .action-btn:hover { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
-    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; }
+    
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; border-radius: 4px; }
     .sidebar h3 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; }
     .info-row { display: flex; margin-bottom: 14px; font-size: 0.95rem; }
     .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
@@ -85,24 +103,16 @@
     .gastro-dist { font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 4px; }
     .btn-ticket { display: block; width: 100%; text-align: center; background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); text-decoration: none; padding: 14px 0; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; transition: all 0.2s; }
     .btn-ticket:hover { background: transparent; color: var(--text); border-color: var(--text); }
-  
-/* Leaflet Dark Mode - CARTO Look */
-.leaflet-tile {
-    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
-}
-.leaflet-container {
-    background-color: #0b0f19 !important;
-}
-.leaflet-popup-content-wrapper, .leaflet-popup-tip {
-    background: #1e293b !important;
-    color: #f8fafc !important;
-    border: 1px solid #334155 !important;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
-}
-.leaflet-popup-content b { color: #38bdf8 !important; }
-.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
-
-</style>
+    
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+  </style>
 </head>
 <body>
   <header>
@@ -114,26 +124,38 @@
       </div>
     </div>
   </header>
+  
   <main>
     <nav class="breadcrumbs">
       <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">Konferencja „Tkamy dobrostan”</span>
     </nav>
+    
     <div class="container-grid">
+      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
-        <img src="/assets/thumbnails/bb2026_bb2026_pl_konferencja__tkamy_dobrostan.webp" alt="Konferencja „Tkamy dobrostan”" class="event-img" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80'">
+        <a href="https://bb2026.pl/program/konferencja-tkamy-dobrostan/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bb2026_bb2026_pl_konferencja__tkamy_dobrostan.webp');"></div>
+          <img src="/assets/thumbnails/bb2026_bb2026_pl_konferencja__tkamy_dobrostan.webp" alt="Plakat: Konferencja „Tkamy dobrostan”" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+        </a>
+        
         <div class="event-body">
           <div><span class="badge">Kultura i Rozrywka</span></div>
           <h1>Konferencja „Tkamy dobrostan”</h1>
           <div class="lead">Jak odnaleźć równowagę w świecie pełnym wyzwań, presji i ciągłego tempa Jak skutecznie dbać o dobrostan – swój i innych Zapraszamy Państwa do udziału w konferencji „Tkamy Dobrost</div>
+          
           <div class="event-actions-bar">
             <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Konferencja%20%E2%80%9ETkamy%20dobrostan%E2%80%9D&details=Jak%20odnale%C5%BA%C4%87%20r%C3%B3wnowag%C4%99%20w%20%C5%9Bwiecie%20pe%C5%82nym%20wyzwa%C5%84%2C%20presji%20i%20ci%C4%85g%C5%82ego%20tempa%20Jak%20skutecznie%20dba%C4%87%20o%20dobrostan%20%E2%80%93%20sw%C3%B3j%20i%20innych%20Zapraszamy%20Pa%C5%84stwa%20do%20udzia%C5%82u%20w%20konferencji%20%E2%80%9ETkamy%20Dobrost" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=Konferencja%20%E2%80%9ETkamy%20dobrostan%E2%80%9D%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/konferencja-tkamy-dobrostan-2026-09-08/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
+          
           <h3 class="section-title">O wydarzeniu</h3>
           <p style="color: var(--text-muted); line-height: 1.7;">Jak odnaleźć równowagę w świecie pełnym wyzwań, presji i ciągłego tempa Jak skutecznie dbać o dobrostan – swój i innych Zapraszamy Państwa do udziału w konferencji „Tkamy Dobrostan”. Wydarzenie będzie okazją do wysłuchania inspirujących prelekcji, udziału w dyskusjach oraz wymiany doświadczeń dotyczących budowania dobrostanu w życiu zawodowym i prywatnym. Wspólnie poszukamy odpowiedzi na najważniejsze pytania dotyczące jakości życia, relacji i dobrostanu w środowisku pracy. To wydarzenie stworzone z myślą o osobach, które chcą: czerpać inspirację od ekspertów i praktyków, poznać konkretne narzędzia wspierające wellbeing, spotkać ludzi, dla których dobrostan jest realną wartością W programie przewidzieliśmy interesujące wystąpienia, rozmowy z ekspertami, warsztaty oraz przestrzeń do wymiany doświadczeń i nawiązywania wartościowych kontaktów.</p>
           
+          
         </div>
       </div>
+      
+      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>
@@ -151,9 +173,11 @@
           <a href="https://bb2026.pl/program/konferencja-tkamy-dobrostan/" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
         </div>
         
+        
       </aside>
     </div>
   </main>
+  
   <footer>
     <div class="footer-inner">
       <div class="footer-col"><h4>CoRobićW Bielsko-Biała</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>

@@ -99,7 +99,7 @@ class MbpKkPlScraper(BaseScraper):
         events = []
         seen_urls = set()
         today_iso = datetime.now().strftime("%Y-%m-%d")
-        default_img = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80"
+        default_img = "/assets/placeholder.svg"
 
         print(f"[{self.source_name}] Skanowanie wydarzeń MBP Kędzierzyn-Koźle...")
 
