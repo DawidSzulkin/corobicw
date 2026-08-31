@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ place.name }} | {{ city }} - CoRobićW</title>
-  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: {{ place.name }} w {{ city }}.">
+  <title>{{ place.name }} | {{ city_name or city }} - CoRobićW</title>
+  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: {{ place.name }} w {{ city_name or city }}.">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   
@@ -82,7 +82,24 @@
     .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
     #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
-  </style>
+  
+/* Leaflet Dark Mode - CARTO Look */
+.leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
+}
+.leaflet-container {
+    background-color: #0b0f19 !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+.leaflet-popup-content b { color: #38bdf8 !important; }
+.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+</style>
 </head>
 <body>
   {% set addr = place.address if place.address is mapping else {} %}
@@ -94,7 +111,7 @@
 
   <header>
     <div class="nav-container">
-      <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city }}</span></a>
+      <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city_name or city }}</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw"><span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span></button>
         <a href="/{{ city_tag }}/" class="btn-nav">&larr; Wróć do agendy</a>
@@ -103,7 +120,7 @@
   </header>
   <main>
     <nav class="breadcrumbs">
-      <a href="/">Polska</a><span>/</span><a href="/{{ city_tag }}/">{{ city }}</a><span>/</span><span class="current">{{ place.name }}</span>
+      <a href="/">Polska</a><span>/</span><a href="/{{ city_tag }}/">{{ city_name or city }}</a><span>/</span><span class="current">{{ place.name }}</span>
     </nav>
     <div class="container-grid">
       <div class="main-content">
@@ -147,11 +164,11 @@
   </main>
   <footer>
     <div class="footer-inner">
-      <div class="footer-col"><h4>CoRobićW {{ city }}</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>CoRobićW {{ city_name or city }}</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
       <div class="footer-col"><h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li></ul></div>
       <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li></ul></div>
     </div>
-    <div class="footer-copy"><span>&copy; 2026 CoRobićW.</span><span>Obiekt: {{ place.name }} ({{ city }})</span></div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW.</span><span>Obiekt: {{ place.name }} ({{ city_name or city }})</span></div>
   </footer>
   
   <script>

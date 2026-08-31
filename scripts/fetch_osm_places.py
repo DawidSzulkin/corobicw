@@ -1,4 +1,4 @@
-﻿import json
+import json
 from pathlib import Path
 import sys
 import urllib.request
@@ -149,3 +149,4 @@ def fetch_osm_data():
 
 if __name__ == "__main__":
     fetch_osm_data()
+

@@ -1,4 +1,4 @@
-﻿import json
+import json
 import logging
 import re
 import urllib.request
@@ -107,3 +107,4 @@ if __name__ == "__main__":
     with open(OUTPUT_RAW, "w", encoding="utf-8") as f:
         json.dump(events_data, f, ensure_ascii=False, indent=2)
     logging.info("Zapisano %d wydarzeń do %s", len(events_data), OUTPUT_RAW)
+

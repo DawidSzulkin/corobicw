@@ -1,4 +1,4 @@
-﻿import json
+import json
 import logging
 import math
 import re
@@ -309,3 +309,4 @@ def process_osm_database():
 
 if __name__ == "__main__":
     process_osm_database()
+

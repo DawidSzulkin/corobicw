@@ -1,18 +1,116 @@
-city_tag: "bielsko_biala"
-city: "Bielsko-Biała"
-description: "Nieoficjalny agregator wydarzeń, koncertów i spektakli w Bielsku-Białej. Informacje o imprezach kulturalnych i sportowych w mieście."
-seo_keywords: "Bielsko-Biała wydarzenia, koncerty Bielsko, teatr Bielsko-Biała, imprezy Bielsko"
-social_image: "https://www.bielsko.info/img/articles/2021/07/08/94e2e28a9b736b28b7e2d93e1b7f0e34.jpg"
-logo_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/POL_Bielsko-Bia%C5%82a_COA.svg/800px-POL_Bielsko-Bia%C5%82a_COA.svg.png"
-color_primary: "#1A365D"
-color_secondary: "#2B6CB0"
-color_accent: "#E53E3E"
-theme: "modern"
-
+city_tag: bielsko_biala
+city: Bielsko-Biała
+description: Nieoficjalny agregator wydarzeń, koncertów i spektakli w Bielsku-Białej.
+  Informacje o imprezach kulturalnych i sportowych w mieście.
+seo_keywords: Bielsko-Biała wydarzenia, koncerty Bielsko, teatr Bielsko-Biała, imprezy
+  Bielsko
+social_image: https://www.bielsko.info/img/articles/2021/07/08/94e2e28a9b736b28b7e2d93e1b7f0e34.jpg
+logo_image: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/POL_Bielsko-Bia%C5%82a_COA.svg/800px-POL_Bielsko-Bia%C5%82a_COA.svg.png
+color_primary: '#1A365D'
+color_secondary: '#2B6CB0'
+color_accent: '#E53E3E'
+theme: modern
 sources:
   kupbilecik_pl:
     enabled: true
-    name: "KupBilecik (Bielsko)"
+    name: KupBilecik (Bielsko)
   biletyna_pl:
     enabled: true
-    name: "Biletyna (Bielsko)"
+    name: Biletyna (Bielsko)
+venue_match_rules:
+- keywords:
+  - spartan
+  - d?bowiec
+  - debowiec
+  - karbowa
+  - bbosir
+  - bieg z przeszkodami
+  - crossfit
+  - hala pod dębowcem
+  target_id: bb-hala-pod-debowcem
+- keywords:
+  - cavatina
+  - dworkowa 2
+  - cavatina hall
+  target_id: bb-cavatina-hall
+- keywords:
+  - bck
+  - bielskie centrum kultury
+  - dom muzyki
+  - s?owackiego 27
+  - festiwal kompozytor?w
+  target_id: bb-bck
+- keywords:
+  - teatr polski
+  - plac teatralny
+  - 1 maja 1
+  - du?a scena tp
+  - ma?a scena tp
+  - carmen
+  - s?siedzi z g?ry
+  - testosteron
+  - viva maria
+  - wanda
+  target_id: bb-teatr-polski
+- keywords:
+  - banialuka
+  - teatr lalek
+  - mickiewicza 20
+  - calineczka
+  - kamyk i ksi??yc
+  - ma?y ksi???
+  - kr?lowa ?niegu
+  - w?osy mamy
+  - urodziny w nigdylandii
+  target_id: bb-teatr-banialuka
+- keywords:
+  - galeria bielska
+  - galeria bwa
+  - bwa
+  - 3 maja 11
+  - momenty graniczne
+  - dziadostwo
+  - ?wi?to lasu
+  - bojdys
+  - street artu
+  - galeria bielska bwa
+  target_id: bb-galeria-bielska-bwa
+- keywords:
+  - zamek
+  - su?kowskich
+  - wzg?rze 19
+  - muzeum historyczne
+  target_id: bb-zamek-sulkowskich
+- keywords:
+  - rudeboy
+  - rudeboy club
+  - 1 maja 20
+  - illusion
+  - hostia
+  - iron head
+  - closterkeller
+  target_id: bb-rudeboy-club
+- target_id: bb-bielskie-centrum-kultury-im-marii-koterbskiej
+  keywords:
+  - bielskie centrum kultury im. marii koterbskiej
+- target_id: bb-teatr-lalek-banialuka
+  keywords:
+  - teatr lalek banialuka
+- target_id: bb-bielska-scena-reja
+  keywords:
+  - bielska scena reja
+- target_id: bb-teatr-polski-duza-scena
+  keywords:
+  - teatr polski (duża scena)
+- target_id: bb-teatr-polski-mala-scena
+  keywords:
+  - teatr polski (mała scena)
+- target_id: bb-bielskie-centrum-kultury
+  keywords:
+  - bielskie centrum kultury
+- target_id: bb-kamienica-pod-orlem
+  keywords:
+  - kamienica pod orłem -  sala redutowa
+- target_id: bb-cmentarz-zydowski
+  keywords:
+  - tajemniczy ogród (cmentarz żydowski)

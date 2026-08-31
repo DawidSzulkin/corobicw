@@ -82,7 +82,24 @@
     .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
     #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
-  </style>
+  
+/* Leaflet Dark Mode - CARTO Look */
+.leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
+}
+.leaflet-container {
+    background-color: #0b0f19 !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+.leaflet-popup-content b { color: #38bdf8 !important; }
+.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+</style>
 </head>
 <body>
   
@@ -112,11 +129,11 @@
         <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. Jana Pawła II 27, Kędzierzyn-Koźle</p>
         <div id="map"></div>
         <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
-        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (4)</h3>
+        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (2)</h3>
         
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-04-narodowe-czytanie-dziady-adama-mickiewicza/" class="event-card-mini">
-            <img src="/assets/thumbnails/mbpkk_mbpkk_pl_narodowe_czytanie____dziady__adama_mickiewicza.webp" alt="Narodowe Czytanie – „Dziady” Adama Mickiewicza" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/narodowe-czytanie-dziady-adama-mickiewicza-2026-09-04/" class="event-card-mini">
+            <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_narodowe_czytanie____dziady__adama_mickiewicza.webp" alt="Narodowe Czytanie – „Dziady” Adama Mickiewicza" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-09-04 &bull; 12:00</div>
               <div class="event-title-mini">Narodowe Czytanie – „Dziady” Adama Mickiewicza</div>
@@ -124,29 +141,11 @@
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-06-koncert-pt-wsrod-zieleni/" class="event-card-mini">
-            <img src="/assets/thumbnails/mbpkk_mbpkk_pl_koncert_pt___w_r_d_zieleni.webp" alt="Koncert pt. „Wśród zieleni”" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-            <div>
-              <div class="event-meta-mini">2026-09-06 &bull; 16:00</div>
-              <div class="event-title-mini">Koncert pt. „Wśród zieleni”</div>
-              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny</div>
-            </div>
-          </a>
-          
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-08-spotkanie-autorskie-z-magdalena-woch/" class="event-card-mini">
-            <img src="/assets/thumbnails/mbpkk_mbpkk_pl_spotkanie_autorskie_z_magdalen__woch.webp" alt="Spotkanie autorskie z Magdaleną Woch" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/spotkanie-autorskie-z-magdalena-woch-ksiaz-daisy-i-hochbergowie-2026-09-08/" class="event-card-mini">
+            <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_spotkanie_autorskie_z_magdalen__woch___ksi____daisy_i_hochbergowie.webp" alt="Spotkanie autorskie z Magdaleną Woch – Książ, Daisy i Hochbergowie" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-09-08 &bull; 16:00</div>
-              <div class="event-title-mini">Spotkanie autorskie z Magdaleną Woch</div>
-              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny</div>
-            </div>
-          </a>
-          
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-17-dyskusyjny-klub-ksiazki/" class="event-card-mini">
-            <img src="/assets/thumbnails/mbpkk_mbpkk_pl_dyskusyjny_klub_ksi__ki.webp" alt="Dyskusyjny Klub Książki" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
-            <div>
-              <div class="event-meta-mini">2026-09-17 &bull; 16:00</div>
-              <div class="event-title-mini">Dyskusyjny Klub Książki</div>
+              <div class="event-title-mini">Spotkanie autorskie z Magdaleną Woch – Książ, Daisy i Hochbergowie</div>
               <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny</div>
             </div>
           </a>

@@ -1,4 +1,4 @@
-﻿import json
+import json
 import math
 from pathlib import Path
 import time
@@ -91,3 +91,4 @@ for p in places[:5]:
     nr = p['address'].get('housenumber') or ''
     dist = p['nearest_parking']['distance_m']
     print(f"[{p['id']}] {p['name']} -> Adres: {street} {nr} | Parking: {dist} m stąd")
+

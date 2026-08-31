@@ -82,7 +82,24 @@
     .event-meta-mini { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .event-title-mini { margin: 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text); }
     #map { height: 320px; width: 100%; border: 1px solid var(--border); margin-top: 20px; z-index: 1; }
-  </style>
+  
+/* Leaflet Dark Mode - CARTO Look */
+.leaflet-tile {
+    filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important;
+}
+.leaflet-container {
+    background-color: #0b0f19 !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+.leaflet-popup-content b { color: #38bdf8 !important; }
+.leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+</style>
 </head>
 <body>
   
@@ -112,19 +129,28 @@
         <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. Kraszewskiego 1, Kędzierzyn-Koźle</p>
         <div id="map"></div>
         <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
-        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (4)</h3>
+        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (5)</h3>
         
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-08-30-twierdza-triathlon-2026/" class="event-card-mini">
-            <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_twierdza_triathlon_2026.webp" alt="Twierdza Triathlon 2026" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy-2026-09-01/" class="event-card-mini">
+            <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_lekcje_muzealne___detektywi_przesz_o_ci__co_robi__muzealnicy.webp" alt="Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy"" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
-              <div class="event-meta-mini">2026-08-30 &bull; Według harmonogramu</div>
-              <div class="event-title-mini">Twierdza Triathlon 2026</div>
+              <div class="event-meta-mini">2026-09-01 &bull; 09:30</div>
+              <div class="event-title-mini">Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy"</div>
               <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny / Sprawdź bilety</div>
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-12-militarny-dzien-otwarty-ramie-w-ramie-z-wojskiem-3/" class="event-card-mini">
+          <a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej-2026-09-08/" class="event-card-mini">
+            <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_lekcje_muzealne___dzieci_cy__wiat_zabaw_na_ziemi_kozielskiej.webp" alt="Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-08 &bull; 09:30</div>
+              <div class="event-title-mini">Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”</div>
+              <div class="event-meta-mini" style="color: var(--text);">Wstęp wolny / Sprawdź bilety</div>
+            </div>
+          </a>
+          
+          <a href="/kedzierzyn_kozle/wydarzenia/militarny-dzien-otwarty-ramie-w-ramie-z-wojskiem-3-2026-09-12/" class="event-card-mini">
             <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_militarny_dzie__otwarty___rami__w_rami__z_wojskiem_3.webp" alt="Militarny Dzień Otwarty ,,RAMIĘ W RAMIĘ z Wojskiem 3"" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-09-12 &bull; 13:00</div>
@@ -133,7 +159,7 @@
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-09-21-rekrutrun-zaprawa-3k-2026/" class="event-card-mini">
+          <a href="/kedzierzyn_kozle/wydarzenia/rekrutrun-zaprawa-3k-2026-2026-09-21/" class="event-card-mini">
             <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_rekrutrun_-_zaprawa_3k_2026.webp" alt="RekrutRUN - Zaprawa 3K 2026" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">2026-09-21 &bull; 15:40</div>
@@ -142,12 +168,12 @@
             </div>
           </a>
           
-          <a href="/kedzierzyn_kozle/wydarzenia/2026-10-10-rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim/" class="event-card-mini">
-            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" alt="Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+          <a href="/kedzierzyn_kozle/wydarzenia/rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-25/" class="event-card-mini">
+            <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_rarytas_-_spektakl_muzyczny_-_v_og_lnopolski_festiwal_teatralny_off-ka.webp" alt="RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
-              <div class="event-meta-mini">2026-10-10 &bull; Według harmonogramu</div>
-              <div class="event-title-mini">Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim</div>
-              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne</div>
+              <div class="event-meta-mini">2026-09-25 &bull; 20:00</div>
+              <div class="event-title-mini">RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka</div>
+              <div class="event-meta-mini" style="color: var(--text);">Od 22.24 zł</div>
             </div>
           </a>
           

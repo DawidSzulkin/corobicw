@@ -1,50 +1,150 @@
-﻿city_tag: "kedzierzyn_kozle"
-city: "Kędzierzyn-Koźle"
-description: "Wydarzenia, koncerty, spektakle i seanse kinowe w Kędzierzynie-Koźlu. Sprawdź aktualny repertuar MOK, kina Chemik i imprez miejskich."
-seo_keywords: "Kędzierzyn-Koźle wydarzenia, koncerty Kędzierzyn, kino Chemik, imprezy Koźle, spektakle MOK, bilety Kędzierzyn"
-social_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg/800px-POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg.png"
-logo_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg/800px-POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg.png"
-color_primary: "#1A365D"
-color_secondary: "#2B6CB0"
-color_accent: "#E53E3E"
-theme: "modern"
-
+city_tag: kedzierzyn_kozle
+city: Kędzierzyn-Koźle
+description: Wydarzenia, koncerty, spektakle i seanse kinowe w Kędzierzynie-Koźlu.
+  Sprawdź aktualny repertuar MOK, kina Chemik i imprez miejskich.
+seo_keywords: Kędzierzyn-Koźle wydarzenia, koncerty Kędzierzyn, kino Chemik, imprezy
+  Koźle, spektakle MOK, bilety Kędzierzyn
+social_image: https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg/800px-POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg.png
+logo_image: https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg/800px-POL_K%C4%99dzierzyn-Ko%C5%BAle_COA.svg.png
+color_primary: '#1A365D'
+color_secondary: '#2B6CB0'
+color_accent: '#E53E3E'
+theme: modern
 sources:
   kedzierzynkozle_pl:
     enabled: true
-    name: "Miejski Ośrodek Kultury / Urząd Miasta"
+    name: Miejski Ośrodek Kultury / Urząd Miasta
   biletyna_pl:
     enabled: true
-    name: "Biletyna (Kędzierzyn-Koźle)"
+    name: Biletyna (Kędzierzyn-Koźle)
   kupbilecik_pl:
     enabled: true
-    name: "KupBilecik (Kędzierzyn-Koźle)"
-
+    name: KupBilecik (Kędzierzyn-Koźle)
 prompts:
-  system: |
-    Jesteś precyzyjnym silnikiem ekstrakcji danych o wydarzeniach miejskich.
-    Przeanalizuj tytuł i treść, a następnie zwróć wyłącznie poprawny JSON dopasowany do poniższego schematu.
-    NIGDY nie wstawiaj słów 'np.', 'przykładowo' ani nie kopiuj nazw szablonowych.
-    Jeśli brak dokładnych danych, podaj zwięzłe fakty wynikające bezpośrednio z tekstu.
-
-    Schemat JSON:
-    {
-      "category": "Kategoria wydarzenia (np. Koncert, Teatr, Sport, Kino, Dla Dzieci, Spotkanie)",
-      "badges": ["Kategoria", "Wstęp płatny lub Wstęp bezpłatny"],
-      "organizer": "Nazwa instytucji lub organizatora",
-      "editorial_lead": "Zwięzły opis marketingowy wydarzenia (dokładnie 1-2 zdania).",
-      "details_bullets": ["Kluczowy punkt 1", "Kluczowy punkt 2"],
-      "quick_facts": {
-        "duration": "Szacowany czas trwania (np. ~1.5h, ~2h)",
-        "age_rating": "Dla kogo (np. Wszyscy, 16+, Dla dzieci)",
-        "parking": "Parking w pobliżu obiektu"
-      },
-      "ticket_info": {
-        "time_start": "Godzina rozpoczęcia (np. 18:00, 09:00 lub Całodniowe)",
-        "doors_open": "Godzina otwarcia bramek (np. 17:30 lub brak)",
-        "venue_name": "Faktyczna nazwa miejsca (np. Dom Kultury Chemik, Park Pojednania, Rynek)",
-        "price_range": "Cena biletów (np. Wstęp wolny, 30-50 zł)"
-      },
-      "address": "Ulica lub lokalizacja w mieście"
-    }
-  user_template: "Wydarzenie: {title} | Data: {date} | Treść: {description}"
+  system: "Jesteś precyzyjnym silnikiem ekstrakcji danych o wydarzeniach miejskich.\n\
+    Przeanalizuj tytuł i treść, a następnie zwróć wyłącznie poprawny JSON dopasowany\
+    \ do poniższego schematu.\nNIGDY nie wstawiaj słów 'np.', 'przykładowo' ani nie\
+    \ kopiuj nazw szablonowych.\nJeśli brak dokładnych danych, podaj zwięzłe fakty\
+    \ wynikające bezpośrednio z tekstu.\n\nSchemat JSON:\n{\n  \"category\": \"Kategoria\
+    \ wydarzenia (np. Koncert, Teatr, Sport, Kino, Dla Dzieci, Spotkanie)\",\n  \"\
+    badges\": [\"Kategoria\", \"Wstęp płatny lub Wstęp bezpłatny\"],\n  \"organizer\"\
+    : \"Nazwa instytucji lub organizatora\",\n  \"editorial_lead\": \"Zwięzły opis\
+    \ marketingowy wydarzenia (dokładnie 1-2 zdania).\",\n  \"details_bullets\": [\"\
+    Kluczowy punkt 1\", \"Kluczowy punkt 2\"],\n  \"quick_facts\": {\n    \"duration\"\
+    : \"Szacowany czas trwania (np. ~1.5h, ~2h)\",\n    \"age_rating\": \"Dla kogo\
+    \ (np. Wszyscy, 16+, Dla dzieci)\",\n    \"parking\": \"Parking w pobliżu obiektu\"\
+    \n  },\n  \"ticket_info\": {\n    \"time_start\": \"Godzina rozpoczęcia (np. 18:00,\
+    \ 09:00 lub Całodniowe)\",\n    \"doors_open\": \"Godzina otwarcia bramek (np.\
+    \ 17:30 lub brak)\",\n    \"venue_name\": \"Faktyczna nazwa miejsca (np. Dom Kultury\
+    \ Chemik, Park Pojednania, Rynek)\",\n    \"price_range\": \"Cena biletów (np.\
+    \ Wstęp wolny, 30-50 zł)\"\n  },\n  \"address\": \"Ulica lub lokalizacja w mieście\"\
+    \n}\n"
+  user_template: 'Wydarzenie: {title} | Data: {date} | Treść: {description}'
+venue_match_rules:
+- keywords:
+  - parkrun
+  - bieg parkrun
+  target_id: kk-park-orderu-usmiechu
+- keywords:
+  - droga do bullerbyn
+  - mity i opowie
+  - miko?ajek opowiada
+  - tajemnicza biblioteka
+  - brzechw
+  - zawody marze?
+  - oddzia? dla dzieci
+  - rynek 3
+  target_id: kk-mbp-rynek
+- keywords:
+  - narodowe czytanie
+  - dyskusyjny klub
+  - spotkanie autorskie
+  - w?r?d zieleni
+  - mbp
+  - bibliotek
+  target_id: kk-mbp-glowna
+- keywords:
+  - s?awi?cic
+  - slawiecic
+  - plener malarski
+  target_id: kk-park-slawiecice
+- keywords:
+  - hotel hugo
+  - hugo
+  target_id: kk-hotel-hugo
+- keywords:
+  - nightskating
+  - rolkowanie
+  - ?r?dmie?cie
+  - srodmiescie
+  target_id: kk-hala-srodmiescie
+- keywords:
+  - hala azoty
+  - siatk?wk
+  - grand prix
+  - azoty
+  - hala widowiskowo-sportowa
+  target_id: kk-hala-sportowa
+- keywords:
+  - zamek
+  - twierdza
+  - piastowskim
+  - kozielsk
+  target_id: kk-zamek-piastowski
+- keywords:
+  - mzk
+  - dworzec
+  - podr??uj z mzk
+  target_id: kk-dworzec-pkp
+- keywords:
+  - kameleon
+  - klub kameleon
+  - metro
+  - tomek zdyb
+  - klub kameleon, ul. dworcowa 1a
+  target_id: kk-klub-kameleon
+- keywords:
+  - chemik
+  - dk chemik
+  - kino chemik
+  - mok
+  - coverowe
+  - sklep z facetami
+  - siesta w drodze
+  - gala fado
+  - d?em session
+  - dew?dzki
+  - najdro?szy
+  - strauss
+  - sylwestrowa
+  target_id: kk-chemik
+- keywords:
+  - lech
+  - dk lech
+  - blachownia
+  target_id: kk-lech
+- target_id: kk-park-kozle
+  keywords:
+  - wejście do parku za dk „koźle”
+- target_id: kk-mok-kedzierzyn-kozle
+  keywords:
+  - mok kędzierzyn-koźle
+- target_id: kk-park-w-slawiecicach
+  keywords:
+  - park w sławięcicach
+- target_id: kk-dom-kultury-chemik
+  keywords:
+  - dk chemik (al. jana pawła ii 27)
+  - dom kultury „chemik”, al. jana pawła ii 27
+- target_id: kk-oddzial-dla-dzieci-mbp
+  keywords:
+  - oddział dla dzieci, mbp, ul. rynek 3
+- target_id: kk-orlik
+  keywords:
+  - orlik, ul. 9 maja 2
+- target_id: kk-kkca-wodne-okko
+  keywords:
+  - kryta pływalnia / wodne okko
+- target_id: kk-muzeum-ziemi-kozielskiej
+  keywords:
+  - muzeum ziemi kozielskiej, ul. józefa ignacego kraszewskiego 5

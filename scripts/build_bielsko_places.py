@@ -1,4 +1,12 @@
-﻿import json
+import sys
+from pathlib import Path
+_ROOT = Path(__file__).resolve().parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from src.utils.helpers import slugify
+
+import json
 import logging
 import math
 import re
@@ -59,18 +67,6 @@ EXCLUDE_NAMES = {
     "Obiekt nienazwany", "Boisko", "Siłownia plenerowa", "Plac zabaw",
     "Stół piknikowy", "Miejsce na ognisko", "Punkt widokowy"
 }
-
-
-def slugify(text: str) -> str:
-    text = text.lower().strip()
-    replacements = {
-        "ą": "a", "ć": "c", "ę": "e", "ł": "l", "ń": "n",
-        "ó": "o", "ś": "s", "ź": "z", "ż": "z"
-    }
-    for k, v in replacements.items():
-        text = text.replace(k, v)
-    text = re.sub(r"[^\w\s-]", "", text)
-    return re.sub(r"[\s_-]+", "-", text).strip("-")
 
 
 def get_group(tags: Dict[str, str]) -> str:
@@ -243,3 +239,4 @@ def fetch_osm():
 
 if __name__ == "__main__":
     fetch_osm()
+

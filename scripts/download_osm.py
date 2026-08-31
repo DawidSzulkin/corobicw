@@ -1,4 +1,4 @@
-﻿import json
+import json
 import logging
 import sys
 import time
@@ -106,3 +106,4 @@ def download_osm_data(output_file: str, max_retries: int = 3):
 
 if __name__ == "__main__":
     download_osm_data("raw_places_osm.json")
+

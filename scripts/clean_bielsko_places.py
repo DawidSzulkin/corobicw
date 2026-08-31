@@ -1,4 +1,12 @@
-﻿import json, re
+import sys
+from pathlib import Path
+_ROOT = Path(__file__).resolve().parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from src.utils.helpers import slugify
+
+import json, re
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,17 +18,6 @@ PARKINGS_FILE = DATA_DIR / "parkings.json"
 
 with open(RAW_FILE, "r", encoding="utf-8") as f:
     raw_items = json.load(f)
-
-def slugify(text: str) -> str:
-    text = text.lower().strip()
-    replacements = {
-        "ą": "a", "ć": "c", "ę": "e", "ł": "l", "ń": "n",
-        "ó": "o", "ś": "s", "ź": "z", "ż": "z"
-    }
-    for k, v in replacements.items():
-        text = text.replace(k, v)
-    text = re.sub(r"[^\w\s-]", "", text)
-    return re.sub(r"[\s_-]+", "-", text).strip("-")
 
 # Wykluczenia wyłącznie dla cmentarzy, tablic i mogił
 HISTORY_BLACKLIST = [
