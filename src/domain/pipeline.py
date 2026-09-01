@@ -286,10 +286,20 @@ GENERIC_STOPWORDS = {
     "bielsku", "bialej", "opole", "opolu", "live", "tour", "trasa",
     "nowy", "program", "wieczor", "wieczór", "kameralny", "akustycznie",
     "bilety", "kup", "dla", "oraz", "jego", "orzeł", "orlem", "orłem",
-    "sala", "redutowa", "domu", "kultury", "bck", "cavatina", "hall"
+    "sala", "redutowa", "domu", "kultury", "bck", "cavatina", "hall",
+    "żywo", "zywo"
 }
 
+def _stem_pl(w: str) -> str:
+    """Ucina typowe polskie końcówki fleksyjne dla bezpiecznego porównywania rdzeni."""
+    w = w.lower().strip()
+    for suffix in ["ego", "emu", "ach", "ami", "ych", "ich", "iej", "owi", "em", "om", "ie", "ce", "ek", "ka", "ki", "ku", "ów", "u", "a", "e", "y", "i", "o", "ą", "ę"]:
+        if len(w) > len(suffix) + 3 and w.endswith(suffix):
+            return w[:-len(suffix)]
+    return w
+
 def _are_titles_duplicate(t1: str, t2: str, time1: str = "", time2: str = "") -> bool:
+    """Weryfikuje duplikaty uwzględniając fleksję, stopwords i przesunięcia czasowe."""
     if time1 and time2 and time1 != time2 and ":" in time1 and ":" in time2:
         try:
             h1, m1 = map(int, time1.split(":")[:2])
@@ -302,27 +312,39 @@ def _are_titles_duplicate(t1: str, t2: str, time1: str = "", time2: str = "") ->
     import re
     from difflib import SequenceMatcher
 
-    def get_content_words(t: str) -> set:
-        raw_words = set(re.findall(r'[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{3,}', t.lower()))
-        return {w for w in raw_words if w not in GENERIC_STOPWORDS}
+    # 1. Sprawdzenie surowego podobieństwa całych ciągów
+    if SequenceMatcher(None, t1.lower().strip(), t2.lower().strip()).ratio() >= 0.80:
+        return True
 
-    w1 = get_content_words(t1)
-    w2 = get_content_words(t2)
+    # 2. Ekstrakcja i stemming tokenów
+    raw1 = re.findall(r'[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{3,}', t1.lower())
+    raw2 = re.findall(r'[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{3,}', t2.lower())
 
-    if not w1 or not w2:
-        return SequenceMatcher(None, t1.lower().strip(), t2.lower().strip()).ratio() >= 0.88
+    stems1 = {_stem_pl(w) for w in raw1}
+    stems2 = {_stem_pl(w) for w in raw2}
+    
+    stop_stems = {_stem_pl(w) for w in GENERIC_STOPWORDS}
+    content1 = {s for s in stems1 if s not in stop_stems}
+    content2 = {s for s in stems2 if s not in stop_stems}
 
-    intersection = w1 & w2
-    union = w1 | w2
+    # Fallback jeśli tytuł składał się wyłącznie ze stopwords
+    s1 = content1 if content1 else stems1
+    s2 = content2 if content2 else stems2
+
+    if not s1 or not s2:
+        return False
+
+    intersection = s1 & s2
+    union = s1 | s2
     jaccard = len(intersection) / len(union) if union else 0.0
 
-    if jaccard >= 0.5:
+    if jaccard >= 0.40:
         return True
 
-    if (w1.issubset(w2) and len(w1) >= 2) or (w2.issubset(w1) and len(w2) >= 2):
+    if s1.issubset(s2) or s2.issubset(s1):
         return True
 
-    return SequenceMatcher(None, t1.lower().strip(), t2.lower().strip()).ratio() >= 0.82
+    return SequenceMatcher(None, " ".join(sorted(stems1)), " ".join(sorted(stems2))).ratio() >= 0.75
 
 def deduplicate_events(events: list, city_name: str = "") -> list:
     by_date = {}
