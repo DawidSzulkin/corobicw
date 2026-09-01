@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -59,7 +59,6 @@
     .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
     .filter-btn.active { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
 
-    /* ================= KARTY WYDARZEŃ (WZORZEC 2 - KALIBRACJA 176px) ================= */
     .event-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -73,7 +72,6 @@
     }
     .event-card:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(3px); }
 
-    /* KADR PLAKATU Z EFEKTEM AMBIENT */
     .thumb-wrap {
       width: 220px;
       min-width: 220px;
@@ -104,7 +102,6 @@
     }
     .event-card:hover .thumb-fg { transform: scale(1.03); }
 
-    /* WCAG DATE BADGE (AAA CONTRAST) */
     .date-badge {
       position: absolute;
       top: 0;
@@ -135,7 +132,6 @@
       margin-top: 2px;
     }
 
-    /* TREŚĆ KARTY */
     .event-content {
       padding: 10px 16px;
       flex: 1;
@@ -185,16 +181,32 @@
     }
     .event-title a { color: var(--text); text-decoration: none; }
     .event-title a::after { content: ""; position: absolute; inset: 0; }
+    
+    /* GRADIENTOWE ZANIKANIE TEKSTU */
     .event-desc {
       font-size: 0.82rem;
       color: var(--text-muted);
       line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      max-height: 2.7em; /* 1.35 * 2 = 2.7 */
+      position: relative;
       overflow: hidden;
       flex-shrink: 1;
     }
+    .event-desc::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40%;
+      height: 1.35em;
+      background: linear-gradient(to right, transparent, var(--card-bg) 70%);
+      pointer-events: none;
+      transition: background 0.2s;
+    }
+    .event-card:hover .event-desc::after {
+      background: linear-gradient(to right, transparent, var(--card-hover) 70%);
+    }
+    
     .meta-bottom {
       border-top: 1px solid var(--border);
       padding-top: 6px;
@@ -270,7 +282,7 @@
                   <span>{{ ev.analysis.category }} &bull; {{ ev.date_formatted }} &bull; {{ ev.analysis.ticket_info.time_start }}</span>
                 </div>
                 <h3 class="event-title"><a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/">{{ ev.title }}</a></h3>
-                <p class="event-desc">{{ ev.analysis.editorial_lead }}</p>
+                <p class="event-desc">{{ ev.analysis.full_description }}</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">{{ ev.analysis.ticket_info.price_range }}</span>
@@ -317,9 +329,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
-  </script>
 
-  <script>
     function getLocalDateStr(offsetDays = 0) {
       const d = new Date(); d.setDate(d.getDate() + offsetDays);
       return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -353,7 +363,6 @@
         const start = el.getAttribute('data-start');
         const end = el.getAttribute('data-end') || start;
         
-        // Całkowite ukrycie przeterminowanych wydarzeń
         if (end < today) {
           el.style.display = 'none';
           return;
@@ -379,7 +388,6 @@
         const start = el.getAttribute('data-start');
         const end = el.getAttribute('data-end') || start;
         
-        // Zabezpieczenie przed przywróceniem wczorajszych eventów
         if (end < today) {
           el.style.display = 'none';
           return;
