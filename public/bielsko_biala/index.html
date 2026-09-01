@@ -250,36 +250,6 @@
     </div>
     <div id="events-agenda">
       
-        <article class="event-item" data-start="2026-08-31" data-end="2026-08-31">
-          <div class="event-card">
-            <div class="thumb-wrap">
-              <div class="date-badge">
-                <span class="day">31</span>
-                <span class="month">
-                  
-                  SIE
-                </span>
-              </div>
-              <img src="/assets/thumbnails/galeriabielska_galeriabielska_pl_akademia_street_artu___wyk_ady_m_odzi__owcy_street_artu___oprowadzanie_dla_rodzin_z_dzie_mi.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/galeriabielska_galeriabielska_pl_akademia_street_artu___wyk_ady_m_odzi__owcy_street_artu___oprowadzanie_dla_rodzin_z_dzie_mi.webp" class="thumb-fg" alt="Plakat: Akademia Street Artu – wykłady Młodzi łowcy street artu – oprowadzanie dla rodzin z dziećmi" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
-            </div>
-            <div class="event-content">
-              <div class="text-container">
-                <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-08-31 &bull; 10:00</span>
-                </div>
-                <h3 class="event-title"><a href="/bielsko_biala/wydarzenia/akademia-street-artu-wyklady-mlodzi-lowcy-street-artu-oprowadzanie-dla-rodzin-z-dziecmi-2026-08-31/">Akademia Street Artu – wykłady Młodzi łowcy street artu – oprowadzanie dla rodzin z dziećmi</a></h3>
-                <p class="event-desc">Wykłady: Akademia Street Artu – wykłady Młodzi łowcy street artu – oprowadzanie dla rodzin z dziećmi w przestrzeni Galeria Bielska BWA.</p>
-              </div>
-              <div class="meta-bottom">
-                <span class="price">Wstęp wolny / Bilety w kasie</span>
-                <span class="arrow-link">Szczegóły &rarr;</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      
         <article class="event-item" data-start="2026-09-03" data-end="2026-09-03">
           <div class="event-card">
             <div class="thumb-wrap">
@@ -7786,10 +7756,19 @@
       const fmt = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       return { start: fmt(dFri), end: fmt(dSun) };
     }
+
     function initDynamicBadges() {
       const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
       document.querySelectorAll('.event-item').forEach(el => {
-        const start = el.getAttribute('data-start'), end = el.getAttribute('data-end') || start;
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+        
+        // Całkowite ukrycie przeterminowanych wydarzeń
+        if (end < today) {
+          el.style.display = 'none';
+          return;
+        }
+
         const badge = el.querySelector('.badge-container');
         if (!badge) return;
         if (start === today || (start <= today && end >= today)) badge.innerHTML = '<span class="tag-highlight">DZIŚ</span>';
@@ -7797,23 +7776,38 @@
         else badge.innerHTML = '';
       });
     }
+
     function filterEvents(mode, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
+      if (btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
       const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
       const weekend = getThisWeekendRange();
+      
       document.querySelectorAll('.event-item').forEach(el => {
-        const start = el.getAttribute('data-start'), end = el.getAttribute('data-end') || start;
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+        
+        // Zabezpieczenie przed przywróceniem wczorajszych eventów
+        if (end < today) {
+          el.style.display = 'none';
+          return;
+        }
+
         if (mode === 'all') el.style.display = 'block';
-        else if (mode === 'today') el.style.display = (start === today || (start <= today && end >= today)) ? 'block' : 'none';
+        else if (mode === 'today') el.style.display = (start <= today && end >= today) ? 'block' : 'none';
         else if (mode === 'tomorrow') el.style.display = (start === tomorrow) ? 'block' : 'none';
         else if (mode === 'weekend') {
-          const inWeekend = (start >= weekend.start && start <= weekend.end) || (end >= weekend.start && start <= weekend.end);
+          const inWeekend = (start <= weekend.end && end >= weekend.start);
           el.style.display = inWeekend ? 'block' : 'none';
         }
       });
     }
-    document.addEventListener('DOMContentLoaded', initDynamicBadges);
+    document.addEventListener('DOMContentLoaded', () => {
+      initDynamicBadges();
+      filterEvents('all', null);
+    });
   </script>
 </body>
 </html>

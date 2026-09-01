@@ -346,10 +346,19 @@
       const fmt = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       return { start: fmt(dFri), end: fmt(dSun) };
     }
+
     function initDynamicBadges() {
       const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
       document.querySelectorAll('.event-item').forEach(el => {
-        const start = el.getAttribute('data-start'), end = el.getAttribute('data-end') || start;
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+        
+        // Całkowite ukrycie przeterminowanych wydarzeń
+        if (end < today) {
+          el.style.display = 'none';
+          return;
+        }
+
         const badge = el.querySelector('.badge-container');
         if (!badge) return;
         if (start === today || (start <= today && end >= today)) badge.innerHTML = '<span class="tag-highlight">DZIŚ</span>';
@@ -357,23 +366,38 @@
         else badge.innerHTML = '';
       });
     }
+
     function filterEvents(mode, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
+      if (btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
       const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
       const weekend = getThisWeekendRange();
+      
       document.querySelectorAll('.event-item').forEach(el => {
-        const start = el.getAttribute('data-start'), end = el.getAttribute('data-end') || start;
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+        
+        // Zabezpieczenie przed przywróceniem wczorajszych eventów
+        if (end < today) {
+          el.style.display = 'none';
+          return;
+        }
+
         if (mode === 'all') el.style.display = 'block';
-        else if (mode === 'today') el.style.display = (start === today || (start <= today && end >= today)) ? 'block' : 'none';
+        else if (mode === 'today') el.style.display = (start <= today && end >= today) ? 'block' : 'none';
         else if (mode === 'tomorrow') el.style.display = (start === tomorrow) ? 'block' : 'none';
         else if (mode === 'weekend') {
-          const inWeekend = (start >= weekend.start && start <= weekend.end) || (end >= weekend.start && start <= weekend.end);
+          const inWeekend = (start <= weekend.end && end >= weekend.start);
           el.style.display = inWeekend ? 'block' : 'none';
         }
       });
     }
-    document.addEventListener('DOMContentLoaded', initDynamicBadges);
+    document.addEventListener('DOMContentLoaded', () => {
+      initDynamicBadges();
+      filterEvents('all', null);
+    });
   </script>
 </body>
 </html>
