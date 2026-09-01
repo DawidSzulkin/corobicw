@@ -14,6 +14,8 @@ from src.infrastructure.db import sync_city_events, get_active_events, save_even
 from src.core.models import FullEventPage, EventAnalysis, QuickFacts, TicketInfo, NearbyGastro
 from src.infrastructure.renderer import HTMLRenderer
 from src.infrastructure.scrapers.registry import get_scrapers_for_city
+from src.normalizer import normalize_ticket_price, format_polish_date
+
 
 MOJIBAKE_PATTERN = re.compile(
     r"(&#65533;|\?+|[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,}\?[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{2,})"
@@ -498,7 +500,10 @@ def _prepare_event_models(events: List[Any], city_cfg: Dict[str, Any], city_name
             badges = [category]
 
         doors_open = _sanitize_llm_string(analysis_raw.get("ticket_info", {}).get("doors_open", ""))
-        price_range = _sanitize_llm_string(analysis_raw.get("ticket_info", {}).get("price_range") or e.get("price_range") or "Sprawdź bilety")
+        raw_price_str = _sanitize_llm_string(analysis_raw.get("ticket_info", {}).get("price_range") or e.get("price_range") or "")
+        is_free_flag = analysis_raw.get("ticket_info", {}).get("is_free") if analysis_raw.get("ticket_info", {}).get("is_free") is not None else e.get("is_free")
+        price_range = normalize_ticket_price(raw_price_str, is_free_flag=is_free_flag, source_url=source_url)
+        date_formatted = format_polish_date(date_start)
 
         nearby_gastro = _find_nearest_gastro(matched_place, places_by_id)
 
