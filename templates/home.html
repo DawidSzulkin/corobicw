@@ -244,6 +244,24 @@
       cursor: pointer;
     }
 
+  
+    .event-card {
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .event-card img,
+    .event-card .event-image,
+    .event-card .date-badge {
+      pointer-events: none;
+      -webkit-user-drag: none;
+      user-drag: none;
+      user-select: none;
+    }
+    .event-card * {
+      cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
@@ -281,8 +299,8 @@
                   {% if m == '01' %}STY{% elif m == '02' %}LUT{% elif m == '03' %}MAR{% elif m == '04' %}KWI{% elif m == '05' %}MAJ{% elif m == '06' %}CZE{% elif m == '07' %}LIP{% elif m == '08' %}SIE{% elif m == '09' %}WRZ{% elif m == '10' %}PAŹ{% elif m == '11' %}LIS{% elif m == '12' %}GRU{% endif %}
                 </span>
               </div>
-              <img src="{{ ev.image_url }}" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="{{ ev.image_url }}" class="thumb-fg" alt="Plakat: {{ ev.title }}" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="{{ ev.image_url }}" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="{{ ev.image_url }}" class="thumb-fg" alt="Plakat: {{ ev.title }}" loading="lazy" onerror="this.src='/assets/placeholder.svg'" draggable="false">
             </div>
             <div class="event-content">
               <div class="text-container">
