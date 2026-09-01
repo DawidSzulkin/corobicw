@@ -173,7 +173,7 @@ def get_active_events(city_tag: str, min_date: str) -> List[Dict[str, Any]]:
         cursor = conn.cursor()
         cursor.execute("""
             SELECT payload FROM events
-            WHERE city_tag = ? AND date_start >= ?
+            WHERE city_tag = ? AND COALESCE(json_extract(payload, '$.date_end'), date_start) >= ?
             ORDER BY date_start ASC
         """, (city_tag, min_date))
         rows = cursor.fetchall()
