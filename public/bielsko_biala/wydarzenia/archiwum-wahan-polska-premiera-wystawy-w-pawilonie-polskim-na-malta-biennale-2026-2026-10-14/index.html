@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -50,13 +50,11 @@
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    /* UKŁAD DWUKOLUMNOWY */
     .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
     @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
     
     .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
     
-    /* VOD BANNER (Top) */
     .ambient-banner {
       position: relative;
       width: 100%;
@@ -85,8 +83,7 @@
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .lead { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); border-left: 2px solid var(--text); padding-left: 16px; margin: 24px 0; line-height: 1.6; }
-    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 12px; font-weight: 800; color: var(--text); }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
     .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
@@ -131,7 +128,6 @@
     </nav>
     
     <div class="container-grid">
-      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
         <a href="https://bb2026.pl/program/archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bb2026_archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026.webp');"></div>
@@ -139,12 +135,11 @@
         </a>
         
         <div class="event-body">
-          <div><span class="badge">Kultura i Rozrywka</span></div>
+          <div><span class="badge">Kultura i Sztuka</span></div>
           <h1>Archiwum wahań. Polska premiera wystawy w Pawilonie Polskim na Malta Biennale 2026</h1>
-          <div class="lead">Po prezentacji w Pawilonie Polskim podczas Malta Biennale 2026 wystawa „Archiwum wahań” Weroniki Zalewskiej zostanie zaprezentowana publiczności w Polsce. Polska premiera ekspozycj</div>
           
           <div class="event-actions-bar">
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Archiwum%20waha%C5%84.%20Polska%20premiera%20wystawy%20w%20Pawilonie%20Polskim%20na%20Malta%20Biennale%202026&details=Po%20prezentacji%20w%20Pawilonie%20Polskim%20podczas%20Malta%20Biennale%202026%20wystawa%20%E2%80%9EArchiwum%20waha%C5%84%E2%80%9D%20Weroniki%20Zalewskiej%20zostanie%20zaprezentowana%20publiczno%C5%9Bci%20w%20Polsce.%20Polska%20premiera%20ekspozycj" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Archiwum%20waha%C5%84.%20Polska%20premiera%20wystawy%20w%20Pawilonie%20Polskim%20na%20Malta%20Biennale%202026&details=Po%20prezentacji%20w%20Pawilonie%20Polskim%20podczas%20Malta%20Biennale%202026%20wystawa%20%E2%80%9EArchiwum%20waha%C5%84%E2%80%9D%20Weroniki%20Zalewskiej%20zostanie%20zaprezentowana%20publiczno%C5%9Bci%20w..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=Archiwum%20waha%C5%84.%20Polska%20premiera%20wystawy%20w%20Pawilonie%20Polskim%20na%20Malta%20Biennale%202026%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026-2026-10-14/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
           
@@ -155,7 +150,6 @@
         </div>
       </div>
       
-      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>
@@ -170,7 +164,7 @@
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
-          <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Sprawdź szczegóły / Bilety</div></div>
+          <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Wstęp wolny / Sprawdź szczegóły</div></div>
           <a href="https://bb2026.pl/program/archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026/" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
         </div>
         

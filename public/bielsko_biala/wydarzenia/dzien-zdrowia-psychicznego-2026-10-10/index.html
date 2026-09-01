@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -50,13 +50,11 @@
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    /* UKŁAD DWUKOLUMNOWY */
     .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
     @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
     
     .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
     
-    /* VOD BANNER (Top) */
     .ambient-banner {
       position: relative;
       width: 100%;
@@ -85,8 +83,7 @@
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .lead { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); border-left: 2px solid var(--text); padding-left: 16px; margin: 24px 0; line-height: 1.6; }
-    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 12px; font-weight: 800; color: var(--text); }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
     .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
@@ -131,7 +128,6 @@
     </nav>
     
     <div class="container-grid">
-      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
         <a href="https://bb2026.pl/program/dzien-zdrowia-psychicznego/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bb2026_dzien-zdrowia-psychicznego.webp');"></div>
@@ -139,12 +135,11 @@
         </a>
         
         <div class="event-body">
-          <div><span class="badge">Kultura i Rozrywka</span></div>
+          <div><span class="badge">Kultura i Sztuka</span></div>
           <h1>Dzień Zdrowia Psychicznego</h1>
-          <div class="lead">Książnica Beskidzka łączy literaturę i sztukę z troską o dobrostan emocjonalny . W Światowym Dniu Zdrowia Psychicznego odbędą się spotkania ze specjalistami, wystawa sensoryczna or</div>
           
           <div class="event-actions-bar">
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Dzie%C5%84%20Zdrowia%20Psychicznego&details=Ksi%C4%85%C5%BCnica%20Beskidzka%20%C5%82%C4%85czy%20literatur%C4%99%20i%20sztuk%C4%99%20z%20trosk%C4%85%20o%20dobrostan%20emocjonalny%20.%20W%20%C5%9Awiatowym%20Dniu%20Zdrowia%20Psychicznego%20odb%C4%99d%C4%85%20si%C4%99%20spotkania%20ze%20specjalistami%2C%20wystawa%20sensoryczna%20or" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Dzie%C5%84%20Zdrowia%20Psychicznego&details=Ksi%C4%85%C5%BCnica%20Beskidzka%20%C5%82%C4%85czy%20literatur%C4%99%20i%20sztuk%C4%99%20z%20trosk%C4%85%20o%20dobrostan%20emocjonalny%20.%20W%20%C5%9Awiatowym%20Dniu%20Zdrowia%20Psychicznego%20odb%C4%99d%C4%85%20si%C4%99%20spotkania%20ze..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=Dzie%C5%84%20Zdrowia%20Psychicznego%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/dzien-zdrowia-psychicznego-2026-10-10/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
           
@@ -155,7 +150,6 @@
         </div>
       </div>
       
-      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>
@@ -164,9 +158,9 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/bielsko_biala/miejsca/bb-ksiaznica-beskidzka/" class="venue-link"><strong>Książnica Beskidzka</strong></a>
+              <a href="/bielsko_biala/miejsca/bb-dzielnicowa-biblioteka-publiczna/" class="venue-link"><strong>Dzielnicowa Biblioteka Publiczna</strong></a>
               
-              <br><small style="color: var(--text-muted);">ul. Juliusza Słowackiego 17a, Bielsko-Biała</small>
+              <br><small style="color: var(--text-muted);">ul. 11 Listopada 40, Bielsko-Biała</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
@@ -179,13 +173,13 @@
           <h3>W okolicy (Gastro)</h3>
           
           <div class="gastro-item">
-            <strong style="color: var(--text);">Lele Pizza</strong>
-            <span class="gastro-dist">140m stąd (~2 min) &bull; restaurant</span>
+            <strong style="color: var(--text);">Stodola</strong>
+            <span class="gastro-dist">7m stąd (~1 min) &bull; fast_food</span>
           </div>
           
           <div class="gastro-item">
-            <strong style="color: var(--text);">Kanon Smaku</strong>
-            <span class="gastro-dist">164m stąd (~2 min) &bull; fast_food</span>
+            <strong style="color: var(--text);">Stek i Wino</strong>
+            <span class="gastro-dist">29m stąd (~1 min) &bull; restaurant</span>
           </div>
           
         </div>

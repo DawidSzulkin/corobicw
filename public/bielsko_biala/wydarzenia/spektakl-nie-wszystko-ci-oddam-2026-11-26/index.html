@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -50,13 +50,11 @@
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    /* UKŁAD DWUKOLUMNOWY */
     .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
     @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
     
     .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
     
-    /* VOD BANNER (Top) */
     .ambient-banner {
       position: relative;
       width: 100%;
@@ -85,8 +83,7 @@
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .lead { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); border-left: 2px solid var(--text); padding-left: 16px; margin: 24px 0; line-height: 1.6; }
-    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 12px; font-weight: 800; color: var(--text); }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
     .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
@@ -131,7 +128,6 @@
     </nav>
     
     <div class="container-grid">
-      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
         <a href="https://www.bck.bielsko.pl/spektakl-nie-wszystko-ci-oddam" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_spektakl-nie-wszystko-ci-oddam.webp');"></div>
@@ -141,10 +137,9 @@
         <div class="event-body">
           <div><span class="badge">Kultura i Rozrywka</span></div>
           <h1>spektakl (NIE) WSZYSTKO CI ODDAM</h1>
-          <div class="lead">Miłość, przyjaźń, radość życia – czegóż trzeba więcej, żeby czuć się dobrze z najbliższymi i żyć pełną piersią! Przecież każdy potrzebuje jakiegoś organu do kochania. Sprawdźmy, cz</div>
           
           <div class="event-actions-bar">
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=spektakl%20%28NIE%29%20WSZYSTKO%20CI%20ODDAM&details=Mi%C5%82o%C5%9B%C4%87%2C%20przyja%C5%BA%C5%84%2C%20rado%C5%9B%C4%87%20%C5%BCycia%20%E2%80%93%20czeg%C3%B3%C5%BC%20trzeba%20wi%C4%99cej%2C%20%C5%BCeby%20czu%C4%87%20si%C4%99%20dobrze%20z%20najbli%C5%BCszymi%20i%20%C5%BCy%C4%87%20pe%C5%82n%C4%85%20piersi%C4%85%21%20Przecie%C5%BC%20ka%C5%BCdy%20potrzebuje%20jakiego%C5%9B%20organu%20do%20kochania.%20Sprawd%C5%BAmy%2C%20cz" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=spektakl%20%28NIE%29%20WSZYSTKO%20CI%20ODDAM&details=Mi%C5%82o%C5%9B%C4%87%2C%20przyja%C5%BA%C5%84%2C%20rado%C5%9B%C4%87%20%C5%BCycia%20%E2%80%93%20czeg%C3%B3%C5%BC%20trzeba%20wi%C4%99cej%2C%20%C5%BCeby%20czu%C4%87%20si%C4%99%20dobrze%20z%20najbli%C5%BCszymi%20i%20%C5%BCy%C4%87%20pe%C5%82n%C4%85%20piersi%C4%85%21%20Przecie%C5%BC%20ka%C5%BCdy%20potrzebuje%20jakiego%C5%9B..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=spektakl%20%28NIE%29%20WSZYSTKO%20CI%20ODDAM%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-nie-wszystko-ci-oddam-2026-11-26/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
           
@@ -155,7 +150,6 @@
         </div>
       </div>
       
-      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>
