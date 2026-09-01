@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -50,13 +50,11 @@
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    /* UKŁAD DWUKOLUMNOWY */
     .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
     @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
     
     .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
     
-    /* VOD BANNER (Top) */
     .ambient-banner {
       position: relative;
       width: 100%;
@@ -85,8 +83,7 @@
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .lead { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); border-left: 2px solid var(--text); padding-left: 16px; margin: 24px 0; line-height: 1.6; }
-    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 12px; font-weight: 800; color: var(--text); }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
     .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
@@ -131,31 +128,32 @@
     </nav>
     
     <div class="container-grid">
-      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
         <a href="https://www.bck.bielsko.pl/wolna-grupa-bukowina-0" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
-          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_bck_bielsko_pl_wolna_grupa_bukowina.webp');"></div>
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_wolna_grupa_bukowina.webp" alt="Plakat: WOLNA GRUPA BUKOWINA" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_wolna-grupa-bukowina.webp');"></div>
+          <img src="/assets/thumbnails/bck_wolna-grupa-bukowina.webp" alt="Plakat: WOLNA GRUPA BUKOWINA" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
         </a>
         
         <div class="event-body">
           <div><span class="badge">Kultura i Rozrywka</span></div>
           <h1>WOLNA GRUPA BUKOWINA</h1>
-          <div class="lead">Wolna Grupa Bukowina - polska grupa muzyczna z nurtu poezji śpiewanej powstała na początku lat 70. XX wieku. Wolna Grupa Bukowina zadebiutowała w 1971 roku na Giełdzie Piosenki Tur</div>
           
           <div class="event-actions-bar">
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=WOLNA%20GRUPA%20BUKOWINA&details=Wolna%20Grupa%20Bukowina%20-%20polska%20grupa%20muzyczna%20z%20nurtu%20poezji%20%C5%9Bpiewanej%20powsta%C5%82a%20na%20pocz%C4%85tku%20lat%2070.%20XX%20wieku.%20Wolna%20Grupa%20Bukowina%20zadebiutowa%C5%82a%20w%201971%20roku%20na%20Gie%C5%82dzie%20Piosenki%20Tur" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=WOLNA%20GRUPA%20BUKOWINA&details=Wolna%20Grupa%20Bukowina%20-%20polska%20grupa%20muzyczna%20z%20nurtu%20poezji%20%C5%9Bpiewanej%20powsta%C5%82a%20na%20pocz%C4%85tku%20lat%2070.%20XX%20wieku.%20Wolna%20Grupa%20Bukowina%20zadebiutowa%C5%82a%20w..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=WOLNA%20GRUPA%20BUKOWINA%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/wolna-grupa-bukowina-2026-10-23/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
           
           <h3 class="section-title">O wydarzeniu</h3>
-          <p style="color: var(--text-muted); line-height: 1.7;">Wolna Grupa Bukowina - polska grupa muzyczna z nurtu poezji śpiewanej powstała na początku lat 70. XX wieku. Wolna Grupa Bukowina zadebiutowała w 1971 roku na Giełdzie Piosenki Turystycznej w Szklarskiej Porębie. Na koncercie na pewno usłyszymy takie ponadczasowe hity jak Majster Bieda, Pejzaże Harasymowiczowskie, Sielanka o domu i wiele innych. Z POWODU CHOROBY JEDNEGO Z MUZYKÓW KONCERT PRZESUNIĘTY NA 23 PAŹDZIERNIKA.</p>
+          <p style="color: var(--text-muted); line-height: 1.7;">Wolna Grupa Bukowina - polska grupa muzyczna z nurtu poezji śpiewanej powstała na początku lat 70. XX wieku. Wolna Grupa Bukowina zadebiutowała w 1971 roku na Giełdzie Piosenki Turystycznej w Szklarskiej Porębie. Zespół przyjechał z Buska - Zdroju, a założył go ówczesny maturzysta Wojciech Bellon. Piosenką Wojtka "Ponidzie" wyśpiewali jedną z głównych nagród. Miała formułę zespołu otwartego, toteż występowało z nią wielu znanych polskich wykonawców i muzyków. Trzon zespołu stanowili: Wojciech Bellon - twórca tekstów większości piosenek, Grażyna Kulawik, Wojciech Jarociński i Wacław Juszczyszyn. Poza sporym dorobkiem fonograficznym zespół ma na swym koncie wielokrotnie nagrodzone występy w licznych polskich festiwalach w tym na Festiwalu Polskiej Piosenki w Opolu, Studenckim Festiwalu Piosenki w Krakowie, udział w studenckich festiwalach FAMA oraz dwukrotny występ dla 150 tysięcznej widowni na Przystanku Woodstock.
+
+Zespół ma też za sobą wielokrotne występy zagraniczne w Europie a także dla Polonii w Kanadzie, USA i Irlandii.Wolna Grupa Bukowina stale od ponad 52 lat z nieustającym powodzeniem koncertuje w Polsce zdobywając sobie coraz to nowe pokolenia wiernych słuchaczy. Stała się obecnie na polskiej scenie muzycznej zjawiskiem trwałym i znaczącym.Obecny skład Wolnej Grupy Bukowina to: Grażyna Kulawik - śpiew, Wojciech Jarociński - śpiew, gitara, Wacław Juszczyszyn - śpiew, gitaraKrzysztof Żesławski - gitara basowaWydawnictwa1978 - "Jan Wołek, Wolna Grupa Bukowina" - kaseta 1991 - "Bukowina" - Złota Płyta "Pomaton"1994 - "Niechaj zabrzmi" - płyta koncertowa1995 - "Sad"1999 - "Pieśń Łagodnych" - składanka przebojów2001 - "Słonecznik, Antologia" (2xCD)2003 - "Bukowina / Sad" (2xCD) - reedycja dwóch albumów
+
+Ulgowe: Bielska Karta Rodzina +, Weteran +, Bielska Karta Seniora, Zasłużony dla Zdrowia Narodu</p>
           
           
         </div>
       </div>
       
-      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>
@@ -170,7 +168,7 @@
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
-          <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne (BCK Bilety)</div></div>
+          <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne (KupBilecik)</div></div>
           <a href="https://www.bck.bielsko.pl/wolna-grupa-bukowina-0" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
         </div>
         

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -59,7 +59,6 @@
     .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
     .filter-btn.active { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
 
-    /* ================= KARTY WYDARZEŃ (WZORZEC 2 - KALIBRACJA 176px) ================= */
     .event-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -73,7 +72,6 @@
     }
     .event-card:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(3px); }
 
-    /* KADR PLAKATU Z EFEKTEM AMBIENT */
     .thumb-wrap {
       width: 220px;
       min-width: 220px;
@@ -104,7 +102,6 @@
     }
     .event-card:hover .thumb-fg { transform: scale(1.03); }
 
-    /* WCAG DATE BADGE (AAA CONTRAST) */
     .date-badge {
       position: absolute;
       top: 0;
@@ -135,7 +132,6 @@
       margin-top: 2px;
     }
 
-    /* TREŚĆ KARTY */
     .event-content {
       padding: 10px 16px;
       flex: 1;
@@ -185,16 +181,32 @@
     }
     .event-title a { color: var(--text); text-decoration: none; }
     .event-title a::after { content: ""; position: absolute; inset: 0; }
+    
+    /* GRADIENTOWE ZANIKANIE TEKSTU */
     .event-desc {
       font-size: 0.82rem;
       color: var(--text-muted);
       line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      max-height: 2.7em; /* 1.35 * 2 = 2.7 */
+      position: relative;
       overflow: hidden;
       flex-shrink: 1;
     }
+    .event-desc::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40%;
+      height: 1.35em;
+      background: linear-gradient(to right, transparent, var(--card-bg) 70%);
+      pointer-events: none;
+      transition: background 0.2s;
+    }
+    .event-card:hover .event-desc::after {
+      background: linear-gradient(to right, transparent, var(--card-hover) 70%);
+    }
+    
     .meta-bottom {
       border-top: 1px solid var(--border);
       padding-top: 6px;
@@ -310,6 +322,36 @@
           </div>
         </article>
       
+        <article class="event-item" data-start="2026-09-01" data-end="2026-09-01">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">01</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_zwiedzanie-muzeum-w-domu-kultury-lech-oraz-schronu-z-okazji-87-rocznicy-wybuchu-ii-wojny-swiatowej.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_zwiedzanie-muzeum-w-domu-kultury-lech-oraz-schronu-z-okazji-87-rocznicy-wybuchu-ii-wojny-swiatowej.webp" class="thumb-fg" alt="Plakat: Zwiedzanie Muzeum w Domu Kultury Lech oraz Schronu z okazji 87 rocznicy wybuchu II Wojny Światowej" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-01 &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/zwiedzanie-muzeum-w-domu-kultury-lech-oraz-schronu-z-okazji-87-rocznicy-wybuchu-ii-wojny-swiatowej-2026-09-01/">Zwiedzanie Muzeum w Domu Kultury Lech oraz Schronu z okazji 87 rocznicy wybuchu II Wojny Światowej</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Zwiedzanie Muzeum w Domu Kultury Lech oraz Schronu z okazji 87 rocznicy wybuchu II Wojny Światowej.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
         <article class="event-item" data-start="2026-09-01" data-end="2026-09-30">
           <div class="event-card">
             <div class="thumb-wrap">
@@ -340,6 +382,36 @@
           </div>
         </article>
       
+        <article class="event-item" data-start="2026-09-01" data-end="2026-09-01">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">01</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/mosirkk_wracamy-z-oferta-groty-solnej-od-1-wrzesnia-zapraszamy-do-gr.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/mosirkk_wracamy-z-oferta-groty-solnej-od-1-wrzesnia-zapraszamy-do-gr.webp" class="thumb-fg" alt="Plakat: Wracamy z ofertą Groty Solnej Od 1 września zapraszamy do Gr" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-01 &bull; Według harmonogramu</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/wracamy-z-oferta-groty-solnej-od-1-wrzesnia-zapraszamy-do-gr-2026-09-01/">Wracamy z ofertą Groty Solnej Od 1 września zapraszamy do Gr</a></h3>
+                <p class="event-desc">Wracamy z ofertą Groty Solnej Od 1 września zapraszamy do Groty Solnej.Czynna codziennie w godz. 12.00-20.00 01.09.2026 więcej...</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź cennik / Wstęp wolny</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
         <article class="event-item" data-start="2026-09-04" data-end="2026-09-04">
           <div class="event-card">
             <div class="thumb-wrap">
@@ -350,8 +422,8 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_narodowe_czytanie____dziady__adama_mickiewicza.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_narodowe_czytanie____dziady__adama_mickiewicza.webp" class="thumb-fg" alt="Plakat: Narodowe Czytanie – „Dziady” Adama Mickiewicza" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_narodowe-czytanie-dziady-adama-mickiewicza.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_narodowe-czytanie-dziady-adama-mickiewicza.webp" class="thumb-fg" alt="Plakat: Narodowe Czytanie – „Dziady” Adama Mickiewicza" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -380,8 +452,8 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_wernisa__wystawy_prac_czes_awy_szl_zak_i_damiana_szl_zaka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_wernisa__wystawy_prac_czes_awy_szl_zak_i_damiana_szl_zaka.webp" class="thumb-fg" alt="Plakat: Wernisaż wystawy prac Czesławy Szlązak i Damiana Szlązaka" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_wernisaz-wystawy-prac-czeslawy-szlazak-i-damiana-szlazaka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_wernisaz-wystawy-prac-czeslawy-szlazak-i-damiana-szlazaka.webp" class="thumb-fg" alt="Plakat: Wernisaż wystawy prac Czesławy Szlązak i Damiana Szlązaka" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -390,7 +462,9 @@
                   <span>Kultura i Rozrywka &bull; 2026-09-04 &bull; 18:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/wernisaz-wystawy-prac-czeslawy-szlazak-i-damiana-szlazaka-2026-09-04/">Wernisaż wystawy prac Czesławy Szlązak i Damiana Szlązaka</a></h3>
-                <p class="event-desc">Czesława Szlązak – artystka z Krapkowic, cod 2011 r. członkini krapkowickiego Stowarzyszenia Twórców i Artystów „Pasja”. Swoją przygodę ze sztuką i kreacją rozpoczęła od haftu krzy</p>
+                <p class="event-desc">Czesława Szlązak – artystka z Krapkowic, cod 2011 r. członkini krapkowickiego Stowarzyszenia Twórców i Artystów „Pasja”. Swoją przygodę ze sztuką i kreacją rozpoczęła od haftu krzyżykowego. Później spróbowała rysunku, grafiki, a teraz szczególnie bliskie jej sercu jest malarstwo. Maluje akrylami, pastelami i akwarelą. Jej prace są odzwierciedleniem tego, co aktualnie przeżywa, oraz tego, co dzieje się w jej otoczeniu, czy na świecie. Lubi eksperymentować używając niebanalnych technik.
+
+Zamiłowanie do malarstwa miała od zawsze, jednak dopiero po przejściu na emeryturę zaczęła realizować swoją artystyczną pasję. Na obrazach i rysunkach najczęściej możemy zauważyć motyw przyrody, jednak jak sama artystka przyznaje, lubi malować również ludzi, pędzlem i ołówkiem przedstawiać emocje danych sytuacji. Poprzez sztukę wyraża to, co czuje w danym momencie. Nawet jeżeli wiąże się to z pewną niewygodą. Malowanie to dla niej forma terapii oraz sposobu na radzenie sobie z rzeczywistością.</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">Wstęp wolny / Sprawdź bilety</span>
@@ -424,6 +498,40 @@
               </div>
               <div class="meta-bottom">
                 <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">04</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/mok_kk_rusza-letnie-kino-plenerowe-2026-zobacz-kiedy-zawitamy-na-twoje-osiedle.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/mok_kk_rusza-letnie-kino-plenerowe-2026-zobacz-kiedy-zawitamy-na-twoje-osiedle.webp" class="thumb-fg" alt="Plakat: rusza letnie kino plenerowe 2026! zobacz, kiedy zawitamy na twoje osiedle!" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-04 &bull; 21:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rusza-letnie-kino-plenerowe-2026-zobacz-kiedy-zawitamy-na-twoje-osiedle-2026-09-04/">rusza letnie kino plenerowe 2026! zobacz, kiedy zawitamy na twoje osiedle!</a></h3>
+                <p class="event-desc">Miejski Ośrodka Kultury w Kędzierzynie-Koźlu ma zaszczyt zaprosić wszystkich mieszkańców – na kolejną edycję wyjątkowego Letniego Kina Plenerowego! Przez cały lipiec, sierpień oraz na początku września będziemy wspólnie dzielić filmowe emocje pod gołym niebem.
+
+W tym roku przygotowaliśmy dla Was aż 10 wyjątkowych seansów, które odbędą się w różnych dzielnicach naszego miasta. Chcemy być blisko Was, dlatego filmowy ekran zagości na osiedlowych placach zabaw, boiskach szkolnych, stadionach oraz w urokliwych parkach. Wszystkie seanse rozpoczynają się punktualnie o godzinie 21:00, a wstęp na każde wydarzenie jest całkowicie BEZPŁATNY.
+
+Weźcie ze sobą koce, turystyczne krzesełka, świetne humory i najbliższych! My zapewniamy doskonałą jakość obrazu, dźwięku oraz niepowtarzalny klimat letnich wieczorów.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -500,8 +608,8 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_koncert_pt___w_r_d_zieleni.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_koncert_pt___w_r_d_zieleni.webp" class="thumb-fg" alt="Plakat: Koncert pt. „Wśród zieleni”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_koncert-pt-wsrod-zieleni.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_koncert-pt-wsrod-zieleni.webp" class="thumb-fg" alt="Plakat: Koncert pt. „Wśród zieleni”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -620,8 +728,38 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_spotkanie_autorskie_z_magdalen__woch___ksi____daisy_i_hochbergowie.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_spotkanie_autorskie_z_magdalen__woch___ksi____daisy_i_hochbergowie.webp" class="thumb-fg" alt="Plakat: Spotkanie autorskie z Magdaleną Woch – Książ, Daisy i Hochbergowie" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_dni-seniora-2026-taniec-pokolen-na-rynku-w-kozlu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_dni-seniora-2026-taniec-pokolen-na-rynku-w-kozlu.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 – Taniec pokoleń na Rynku w Koźlu" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-08 &bull; 13:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-taniec-pokolen-na-rynku-w-kozlu-2026-09-08/">Dni Seniora 2026 – Taniec pokoleń na Rynku w Koźlu</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 – Taniec pokoleń na Rynku w Koźlu.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-08" data-end="2026-09-08">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">08</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_spotkanie-autorskie-z-magdalena-woch-ksiaz-daisy-i-hochbergowie.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_spotkanie-autorskie-z-magdalena-woch-ksiaz-daisy-i-hochbergowie.webp" class="thumb-fg" alt="Plakat: Spotkanie autorskie z Magdaleną Woch – Książ, Daisy i Hochbergowie" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -770,8 +908,8 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_letni_plener_malarski_w_slawi_cicach.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_letni_plener_malarski_w_slawi_cicach.webp" class="thumb-fg" alt="Plakat: Letni Plener Malarski w Slawięcicach" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_letni-plener-malarski-w-slawiecicach.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_letni-plener-malarski-w-slawiecicach.webp" class="thumb-fg" alt="Plakat: Letni Plener Malarski w Slawięcicach" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -780,7 +918,7 @@
                   <span>Kultura i Rozrywka &bull; 2026-09-12 &bull; 10:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/letni-plener-malarski-w-slawiecicach-2026-09-12/">Letni Plener Malarski w Slawięcicach</a></h3>
-                <p class="event-desc">Letni Plener Malarski w Slawięcicach Data i godzina wydarzenia: 12.09.2026 r. godz. 10.00 -14.00, Park Pojednania Serdecznie zapraszamy na Letni Plener Malarski, który odbędzie się</p>
+                <p class="event-desc">Letni Plener Malarski w Slawięcicach Data i godzina wydarzenia: 12.09.2026 r. godz. 10.00 -14.00, Park Pojednania Serdecznie zapraszamy na Letni Plener Malarski, który odbędzie się 12.09 w Parku w Sławięcicach. Koszt udziału w plenerze - 100 zł Ilosć miejsc jest ograniczona. +</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">100 zł</span>
@@ -830,17 +968,17 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kk_rekrut-run-zaprawa-3k-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kk_rekrut-run-zaprawa-3k-2026.webp" class="thumb-fg" alt="Plakat: Rekrut Run – Zaprawa 3K 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_rekrutrun-zaprawa-3k-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_rekrutrun-zaprawa-3k-2026.webp" class="thumb-fg" alt="Plakat: RekrutRUN - Zaprawa 3K 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
                   <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-12 &bull; 16:00</span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-12 &bull; 15:40</span>
                 </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rekrut-run-zaprawa-3k-2026-2026-09-12/">Rekrut Run – Zaprawa 3K 2026</a></h3>
-                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Rekrut Run – Zaprawa 3K 2026.</p>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rekrutrun-zaprawa-3k-2026-2026-09-12/">RekrutRUN - Zaprawa 3K 2026</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: RekrutRUN - Zaprawa 3K 2026.</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">Wstęp wolny / Sprawdź bilety</span>
@@ -890,8 +1028,8 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_gaz_system_na_pi_tk.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_gaz_system_na_pi_tk.webp" class="thumb-fg" alt="Plakat: Gaz system na piątkę" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_gaz-system-na-piatke.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_gaz-system-na-piatke.webp" class="thumb-fg" alt="Plakat: Gaz system na piątkę" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -920,8 +1058,8 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_koncert-przy-swiecach-tribute-to-michael-jackson.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_koncert-przy-swiecach-tribute-to-michael-jackson.webp" class="thumb-fg" alt="Plakat: Candle Live Music: Koncert przy świecach" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_candle-live-music-koncert-przy-swiecach.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_candle-live-music-koncert-przy-swiecach.webp" class="thumb-fg" alt="Plakat: Candle Live Music: Koncert przy świecach" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -930,10 +1068,10 @@
                   <span>Kultura i Rozrywka &bull; 2026-09-13 &bull; 19:30</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/candle-live-music-koncert-przy-swiecach-2026-09-13/">Candle Live Music: Koncert przy świecach</a></h3>
-                <p class="event-desc">Candle Live Music: Koncert przy świecach.</p>
+                <p class="event-desc">Koncert instrumentalny przy świecach to magiczne wydarzenie, które ożywia zmysły i tworzy niepowtarzalną atmosferę. W przyćmionym świetle świec, artyści wypełniają przestrzeń swoją muzyką, tworząc intymną i emocjonalną aurę. Dbamy o to, aby każdy miłośnik dobrego brzmienia znalazł coś dla siebie. Oferujemy szeroką gamę tematów i gatunków muzycznych w unikalnych, instrumentalnych aranżacjach: muzykę klasyczną, jazz, muzykę popularną, a także hitowe motywy z muzyki filmowej. Z pasją tworzymy niezapomniane muzyczne doświadczenia, które łączą piękno dźwięków z magiczną, pełną natury atmosferą, tworząc chwile, które na długo pozostają w pamięci. Każdy koncert powstaje z pasją, dbałością o detale i najwyższą jakość. Wszystko po to, aby zapewnić każdemu gościowi wyjątkowe, wielozmysłowe przeżycie. Dołącz do grona zadowolonych uczestników naszych koncertów!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
+                <span class="price">Od 95.58 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -950,8 +1088,8 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_noc_w_wenecji__w_oska_muzyka__podr__e_i_smak_italii_w_raciborzu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_noc_w_wenecji__w_oska_muzyka__podr__e_i_smak_italii_w_raciborzu.webp" class="thumb-fg" alt="Plakat: Noc w Wenecji. Włoska muzyka, podróże i smak Italii w Raciborzu" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_noc-w-wenecji-wloska-muzyka-podroze-i-smak-italii-w-raciborzu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_noc-w-wenecji-wloska-muzyka-podroze-i-smak-italii-w-raciborzu.webp" class="thumb-fg" alt="Plakat: Noc w Wenecji. Włoska muzyka, podróże i smak Italii w Raciborzu" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -960,7 +1098,7 @@
                   <span>Kultura i Rozrywka &bull; 2026-09-13 &bull; 17:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/noc-w-wenecji-wloska-muzyka-podroze-i-smak-italii-w-raciborzu-2026-09-13/">Noc w Wenecji. Włoska muzyka, podróże i smak Italii w Raciborzu</a></h3>
-                <p class="event-desc">Włoskie arie i pieśni, dwa znakomite głosy, opowieści z podróży, aromat kawy i smak prawdziwych cannoli. „Noc w Wenecji” ma być wieczorem, podczas którego Racibórz na kilka godzin</p>
+                <p class="event-desc">Włoskie arie i pieśni, dwa znakomite głosy, opowieści z podróży, aromat kawy i smak prawdziwych cannoli. „Noc w Wenecji” ma być wieczorem, podczas którego Racibórz na kilka godzin przeniesie się do słonecznej Italii. Nie trzeba kupować biletu do Wenecji, żeby poczuć klimat Włoch. Wystarczy przyjść na „Noc w Wenecji” – wyjątkowe spotkanie muzyki, podróży i włoskiego stylu życia. Na scenie wystąpią Justyna Bujak – sopran oraz Michał Dziedzic – tenor, którzy wykonają najpiękniejsze włoskie arie i pieśni. Oboje mają za sobą występy na najważniejszych scenach i festiwalach muzycznych w Polsce i za granicą, a ich wspólny album „Passione” w całości poświęcony jest włoskiej muzyce. Podczas raciborskiego koncertu zabrzmią utwory z kręgu muzyki operowej i operetkowej. Muzyka będzie jednak tylko częścią tego wieczoru. W świat włoskich podróży, fascynacji i niezwykłych spotkań zabierze publiczność Anna Stuchly, Raciborzanka, podróżniczka, miłośniczka Italii i kultowej Vespy, która debiutuje książką „VespiAnka w podróży. Blond, wojaże i wiraże”. Jej opowieści nie są klasycznym dziennikiem z podróży. To historie o miejscach, ludziach, zachwytach, pasji i ciekawości świata. O tym, jak z pozornie zwyczajnej fascynacji może narodzić się coś, co zaczyna zmieniać sposób patrzenia na życie. „Noc w Wenecji” będzie więc czymś więcej niż koncertem. To wieczór dla tych, którzy kochają Włochy, ale także dla tych, którzy po prostu lubią dobrą muzykę, ciekawe historie i chcą na chwilę oderwać się od codzienności. Będą włoskie głosy, muzyka, opowieści z podróży, kawa i cannoli. Będzie także Wenecja – choć tym razem bez konieczności pakowania walizki. Przyjdźcie na włoski wieczór w Raciborzu. Być może po tych kilku godzinach zaczniecie planować własną podróż do Italii. Wystąpią: Justyna Bujak – sopranistka, absolwentka Akademii Muzycznej we Wrocławiu i Akademii Muzycznej w Katowicach, laureatka konkursów wokalnych, solistka koncertująca w kraju i za granicą. W swoim repertuarze ma role operowe i operetkowe, a także liczne koncerty z muzyką klasyczną. Michał Dziedzic – tenor, doktorant Wydziału Nauk Muzycznych Uniwersytetu w Ostrawie, laureat konkursów wokalnych, artysta koncertujący w Polsce, Czechach i Norwegii. W 2025 roku zadebiutował na scenie Slezského divadla w Opawie jako Don José w „Carmen”. Anna Stuchly – Raciborzanka, dentystka, podróżniczka, miłośniczka Italii i Vespy oraz autorka debiutanckiej książki „VespiAnka w podróży. Blond, wojaże i wiraże”. „Noc w Wenecji” – muzyka, podróże i smak Italii w jednym wieczorze.</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">Od 63.72 zł</span>
@@ -1040,8 +1178,8 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_dyskusyjny_klub_ksi__ki____chwila_przed_podr_____reporta_e_z_prl.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kk_kedzierzynkozle_pl_dyskusyjny_klub_ksi__ki____chwila_przed_podr_____reporta_e_z_prl.webp" class="thumb-fg" alt="Plakat: Dyskusyjny Klub Książki – „Chwila przed podróżą. Reportaże z PRL”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_dyskusyjny-klub-ksiazki-chwila-przed-podroza-reportaze-z-prl.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_dyskusyjny-klub-ksiazki-chwila-przed-podroza-reportaze-z-prl.webp" class="thumb-fg" alt="Plakat: Dyskusyjny Klub Książki – „Chwila przed podróżą. Reportaże z PRL”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -1090,6 +1228,36 @@
           </div>
         </article>
       
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-20">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">19</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_final-mistrzostwa-miasta-amatorow-w-tenisie-w-grach-pojedynczych-kobiet-i-mezczyzn.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_final-mistrzostwa-miasta-amatorow-w-tenisie-w-grach-pojedynczych-kobiet-i-mezczyzn.webp" class="thumb-fg" alt="Plakat: FINAŁ Mistrzostwa Miasta Amatorów w tenisie w grach pojedynczych kobiet i mężczyzn" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-19 &bull; 08:30</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/final-mistrzostwa-miasta-amatorow-w-tenisie-w-grach-pojedynczych-kobiet-i-mezczyzn-2026-09-19/">FINAŁ Mistrzostwa Miasta Amatorów w tenisie w grach pojedynczych kobiet i mężczyzn</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: FINAŁ Mistrzostwa Miasta Amatorów w tenisie w grach pojedynczych kobiet i mężczyzn.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
         <article class="event-item" data-start="2026-09-19" data-end="2026-09-19">
           <div class="event-card">
             <div class="thumb-wrap">
@@ -1111,6 +1279,66 @@
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/parkrun-kedzierzyn-kozle-2026-09-19/">parkrun Kędzierzyn-Koźle</a></h3>
                 <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: parkrun Kędzierzyn-Koźle.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-19">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">19</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona.webp" class="thumb-fg" alt="Plakat: Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-19 &bull; 11:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona-2026-09-19/">Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-20">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">19</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_miasto-dawniej-i-dzis-wirtualny-spacer-przez-dzieje-ziemi-kozielskiej.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_miasto-dawniej-i-dzis-wirtualny-spacer-przez-dzieje-ziemi-kozielskiej.webp" class="thumb-fg" alt="Plakat: „Miasto dawniej i dziś – wirtualny spacer przez dzieje Ziemi Kozielskiej”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-19 &bull; 13:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/miasto-dawniej-i-dzis-wirtualny-spacer-przez-dzieje-ziemi-kozielskiej-2026-09-19/">„Miasto dawniej i dziś – wirtualny spacer przez dzieje Ziemi Kozielskiej”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: „Miasto dawniej i dziś – wirtualny spacer przez dzieje Ziemi Kozielskiej”.</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">Wstęp wolny / Sprawdź bilety</span>
@@ -1150,27 +1378,57 @@
           </div>
         </article>
       
-        <article class="event-item" data-start="2026-09-21" data-end="2026-09-21">
+        <article class="event-item" data-start="2026-09-20" data-end="2026-09-20">
           <div class="event-card">
             <div class="thumb-wrap">
               <div class="date-badge">
-                <span class="day">21</span>
+                <span class="day">20</span>
                 <span class="month">
                   
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kk_rekrutrun-zaprawa-3k-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kk_rekrutrun-zaprawa-3k-2026.webp" class="thumb-fg" alt="Plakat: RekrutRUN - Zaprawa 3K 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_muzyka-polnocy-grieg-sibelius-koncert-w-wykonaniu-orkiestry-kameralnej-con-vigore.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_muzyka-polnocy-grieg-sibelius-koncert-w-wykonaniu-orkiestry-kameralnej-con-vigore.webp" class="thumb-fg" alt="Plakat: „Muzyka północy: Grieg – Sibelius” - koncert w wykonaniu Orkiestry Kameralnej „Con Vigore”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
                   <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-21 &bull; 15:40</span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-20 &bull; 15:00</span>
                 </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rekrutrun-zaprawa-3k-2026-2026-09-21/">RekrutRUN - Zaprawa 3K 2026</a></h3>
-                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: RekrutRUN - Zaprawa 3K 2026.</p>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/muzyka-polnocy-grieg-sibelius-koncert-w-wykonaniu-orkiestry-kameralnej-con-vigore-2026-09-20/">„Muzyka północy: Grieg – Sibelius” - koncert w wykonaniu Orkiestry Kameralnej „Con Vigore”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: „Muzyka północy: Grieg – Sibelius” - koncert w wykonaniu Orkiestry Kameralnej „Con Vigore”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-22" data-end="2026-09-24">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">22</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej.webp" class="thumb-fg" alt="Plakat: Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-22 &bull; 09:30</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej-2026-09-22/">Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”.</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">Wstęp wolny / Sprawdź bilety</span>
@@ -1220,20 +1478,50 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-fg" alt="Plakat: ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_spotkanie-autorskie-z-barbara-saczko-bomba.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_spotkanie-autorskie-z-barbara-saczko-bomba.webp" class="thumb-fg" alt="Plakat: Spotkanie autorskie z Barbarą Saczko-Bombą" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
                   <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-24 &bull; 18:00</span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-24 &bull; 17:00</span>
                 </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-24/">ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</a></h3>
-                <p class="event-desc">„Anatomia Zdarzeń. Kieszenie pełne wspomnień”, w reż. J. Gerigk, Latający Teatr Kantorowi, Rzeszów, Spektakl realizowany w ramach TEATR POLSKA godz. 19.00 - rozmowa z aktorami Wyob</p>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/spotkanie-autorskie-z-barbara-saczko-bomba-2026-09-24/">Spotkanie autorskie z Barbarą Saczko-Bombą</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Spotkanie autorskie z Barbarą Saczko-Bombą.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 22.24 zł</span>
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-25" data-end="2026-09-25">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">25</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-fg" alt="Plakat: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-25 &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026-2026-09-25/">XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026</a></h3>
+                <p class="event-desc">Koncerty: Czarny/Mikulski, Małżeństwo z rozsądku i Kuba Blokesz – „Nic się przecież nie kończy”, bilet: 60 zł</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1280,17 +1568,17 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-fg" alt="Plakat: RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_proby-jozefa-k-wg-procesu-f-kafki-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_proby-jozefa-k-wg-procesu-f-kafki-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-fg" alt="Plakat: PRÓBY JÓZEFA K. wg ,,Procesu'' F. Kafki - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
                   <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-25 &bull; 20:00</span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-25 &bull; 17:00</span>
                 </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-25/">RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka</a></h3>
-                <p class="event-desc">RARYTAS - Koncepcja &amp; Muzyka: "Kwartet Wiejski" (Robert i Ewa Wasilewscy, Jacek Hałas i Alicja Choromańska-Hałas) oraz Wolfgang Niklaus "Pinkas chodził ze swej uliczki codzienn</p>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/proby-jozefa-k-wg-procesu-f-kafki-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-25/">PRÓBY JÓZEFA K. wg ,,Procesu'' F. Kafki - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</a></h3>
+                <p class="event-desc">Teatr Gdynia Główna - ,, Próby Józefa K.'' wg „Procesu” Franza Kafki Według słynnego socjologa i psychoanalityka Ericha Fromma Józef K., główny bohater „Procesu” Franza Kafki, jest człowiekiem, który nie umie wziąć odpowiedzialności za własną egzystencję. Nie stać go na poświęcenie się żadnej idei. Prowadzi nudne, monotonne życie, pozbawione wartości. Jest w zasadzie człowiekiem zbędnym, nieprzydatnym ani społeczeństwu, ani nawet żadnej jednostce. W adaptacji Ewy Ignaczak tytułowy proces jest więc ostatnim momentem, w którym K. może odmienić swoje życie. Jednak zamiast tego staje się jeszcze bardziej egocentryczny, interesowny, niesamodzielny i powierzchowny. Czy sytuacja aresztowania wywoła w nim jakąkolwiek refleksję na temat jego płaskiej i „letniej” egzystencji Czy Józef K. odnajdzie odpowiedzi na pytania: Kto go oskarża Jaka władza prowadzi postępowanie Wobec jakiego prawa jest winien Czy pozna szczęście i skorzysta z szansy, by delektować się życiem Scenariusz i reżyseria: Ewa Ignaczak Obsada: Jakub Kornacki i Marek Kościółek Światło: Marzena Chojnowska Czas trwania spektaklu: 70 min</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">Od 22.24 zł</span>
@@ -1340,20 +1628,50 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_pokoj-mojego-dziecinstwa-hommage-dla-marii-stangret-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_pokoj-mojego-dziecinstwa-hommage-dla-marii-stangret-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-fg" alt="Plakat: "Pokój mojego dzieciństwa.  Hommage dla Marii Stangret” - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-fg" alt="Plakat: parkrun Kędzierzyn-Koźle" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
                   <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-26 &bull; 20:45</span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-26 &bull; 09:00</span>
                 </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/pokoj-mojego-dziecinstwa-hommage-dla-marii-stangret-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-26/">"Pokój mojego dzieciństwa.  Hommage dla Marii Stangret” - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</a></h3>
-                <p class="event-desc">"Pokój mojego dzieciństwa. Hommage dla Marii Stangret” wg koncepcji reżyserskiej Pawła Passiniego - Latający Teatr Kantorowi z Rzeszowa Dawny świat rozpada się na naszych oczach. T</p>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/parkrun-kedzierzyn-kozle-2026-09-26/">parkrun Kędzierzyn-Koźle</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: parkrun Kędzierzyn-Koźle.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 22.24 zł</span>
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-26" data-end="2026-09-26">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">26</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-fg" alt="Plakat: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-26 &bull; 12:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026-2026-09-26/">XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026”</a></h3>
+                <p class="event-desc">„Ogród” - spektakl dla dzieci Teatru Tańca Marioli Ptak, bilety: 30 zł/normalny, 20 zł/ulgowy</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1370,20 +1688,20 @@
                   WRZ
                 </span>
               </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_ta_czy_a_charlestona___-_monodram_-_v_og_lnopolski_festiwal_teatralny_off-ka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_ta_czy_a_charlestona___-_monodram_-_v_og_lnopolski_festiwal_teatralny_off-ka.webp" class="thumb-fg" alt="Plakat: Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_mistrzostwa-miasta-amatorow-w-pilce-siatkowej-mezczyzn.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_mistrzostwa-miasta-amatorow-w-pilce-siatkowej-mezczyzn.webp" class="thumb-fg" alt="Plakat: Mistrzostwa Miasta Amatorów w piłce siatkowej mężczyzn" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
                   <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-27 &bull; 16:00</span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-27 &bull; 09:00</span>
                 </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-27/">Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka</a></h3>
-                <p class="event-desc">"Tańczyła charlestona" monodram w wykonaniu PAULINY SZCZĘSNEJ Spektakl oparty jest o teatr fizyczny i teatr formy, koncentrujący się na tajemniczym zniknięciu Agathy Christie w 192</p>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/mistrzostwa-miasta-amatorow-w-pilce-siatkowej-mezczyzn-2026-09-27/">Mistrzostwa Miasta Amatorów w piłce siatkowej mężczyzn</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Mistrzostwa Miasta Amatorów w piłce siatkowej mężczyzn.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 22.24 zł</span>
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1414,6 +1732,96 @@
               </div>
               <div class="meta-bottom">
                 <span class="price">Od 43.48 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-27" data-end="2026-09-27">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">27</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-fg" alt="Plakat: Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-27 &bull; 16:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-27/">Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka</a></h3>
+                <p class="event-desc">"Tańczyła charlestona" monodram w wykonaniu PAULINY SZCZĘSNEJ Spektakl oparty jest o teatr fizyczny i teatr formy, koncentrujący się na tajemniczym zniknięciu Agathy Christie w 1926 roku. Przez 11 dni cała Anglia była poruszona jej nagłym zniknięciem, a spektakl ten jest próbą eksploracji możliwych scenariuszy, które mogłyby wyjaśnić, co się z nią działo. Stawia on pytanie o to, czy Agatha Christie mogła zaaranżować swoje własne zniknięcie. Oprócz elementu zagadki, spektakl zagłębia się w postać kobiecą Agathy Christie, eksplorując tematy kobiecości oraz wewnętrznej podróży bohaterki. Poprzez metaforę "Night sea journey" spektakl dotyka momentów ciemności w życiu, konfrontacji z własnymi lękami i demonami, które, według Carla Junga, są niezbędne dla rozwoju jednostki. Spektakl jest jednocześnie fizyczny, pełen humoru, z elementami tajemnicy i surrealizmu. Akcja rozgrywa się w fantasmagorycznej przestrzeni, gdzie główna postać, inspirowana Agathą Christie, spotyka swoje marzenia, demony i lęki, a sen miesza się z jawą. Przedstawienie staje się zatem nie tylko kryminalną zagadką, ale również głęboką introspekcją i refleksją nad ludzką naturą w stanie przejścia. Twórcy spektaklu: Paulina Szczęsna – scenariusz, reżyseria, rola aktorska Paweł Paluch – muzyka Jędrzej Skajster – światło, projekcje wideo Alicja Siemko – scenografia Agnieszka Magiera – kostiumy Gavin Glover – wsparcie dramaturgiczne Michal Schmueli – ruch sceniczny</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Od 22.24 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-29" data-end="2026-09-30">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">29</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy.webp" class="thumb-fg" alt="Plakat: Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy’’" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-29 &bull; 09:30</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy-2026-09-29/">Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy’’</a></h3>
+                <p class="event-desc">Zapisy pod tel.: 799-029-292</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-30" data-end="2026-09-30">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">30</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_wernisaz-wystawy-pt-biechonski.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_wernisaz-wystawy-pt-biechonski.webp" class="thumb-fg" alt="Plakat: Wernisaż wystawy pt. „Biechoński”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-09-30 &bull; 12:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/wernisaz-wystawy-pt-biechonski-2026-09-30/">Wernisaż wystawy pt. „Biechoński”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Wernisaż wystawy pt. „Biechoński”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp wolny / Sprawdź bilety</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1460,8 +1868,8 @@
                   PAŹ
                 </span>
               </div>
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_czeslaw-mozil.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_czeslaw-mozil.webp" class="thumb-fg" alt="Plakat: Czesław Mozil" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_czeslaw-mozil.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_czeslaw-mozil.webp" class="thumb-fg" alt="Plakat: Czesław Mozil" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -1470,100 +1878,10 @@
                   <span>Kultura i Rozrywka &bull; 2026-10-01 &bull; 19:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/czeslaw-mozil-2026-10-01/">Czesław Mozil</a></h3>
-                <p class="event-desc">Czesław Mozil.</p>
+                <p class="event-desc">To jest świetny czas Czesława! Wygrał Festiwal Piosenki w Opolu 2024 utworem „Ławeczka” (razem z Michałem Zabłockim), jego singiel „Leń” promujący „Akademię Pana Kleksa 2” stał się prawdziwym hitem a wiosną otrzymał kolejnego Fryderyka za album Czesław Mozil &amp; Grajkowie Przyszłości „Inwazja Nerdów vol. 1”. Po krótkiej przerwie artysta wraca do koncertowania ze swoim solowym repertuarem. Obok piosenek znanych i lubianych pojawią się również utwory z dwóch albumów wydanych w ostatnim czasie. Będą też piosenki premierowe (!) szykowane na kolejną płytę, nad którą już pracuje. Czesław Mozil Solo to jedyne w Polsce, unikatowe połączenie koncertu muzycznego ze stand-upem, okraszonego błyskotliwymi komentarzami do otaczającej nas rzeczywistości. Charyzmatyczny artysta w zręczny i przenikliwy sposób lawiruje między emocjami odbiorców, żadnego z nich nie pozostawiając obojętnym. Raz słuchacze płaczą ze śmiechu, a za chwilę ze wzruszenia. To sztuka, która porusza, elektryzuje, dotyka i przejmuje. Czesław Mozil - wykształcony muzyk, absolwent Duńskiej Królewskiej Akademii Muzycznej w Kopenhadze, w klasie akordeonu. Laureat pięciu Fryderyków, festiwalu w Opolu i potrójnej platyny. Autor tekstów, kompozytor, aktor dubbingowy (m.in. legendarny Bałwanek Olaf z „Krainy Lodu”) i osobowość telewizyjna. Jego ostatnia płyta „#ideologiamozila” znalazła się w pierwszej dziesiątce zestawienia najlepszych płyt roku wg m.in. portalu Onet pl i magazynu „Polityka”.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
-                <span class="arrow-link">Szczegóły &rarr;</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      
-        <article class="event-item" data-start="2026-10-02" data-end="2026-10-02">
-          <div class="event-card">
-            <div class="thumb-wrap">
-              <div class="date-badge">
-                <span class="day">02</span>
-                <span class="month">
-                  
-                  PAŹ
-                </span>
-              </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_rudy_w_rytmie_agenta_007__muzyka_jamesa_bonda__tajemnice__owc_w_cieni_i_nocny_przejazd_kolejk.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_rudy_w_rytmie_agenta_007__muzyka_jamesa_bonda__tajemnice__owc_w_cieni_i_nocny_przejazd_kolejk.webp" class="thumb-fg" alt="Plakat: Rudy w rytmie agenta 007. Muzyka Jamesa Bonda, tajemnice Łowców cieni i nocny przejazd kolejką" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
-            </div>
-            <div class="event-content">
-              <div class="text-container">
-                <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-02 &bull; 19:30</span>
-                </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rudy-w-rytmie-agenta-007-muzyka-jamesa-bonda-tajemnice-lowcow-cieni-i-nocny-przejazd-kolejka-2026-10-02/">Rudy w rytmie agenta 007. Muzyka Jamesa Bonda, tajemnice Łowców cieni i nocny przejazd kolejką</a></h3>
-                <p class="event-desc">2 października Rudy zamienią się w scenerię rodem z filmów o Jamesie Bondzie. W zabytkowej lokomotywowni odbędzie się niezwykły koncert „The Best of James Bond”, poprzedzony spotka</p>
-              </div>
-              <div class="meta-bottom">
-                <span class="price">Od 106.20 zł</span>
-                <span class="arrow-link">Szczegóły &rarr;</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      
-        <article class="event-item" data-start="2026-10-09" data-end="2026-10-09">
-          <div class="event-card">
-            <div class="thumb-wrap">
-              <div class="date-badge">
-                <span class="day">09</span>
-                <span class="month">
-                  
-                  PAŹ
-                </span>
-              </div>
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_baciary.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_baciary.webp" class="thumb-fg" alt="Plakat: Baciary" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
-            </div>
-            <div class="event-content">
-              <div class="text-container">
-                <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-09 &bull; 19:00</span>
-                </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/baciary-2026-10-09/">Baciary</a></h3>
-                <p class="event-desc">Baciary.</p>
-              </div>
-              <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
-                <span class="arrow-link">Szczegóły &rarr;</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      
-        <article class="event-item" data-start="2026-10-09" data-end="2026-10-09">
-          <div class="event-card">
-            <div class="thumb-wrap">
-              <div class="date-badge">
-                <span class="day">09</span>
-                <span class="month">
-                  
-                  PAŹ
-                </span>
-              </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_matki-sniezne-spektakl-w-ramach-programu-teatr-polska.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_matki-sniezne-spektakl-w-ramach-programu-teatr-polska.webp" class="thumb-fg" alt="Plakat: MATKI ŚNIEŻNE - spektakl w ramach   programu Teatr Polska" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
-            </div>
-            <div class="event-content">
-              <div class="text-container">
-                <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-09 &bull; 18:00</span>
-                </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/matki-sniezne-spektakl-w-ramach-programu-teatr-polska-2026-10-09/">MATKI ŚNIEŻNE - spektakl w ramach   programu Teatr Polska</a></h3>
-                <p class="event-desc">Matki śnieżne - Teatr Śląski im. Stanisława Wyspiańskiego „MATKA” – pierwotnie maci, dpn. „macierze”, biernik „macierz” (przed XIV wiekiem skr. od mać) i oboczna forma mianownika –</p>
-              </div>
-              <div class="meta-bottom">
-                <span class="price">Od 54.10 zł</span>
+                <span class="price">Od 116.82 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1590,10 +1908,10 @@
                   <span>Kultura i Rozrywka &bull; 2026-10-12 &bull; 18:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/maz-mojej-zony-kreatywna-pantera-2026-10-12/">Mąż mojej żony - Kreatywna Pantera</a></h3>
-                <p class="event-desc">Mąż mojej żony - Kreatywna Pantera.</p>
+                <p class="event-desc">Polsko-śląska komedia pomyłek , w której śląski humor, temperament i gwara spotykają się z błyskotliwymi dialogami i nieprzewidywalnymi zwrotami akcji. Jedna z głównych postaci mówi po śląsku, dzięki czemu spektakl zyskuje wyjątkowy klimat i autentyczność. Co się stanie, gdy pewnego dnia do Twoich drzwi zapuka... mąż Twojej żony Zeflik, Ślązak od lat mieszkający we Frankfurcie, nie spodziewa się, że niepozorna wizyta całkowicie wywróci jego życie do góry nogami. Gość z Warszawy, Edmund, ma mu do przekazania wiadomość, której nikt nie chciałby usłyszeć. Okazuje się, że obaj mają... tę samą żonę - Helenę. Od pierwszych minut na scenie iskrzy od emocji, zaskoczeń i doskonałego humoru. Kolejne kieliszki nie ułatwiają rozwiązania sytuacji, a zamiast odpowiedzi pojawiają się jeszcze bardziej absurdalne pytania. Jak zakończy się to niezwykłe spotkanie Kto mówi prawdę I czy z tej historii można wyjść z twarzą "Mąż mojej żony" to znakomita komedia autorstwa Miro Gavrana - jednego z najczęściej wystawianych współczesnych europejskich dramaturgów. To spektakl pełen błyskotliwych dialogów, świetnego humoru i sytuacji, w których każdy odnajdzie coś znajomego. Na scenie zobaczycie doskonały duet aktorski: Dariusza Niebudka, doskonale znanego widzom m.in. z roli mecenasa Zakościelnego w serialu "Na Wspólnej", oraz Dariusza Wiktorowicza. Ich sceniczna energia, komediowe wyczucie i świetna chemia sprawiają, że publiczność od pierwszych minut daje się porwać tej niezwykłej historii. Zapraszamy na wieczór pełen śmiechu, emocji i inteligentnego teatru. Jeśli cenicie śląski humor, znakomite aktorstwo i komedie, które bawią od pierwszej do ostatniej minuty - tego spektaklu nie możecie przegapić! Autor: Miro Gavran Przekład: Anna Tuszyńska Reżyseria: Henryk Adamek Muzyka: Rafał Smoleń Scenografia: Barbara Wiktorowicz Produkcja: Formacja Artystyczna KANDYD 2 Management: Impresariat Artystyczny KREATYWNA PANTERA & Fundacja GALOP</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
+                <span class="price">Bilety płatne (KupBilecik)</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1650,10 +1968,12 @@
                   <span>Kultura i Rozrywka &bull; 2026-10-17 &bull; 12:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/ekspedycja-smaku-2026-10-17/">Ekspedycja Smaku</a></h3>
-                <p class="event-desc">Ekspedycja Smaku.</p>
+                <p class="event-desc">Zapraszamy na Ekspedycję Smaku - wyjątkowe wydarzenie, które łączy trzy festiwale w jednym miejscu. Przez dwa dni Kędzierzyn-Koźle stanie się centrum smaków, zapachów i inspiracji z całego świata. W ramach jednego biletu: - Orientalna Ekspedycja - Festiwal Kuchni i Kultury Azjatyckiej - Aromatyczne dania kuchni azjatyckiej i orientalnej: pad thai, curry, sushi, owoce morza, koreańskie bowl'e, gruzińskie chaczapuri i wiele innych wyjątkowych smaków. - Ekspedycja Słodkości - Festiwal Czekolady i Słodkości - Czekoladowe fontanny, rzemieślnicze wyroby czekoladowe, baklawy, chałwy, churros, bubble tea, ciasta, praliny, lizaki oraz owoce w czekoladzie. Całość dopełni aromatyczna kawa z polskich palarni. - Ekspedycja Rzemiosła i Cudów - Targi Rzeczy Wyjątkowych - Rękodzieło i produkty tworzone z pasją: biżuteria, świece, ceramika, naturalne kosmetyki, dekoracje, torby, ilustracje i wiele innych unikatowych przedmiotów.
+
+Warsztaty i pokazy - kultura Japonii na żywo - W trakcie wydarzenia na uczestników czeka bogaty program pokazów i atrakcji inspirowanych tradycją Japonii: - pokazy walk samurajów - pokaz japońskiej szermierki - strefa muzealna tradycji Japonii - degustacja japońskiej herbaty - pokazy tradycyjnych kimon To wyjątkowa okazja, by z bliska poznać kulturę Kraju Kwitnącej Wiśni - zarówno w formie widowiskowej, jak i edukacyjnej. Informacje dodatkowe: - jedno wydarzenie - trzy festiwale, - atrakcje kulinarne, kulturalne i targowe, - warsztaty i pokazy w cenie biletu, - wydarzenie dla całych rodzin, - dzieci do 13. roku życia - wstęp bezpłatny (na bilet osoby dorosłej). Dwa dni pełne smaków, kultury i rzeczy wartych zachwytu. Do zobaczenia na Ekspedycji Smaku w Kędzierzyn-Koźle!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
+                <span class="price">Bilety płatne (KupBilecik)</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1680,40 +2000,12 @@
                   <span>Kultura i Rozrywka &bull; 2026-10-18 &bull; 11:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/ekspedycja-smaku-2026-10-18/">Ekspedycja Smaku</a></h3>
-                <p class="event-desc">Ekspedycja Smaku.</p>
+                <p class="event-desc">Zapraszamy na Ekspedycję Smaku - wyjątkowe wydarzenie, które łączy trzy festiwale w jednym miejscu. Przez dwa dni Kędzierzyn-Koźle stanie się centrum smaków, zapachów i inspiracji z całego świata. W ramach jednego biletu: - Orientalna Ekspedycja - Festiwal Kuchni i Kultury Azjatyckiej - Aromatyczne dania kuchni azjatyckiej i orientalnej: pad thai, curry, sushi, owoce morza, koreańskie bowl'e, gruzińskie chaczapuri i wiele innych wyjątkowych smaków. - Ekspedycja Słodkości - Festiwal Czekolady i Słodkości - Czekoladowe fontanny, rzemieślnicze wyroby czekoladowe, baklawy, chałwy, churros, bubble tea, ciasta, praliny, lizaki oraz owoce w czekoladzie. Całość dopełni aromatyczna kawa z polskich palarni. - Ekspedycja Rzemiosła i Cudów - Targi Rzeczy Wyjątkowych - Rękodzieło i produkty tworzone z pasją: biżuteria, świece, ceramika, naturalne kosmetyki, dekoracje, torby, ilustracje i wiele innych unikatowych przedmiotów.
+
+Warsztaty i pokazy - kultura Japonii na żywo - W trakcie wydarzenia na uczestników czeka bogaty program pokazów i atrakcji inspirowanych tradycją Japonii: - pokazy walk samurajów - pokaz japońskiej szermierki - strefa muzealna tradycji Japonii - degustacja japońskiej herbaty - pokazy tradycyjnych kimon To wyjątkowa okazja, by z bliska poznać kulturę Kraju Kwitnącej Wiśni - zarówno w formie widowiskowej, jak i edukacyjnej. Informacje dodatkowe: - jedno wydarzenie - trzy festiwale, - atrakcje kulinarne, kulturalne i targowe, - warsztaty i pokazy w cenie biletu, - wydarzenie dla całych rodzin, - dzieci do 13. roku życia - wstęp bezpłatny (na bilet osoby dorosłej). Dwa dni pełne smaków, kultury i rzeczy wartych zachwytu. Do zobaczenia na Ekspedycji Smaku w Kędzierzyn-Koźle!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
-                <span class="arrow-link">Szczegóły &rarr;</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      
-        <article class="event-item" data-start="2026-10-18" data-end="2026-10-18">
-          <div class="event-card">
-            <div class="thumb-wrap">
-              <div class="date-badge">
-                <span class="day">18</span>
-                <span class="month">
-                  
-                  PAŹ
-                </span>
-              </div>
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_damian-skora-stand-up.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_damian-skora-stand-up.webp" class="thumb-fg" alt="Plakat: Damian Skóra Stand-up" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
-            </div>
-            <div class="event-content">
-              <div class="text-container">
-                <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-18 &bull; 18:00</span>
-                </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/damian-skora-stand-up-2026-10-18/">Damian Skóra Stand-up</a></h3>
-                <p class="event-desc">Damian Skóra Stand-up.</p>
-              </div>
-              <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
+                <span class="price">Bilety płatne (KupBilecik)</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1740,7 +2032,7 @@
                   <span>Kultura i Rozrywka &bull; 2026-10-19 &bull; 18:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/siesta-w-drodze-gala-fado-marta-pereira-da-costa-and-friends-nani-medeiros-duarte-2026-10-19/">siesta w drodze: gala fado. marta pereira da costa and friends: nani medeiros & duarte</a></h3>
-                <p class="event-desc">KUP ON-LINEJesień to czas nostalgii. Pora melancholii. Idealna aura dla sztuki fado. Siesta w drodze od lat prezentuje polskiej publiczności żarliwą muzykę starej Lizbony. Ten sezo</p>
+                <p class="event-desc">KUP ON-LINEJesień to czas nostalgii. Pora melancholii. Idealna aura dla sztuki fado. Siesta w drodze od lat prezentuje polskiej publiczności żarliwą muzykę starej Lizbony. Ten sezon wszelako będzie wyjątkowy. Przed nami Gala Fado!</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">Sprawdź bilety / Wstęp wolny</span>
@@ -1780,36 +2072,6 @@
           </div>
         </article>
       
-        <article class="event-item" data-start="2026-10-24" data-end="2026-10-24">
-          <div class="event-card">
-            <div class="thumb-wrap">
-              <div class="date-badge">
-                <span class="day">24</span>
-                <span class="month">
-                  
-                  PAŹ
-                </span>
-              </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-kult-tilt-oddzial-zamkniety-klaus-mitffoch-narodziny-legend.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-kult-tilt-oddzial-zamkniety-klaus-mitffoch-narodziny-legend.webp" class="thumb-fg" alt="Plakat: Rock na Zamku Piastowskim. Kult, Tilt, Oddział Zamknięty, Klaus Mitffoch - narodziny legend" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
-            </div>
-            <div class="event-content">
-              <div class="text-container">
-                <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-24 &bull; 19:00</span>
-                </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rock-na-zamku-piastowskim-kult-tilt-oddzial-zamkniety-klaus-mitffoch-narodziny-legend-2026-10-24/">Rock na Zamku Piastowskim. Kult, Tilt, Oddział Zamknięty, Klaus Mitffoch - narodziny legend</a></h3>
-                <p class="event-desc">Na scenie Domu Książęcego Zamku Piastowskiego spotkają się muzyka w akustycznej oprawie oraz opowieści o jednych z najważniejszych polskich zespołów ostatnich dekad. To spotkanie z</p>
-              </div>
-              <div class="meta-bottom">
-                <span class="price">Od 84.96 zł</span>
-                <span class="arrow-link">Szczegóły &rarr;</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      
         <article class="event-item" data-start="2026-10-31" data-end="2026-10-31">
           <div class="event-card">
             <div class="thumb-wrap">
@@ -1840,6 +2102,36 @@
           </div>
         </article>
       
+        <article class="event-item" data-start="2026-11-07" data-end="2026-11-07">
+          <div class="event-card">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">07</span>
+                <span class="month">
+                  
+                  LIS
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo.webp" class="thumb-fg" alt="Plakat: Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                  <span class="badge-container"></span>
+                  <span>Kultura i Rozrywka &bull; 2026-11-07 &bull; 18:00</span>
+                </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo-2026-11-07/">Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo</a></h3>
+                <p class="event-desc">Zamek Piastowski zaprasza na wyjątkowe wydarzenie, które przeniesie publiczność w samo serce historii polskiego rocka. Wieczór poświęcony fenomenowi twórczości Republiki oraz Obywatela G.C. uświetni spotkanie z jednym z najważniejszych dziennikarzy muzycznych w Polsce – Leszkiem Gnoińskim – oraz koncert w wykonaniu duetu Magdalena Wydriński i Janusz Adamowski. Legenda polskiej muzyki w słowach i dźwiękach Podczas spotkania przyjrzymy się bliżej niezwykłemu dorobkowi artystycznemu Grzegorza Ciechowskiego i zespołu Republika. O kulisach powstawania tych ponadczasowych utworów oraz o specyfice polskiej sceny muzycznej opowie Leszek Gnoiński – ceniony dziennikarz muzyczny, członek Akademii Fonograficznej ZPAV i laureat tytułu Dziennikarza Kulturalnego Małopolski. Leszek Gnoiński to postać, której wkład w dokumentację rodzimego rocka jest nieoceniony. Jest autorem i współtwórcą głośnych projektów, takich jak seria filmów „Historia polskiego rocka” czy pełnometrażowy obraz „Beats of Freedom – Zew wolności”. Przez lata pracował jako redaktor przy niemal setce płyt, w tym przy wydawnictwach z serii „Złota kolekcja” oraz albumach SACD takich legend jak Republika, Obywatel G.C., Perfect, Lady Pank czy Siekiera. Jako współtwórca wystawy stałej w jarocińskim Spichlerzu Polskiego Rocka oraz prowadzący cykl koncertów „Był kiedyś Jarocin”, potrafi jak nikt inny przybliżyć fenomen artystów, którzy kształtowali wrażliwość pokoleń Polaków. Muzyczna podróż: Koncert na żywo Teoretyczne spojrzenie na historię muzyki zostanie dopełnione przez występy na żywo. Utwory, które zdefiniowały brzmienie lat 80. i 90., zaprezentują Magdalena Wydriński oraz Janusz Adamowski. Duet ten ma na swoim koncie liczne, entuzjastycznie przyjmowane recitale, w tym programy poświęcone magii rocka oraz muzyce filmowej. Ich interpretacje łączą techniczną maestrię z emocjonalnym ładunkiem, który idealnie koresponduje z dorobkiem Republiki i Obywatela G.C. To wydarzenie to coś więcej niż koncert czy spotkanie autorskie – to głębokie zanurzenie w polskiej kulturze muzycznej. Dzięki ogromnej wiedzy Leszka Gnoińskiego oraz kunsztowi wykonawczemu Magdaleny Wydriński i Janusza Adamowskiego, uczestnicy będą mieli okazję nie tylko posłuchać największych przebojów, ale również poznać historie, które kryją się za kultowymi nagraniami. W cenie poczęstunek w zamkowej Cafe Residenz.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Od 84.96 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
         <article class="event-item" data-start="2026-11-09" data-end="2026-11-09">
           <div class="event-card">
             <div class="thumb-wrap">
@@ -1850,8 +2142,8 @@
                   LIS
                 </span>
               </div>
-              <img src="/assets/thumbnails/mok_kk_mok_kkozle_pl_spektakl__sklep_z_facetami__-_zapraszamy.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/mok_kk_mok_kkozle_pl_spektakl__sklep_z_facetami__-_zapraszamy.webp" class="thumb-fg" alt="Plakat: spektakl "sklep z facetami" - zapraszamy!" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/kk_spektakl-sklep-z-facetami.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/kk_spektakl-sklep-z-facetami.webp" class="thumb-fg" alt="Plakat: Spektakl "Sklep z facetami"" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -1859,8 +2151,8 @@
                   <span class="badge-container"></span>
                   <span>Kultura i Rozrywka &bull; 2026-11-09 &bull; 18:30</span>
                 </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/spektakl-sklep-z-facetami-zapraszamy-2026-11-09/">spektakl "sklep z facetami" - zapraszamy!</a></h3>
-                <p class="event-desc">❤️ Ponad 50 000 widzów • 🎭 Serialowa obsada • ⭐300+ zagranych spektakli! Gdyby naprawdę istniał "Sklep z facetami"... ilu z nas ustawiłoby się w kolejce Gdy w dniu swoich urodzin</p>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/spektakl-sklep-z-facetami-2026-11-09/">Spektakl "Sklep z facetami"</a></h3>
+                <p class="event-desc">❤️ Ponad 50 000 widzów • 🎭 Serialowa obsada • ⭐300+ zagranych spektakli! Gdyby naprawdę istniał "Sklep z facetami"... ilu z nas ustawiłoby się w kolejce Gdy w dniu swoich urodzin Marzena słyszy od wieloletniego partnera, że odchodzi, wydaje się, że straciła wszystko. Na szczęście obok jest Danka - młodsza siostra, która wierzy, że czasem koniec może być początkiem czegoś zupełnie nieoczekiwanego... i zabiera ją do "Sklepu z facetami". To pełna humoru komedia o kobietach i mężczyznach, miłości, związkach i drugich szansach. Bo to, co najbardziej nas bawi, często jest zaskakująco prawdziwe. Kobiety odnajdą na scenie siebie. Mężczyźni z uśmiechem rozpoznają własne zachowania. A wszyscy wyjdą z teatru w doskonałym humorze. Idealny spektakl na randkę, wieczór z przyjaciółmi lub po prostu na wieczór pełen śmiechu. ❤️ Dołącz do ponad 50 000 widzów, którzy już pokochali „Sklep z facetami”. 300+ zagranych spektakli to najlepszy dowód, że ta komedia od lat bawi publiczność w całej Polsce. Obsada wymienna: Patrycja Szczepanowska Natalia Zambrzycka / Maryla Morydz / Sonia Jachymiak Jędrzej Taranek / Marcin Piętowski / Norbert Kaczorowski</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">Od 116.82 zł</span>
@@ -1880,8 +2172,8 @@
                   LIS
                 </span>
               </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_kk_pearls__pl_il__-_palmjazz_2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_biletyna_pl_kk_pearls__pl_il__-_palmjazz_2026.webp" class="thumb-fg" alt="Plakat: KK Pearls (PL/IL) - PalmJazz 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_kk-pearls-plil-palmjazz-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_kk-pearls-plil-palmjazz-2026.webp" class="thumb-fg" alt="Plakat: KK Pearls (PL/IL) - PalmJazz 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -1890,40 +2182,10 @@
                   <span>Kultura i Rozrywka &bull; 2026-11-13 &bull; 18:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/kk-pearls-plil-palmjazz-2026-2026-11-13/">KK Pearls (PL/IL) - PalmJazz 2026</a></h3>
-                <p class="event-desc">Krzysztof Kobyliński nieustannie poszukuje nowych muzycznych przestrzeni. W ostatnich latach koncertował solo, występował w duetach z Erikiem Truffazem i Daniele di Bonaventurą, re</p>
+                <p class="event-desc">Krzysztof Kobyliński nieustannie poszukuje nowych muzycznych przestrzeni. W ostatnich latach koncertował solo, występował w duetach z Erikiem Truffazem i Daniele di Bonaventurą, realizował projekty z Trilokiem Gurtu oraz wieloma artystami z Europy i świata. Wśród tych wszystkich przedsięwzięć szczególne miejsce zajmuje jednak KK Pearls – autorski zespół, z którym rozwija własny język muzyczny, łączący jazz z inspiracjami płynącymi z różnych kultur. To właśnie z tym projektem twórca i dyrektor artystyczny PalmJazz powróci w tym roku na festiwalową scenę. Obecny skład KK Pearls tworzą muzycy, z którymi Krzysztof Kobyliński regularnie koncertuje: Reut Rivka Shabi (wokal), Dima Gorelik (gitara) oraz Tom Dayan (perkusja). To zespół oparty na wzajemnym zaufaniu i swobodzie improwizacji, w którym każda kompozycja pozostaje jedynie punktem wyjścia do wspólnego tworzenia muzyki. Takie podejście od początku stanowi jeden z najważniejszych znaków rozpoznawczych KK Pearls. Na powrót KK Pearls na PalmJazz wielu słuchaczy czekało od dawna. Choć Krzysztof Kobyliński regularnie występuje w Polsce i za granicą z różnymi projektami, festiwalowe koncerty KK Pearls należą dziś do rzadkości. Tegoroczna edycja PalmJazz będzie więc okazją, aby ponownie usłyszeć zespół na festiwalu, z którym od początku związana jest jego historia. Skład: • Krzysztof Kobyliński – fortepian • Reut Rivka Shabi – wokal • Dima Gorelik – gitara • Tom Dayan – perkusja O festiwalu Pierwsza edycja PalmJazz odbyła się w 2010 roku. Od tamtej pory festiwal wypracował własny charakter, stając się miejscem spotkań artystów, którzy nie podążają utartymi ścieżkami. Najważniejsze były zawsze autorskie projekty i twórcy konsekwentnie realizujący własną artystyczną wizję. Dziś PalmJazz jest przestrzenią, w której jazz spotyka się z muzyką świata, elektroniką, klasyką i projektami wymykającymi się prostym gatunkowym podziałom. XVII edycja ponownie zestawia powroty wybitnych artystów z festiwalowymi debiutami. W tym roku PalmJazz zabrzmi w Gliwicach, Tarnowskich Górach i Raciborzu – koncerty odbędą się w Centrum Kultury Jazovia, Teatrze Miejskim, Pałacu w Rybnej oraz Raciborskim Centrum Kultury. W programie tegorocznej edycji znaleźli się między innymi: Jan Garbarek, Chris Potter, Wojtek Mazolewski, Deep Forest, Anna Maria Jopek, Adam Makowicz, Marcin Wasilewski Trio oraz Maciej Obara i Mathias Eick. Obok nich pojawią się także premierowe projekty i artyści, którzy po raz pierwszy wystąpią przed palmjazzową publicznością. Za artystyczny kształt festiwalu odpowiada jego twórca i dyrektor artystyczny Krzysztof Kobyliński. Każda edycja jest efektem jego osobistych muzycznych wyborów i konsekwentnie realizowanej wizji artystycznej. Układana jest jak dobrze skomponowany koncert – poszczególne wydarzenia dopełniają się, tworząc spójną opowieść o muzyce, która wymyka się prostym definicjom. Zapraszamy na XVII Festiwal PalmJazz.</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">Od 43.48 zł</span>
-                <span class="arrow-link">Szczegóły &rarr;</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      
-        <article class="event-item" data-start="2026-11-14" data-end="2026-11-14">
-          <div class="event-card">
-            <div class="thumb-wrap">
-              <div class="date-badge">
-                <span class="day">14</span>
-                <span class="month">
-                  
-                  LIS
-                </span>
-              </div>
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_wielka-gala-wiedenska-johann-strauss-show-cz-ii.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_wielka-gala-wiedenska-johann-strauss-show-cz-ii.webp" class="thumb-fg" alt="Plakat: Wielka Gala Wiedeńska Johann Strauss Show - CZ. II" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
-            </div>
-            <div class="event-content">
-              <div class="text-container">
-                <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-11-14 &bull; 18:00</span>
-                </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/wielka-gala-wiedenska-johann-strauss-show-cz-ii-2026-11-14/">Wielka Gala Wiedeńska Johann Strauss Show - CZ. II</a></h3>
-                <p class="event-desc">WIELKA GALA WIEDEŃSKA JOHANN STRAUSS SHOW CZ. II **WIELKA GALA WIEDEŃSKA JOHANN STRAUSS SHOW - POWRACA DO RACIBORZA ! GOSPODARZ WIECZORU - RYSZARD REMBISZEWSKI Wielka Gala Wiedeńsk</p>
-              </div>
-              <div class="meta-bottom">
-                <span class="price">Od 138.00 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1950,10 +2212,10 @@
                   <span>Kultura i Rozrywka &bull; 2026-11-15 &bull; 18:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rafal-rutkowski-2026-11-15/">Rafał Rutkowski</a></h3>
-                <p class="event-desc">Rafał Rutkowski.</p>
+                <p class="event-desc">Rafał Rutkowski (Kędzierzyn Koźle) w dn. 15 listopada 2026 o godz. 18:00. Stand-up Kędzierzyn-Koźle | Rafał Rutkowski w programie &quot;Wehikuł czasu&quot;.  W czwartym solowym programie Rafał Rutkowski podróżuje w czasie. W swoi...</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
+                <span class="price">Bilety płatne (KupBilecik)</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1970,8 +2232,8 @@
                   LIS
                 </span>
               </div>
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_kabaret-skeczow-meczacych.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_kabaret-skeczow-meczacych.webp" class="thumb-fg" alt="Plakat: Kabaret Skeczów Męczących" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_kabaret-skeczow-meczacych-wielcy-wracaja.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_kabaret-skeczow-meczacych-wielcy-wracaja.webp" class="thumb-fg" alt="Plakat: Kabaret Skeczów Męczących - Wielcy wracają" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -1979,11 +2241,11 @@
                   <span class="badge-container"></span>
                   <span>Kultura i Rozrywka &bull; 2026-11-21 &bull; 17:00</span>
                 </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/kabaret-skeczow-meczacych-2026-11-21/">Kabaret Skeczów Męczących</a></h3>
-                <p class="event-desc">Kabaret Skeczów Męczących.</p>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/kabaret-skeczow-meczacych-wielcy-wracaja-2026-11-21/">Kabaret Skeczów Męczących - Wielcy wracają</a></h3>
+                <p class="event-desc">Kabaret Skeczów Męczących w nowym programie “Wielcy wracają” Po spektakularnym sukcesie trasy „Jeszcze nigdy nie było tak dobrze” Kabaret Skeczów Męczących zaprasza na zupełnie nowy program, w którym sięgną do korzeni. Na scenę powrócą legendarne postacie, doskonale znane i uwielbiane przez publiczność. Powrócą w absolutnie premierowych odsłonach. „Wielcy wracają” to spotkanie kultowych bohaterów z teraźniejszością – z aktualnymi tematami, nowymi absurdami i rzeczywistością, która sama prosi się o komentarz. Będzie ostro, celnie i bez taryfy ulgowej, dokładnie tak, jak fani KSM lubią najbardziej. To nie tylko sentymentalna podróż, ale przede wszystkim świeży program pełen premierowych skeczów, zaskoczeń i humoru na najwyższym poziomie. Jedno jest pewne – ten powrót będzie mocny. Jeśli kochasz Kabaret Skeczów Męczących za ich postaci – „Wielcy wracają” to program, którego nie możesz przegapić. Jeżeli jeszcze ich nie widziałeś na żywo – musisz to zobaczyć !</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
+                <span class="price">Od 138.06 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2040,10 +2302,10 @@
                   <span>Kultura i Rozrywka &bull; 2026-12-08 &bull; 19:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/cezary-jurkiewicz-2026-12-08/">Cezary Jurkiewicz</a></h3>
-                <p class="event-desc">Cezary Jurkiewicz.</p>
+                <p class="event-desc">Ruszam w trasę z nowymi tekstami nad którymi pracuję już od jakiegoś czasu. Nowy monolog zrobił się bardzo gęsty komediowo (wycieka wszystkimi otworami z mojego laptopa). Czas najwyższy pojechać w trasę i zagrać na instrumencie zwanym publicznością. Mogę Wam obiecać duży współczynnik durnot na minutę oraz punktów widzenia, z którymi, jeśli się utożsamiasz, to pewnie skończymy razem w tym samym ośrodku. Do zobaczenia!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
+                <span class="price">Bilety płatne (KupBilecik)</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2060,8 +2322,8 @@
                   STY
                 </span>
               </div>
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_katarzyna-piasecka-stand-up.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_katarzyna-piasecka-stand-up.webp" class="thumb-fg" alt="Plakat: Katarzyna Piasecka stand-up" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_katarzyna-piasecka-nowy-program-stand-up-bagus.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_katarzyna-piasecka-nowy-program-stand-up-bagus.webp" class="thumb-fg" alt="Plakat: Katarzyna Piasecka - Nowy program stand-up „BAGUS”" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -2069,11 +2331,11 @@
                   <span class="badge-container"></span>
                   <span>Kultura i Rozrywka &bull; 2027-01-07 &bull; 18:00</span>
                 </div>
-                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/katarzyna-piasecka-stand-up-2027-01-07/">Katarzyna Piasecka stand-up</a></h3>
-                <p class="event-desc">Katarzyna Piasecka stand-up.</p>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/katarzyna-piasecka-nowy-program-stand-up-bagus-2027-01-07/">Katarzyna Piasecka - Nowy program stand-up „BAGUS”</a></h3>
+                <p class="event-desc">Nowy program stand-up „BAGUS” Katarzyna Piasecka wraca z najnowszym stand-upem „BAGUS”. Dużo zmian w życiu przyniosło dużo śmiesznych historii. Świeże, zabawne i bezkompromisowe żarty w niezmiennie charyzmatycznym wydaniu. Podczas wieczoru wystąpi również support Szymon Baraniecki.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Sprawdź bilety</span>
+                <span class="price">Od 84.96 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2090,8 +2352,8 @@
                   LUT
                 </span>
               </div>
-              <img src="/assets/thumbnails/mok_kk_mok_kkozle_pl_jacek_dew_dzki___d_em_session___spotkanie_z_prawdziw__histori__d_emu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
-              <img src="/assets/thumbnails/mok_kk_mok_kkozle_pl_jacek_dew_dzki___d_em_session___spotkanie_z_prawdziw__histori__d_emu.webp" class="thumb-fg" alt="Plakat: jacek dewódzki & dżem session – spotkanie z prawdziwą historią dżemu!" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
+              <img src="/assets/thumbnails/mok_kk_jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy">
+              <img src="/assets/thumbnails/mok_kk_jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu.webp" class="thumb-fg" alt="Plakat: jacek dewódzki & dżem session – spotkanie z prawdziwą historią dżemu!" loading="lazy" onerror="this.src='/assets/placeholder.svg'">
             </div>
             <div class="event-content">
               <div class="text-container">
@@ -2100,7 +2362,11 @@
                   <span>Kultura i Rozrywka &bull; 2027-02-28 &bull; 17:00</span>
                 </div>
                 <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu-2027-02-28/">jacek dewódzki & dżem session – spotkanie z prawdziwą historią dżemu!</a></h3>
-                <p class="event-desc">KUP ON-LINEJacek Dewódzki – były wokalista Dżemu – razem z zespołem Dżem Session zabiera publiczność w muzyczną podróż przez największe przeboje z okresu Jacka w Dżemie, a także ni</p>
+                <p class="event-desc">KUP ON-LINEJacek Dewódzki – były wokalista Dżemu – razem z zespołem Dżem Session zabiera publiczność w muzyczną podróż przez największe przeboje z okresu Jacka w Dżemie, a także niezapomniane utwory Ryśka Riedla.
+
+Grają muzykę Dżemu z miłości do tego zespołu, z ogromną dbałością o brzmienie, klimat i każdy szczegół. Nic dziwnego, że publiczność nazywa ich „Małym Dżemem”.
+
+Największe przeboje. Prawdziwy klimat. Muzyka Dżemu bez kompromisów.</p>
               </div>
               <div class="meta-bottom">
                 <span class="price">100 zł</span>
@@ -2147,9 +2413,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
-  </script>
 
-  <script>
     function getLocalDateStr(offsetDays = 0) {
       const d = new Date(); d.setDate(d.getDate() + offsetDays);
       return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -2183,7 +2447,6 @@
         const start = el.getAttribute('data-start');
         const end = el.getAttribute('data-end') || start;
         
-        // Całkowite ukrycie przeterminowanych wydarzeń
         if (end < today) {
           el.style.display = 'none';
           return;
@@ -2209,7 +2472,6 @@
         const start = el.getAttribute('data-start');
         const end = el.getAttribute('data-end') || start;
         
-        // Zabezpieczenie przed przywróceniem wczorajszych eventów
         if (end < today) {
           el.style.display = 'none';
           return;

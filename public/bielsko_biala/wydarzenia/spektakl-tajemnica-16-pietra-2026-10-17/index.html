@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -50,13 +50,11 @@
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    /* UKŁAD DWUKOLUMNOWY */
     .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
     @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
     
     .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
     
-    /* VOD BANNER (Top) */
     .ambient-banner {
       position: relative;
       width: 100%;
@@ -85,8 +83,7 @@
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .lead { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); border-left: 2px solid var(--text); padding-left: 16px; margin: 24px 0; line-height: 1.6; }
-    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 12px; font-weight: 800; color: var(--text); }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
     .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
@@ -131,31 +128,28 @@
     </nav>
     
     <div class="container-grid">
-      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
         <a href="https://www.bck.bielsko.pl/spektakl-tajemnica-16-pietra" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
-          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_bck_bielsko_pl_spektakl_tajemnica_16_pi_tra.webp');"></div>
-          <img src="/assets/thumbnails/bck_bck_bielsko_pl_spektakl_tajemnica_16_pi_tra.webp" alt="Plakat: spektakl TAJEMNICA 16 PIĘTRA" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_spektakl-tajemnica-16-pietra.webp');"></div>
+          <img src="/assets/thumbnails/bck_spektakl-tajemnica-16-pietra.webp" alt="Plakat: spektakl TAJEMNICA 16 PIĘTRA" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
         </a>
         
         <div class="event-body">
           <div><span class="badge">Kultura i Rozrywka</span></div>
           <h1>spektakl TAJEMNICA 16 PIĘTRA</h1>
-          <div class="lead">Tajemnica 16 piętra - komedia na najwyższym poziomie. Czy masz odwagę odkryć, co dzieje się po zmroku na 16 piętrze w najwyższym biurowcu miasta Gdy wszystko inne cichnie, tam zac</div>
           
           <div class="event-actions-bar">
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=spektakl%20TAJEMNICA%2016%20PI%C4%98TRA&details=Tajemnica%2016%20pi%C4%99tra%20-%20komedia%20na%20najwy%C5%BCszym%20poziomie.%20Czy%20masz%20odwag%C4%99%20odkry%C4%87%2C%20co%20dzieje%20si%C4%99%20po%20zmroku%20na%2016%20pi%C4%99trze%20w%20najwy%C5%BCszym%20biurowcu%20miasta%20Gdy%20wszystko%20inne%20cichnie%2C%20tam%20zac" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=spektakl%20TAJEMNICA%2016%20PI%C4%98TRA&details=Tajemnica%2016%20pi%C4%99tra%20-%20komedia%20na%20najwy%C5%BCszym%20poziomie.%20Czy%20masz%20odwag%C4%99%20odkry%C4%87%2C%20co%20dzieje%20si%C4%99%20po%20zmroku%20na%2016%20pi%C4%99trze%20w%20najwy%C5%BCszym%20biurowcu%20miasta..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=spektakl%20TAJEMNICA%2016%20PI%C4%98TRA%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-tajemnica-16-pietra-2026-10-17/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
           
           <h3 class="section-title">O wydarzeniu</h3>
-          <p style="color: var(--text-muted); line-height: 1.7;">Tajemnica 16 piętra - komedia na najwyższym poziomie. Czy masz odwagę odkryć, co dzieje się po zmroku na 16 piętrze w najwyższym biurowcu miasta Gdy wszystko inne cichnie, tam zaczyna się prawdziwa akcja.</p>
+          <p style="color: var(--text-muted); line-height: 1.7;">Tajemnica 16 piętra - komedia na najwyższym poziomie. Czy masz odwagę odkryć, co dzieje się po zmroku na 16 piętrze w najwyższym biurowcu miasta Gdy wszystko inne cichnie, tam zaczyna się prawdziwa akcja. Dwaj przyjaciele zostają wplątani w wydarzenia, w których stają twarzą w twarz z niebezpiecznymi gangsterami. Gdy sytuacja wymyka się spod kontroli, humor i napięcie sięgają zenitu! W "Tajemnicy 16 piętra" wszystko jest możliwe. Historia zaczyna się od niewinnego spotkania, które przeradza się w pełną adrenaliny przygodę. Dwaj bohaterowie, przypadkowo wplątani w kłopoty, muszą stawić czoła bezwzględnym przestępcom. To jednak dopiero początek. Każdy zwrot akcji prowadzi do kolejnych tajemnic, intryga goni intrygę, a kryminalna historia przeplata się z refleksjami o damsko-męskich relacjach. Czy masz odwagę zanurzyć się w wir szalonej przygody, w której każdy krok to niespodzianka Uwaga! Używane są efekty stroboskopowe! Obsada: Michał Żurawski/ Mariusz Ostrowski Tomasz Borkowski Michał Sitarski/ Dominik Bąk Piotr Miazga Piotr Ligienza/ Maciej Mikołajczyk Kostiumy i scenografia: Katarzyna Adamczyk Scenariusz i reżyseria: Jarosław Grzelka W spektaklu padają słowa , niesłusznie uznawane za niecenzuralne. Czas trwania spektaklu 100 minut + 15 minut przerwy. Kategoria wiekowa: od 16 roku życia.</p>
           
           
         </div>
       </div>
       
-      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>
@@ -170,7 +164,7 @@
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
-          <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne (BCK Bilety)</div></div>
+          <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne (KupBilecik)</div></div>
           <a href="https://www.bck.bielsko.pl/spektakl-tajemnica-16-pietra" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
         </div>
         

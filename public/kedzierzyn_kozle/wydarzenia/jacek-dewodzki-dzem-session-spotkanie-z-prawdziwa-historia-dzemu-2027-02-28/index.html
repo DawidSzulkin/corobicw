@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -50,13 +50,11 @@
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    /* UKŁAD DWUKOLUMNOWY */
     .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
     @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
     
     .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
     
-    /* VOD BANNER (Top) */
     .ambient-banner {
       position: relative;
       width: 100%;
@@ -85,8 +83,7 @@
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .lead { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); border-left: 2px solid var(--text); padding-left: 16px; margin: 24px 0; line-height: 1.6; }
-    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 12px; font-weight: 800; color: var(--text); }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
     .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
@@ -131,20 +128,18 @@
     </nav>
     
     <div class="container-grid">
-      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
         <a href="https://www.mok.kedzierzyn-kozle.com.pl/index.php?option=com_content&view=article&id=1776" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
-          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/mok_kk_mok_kkozle_pl_jacek_dew_dzki___d_em_session___spotkanie_z_prawdziw__histori__d_emu.webp');"></div>
-          <img src="/assets/thumbnails/mok_kk_mok_kkozle_pl_jacek_dew_dzki___d_em_session___spotkanie_z_prawdziw__histori__d_emu.webp" alt="Plakat: jacek dewódzki & dżem session – spotkanie z prawdziwą historią dżemu!" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/mok_kk_jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu.webp');"></div>
+          <img src="/assets/thumbnails/mok_kk_jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu.webp" alt="Plakat: jacek dewódzki & dżem session – spotkanie z prawdziwą historią dżemu!" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
         </a>
         
         <div class="event-body">
           <div><span class="badge">Kultura i Rozrywka</span></div>
           <h1>jacek dewódzki & dżem session – spotkanie z prawdziwą historią dżemu!</h1>
-          <div class="lead">KUP ON-LINEJacek Dewódzki – były wokalista Dżemu – razem z zespołem Dżem Session zabiera publiczność w muzyczną podróż przez największe przeboje z okresu Jacka w Dżemie, a także ni</div>
           
           <div class="event-actions-bar">
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=jacek%20dew%C3%B3dzki%20%26%20d%C5%BCem%20session%20%E2%80%93%20spotkanie%20z%20prawdziw%C4%85%20histori%C4%85%20d%C5%BCemu%21&details=KUP%20ON-LINEJacek%20Dew%C3%B3dzki%20%E2%80%93%20by%C5%82y%20wokalista%20D%C5%BCemu%20%E2%80%93%20razem%20z%20zespo%C5%82em%20D%C5%BCem%20Session%20zabiera%20publiczno%C5%9B%C4%87%20w%20muzyczn%C4%85%20podr%C3%B3%C5%BC%20przez%20najwi%C4%99ksze%20przeboje%20z%20okresu%20Jacka%20w%20D%C5%BCemie%2C%20a%20tak%C5%BCe%20ni" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=jacek%20dew%C3%B3dzki%20%26%20d%C5%BCem%20session%20%E2%80%93%20spotkanie%20z%20prawdziw%C4%85%20histori%C4%85%20d%C5%BCemu%21&details=KUP%20ON-LINEJacek%20Dew%C3%B3dzki%20%E2%80%93%20by%C5%82y%20wokalista%20D%C5%BCemu%20%E2%80%93%20razem%20z%20zespo%C5%82em%20D%C5%BCem%20Session%20zabiera%20publiczno%C5%9B%C4%87%20w%20muzyczn%C4%85%20podr%C3%B3%C5%BC%20przez%20najwi%C4%99ksze%20przeboje%20z..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=jacek%20dew%C3%B3dzki%20%26%20d%C5%BCem%20session%20%E2%80%93%20spotkanie%20z%20prawdziw%C4%85%20histori%C4%85%20d%C5%BCemu%21%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu-2027-02-28/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
           
@@ -159,7 +154,6 @@ Największe przeboje. Prawdziwy klimat. Muzyka Dżemu bez kompromisów.</p>
         </div>
       </div>
       
-      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>

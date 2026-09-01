@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -50,13 +50,11 @@
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    /* UKŁAD DWUKOLUMNOWY */
     .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
     @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
     
     .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
     
-    /* VOD BANNER (Top) */
     .ambient-banner {
       position: relative;
       width: 100%;
@@ -85,8 +83,7 @@
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .lead { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); border-left: 2px solid var(--text); padding-left: 16px; margin: 24px 0; line-height: 1.6; }
-    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 12px; font-weight: 800; color: var(--text); }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
     .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
@@ -131,20 +128,18 @@
     </nav>
     
     <div class="container-grid">
-      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
         <a href="https://biletyna.pl/spektakl/Pikantni/Bielsko-Biala#bielsko_biala-1" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
-          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_bielsko_biala_biletyna_pl_pikantni.webp');"></div>
-          <img src="/assets/thumbnails/biletyna_bielsko_biala_biletyna_pl_pikantni.webp" alt="Plakat: Pikantni" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_bielsko_biala_pikantni.webp');"></div>
+          <img src="/assets/thumbnails/biletyna_bielsko_biala_pikantni.webp" alt="Plakat: Pikantni" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
         </a>
         
         <div class="event-body">
           <div><span class="badge">Kultura i Rozrywka</span></div>
           <h1>Pikantni</h1>
-          <div class="lead">„Pikantni” to gorąca komedia obyczajowa, która wykorzystuje znany schemat czworokąta. Wystawiana setki razy w całej Polsce – zawsze entuzjastycznie przyjmowana przez publiczność. K</div>
           
           <div class="event-actions-bar">
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pikantni&details=%E2%80%9EPikantni%E2%80%9D%20to%20gor%C4%85ca%20komedia%20obyczajowa%2C%20kt%C3%B3ra%20wykorzystuje%20znany%20schemat%20czworok%C4%85ta.%20Wystawiana%20setki%20razy%20w%20ca%C5%82ej%20Polsce%20%E2%80%93%20zawsze%20entuzjastycznie%20przyjmowana%20przez%20publiczno%C5%9B%C4%87.%20K" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pikantni&details=%E2%80%9EPikantni%E2%80%9D%20to%20gor%C4%85ca%20komedia%20obyczajowa%2C%20kt%C3%B3ra%20wykorzystuje%20znany%20schemat%20czworok%C4%85ta.%20Wystawiana%20setki%20razy%20w%20ca%C5%82ej%20Polsce%20%E2%80%93%20zawsze..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=Pikantni%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/pikantni-2026-10-24/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
           
@@ -155,7 +150,6 @@
         </div>
       </div>
       
-      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>
@@ -164,9 +158,9 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/bielsko_biala/miejsca/bb-bielskie-centrum-kultury/" class="venue-link"><strong>Bielskie Centrum Kultury</strong></a>
+              <a href="/bielsko_biala/miejsca/bb-bielskie-centrum-kultury-im-marii-koterbskiej/" class="venue-link"><strong>Bielskie Centrum Kultury im. Marii Koterbskiej</strong></a>
               
-              <br><small style="color: var(--text-muted);">ul. Juliusza Słowackiego 27 , Bielsko Biala</small>
+              <br><small style="color: var(--text-muted);">ul. Słowackiego 27 , Bielsko Biala</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>

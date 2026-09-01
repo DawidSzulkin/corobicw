@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teatr Polski - Mała scena | Bielsko-Biała - CoRobićW</title>
-  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Teatr Polski - Mała scena w Bielsko-Biała.">
+  <title>Teatr Polski (Mała Scena) |  - CoRobićW</title>
+  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Teatr Polski (Mała Scena) w .">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   
@@ -111,7 +111,7 @@
 
   <header>
     <div class="nav-container">
-      <a href="/bielsko_biala/" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
+      <a href="/bielsko_biala/" class="brand">CoRobićW <span></span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw"><span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span></button>
         <a href="/bielsko_biala/" class="btn-nav">&larr; Wróć do agendy</a>
@@ -120,24 +120,69 @@
   </header>
   <main>
     <nav class="breadcrumbs">
-      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">Teatr Polski - Mała scena</span>
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/"></a><span>/</span><span class="current">Teatr Polski (Mała Scena)</span>
     </nav>
     <div class="container-grid">
       <div class="main-content">
-        <span class="badge">theatre</span>
-        <h1>Teatr Polski - Mała scena</h1>
-        <p style="color: var(--text-muted); font-size: 1.05rem;">📍 Teatr Polski - Mała scena, Bielsko-Biała</p>
+        <span class="badge">venue</span>
+        <h1>Teatr Polski (Mała Scena)</h1>
+        <p style="color: var(--text-muted); font-size: 1.05rem;">📍 ul. 1 Maja , Bielsko Biala</p>
         <div id="map"></div>
         <hr style="border: 0; border-top: 1px solid var(--border); margin: 32px 0;">
-        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (0)</h3>
+        <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia (5)</h3>
         
-          <p style="color: var(--text-muted); font-style: italic;">Brak zaplanowanych wydarzeń w najbliższym czasie.</p>
+          
+          <a href="/bielsko_biala/wydarzenia/wanda-2026-09-13/" class="event-card-mini">
+            <img src="/assets/thumbnails/teatrbielsko_wanda.webp" alt="Wanda" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-13 &bull; 14:00</div>
+              <div class="event-title-mini">Wanda</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Online)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/tina-2026-09-20/" class="event-card-mini">
+            <img src="/assets/thumbnails/teatrbielsko_tina.webp" alt="Tina" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-09-20 &bull; 14:00</div>
+              <div class="event-title-mini">Tina</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Online)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/lettycja-i-lubczyk-2026-10-04/" class="event-card-mini">
+            <img src="/assets/thumbnails/teatrbielsko_lettycja-i-lubczyk.webp" alt="Lettycja i lubczyk" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-04 &bull; 14:00</div>
+              <div class="event-title-mini">Lettycja i lubczyk</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Online)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/singielka-2026-10-23/" class="event-card-mini">
+            <img src="/assets/thumbnails/teatrbielsko_singielka.webp" alt="Singielka" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-23 &bull; 17:00</div>
+              <div class="event-title-mini">Singielka</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Online)</div>
+            </div>
+          </a>
+          
+          <a href="/bielsko_biala/wydarzenia/sasiedzi-z-gory-2026-10-31/" class="event-card-mini">
+            <img src="/assets/thumbnails/teatrbielsko_sasiedzi-z-gory.webp" alt="Sąsiedzi z góry" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
+            <div>
+              <div class="event-meta-mini">2026-10-31 &bull; 15:00</div>
+              <div class="event-title-mini">Sąsiedzi z góry</div>
+              <div class="event-meta-mini" style="color: var(--text);">Bilety płatne (Kasa / Online)</div>
+            </div>
+          </a>
+          
         
       </div>
       <aside class="sidebar">
         <div class="card">
           <h3>Logistyka i Dojazd</h3>
-          <div class="info-row"><div class="info-label">Adres</div><div class="info-val">Brak numeru ulicy</div></div>
+          <div class="info-row"><div class="info-label">Adres</div><div class="info-val">ul. 1 Maja </div></div>
           <div class="info-row">
             <div class="info-label">Parking</div>
             <div class="info-val">
@@ -151,11 +196,11 @@
   </main>
   <footer>
     <div class="footer-inner">
-      <div class="footer-col"><h4>CoRobićW Bielsko-Biała</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>CoRobićW </h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
       <div class="footer-col"><h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li></ul></div>
       <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li></ul></div>
     </div>
-    <div class="footer-copy"><span>&copy; 2026 CoRobićW.</span><span>Obiekt: Teatr Polski - Mała scena (Bielsko-Biała)</span></div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW.</span><span>Obiekt: Teatr Polski (Mała Scena) ()</span></div>
   </footer>
   
   <script>
@@ -182,7 +227,7 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const lat = 49.8205385; const lon = 19.045978;
+      const lat = 49.8171503; const lon = 19.0462943;
       const map = L.map('map').setView([lat, lon], 15);
       
       let tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -191,7 +236,7 @@
       }
       
       const layer = L.tileLayer(tileUrl, { maxZoom: 19, attribution: '© OpenStreetMap © CARTO' }).addTo(map);
-      L.marker([lat, lon]).addTo(map).bindPopup("<b>Teatr Polski - Mała scena</b>").openPopup();
+      L.marker([lat, lon]).addTo(map).bindPopup("<b>Teatr Polski (Mała Scena)</b>").openPopup();
       
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {

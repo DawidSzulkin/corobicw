@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -50,13 +50,11 @@
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    /* UKŁAD DWUKOLUMNOWY */
     .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
     @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
     
     .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
     
-    /* VOD BANNER (Top) */
     .ambient-banner {
       position: relative;
       width: 100%;
@@ -85,8 +83,7 @@
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
     h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .lead { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); border-left: 2px solid var(--text); padding-left: 16px; margin: 24px 0; line-height: 1.6; }
-    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 12px; font-weight: 800; color: var(--text); }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
     .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
     .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
@@ -131,31 +128,28 @@
     </nav>
     
     <div class="container-grid">
-      <!-- LEWA KOLUMNA: GŁÓWNA TREŚĆ + BANER -->
       <div class="main-content">
         <a href="https://biletyna.pl/koncert/CINEMA-WORLD-360-Koncert-Muzyki-Filmowej/Opole#opole" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
-          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_opole_biletyna_pl_cinema_world_360__-_koncert_muzyki_filmowej.webp');"></div>
-          <img src="/assets/thumbnails/biletyna_opole_biletyna_pl_cinema_world_360__-_koncert_muzyki_filmowej.webp" alt="Plakat: CINEMA WORLD 360° - Koncert Muzyki Filmowej" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_opole_cinema-world-360-koncert-muzyki-filmowej.webp');"></div>
+          <img src="/assets/thumbnails/biletyna_opole_cinema-world-360-koncert-muzyki-filmowej.webp" alt="Plakat: CINEMA WORLD 360° - Koncert Muzyki Filmowej" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
         </a>
         
         <div class="event-body">
           <div><span class="badge">Kultura i Rozrywka</span></div>
           <h1>CINEMA WORLD 360° - Koncert Muzyki Filmowej</h1>
-          <div class="lead">Największe w Polsce Widowisko Muzyki Filmowej na scenie 360 °. To immersyjne przeżycie, w którym muzyka, światło, obraz oraz nowoczesne efekty sceniczne tworzą jedno wciągające doś</div>
           
           <div class="event-actions-bar">
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=CINEMA%20WORLD%20360%C2%B0%20-%20Koncert%20Muzyki%20Filmowej&details=Najwi%C4%99ksze%20w%20Polsce%20Widowisko%20Muzyki%20Filmowej%20na%20scenie%20360%20%C2%B0.%20To%20immersyjne%20prze%C5%BCycie%2C%20w%20kt%C3%B3rym%20muzyka%2C%20%C5%9Bwiat%C5%82o%2C%20obraz%20oraz%20nowoczesne%20efekty%20sceniczne%20tworz%C4%85%20jedno%20wci%C4%85gaj%C4%85ce%20do%C5%9B" target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=CINEMA%20WORLD%20360%C2%B0%20-%20Koncert%20Muzyki%20Filmowej&details=Najwi%C4%99ksze%20w%20Polsce%20Widowisko%20Muzyki%20Filmowej%20na%20scenie%20360%20%C2%B0.%20To%20immersyjne%20prze%C5%BCycie%2C%20w%20kt%C3%B3rym%20muzyka%2C%20%C5%9Bwiat%C5%82o%2C%20obraz%20oraz%20nowoczesne%20efekty..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=CINEMA%20WORLD%20360%C2%B0%20-%20Koncert%20Muzyki%20Filmowej%20-%20https://corobicw.pl/opole/wydarzenia/cinema-world-360-koncert-muzyki-filmowej-2027-03-14/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
           
           <h3 class="section-title">O wydarzeniu</h3>
-          <p style="color: var(--text-muted); line-height: 1.7;">Największe w Polsce Widowisko Muzyki Filmowej na scenie 360 °. To immersyjne przeżycie, w którym muzyka, światło, obraz oraz nowoczesne efekty sceniczne tworzą jedno wciągające doświadczenie. 120 minut muzyki z kultowych ścieżek dźwiękowych w autorskich aranżacjach. Ponad 60 artystów na scenie – orkiestra, chór, wybitni soliści i wyjątkowi goście specjalni. Widowiskowe projekcje, spektakularna scenografia LED 360° oraz oprawa świetlna. Program koncertu oparty jest na kompozycjach instrumentalno - wokalnych, które w kilkuminutowych odsłonach zaprezentują ścieżki dźwiekowe i niezapomniane melodie inspirowane największymi dziełami muzyki filmowej. Aranżer, pianista i wykładowca akademicki: Tomasz Jachym, w swoich autorskich opracowaniach przeniesie Państwa do świata bohaterów, legend i wielkich emocji, przywołując ducha takich produkcji jak: Gladiator • Titanic • Harry Potter • Władca Pierścieni • Star Wars • Avatar • Ostatni Mohikanin • Piraci z Karaibów CINEMA WORLD 360° to także fascynująca opowieść o ewolucji muzyki filmowej. W nowoczesnych, brzmieniach, przedstawimy monumentalną muzykę współczesnego kina z takich filmów jak: Interstellar • Diuna • Oppenheimer • Stranger Things • Igrzyska Śmierci • Na Zachodzie bez zmian. To nie jest klasyczny koncert, podczas którego publiczność pozostaje biernym obserwatorem. To dynamiczne widowisko, w którym mocne brzmienie orkiestry, chóru i solistów współgra z obrazem, światłem oraz przestrzenią, tworząc prawdziwie filmowe doświadczenie na żywo. Na scenie pojawią się wybitni soliści reprezentujący różne muzyczne światy. Wyjątkowym gościem koncertu będzie „mistrz nastroju” , wirtuoz akordeonu - Marcin Wyrostek, który zaprezentuje niezapomniane interpretacje muzyki z kultowych tematów filmowych, nadając im metafizyczny wymiar. Ewa Siembida - polska wokalistka jazzowa i estradowa, trenerka wokalna oraz nauczyciel akademicki. Laureatka ogólnopolskich i międzynarodowych festiwali. Artystka, której twórczość oscyluje wokół soulu i jazzu w których odnajduje przestrzeń do interpretacyjnej swobody i emocjonalnej autentyczności. Sylwia Łyko - wokalistka, autorka muzyki i tekstów, finalistka piątej edycji The Voice of Poland w drużynie Justyny Steczkowskiej. Wielokrotna zwyciężczyni festiwali i konkursów wokalnych w kraju i za granicą. Jej głos zatrzymuje czas i porusza najczulsze struny. Jej muzyczna droga obejmuje zarówno działalność solową, jak i współpracę w charakterze back vocal z czołowymi artystami polskiej sceny muzycznej. Występowała u boku takich wykonawców jak Lanberry, Justyna Steczkowska, Kayah, Krzysztof Iwaneczko, Alicja Janosz, Marika, Monika Lewczuk czy Sławek Uniatowski. Narrację całego widowiska, poprowadzi dla Państwa zjawiskowy, kinowy Głos, który otworzy drzwi do niejednych wspomnień i największych filmowych momentów Tworząc CINEMA WORLD 360° interpretujemy najpiękniejsze muzyczne arcydzieła, implementujemy prawdziwe emocje, dzielimy się pasją. Zapraszamy Wszystkich Państwa, którzy chcieliby na chwilę zatrzymać czas i uwierzyć w magię kina. W koncercie wystąpią: CoReo Orchestra prowadzona przez Tomasza Jachyma Uni Jazz Voices Marcin Wyrostek Sargis Ewa Siembida Sylwia Łyko</p>
+          <p style="color: var(--text-muted); line-height: 1.7;">Największe w Polsce Widowisko Muzyki Filmowej na scenie 360 °. To immersyjne przeżycie, w którym muzyka, światło, obraz oraz nowoczesne efekty sceniczne tworzą jedno wciągające doświadczenie. 120 minut muzyki z kultowych ścieżek dźwiękowych w autorskich aranżacjach. Ponad 60 artystów na scenie – orkiestra, chór, wybitni soliści i wyjątkowi goście specjalni. Widowiskowe projekcje, spektakularna scenografia LED 360° oraz oprawa świetlna. Program koncertu oparty jest na kompozycjach instrumentalno - wokalnych, które w kilkuminutowych odsłonach zaprezentują ścieżki dźwiekowe i niezapomniane melodie inspirowane największymi dziełami muzyki filmowej. Aranżer, pianista i wykładowca akademicki: Tomasz Jachym, w swoich autorskich opracowaniach przeniesie Państwa do świata bohaterów, legend i wielkich emocji, przywołując ducha takich produkcji jak: Gladiator • Titanic • Harry Potter • Władca Pierścieni • Star Wars • Avatar • Piraci z Karaibów CINEMA WORLD 360° to także fascynująca opowieść o ewolucji muzyki filmowej. W nowoczesnych, brzmieniach, przedstawimy monumentalną muzykę współczesnego kina z takich filmów jak: Interstellar • Diuna • Oppenheimer • Stranger Things • Igrzyska Śmierci • Na Zachodzie bez zmian. To nie jest klasyczny koncert, podczas którego publiczność pozostaje biernym obserwatorem. To dynamiczne widowisko, w którym mocne brzmienie orkiestry, chóru i solistów współgra z obrazem, światłem oraz przestrzenią, tworząc prawdziwie filmowe doświadczenie na żywo. Na scenie pojawią się wybitni soliści reprezentujący różne muzyczne światy. Wyjątkowym gościem koncertu będzie „mistrz nastroju” , wirtuoz akordeonu - Marcin Wyrostek, który zaprezentuje niezapomniane interpretacje muzyki z kultowych tematów filmowych, nadając im metafizyczny wymiar. Ewa Siembida - polska wokalistka jazzowa i estradowa, trenerka wokalna oraz nauczyciel akademicki. Laureatka ogólnopolskich i międzynarodowych festiwali. Artystka, której twórczość oscyluje wokół soulu i jazzu w których odnajduje przestrzeń do interpretacyjnej swobody i emocjonalnej autentyczności. Sylwia Łyko - wokalistka, autorka muzyki i tekstów, finalistka piątej edycji The Voice of Poland w drużynie Justyny Steczkowskiej. Wielokrotna zwyciężczyni festiwali i konkursów wokalnych w kraju i za granicą. Jej głos zatrzymuje czas i porusza najczulsze struny. Jej muzyczna droga obejmuje zarówno działalność solową, jak i współpracę w charakterze back vocal z czołowymi artystami polskiej sceny muzycznej. Występowała u boku takich wykonawców jak Lanberry, Justyna Steczkowska, Kayah, Krzysztof Iwaneczko, Alicja Janosz, Marika, Monika Lewczuk czy Sławek Uniatowski. Narrację całego widowiska, poprowadzi dla Państwa zjawiskowy, kinowy Głos, który otworzy drzwi do niejednych wspomnień i największych filmowych momentów Tworząc CINEMA WORLD 360° interpretujemy najpiękniejsze muzyczne arcydzieła, implementujemy prawdziwe emocje, dzielimy się pasją. Zapraszamy Wszystkich Państwa, którzy chcieliby na chwilę zatrzymać czas i uwierzyć w magię kina. W koncercie wystąpią: CoReo Orchestra prowadzona przez Tomasza Jachyma Uni Jazz Voices Marcin Wyrostek Sargis Ewa Siembida Sylwia Łyko</p>
           
           
         </div>
       </div>
       
-      <!-- PRAWA KOLUMNA: LOGISTYKA -->
       <aside class="sidebar">
         <div class="card">
           <h3>Bilety i Organizacja</h3>
