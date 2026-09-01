@@ -168,6 +168,7 @@ def save_event(city_tag: str, event_data: Dict[str, Any]) -> str:
     save_events_batch(city_tag, [event_data])
     return "processed"
 
+
 def get_active_events(city_tag: str, min_date: str) -> List[Dict[str, Any]]:
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
@@ -183,3 +184,35 @@ def get_active_events(city_tag: str, min_date: str) -> List[Dict[str, Any]]:
             data = json.loads(r[0])
             clean_records.append(sanitize_payload(data))
         return clean_records
+
+
+def sync_city_events(city_tag: str, deduplicated_events: list):
+    """Zastępuje rekordy w bazie dla danego miasta przefiltrowanym, odduplikowanym zbiorem."""
+    if not city_tag:
+        return
+    db_path = Path("data/events.db")
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(str(db_path))
+    cursor = conn.cursor()
+    try:
+        cursor.execute("DELETE FROM events WHERE city_tag = ?", (city_tag,))
+        for ev in deduplicated_events:
+            s_url = ev.get("source_url", "")
+            d_start = str(ev.get("date_start", ev.get("date", "")))[:10]
+            title = ev.get("title", "")
+            payload_str = json.dumps(ev, ensure_ascii=False)
+            cursor.execute(
+                """
+                INSERT INTO events (city_tag, source_url, date_start, title, payload)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (city_tag, s_url, d_start, title, payload_str)
+            )
+        conn.commit()
+        print(f"[DB] Zsynchronizowano bazę dla '{city_tag}': zapisano {len(deduplicated_events)} unikalnych rekordów.")
+    except Exception as e:
+        conn.rollback()
+        print(f"[DB ERROR] Błąd synchronizacji: {e}")
+    finally:
+        conn.close()
+

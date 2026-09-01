@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional
 import concurrent.futures
 from difflib import SequenceMatcher
 
-from src.infrastructure.db import get_active_events, save_events_batch, DB_PATH
+from src.infrastructure.db import sync_city_events, get_active_events, save_events_batch, DB_PATH
 from src.core.models import FullEventPage, EventAnalysis, QuickFacts, TicketInfo, NearbyGastro
 from src.infrastructure.renderer import HTMLRenderer
 from src.infrastructure.scrapers.registry import get_scrapers_for_city
@@ -279,36 +279,68 @@ def _clean_event_title(title: str, city_name: str = "") -> str:
     t = re.sub(r',\s*\d{1,2}\s+[a-ząćęłńóśźż]+.*$', '', t, flags=re.IGNORECASE)
     return t.strip(" -:,")
 
-def _are_titles_duplicate(t1: str, t2: str) -> bool:
-    """Sprawdza czy dwa tytuły odnoszą się do tego samego wykonawcy / spektaklu."""
-    def get_words(t):
-        return set(re.findall(r'\w{3,}', t.lower()))
-    
-    w1, w2 = get_words(t1), get_words(t2)
-    if not w1 or not w2:
-        return False
-    intersection = w1 & w2
-    if len(intersection) >= 2:
-        return True
-    if len(intersection) >= 1 and (len(w1) == 1 or len(w2) == 1):
-        return True
-    return SequenceMatcher(None, t1.lower(), t2.lower()).ratio() >= 0.75
+GENERIC_STOPWORDS = {
+    "przy", "swiecach", "świecach", "koncert", "spektakl", "recital",
+    "festiwal", "festival", "stand", "standup", "stand-up", "show",
+    "muzyka", "muzyki", "polska", "polskiej", "bielsko", "biala",
+    "bielsku", "bialej", "opole", "opolu", "live", "tour", "trasa",
+    "nowy", "program", "wieczor", "wieczór", "kameralny", "akustycznie",
+    "bilety", "kup", "dla", "oraz", "jego", "orzeł", "orlem", "orłem",
+    "sala", "redutowa", "domu", "kultury", "bck", "cavatina", "hall"
+}
 
-def deduplicate_events(events: List[Dict[str, Any]], city_name: str = "") -> List[Dict[str, Any]]:
-    """Scala zduplikowane wydarzenia z różnych scraperów w jeden kanoniczny rekord."""
-    by_date: Dict[str, List[Dict[str, Any]]] = {}
+def _are_titles_duplicate(t1: str, t2: str, time1: str = "", time2: str = "") -> bool:
+    if time1 and time2 and time1 != time2 and ":" in time1 and ":" in time2:
+        try:
+            h1, m1 = map(int, time1.split(":")[:2])
+            h2, m2 = map(int, time2.split(":")[:2])
+            if abs((h1 * 60 + m1) - (h2 * 60 + m2)) >= 45:
+                return False
+        except Exception:
+            pass
+
+    import re
+    from difflib import SequenceMatcher
+
+    def get_content_words(t: str) -> set:
+        raw_words = set(re.findall(r'[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{3,}', t.lower()))
+        return {w for w in raw_words if w not in GENERIC_STOPWORDS}
+
+    w1 = get_content_words(t1)
+    w2 = get_content_words(t2)
+
+    if not w1 or not w2:
+        return SequenceMatcher(None, t1.lower().strip(), t2.lower().strip()).ratio() >= 0.88
+
+    intersection = w1 & w2
+    union = w1 | w2
+    jaccard = len(intersection) / len(union) if union else 0.0
+
+    if jaccard >= 0.5:
+        return True
+
+    if (w1.issubset(w2) and len(w1) >= 2) or (w2.issubset(w1) and len(w2) >= 2):
+        return True
+
+    return SequenceMatcher(None, t1.lower().strip(), t2.lower().strip()).ratio() >= 0.82
+
+def deduplicate_events(events: list, city_name: str = "") -> list:
+    by_date = {}
     for ev in events:
         d = str(ev.get("date_start", ev.get("date", "")))[:10]
         by_date.setdefault(d, []).append(ev)
     
-    merged_results: List[Dict[str, Any]] = []
+    merged_results = []
     for d, day_events in by_date.items():
-        clusters: List[List[Dict[str, Any]]] = []
+        clusters = []
         for ev in day_events:
-            ev["title"] = _clean_event_title(ev.get("title", ""), city_name)
+            ev_title = _clean_event_title(ev.get("title", ""), city_name)
+            ev["title"] = ev_title
+            ev_time = str(ev.get("time_start", "")).strip()
+            
             matched_cluster = None
             for cluster in clusters:
-                if any(_are_titles_duplicate(ev["title"], c_ev.get("title", "")) for c_ev in cluster):
+                if any(_are_titles_duplicate(ev_title, c_ev.get("title", ""), ev_time, str(c_ev.get("time_start", "")).strip()) for c_ev in cluster):
                     matched_cluster = cluster
                     break
             if matched_cluster is not None:
@@ -322,7 +354,6 @@ def deduplicate_events(events: List[Dict[str, Any]], city_name: str = "") -> Lis
                 continue
             
             best_title = min([c.get("title", "") for c in cluster if c.get("title")], key=len)
-            
             best_img = ""
             for c in cluster:
                 img = c.get("image_url") or c.get("thumbnail_url", "")
@@ -571,6 +602,7 @@ def run_city_pipeline(
 
     active_db_events = get_active_events(city_tag=raw_tag, min_date=today_iso)
     deduped_events = deduplicate_events(active_db_events, city_name=city_name)
+    sync_city_events(raw_tag, deduped_events)
     event_models = _prepare_event_models(deduped_events, city_cfg=city_cfg, city_name=city_name, places_by_id=places_by_id)
     renderer.render_city(
         city_name=city_name,
