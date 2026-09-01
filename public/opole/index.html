@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agenda Wydarzeń: Opole | CoRobićW</title>
-  <meta name="description" content="Aktualny harmonogram spektakli, koncertów i wydarzeń w Opole.">
+  <title>Agenda Wydarzeń:  | CoRobićW</title>
+  <meta name="description" content="Aktualny harmonogram spektakli, koncertów i wydarzeń w .">
   
   <script>
     (function() {
@@ -197,14 +197,13 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 40%;
+      width: 22%;
       height: 1.35em;
-      background: linear-gradient(to right, transparent, var(--card-bg) 70%);
+      background: linear-gradient(to right, transparent 0%, var(--card-bg) 85%);
       pointer-events: none;
-      transition: background 0.2s;
     }
     .event-card:hover .event-desc::after {
-      background: linear-gradient(to right, transparent, var(--card-hover) 70%);
+      background: linear-gradient(to right, transparent 0%, var(--card-hover) 85%);
     }
     
     .meta-bottom {
@@ -235,12 +234,17 @@
     .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
     .footer-col ul a:hover { color: var(--text); }
     .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+  
+    .cat-accent { color: #34d399; font-weight: 800; letter-spacing: 0.5px; }
+    .date-accent { color: var(--text); font-weight: 700; }
+    .time-accent { color: #34d399; font-weight: 800; }
+
   </style>
 </head>
 <body>
   <header>
     <div class="nav-container">
-      <a href="/opole/" class="brand">CoRobićW <span>Opole</span></a>
+      <a href="/opole/" class="brand">CoRobićW <span></span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
           <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
@@ -252,7 +256,7 @@
   </header>
   <main>
     <nav class="breadcrumbs">
-      <a href="/">Polska</a><span>/</span><span class="current">Opole</span>
+      <a href="/">Polska</a><span>/</span><span class="current"></span>
     </nav>
     <div class="filter-bar">
       <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
@@ -278,14 +282,18 @@
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-03 &bull; 20:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 3 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/opole-stand-up-festival-2026-2026-09-03/">Opole Stand-up Festival 2026</a></h3>
-                <p class="event-desc">Please, Stand-up prezentuje: Opole Stand-up Festival 2026. Już 3 września w Stegu Arenie wystąpi specjalnie dla Was czołówka polskich komików. Na scenie pojawią się: -Kacper Ruciński -Piotrek Szumowski -Wiolka Walaszczyk -Paweł Chałupka -Adam Van Bendler -Błażej Krajewski -Darek Gadowski -Czarek Sikora -Falcon1 Przygotuj się na potężną porcję fenomenalnego humoru. Już 3 września w Stegu Arenie. Kup swój bilet już teraz - do zobaczenia niebawem! — Wydarzenie dla widzów pełnoletnich. Udział w wydarzeniu osób poniżej 18 roku życia jest możliwy w towarzystwie lub za zgodą i na odpowiedzialność opiekuna.</p>
+                <p class="event-desc">Wydarzenie: Opole Stand-up Festival 2026.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 100.05 zł</span>
+                <span class="price">od 100.05 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -308,14 +316,18 @@
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-04 &bull; 20:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 4 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/ich-troje-2026-09-04/">Ich Troje</a></h3>
                 <p class="event-desc">*** Opiekun osoby niepełnosprawnej wchodzi na wydarzenie bezpłatnie! Prosimy jednak o wcześniejszy kontakt z bileterią. **** Dzieci do lat 6 wchodzą na wydarzenie bezpłatnie, pod warunkiem, że nie będą zajmować osobnego miejsca, tzn. będą siedzieć na kolanach opiekunów. Do zobaczenia!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -338,14 +350,18 @@
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-05 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 5 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stand-up-kobieca-strona-stand-upu-2026-09-05/">Stand-up: Kobieca Strona Stand-up'u</a></h3>
                 <p class="event-desc">Na scenie zobaczymy komiczki i stand-uperki z różnych stron Polski. Kobiece poczucie humoru w różnych odsłonach. Będzie nie tylko różowo i cukierkowo ale czasem bardzo ostro i brutalnie. Będą występować osoby, które mają już duże doświadczenie na scenie, a także zaczynające swoją przygodę na scenie. Posłuchamy nowych żartów i jednego możemy być pewni, nie będzie nudno. Zobaczymy m. in. Karolinę Podemską, Krystynę Bączyk, Karolinę Kaczmarek, Boską Czterdziestolatkę, Polę Stańczyk, Emilię Ornat a także Małgorzatę Bolek-Hulacką , która również poprowadzi spotkanie. A może i Ty chcesz spróbować swoich sił na scenie Daj znać!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -368,14 +384,18 @@
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-06 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 6 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stand-up-karol-modzelewski-2026-09-06/">Stand-up: Karol Modzelewski</a></h3>
                 <p class="event-desc">"Bimber i marakasy" to nowy program pełen opowieści, dygresji, anegdot i żartów bez jakiegoś niepotrzebnego nadęcia. Czy ten program ma odmienić Wasze życie Nie. Czy ma Was rozbawić, i naładować dobrą energią na nierówną walkę z rzeczywistością Taki jest plan. Program przeznaczony jest dla ludzi z dystansem do siebie i świata, i od 16 roku życia. Dzieci przyprowadzone na występ na czas jego trwania będą zamykane w piwnicy, gdzie będą składać ajfony i szyć spodnie dla wiecie których marek. A poza tym to usiądźcie wygodnie i bawcie się dobrze Na supporcie zobaczycie Rafała Banasia. A po wszystkim zbijemy sobie piątki i pstrykniemy pamiątkowe fotki. Do zobaczenia! Wasz Karol. WAŻNE !!! Organizator zastrzega sobie prawo do odmowy wstępu na wydarzenie, jak również prawo wyproszenia posiadacza biletu bez zwrotu kosztów jego zakupu w przypadku: - niestosownego zachowania podczas występu, - zakłócania odbioru innym uczestnikom występu, np. poprzez głośne lub agresywne zachowanie, - naruszenia zasad uczestniczenia w występie określonych przez Organizatora, w szczególności dotyczących limitu wieku uczestników (16 lat), zakazu wnoszenia własnych napojów oraz całkowitego zakazu nagrywania audio oraz video i robienia zdjęć. Nie ma konieczności drukowania biletów, mogą one zostać przedstawione w formie elektronicznej.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -398,9 +418,13 @@
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-08 &bull; 19:30</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 8 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:30</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/znajdz-x-komedia-niewiadoma-2026-09-08/">Znajdź X - komedia niewiadoma</a></h3>
                 <p class="event-desc">Babka może ci wywróżyć, że na Twoją imprezę przyjdzie sto osób, ale nie powie ci, że jedna z tych osób to nieproszone mydło!
 
@@ -411,7 +435,7 @@ Babka potrafi wróżyć i do przodu, i do tyłu. I nawet powróży jak jej zabie
 Babka zna filmy, których produkcji zakazano i nigdy nie powstaną.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -434,14 +458,18 @@ Babka zna filmy, których produkcji zakazano i nigdy nie powstaną.</p>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-11 &bull; 20:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 11 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/polska-noc-kabaretowa-2026-2026-09-11/">Polska Noc Kabaretowa 2026</a></h3>
-                <p class="event-desc">Polska Noc Kabaretowa 2026 – Siedmiu wspaniałych Siedmiu mistrzów polskiego humoru. Siedem premierowych skeczów. Jeden wieczór, którego nie da się zapomnieć. Polska Noc Kabaretowa 2026 powraca w zupełnie nowym wydaniu – z energią, błyskiem i humorem, który nie zna granic! Na scenie spotkają się gwiazdy, które od lat bawią całą Polskę: Kabaret Nowaki Kabaret Skeczów Męczących Kabaret Smile Kabaret Moralnego Niepokoju Igor Kwiatkowski Kabaret K2 Mariusz Kałamaga Całość poprowadzi niezawodny Kabaret K2, który zadba o to, by śmiechu nie zabrakło! Co się wydarzy, gdy na scenie spotkają się najlepsi z najlepszych Możemy tylko powiedzieć jedno: przygotujcie się na dawkę humoru, która rozbawi do łez i nie raz zaskoczy. Bilety na Polską Noc Kabaretową 2026 już dostępne! INFORMACJE ORGANIZACYJNE: – Widowisko PNK trwa 3,5 h. – Sprawdź dokładnie, czy masz przy sobie bilet, najlepiej w wersji elektronicznej. Bilet okażesz do skanowania (podgląd na kod kreskowy). – Bramki otwieramy punktualnie godzinę przed startem imprezy. – Przypominamy o zakazie wnoszenia własnych produktów spożywczych i napojów (poza seryjnie zakręconymi, w plastikowych butelkach, o pojemności do 0,5 l).</p>
+                <p class="event-desc">Wydarzenie: Polska Noc Kabaretowa 2026.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -464,14 +492,18 @@ Babka zna filmy, których produkcji zakazano i nigdy nie powstaną.</p>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-13 &bull; 17:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 13 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/maryla-rodowicz-2026-09-13/">Maryla Rodowicz</a></h3>
-                <p class="event-desc">To będzie wyjątkowe spotkanie z legendą polskiej piosenki, która od dekad łączy pokolenia. W letnim entourage’u, pod otwartym niebem i w magicznej atmosferze plenerowej sceny, zabrzmią największe przeboje – od „Małgośki”, przez „Remedium”, „Sing-Sing”, aż po ponadczasowy „Niech żyje bal”, który od lat porusza serca fanów. Maryla Rodowicz na żywo pod błękitnym niebem! Występy Maryli Rodowicz to coś więcej niż tylko koncert. To pełne energii widowisko – barwne, żywiołowe i niepowtarzalne. Każde pojawienie się artystki na scenie to eksplozja kolorów, charyzmy i niezwykłego kontaktu z publicznością, dzięki któremu każdy czuje się częścią tego wyjątkowego muzycznego święta. Dlaczego warto być tam z nami Bo to niepowtarzalna okazja, by odbyć muzyczną podróż przez dekady największych hitów, poczuć klimat prawdziwego letniego festiwalu i dać się porwać wspólnemu śpiewaniu pod gołym niebem. Niech żyje lato z Marylą Rodowicz!</p>
+                <p class="event-desc">Wydarzenie: Maryla Rodowicz.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 148.68 zł</span>
+                <span class="price">od 148.68 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -494,9 +526,13 @@ Babka zna filmy, których produkcji zakazano i nigdy nie powstaną.</p>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-14 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Poniedziałek, 14 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/tomek-skrzypek-2026-09-14/">Tomek Skrzypek</a></h3>
                 <p class="event-desc">Tomek Skrzypek zaprasza na swój program "PETARDA".
 
@@ -505,7 +541,7 @@ Jeżeli widziałeś Tomka na żywo, to wiesz, że wszystko może się wydarzyć.
 "PETARDA" to wieczór pełen energii, improwizacji i komedii, która z pełnym przekonaniem ignoruje potrzebę bycia logiczną. Jeżeli podczas występu złapiesz się na myśli: "Skąd on w ogóle na to wpadł", to znaczy, że wszystko idzie zgodnie z planem. * Brak zgody na nagrywanie występu. * Osoby, które będą przeszkadzać podczas wydarzenia zostaną wyproszone. Bez zwrotu pieniędzy za bilet.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -528,9 +564,13 @@ Jeżeli widziałeś Tomka na żywo, to wiesz, że wszystko może się wydarzyć.
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-16 &bull; 18:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Środa, 16 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/jacek-stachursky-2026-09-16/">Jacek Stachursky</a></h3>
                 <p class="event-desc">Jacek Stachursky - wokalista, twórca i współautor wielu znanych i popularnych ogólnopolskich przebojów.
 
@@ -539,7 +579,7 @@ Zadebiutował na scenie w 1994 roku, współtworząc i wykonując swój pierwszy
 Ostatnie lata to szereg sukcesów w obszarze muzyki tanecznej i, w konsekwencji, przyznanie wyróżnień pod postacią kilku złotych i platynowych singli za utwory "Essa", "Szampan i truskawki", "Kieliszki" oraz "Doskozzza". Od 1994 roku, podczas swojej drogi estradowej, regularnie, co 6 lat, los dedykuje mu kolejne "artystyczne 5 minut", które, artysta optymalnie i skutecznie wykorzystuje. Obecnie artysta celebruje 30 lat aktywności estradowej.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -562,14 +602,18 @@ Ostatnie lata to szereg sukcesów w obszarze muzyki tanecznej i, w konsekwencji,
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-18 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 18 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/lady-pank-2026-09-18/">Lady Pank</a></h3>
-                <p class="event-desc">Lady Pank – 45 lat Legenda polskiego rocka świętuje 45-lecie istnienia! Z tej wyjątkowej okazji Lady Pank wyrusza w jubileuszową trasę koncertową, która będzie niepowtarzalną podróżą przez ponad cztery dekady historii zespołu. To wydarzenie jak żadne inne dotąd. Podczas koncertów członkowie zespołu zabiorą publiczność w sentymentalną opowieść o mniej i bardziej znanych momentach, które kształtowały Lady Pank przez 45 lat działalności. Ze sceny wybrzmią wspomnienia, anegdoty i historie stojące za największymi przebojami, które na stałe wpisały się w kanon polskiej muzyki. Na fanów czeka potężna dawka rockowej energii i największe przeboje, które od lat łączą kolejne pokolenia – niezależnie od wieku czy muzycznych upodobań. Koncertom towarzyszyć będzie wyjątkowy multimedialny show, wzbogacony o archiwalne zdjęcia i materiały wideo, tworzące spektakularne podsumowanie 45 lat kariery zespołu. Na koncertach usłyszymy nie tylko największe przeboje, takie jak „Mniej niż zero”, „Kryzysowa narzeczona”, „Zawsze tam, gdzie Ty”, „Zostawcie Titanica”, „Tańcz, głupia, tańcz”, „Na co komu dziś”, „Marchewkowe pole”, czy „Stacja Warszawa”, ale też materiał z nowej płyty „LP 45”, która została wydana w listopadzie 2025 r. Wspomnienia, emocje, muzyka i dobra zabawa – to obowiązkowy punkt 2026 roku dla każdego fana rocka. Dołącz do świętowania 45 lat Lady Pank i przeżyj ten wyjątkowy czas razem z zespołem!</p>
+                <p class="event-desc">Wydarzenie: Lady Pank.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -592,16 +636,20 @@ Ostatnie lata to szereg sukcesów w obszarze muzyki tanecznej i, w konsekwencji,
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-18 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 18 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/bartek-walos-2026-09-18/">Bartek Walos</a></h3>
                 <p class="event-desc">Cofnijmy się razem w rozwoju. " Imponujący regres " - to stand-upowa podróż w głąb siebie aż do samego głąba. To próba zidentyfikowania rzeczy, które ciągną nas w dół i wspięcia się po nich na prawdziwe wyżyny własnej głupoty. Czasami warto zrobić kilka kroków do tyłu, żeby zobaczyć, jak niewiele posunęliśmy się do przodu. Jeśli wydaje wam się, że wiecie, czym jest utrudnianie sobie życia i autosabotaż, potrzymajcie mi cherry coke w starej puszce i posłuchajcie tego. Nie zabraknie też refleksji na temat spraw, o których żadna osoba po 30-tce nie powinna mieć nawet czasu myśleć.
 
 II PULA - 60 PLN Bartek Walos to komik z wieloletnim stażem, kilkoma materiałami na koncie i solidną liczbą pojawień się w mediach od komputerów po telewizory i radioodbiorniki. Lubi przebierać w słowach na tyle, że chętnie wskoczyłby do basenu ze słowami. Nie stroni od bujania w obłokach, ale lubi też czołowe zderzenia z rzeczywistością. Dotychczas wychodził z nich cało, ale kto wie, ile wstrząsów mózgu ma na liczniku. Amatorzy nieoczywistych żartów i awangardowego podejścia do życia, powinni znaleźć w jego komedii coś dla siebie. Jeśli to Was nie przekonuje, zawsze można sprawdzić jego rzeczy na YT. Polecam się, Bartłomiej Walos. * Brak zgody na nagrywanie występu. * Przeszkadzania w trakcie występu nie ma w cenie biletu. Osoby utrudniające jego przebieg zostaną wyproszone, bez zwrotu pieniędzy za bilet. Długi podpunkt, wiem, ale ważny. * Występ przeznaczony jest dla osób w miarę dorosłych. * Nie ma konieczności drukowania biletów, mogą być w telefonie.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -624,14 +672,18 @@ II PULA - 60 PLN Bartek Walos to komik z wieloletnim stażem, kilkoma materiała
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-19 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 19 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/farben-lehre-2026-09-19/">FARBEN LEHRE</a></h3>
-                <p class="event-desc">Brawurowa i energetyczna formacja FARBEN LEHRE powstała we wrześniu 1986 roku. Od tamtego czasu na bogatą dyskografię kapeli składa się 14 płyt studyjnych, 6 DVD oraz liczne kompilacje. Od wielu lat zespół bardzo dużo koncertuje zarówno w Polsce, jak i za granicą. Na swoim koncie płoccy muzycy mają występy u boku tak znaczących formacji jak the Exploited, Die Toten Hosen, New Model Army, Toy Dolls, U.K. Subs, G.B.H., Vibrators czy Dritte Wahl. Od 2004 roku FARBEN LEHRE był pomysłodawcą oraz jednym z głównych wykonawców trasy koncertowej PUNKY REGGAE live, która rokrocznie odwiedzała kilkadziesiąt klubów w większości dużych polskich miast, a w 2018 roku – po kilku latach przerwy – ponownie, z sukcesem, powróciła na polską mapę koncertową. Żywiołowe koncerty zawsze grane "na 100%", to bez wątpienia znak rozpoznawczy kapeli z Płocka. Od blisko dwudziestu lat zespół gra blisko sto koncertów rocznie i wciąż aktywnie udziela się na wielu scenach naszego kraju oraz poza jego granicami. W 2021 roku zespół świętował swoje 35 urodziny, w związku z czym ukazało się kilka jubileuszowych wydawnictw, takich jak: CD „Pieśni XX wieku”, winyl+dvd „Akustycznie”, winyl+cd-split „Farben Lehre &amp; Sexbomba” oraz okazjonalna składanka CD "Friends For Friends". Na początku marca 2023 roku światło dzienne ujrzał najnowszy, premierowy album FARBEN LEHRE, zatytułowany "Na zdrowie", a chwilę później ten sam krążek został wydany w postaci winyla. Z pewnością wiele nowych kawałków pojawi się w koncertowej setliście. Zatem kwartet z Mazowsza absolutnie nie zwalnia tempa i nieustannie idzie do przodu! Muzyka FARBEN LEHRE jest energiczna, melodyjna, pełna radości grania i wolna od kompleksów. Ostre, aczkolwiek przystępne dźwięki oraz garść szczerych słów stanowią próbę duchowego porozumienia się z drugim człowiekiem. Najważniejsze utwory to "Ali-Baba", "Anioły i demony", "Dobranoc", "Ferajna", "Handel", "Helikoptery", "Egoiści" "Judasz", "Kolory", "Manifest", "Matura", "Na zdrowie", „Nierealne ogniska”, "Przebudzenie", "Samo życie", "Spodnie z GS-u", „Stacja Wolność”, "Szeregowiec" czy "Terrorystan". FARBEN LEHRE (skład): Wojtek Wojda – wokal, teksty Konrad Wojda – gitara, wokal Filip Grodzicki – gitara basowa Gerard Klawe – perkusja</p>
+                <p class="event-desc">Wydarzenie: FARBEN LEHRE.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 49 zł</span>
+                <span class="price">od 49 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -654,14 +706,18 @@ II PULA - 60 PLN Bartek Walos to komik z wieloletnim stażem, kilkoma materiała
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-20 &bull; 18:30</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 20 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:30</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/kombii-skawinskitkaczyk-50-lat-na-scenie-2026-09-20/">KOMBII Skawiński/Tkaczyk 50 lat na scenie</a></h3>
-                <p class="event-desc">KRÓLOWIE ŻYCIA Skawiński/Tkaczyk 50 LAT NA SCENIE Grzegorz Skawiński i Waldemar Tkaczyk zapraszają na wyjątkowy koncert z okazji 50-lecia pracy artystycznej. To będzie opowieść o przyjaźni, która przetrwała dekady, o odwadze artystów, o buncie oraz pragnieniu zmiany. O brzmieniu, które przez lata zmieniało się, ale nie traciło tożsamości. To będzie lot po całości! Od już kultowego Kombi, przez rockową energię Skawalkera, bezkompromisową siłę O.N.A., aż po współczesne Kombii. Usłyszymy utwory, które stały się hymnami pokoleń. Piosenki, które definiowały epoki, a dziś wciąż wywołują ten sam dreszcz ...ale to nie będzie wyciskający łzy sentymentalny powrót. To będzie wspólnotowa celebracja drogi, która nadal trwa i wciąż może zaskoczyć. Nigdy nie wiemy, co czeka za kolejnym zakrętem. 50 lat! Kiedy to minęło Jak Tego nie wie nikt, wiemy natomiast, że nie może Was zabraknąć. Zapraszamy!</p>
+                <p class="event-desc">Wydarzenie: KOMBII Skawiński/Tkaczyk 50 lat na scenie.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -684,9 +740,13 @@ II PULA - 60 PLN Bartek Walos to komik z wieloletnim stażem, kilkoma materiała
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-22 &bull; 19:30</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 22 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:30</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/znajdz-x-komedia-niewiadoma-2026-09-22/">Znajdź X - komedia niewiadoma</a></h3>
                 <p class="event-desc">Babka może ci wywróżyć, że na Twoją imprezę przyjdzie sto osób, ale nie powie ci, że jedna z tych osób to nieproszone mydło!
 
@@ -697,7 +757,7 @@ Babka potrafi wróżyć i do przodu, i do tyłu. I nawet powróży jak jej zabie
 Babka zna filmy, których produkcji zakazano i nigdy nie powstaną.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -720,14 +780,18 @@ Babka zna filmy, których produkcji zakazano i nigdy nie powstaną.</p>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-25 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 25 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/the-magic-of-disco-festiwal-2026-09-25/">The Magic of Disco Festiwal</a></h3>
                 <p class="event-desc">THE MAGIC OF DISCO FESTIWAL w Opolu. Przygotuj się na muzyczną podróż w czasie do złotych lat muzyki tanecznej! The Magic Of Disco to wyjątkowy festiwal, który gromadzi legendy sceny disco i eurodance, artystów, których przeboje podbiły parkiety na całym świecie. To właśnie ich utwory stały się symbolem niezapomnianych imprez, emocji i wspomnień, które do dziś łączą pokolenia fanów. Teraz te kultowe brzmienia powrócą na żywo w Opolu! Data: 25 września 2026 (piątek) Miejsce: Stegu Arena Opole Start: 19:00 Na scenie wystąpią: Bad Boys Blue - twórcy hitów You're A Woman, I Wanna Hear Your Heartbeat Sunday Girl! No Mercy - autorzy ponadczasowych przebojów Where Do You Go, Missing Francesco Napoli - który porwie publiczność utworami Balla Balla, Ciao Ciao Siciliano Joy - znani z hitów Touch by Touch, Valerie Zabierz znajomych i przeżyj wieczór pełen rytmu, wspomnień i tanecznej energii!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -750,9 +814,13 @@ Babka zna filmy, których produkcji zakazano i nigdy nie powstaną.</p>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-29 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 29 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/pawel-konkiel-stand-up-2026-09-29/">Paweł Konkiel stand-up</a></h3>
                 <p class="event-desc">Facet, który kończy 34 lata jest jak samochód z 200 tysiącami kilometrów przebiegu. Ja mam obie te rzeczy, więc wiem, że nie da się już funkcjonować bezobsługowo. A to prowadzi do wielu sytuacji, które warto Wam opowiedzieć.
 
@@ -761,7 +829,7 @@ Ten program będzie krótszy, niż poprzedni, maks półtorej godziny, ale szyku
 Wpadajcie na " ŚLADY UŻYTKOWANIA ", żeby sprawdzić, czy dalej jestem w formie!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -784,14 +852,18 @@ Wpadajcie na " ŚLADY UŻYTKOWANIA ", żeby sprawdzić, czy dalej jestem w formi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-09-29 &bull; 20:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 29 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stand-up-lukasz-tomasz-niemam-2026-09-29/">Stand-up: Łukasz Tomasz NieMam</a></h3>
                 <p class="event-desc">* Jeśli to przeczytałeś, to powiedz podczas sprawdzania biletów: katapulta. Do zobaczenia!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 200 zł</span>
+                <span class="price">od 200 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -814,14 +886,18 @@ Wpadajcie na " ŚLADY UŻYTKOWANIA ", żeby sprawdzić, czy dalej jestem w formi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-02 &bull; 22:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 2 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">22:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/clubbing-2026-10-02/">CLUBBING</a></h3>
                 <p class="event-desc">CLUBBING (Opole) w dn. 2 października 2026 o godz. 22:00. OPOLSKA INTEGRACJA STUDENCKA. Nadchodzi coś wielkiego. Już 2 października 2026 przejmujemy klub Mango i ofi...</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -844,9 +920,13 @@ Wpadajcie na " ŚLADY UŻYTKOWANIA ", żeby sprawdzić, czy dalej jestem w formi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-04 &bull; 18:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 4 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/bartosz-mlynarski-2026-10-04/">Bartosz Młynarski</a></h3>
                 <p class="event-desc">Cześć, tu Bartek i jaram się życiem. Mam 42 lata i codziennie afirmuje radość. Zapraszam na mój pierwszy solo program w którym postaram się Ciebie rozbawić moim prostym życiem. Jeżeli jarają Cię zakupy w Auchan, jedzenie parówek a denerwuje karmienie wiewiórek to zapraszam. Moje żarty są raczej jak czarna kawa, gorzkie i pobudzają, ale nie ma w nich mleczka (na pewno nie grochowego). Jaram się jak wpadniesz. Tu komentarz z kupbilecik, którym zachęcam: "Bartek Młynarski po raz kolejny bardzo rozbawił mnie swoja niechecia do zycia."
 
@@ -857,7 +937,7 @@ Bartosz Młynarski - jest komikiem, który na co dzień występuje w Klubie Kome
 * zakaz nagrywania występu</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -880,9 +960,13 @@ Bartosz Młynarski - jest komikiem, który na co dzień występuje w Klubie Kome
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-05 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Poniedziałek, 5 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/kacper-rucinski-2026-10-05/">Kacper Ruciński</a></h3>
                 <p class="event-desc">"Szósty raz ci mówię"
 
@@ -891,7 +975,7 @@ Opis programu: Zamiast czytać opisy, po prostu przyjdź i baw się dobrze. Pion
 Na scenie pojawi się również support: Tomek Skrzypek. * 18+ Występ tylko dla widzów pełnoletnich. * Nagrywanie występu w formie audio i wideo jest zabronione. * Osoby nietrzeźwe i przeszkadzające będą wypraszane bez możliwości ubiegania się zwrotu za bilet. * Handel biletami w celu zysku jest przestępstwem (Art. 133 kw).</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -914,14 +998,18 @@ Na scenie pojawi się również support: Tomek Skrzypek. * 18+ Występ tylko dla
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-06 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 6 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stand-up-bartek-strusinski-2026-10-06/">Stand-up: Bartek Strusiński</a></h3>
                 <p class="event-desc">Zapraszam Was na podróż po najdalszych zakątkach umysłu młodego człowieka który opowie Ci jak w dzisiejszych czasach komunikacja między ludźmi jest skomplikowana. Razem przebrniemy przez tematy które nigdy nie poruszysz prywatnie, oraz tematy które chciałbyś poruszyć prywatnie, ale żona wyrzuci Cię z domu. Wpadnij do mojej krainy żartów, gdzie jedyny co musisz zrobić to dobrze się bawić. A co się mówi To już opowiem Wam na żywo!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -944,14 +1032,18 @@ Na scenie pojawi się również support: Tomek Skrzypek. * 18+ Występ tylko dla
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-09 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 9 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/rafal-rutkowski-2026-10-09/">Rafał Rutkowski</a></h3>
                 <p class="event-desc">Rafał Rutkowski (Opole) w dn. 9 października 2026 o godz. 19:00. Stand-up Opole | Rafał Rutkowski w programie "Wehikuł czasu". W czwartym solowym programie Rafał Rutkowski podróżuje w czasie. W swoim styl...</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -974,9 +1066,13 @@ Na scenie pojawi się również support: Tomek Skrzypek. * 18+ Występ tylko dla
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-09 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 9 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/synmojegotaty-stand-up-2026-10-09/">SynMojegoTaty Stand-up</a></h3>
                 <p class="event-desc">SynMojegoTaty zaprasza na swój POPIS. POPIS w roli ojca, komika oraz osoby dorosłej. W najnowszym programie opowie o trudach tacierzyństwa, o swojej relacji z kościołem, WOŚP-em i Taco-Hemingwayem.  A także o polityce, bodypositive i krwiożerczych wegetarianach. Czy koniec świata jest bliski I czy to w sumie źle Przekonaj się i wpadnij na nowy program.
 
@@ -987,7 +1083,7 @@ Na supporcie niezastąpiony Wojciech Rydzu. Do zobaczenia!
 - zakaz nagrywania. Najniższa cena z ostatnich 30 dni: 49 zł</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 49 zł</span>
+                <span class="price">od 49 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1010,18 +1106,18 @@ Na supporcie niezastąpiony Wojciech Rydzu. Do zobaczenia!
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-15 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 15 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/bartosz-gajda-po-lecie-stand-up-nowy-program-2026-10-15/">Bartosz Gajda - "PO LECIE" - stand up NOWY PROGRAM</a></h3>
-                <p class="event-desc">No i zaraz zakwitnie rzepak, zaraz długi weekend, potem Boże Ciało, krótki urlop, dzieciaki do szkoły, zmiana godziny, kukurydzę skoszą, na groby trzeba jechać, Andrzejki, święta, Sylwester, 6 Króli i zś Popielec... Ech leci to z każdym rokiem szybciej. Po lecie! Nic tylko iść na stand up!
-
-Bartosz Gajda - od 20 lat na scenie. W kabarecie, telewizji, Radiu, Stand upie. Zapraszamy na najnowszy program (premiera wiosna 2026). W nim coraz kolejny Bartosz dostarczy mnóstwo śmiechu, bez niepotrzebnych wulgaryzmów, na poziomie z nutką Gajdowego absurdu!
-
-P.S. - Co robicie na Sylwestra</p>
+                <p class="event-desc">Wydarzenie: Bartosz Gajda - "PO LECIE" - stand up NOWY PROGRAM.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1044,14 +1140,18 @@ P.S. - Co robicie na Sylwestra</p>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-16 &bull; 20:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 16 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/szymon-majewski-2026-10-16/">Szymon Majewski</a></h3>
-                <p class="event-desc">Szymon Majewski - Kto Panu to zrobił Szymon Majewski zaprasza na występ pełen humoru i autoironii! Jego solowy program to istny koktajl zwariowanych anegdot, błyskotliwych komentarzy i absurdalnych spostrzeżeń. To występ, w którym Szymon w charakterystycznym dla siebie stylu przenosi widzów w świat swoich codziennych przegrzewek, nerwic i fascynacji. Szymon Majewski, znany z niezwykłego poczucia humoru, podczas tego stand-upu dzieli się swoimi osobistymi przemyśleniami na tematy, które od lat go fascynują i drażnią. Opowie o swoich doświadczeniach z Netflixem, Edytą Górniak, a nawet nazwami leków. Usłyszymy historie o przygodach na statkach, zaczepkach na ulicy Brackiej, oraz dlaczego Szymon Majewski zawsze przegrywał rankingi seksualne. Nie zabraknie też opowieści o jego nietypowych analizach Davida Guetty i wbijaniu na Instagram Gosi Rozenek. Przygotuj się na spotkanie z 57-letnim facetem, który nie boi się śmiać z własnych wzlotów i upadków. Nie przegap występu, który rozbawi Cię do łez i przyniesie odpowiedź na zasadnicze pytanie - „Kto Panu to zrobił”</p>
+                <p class="event-desc">Wydarzenie: Szymon Majewski.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 127.44 zł</span>
+                <span class="price">od 127.44 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1074,16 +1174,20 @@ P.S. - Co robicie na Sylwestra</p>
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-17 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 17 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stand-up-martyna-podwysocka-2026-10-17/">Stand-up: Martyna Podwysocka</a></h3>
                 <p class="event-desc">Martyna Podwysocka w NOWYM PROGRAMIE stand-up. Będzie miał tytuł, ale jeszcze nie teraz.  Jak widać ilość komentarzy po poprzednim programie "Yes Comment" była niewystarczająca i Martyna ponownie rusza w Polskę.
 
 Martynę mogłeś już widzieć w programach komediowych "Masz Minutę" i "Roast Me" a także w wielu projektach grupowych takich jak: "Roast Machnickiego" czy "Roast Harcerstwa". Wrzuciła kilka materiałów stand-upowych na YouTube (" Yes Comment", "Ćwiara", "Martyna PDW", "Wyklepka na wolke"). Występuje w Babskiej Trasie Komediowej " Do Bigosu!" i na supportach między innymi u Bartosza Zalewskiego, Krzysztofa Kasparka, Filipa Puzyra i Cezarego Jurkiewicza.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1106,9 +1210,13 @@ Martynę mogłeś już widzieć w programach komediowych "Masz Minutę" i "Roast
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-17 &bull; 22:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 17 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">22:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/dadoo-2026-10-17/">DaDoo</a></h3>
                 <p class="event-desc">DaDoo po raz pierwszy w Mango Club Opole! Już w sobotę, 17 października, zapraszamy na wyjątkową noc z DaDoo - DJ-em z Zagrzebia, który od ponad 15 lat rozgrzewa parkiety najlepszych klubów i festiwali w Europie, w tym legendarnego Ultra Europe.
 
@@ -1117,7 +1225,7 @@ DaDoo słynie z doskonałego wyczucia publiczności, dynamicznych setów i energ
 Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najwyższym poziomie. Jeśli cenisz świetną muzykę, wyjątkową oprawę i najlepszą klubową atmosferę - tej nocy nie może Cię zabraknąć.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1140,14 +1248,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-22 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 22 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/frank-gambale-all-star-group-drumfest-2026-10-22/">Frank Gambale - All Star Group DRUMFEST</a></h3>
-                <p class="event-desc">Frank Gambale All Star na Drumfest w Opolu - Prawdziwe Święto Muzycznej Wirtuozerii! Przygotujcie się na absolutną bombę energetyczną i jedno z najważniejszych wydarzeń tegorocznego festiwalu Drumfest w Opolu! Na scenie zobaczymy formację Frank Gambale All Star, prowadzoną przez żywą legendę gitary, w otoczeniu muzycznych tytanów światowego formatu. To nie będzie zwykły koncert - to wybuchowa fuzja rocka, jazzu, funku i ognistych rytmów latynoskich, która porwie każdego fana genialnego brzmienia. Frank Gambale - Rewolucjonista Gitary i Zdobywca Grammy Głównym motorem napędowym tego wieczoru jest sam Frank Gambale - niekwestionowany geniusz gitary, laureat oraz trzykrotny nominowany do nagrody Grammy, którego styl kultowy magazyn „Rolling Stone” określił krótko: „dziki”! Frank Gambale to artysta, który dosłownie zmienił bieg historii muzyki, tworząc autorską, rewolucyjną technikę Sweep Picking oraz własne strojenie instrumentu, z których do dziś czerpią kolejne pokolenia gitarzystów. Jego imponujący dorobek mówi sam za siebie. Przez ponad 36 lat współtworzył potęgę słynnego Chick Corea’s Elektric Band, grał w kultowym Return to Forever IV u boku Stanleya Clarke'a oraz napisał ponad 300 utworów wydanych na ponad 20 albumach. O jego wielkości najlepiej świadczą słowa samego Chicka Corei, który mówił, że wszystko, czego Frank dotknie swoją gitarą, zamienia się w czyste złoto. Z kolei inny gigant, Pat Metheny, wyznał kiedyś, że sam chętnie wziąłby urlop, by uczyć się od Franka. Podczas koncertu w Opolu lider zaprezentuje całe spektrum swoich możliwości - od drapieżnych, elektrycznych riffów, przez łagodne brzmienia jazzowe, aż po gitary akustyczne, a wszystko to dopełni swoim zaskakującym, aksamitnym wokalem. Gergo Borlai - Perkusyjne Monstrum na Scenie Drumfestu Ponieważ spotykamy się na festiwalu perkusyjnym, oczy wszystkich będą zwrócone na absolutnego potwora za zestawem - Gergo Borlaia. Pochodzący z Węgier, a mieszkający w Los Angeles artysta to cudowne dziecko perkusji; zaczął grać jako trzylatek, a w wieku 15 lat był już wziętym profesjonalistą. Dzisiaj to jeden z najbardziej rozchwytywanych perkusistów, kompozytorów i producentów na planecie, mający na koncie udział w nagraniu ponad 500 albumów! O jego światowej pozycji świadczy chociażby zajęcie 3. miejsca w prestiżowym plebiscycie magazynu Modern Drummer na najlepszego wszechstronnego perkusistę świata - tuż za takimi legendami jak Vinnie Colaiuta i Steve Smith ( był na Drum Fest już dwukrotnie !! ). Gergo Borlai ma na koncie trzy tytuły Perkusisty Roku, nominacje do Grammy za solowy album oraz własny, sygnowany jego nazwiskiem werbel wypuszczony przez legendarną firmę Gretsch. Lista gwiazd, z którymi dzielił scenę, zapiera dech w piersiach: od Tony’ego McAlpine’a, przez Terry’ego Bozzio, aż po Nathana Easta. Jego obecność w składzie gwarantuje rytmiczną jazdę bez trzymanki! Skład All Star - Ekipa Marzeń Ta genialna dwójka to jednak nie wszystko. Skład formacji Frank Gambale All Star dopełniają artyści najwyższej światowej próby, z których każdy wnosi do zespołu gigantyczny kapitał doświadczenia i unikalny talent. Za sterami instrumentów klawiszowych zasiądzie Tom Schuman - absolutny mistrz czarno-białych klawiszy, szeroko znany jako wieloletni filar i muzyczny mózg legendarnej, amerykańskiej formacji jazz-fusion Spyro Gyra. Schuman, mający na koncie udział w nagraniu kilkudziesięciu nominowanych do Grammy albumów, słynie z genialnych, niezwykle melodyjnych i dynamicznych improwizacji. O potężny, pulsujący fundament basowy zadba Martin Gudics. To fenomenalny basista młodego pokolenia i wschodząca gwiazda europejskiej sceny, który zachwyca swoją bezbłędną techniką, niesamowitym groove'em oraz sceniczną ekspresją. Dopełnieniem tej instrumentalnej potęgi będzie hipnotyzujący głos, który idealnie spaja całe brzmienie grupy. Na scenie czarować będzie znakomita wokalistka Boca Gambale, która swoim zjawiskowym, potężnym głosem i wyjątkową wrażliwością wnosi do repertuaru zespołu ogromną dawkę emocji oraz wokalnego kunsztu. Tego wieczoru w Opolu zetrą się niesamowita pasja, techniczna perfekcja i czysta radość z grania. Jeśli chcecie zobaczyć na żywo, jak brzmi światowy top jazz-rocka i jak genialna sekcja rytmiczna potrafi rozgrzać scenę do czerwoności, koncert Frank Gambale All Star na Drumfeście jest pozycją, której po prostu nie możecie przegapić!</p>
+                <p class="event-desc">Wydarzenie: Frank Gambale - All Star Group DRUMFEST.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 127.44 zł</span>
+                <span class="price">od 127.44 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1170,14 +1282,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-22 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 22 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/miedzynarodowy-festiwal-drum-fest-2026-10-22/">Miedzynarodowy Festiwal Drum Fest</a></h3>
                 <p class="event-desc">Frank Gambale All Star na Drumfest w Opolu - Prawdziwe Święto Muzycznej Wirtuozerii! Przygotujcie się na absolutną bombę energetyczną i jedno z najważniejszych wydarzeń tegorocznego festiwalu Drumfest w Opolu! Na scenie zobaczymy formację Frank Gambale All Star, prowadzoną przez żywą legendę gitary, w otoczeniu muzycznych tytanów światowego formatu. To nie będzie zwykły koncert - to wybuchowa fuzja rocka, jazzu, funku i ognistych rytmów latynoskich, która porwie każdego fana genialnego brzmienia. Frank Gambale - Rewolucjonista Gitary i Zdobywca Grammy. Głównym motorem napędowym tego wieczoru jest sam Frank Gambale - niekwestionowany geniusz gitary, laureat oraz trzykrotny nominowany do nagrody Grammy, którego styl kultowy magazyn "Rolling Stone" określił krótko: "dziki"! Frank Gambale to artysta, który dosłownie zmienił bieg historii muzyki, tworząc autorską, rewolucyjną technikę Sweep Picking oraz własne strojenie instrumentu, z których do dziś czerpią kolejne pokolenia gitarzystów. Jego imponujący dorobek mówi sam za siebie. Przez ponad 36 lat współtworzył potęgę słynnego Chick Corea's Elektric Band, grał w kultowym Return to Forever IV u boku Stanleya Clarke'a oraz napisał ponad 300 utworów wydanych na ponad 20 albumach. O jego wielkości najlepiej świadczą słowa samego Chicka Corei, który mówił, że wszystko, czego Frank dotknie swoją gitarą, zamienia się w czyste złoto. Z kolei inny gigant, Pat Metheny, wyznał kiedyś, że sam chętnie wziąłby urlop, by uczyć się od Franka. Podczas koncertu w Opolu lider zaprezentuje całe spektrum swoich możliwości - od drapieżnych, elektrycznych riffów, przez łagodne brzmienia jazzowe, aż po gitary akustyczne, a wszystko to dopełni swoim zaskakującym, aksamitnym wokalem. Gergo Borlai - Perkusyjne Monstrum na Scenie Drumfestu. Ponieważ spotykamy się na festiwalu perkusyjnym, oczy wszystkich będą zwrócone na absolutnego potwora za zestawem - Gergo Borlaia. Pochodzący z Węgier, a mieszkający w Los Angeles artysta to cudowne dziecko perkusji; zaczął grać jako trzylatek, a w wieku 15 lat był już wziętym profesjonalistą. Dzisiaj to jeden z najbardziej rozchwytywanych perkusistów, kompozytorów i producentów na planecie, mający na koncie udział w nagraniu ponad 500 albumów! O jego światowej pozycji świadczy chociażby zajęcie 3. miejsca w prestiżowym plebiscycie magazynu Modern Drummer na najlepszego wszechstronnego perkusistę świata - tuż za takimi legendami jak Vinnie Colaiuta i Steve Smith (był na Drum Fest już dwukrotnie!!). Gergo Borlai ma na koncie trzy tytuły Perkusisty Roku, nominacje do Grammy za solowy album oraz własny, sygnowany jego nazwiskiem werbel wypuszczony przez legendarną firmę Gretsch. Lista gwiazd, z którymi dzielił scenę, zapiera dech w piersiach: od Tony'ego McAlpine'a, przez Terry'ego Bozzio, aż po Nathana Easta. Jego obecność w składzie gwarantuje rytmiczną jazdę bez trzymanki! Skład All Star - Ekipa Marzeń. Ta genialna dwójka to jednak nie wszystko. Skład formacji Frank Gambale All Star dopełniają artyści najwyższej światowej próby, z których każdy wnosi do zespołu gigantyczny kapitał doświadczenia i unikalny talent. Za sterami instrumentów klawiszowych zasiądzie Tom Schuman - absolutny mistrz czarno-białych klawiszy, szeroko znany jako wieloletni filar i muzyczny mózg legendarnej, amerykańskiej formacji jazz-fusion Spyro Gyra. Schuman, mający na koncie udział w nagraniu kilkudziesięciu nominowanych do Grammy albumów, słynie z genialnych, niezwykle melodyjnych i dynamicznych improwizacji. O potężny, pulsujący fundament basowy zadba Martin Gudics. To fenomenalny basista młodego pokolenia i wschodząca gwiazda europejskiej sceny, który zachwyca swoją bezbłędną techniką, niesamowitym groove'em oraz sceniczną ekspresją. Dopełnieniem tej instrumentalnej potęgi będzie hipnotyzujący głos, który idealnie spaja całe brzmienie grupy. Na scenie czarować będzie znakomita wokalistka Boca Gambale, która swoim zjawiskowym, potężnym głosem i wyjątkową wrażliwością wnosi do repertuaru zespołu ogromną dawkę emocji oraz wokalnego kunsztu. Tego wieczoru w Opolu zetrą się niesamowita pasja, techniczna perfekcja i czysta radość z grania. Jeśli chcecie zobaczyć na żywo, jak brzmi światowy top jazz-rocka i jak genialna sekcja rytmiczna potrafi rozgrzać scenę do czerwoności, koncert Frank Gambale All Star na Drumfeście jest pozycją, której po prostu nie możecie przegapić!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1200,14 +1316,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-23 &bull; 18:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 23 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/katarzyna-piasecka-nowy-program-stand-up-bagus-2026-10-23/">Katarzyna Piasecka - Nowy program stand-up „BAGUS”</a></h3>
-                <p class="event-desc">Nowy program stand-up „BAGUS” Katarzyna Piasecka wraca z najnowszym stand-upem „BAGUS”. Dużo zmian w życiu przyniosło dużo śmiesznych historii. Świeże, zabawne i bezkompromisowe żarty w niezmiennie charyzmatycznym wydaniu. Podczas wieczoru wystąpi również support Szymon Baraniecki.</p>
+                <p class="event-desc">Wydarzenie: Katarzyna Piasecka - Nowy program stand-up „BAGUS”.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1230,14 +1350,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-23 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 23 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/paul-wertico-international-group-drumfest-2026-10-23/">Paul Wertico International Group DRUMFEST</a></h3>
-                <p class="event-desc">PAUL WERTICO INTERNATIONAL GROUP - Paul Wertico, Krzysztof Puma Piasecki, Krzysztof Ścierański Obok tego koncertu po prostu nie można tak normalnie przejść! Kiedy na jednej scenie spotykają się trzy absolutne legendy, świat jazzu i fusion po prostu musi zapłonąć. Na mapie koncertowej kraju szykuje się wydarzenie, które wielu z nas zapamięta na lata. Przed nami ekskluzywne spotkanie gigantów: genialnego perkusisty, siedmiokrotnego laureata nagrody Grammy, Paula Wertico, wirtuoza gitary Krzysztofa Pumy Piaseckiego oraz mistrza basowego groove'u Krzysztofa Ścierańskiego. Jeśli macie ochotę na potężny, bezkompromisowy jazz i fusion w najlepszym światowym wydaniu i chcecie poczuć tę kosmiczną energię na wyciągnięcie ręki, to idealny moment, aby zapewnić sobie miejsce pod sceną. Gospodarzem tego niezwykłego wieczoru jest Paul Wertico, absolutna żywa legenda światowej perkusji, okrzyknięty przez krytyków „impresjonistycznym malarzem bębnów” i „geniuszem pałeczek”. Światową sławę zyskał jako wieloletni członek legendarnej Pat Metheny Group (1983-2001). Ten pochodzący z Chicago wizjoner współpracował z takimi ikonami jak David Bowie, Eddie Harris czy Larry Coryell, a polscy fani doskonale pamiętają go jako filar progresywnej grupy SBB. Wertico to soundowy purysta i wykładowca akademicki, który w swojej grze redefiniuje granice jazzu. Magazyny „Modern Drummer” i „DRUM!” regularnie umieszczają go na szczytach plebiscytów, a jego styl to doskonałe połączenie matematycznej precyzji z totalnym, artystycznym szaleństwem. Krzysztof Puma Piasecki, prawdziwa instytucja polskiej gitary i jeden z najwszechstronniejszych artystów naszej sceny, odznaczony medalem "Gloria Artis". Laureat Międzynarodowego Konkursu Improwizacji Jazzowej w Katowicach i stypendysta Berklee College of Music, z równą lekkością porusza się w rock'n'rollu, bluesie, swingu, jak i nowoczesnym fusion. W swojej bogatej karierze dzielił scenę z takimi światowymi potęgami jak Mike Stern, David Weckl czy Dennis Chambers, a także akompaniował gwiazdom formatu Jose Feliciano i Cindy Blackman. Jako założyciel Opolskiego Stowarzyszenia Jazzowego, Puma wraca przed własną publiczność, by po raz kolejny udowodnić, że w jego grze kryje się czysty, nieokiełznany ogień. Skład tego niesamowitego trio zamyka niezrównany fundament rytmiczny i basową magię zapewni jedyny w swoim rodzaju Krzysztof Ścierański. To człowiek, który w świecie gitary basowej dokonał rzeczy niemożliwych, rewolucjonizując podejście do tego instrumentu w Polsce. Od lat zakochany w pulsujących rytmach afrykańskich i latynoskich, sam o sobie mówi, że jest Latynosem zamieszkującym Europę Środkową. Jego muzyczna biografia to pasmo legendarnych kolaboracji - od setek kultowych koncertów z zespołem Laboratorium (w tym pamiętne trasy w Indiach czy San Sebastian), przez energetyczny Air Condition Zbigniewa Namysłowskiego, aż po kultowy, odlotowy String Connection, z którym podbijał sceny od Montrealu po Reno w Nevadzie. Ścierański to synonim muzycznej wolności, który potrafi zamienić bas w wielobarwną, emocjonalną opowieść. Ten koncert to zderzenie trzech potężnych żywiołów, które gwarantuje nienaganną technikę, miażdżący groove i porywające, wielowymiarowe improwizacje. To nie będzie zwykły występ, to będzie prawdziwe muzyczne trzęsienie ziemi, w którym klasyczna harmonia spotka się z latynoskim pulsem i chicagowskim swingiem.. Co najważniejsze, to twórcy z krwi i kości, którzy ponad wszystko cenią sobie autentyczny, żywy kontakt z publicznością.</p>
+                <p class="event-desc">Wydarzenie: Paul Wertico International Group DRUMFEST.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 106.20 zł</span>
+                <span class="price">od 106.20 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1260,14 +1384,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-23 &bull; 17:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Koncert</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 23 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/miedzynarodowy-festiwal-drum-fest-2026-10-23/">Miedzynarodowy Festiwal Drum Fest</a></h3>
-                <p class="event-desc">PAUL WERTICO INTERNATIONAL GROUP - Paul Wertico, Krzysztof Puma Piasecki, Krzysztof Ścierański Obok tego koncertu po prostu nie można tak normalnie przejść! Kiedy na jednej scenie spotykają się trzy absolutne legendy, świat jazzu i fusion po prostu musi zapłonąć. Na mapie koncertowej kraju szykuje się wydarzenie, które wielu z nas zapamięta na lata. Przed nami ekskluzywne spotkanie gigantów: genialnego perkusisty, siedmiokrotnego laureata nagrody Grammy, Paula Wertico, wirtuoza gitary Krzysztofa Pumy Piaseckiego oraz mistrza basowego groove'u Krzysztofa Ścierańskiego. Jeśli macie ochotę na potężny, bezkompromisowy jazz i fusion w najlepszym światowym wydaniu i chcecie poczuć tę kosmiczną energię na wyciągnięcie ręki, to idealny moment, aby zapewnić sobie miejsce pod sceną. Gospodarzem tego niezwykłego wieczoru jest Paul Wertico , absolutna żywa legenda światowej perkusji, okrzyknięty przez krytyków "impresjonistycznym malarzem bębnów" i "geniuszem pałeczek". Światową sławę zyskał jako wieloletni członek legendarnej Pat Metheny Group (1983-2001). Ten pochodzący z Chicago wizjoner współpracował z takimi ikonami jak David Bowie, Eddie Harris czy Larry Coryell, a polscy fani doskonale pamiętają go jako filar progresywnej grupy SBB. Wertico to soundowy purysta i wykładowca akademicki, który w swojej grze redefiniuje granice jazzu. Magazyny "Modern Drummer" i "DRUM!" regularnie umieszczają go na szczytach plebiscytów, a jego styl to doskonałe połączenie matematycznej precyzji z totalnym, artystycznym szaleństwem. Krzysztof Puma Piasecki , prawdziwa instytucja polskiej gitary i jeden z najwszechstronniejszych artystów naszej sceny, odznaczony medalem "Gloria Artis". Laureat Międzynarodowego Konkursu Improwizacji Jazzowej w Katowicach i stypendysta Berklee College of Music, z równą lekkością porusza się w rock'n'rollu, bluesie, swingu, jak i nowoczesnym fusion. W swojej bogatej karierze dzielił scenę z takimi światowymi potęgami jak Mike Stern, David Weckl czy Dennis Chambers, a także akompaniował gwiazdom formatu Jose Feliciano i Cindy Blackman. Jako założyciel Opolskiego Stowarzyszenia Jazzowego, Puma wraca przed własną publiczność, by po raz kolejny udowodnić, że w jego grze kryje się czysty, nieokiełznany ogień. Skład tego niesamowitego trio zamyka niezrównany fundament rytmiczny i basową magię zapewni jedyny w swoim rodzaju Krzysztof Ścierański . To człowiek, który w świecie gitary basowej dokonał rzeczy niemożliwych, rewolucjonizując podejście do tego instrumentu w Polsce. Od lat zakochany w pulsujących rytmach afrykańskich i latynoskich, sam o sobie mówi, że jest Latynosem zamieszkującym Europę Środkową. Jego muzyczna biografia to pasmo legendarnych kolaboracji - od setek kultowych koncertów z zespołem Laboratorium (w tym pamiętne trasy w Indiach czy San Sebastian), przez energetyczny Air Condition Zbigniewa Namysłowskiego, aż po kultowy, odlotowy String Connection, z którym podbijał sceny od Montrealu po Reno w Nevadzie. Ścierański to synonim muzycznej wolności, który potrafi zamienić bas w wielobarwną, emocjonalną opowieść. Ten koncert to zderzenie trzech potężnych żywiołów, które gwarantuje nienaganną technikę, miażdżący groove i porywające, wielowymiarowe improwizacje. To nie będzie zwykły występ, to będzie prawdziwe muzyczne trzęsienie ziemi, w którym klasyczna harmonia spotka się z latynoskim pulsem i chicagowskim swingiem.. Co najważniejsze, to twórcy z krwi i kości, którzy ponad wszystko cenią sobie autentyczny, żywy kontakt z publicznością.</p>
+                <p class="event-desc">Wydarzenie: Miedzynarodowy Festiwal Drum Fest.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1290,14 +1418,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-24 &bull; 18:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 24 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/dzem-2026-10-24/">Dżem</a></h3>
-                <p class="event-desc">Dżem z nowym wokalistą - Sebastianem Riedlem. Mówi się o nich "polscy Rolling Stonesi"... I faktycznie - coś w tym jest. Choćby ze względu na źródła muzyki, żonglowanie stylami, konsekwencję. Ze względu na staż, pod względem którego coraz mniej mają równych. Ze względu na nie harcerski tryb życia oczywiście też. No i ze względu na skomplikowane, nie wolne od dramatów dzieje... Dżem - polski zespół muzyczny grający muzykę z pogranicza rocka i bluesa, który w 1973 roku założyli bracia Adam i Beno Otrębowie oraz Paweł Berger. Zaliczany do najważniejszych zespołów w historii polskiej muzyki rockowo-bluesowej. Dżem wystąpi w składzie: Sebastian Riedel - śpiew (od 2024) Adam Otręba - gitara (1973-1982, od 1983) Benedykt "Beno" Otręba - gitara basowa, śpiew (1973-1976, od 1980) Jerzy Styczyński - gitara (1979-1981, od 1981) Zbigniew Szczerbiński - perkusja (od 1992) Janusz Borzucki - instrumenty klawiszowe (od 2005).</p>
+                <p class="event-desc">Wydarzenie: Dżem.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 168.86 zł</span>
+                <span class="price">od 168.86 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1320,14 +1452,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-24 &bull; 15:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Koncert</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 24 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">15:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/miedzynarodowy-festiwal-drum-fest-2026-10-24/">Miedzynarodowy Festiwal Drum Fest</a></h3>
-                <p class="event-desc">Matt Starr Drum Clinic & Workshop - Next Level for Musicians Zapraszamy na wydarzenie edukacyjno-muzyczne, które poprowadzi Matt Starr - światowej sławy perkusista, wokalista, producent oraz uznany na całym świecie coach kariery muzycznej. To nie będzie zwykły pokaz techniczny. Matt Starr przybywa do Polski ze swoim flagowym, globalnym programem "NEXT LEVEL". To legendarne warsztaty (clinic), które łączą w sobie mistrzowską prezentację gry na perkusji z wydawać by się mogło bezcennym seminarium na temat tego, jak odnieść sukces i realnie zarabiać w bezwzględnym świecie przemysłu muzycznego. Jak sam Matt pisze w swojej stałej rubryce na łamach Drumhead Magazine: "Czas zrozumieć różnicę między samym zagraniem przejścia na bębnach a braniem pieniędzy za to, że to przejście zagrasz". Kim jest Matt Starr Matt Starr to muzyk, który zbudował swoją pozycję na samym szczycie rockowej ligi, stając się jednym z najbardziej rozchwytywanych perkusistów koncertowych i studyjnych. Przez lata współtworzył potęgę hardrockowej formacji Mr. Big (grając u boku Billy'ego Sheehana i Paula Gilberta). Koncertował i nagrywał z takimi ikonami jak Ace Frehley (KISS), Joe Lynn Turner (Rainbow), Kevin DuBrow (Quiet Riot) czy George Lynch (Dokken). Współpracował również z członkami Guns N' Roses, Bon Jovi, Foreigner oraz Whitesnake. Pracował z absolutną elitą producencką świata. Za brzmienie jego bębnów odpowiadali realizatorzy stojący za sukcesami takich marek jak Metallica, AC/DC, Aerosmith, Madonna, Alice In Chains, Korn czy Tom Petty (m.in. Toby Wright, Dave Bianco, Mike Chapman). Dla kogo są te warsztaty - Dla uczniów i nauczycieli , dla amatorów i profesjonalistów, dla wszystkich tych którzy chcieliby się spotkać z jednym z najlepszych perkusistów na świecie. - Dla perkusistów (na każdym poziomie zaawansowania), którzy chcą poprawić swój groove, technikę, brzmienie sceniczne i studyjne oraz dowiedzieć się, czego od bębniarza oczekują najlepsi producenci na świecie. - Dla muzyków wszystkich instrumentów i wokalistów, ponieważ druga część warsztatów to uniwersalny wykład o budowaniu strategii kariery, radzeniu sobie z presją i poruszaniu się po biznesie muzycznym. - Dla pasjonatów muzyki i rockowej historii, to niepowtarzalna okazja, by posłuchać zakulisowych historii z tras koncertowych z największymi legendami rocka i zadać Mattowi pytania osobiście.</p>
+                <p class="event-desc">Wydarzenie: Miedzynarodowy Festiwal Drum Fest.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1350,14 +1486,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-24 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 24 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stand-up-lukasz-tomasz-niemam-2026-10-24/">Stand-up: Łukasz Tomasz NieMam</a></h3>
                 <p class="event-desc">Stand-up: Łukasz Tomasz NieMam (Opole) w dn. 24 października 2026 o godz. 19:00. Program "Retro". Wieczór uświetni trzech komików:Kuba Nycz - Wieczny student. Absolwent. Lifes...</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1380,14 +1520,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-25 &bull; 15:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Koncert</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 25 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">15:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/miedzynarodowy-festiwal-drum-fest-2026-10-25/">Miedzynarodowy Festiwal Drum Fest</a></h3>
-                <p class="event-desc">STARRDUST (Starr/Mendoza/Andersen) - Tego koncertu po prostu nie można przegapić! Kiedy tytani rocka łączą siły, Opole po prostu musi zapłonąć. Na mapie koncertowej kraju szykuje się wydarzenie, które przejdzie do historii festiwalu Drum Fest, a zapomnieć o wszystkim, co do tej pory wiedzieliście o koncertowym uderzeniu, pozwoli Wam jeden wyjątkowy wieczór. Na scenie zadebiutuje STARRDUST - absolutna supergrupa złożona z trzech gigantów światowego rocka, którzy przez dekady rządzili stadionami na całym globie. Jeśli macie ochotę na potężny, bezkompromisowy rock'n'roll w najlepszym wydaniu i chcecie poczuć tę stadionową moc na wyciągnięcie ręki, to idealny moment, aby zapewnić sobie miejsce pod sceną. Za perkusją zasiądzie Matt Starr , prawdziwa rytmiczna bestia i jedna z najbardziej szanowanych postaci w branży muzycznej. Jego potężny, bezlitosny groove napędzał koncerty oraz albumy takich legend jak Mr. Big, Ace Frehley z zespołu KISS, Joe Lynn Turner z Rainbow czy Kevin DuBrow z Quiet Riot. W studiach nagraniowych współpracował z producentami odpowiedzialnymi za sukcesy Metallica, Aerosmith i AC/DC, a poza sceną jest cenionym mentorem, który o biznesie muzycznym wie absolutnie wszystko. Niezrównany fundament basowy i potężny wokal zapewni Marco Mendoza . W świecie gitary basowej nie ma rzeczy, której ten człowiek by nie dokonał. Jako charyzmatyczny ambasador muzyki i stuprocentowe zwierzę sceniczne, przez lata współtworzył potęgę takich gigantów jak Whitesnake, Thin Lizzy, The Dead Daisies czy Ted Nugent. Marco z równą lekkością gra dla stutysięcznego tłumu na stadionach, co w kameralnych klubach, zawsze miksując hardrockowy ogień z porywającym, latynoskim groovem. Skład supergrupy zamyka Soren Andersen , genialny duński wirtuoz gitary, kompozytor oraz współwłaściciel słynnego Medley Studios w Kopenhadze. Zakochany bezpamiętnie w klasycznym rocku, od ponad 30 lat koncertuje na całym świecie, będąc przez długi czas chwalonym jako "tajna broń" Glenna Hughesa z Deep Purple. Soren to soundowy purysta i multidyscyplinarny artysta, który z każdej gitary potrafi wykrzesać ogień, dbając przy tym o najmniejszy detal brzmienia. STARRDUST to zderzenie trzech potężnych żywiołów, które gwarantuje nienaganną technikę, miażdżące riffy, głęboki bas i świetne, wielogłosowe harmonie wokalne. To nie będzie zwykły występ, to będzie prawdziwe rockowe trzęsienie ziemi. Ponieważ każdy z muzyków jest także doświadczonym producentem, możecie być pewni, że to widowisko będzie dopracowane pod każdym względem. Co najważniejsze, to artyści z krwi i kości, którzy ponad wszystko cenią sobie autentyczny kontakt z publicznością. *Osoby posiadające bilet na ten koncert mają bezpłatny wstęp na warsztaty perkusyjne prowadzone przez Matt'a Starr'a.</p>
+                <p class="event-desc">Wydarzenie: Miedzynarodowy Festiwal Drum Fest.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1410,14 +1554,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-26 &bull; 20:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Poniedziałek, 26 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/dzentelmeni-polskiej-piosenki-2026-10-26/">Dżentelmeni Polskiej Piosenki</a></h3>
-                <p class="event-desc">DŻENTELMENI POLSKIEJ PIOSENKI WYJĄTKOWY KONCERT PEŁEN EMOCJI I KLASYKI 🎶 Przygotuj się na wieczór pełen wzruszeń, nostalgii i ponadczasowej muzyki! „Dżentelmeni Polskiej Piosenki” to koncert, który przeniesie Cię do świata największych przebojów polskiej sceny muzycznej w wykonaniu charyzmatycznych wokalistów i znakomitych instrumentalistów. Na scenie pojawią się utalentowani artyści, którzy z szacunkiem i elegancją oddają hołd legendom polskiej muzyki – takim jak Zbigniew Wodecki, Andrzej Zaucha, Czesław Niemen, Krzysztof Krawczyk, Grzegorz Ciechowski, Bogusław Mec i wielu innych. Każdy utwór to nowa historia, każda nuta – powrót do wspomnień, które wciąż żyją w naszych sercach. 🔹 Co Cię czeka podczas koncertu Najpiękniejsze utwory w nowych, porywających aranżacjach Wspaniała oprawa wizualna Wyjątkowa atmosfera – od pierwszych taktów aż po finał Muzyczne wspomnienia, które pokochasz na nowo To nie tylko koncert – to podróż przez złote dekady polskiej piosenki. Artyści z ogromną pasją i szacunkiem przypominają najważniejsze momenty w historii naszej muzyki, tworząc wydarzenie, które poruszy każde serce. 🎟 Bilety już w sprzedaży! Nie zwlekaj – liczba miejsc ograniczona! To idealna okazja, by spędzić wyjątkowy wieczór z przyjaciółmi, rodziną lub ukochaną osobą. Daj się porwać dźwiękom, które łączą pokolenia. 📅 Sprawdź terminy i miasta – i zarezerwuj swoje miejsce już dziś! Niech magia polskiej piosenki znów rozbrzmiewa – razem z nami! Czas trwania: 90 minut.</p>
+                <p class="event-desc">Wydarzenie: Dżentelmeni Polskiej Piosenki.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 105.14 zł</span>
+                <span class="price">od 105.14 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1440,16 +1588,18 @@ Mango z dumą zaprasza na wydarzenie, które dostarczy muzycznych emocji na najw
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-26 &bull; 11:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Poniedziałek, 26 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">11:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/teatr-baniek-mydlanych-tajemnica-banki-szczescia-2026-10-26/">Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"</a></h3>
-                <p class="event-desc">Zabierz swoje dziecko do magicznego świata Baniek! Zapraszamy na bajeczny festiwal baniek mydlanych połączony z niesamowitą dawkę humoru oraz mocą pozytywnych wrażeń dla całej rodziny. Przygotowaliśmy dla was interaktywne show w wykonaniu naszych międzynarodowych artystów, którzy zabiorą Was w fascynującą podróż do krainy magii i kolorów Sprawimy że nawet Ty poczujesz się jak dziecko! Zapraszamy do magicznej krainy Bańkolandi, gdzie w laboratorium znanego wynalazcy Bąbelka trwają prace nad tajemniczą recepturą Mydlanej Bańki Szczęścia. Mimo nieudanych prób odkrycia sekretu szczęścia Bąbelek wie, że pomogą mu jego przyjaciele:
-
-Mydlaneczka - prymuska mydlanej edukacji Wróżka Czarodziejówna - mądra nauczycielka Profesor Bulbulas - osobliwy naukowiec A także Wy! - widzowie naszej Bańkolandii Czy wraz z nami pomożecie Bąbelkowi Musicie się przygotować do prawdziwej mydlanej przygody! Wspólnie będziemy rozwiązywać bańkowe zagadki. Wspierać Mydlaneczkę i Bąbelka oklaskami. Walczyć ze złośliwym Bulbulasem i wspólnie zmieniać stworzone przez niego dziwadła w kolorowe bańki radości. Otworzy się przed Wami świat prawdziwych cudów i baśni który nasi artyści stworzą na scenie Bajkolandii. A więc wspólnie wyruszamy na poszukiwanie szczęścia! Uwaga! Widowisko rekomendowane dla dzieci od 2 do 10 roku życia. Czas trwania około 60 minut.</p>
+                <p class="event-desc">Wydarzenie: Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia".</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1472,14 +1622,18 @@ Mydlaneczka - prymuska mydlanej edukacji Wróżka Czarodziejówna - mądra naucz
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-27 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 27 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/anita-lipnicka-2026-10-27/">Anita Lipnicka</a></h3>
-                <p class="event-desc">Kiedy Anita Lipnicka opuszczała zespół Varius Manx u szczytu jego popularności, nie mogła przewidzieć, co ją czeka. Ryzykując wszystko, zniknęła ze sceny muzycznej i udała się do Londynu, gdzie rozpoczęła pracę nad swoim pierwszym solowym albumem. Miała wiele do udowodnienia - i sobie, i swoim fanom, którzy z niecierpliwością wyczekiwali tego wydawnictwa. Po roku wróciła do Polski z płytą „Wszystko się może zdarzyć”, która zdobyła uznanie zarówno krytyków, jak i publiczności, a także ugruntowała pozycję Anity jako niezależnej artystki. Album uzyskał status potrójnej platyny i doczekał się 5 nominacji do Fryderyka. W tym roku mija 30 lat od premiery tego wyjątkowego wydawnictwa. Z tej okazji artystka przygotowuje serię jubileuszowych koncertów, które odbędą się w najpiękniejszych salach widowiskowych w kraju. "Mam nadzieję, że trasa „30 lat Wszystko się może zdarzyć”, w którą wyruszę z zespołem w składzie poszerzonym o sekcję dętą i trio smyczkowe, stanie się okazją do niezwykłej podróży w czasie i wielkim świętem dla tych, którzy wiążą z tymi piosenkami drogie wspomnienia” - deklaruje Anita. "Wraz z moją ekipą postaramy się z całych sił, aby te koncerty były czymś więcej niż zwyczajnym wydarzeniem muzycznym. Zadbamy także o wyjątkową oprawę wizualną projektu - piękne światła i baśniową scenografię - tak, by wrażenia wzrokowe były dopełnieniem niezwykłych aranżacji, stworzonych specjalnie na tę okoliczność. Zapraszam serdecznie!” Anita Lipnicka - wokal Piotr Świętoniowski - instrumenty klawiszowe Bartek Miarka - gitary Kamil Pełka - kontrabas Łukasz Sobolak - perkusja Katarzyna Sylla - skrzypce Jan Mleczko - altówka Zuzanna Stradowska - wiolonczela / harfa Dominik Gawroński - trąbka Konrad Gzik - saksofon Bartosz Pernal - puzon Mateusz Sołtysik - realizacja dźwięku Piotr Mrowiec - realizacja światła Paweł Talaga - scenografia, kostiumy</p>
+                <p class="event-desc">Wydarzenie: Anita Lipnicka.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 264.44 zł</span>
+                <span class="price">od 264.44 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1502,14 +1656,18 @@ Mydlaneczka - prymuska mydlanej edukacji Wróżka Czarodziejówna - mądra naucz
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-27 &bull; 20:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 27 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stand-up-lukasz-tomasz-niemam-2026-10-27/">Stand-up: Łukasz Tomasz NieMam</a></h3>
                 <p class="event-desc">* Jeśli to przeczytałeś, to powiedz podczas sprawdzania biletów: katapulta. Do zobaczenia!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 200 zł</span>
+                <span class="price">od 200 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1532,14 +1690,18 @@ Mydlaneczka - prymuska mydlanej edukacji Wróżka Czarodziejówna - mądra naucz
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-28 &bull; 17:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Środa, 28 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/mlody-stuhr-u-bram-starosci-2026-10-28/">Młody Stuhr u bram starości</a></h3>
-                <p class="event-desc">Maciej Stuhr powraca na scenę z nowym programem standupowym, w którym z charakterystyczną lekkością i dystansem przygląda się upływowi czasu, dojrzałości oraz kolejnym etapom życia. „Młody Stuhr u bram starości” zapowiada wieczór pełen inteligentnego humoru, celnych obserwacji i bezpośredniego kontaktu z publicznością. Po sukcesie programu MAM TO WSZYSTKO W STANDUPIE, który zgromadził niemal 200 tysięcy widzów, Maciej Stuhr kontynuuje swoją standupową przygodę. Tym razem bierze na warsztat temat wieku, zmian i życiowych doświadczeń, przedstawiając je z właściwą sobie swobodą oraz sceniczną energią. Przed publicznością kolejny wieczór dobrej rozrywki i humoru na wysokim poziomie artystycznym. To propozycja dla osób, które cenią błyskotliwy dowcip, dystans do rzeczywistości oraz komedię opartą na trafnych obserwacjach codzienności.</p>
+                <p class="event-desc">Wydarzenie: Młody Stuhr u bram starości.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 105.14 zł</span>
+                <span class="price">od 105.14 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1562,9 +1724,13 @@ Mydlaneczka - prymuska mydlanej edukacji Wróżka Czarodziejówna - mądra naucz
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-10-28 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Środa, 28 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/jarek-zylinski-stand-up-2026-10-28/">Jarek Żyliński Stand-up</a></h3>
                 <p class="event-desc">STRAJK RODZICIELSKI to drugi program Jarka Żylińskiego. To okazja by pośmiać się z tego, co nas rodziców na co dzień wkurza! Są rzeczy, których Tobie powiedzieć nie wypada, Jarkowi jako psychologowi też nie ... ale jako komikowi....
 
@@ -1575,7 +1741,7 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
 - Osoby przeszkadzające mogą zostać wyproszone bez możliwości zwrotu biletów - Wydarzenie może być nagrywane, uczestnicząc w nim zgadzasz się na udostępnienie wizerunku (a zwłaszcza swojego głosu i śmiechu)</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1598,14 +1764,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-11-04 &bull; 17:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Środa, 4 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/wpadka-2026-11-04/">Wpadka</a></h3>
-                <p class="event-desc">Janek to polski spawacz z platformy. Wiertniczej. Dzielnie spawa, by móc połączyć koniec z końcem. Z Mają, która nieprzerwanie na niego czeka. Wyczekuje niczym Penelopa. Tęskni spragniona dotyku, bliskości i... dziecka. Lecz kiedy Janek wraca zmęczony z pracy na platformie, zasypia. Tymczasem Mikołaj, ten święty i ten prawdziwy, kolega Janka z liceum, w p romocji przynosi Jankowi nie jedno dziecko, ale całą trójkę. I to każde z inną mamą. Kto jest ojcem Oczywiście Janek. Tylko że Janek niczego nie pamięta. Czy można za jednym strzałem w p romocji zrobić dwoje dzieci, a trzecie dostać gratis w kumulacji Można, jeśli strzałami Erosa kieruje Walentynkowy Amor - przebieraniec! I kto wychowa te dzieci Jeśli chcesz się dowiedzieć na czym polega tajemnica potrójnie dobrej nowiny, obejrzyj „Wpadkę”, najzabawniejszą i najcieplejszą komedię sezonu. Obsada: Janek - Łukasz Płoszajski / Krzysztof Wieszczek Maja - Anna-Maria Sieklucka / Anna Gzyra-Augustynowicz Kinga - Karolina Chapko / Joanna Moro Mikołaj - Paweł Koślik / Michał Piróg / Sebastian Cybulski Grażyna - Ewa Gawryluk / Małgorzata Lewińska Twórcy: Autorzy - Michał Molka, Maciej Kowalewski Reżyseria - Maciej Kowalewski Kostiumy - Michał Piróg, Joanna Ciesielska Scenografia - Witek Stefaniak Producent - PrisMedia</p>
+                <p class="event-desc">Wydarzenie: Wpadka.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1628,14 +1798,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-11-07 &bull; 18:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 7 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stand-up-ewa-stasiewicz-2026-11-07/">Stand-up: Ewa Stasiewicz</a></h3>
                 <p class="event-desc">Stand-up: Ewa Stasiewicz (Opole) w dn. 7 listopada 2026 o godz. 18:00. najnowszy program "Powidok". Zapraszamy na wieczór Stand-up Comedy, podczas którego Ewa Stasiewicz wystąpi...</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1658,14 +1832,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-11-09 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Poniedziałek, 9 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/czerwone-gitary-2026-11-09/">Czerwone Gitary</a></h3>
-                <p class="event-desc">CZERWONE GITARY 60 – lecie DIAMENTOWY KONCERT CZERWONE GITARY należą do grona nielicznych zjawisk muzycznych, które stały się klasyką polskiej kultury popularnej. DIAMENTOWY KONCERT będzie przypomnieniem największych przebojów ze wszystkich płyt Zespołu. Ta (dwugodzinna) muzyczna wędrówka z niezapomnianymi hitami i nowymi piosenkami Zespołu, będzie gwarancją wspomnień, wzruszeń i zapowiedzią fantastycznej integracji widzów z Zespołem. Kilkudziesięcioletnia, konsekwentna praca Czerwonych Gitar i umiejętności odmłodzonego składu Czerwonych Gitar zostały docenione na Jubileuszowej trasie 55 lecia, która odniosła olbrzymi sukces. Do zobaczenia na DIAMENTOWEJ trasie koncertowej, 60-lecia Zespołu, już od 3 stycznia 2025 !!! CZERWONE GITARY tworzą: Jerzy Skrzypczyk - perkusja, śpiew, Mieczysław Wądołowski, - gitara akustyczna, śpiew, Arkadiusz Wiśniewski (gitara basowa, śpiew, aranżacje), Marek Jabłoński - gitara solowa i Marcin Niewęgłowski - gitara solowa, śpiew.</p>
+                <p class="event-desc">Wydarzenie: Czerwone Gitary.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 138.06 zł</span>
+                <span class="price">od 138.06 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1688,16 +1866,20 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-11-13 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 13 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/roman-kostelecki-2026-11-13/">Roman Kostelecki</a></h3>
                 <p class="event-desc">Kochani, po 6 latach tworzenia komedii wybieram się w swoją pierwszą solową trasę, a więc zapraszam was na "Ognisko" - wieczór, gdzie jest ciepło, szczerze i zabawnie. Siadamy blisko, gadamy jak ludzie i śmiejemy się z życia. Pozdrawiam serdecznie - Roman Kostelecki. Roman Kostelecki to komik o charakterystycznym, nieco egzotycznym wschodnim stylu, który z wyjątkową lekkością łączy humor, szczerość i autoironię. W ciągu zaledwie sześciu lat na scenie zdążył pojawić się m.in. w trzech sezonach Comedy Central , na Poland Rock Festival , w pierwszym sezonie " Debiutów " oraz na Wielkiej Trasie Stand-up Polska . Warto również wspomnieć o wspólnym projekcie " Nietykalni " tworzonym z Kubą Rafalskim. Na wydarzeniu wystąpi również support. * materiał powstawał w trasie Kryzys Wieku Każdego, część rzeczy będzie się powtarzać. * zakaz nagrywania występu. * osoby zakłócające przebieg wydarzenia mogą zostać poproszone o opuszczenie sali - bez zwrotu kosztów biletu.
 
 * bilet można okazać w wersji cyfrowej - szkoda drzewek.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1720,14 +1902,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-11-13 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 13 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/aleksandra-radomska-2026-11-13/">Aleksandra Radomska</a></h3>
                 <p class="event-desc">Aleksandra Radomska w programie "Co się może wydarzyć" | Nowy program stand-up! Radomska - na scenie stand-upowej od października 2021 roku. Ma za sobą kilkaset występów w kraju i za granicą. Kiedyś wydała bestseller i nie lubi mówić, że jest influenserką, bo to odstrasza ludzi. Czy jest dobra Tak, spłaciła nawet z tego gadania kredyt hipoteczny, a ludzie przychodzą na jej programy po kilka razy (bo rzadko gra tak samo).</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1750,14 +1936,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-11-18 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Środa, 18 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/10-tenorow-2026-11-18/">10 Tenorów</a></h3>
-                <p class="event-desc">10 Tenorów „10 głosów, jedna scena” to nowa, jesienna odsłona jednego z najbardziej cenionych widowisk muzycznych w Polsce. Po trasach, które w wielu miastach wyprzedawały się do ostatniego miejsca, artyści powracają z nowym repertuarem, nowym scenariuszem i świeżą energią, która od pierwszych chwil nadaje temu wieczorowi wyjątkowy charakter. Tytuł tej trasy nie jest przypadkowy. To zapowiedź spotkania dziesięciu różnych osobowości, dziesięciu barw, dziesięciu sposobów przeżywania muzyki, które łączą się w jednym miejscu i jednym momencie. „10 głosów, jedna scena” to opowieść o tym, jak z wielu indywidualności rodzi się jedno wielkie emocjonalne brzmienie. Jak różne historie, temperamenty i wrażliwości potrafią spotkać się pod światłami sceny, tworząc wieczór pełen siły, harmonii i wzruszeń. To koncert dla tych, którzy chcą przeżyć coś więcej niż tylko muzyczne wydarzenie. To spotkanie z pięknem głosu tenorowego i atmosferą, która potrafi poruszyć od pierwszego utworu aż po finałowe owacje. Na scenie pojawi się dziesięciu tenorów z różnych krajów świata, o wyjątkowych głosach i wyrazistych osobowościach, a każdy z nich wniesie do tego widowiska własną wrażliwość, charakter i sceniczną energię. W najnowszej odsłonie publiczność usłyszy nowy repertuar i pozna nowych artystów, dzięki czemu koncert zyskuje świeżość, nową dynamikę i jeszcze więcej artystycznych emocji. To propozycja zarówno dla widzów, którzy od lat śledzą projekt 10 Tenorów, jak i dla tych, którzy chcą po raz pierwszy zanurzyć się w jego świecie. Całość dopełnia orkiestra symfoniczna, nadająca koncertowi pełne, szlachetne brzmienie i skalę prawdziwego widowiska. Ważnym elementem wieczoru pozostaje także gospodarz koncertu, który jak zawsze poprowadzi publiczność przez program z klasą, lekkością i charakterystycznym inteligentnym humorem. Dzięki niemu ten wieczór ma nie tylko rytm, ale też oddech, urok i naturalną bliskość z widzami. „10 głosów, jedna scena” to koncert idealny na jesienny wieczór, pełen elegancji, pięknych melodii i momentów, które najlepiej przeżywa się razem. To doskonały wybór na wyjątkowe wyjście całą grupą ale również we dwoje, spotkanie z bliską osobą albo prezent dla bliskiej osoby, który zostanie w pamięci na długo. Jeśli szukasz widowiska, w którym wiele głosów tworzy jedno wspólne przeżycie, ten koncert został stworzony właśnie dla Ciebie.</p>
+                <p class="event-desc">Wydarzenie: 10 Tenorów.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 207.09 zł</span>
+                <span class="price">od 207.09 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1780,14 +1970,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-12-04 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 4 grudnia</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/magic-christmas-concert-2026-12-04/">Magic Christmas Concert</a></h3>
-                <p class="event-desc">Zapraszamy na magiczny, spektakularny i otulający koncert największych świątecznych hitów w przepięknych orkiestrowych aranżacjach. Blisko 60 osób na scenie Uwielbiane zimowe utwory wykonają wybitni, utalentowani artyści. Usłyszymy i zobaczymy na scenie Kasię Moś, Kasię Cerekwicką, Ewelinę Lisowską, Alicję Szemplińską, Mietka Szcześniaka oraz Staszka Plewniaka. Wystąpi również wyjątkowo energetyczny zespół Sound and Grace oraz Orkiestra Symfoniczna CoOperate Orchestra pod batutą maestro Adama Domurata. Największe świąteczne przeboje All I Want for Christmas, Last Christmas, Let it snow, Rocking around the Christmas tree, Santa Claus is coming to town, White Christmas i wiele innych uwielbianych utworów pozwolą poczuć Magię Świąt! Tegoroczna edycja koncertu Magic Christmas Concert wzbogacona zostanie o wszystkim dobrze znane polskie, zimowe przeboje, zachęcające do wspólnego śpiewania. Wyjątkowa atmosfera Nastrojowa oprawa wizualna wypełni przestrzeń i będzie wspaniałym tłem dla niezwykłego muzycznego przeżycia. Wsłuchaj się w głosy wyjątkowych artystów i daj się przenieś do niezwykłej krainy świątecznej symfonii. Czas trwania koncertu: 1h 45m.</p>
+                <p class="event-desc">Wydarzenie: Magic Christmas Concert.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 137.00 zł</span>
+                <span class="price">od 137 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1810,14 +2004,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-12-11 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 11 grudnia</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/zadzwoncie-po-milicje-2026-12-11/">Zadzwońcie po Milicję</a></h3>
-                <p class="event-desc">Festiwal największych polskich gwiazd rocka z klimatem PRL-u, upamiętniający okres stany wojennego i pierwsze wolne wybory w Polsce. Koncert jest hołdem dla wszystkich, którzy w latach 70’ i 80’ odważyli się głośno mówić i działać na rzecz wolnej Polski. Ten wieczór, to również wyjątkowa muzyczna gala ambasadorów tamtych czasów, których energia dodała z pewnością inspiracji i siły dalszym przemianom społecznym. Na scenie wystąpią zespoły ze swoimi największymi przebojami z tamtych lat: – IRA – Sztywny Pal Azji – BIG CYC – Chłopcy z Placu Broni – Róże Europy – Wanda i Banda Temu wyjątkowemu wydarzeniu towarzyszyć będą unikalne filmy, zdjęcia i materiały pochodzące z archiwów IPN, WFDiF oraz Narodowego Archiwum Cyfrowego. Wszystko wyświetlone na wielkim kinowym ekranie LED. Koncert trwa blisko 4,5 godziny. Producent i organizator: Visual Production</p>
+                <p class="event-desc">Wydarzenie: Zadzwońcie po Milicję.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 147.62 zł</span>
+                <span class="price">od 147.62 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1840,14 +2038,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2026-12-20 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 20 grudnia</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/shataqs-krolestwo-2026-12-20/">ShataQS - Królestwo</a></h3>
-                <p class="event-desc">ShataQS – trasa koncertowa promująca nowy album „Królestwo” Już 15.09 ShataQS rusza z nową jesienną trasą koncertową promującą jej najnowszy album „Królestwo” Bezprecedensowa wokalistka, łącząca ambitne teksty z ethno-jazzową stylistyką muzyczną wystąpi w aż 15 polskich miastach! To będzie wyjątkowe spotkanie z niebanalną muzyką, dotykającą najgłębszych części ludzkiej duszy i osobowości. Dotychczas zaprezentowane utwory z nowego albumu spotkały się ze wspaniałym odbiorem podczas koncertów. Zapowiada się więc wyjątkowa, artystyczna uczta. Sama Shata tak opisuje nadchodzące wydawnictwo i trasę: Po kilku latach intensywnej muzycznej podróży domykamy rozdział albumów „Fenix” i „WEDA”. To był ważny czas koncertów, spotkań i wspólnego odkrywania historii zapisanych w utworach. Wiosną 2026 roku zagraliśmy kilka wyjątkowych koncertów, ponieważ większość energii poświęciliśmy pracy nad nowym albumem – „Królestwo”. Był to czas tworzenia, poszukiwań i przygotowań do kolejnego etapu naszej muzycznej drogi. Choć studio stało się naszym drugim domem, bardzo tęskniliśmy za sceną i za Wami. Dlatego tej jesieni wracamy w trasę koncertową, aby wspólnie otworzyć nowy rozdział. „Królestwo” to opowieść o odnajdywaniu harmonii, wewnętrznej siły i miejsca, do którego naprawdę chcemy wracać. Zapraszamy Was do tej podróży. Spotkajmy się jesienią i razem przekroczmy bramy „Królestwa”. Płyta „Królestwo” to zbiór opowieści inspirowanych moimi najnowszymi przemyśleniami i życiowymi lekcjami. Album powstał z potrzeby obserwowania świata i poszukiwania odpowiedzi na ważne pytania. W porównaniu z wcześniejszymi wydawnictwami przynosi więcej lekkości, spokoju i delikatności. Tytułowe królestwo symbolizuje bezpieczną przystań odnalezioną nie tylko w miejscu, ale przede wszystkim w sobie i w relacjach z innymi. Muzycznie otwieram nowy rozdział – po raz pierwszy pojawiają się tu partie kwartetu smyczkowego pod kierownictwem Łukasza Wójcika-Zawieruchy, handpan Łukasza Dembińskiego oraz gościnny udział Leszka Możdżera. Tematycznie album koncentruje się na transformacji ograniczających przekonań oraz dalszym odkrywaniu esencji kobiecości. Symbol na okładce, łączący pierwiastek żeński i męski, nawiązuje do harmonii dwóch sił, bez której nie sposób zbudować trwałego królestwa. Trasa obejmuje 15 miast i 16 wyjątkowych koncertów: 15.09 – Wrocław, Sala Koncertowa Radia Wrocław 16.10 – Zielona Góra, Kawon 17.10 – Szczecin, DK Krzemień 28.10 – Warszawa, TK Gocław – dzień I 29.10 – Warszawa, TK Gocław – dzień II 30.10 – Częstochowa, Politechnik 31.10 – Zabrze, CK Wiatrak 19.11 – Poznań, TAMA 20.11 – Golub-Dobrzyń, Dom Kultury 21.11 – Łódź, Scenografia 09.12 – Sosnowiec, Sala MUZA 10.12 – Lublin, Zgrzyt 11.12 – Białystok, Zmiana Klimatu 18.12 – Rzeszów, Pod Palmą 19.12 – Kraków, Hype Park 20.12 – Opole, SCK – Katowicka 95 Harmonogram wydarzenia: 18:00 – otwarcie bram 19:00 – start koncertu Gdy dni stają się krótsze, warto szukać miejsc, które dają ciepło i poczucie bliskości. Tej jesieni zapraszamy Was do „Królestwa” – do świata dźwięków, emocji i opowieści o odnajdywaniu harmonii. Wyruszmy w tę podróż i otwórzmy nowy rozdział. Wspólnie! UWAGA: WSTĘP DO KLUBU ZMIANA KLIMATU MOŻLIWY OD 18 ROKU ŻYCIA.</p>
+                <p class="event-desc">Wydarzenie: ShataQS - Królestwo.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1870,14 +2072,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-01-02 &bull; 18:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 2 stycznia</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stanislaw-slowinski-cztery-pory-roku-vivaldi-experience-2027-01-02/">Stanisław Słowiński - Cztery Pory Roku - Vivaldi Experience</a></h3>
-                <p class="event-desc">Stanisław Słowiński CZTERY PORY ROKU Vivaldi Experience • 1725 Amsterdam – 2025 Kraków • „Cztery pory roku” – ikoniczne dzieło Antonio Vivaldiego w autorskiej interpretacji Stanisława Słowińskiego, orkiestry InfraArt i czołowych improwizatorów europejskiej sceny muzycznej. Trasa premierowa promująca album przygotowany na okoliczność 300. rocznicy publikacji epokowego cyklu. Zapraszamy na koncerty w ramach tournée Vivaldi Experience. Autorska interpretacja dzieła Vivaldiego łączy pogłebioną analizę materiału źródłowego ze swobodą i ekspresją żywiołu współczesnej improwizacji; Basso continuo realizują czołowi polscy improwizatorzy, w klasycznym instrumentarium urozmaiconym o nyckelharpę, perkusjonalia, klawesyn i kontrabas; Kunszt i charyzma solistów – wyrażone w improwizowanych wirtuozerskich kadencjach i interludiach – wnoszą nowy koloryt w warstwę muzyczną kompozycji. Stanisław Słowiński wraz z orkiestrą InfraArt odbył w ostatnich latach szereg tras koncertowych, przyciągając tłumy do najbardziej prestiżowych polskich sal koncertowych, m.in.: NOSPR (największa autorska produkcja sezonu polskiej sceny improwizowanej – dwa koncerty jednego wieczoru i niemal 3000 widzów); Filharmonia Narodowa; Aula Uniwersytecka w Poznaniu; Narodowe Forum Muzyki we Wrocławiu; Filharmonia im. K. Szymanowskiego w Krakowie; Filharmonia Bałtycka; Sala Senatorska Królewskiego Zamku na Wawelu. „Cztery pory roku” to fenomen w historii muzyki. Zawładnęły sercami wykonawców i słuchaczy na całym świecie i nic nie wskazuje na schyłek ich panowania, a uniwersalność muzyki Antonio Vivaldiego daje artystom kolejnych pokoleń przestrzeń do własnych dróg interpretacji wzbudzających żywe i emocjonalne reakcje publiczności. Premiera albumu CD odbędzie się podczas uroczystego koncertu w Filharmonii Narodowej już 8 czerwca 2025! organizatorzy InfraArt &amp; Goodplays</p>
+                <p class="event-desc">Wydarzenie: Stanisław Słowiński - Cztery Pory Roku - Vivaldi Experience.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 147.62 zł</span>
+                <span class="price">od 147.62 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1900,14 +2106,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-02-03 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Środa, 3 lutego</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/mieszko-minkiewicz-wszystko-dobrze-2027-02-03/">Mieszko Minkiewicz - Wszystko Dobrze</a></h3>
-                <p class="event-desc">Mieszko Minkiewicz wraca z programem, który udowadnia, że nawet o najtrudniejszych sprawach można mówić ze śmiechem. &quot;Wszystko dobrze&quot; to stand-up o psychice, rodzinnych bagażach i traumach, które dziedziczymy jak meblościankę po babci - niby nie chcemy, ale trochę szkoda wyrzucić. To opowieść o lękach przekazywanych z pokolenia na pokolenie, o schematach, których trudno się pozbyć, i o śmiechu, który naprawdę potrafi leczyć - a Mieszko bierze trochę mniej niż terapeuta. Będzie też o polaryzacji, seryjnych mordercach i drugiej wojnie światowej... a nawet o czymś, co nas, Polaków, przeraża jeszcze bardziej. O emocjach. Ale po co się bać, skoro można się pośmiać Zapraszamy! Wystąpi również support. Podczas występu obowiązuje zakaz nagrywania audio oraz video. Osoby przeszkadzające mogą zostać wyproszone bez możliwości zwrotu biletów Występ przeznaczony jest dla osób dorosłych. Nie ma konieczności drukowania biletów, mogą one zostać przedstawione w formie elektronicznej. Pojawienie się na wydarzeniu po planowanej godzinie startu oznacza brak gwarancji numeru miejsca z biletu. Można będzie zająć miejsce wskazane przez obsługę lub dowolne wolne miejsce na sali Wydarzenie może być nagrywane, biorąc udział wyrażasz zgodę na udostępnienie wizerunku.</p>
+                <p class="event-desc">Wydarzenie: Mieszko Minkiewicz - Wszystko Dobrze.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 74.34 zł</span>
+                <span class="price">od 74.34 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1930,14 +2140,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-02-13 &bull; 17:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 13 lutego</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/sviatoslav-2027-02-13/">SVIATOSLAV</a></h3>
-                <p class="event-desc">SVIATOSLAV to ceniony skrzypek, kompozytor oraz charyzmatyczny showman, twórca unikalnego projektu #ŚwiatOczamiSkrzypka. Artysta łączy muzyczną wirtuozerię z pasją podróżniczą, tworząc widowiskowe klipy w najbardziej malowniczych miejscach świata –m.in. w Norwegii, Grecji, Islandii, Barcelonie, Wenecji i Paryżu, a także na Saharze, Teneryfie, Cyprze czy Oceanie Atlantyckim. Jest jednym z nielicznych instrumentalistów, którzy opierają swój repertuar koncertowy na własnych, autorskich kompozycjach. Każdy występ SVIATOSLAVA to przepełnione emocjami show, w którym muzyka przeplata się z osobistymi opowieściami z podróży, tańcem, śpiewem, humorem i bliskim kontaktem z publicznością. Po niezwykle udanym zeszłym sezonie, podczas którego Maestro zagrał ponad 40 koncertów na polskich scenach, przyszedł czas na nową odsłonę jego twórczości. Nowa trasa koncertowa obejmie ponad 25 miast i zaprezentuje zupełnie nowy program. Obok uwielbianych przez fanów hitów, takich jak „Parga”, „Copacabana” czy „Carnaval”, publiczność usłyszy premierowe utwory, którym towarzyszyć będą wyjątkowe, pierwsze pokazy najnowszych teledysków z Malty oraz Madery, wyświetlane na dużym ekranie. Charyzmatyczny i utalentowany Artysta tworzy wspaniałą, wzruszającą atmosferę, a razem z nim w koncercie zagrają: Valeria (fortepian) – jedna z czołowych pianistek izraelskich oraz twórczyni autorskich projektów muzycznych. Artystkę cechuje niezwykła elegancja sceniczna, połączona z ogromną ekspresją i dynamizmem interpretacji. Jej genialna technika pozwala z lekkością wydobywać z instrumentu pełne spektrum brzmień, tworząc unikalną, magnetyczną atmosferę, która bez reszty wypełnia przestrzeń sal koncertowych. Dawid (gitara) – doświadczony i wszechstronny muzyk, na co dzień aktywnie działający na brytyjskiej scenie muzycznej oraz założyciel autorskiej szkoły gitarowej w Cambridge. Jego występy to dla publiczności prawdziwa uczta brzmieniowa, wyróżniająca się dojrzałością i wyjątkową wrażliwością artystyczną. Jako pasjonat instrumentu i właściciel imponującej, liczącej kilkadziesiąt egzemplarzy kolekcji gitar, Dawid z niezwykłą swobodą porusza się w różnorodnych stylistykach muzycznych, zachwycając bogactwem dźwięku i perfekcyjnym warsztatem. Poczuj magię nowej muzyki! Kup bilet, dołącz do grona fanów Maestro i przeżyj niezapomniane emocje.</p>
+                <p class="event-desc">Wydarzenie: SVIATOSLAV.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 159.30 zł</span>
+                <span class="price">od 159.30 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1960,14 +2174,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-02-19 &bull; 20:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 19 lutego</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/alphaville-forever-young-40-lecie-2027-02-19/">Alphaville - Forever Young - 40-lecie</a></h3>
-                <p class="event-desc">Forever Young - legenda synth-popu, Alphaville, powraca do Polski! Zapraszamy na wyjątkowe koncerty z okazji 40-lecia działalności zespołu. Wybierz się w podróż w czasie do złotych lat 80-tych! Bilety na koncerty Alphaville już dostępne. Alphaville to legendarny niemiecki zespół synth-popowy, założony w 1982 roku w Münster przez Mariana Golda, Bernharda Lloyda i Franka Mertensa. Melancholijne melodie i syntezatorowe aranżacje, czyli esencja lat 80. Przełomem okazał się debiutancki album Forever Young (1984), który na zawsze zapisał które skradły serca milionów. Resztę tej historii już znacie! Poniżej 16 roku życia wstęp tylko z opiekunem. Opiekun winien mieć również ważny bilet.</p>
+                <p class="event-desc">Wydarzenie: Alphaville - Forever Young - 40-lecie.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 212.40 zł</span>
+                <span class="price">od 212.40 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -1990,14 +2208,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-02-21 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 21 lutego</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/stand-up-daniel-midas-2027-02-21/">Stand-up: Daniel Midas</a></h3>
                 <p class="event-desc">Stand-up: Daniel Midas (Opole) w dn. 21 lutego 2027 o godz. 19:00. Moja Tajemnica. Zapraszamy na najnowszy, czwarty program stand-upowy Daniela Midasa - "Moja...</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Bilety płatne (KupBilecik)</span>
+                <span class="price">Bilety płatne</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2020,14 +2242,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-03-14 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kino</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 14 marca</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/cinema-world-360-koncert-muzyki-filmowej-2027-03-14/">CINEMA WORLD 360° - Koncert Muzyki Filmowej</a></h3>
-                <p class="event-desc">Największe w Polsce Widowisko Muzyki Filmowej na scenie 360 °. To immersyjne przeżycie, w którym muzyka, światło, obraz oraz nowoczesne efekty sceniczne tworzą jedno wciągające doświadczenie. 120 minut muzyki z kultowych ścieżek dźwiękowych w autorskich aranżacjach. Ponad 60 artystów na scenie – orkiestra, chór, wybitni soliści i wyjątkowi goście specjalni. Widowiskowe projekcje, spektakularna scenografia LED 360° oraz oprawa świetlna. Program koncertu oparty jest na kompozycjach instrumentalno - wokalnych, które w kilkuminutowych odsłonach zaprezentują ścieżki dźwiekowe i niezapomniane melodie inspirowane największymi dziełami muzyki filmowej. Aranżer, pianista i wykładowca akademicki: Tomasz Jachym, w swoich autorskich opracowaniach przeniesie Państwa do świata bohaterów, legend i wielkich emocji, przywołując ducha takich produkcji jak: Gladiator • Titanic • Harry Potter • Władca Pierścieni • Star Wars • Avatar • Piraci z Karaibów CINEMA WORLD 360° to także fascynująca opowieść o ewolucji muzyki filmowej. W nowoczesnych, brzmieniach, przedstawimy monumentalną muzykę współczesnego kina z takich filmów jak: Interstellar • Diuna • Oppenheimer • Stranger Things • Igrzyska Śmierci • Na Zachodzie bez zmian. To nie jest klasyczny koncert, podczas którego publiczność pozostaje biernym obserwatorem. To dynamiczne widowisko, w którym mocne brzmienie orkiestry, chóru i solistów współgra z obrazem, światłem oraz przestrzenią, tworząc prawdziwie filmowe doświadczenie na żywo. Na scenie pojawią się wybitni soliści reprezentujący różne muzyczne światy. Wyjątkowym gościem koncertu będzie „mistrz nastroju” , wirtuoz akordeonu - Marcin Wyrostek, który zaprezentuje niezapomniane interpretacje muzyki z kultowych tematów filmowych, nadając im metafizyczny wymiar. Ewa Siembida - polska wokalistka jazzowa i estradowa, trenerka wokalna oraz nauczyciel akademicki. Laureatka ogólnopolskich i międzynarodowych festiwali. Artystka, której twórczość oscyluje wokół soulu i jazzu w których odnajduje przestrzeń do interpretacyjnej swobody i emocjonalnej autentyczności. Sylwia Łyko - wokalistka, autorka muzyki i tekstów, finalistka piątej edycji The Voice of Poland w drużynie Justyny Steczkowskiej. Wielokrotna zwyciężczyni festiwali i konkursów wokalnych w kraju i za granicą. Jej głos zatrzymuje czas i porusza najczulsze struny. Jej muzyczna droga obejmuje zarówno działalność solową, jak i współpracę w charakterze back vocal z czołowymi artystami polskiej sceny muzycznej. Występowała u boku takich wykonawców jak Lanberry, Justyna Steczkowska, Kayah, Krzysztof Iwaneczko, Alicja Janosz, Marika, Monika Lewczuk czy Sławek Uniatowski. Narrację całego widowiska, poprowadzi dla Państwa zjawiskowy, kinowy Głos, który otworzy drzwi do niejednych wspomnień i największych filmowych momentów Tworząc CINEMA WORLD 360° interpretujemy najpiękniejsze muzyczne arcydzieła, implementujemy prawdziwe emocje, dzielimy się pasją. Zapraszamy Wszystkich Państwa, którzy chcieliby na chwilę zatrzymać czas i uwierzyć w magię kina. W koncercie wystąpią: CoReo Orchestra prowadzona przez Tomasza Jachyma Uni Jazz Voices Marcin Wyrostek Sargis Ewa Siembida Sylwia Łyko</p>
+                <p class="event-desc">Wydarzenie: CINEMA WORLD 360° - Koncert Muzyki Filmowej.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 106.19 zł</span>
+                <span class="price">od 106.19 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2050,14 +2276,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-03-14 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 14 marca</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/queen-symfonicznie-trasa-xv-lecia-2027-03-14/">Queen Symfonicznie – trasa XV-lecia</a></h3>
-                <p class="event-desc">QUEEN SYMFONICZNIE - najsłynniejszy polski projekt z pogranicza muzyki rockowej i symfonicznej, świętuje XV-lecie działalności! Queen Symfonicznie to wyjątkowe widowisko, które od niemal 15 lat zachwyca publiczność w całej Polsce. Niezapomniane przeboje legendarnego zespołu Queen w niezwykłych, symfonicznych aranżacjach w wykonaniu chóru i orkiestry Alla Vienna tworzą spektakl, obok którego nie sposób przejść obojętnie. To, co miało być jednorazowym projektem, przerodziło się w prawdziwy fenomen sceniczny. 500 zagranych koncertów i niemal 300 tysięcy widzów to najlepszy dowód na to, że magia muzyki Queen w symfonicznej odsłonie nieustannie porusza kolejne pokolenia fanów. Każdy występ przyciąga tłumy i wypełnia sale do ostatniego miejsca. Oprócz wszystkich filharmonii w naszym kraju zespół miał też przyjemność występować w najbardziej prestiżowych salach koncertowych Berlina, Wiednia, Salzburga, Lipska czy Wilna. W programie znalazły się największe utwory Queen, zaprezentowane podczas dwugodzinnego koncertu podzielonego na dwie części. Publiczność usłyszy zarówno doskonale znane hity, jak i nowe kompozycje w świeżych aranżacjach przygotowanych na 14-osobowy chór i 10 instrumentów. Z okazji jubileuszowej trasy do programu dołączono nowe utwory, m.in. "Hammer To Fall" czy "Killer Queen". Wielkim finałem będzie występ Sebastiana Machalskiego, który wciela się w rolę Freddiego Mercury’ego, a w drugiej części na scenie pojawi się również gitarzysta solowy Darek Wawrzyniak. To nie jest zwykły koncert — to pełne emocji muzyczne widowisko, które łączy rockową energię z potęgą symfonicznego brzmienia. Dla fanów Queen to pozycja obowiązkowa. Trasa z okazji XV-lecia obejmie następujące miasta: 10.10.2026 ZIELONA GÓRA - Filharmonia Zielonogórska 31.10.2026 RZESZÓW - Filharmonia Podkarpacka 08.11.2026 KUTNO - Kutnowski Dom Kultury 10.11.2026 BIAŁYSTOK - Opera i Filharmonia Podlaska 15.11.2026 BIELSKO-BIAŁA - Cavatina Hall 12.12.2026 KIELCE - Filharmonia Świętokrzyska 13.12.2026 GDAŃSK - Filharmonia Bałtycka 19.12.2026 MIŃSK MAZOWIECKI - Kino Muza 20.12.2026 ŁODŹ - Filharmonia Łódzka 05.01.2027 TORUŃ - CKK Jordanki 09.01.2027 WROCŁAW - Sala Koncertowa Radia Wrocław 16.01.2027 PSZCZYNA - PCKUL 14.02.2027 KATOWICE - Miasto Ogrodów 20.02.2027 WARSZAWA - Scena Relax 21.02.2027 POZNAŃ - Aula UAM 07.03.2027 KRAKÓW - ICE Kraków 03.04.2027 LUBLIN - Centrum Spotkania Kultur</p>
+                <p class="event-desc">Wydarzenie: Queen Symfonicznie – trasa XV-lecia.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 200.72 zł</span>
+                <span class="price">od 200.72 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2080,14 +2310,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-03-15 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Poniedziałek, 15 marca</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/klimakterium-i-juz-2027-03-15/">Klimakterium ... i już</a></h3>
                 <p class="event-desc">"Klimakterium... i już" Spektakl "Klimakterium... i już" to przyjemny wieczorek z babami i dla bab, a jego wiodącym tematem jest słowo, którego na co dzień się nie wymawia. Cztery przyjaciółki, spotkawszy się w butiku prowadzonym przez jedną z nich, przekuwają drażliwy problem menopauzy na pioseneczki i tańce. O trapiących je dolegliwościach śpiewają do dobrze znanych melodii, np. o uderzeniach gorąca do nut piosenki "Kuba, wyspa jak wulkan". Bohaterkami musicalu są cztery kobiety w wieku "menopauzalnym". Wszystkie mają problemy, z którymi muszą się uporać. Pragniemy pokazać, że klimakterium jest wpisane w życie kobiety - mają je bohaterki występujące na scenie, ale także kobiety siedzące na widowni - miały, mają albo będą je miały. Jest to czas dla kobiety trudny, co wcale nie znaczy, ze beznadziejny. Ważna jest świadomość wspólnoty pewnych doświadczeń - kobiety siedzące na widowni dowiadują się, że ich dolegliwości nie są czymś wyjątkowym. Mimo iż menopauza dotyczy wszystkich kobiet, jest to temat wstydliwy, a co za tym idzie - starannie pomijany. Poprzez spektakl pragniemy zilustrować, w sposób zrozumiały, przystępny i humorystyczny, jak rożnymi sposobami można sobie z tym radzić. Jedne bohaterki chcą się poddać zastępczej terapii hormonalnej , inne boją się jej i wybierają ziołolecznictwo, jeszcze inne idą w kierunku jogi lub ćwiczeń gimnastycznych. Sztuka ma pokazywać owe różne zachowania, zawsze jednak w sposób humorystyczny - tym bardziej, że sam humor jest doskonałym lekarstwem (bez skutków ubocznych). Śmiejąc się łatwiej znosimy przeciwności losu. W spektaklu występują zamiennie następujące aktorki: Elżbieta Jodłowska, Ewa Kuklińska, Agnieszka Litwin, Małgorzata Duda Kozera, Ludmiła Warzecha, Grażyna Zielińska, Dorota Piasecka, Ewa Cichocka, Katarzyna Kozak, Dorota Wierzbicka Matarrelli, Renata Zarębska, Katarzyna Kozak, Ewa Konstanciak, Iwona Chołuj</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 159.30 zł</span>
+                <span class="price">od 159.30 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2110,14 +2344,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-04-03 &bull; 19:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 3 kwietnia</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/another-pink-floyd-i-marek-raduli-2027-04-03/">Another Pink Floyd i Marek Raduli</a></h3>
                 <p class="event-desc">Another Pink Floyd, uznawany za jeden z najlepszych zespołów grających muzykę Floydów na żywo, a na grudniowy koncert zaproszenie przyjął i wraz z muzykami Another gościnnie wystąpi Marek Raduli - bezdyskusyjnie najpiękniej brzmiący gitarzysta w Polsce, występujący w takich zespołach jak Budka Suflera, Bajm, Banda i Wanda Zespół zapowiada wspaniałe widowisko inspirowane trasą koncertową P.U.L.S.E. z 1994r. Klimat, emocje doskonała gra starannie zaprojektowanych świateł i wizualizacji przeniesie wszystkich widzów w świat Pink Floyd którego nie można zaznać słuchając jedynie płyt. “Pulse”. Była to jedna z najbardziej spektakularnych i najbardziej zaawansowanych technologicznie tras koncertowych połowy lat dziewięćdziesiątych. Podczas koncertu zespół Another postara się odwzorować klimat i atmosferę tego widowiska, oczywiście z zachowaniem skali i możliwości na jakie pozwala miejsce występu. Podczas koncertu pojawią się również wszystkie charakterystyczne elementy takie jak: potężny ekran w kształcie koła z ruchomymi lampami na okręgu i efekty laserowe. Odtworzona zostanie niemal cała lista utworów, która pojawiła się na trasie “Pulse”. Usłyszymy koncertowe wersje najsłynniejszych utworów Pink Floyd zagrane na żywo: “Shine On You Crazy Diamond”, "Wish You Were Here" , "Another Brick in The Wall", “Sorrow, What Do You Want From Me” czy “High Hopes” a także wszystkie utwory z albumu Dark Side of The Moon.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 200.72 zł</span>
+                <span class="price">od 200.72 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2140,14 +2378,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-04-18 &bull; 18:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 18 kwietnia</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/piotr-rubik-psalterz-wrzesniowy-jubileusz-20-lat-2027-04-18/">Piotr Rubik: Psałterz Wrześniowy - jubileusz 20 lat</a></h3>
                 <p class="event-desc">Zanurz się w niezwykłym świecie muzyki i emocji podczas jubileuszowego koncertu Piotra Rubika, z okazji 20-lecia powstania oratorium „Psałterz wrześniowy” – dzieła, które na trwałe zapisało się w historii polskiej muzyki współczesnej. Oratorium, które od premiery w 2006 roku wzruszyło setki tysięcy słuchaczy, powraca w wyjątkowej, jubileuszowej odsłonie z ponad 100 osobami na scenie. Na scenie wystąpią: Piotr Rubik – dyrygent i kompozytor Wybitni soliści, chór i orkiestra symfoniczna To będzie niezapomniany wieczór – pełen wzruszeń, wielkich emocji i piękna, które łączy pokolenia. Trasa koncertowa po największych miastach w Polsce! Skład chóru oraz orkiestry może się różnić w zależności od miasta. Nie przegap tego wydarzenia – świętuj razem z nami 20-lecie jednego z najważniejszych oratoriów Piotra Rubika!</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 179.48 zł</span>
+                <span class="price">od 179.48 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2170,14 +2412,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-05-07 &bull; 20:00</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 7 maja</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/polska-noc-kabaretowa-2027-2027-05-07/">Polska Noc Kabaretowa 2027</a></h3>
                 <p class="event-desc">Polska Noc Kabaretowa 2027 Polska Noc Kabaretowa wraca w 2027 roku w zupełnie nowej premierowej odsłonie najlepszego humoru! Przed nami kolejny rozdział największego kabaretowego wydarzenia w Polsce – pełen premierowych skeczów, świeżych pomysłów i humoru, który od lat bawi i łączy publiczność w całym kraju. Najnowsza edycja to nowa energia, autorska koncepcja i zaskakujące puenty, przygotowane specjalnie na tę trasę. Nowe sceniczne niespodzianki, dynamiczne tempo i humor na najwyższym poziomie sprawią, że ten wieczór zostanie z Wami na długo. Jedno pozostaje niezmienne: gwarancja potężnej dawki śmiechu, emocji i doskonałej rozrywki na żywo.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 191.16 zł</span>
+                <span class="price">od 191.16 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2200,14 +2446,18 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>Kultura i Rozrywka &bull; 2027-11-26 &bull; 19:30</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 26 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:30</span>
+                    </div>
                 <h3 class="event-title"><a href="/opole/wydarzenia/thomas-anders-from-modern-talking-band-40-lecie-grupy-modern-talking-2027-11-26/">Thomas Anders from Modern Talking & Band - 40-lecie grupy Modern Talking</a></h3>
                 <p class="event-desc">Thomas Anders from Modern Talking &amp; Band. Będziecie mogli usłyszeć na żywo największe przeboje: &quot;Cheri, Cheri Lady”, „You’re My Heart, You’re My Soul”, „Jet Airliner&quot; „Brother Louie”, „Geronimo's Cadillac”, „Sexy, Sexy Lover” i wiele innych. Weź znajomych i przyjdź na ten wyjątkowy koncert z okazji 40 - lecia grupy Modern Talking.</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">Od 299.00 zł</span>
+                <span class="price">od 299 zł</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
@@ -2219,7 +2469,7 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
   <footer>
     <div class="footer-inner">
       <div class="footer-col">
-        <h4>CoRobićW Opole</h4>
+        <h4>CoRobićW </h4>
         <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny harmonogram wydarzeń miejskich. Wszystkie wydarzenia pobierane bezpośrednio ze scen i galerii.</p>
       </div>
       <div class="footer-col">
@@ -2229,7 +2479,7 @@ Jarek Żyliński - Komik, Białostoczanin z Warszawy. Żadnej pracy się nie boi
         <h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
       </div>
     </div>
-    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda Opole</span></div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda </span></div>
   </footer>
   
   <script>

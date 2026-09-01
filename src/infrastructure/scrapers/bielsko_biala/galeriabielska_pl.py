@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup
 import urllib3
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
-
 from src.infrastructure.scrapers.base import BaseScraper
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -24,23 +23,39 @@ class GaleriaBielskaPlScraper(BaseScraper):
         self.seen_signatures: Set[str] = set()
 
     def _parse_date(self, text: str, current_year: int, current_month: int) -> str:
-        """Wyciąga datę początkową wydarzenia w formacie YYYY-MM-DD."""
         match = re.search(r"(\d{1,2})\.(\d{1,2})(?:\.(\d{4}))?", text)
         if not match:
             return ""
-
         day, month, year = match.groups()
         m = int(month)
         d = int(day)
-        if year:
-            y = int(year)
-        else:
-            y = current_year if m >= current_month else current_year + 1
-
+        y = int(year) if year else (current_year if m >= current_month else current_year + 1)
         try:
             return f"{y:04d}-{m:02d}-{d:02d}"
         except Exception:
             return ""
+
+    def _fetch_event_details(self, url: str) -> Dict[str, Any]:
+        details = {"description": "", "time_start": "10:00", "price": "Wst?p wolny / Bilety w kasie"}
+        try:
+            r = self.session.get(url, timeout=(4.0, 10.0), verify=False)
+            if r.status_code == 200:
+                s = BeautifulSoup(r.content, "html.parser")
+                content_div = s.select_one(".content, .entry-content, article, .event-details")
+                if content_div:
+                    paragraphs = [p.get_text(" ", strip=True) for p in content_div.select("p") if len(p.get_text(strip=True)) > 20]
+                    if paragraphs:
+                        details["description"] = "\n\n".join(paragraphs[:4])
+
+                txt = s.get_text(" ", strip=True)
+                time_m = re.search(r"godz(?:ina|\.)?\s*(\d{1,2}[:.]\d{2})", txt, re.IGNORECASE)
+                if time_m:
+                    details["time_start"] = time_m.group(1).replace(".", ":")
+                if "bezp?atn" in txt.lower() or "wst?p wolny" in txt.lower():
+                    details["price"] = "Wst?p bezp?atny"
+        except Exception:
+            pass
+        return details
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         events = []
@@ -49,19 +64,17 @@ class GaleriaBielskaPlScraper(BaseScraper):
         self.seen_signatures.clear()
 
         print(f"\n[{self.source_name}] Pobieranie kalendarium Galerii Bielskiej BWA...")
-
         try:
-            resp = self.session.get(self.calendar_url, timeout=(2.0, 6.0), verify=False)
+            resp = self.session.get(self.calendar_url, timeout=(4.0, 10.0), verify=False)
             if resp.status_code != 200:
-                print(f"[{self.source_name}] Błąd pobierania kalendarium: HTTP {resp.status_code}")
+                print(f"[{self.source_name}] B??d HTTP {resp.status_code}")
                 return []
 
-            soup = BeautifulSoup(resp.text, "html.parser")
+            soup = BeautifulSoup(resp.content, "html.parser")
             items = soup.select("ul.eventlist a.event")
 
             for a in items:
-                classes = a.get("class", [])
-                if "-past" in classes:
+                if "-past" in a.get("class", []):
                     continue
 
                 event_url = urljoin(self.base_url, a.get("href", ""))
@@ -73,11 +86,9 @@ class GaleriaBielskaPlScraper(BaseScraper):
                     continue
 
                 full_txt = txt_container.get_text(" ", strip=True)
-
                 date_start = self._parse_date(full_txt, current_year=now.year, current_month=now.month)
                 date_end = date_start
 
-                # Sprawdzenie czy to trwająca wystawa z zakresem 'do DD.MM'
                 range_match = re.search(r"do\s+(\d{1,2})\.(\d{1,2})(?:\.(\d{4}))?", full_txt)
                 if range_match:
                     end_d, end_m, end_y = range_match.groups()
@@ -99,9 +110,7 @@ class GaleriaBielskaPlScraper(BaseScraper):
                 if title_el:
                     title = title_el.get_text(" ", strip=True)
                 else:
-                    clean_title = re.sub(r"\d{1,2}\.\d{1,2}(?:\.\d{4})?.*", "", full_txt).strip()
-                    title = clean_title if clean_title else full_txt[:60]
-
+                    title = re.sub(r"\d{1,2}\.\d{1,2}(?:\.\d{4})?.*", "", full_txt).strip() or full_txt[:60]
                 title = re.sub(r"\s+", " ", title).strip()
 
                 sig = f"{date_start}_{title.lower()}"
@@ -112,36 +121,38 @@ class GaleriaBielskaPlScraper(BaseScraper):
                 img_el = a.select_one("img")
                 remote_img = ""
                 if img_el:
-                    src_candidate = img_el.get("src") or img_el.get("data-src") or ""
-                    if src_candidate:
-                        remote_img = urljoin(self.base_url, src_candidate)
+                    src_c = img_el.get("src") or img_el.get("data-src") or ""
+                    if src_c:
+                        remote_img = urljoin(self.base_url, src_c)
 
                 thumb_path = self.save_thumbnail(remote_img, title, prefix="galeriabielska") if remote_img else ""
 
                 venue_name = "Galeria Bielska BWA"
-                address = "ul. 3 Maja 11, Bielsko-Biała"
+                address = "ul. 3 Maja 11, Bielsko-Bia?a"
                 if "willi sixta" in full_txt.lower() or "willa sixta" in title.lower():
                     venue_name = "Willa Sixta (Galeria Bielska BWA)"
-                    address = "ul. Mickiewicza 24, Bielsko-Biała"
+                    address = "ul. Mickiewicza 24, Bielsko-Bia?a"
+
+                sub_data = self._fetch_event_details(event_url)
+                desc = sub_data["description"] if len(sub_data["description"]) > 30 else f"{category}: {title} w przestrzeni {venue_name}."
 
                 events.append({
                     "title": title,
                     "date_start": date_start,
                     "date_end": date_end or date_start,
-                    "time_start": "10:00",
+                    "time_start": sub_data["time_start"],
                     "venue": venue_name,
                     "address": address,
-                    "price_range": "Wstęp wolny / Bilety w kasie",
-                    "description": f"{category}: {title} w przestrzeni {venue_name}.",
+                    "price_range": sub_data["price"],
+                    "description": desc,
                     "image_url": thumb_path or remote_img,
                     "source_url": event_url,
                     "source": self.source_name,
-                    "organizer": "Galeria Bielska BWA"
+                    "organizer": "Galeria Bielska BWA",
+                    "category": category
                 })
-
         except Exception as e:
-            print(f"[{self.source_name}] Błąd krytyczny podczas parsowania: {e}")
+            print(f"[{self.source_name}] B??d krytyczny: {e}")
 
-        print(f"[{self.source_name}] Pomyślnie sparsowano {len(events)} wydarzeń i wystaw.")
+        print(f"[{self.source_name}] Sparsowano {len(events)} rekord?w.")
         return events
-

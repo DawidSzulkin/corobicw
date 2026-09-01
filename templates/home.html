@@ -197,14 +197,13 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 40%;
+      width: 22%;
       height: 1.35em;
-      background: linear-gradient(to right, transparent, var(--card-bg) 70%);
+      background: linear-gradient(to right, transparent 0%, var(--card-bg) 85%);
       pointer-events: none;
-      transition: background 0.2s;
     }
     .event-card:hover .event-desc::after {
-      background: linear-gradient(to right, transparent, var(--card-hover) 70%);
+      background: linear-gradient(to right, transparent 0%, var(--card-hover) 85%);
     }
     
     .meta-bottom {
@@ -235,6 +234,11 @@
     .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
     .footer-col ul a:hover { color: var(--text); }
     .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+  
+    .cat-accent { color: #34d399; font-weight: 800; letter-spacing: 0.5px; }
+    .date-accent { color: var(--text); font-weight: 700; }
+    .time-accent { color: #34d399; font-weight: 800; }
+
   </style>
 </head>
 <body>
@@ -278,9 +282,13 @@
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                  <span class="badge-container"></span>
-                  <span>{{ ev.analysis.category }} &bull; {{ ev.date_formatted }} &bull; {{ ev.analysis.ticket_info.time_start }}</span>
-                </div>
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">{{ ev.analysis.category }}</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">{{ ev.date_formatted }}</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">{{ ev.analysis.ticket_info.time_start }}</span>
+                    </div>
                 <h3 class="event-title"><a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/">{{ ev.title }}</a></h3>
                 <p class="event-desc">{{ ev.analysis.full_description }}</p>
               </div>

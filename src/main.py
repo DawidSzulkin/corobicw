@@ -1,5 +1,37 @@
+
+def run_preflight_checks(scrapers):
+    print("\n=== SZYBKI PREFLIGHT HEALTHCHECK SELECTORÓW ===")
+    failed = []
+    for sc in scrapers:
+        name = sc.source_name
+        try:
+            # Sprawdzenie dostępności URL
+            url = getattr(sc, 'calendar_url', None) or getattr(sc, 'events_url', None) or getattr(sc, 'api_url', None) or sc.base_url
+            r = sc.session.get(url, timeout=(3.0, 6.0), verify=False)
+            if r.status_code != 200:
+                print(f"  * [{name}] OSTRZEŻENIE: Status HTTP {r.status_code}")
+                failed.append(name)
+            else:
+                print(f"  * [{name}] OK (HTTP 200)")
+        except Exception as e:
+            print(f"  * [{name}] BŁĄD POŁĄCZENIA: {e}")
+            failed.append(name)
+    
+    if failed:
+        print(f"[OSTRZEŻENIE] Źródła z problemami: {failed}. Circuit Breaker zabezpieczy bazę.")
+    else:
+        print("[PREFLIGHT] Wszystkie źródła odpowiadają prawidłowo.\n")
+
 import os
 import sys
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+
+from src.infrastructure.scrapers.bielsko_biala.galeriabielska_pl import GaleriaBielskaPlScraper
+from src.infrastructure.scrapers.national.kupbilecik_pl import KupBilecikPlScraper
+
 if sys.platform == "win32":
     try:
         sys.stdout.reconfigure(encoding="utf-8")
@@ -8,8 +40,6 @@ if sys.platform == "win32":
         pass
 os.environ["PYTHONUTF8"] = "1"
 import argparse
-from pathlib import Path
-import sys
 import yaml
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +61,7 @@ def main():
     parser.add_argument("--city", type=str, help="Uruchom tylko dla wybranego city_tag (np. bielsko_biala, kedzierzyn_kozle)")
     parser.add_argument("--render-only", action="store_true", help="Pomiń scraping i LLM – generuj HTML bezpośrednio z bazy danych")
     parser.add_argument("--source", type=str, help="Uruchom tylko wybrany scraper (np. cavatinahall_pl, banialuka_pl)")
+    parser.add_argument("--preflight", action="store_true", help="Uruchom szybki healthcheck selektorów przed scrapingiem")
     parser.add_argument("--skip-enrich", action="store_true", help="Pomiń fazę wzbogacania LLM/OCR")
     args = parser.parse_args()
 
@@ -99,6 +130,34 @@ def main():
 
     print("\n[SUKCES] Synchronizacja zakończona.")
 
+
+
+# Minimalne progi dla Circuit Breakera
+MIN_THRESHOLDS = {
+    "kupbilecik_pl": 5,
+    "cavatinahall_pl": 10,
+    "banialuka_pl": 5,
+    "bck_bielsko_pl": 10
+}
+
+def safe_fetch(scraper_instance):
+    source = scraper_instance.source_name
+    print(f"\n---> Uruchamianie {source}...")
+    try:
+        events = scraper_instance.fetch_events()
+        count = len(events)
+        
+        # Weryfikacja Circuit Breaker
+        threshold = MIN_THRESHOLDS.get(source, 1) # domyślnie min 1 wydarzenie dla pozostałych
+        if count < threshold:
+            print(f"[CIRCUIT BREAKER] Źródło {source} zwróciło {count} rekordów (wymagane min. {threshold}). Odrzucam dane by chronić bazę.")
+            return []
+            
+        print(f"[OK] {source} przeszło walidację: {count} wydarzeń.")
+        return events
+    except Exception as e:
+        print(f"[CRITICAL] Błąd wykonania scrapera {source}: {e}")
+        return []
 
 if __name__ == "__main__":
     main()

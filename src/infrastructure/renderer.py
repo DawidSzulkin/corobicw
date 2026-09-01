@@ -1,4 +1,5 @@
-import hashlib
+﻿import hashlib
+import json
 from datetime import datetime
 import os
 from pathlib import Path
@@ -29,7 +30,7 @@ class HTMLRenderer:
         except Exception as e:
             print(f"[CACHE] Błąd zapisu cache: {e}")
 
-    def _calculate_hash(self, data: any) -> str:
+    def _calculate_hash(self, data: Any) -> str:
         serialized = json.dumps(data, sort_keys=True, ensure_ascii=False, default=str)
         return hashlib.md5(serialized.encode("utf-8")).hexdigest()
 
@@ -74,7 +75,6 @@ class HTMLRenderer:
             single_folder.mkdir(parents=True, exist_ok=True)
             single_file = single_folder / "index.html"
             
-            # Pobranie skojarzonego miejsca dla podstrony wydarzenia
             p_id = getattr(ev, 'place_id', None) or (ev.get('place_id') if isinstance(ev, dict) else None)
             place_obj = places.get(p_id) if p_id else None
             
@@ -92,7 +92,7 @@ class HTMLRenderer:
         # 2. Czyszczenie i renderowanie podstron stałych miejsc
         places_dir.mkdir(parents=True, exist_ok=True)
 
-        # --- LOGIKA PREMIUM VENUES ---
+        # Pobranie konfiguracji premium venues
         premium_venues = []
         cfg_file = Path("config") / f"{city_tag}.yaml"
         if cfg_file.exists():
@@ -104,7 +104,13 @@ class HTMLRenderer:
         place_template = self.env.get_template("place_page.html")
         rendered_places = 0
         for place_id, place_data in places.items():
-            upcoming = [ev for ev in events if ev.place_id == place_id or ev.analysis.ticket_info.place_id == place_id]
+            upcoming = []
+            for ev in events:
+                ev_pid = getattr(ev, 'place_id', None)
+                analysis_pid = getattr(getattr(ev, 'analysis', None), 'ticket_info', None)
+                analysis_pid_val = getattr(analysis_pid, 'place_id', None) if analysis_pid else None
+                if ev_pid == place_id or analysis_pid_val == place_id:
+                    upcoming.append(ev)
             
             is_premium = place_id in premium_venues or place_data.get("group") in ["kultura", "theatre"]
             if not upcoming and not is_premium:
@@ -146,7 +152,7 @@ class HTMLRenderer:
         
         urls = sorted(set(urls))
 
-        # 1. Generowanie sitemap.xml
+        # 1. Sitemap.xml
         xml_entries = "\n".join([
             f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{today_iso}</lastmod>\n  </url>"
             for u in urls
@@ -156,7 +162,7 @@ class HTMLRenderer:
         with open(out_path / "sitemap.xml", "w", encoding="utf-8") as f:
             f.write(sitemap_content)
 
-        # 2. Generowanie robots.txt
+        # 2. Robots.txt
         robots_content = f"User-agent: *\nAllow: /\n\nSitemap: {base_url.rstrip('/')}/sitemap.xml\n"
         with open(out_path / "robots.txt", "w", encoding="utf-8") as f:
             f.write(robots_content)
