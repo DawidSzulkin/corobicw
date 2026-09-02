@@ -361,6 +361,101 @@ def _are_titles_duplicate(t1: str, t2: str, time1: str = "", time2: str = "") ->
 
     return SequenceMatcher(None, " ".join(sorted(stems1)), " ".join(sorted(stems2))).ratio() >= 0.75
 
+def sanitize_price(price_str: str, provider: str) -> str:
+    if not price_str:
+        return "Sprawdź dostępność"
+    p = price_str.strip()
+    p = re.sub(r"\s*\([^)]*\)", "", p).strip()
+    p_low = p.lower()
+    if any(free_w in p_low for free_w in ["wstęp wolny", "wstep wolny", "bezpłatn", "bezplatn", "za darmo", "wstęp darmowy", "brak opłat"]):
+        return "Wstęp wolny"
+    if p_low in ["bilety płatne", "płatne", "bilet", "kup bilet"]:
+        return "Sprawdź dostępność"
+    return p
+
+def extract_numeric_price(p_str: str) -> float:
+    p_low = (p_str or "").lower()
+    if any(free_w in p_low for free_w in ["wstęp wolny", "wstep wolny", "bezpłatn", "za darmo"]):
+        return 0.0
+    match = re.search(r"(\d+(?:[.,]\d+)?)", p_str.replace(" ", ""))
+    if match:
+        return float(match.group(1).replace(",", "."))
+    return float("inf")
+
+def _deduplicate_ticket_offers_list(offers: list, fallback_url: str = "", fallback_price: str = "") -> list:
+    grouped = {}
+    
+    for off in (offers or []):
+        u = (off.get("url") or "").strip()
+        if not u:
+            continue
+        prio, prov = _get_url_priority(u)
+        clean_u = u.split("#")[0].split("?")[0]
+        raw_p = off.get("price") or fallback_price or ""
+        sanitized_p = sanitize_price(raw_p, prov)
+        
+        key = prov if prov != "Inne" else clean_u
+        
+        if key not in grouped:
+            grouped[key] = {
+                "provider": prov,
+                "url": clean_u,
+                "price": sanitized_p,
+                "raw_price": raw_p,
+                "is_primary": off.get("is_primary", False),
+                "discounts": off.get("discounts") or []
+            }
+        else:
+            if grouped[key]["price"] == "Sprawdź dostępność" and sanitized_p != "Sprawdź dostępność":
+                grouped[key]["price"] = sanitized_p
+                grouped[key]["url"] = clean_u
+            if off.get("discounts") and not grouped[key].get("discounts"):
+                grouped[key]["discounts"] = off.get("discounts")
+                
+    if not grouped and fallback_url:
+        prio, prov = _get_url_priority(fallback_url)
+        clean_u = fallback_url.split("#")[0].split("?")[0]
+        grouped[prov] = {
+            "provider": prov,
+            "url": clean_u,
+            "price": sanitize_price(fallback_price, prov),
+            "raw_price": fallback_price,
+            "is_primary": True,
+            "discounts": []
+        }
+        
+    deduped = list(grouped.values())
+    deduped.sort(key=lambda x: (extract_numeric_price(x["price"]), -_get_url_priority(x["url"])[0]))
+    
+    paid_nums = [extract_numeric_price(o["price"]) for o in deduped if 0 < extract_numeric_price(o["price"]) < float("inf")]
+    min_paid = min(paid_nums) if paid_nums else float("inf")
+    
+    for idx, o in enumerate(deduped):
+        o["is_primary"] = (idx == 0)
+        o["tag"] = None
+        o["tag_class"] = None
+        
+        u_low = o["url"].lower()
+        prov_low = o["provider"].lower()
+        num_p = extract_numeric_price(o["price"])
+        is_free = ("wolny" in o["price"].lower() or "bezpłat" in o["price"].lower() or num_p == 0.0)
+        
+        # Dla wydarzeń darmowych: zerujemy zniżki i tagi
+        if is_free:
+            o["discounts"] = []
+            o["tag"] = None
+            o["tag_class"] = None
+        else:
+            if num_p < float("inf") and num_p == min_paid and len(deduped) > 1:
+                o["tag"] = "Najlepsza cena"
+                o["tag_class"] = "best-price"
+            elif "bck" in u_low or "organizator" in prov_low or "bck" in prov_low:
+                o["tag"] = "Oficjalna kasa"
+                o["tag_class"] = "official"
+            # Zniżki zostają dokładnie takie, jakie dostarczył scraper (bez sztywnego mocka!)
+            
+    return deduped
+
 def deduplicate_events(events: list, city_name: str = "") -> list:
     by_date = {}
     for ev in events:
@@ -390,18 +485,15 @@ def deduplicate_events(events: list, city_name: str = "") -> list:
                 single = dict(cluster[0])
                 u = single.get("source_url") or single.get("url") or ""
                 offers = single.get("ticket_offers") or []
-                if not offers and u:
-                    prio, prov = _get_url_priority(u)
-                    single["ticket_offers"] = [{
-                        "provider": prov,
-                        "url": u,
-                        "price": single.get("price_range") or single.get("price") or "",
-                        "is_primary": True
-                    }]
+                pr = single.get("price_range") or single.get("price") or ""
+                single["ticket_offers"] = _deduplicate_ticket_offers_list(offers, u, pr)
+                if single["ticket_offers"]:
+                    single["source_url"] = single["ticket_offers"][0]["url"]
+
                 merged_results.append(single)
                 continue
             
-            best_title = min([c.get("title", "") for c in cluster if c.get("title")], key=len)
+            best_title = max([c.get("title", "") for c in cluster if c.get("title")], key=len)
             
             desc_candidates = [
                 c.get("description") or (c.get("analysis", {}).get("full_description") if isinstance(c.get("analysis"), dict) else "") or ""
@@ -433,29 +525,25 @@ def deduplicate_events(events: list, city_name: str = "") -> list:
                 best_venue = cluster[0].get("venue", "")
                 best_address = cluster[0].get("address", "")
             
-            all_offers_map = {}
+            candidate_offers = []
             for c in cluster:
-                for off in (c.get("ticket_offers") or []):
-                    u_off = off.get("url", "").strip()
-                    if u_off:
-                        all_offers_map[u_off] = off
-                c_url = (c.get("source_url") or c.get("url") or "").strip()
-                if c_url and c_url not in all_offers_map:
-                    prio, prov = _get_url_priority(c_url)
-                    all_offers_map[c_url] = {
-                        "provider": prov,
-                        "url": c_url,
-                        "price": c.get("price_range") or c.get("price") or "",
-                        "is_primary": False
-                    }
+                for off in (c.get('ticket_offers') or []):
+                    if isinstance(off, dict) and off.get('url'):
+                        candidate_offers.append(off)
+                c_url = (c.get('source_url') or c.get('url') or '').strip()
+                if c_url:
+                    candidate_offers.append({
+                        'url': c_url,
+                        'price': c.get('price_range') or c.get('price') or '',
+                        'is_primary': False
+                    })
 
-            ranked_offers = list(all_offers_map.values())
-            ranked_offers.sort(key=lambda x: _get_url_priority(x.get("url", ""))[0], reverse=True)
-            for idx, o in enumerate(ranked_offers):
-                o["is_primary"] = (idx == 0)
+            fallback_u = cluster[0].get("source_url") or cluster[0].get("url") or ""
+            fallback_p = cluster[0].get("price_range") or cluster[0].get("price") or ""
+            ranked_offers = _deduplicate_ticket_offers_list(candidate_offers, fallback_u, fallback_p)
 
-            primary_url = ranked_offers[0]["url"] if ranked_offers else cluster[0].get("source_url", "")
-            primary_price = next((o.get("price") for o in ranked_offers if o.get("price")), "")
+            primary_url = ranked_offers[0]["url"] if ranked_offers else fallback_u
+            primary_price = ranked_offers[0]["price"] if ranked_offers else fallback_p
 
             primary = dict(cluster[0])
             primary["title"] = best_title
@@ -514,11 +602,61 @@ def _format_address(raw_addr: Any, default_city: str = "") -> str:
     return default_city
 
 
-def _prepare_event_models(
-    events: List[Any],
-    city_cfg: Dict[str, Any],
-    city_name: str,
-    places_by_id: Dict[str, Dict[str, Any]]
+    def _prepare_event_models(self, enriched_events: list) -> list:
+        models = []
+        for e in enriched_events:
+            if not isinstance(e, dict):
+                continue
+            s_u = (e.get('source_url') or e.get('url') or '').strip()
+            s_p = (e.get('price_range') or e.get('price') or '').strip()
+            raw_offers = e.get('ticket_offers') or []
+            if not raw_offers and s_u:
+                raw_offers = _deduplicate_ticket_offers_list([], fallback_url=s_u, fallback_price=s_p)
+
+            parsed_offers = []
+            for o in raw_offers:
+                if isinstance(o, dict) and o.get('url'):
+                    parsed_offers.append(TicketOffer(
+                        provider=o.get('provider', 'Bilety'),
+                        url=o.get('url', ''),
+                        price=o.get('price'),
+                        is_primary=o.get('is_primary', False),
+                        tag=o.get('tag'),
+                        tag_class=o.get('tag_class'),
+                        discounts=o.get('discounts') or []
+                    ))
+                elif isinstance(o, TicketOffer):
+                    parsed_offers.append(o)
+
+            # Utworzenie EventModel
+            e_copy = dict(e)
+            e_copy['ticket_offers'] = parsed_offers
+            try:
+                models.append(EventModel(**e_copy))
+            except Exception:
+                # Jeśli EventModel ma ścisłe pola, przekazujemy klucze
+                models.append(EventModel(
+                    id=e.get('id', ''),
+                    title=e.get('title', ''),
+                    slug=e.get('slug', ''),
+                    city_tag=e.get('city_tag', ''),
+                    date_start=e.get('date_start', ''),
+                    date_end=e.get('date_end', ''),
+                    time_start=e.get('time_start', ''),
+                    venue=e.get('venue', ''),
+                    address=e.get('address', ''),
+                    price_range=e.get('price_range', ''),
+                    description=e.get('description', ''),
+                    image_url=e.get('image_url', ''),
+                    source_url=s_u,
+                    source=e.get('source', ''),
+                    organizer=e.get('organizer', ''),
+                    ticket_offers=parsed_offers,
+                    analysis=e.get('analysis')
+                ))
+        return models
+def _prepare_full_event_pages(
+    events: list, places_by_id: dict, city_cfg: dict, city_name: str
 ) -> List[FullEventPage]:
     models: List[FullEventPage] = []
     seen_slugs: set = set()
@@ -588,8 +726,17 @@ def _prepare_event_models(
 
         nearby_gastro = _find_nearest_gastro(matched_place, places_by_id)
 
-        # Mapowanie ticket_offers (Record Merge)
+                # Mapowanie ticket_offers (Record Merge)
         raw_offers = e.get("ticket_offers") or []
+        if not raw_offers:
+            s_u = (e.get("source_url") or e.get("url") or "").strip()
+            s_p = (e.get("price_range") or e.get("price") or "").strip()
+            if s_u:
+                raw_offers = _deduplicate_ticket_offers_list([], fallback_url=s_u, fallback_price=s_p)
+        else:
+            # Upewnij się, że oferty przejdą normalizację tagów (Najlepsza cena / Oficjalna kasa)
+            raw_offers = _deduplicate_ticket_offers_list(raw_offers)
+
         parsed_offers = []
         for o in raw_offers:
             if isinstance(o, dict) and o.get("url"):
@@ -597,7 +744,10 @@ def _prepare_event_models(
                     provider=o.get("provider", "Bilety"),
                     url=o.get("url", ""),
                     price=o.get("price"),
-                    is_primary=o.get("is_primary", False)
+                    is_primary=o.get("is_primary", False),
+                    tag=o.get("tag"),
+                    tag_class=o.get("tag_class"),
+                    discounts=o.get("discounts") or []
                 ))
             elif isinstance(o, TicketOffer):
                 parsed_offers.append(o)
@@ -686,7 +836,7 @@ def run_city_pipeline(
             print(f"[RENDERER] Brak aktywnych wydarzeń w bazie dla '{raw_tag}'.")
             return
 
-        event_models = _prepare_event_models(unique_events, city_cfg=city_cfg, city_name=city_name, places_by_id=places_by_id)
+        event_models = _prepare_full_event_pages(unique_events, places_by_id=places_by_id, city_cfg=city_cfg, city_name=city_name)
         renderer.render_city(
             city_name=city_name,
             city_tag=raw_tag,
@@ -739,7 +889,7 @@ def run_city_pipeline(
     active_db_events = get_active_events(city_tag=raw_tag, min_date=today_iso)
     deduped_events = deduplicate_events(active_db_events, city_name=city_name)
     sync_city_events(raw_tag, deduped_events)
-    event_models = _prepare_event_models(deduped_events, city_cfg=city_cfg, city_name=city_name, places_by_id=places_by_id)
+    event_models = _prepare_full_event_pages(deduped_events, places_by_id=places_by_id, city_cfg=city_cfg, city_name=city_name)
     renderer.render_city(
         city_name=city_name,
         city_tag=raw_tag,

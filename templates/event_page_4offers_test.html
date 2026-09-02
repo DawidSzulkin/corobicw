@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depresja komika - Adam Woronowicz i Rafał Rutkowski | Bielsko-Biała - CoRobićW</title>
+  <meta name="description" content="Dwóch wybitnych aktorów w bezlitosnej komedii odsłaniającej kulisy polskiego stand-upu.">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <style>
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
+      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
+      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+      --accent: #38bdf8; --accent-bg: rgba(56, 189, 248, 0.08);
+      --success: #10b981; --success-bg: rgba(16, 185, 129, 0.1);
+    }
+    :root[data-theme="light"] {
+      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
+      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
+      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+      --accent: #0284c7; --accent-bg: rgba(2, 132, 199, 0.08);
+      --success: #059669; --success-bg: rgba(5, 150, 105, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+      -webkit-font-smoothing: antialiased; font-size: 16px;
+    }
+    
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    
+    .container-grid { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
+    @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
+    
+    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
+    
+    .ambient-banner {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+      display: block;
+      background: #000;
+      border-bottom: 1px solid var(--border);
+    }
+    .ambient-bg {
+      position: absolute;
+      top: -5%; left: -5%; right: -5%; bottom: -5%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px) brightness(0.3);
+      z-index: 1;
+    }
+    .ambient-fg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      z-index: 2;
+    }
+    
+    .event-body { padding: 32px; }
+    .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
+    h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
+    .event-desc p { margin-bottom: 1.25rem; line-height: 1.75; font-size: 1rem; color: var(--text); }
+
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; border-radius: 4px; }
+    .sidebar h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; }
+    .info-row { display: flex; margin-bottom: 14px; font-size: 0.95rem; }
+    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+    .info-val { width: 65%; font-weight: 500; color: var(--text); }
+    .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
+
+    /* --- ARCHITEKTURA MODUŁU PORÓWNANIA OFERT --- */
+    .ticket-market-header { margin: 24px 0 12px; display: flex; justify-content: space-between; align-items: baseline; }
+    .ticket-market-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+    .ticket-count { font-size: 0.75rem; color: var(--text-muted); }
+
+    .offers-stack { display: flex; flex-direction: column; gap: 10px; }
+    .offer-box {
+      border: 1px solid var(--border);
+      background: var(--card-hover);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .offer-box.highlight {
+      border-color: var(--border-strong);
+    }
+    .offer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+    }
+    .offer-meta { display: flex; flex-direction: column; gap: 2px; }
+    .offer-provider-line { display: flex; align-items: center; gap: 6px; }
+    .offer-provider-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); }
+    .offer-tag {
+      font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 1px 6px; border-radius: 2px;
+    }
+    .offer-tag.best-price { background: var(--success-bg); color: var(--success); }
+    .offer-tag.official { background: var(--accent-bg); color: var(--accent); }
+
+    .offer-price-val { font-size: 1.15rem; font-weight: 900; color: var(--text); }
+    
+    .offer-btn-buy {
+      display: inline-block;
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      border: 1px solid var(--btn-primary-bg);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 8px 14px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .offer-btn-buy:hover {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+
+    /* Akordeon Zniżek BCK */
+    .bck-discounts-box {
+      border-top: 1px dashed var(--border);
+      background: var(--accent-bg);
+    }
+    .bck-discounts-box details summary {
+      padding: 8px 14px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .bck-discounts-box details summary::-webkit-details-marker { display: none; }
+    .bck-discounts-box details summary::after { content: "▼"; font-size: 0.6rem; opacity: 0.7; }
+    .bck-discounts-box details[open] summary::after { transform: rotate(180deg); }
+    
+    .bck-discounts-list {
+      list-style: none;
+      padding: 0 14px 10px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .bck-discounts-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      padding-bottom: 4px;
+    }
+    .bck-discounts-list li:last-child { border-bottom: none; }
+    .bck-discounts-list .disc-val { font-weight: 800; color: var(--success); }
+
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw"><span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span></button>
+        <a href="#" class="btn-nav">&larr; Agenda</a>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <nav class="breadcrumbs">
+      <a href="#">Polska</a><span>/</span><a href="#">Bielsko-Biała</a><span>/</span><span class="current">Depresja komika</span>
+    </nav>
+    
+    <div class="container-grid">
+      <div class="main-content">
+        <div class="ambient-banner">
+          <div class="ambient-bg" style="background-image: url('https://picsum.photos/800/600');"></div>
+          <img src="https://picsum.photos/800/600" alt="Plakat" class="ambient-fg">
+        </div>
+        <div class="event-body">
+          <div><span class="badge">Teatr i Komedia</span></div>
+          <h1>Depresja komika - Adam Woronowicz i Rafał Rutkowski</h1>
+          <h3 class="section-title">O wydarzeniu</h3>
+          <div class="event-desc">
+            <p>Znakomity spektakl komediowy obnażający kulisy show-biznesu. Rafał Rutkowski i Adam Woronowicz w mistrzowskim pojedynku aktorskim.</p>
+          </div>
+        </div>
+      </div>
+      
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Bilety i Organizacja</h3>
+          <div class="info-row"><div class="info-label">Data</div><div class="info-val">Niedziela, 13 września 2026</div></div>
+          <div class="info-row"><div class="info-label">Start</div><div class="info-val">15:00</div></div>
+          <div class="info-row">
+            <div class="info-label">Miejsce</div>
+            <div class="info-val">
+              <a href="#" class="venue-link">Bielskie Centrum Kultury im. Marii Koterbskiej</a><br>
+              <small style="color: var(--text-muted);">ul. Juliusza Słowackiego 27</small>
+            </div>
+          </div>
+          <div class="info-row"><div class="info-label">Cena od</div><div class="info-val" style="font-weight: 800;">190 zł</div></div>
+
+          <!-- SEKCJA PORÓWNANIA 4 DOSTAWCÓW (BRAK DARK PATTERNÓW) -->
+          <div class="ticket-market-header">
+            <span class="ticket-market-title">Dostępne bilety</span>
+            <span class="ticket-count">4 dystrybutorów</span>
+          </div>
+
+          <div class="offers-stack">
+
+            <!-- 1. KUPBILECIK: Najniższa cena rynkowa -->
+            <div class="offer-box highlight">
+              <div class="offer-row">
+                <div class="offer-meta">
+                  <div class="offer-provider-line">
+                    <span class="offer-provider-name">KupBilecik</span>
+                    <span class="offer-tag best-price">Najniższa cena</span>
+                  </div>
+                  <div class="offer-price-val">190 zł</div>
+                </div>
+                <a href="#" class="offer-btn-buy">Kup bilet</a>
+              </div>
+            </div>
+
+            <!-- 2. BCK: Kasa oficjalna z pełnymi zniżkami lokalnymi -->
+            <div class="offer-box" style="border-color: var(--accent);">
+              <div class="offer-row">
+                <div class="offer-meta">
+                  <div class="offer-provider-line">
+                    <span class="offer-provider-name" style="color: var(--accent);">Kasa BCK</span>
+                    <span class="offer-tag official">Oficjalna kasa</span>
+                  </div>
+                  <div class="offer-price-val">190 zł</div>
+                </div>
+                <a href="#" class="offer-btn-buy">Kup bilet</a>
+              </div>
+              <div class="bck-discounts-box">
+                <details>
+                  <summary>Honorowane zniżki (4)</summary>
+                  <ul class="bck-discounts-list">
+                    <li><span>Karta Weteran +</span><span class="disc-val">-50%</span></li>
+                    <li><span>Bielska Karta Rodzina +</span><span class="disc-val">-50%</span></li>
+                    <li><span>Bielska Karta SENIORA</span><span class="disc-val">-50%</span></li>
+                    <li><span>Zasłużony dla Zdrowia Narodu</span><span class="disc-val">-50%</span></li>
+                  </ul>
+                </details>
+              </div>
+            </div>
+
+            <!-- 3. BILETYNA: Dystrybutor ogólnopolski -->
+            <div class="offer-box">
+              <div class="offer-row">
+                <div class="offer-meta">
+                  <div class="offer-provider-line">
+                    <span class="offer-provider-name">Biletyna</span>
+                  </div>
+                  <div class="offer-price-val">195 zł</div>
+                </div>
+                <a href="#" class="offer-btn-buy">Kup bilet</a>
+              </div>
+            </div>
+
+            <!-- 4. EBILET: Alternatywna pula biletów -->
+            <div class="offer-box">
+              <div class="offer-row">
+                <div class="offer-meta">
+                  <div class="offer-provider-line">
+                    <span class="offer-provider-name">eBilet</span>
+                  </div>
+                  <div class="offer-price-val">205 zł</div>
+                </div>
+                <a href="#" class="offer-btn-buy">Kup bilet</a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-copy">
+      <span>&copy; 2026 CoRobićW</span>
+      <span>Porównywarka wydarzeń miejskich</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+  </script>
+</body>
+</html>
