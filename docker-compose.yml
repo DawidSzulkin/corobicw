@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  scraper-bielsko:
+    build: .
+    container_name: bielsko_scraper
+    environment:
+      - PYTHONIOENCODING=utf-8
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+      - ./public:/app/public
+    restart: "no"
