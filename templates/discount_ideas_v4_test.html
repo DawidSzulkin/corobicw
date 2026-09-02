@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sekcja Biletowa - Akordeon & Generyczne CTA</title>
+  <style>
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --text: #f4f4f5; --text-muted: #a1a1aa; 
+      --border: #27272a; --border-strong: #ffffff; --btn-bg: #ffffff; --btn-text: #000000;
+      --btn-secondary: #27272a; --accent: #38bdf8; --discount-bg: rgba(56, 189, 248, 0.05);
+      --success: #10b981;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); padding: 40px; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
+    .sidebar-mockup { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; border-radius: 8px; width: 360px; }
+    .sidebar-mockup h3 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px; margin-top: 0; color: var(--accent); }
+    
+    /* Wspólne dla Akordeonu Zniżek */
+    .discount-accordion { border-top: 1px solid var(--border); background: var(--discount-bg); margin-top: 12px; border-radius: 0 0 6px 6px; }
+    .discount-accordion details summary { font-size: 0.75rem; padding: 12px 16px; cursor: pointer; color: var(--accent); font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .discount-accordion details summary::-webkit-details-marker { display: none; }
+    .discount-accordion details summary::after { content: "▼"; font-size: 0.6rem; transition: transform 0.2s; color: var(--text-muted); }
+    .discount-accordion details[open] summary::after { transform: rotate(180deg); }
+    .discount-list { padding: 0 16px 12px 16px; margin: 0; font-size: 0.75rem; color: var(--text); list-style-type: none; }
+    .discount-list li { padding: 6px 0; border-bottom: 1px dashed var(--border); display: flex; justify-content: space-between; }
+    .discount-list li:last-child { border-bottom: none; }
+    .discount-list li span:last-child { color: var(--success); font-weight: 700; }
+
+    /* Ogólny przycisk akcji */
+    .btn-buy { display: inline-block; background: var(--btn-bg); color: var(--btn-text); text-decoration: none; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; border-radius: 4px; transition: opacity 0.2s; }
+    .btn-buy:hover { opacity: 0.9; }
+
+    /* WARIANT 1: Dropdown Główny (Zagnieżdżony) */
+    .v1-dropdown { border: 1px solid var(--border-strong); border-radius: 6px; }
+    .v1-dropdown > summary { background: var(--btn-bg); color: var(--btn-text); padding: 16px; font-weight: 800; text-transform: uppercase; cursor: pointer; list-style: none; display: flex; justify-content: space-between; border-radius: 4px; }
+    .v1-dropdown > summary::-webkit-details-marker { display: none; }
+    .v1-dropdown > summary::after { content: "▼"; font-size: 0.8rem; }
+    .v1-options { padding: 12px; background: var(--card-bg); border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
+    .v1-provider-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--btn-secondary); border-radius: 6px; }
+    .v1-provider-info { display: flex; flex-direction: column; gap: 4px; }
+    .v1-provider-name { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .v1-price { font-size: 1.1rem; font-weight: 800; }
+    .v1-btn-small { background: var(--border-strong); color: var(--bg); padding: 8px 16px; font-size: 0.8rem; border-radius: 4px; font-weight: 700; text-decoration: none; }
+    .v1-bck-wrapper { background: var(--btn-secondary); border-radius: 6px; border: 1px solid var(--accent); }
+    .v1-bck-wrapper .v1-provider-row { background: transparent; padding-bottom: 8px; }
+
+    /* WARIANT 2: Klasyczna Lista Ofert (Model Ceneo) */
+    .v2-offer { border: 1px solid var(--border); border-radius: 6px; margin-bottom: 12px; background: #18181b; }
+    .v2-offer.highlight { border-color: var(--border-strong); }
+    .v2-offer-main { display: flex; justify-content: space-between; align-items: center; padding: 16px; }
+    .v2-left { display: flex; flex-direction: column; gap: 4px; }
+    .v2-prov { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+    .v2-price { font-size: 1.2rem; font-weight: 900; }
+    .v2-offer .btn-buy { padding: 10px 20px; font-size: 0.85rem; }
+
+    /* WARIANT 3: Najtańsza Wyeksponowana + Reszta ukryta */
+    .v3-hero-offer { margin-bottom: 20px; }
+    .v3-hero-offer .btn-buy { width: 100%; padding: 16px; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+    .v3-hero-sub { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; font-weight: 600; }
+    .v3-others { border-top: 1px dashed var(--border); padding-top: 16px; }
+    .v3-others-title { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
+    .v3-small-offer { border: 1px solid var(--border); border-radius: 6px; margin-bottom: 8px; }
+    .v3-small-main { display: flex; justify-content: space-between; align-items: center; padding: 12px; }
+    .v3-small-btn { background: transparent; border: 1px solid var(--border-strong); color: var(--text); padding: 6px 12px; font-size: 0.75rem; font-weight: 700; text-decoration: none; border-radius: 4px; }
+    .v3-small-btn:hover { background: var(--border-strong); color: var(--bg); }
+  </style>
+</head>
+<body>
+
+  <!-- WARIANT 1: Dropdown Główny -->
+  <div class="sidebar-mockup">
+    <h3>Wariant 1: Główny Dropdown</h3>
+    
+    <details class="v1-dropdown">
+      <summary>Kup bilet od 190 zł</summary>
+      <div class="v1-options">
+        
+        <div class="v1-provider-row">
+          <div class="v1-provider-info">
+            <span class="v1-provider-name">Dystrybutor: KupBilecik</span>
+            <span class="v1-price">190 zł</span>
+          </div>
+          <a href="#" class="v1-btn-small">KUP</a>
+        </div>
+
+        <div class="v1-bck-wrapper">
+          <div class="v1-provider-row">
+            <div class="v1-provider-info">
+              <span class="v1-provider-name" style="color: var(--accent);">Organizator: BCK</span>
+              <span class="v1-price">190 zł</span>
+            </div>
+            <a href="#" class="v1-btn-small">KUP</a>
+          </div>
+          <div class="discount-accordion">
+            <details>
+              <summary>Dostępne zniżki (4)</summary>
+              <ul class="discount-list">
+                <li><span>Karta Weteran+</span><span>-50%</span></li>
+                <li><span>Bielska Karta Rodzina+</span><span>-50%</span></li>
+                <li><span>Karta SENIORA</span><span>-50%</span></li>
+                <li><span>Zasłużony dla Zdrowia</span><span>-50%</span></li>
+              </ul>
+            </details>
+          </div>
+        </div>
+
+      </div>
+    </details>
+  </div>
+
+  <!-- WARIANT 2: Klasyczna Lista Ofert -->
+  <div class="sidebar-mockup">
+    <h3>Wariant 2: Lista Ceneo</h3>
+    
+    <div class="v2-offer highlight">
+      <div class="v2-offer-main">
+        <div class="v2-left">
+          <span class="v2-prov">KupBilecik</span>
+          <span class="v2-price">190 zł</span>
+        </div>
+        <a href="#" class="btn-buy">Kup bilet</a>
+      </div>
+    </div>
+
+    <div class="v2-offer" style="border-color: var(--accent);">
+      <div class="v2-offer-main">
+        <div class="v2-left">
+          <span class="v2-prov" style="color: var(--accent);">Kasa BCK</span>
+          <span class="v2-price">190 zł</span>
+        </div>
+        <a href="#" class="btn-buy">Kup bilet</a>
+      </div>
+      <div class="discount-accordion">
+        <details>
+          <summary>Sprawdź honorowane zniżki</summary>
+          <ul class="discount-list">
+            <li><span>Karta Weteran+</span><span>-50%</span></li>
+            <li><span>Bielska Karta Rodzina+</span><span>-50%</span></li>
+            <li><span>Karta SENIORA</span><span>-50%</span></li>
+            <li><span>Zasłużony dla Zdrowia</span><span>-50%</span></li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- WARIANT 3: Najtańsza Wyeksponowana -->
+  <div class="sidebar-mockup">
+    <h3>Wariant 3: Hero CTA</h3>
+    
+    <div class="v3-hero-offer">
+      <a href="#" class="btn-buy">
+        <span>Kup bilet</span>
+        <span>190 zł</span>
+      </a>
+      <div class="v3-hero-sub">Dystrybucja: KupBilecik</div>
+    </div>
+
+    <div class="v3-others">
+      <div class="v3-others-title">Pozostali dystrybutorzy</div>
+      
+      <div class="v3-small-offer">
+        <div class="v3-small-main">
+          <div class="v2-left">
+            <span class="v2-prov" style="color: var(--accent);">Oficjalna Kasa BCK</span>
+            <span class="v2-price" style="font-size: 1rem;">190 zł</span>
+          </div>
+          <a href="#" class="v3-small-btn">Przejdź</a>
+        </div>
+        <div class="discount-accordion">
+          <details>
+            <summary>Dostępne zniżki lokalne (4)</summary>
+            <ul class="discount-list">
+              <li><span>Karta Weteran+</span><span>-50%</span></li>
+              <li><span>Bielska Karta Rodzina+</span><span>-50%</span></li>
+              <li><span>Karta SENIORA</span><span>-50%</span></li>
+              <li><span>Zasłużony dla Zdrowia</span><span>-50%</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

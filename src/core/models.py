@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 from pydantic import BaseModel
 
 
@@ -29,7 +29,9 @@ class TicketOffer(BaseModel):
     url: str
     price: Optional[str] = None
     is_primary: bool = False
-
+    tag: Optional[str] = None
+    tag_class: Optional[str] = None
+    discounts: list[dict[str, Any]] = []
 
 class EventAnalysis(BaseModel):
     category: str

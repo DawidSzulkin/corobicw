@@ -1,14 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Koncert Królewski - Majestat Klasyki | Bielsko-Biała - CoRobićW</title>
-  <meta name="description" content="Koncert Królewski - Majestat Klasyki.
-
-Wirtuozi na Dworze Królewskim: od Mozarta po Straussa!
-
-Przygotuj się na niezapomnianą podróż do świata królewskich dworów, eleganckich bali">
+  <meta name="description" content="🎻✨ Koncert Królewski: Majestat Klasyki to wieczór pełen arii, walców i czardaszy w wykonaniu mistrzów opery i zespołu Royal Symphony Ensemble! 👑 Emocje, elegancja i humor – przeżyj">
   
   <script>
     (function() {
@@ -22,11 +18,13 @@ Przygotuj się na niezapomnianą podróż do świata królewskich dworów, elega
       --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
       --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
       --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+      --accent-green: #10b981; --accent-blue: #38bdf8;
     }
     :root[data-theme="light"] {
       --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
       --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
       --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+      --accent-green: #059669; --accent-blue: #0284c7;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
     *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
@@ -54,56 +52,91 @@ Przygotuj się na niezapomnianą podróż do świata królewskich dworów, elega
     .breadcrumbs a:hover { color: var(--text); }
     .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+    .container-grid { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
     @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
     
-    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
+    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 6px; }
     
     .ambient-banner {
-      position: relative;
-      width: 100%;
-      height: 420px;
-      overflow: hidden;
-      display: block;
-      background: #000;
-      border-bottom: 1px solid var(--border);
+      position: relative; width: 100%; height: 420px; overflow: hidden; display: block;
+      background: #000; border-bottom: 1px solid var(--border);
     }
     .ambient-bg {
-      position: absolute;
-      top: -5%; left: -5%; right: -5%; bottom: -5%;
-      background-size: cover;
-      background-position: center;
-      filter: blur(20px) brightness(0.3);
-      z-index: 1;
+      position: absolute; top: -5%; left: -5%; right: -5%; bottom: -5%;
+      background-size: cover; background-position: center;
+      filter: blur(20px) brightness(0.3); z-index: 1;
     }
     .ambient-fg {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: contain;
-      z-index: 2;
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: contain; z-index: 2;
     }
     
     .event-body { padding: 32px; }
     .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
-    h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
-    .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
+    h1 { font-size: 2.1rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 12px; font-weight: 800; color: var(--text); }
+    .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; border-radius: 4px; }
     .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
-    .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+    .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; border-radius: 4px; }
     .action-btn:hover { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
     
-    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; border-radius: 4px; }
-    .sidebar h3 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; }
-    .info-row { display: flex; margin-bottom: 14px; font-size: 0.95rem; }
-    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
-    .info-val { width: 65%; font-weight: 500; color: var(--text); }
+    .event-desc p { margin-bottom: 1.25rem; line-height: 1.75; font-size: 1rem; color: var(--text); }
+    .event-desc .desc-ps { color: var(--text-muted); margin-top: 1.5rem; font-style: italic; }
+
+    /* SIDEBAR */
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 22px; margin-bottom: 24px; border-radius: 6px; }
+    .sidebar h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; font-weight: 800; }
+    .info-row { display: flex; margin-bottom: 12px; font-size: 0.9rem; align-items: baseline; }
+    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.5px; }
+    .info-val { width: 65%; font-weight: 600; color: var(--text); }
     .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    
+    /* TICKET MARKET (CENEO STYLE) */
+    .ticket-market-header { margin: 22px 0 12px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--border); padding-top: 16px; }
+    .ticket-market-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+    .ticket-count { font-size: 0.72rem; color: var(--text-muted); }
+    
+    .offers-stack { display: flex; flex-direction: column; gap: 10px; }
+    .offer-box { border: 1px solid var(--border); background: var(--card-hover); border-radius: 5px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s; }
+    .offer-box:hover { border-color: rgba(255,255,255,0.25); }
+    .offer-box.highlight { border-color: var(--border-strong); }
+    
+    .offer-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 12px 14px; }
+    .offer-info-col { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .offer-provider-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .offer-provider-name { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); }
+    
+    .offer-tag { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 3px; }
+    .offer-tag.best-price { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .offer-tag.official { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
+    
+    .offer-price-val { font-size: 1.05rem; font-weight: 800; color: var(--text); letter-spacing: -0.2px; }
+    .offer-price-val.text-mode { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+    
+    .offer-btn-buy {
+      display: inline-flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 9px 15px; border-radius: 4px; min-width: 96px; text-align: center; transition: all 0.15s ease;
+    }
+    .offer-btn-buy.primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); }
+    .offer-btn-buy.primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .offer-btn-buy.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .offer-btn-buy.secondary:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
+
+    /* AKORDEON ZNIŻEK BCK */
+    .bck-discounts-box { border-top: 1px dashed var(--border); background: rgba(56, 189, 248, 0.04); }
+    .bck-discounts-box details summary { padding: 9px 14px; font-size: 0.72rem; font-weight: 700; color: var(--accent-blue); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 0.5px; }
+    .bck-discounts-box details summary::-webkit-details-marker { display: none; }
+    .bck-discounts-box details summary::after { content: "▼"; font-size: 0.6rem; opacity: 0.7; }
+    .bck-discounts-box details[open] summary::after { transform: rotate(180deg); }
+    .bck-discounts-list { list-style: none; padding: 0 14px 12px; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+    .bck-discounts-list li { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 4px; }
+    .bck-discounts-list li:last-child { border-bottom: none; }
+    .bck-discounts-list .disc-val { font-weight: 700; color: var(--accent-green); }
+
     .gastro-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
     .gastro-item:last-child { border-bottom: none; padding-bottom: 0; }
     .gastro-dist { font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 4px; }
-    .btn-ticket { display: block; width: 100%; text-align: center; background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); text-decoration: none; padding: 14px 0; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; transition: all 0.2s; }
-    .btn-ticket:hover { background: transparent; color: var(--text); border-color: var(--text); }
     
     footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
     .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
@@ -113,45 +146,22 @@ Przygotuj się na niezapomnianą podróż do świata królewskich dworów, elega
     .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
     .footer-col ul a:hover { color: var(--text); }
     .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+  </style>
+
+  <!-- Open Graph -->
   
-        .event-desc p { margin-bottom: 1.25rem; line-height: 1.75; font-size: 1rem; color: var(--text, #e2e8f0); }
-        .event-desc .desc-ps { color: var(--text-muted, #94a3b8); margin-top: 1.5rem; font-style: italic; }
-        .desc-meta, .desc-list { margin: 1.25rem 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.85rem 1.25rem 0.85rem 2.25rem; }
-        .desc-meta { list-style: none; padding-left: 1.25rem; }
-        .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
-        
-
-      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
-      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
-      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
-
-    </style>
-
-    <!-- Open Graph / Facebook / WhatsApp -->
-    
-    
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Koncert Królewski - Majestat Klasyki | CoRobićW Bielsko-Biała">
-    <meta property="og:description" content="Koncert Królewski - Majestat Klasyki.
-
-Wirtuozi na Dworze Królewskim: od Mozarta po Straussa!
-
-Przygotuj się na niezapomnianą podróż do świata królewskich dworów, eleganckich bali">
-    <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_koncert-krolewski-majestat-klasyki.webp">
-    <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/koncert-krolewski-majestat-klasyki-2026-10-22/">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Koncert Królewski - Majestat Klasyki">
-    <meta name="twitter:description" content="Koncert Królewski - Majestat Klasyki.
-
-Wirtuozi na Dworze Królewskim: od Mozarta po Straussa!
-
-Przygotuj się na niezapomnianą podróż do świata królewskich dworów, eleganckich bali">
-    <meta name="twitter:image" content="https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_koncert-krolewski-majestat-klasyki.webp">
-
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Koncert Królewski - Majestat Klasyki | CoRobićW Bielsko-Biała">
+  <meta property="og:description" content="🎻✨ Koncert Królewski: Majestat Klasyki to wieczór pełen arii, walców i czardaszy w wykonaniu mistrzów opery i zespołu Royal Symphony Ensemble! 👑 Emocje, elegancja i humor – przeżyj">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_koncert-krolewski-majestat-klasyki.webp">
+  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/koncert-krolewski-majestat-klasyki-2026-10-22/">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Koncert Królewski - Majestat Klasyki">
+  <meta name="twitter:description" content="🎻✨ Koncert Królewski: Majestat Klasyki to wieczór pełen arii, walców i czardaszy w wykonaniu mistrzów opery i zespołu Royal Symphony Ensemble! 👑 Emocje, elegancja i humor – przeżyj">
+  <meta name="twitter:image" content="https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_koncert-krolewski-majestat-klasyki.webp">
 </head>
 <body>
   <header>
@@ -171,11 +181,9 @@ Przygotuj się na niezapomnianą podróż do świata królewskich dworów, elega
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://www.kupbilecik.pl/imprezy/169189/Bielsko-Bia%C5%82a/Koncert+Kr%C3%B3lewski+-+Majestat+Klasyki/#2026-10-22-1730" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Koncert Królewski - Majestat Klasyki">
-
+        <a href="https://biletyna.pl/koncert/Koncert-Krolewski-Majestat-Klasyki/Bielsko-Biala" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej: Koncert Królewski - Majestat Klasyki">
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/kupbilecik_bielsko_biala_koncert-krolewski-majestat-klasyki.webp');"></div>
-          <img src="/assets/thumbnails/kupbilecik_bielsko_biala_koncert-krolewski-majestat-klasyki.webp" alt="Plakat: Koncert Królewski - Majestat Klasyki" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
-
+          <img src="/assets/thumbnails/kupbilecik_bielsko_biala_koncert-krolewski-majestat-klasyki.webp" alt="Plakat: Koncert Królewski - Majestat Klasyki" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high">
         </a>
         
         <div class="event-body">
@@ -183,44 +191,21 @@ Przygotuj się na niezapomnianą podróż do świata królewskich dworów, elega
           <h1>Koncert Królewski - Majestat Klasyki</h1>
           
           <div class="event-actions-bar">
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Koncert%20Kr%C3%B3lewski%20-%20Majestat%20Klasyki&details=Koncert%20Kr%C3%B3lewski%20-%20Majestat%20Klasyki.%0A%0AWirtuozi%20na%20Dworze%20Kr%C3%B3lewskim%3A%20od%20Mozarta%20po%20Straussa%21%0A%0APrzygotuj%20si%C4%99%20na%20niezapomnian%C4%85%20podr%C3%B3%C5%BC%20do%20%C5%9Bwiata..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Koncert%20Kr%C3%B3lewski%20-%20Majestat%20Klasyki&details=%F0%9F%8E%BB%E2%9C%A8%20Koncert%20Kr%C3%B3lewski%3A%20Majestat%20Klasyki%20to%20wiecz%C3%B3r%20pe%C5%82en%20arii%2C%20walc%C3%B3w%20i%20czardaszy%20w%20wykonaniu%20mistrz%C3%B3w%20opery%20i%20zespo%C5%82u%20Royal%20Symphony%20Ensemble%21%20%F0%9F%91%91..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
             <a href="https://wa.me/?text=Koncert%20Kr%C3%B3lewski%20-%20Majestat%20Klasyki%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/koncert-krolewski-majestat-klasyki-2026-10-22/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
           </div>
           
           <h3 class="section-title">O wydarzeniu</h3>
-          <div class="event-desc"><p>Koncert Królewski - Majestat Klasyki.</p>
-<p>Wirtuozi na Dworze Królewskim: od Mozarta po Straussa!</p>
-<p>Przygotuj się na niezapomnianą podróż do świata królewskich dworów, eleganckich bali i zapierających dech w piersiach scen operowych! To koncert, który połączy wielkie muzyczne arcydzieła z pasją, humorem i wirtuozerią.</p>
-<p>Nie przegap tej wyjątkowej okazji!</p>
-<p>Co Cię czeka</p>
-<ul class="desc-list"><li>Porywające rytmy, które roztańczą całą salę - walce, czardasze i ogniste tarantelle!</li><li>Najpiękniejsze arie operowe - pełne miłości, namiętności i dramatów, które poruszą każdą duszę.</li><li>Muzyczne smaczki - lekkie i zabawne akcenty w klasycznej oprawie, które rozbawią i zachwycą.</li><li>Potężny finał - Marsz Radetzky'ego, to moment, w którym dołączysz do wielkiej, muzycznej celebracji!</li></ul>
-<p>Wyjątkowa obsada:</p>
-<p>Royal Symphony Ensemble</p>
-<ul class="desc-list"><li>pełen klasy i ognia zespół, który oczaruje Cię swoim talentem.</li></ul>
-<p>Maestri di Corte</p>
-<ul class="desc-list"><li>mistrzowie wokalu, których brawurowe wykonania zdobyły uznanie na całym świecie. Wśród nich</li></ul>
-<p>Krzysztof Knapczyk</p>
-<ul class="desc-list"><li>tenor, aktor, wokalista i członek prestiżowych zespołów "Pop Opera - od Opery do Musicalu", "Queen Symfonicznie" i "The Beatles Symfonicznie". Krzysztof występował na scenach w Grecji, Niemczech i Stanach Zjednoczonych, a jego autorski projekt "Opera na ulicy" odwiedził największe miasta na świecie.</li></ul>
-<p>Dlaczego warto</p>
-<ul class="desc-list"><li>Przeżyj wieczór pełen magii i usłysz największe dzieła Mozarta, Beethovena, Chopina, Verdiego, Pucciniego i Straussa.</li><li>Jeśli nigdy nie byłeś na Królewskim Koncercie - teraz jest najlepszy moment, by poczuć się jak król i poznać to niespotykane połączenie opery, balu i wielkiej wirtuozerii!</li><li>Chcesz spędzić wyjątkowy wieczór Zabierz bliską osobę i przenieś się do świata królewskiej muzyki, gdzie elegancja spotyka intensywne emocje!</li><li>Szukasz wyjątkowego prezentu Bilety na ten koncert to niezawodna niespodzianka, którą Twoi bliscy zapamiętają na zawsze!</li></ul>
-<p>Program koncertu:</p>
-<p>Johann Strauss - "Auf der Jagd" (Taniec myśliwski)</p>
-<p>Johannes Brahms - "Taniec węgierski nr 5"</p>
-<p>Vittorio Monti - "Czardasz"</p>
-<p>Giacomo Puccini - "Nessun Dorma" z opery Turandot</p>
-<p>Johann Strauss - "Im Krapeenwald'l"</p>
-<p>Fryderyk Chopin - "Etiuda E-dur" (odpoczynek dla zespołu)</p>
-<p>Ludwig van Beethoven - "Oda do radości"</p>
-<p>Johann Strauss - "Radetzky-Marsch"</p>
-<p>Gioachino Rossini - "Duetto Buffo di Due Gatti"</p>
-<p>Camille Saint-Saëns - "Łabędź"</p>
-<p>Piotr Czajkowski- "Taniec neapolitański"</p>
-<p>Gaetano Donizetti - "Una furtiva lagrima" z opery Napój miłosny</p>
-<p>Giuseppe Verdi - "La donna è mobile" z opery Rigoletto</p>
-<p>Giuseppe Verdi - "Brindisi" z opery Traviata</p>
-<p>Louis-Claude Daquin - "Kukułka" (Le Coucou)</p>
-<p>To tylko część niezwykłego programu, który przeniesie Cię w świat największych arcydzieł muzycznych wszech czasów!</p>
-<p>Zarezerwuj swoje miejsce już teraz! Nie czekaj - koncerty z takim poziomem artystycznym wyprzedają się szybko! Ograniczona liczba miejsc.</p></div>
+          <div class="event-desc"><p>🎻✨ Koncert Królewski: Majestat Klasyki to wieczór pełen arii, walców i czardaszy w wykonaniu mistrzów opery i zespołu Royal Symphony Ensemble! 👑 Emocje, elegancja i humor – przeżyj muzyczną podróż przez arcydzieła klasyki!.</p>
+<p>✨ KONCERT KRÓLEWSKI: MAJESTAT KLASYKI ✨ 🎭 Elegancja. Pasja. Humor. Muzyczne arcydzieła. To nie jest zwykły koncert – to spektakl, który przeniesie Cię do świata królewskich dworów, wytwornych bali i pełnych emocji operowych scen!</p>
+<p>🎼 Co usłyszysz 💃 Porywające rytmy – walce, czardasze i taneczne szaleństwo! 🎤 Najpiękniejsze arie operowe – miłość, namiętność i wielkie dramaty. 🎻 Muzyczne smaczki – lekkie, zabawne momenty w klasycznej oprawie.</p>
+<p>🔥 Potężne finały – klaskanie do Radetzky-Marsza Na pewno poczujesz, że to najlepszy moment, by się dołączyć! 🔱 Dlaczego warto ✅ Usłyszysz największe klasyki Mozarta, Beethovena, Chopina, Verdiego, Pucciniego, Straussa i Brahmsa ✅ Jeśli nigdy nie byłeś na Królewskim Koncercie – odkryjesz niespotykane połączenie opery, balu i wirtuozerii ✅ Jeśli chcesz przeżyć wyjątkowy wieczór – zabierz bliską osobę i poczuj atmosferę muzycznego luksusu.</p>
+<p>✅ Jeśli szukasz prezentu – bilety na ten koncert to niezawodny pomysł na niespodziankę! 🎼 Program koncertu: 💃 Johann Strauss – "Auf der Jagd" (Taniec myśliwski) 🎶 Johannes Brahms – "Taniec węgierski nr 5" 💥 Vittorio Monti – "Czardasz" 🎤 Giacomo Puccini – "Nessun Dorma" z opery "Turandot" 🎶 Frédéric Chopin – "Etiuda E-dur" (odpoczynek dla zespołu) 🔥 Ludwig van Beethoven – "Oda do radości" 🎤George Frideric Handel - Ombra mai fu 🔥 Johann Strauss – "Radetzky-Marsch" 🎭 Gioachino Rossini – "Duetto Buffo di Due Gatti" 🐦 Stanisław Moniuszko - “Prząśniczka” 🎶 Pietro Mascagni - “Ave Maria” 🎤 Gaetano Donizetti – "Una furtiva lagrima" z opery "Napój miłosny" 🍷 Giuseppe Verdi – "Brindisi" z opery "Traviata" 🎶 Fryderyk Chopin – "Mazurek a-moll" 🎻 To tylko część naszego wyjątkowego programu, który zabierze Cię w muzyczną podróż przez największe arcydzieła klasyki.</p>
+<p>🎼Wyjątkowa obsada: 🎻BognaBand Royal Ensemble – pełen klasy i ognia zespół, który oczaruje Cię swoim talentem złożony z najlepszych muzyków w składzie: 🎻Bogna Dulińska (fortepian) 🎻Aleksandra Strasińska (flet) 🎻Zuzanna Niedzielak (klarnet) 🎻Małgorzata Domańska (skrzypce) 🎻Arkadiusz Płaziuk (wiolonczela) 🎻Sylwester Masłoń (kontrabas) 🎻Błażej Kozłowski (perkusja) 🎻Maestri di Corte – mistrzowie wokalu, których brawurowe wykonania zdobyły uznanie na całym świecie.</p>
+<p>Wśród nich Marta Śpionek i Krzysztof Knapczyk – tenor, aktor, wokalista i członek prestiżowych zespołów „Pop Opera - od Opery do Musicalu”, “3 Soprany - Walka o Miłość”, „Queen Symfonicznie” i „The Beatles Symfonicznie”.</p>
+<p>Krzysztof występował na scenach w Grecji, Niemczech i Stanach Zjednoczonych, a jego autorski projekt "Opera na ulicy" odwiedził największe miasta na świecie. 💎 Zarezerwuj miejsce już teraz i stań się częścią tego wyjątkowego wieczoru!</p>
+<p>🛑 UWAGA! Nie zwlekaj! Nasi artyści występowali już przy pełnych salach, a zainteresowanie tym wyjątkowym koncertem jest ogromne. Liczba miejsc ograniczona! 🎟 Bilet uprawnia do udziału w realizacji nagrania audio-video koncertu w formule „live recording” z udziałem publiczności.</p>
+<p>(dotyczy Zielonej Góry)</p></div>
           
           
         </div>
@@ -239,15 +224,60 @@ Przygotuj się na niezapomnianą podróż do świata królewskich dworów, elega
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
-          <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne</div></div>
+
+                      
+            <div class="ticket-market-header">
+              <span class="ticket-market-title">Dostępne bilety</span>
+              <span class="ticket-count">2 opcje</span>
+            </div>
+            <div class="offers-stack">
+              
+              
+              <div class="offer-box highlight">
+                <div class="offer-row">
+                  <div class="offer-info-col">
+                    <div class="offer-provider-line">
+                      <span class="offer-provider-name">Biletyna</span>
+                      <span class="offer-tag best-price">Najlepsza cena</span>
+                    </div>
+                    <div class="offer-price-val ">Od 94.52 zł</div>
+                  </div>
+                  <div class="offer-action-col">
+                    <a href="https://biletyna.pl/koncert/Koncert-Krolewski-Majestat-Klasyki/Bielsko-Biala" target="_blank" rel="nofollow noopener" 
+                       class="offer-btn-buy primary" 
+                       aria-label="Kup bilet na Koncert Królewski - Majestat Klasyki w Biletyna">
+                      Kup bilet
+                    </a>
+                  </div>
+                </div>
+                
+              </div>
+              
+              
+              <div class="offer-box ">
+                <div class="offer-row">
+                  <div class="offer-info-col">
+                    <div class="offer-provider-line">
+                      <span class="offer-provider-name">KupBilecik</span>
+                      
+                    </div>
+                    <div class="offer-price-val text-mode">Sprawdź dostępność</div>
+                  </div>
+                  <div class="offer-action-col">
+                    <a href="https://www.kupbilecik.pl/imprezy/169189/Bielsko-Bia%C5%82a/Koncert+Kr%C3%B3lewski+-+Majestat+Klasyki/" target="_blank" rel="nofollow noopener" 
+                       class="offer-btn-buy secondary" 
+                       aria-label="Kup bilet na Koncert Królewski - Majestat Klasyki w KupBilecik">
+                      Kup bilet
+                    </a>
+                  </div>
+                </div>
+                
+              </div>
+              
+            </div>
           
-            <a href="https://www.kupbilecik.pl/imprezy/169189/Bielsko-Bia%C5%82a/Koncert+Kr%C3%B3lewski+-+Majestat+Klasyki/#2026-10-22-1730" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Koncert Królewski - Majestat Klasyki">
-              🎟️ Kup bilet online
-            </a>
-            
-            
         </div>
-        
+
         
         <div class="card">
           <h3>W okolicy (Gastro)</h3>
@@ -303,7 +333,7 @@ Przygotuj się na niezapomnianą podróż do świata królewskich dworów, elega
 {
   "@context": "https://schema.org",
   "@type": "Event",
-  "name": "Koncert Królewski - Majestat Klasyki",
+  "name": "Koncert Kr\u00f3lewski - Majestat Klasyki",
   "startDate": "2026-10-22T17:30",
   "endDate": "2026-10-22",
   "location": {
@@ -313,18 +343,14 @@ Przygotuj się na niezapomnianą podróż do świata królewskich dworów, elega
       "@type": "PostalAddress",
       "addressLocality": "Bielsko-Biała",
       "addressCountry": "PL",
-      "streetAddress": "Słowackiego 27, Bielsko Biala"
+      "streetAddress": "S\u0142owackiego 27, Bielsko Biala"
     }
   },
   "image": ["https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_koncert-krolewski-majestat-klasyki.webp"],
-  "description": "Koncert Królewski - Majestat Klasyki.
-
-Wirtuozi na Dworze Królewskim: od Mozarta po Straussa!
-
-Przygotuj się na niezapomnianą podróż do świata królewskich dworów, eleganckich bali",
+  "description": "\ud83c\udfbb\u2728 Koncert Kr\u00f3lewski: Majestat Klasyki to wiecz\u00f3r pe\u0142en arii, walc\u00f3w i czardaszy w wykonaniu mistrz\u00f3w opery i zespo\u0142u Royal Symphony Ensemble! \ud83d\udc51 Emocje, elegancja i humor \u2013 prze\u017cyj",
   "offers": {
     "@type": "Offer",
-    "url": "https://www.kupbilecik.pl/imprezy/169189/Bielsko-Bia%C5%82a/Koncert+Kr%C3%B3lewski+-+Majestat+Klasyki/#2026-10-22-1730"
+    "url": "https://biletyna.pl/koncert/Koncert-Krolewski-Majestat-Klasyki/Bielsko-Biala"
   }
 }
 </script>

@@ -150,12 +150,27 @@ def save_events_batch(city_tag: str, events: List[Dict[str, Any]]):
                             "is_primary": False
                         }]
 
-                        seen_u = {o.get("url") for o in current_offers if o.get("url")}
+                        seen_provs = {o.get("provider") for o in current_offers if o.get("provider") and o.get("provider") != "Inne"}
+                        seen_urls = {o.get("url", "").split("#")[0].split("?")[0] for o in current_offers if o.get("url")}
                         for inc in incoming_offers:
-                            inc_u = inc.get("url")
-                            if inc_u and inc_u not in seen_u:
-                                current_offers.append(inc)
-                                seen_u.add(inc_u)
+                            inc_u = (inc.get("url") or "").strip()
+                            clean_inc_u = inc_u.split("#")[0].split("?")[0]
+                            inc_p = inc.get("provider", "Inne")
+                            
+                            # Znajdź istniejącą ofertę tego dostawcy do ew. aktualizacji
+                            existing_match = next((o for o in current_offers if (inc_p != "Inne" and o.get("provider") == inc_p) or (clean_inc_u and o.get("url", "").split("#")[0].split("?")[0] == clean_inc_u)), None)
+                            if existing_match:
+                                # Nadpisz zniżki świeżymi danymi ze scrapera
+                                existing_match["discounts"] = inc.get("discounts") or []
+                                if inc.get("price") and existing_match.get("price") in ["Sprawdź dostępność", "Bilety płatne", ""]:
+                                    existing_match["price"] = inc.get("price")
+                                continue
+                                
+                            current_offers.append(inc)
+                            if inc_p != "Inne":
+                                seen_provs.add(inc_p)
+                            if clean_inc_u:
+                                seen_urls.add(clean_inc_u)
 
                         current_offers.sort(key=lambda x: _get_url_priority(x.get("url", ""))[0], reverse=True)
                         for idx, o in enumerate(current_offers):
@@ -167,7 +182,7 @@ def save_events_batch(city_tag: str, events: List[Dict[str, Any]]):
                             if current_offers[0].get("price"):
                                 ex_payload["price_range"] = current_offers[0]["price"]
 
-                        if len(title) < len(ex_title) and len(title) > 3:
+                        if len(title) > len(ex_title) and len(title) > 3:
                             ex_payload["title"] = title
 
                         new_payload_json = json.dumps(sanitize_payload(ex_payload), ensure_ascii=False)
@@ -232,9 +247,13 @@ def sync_city_events(city_tag: str, deduplicated_events: list):
             d_start = str(ev_dict.get("date_start", ev_dict.get("date", "")))[:10]
             title = ev_dict.get("title", "")
             payload_str = json.dumps(ev_dict, ensure_ascii=False)
+            if not s_url:
+                s_url = f"local://{city_tag}/{d_start}-{hash(title) & 0xffffffff}"
+                ev_dict["source_url"] = s_url
+                payload_str = json.dumps(ev_dict, ensure_ascii=False)
             cursor.execute(
                 """
-                INSERT INTO events (city_tag, source_url, date_start, title, payload)
+                INSERT OR REPLACE INTO events (city_tag, source_url, date_start, title, payload)
                 VALUES (?, ?, ?, ?, ?)
                 """,
                 (city_tag, s_url, d_start, title, payload_str)

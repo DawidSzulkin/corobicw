@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depresja komika - Adam Woronowicz i Rafał Rutkowski | Bielsko-Biała - CoRobićW</title>
+  <meta name="description" content="Znakomity spektakl komediowy obnażający kulisy show-biznesu.">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <style>
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
+      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
+      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+    }
+    :root[data-theme="light"] {
+      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
+      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
+      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+      -webkit-font-smoothing: antialiased; font-size: 16px;
+    }
+    
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    
+    .container-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+    @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
+    
+    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 4px; }
+    
+    .ambient-banner {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+      display: block;
+      background: #000;
+      border-bottom: 1px solid var(--border);
+    }
+    .ambient-bg {
+      position: absolute;
+      top: -5%; left: -5%; right: -5%; bottom: -5%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px) brightness(0.3);
+      z-index: 1;
+    }
+    .ambient-fg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      z-index: 2;
+    }
+    
+    .event-body { padding: 32px; }
+    .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
+    h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0; font-weight: 800; color: var(--text); }
+    .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; }
+    .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
+    .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+    .action-btn:hover { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
+    
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; border-radius: 4px; }
+    .sidebar h3 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; }
+    .info-row { display: flex; margin-bottom: 14px; font-size: 0.95rem; }
+    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+    .info-val { width: 65%; font-weight: 500; color: var(--text); }
+    .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    .gastro-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .gastro-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .gastro-dist { font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 4px; }
+    .btn-ticket { display: block; width: 100%; text-align: center; background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); text-decoration: none; padding: 14px 0; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; transition: all 0.2s; }
+    .btn-ticket:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+  
+        .event-desc p { margin-bottom: 1.25rem; line-height: 1.75; font-size: 1rem; color: var(--text, #e2e8f0); }
+        .event-desc .desc-ps { color: var(--text-muted, #94a3b8); margin-top: 1.5rem; font-style: italic; }
+        .desc-meta, .desc-list { margin: 1.25rem 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.85rem 1.25rem 0.85rem 2.25rem; }
+        .desc-meta { list-style: none; padding-left: 1.25rem; }
+        .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
+        
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    
+    /* ARCHITEKTURA LISTY OFERT - WYRÓWNANY UKŁAD FLEXBOX */
+    .ticket-market-header { margin: 20px 0 10px; display: flex; justify-content: space-between; align-items: baseline; }
+    .ticket-market-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+    .ticket-count { font-size: 0.75rem; color: var(--text-muted); }
+    .offers-stack { display: flex; flex-direction: column; gap: 8px; }
+    .offer-box { border: 1px solid var(--border); background: var(--card-hover); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
+    .offer-box.highlight { border-color: var(--border-strong); }
+    .offer-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 12px 14px; }
+    .offer-info-col { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .offer-provider-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .offer-provider-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); }
+    .offer-tag { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 2px; }
+    .offer-tag.best-price { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+    .offer-tag.official { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .offer-price-val { font-size: 1.1rem; font-weight: 900; color: var(--text); }
+    .offer-action-col { flex-shrink: 0; }
+    .offer-btn-buy { display: inline-flex; align-items: center; justify-content: center; background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); text-decoration: none; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 9px 15px; border-radius: 3px; min-width: 96px; text-align: center; }
+    .offer-btn-buy:hover { background: transparent; color: var(--text); border-color: var(--border-strong); }
+    .bck-discounts-box { border-top: 1px dashed var(--border); background: rgba(56, 189, 248, 0.05); }
+    .bck-discounts-box details summary { padding: 8px 14px; font-size: 0.72rem; font-weight: 700; color: #38bdf8; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 0.5px; }
+    .bck-discounts-box details summary::-webkit-details-marker { display: none; }
+    .bck-discounts-box details summary::after { content: "▼"; font-size: 0.6rem; opacity: 0.7; }
+    .bck-discounts-box details[open] summary::after { transform: rotate(180deg); }
+    .bck-discounts-list { list-style: none; padding: 0 14px 10px; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+    .bck-discounts-list li { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text); border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 4px; }
+    .bck-discounts-list li:last-child { border-bottom: none; }
+    .bck-discounts-list .disc-val { font-weight: 800; color: #10b981; }
+
+    </style>
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Depresja komika - Adam Woronowicz i Rafał Rutkowski | CoRobićW Bielsko-Biała">
+    <meta property="og:description" content="Znakomity spektakl komediowy obnażający kulisy show-biznesu.">
+    <meta property="og:image" content="https://corobicw.pl/assets/placeholder.svg">
+    <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/depresja-komika-adam-woronowicz-2026-09-13/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Depresja komika - Adam Woronowicz i Rafał Rutkowski">
+    <meta name="twitter:description" content="Znakomity spektakl komediowy obnażający kulisy show-biznesu.">
+    <meta name="twitter:image" content="https://corobicw.pl/assets/placeholder.svg">
+
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/bielsko_biala/" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw"><span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span></button>
+        <a href="/bielsko_biala/" class="btn-nav">&larr; Agenda</a>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <nav class="breadcrumbs">
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">Depresja komika - Adam Woronowicz i Rafał Rutkowski</span>
+    </nav>
+    
+    <div class="container-grid">
+      <div class="main-content">
+        <a href="https://www.kupbilecik.pl/imprezy/test" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Depresja komika - Adam Woronowicz i Rafał Rutkowski">
+
+          <div class="ambient-bg" style="background-image: url('/assets/placeholder.svg');"></div>
+          <img src="/assets/placeholder.svg" alt="Plakat: Depresja komika - Adam Woronowicz i Rafał Rutkowski" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
+        </a>
+        
+        <div class="event-body">
+          <div><span class="badge">Teatr i Komedia</span></div>
+          <h1>Depresja komika - Adam Woronowicz i Rafał Rutkowski</h1>
+          
+          <div class="event-actions-bar">
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Depresja komika - Adam Woronowicz i Rafał Rutkowski&details=Zderzenie dwóch światów: teatru dramatycznego i brutalnej rzeczywistości klubów komediowych." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://wa.me/?text=Depresja komika - Adam Woronowicz i Rafał Rutkowski%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/depresja-komika-adam-woronowicz-2026-09-13/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
+          </div>
+          
+          <h3 class="section-title">O wydarzeniu</h3>
+          <div class="event-desc"><p>Opis wydarzenia.</p></div>
+          
+          
+        </div>
+      </div>
+      
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Bilety i Organizacja</h3>
+          <div class="info-row"><div class="info-label">Data</div><div class="info-val">Niedziela, 13 września 2026</div></div>
+          <div class="info-row"><div class="info-label">Start</div><div class="info-val">15:00</div></div>
+          <div class="info-row">
+            <div class="info-label">Miejsce</div>
+            <div class="info-val">
+              <strong>Bielskie Centrum Kultury im. Marii Koterbskiej</strong>
+              <br><small style="color: var(--text-muted);">ul. Juliusza Słowackiego 27, Bielsko-Biała</small>
+            </div>
+          </div>
+          <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
+          <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Od 190 zł</div></div>
+          
+          <div class="ticket-market-header">
+            <span class="ticket-market-title">Dostępne bilety</span>
+            <span class="ticket-count">4 opcje</span>
+          </div>
+          <div class="offers-stack">
+            
+            <div class="offer-box highlight">
+              <div class="offer-row">
+                <div class="offer-info-col">
+                  <div class="offer-provider-line">
+                    <span class="offer-provider-name">KupBilecik</span>
+                    <span class="offer-tag best-price">Najniższa cena</span>
+                  </div>
+                  <div class="offer-price-val">190 zł</div>
+                </div>
+                <div class="offer-action-col">
+                  <a href="https://kupbilecik.pl/test" target="_blank" rel="nofollow noopener" class="offer-btn-buy" aria-label="Kup bilet na wydarzenie Depresja komika - Adam Woronowicz i Rafał Rutkowski u dostawcy KupBilecik">Kup bilet</a>
+                </div>
+              </div>
+              
+            </div>
+            
+            <div class="offer-box ">
+              <div class="offer-row">
+                <div class="offer-info-col">
+                  <div class="offer-provider-line">
+                    <span class="offer-provider-name">Kasa BCK</span>
+                    <span class="offer-tag official">Oficjalna kasa</span>
+                  </div>
+                  <div class="offer-price-val">190 zł</div>
+                </div>
+                <div class="offer-action-col">
+                  <a href="https://bck.bielsko.pl/test" target="_blank" rel="nofollow noopener" class="offer-btn-buy" aria-label="Kup bilet na wydarzenie Depresja komika - Adam Woronowicz i Rafał Rutkowski u dostawcy Kasa BCK">Kup bilet</a>
+                </div>
+              </div>
+              
+              <div class="bck-discounts-box">
+                <details>
+                  <summary>Honorowane zniżki (4)</summary>
+                  <ul class="bck-discounts-list">
+                    
+                    <li><span>Karta Weteran +</span><span class="disc-val">-50%</span></li>
+                    
+                    <li><span>Bielska Karta Rodzina +</span><span class="disc-val">-50%</span></li>
+                    
+                    <li><span>Bielska Karta SENIORA</span><span class="disc-val">-50%</span></li>
+                    
+                    <li><span>Zasłużony dla Zdrowia Narodu</span><span class="disc-val">-50%</span></li>
+                    
+                  </ul>
+                </details>
+              </div>
+              
+            </div>
+            
+            <div class="offer-box ">
+              <div class="offer-row">
+                <div class="offer-info-col">
+                  <div class="offer-provider-line">
+                    <span class="offer-provider-name">Biletyna</span>
+                    
+                  </div>
+                  <div class="offer-price-val">195 zł</div>
+                </div>
+                <div class="offer-action-col">
+                  <a href="https://biletyna.pl/test" target="_blank" rel="nofollow noopener" class="offer-btn-buy" aria-label="Kup bilet na wydarzenie Depresja komika - Adam Woronowicz i Rafał Rutkowski u dostawcy Biletyna">Kup bilet</a>
+                </div>
+              </div>
+              
+            </div>
+            
+            <div class="offer-box ">
+              <div class="offer-row">
+                <div class="offer-info-col">
+                  <div class="offer-provider-line">
+                    <span class="offer-provider-name">eBilet</span>
+                    
+                  </div>
+                  <div class="offer-price-val">205 zł</div>
+                </div>
+                <div class="offer-action-col">
+                  <a href="https://ebilet.pl/test" target="_blank" rel="nofollow noopener" class="offer-btn-buy" aria-label="Kup bilet na wydarzenie Depresja komika - Adam Woronowicz i Rafał Rutkowski u dostawcy eBilet">Kup bilet</a>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+
+        </div>
+        
+      </aside>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col"><h4>CoRobićW Bielsko-Biała</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li></ul></div>
+      <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda miejska</span></div>
+  </footer>
+  
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+  </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Depresja komika - Adam Woronowicz i Rafał Rutkowski",
+  "startDate": "2026-09-13T15:00",
+  "endDate": "2026-09-13",
+  "location": {
+    "@type": "Place",
+    "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bielsko-Biała",
+      "addressCountry": "PL",
+      "streetAddress": "ul. Juliusza Słowackiego 27, Bielsko-Biała"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/placeholder.svg"],
+  "description": "Znakomity spektakl komediowy obnażający kulisy show-biznesu.",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.kupbilecik.pl/imprezy/test"
+  }
+}
+</script>
+
+</body>
+</html>

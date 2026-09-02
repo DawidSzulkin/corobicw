@@ -4,6 +4,7 @@ import re
 import sys
 from typing import Any, Dict, List, Set
 from urllib.parse import urljoin
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from bs4 import BeautifulSoup
 import urllib3
 
@@ -26,6 +27,13 @@ POLISH_MONTH_MAP = {
     "października": 10, "październik": 10, "paź": 10, "paz": 10,
     "listopada": 11, "listopad": 11, "lis": 11,
     "grudnia": 12, "grudzień": 12, "gru": 12,
+}
+
+TAXONOMY_DISCOUNTS = {
+    "17": {"name": "Karta Weteran +", "val": "-50%"},
+    "18": {"name": "Bielska Karta Rodzina +", "val": "-50%"},
+    "19": {"name": "Bielska Karta SENIORA", "val": "-50%"},
+    "42": {"name": "legitymacja ZASŁUŻONY DLA ZDROWIA NARODU", "val": "-50%"}
 }
 
 
@@ -70,8 +78,24 @@ class BckBielskoPlScraper(BaseScraper):
 
         return "", time_str
 
+    def _fetch_event_discounts(self, event_url: str) -> List[Dict[str, str]]:
+        if not event_url or event_url == self.repertoire_url:
+            return []
+        try:
+            resp = self.session.get(event_url, timeout=(3.05, 7), verify=False)
+            if resp.status_code != 200:
+                return []
+            soup = BeautifulSoup(resp.content, "html.parser")
+            found = []
+            for term_id, disc in TAXONOMY_DISCOUNTS.items():
+                if soup.find("a", href=re.compile(rf"/taxonomy/term/{term_id}(?:/|\b|$)")):
+                    found.append(disc)
+            return found
+        except Exception:
+            return []
+
     def fetch_events(self) -> List[Dict[str, Any]]:
-        events = []
+        raw_cards = []
         today_iso = datetime.now().strftime("%Y-%m-%d")
         self.seen_signatures.clear()
 
@@ -127,7 +151,7 @@ class BckBielskoPlScraper(BaseScraper):
                         if "wolny" in btn_text.lower() or "bezpłat" in btn_text.lower():
                             price_info = "Wstęp wolny"
                         elif "bilet" in btn_text.lower():
-                            price_info = "Bilety płatne (BCK Bilety)"
+                            price_info = "Bilety płatne"
                         elif len(btn_text) > 2:
                             price_info = btn_text
 
@@ -135,7 +159,7 @@ class BckBielskoPlScraper(BaseScraper):
                     description = desc_el.get_text("\n\n", strip=True) if desc_el else f"Wydarzenie w Bielskim Centrum Kultury: {title}."
                     description = re.sub(r"\s+", " ", description).strip()
 
-                    events.append({
+                    raw_cards.append({
                         "title": title,
                         "date_start": date_iso,
                         "date_end": date_iso,
@@ -153,6 +177,25 @@ class BckBielskoPlScraper(BaseScraper):
             except Exception as e:
                 print(f"[{self.source_name}] Błąd parsowania strony {page_idx}: {e}")
 
+        print(f"[{self.source_name}] Skanowanie taksonomii zniżek dla {len(raw_cards)} wydarzeń...")
+        events = []
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            future_to_ev = {executor.submit(self._fetch_event_discounts, ev["source_url"]): ev for ev in raw_cards}
+            for future in as_completed(future_to_ev):
+                ev = future_to_ev[future]
+                try:
+                    discs = future.result()
+                except Exception:
+                    discs = []
+                
+                ev["ticket_offers"] = [{
+                    "provider": "Organizator",
+                    "url": ev["source_url"],
+                    "price": ev["price_range"],
+                    "is_primary": True,
+                    "discounts": discs
+                }]
+                events.append(ev)
+
         print(f"[{self.source_name}] Pomyślnie sparsowano {len(events)} wydarzeń BCK.")
         return events
-
