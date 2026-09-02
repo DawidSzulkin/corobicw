@@ -84,8 +84,8 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 paragraphs = article.find_all("p")
                 valid_paragraphs = [p.get_text(strip=True) for p in paragraphs if len(p.get_text(strip=True)) > 20]
                 if valid_paragraphs:
-                    return " ".join(valid_paragraphs)
-                return article.get_text(separator=" ", strip=True)[:600]
+                    return "\n\n".join(valid_paragraphs)
+                return article.get_text(separator="\n\n", strip=True)[:600]
         except Exception as e:
             print(f"[{self.source_name}] Błąd pobierania opisu {relative_url}: {e}")
         return ""

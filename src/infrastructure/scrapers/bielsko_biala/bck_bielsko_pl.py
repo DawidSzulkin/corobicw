@@ -84,7 +84,7 @@ class BckBielskoPlScraper(BaseScraper):
                 if resp.status_code != 200:
                     break
 
-                soup = BeautifulSoup(resp.text, "html.parser")
+                soup = BeautifulSoup(resp.content, "html.parser")
                 cards = soup.select(".event-block-2")
                 if not cards:
                     break
@@ -132,7 +132,7 @@ class BckBielskoPlScraper(BaseScraper):
                             price_info = btn_text
 
                     desc_el = card.select_one(".event-description, .field--name-field-skrot")
-                    description = desc_el.get_text(" ", strip=True) if desc_el else f"Wydarzenie w Bielskim Centrum Kultury: {title}."
+                    description = desc_el.get_text("\n\n", strip=True) if desc_el else f"Wydarzenie w Bielskim Centrum Kultury: {title}."
                     description = re.sub(r"\s+", " ", description).strip()
 
                     events.append({

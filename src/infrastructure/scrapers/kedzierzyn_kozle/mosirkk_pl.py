@@ -150,7 +150,7 @@ class MosirKkPlScraper(BaseScraper):
                 items = soup.select(".content .row > div")
 
             for item in items:
-                text = item.get_text(" ", strip=True)
+                text = item.get_text("\n\n", strip=True)
                 if any(ignored in text.lower() for ignored in IGNORE_KEYWORDS):
                     continue
 

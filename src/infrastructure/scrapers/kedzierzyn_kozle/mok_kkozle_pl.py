@@ -119,7 +119,7 @@ class MokKkozlePlScraper(BaseScraper):
                     time_start = generic_time.group(1)
 
             paragraphs = container.find_all("p")
-            valid_p = [self._clean_text(p.get_text()) for p in paragraphs if len(p.get_text().strip()) > 20]
+            valid_p = [str(p) for p in paragraphs if len(p.get_text().strip()) > 20]
             description = "\n\n".join(valid_p) if valid_p else self._clean_text(container_text)[:600]
 
             raw_image = fallback_img

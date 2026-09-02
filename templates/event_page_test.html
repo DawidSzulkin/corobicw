@@ -152,8 +152,7 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="{{ event.source_url or '#' }}" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: {{ event.title }}">
-
+        <a href="{{ event.source_url or '#' }}" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
           <div class="ambient-bg" style="background-image: url('{{ event.image_url or '/assets/placeholder.svg?v=2' }}');"></div>
           <img src="{{ event.image_url or '/assets/placeholder.svg?v=2' }}" alt="Plakat: {{ event.title }}" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
 
@@ -244,33 +243,5 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
-
-<!-- SEO: Schema.org Event -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "{{ event.title | replace('"', '\"') }}",
-  "startDate": "{{ event.date_start }}{% if event.analysis.ticket_info.time_start and ':' in event.analysis.ticket_info.time_start %}T{{ event.analysis.ticket_info.time_start }}{% endif %}",
-  "endDate": "{{ event.date_end }}",
-  "location": {
-    "@type": "Place",
-    "name": "{{ (event.analysis.ticket_info.venue_name if event.analysis and event.analysis.ticket_info else city_name) | default(city_name) | replace('"', '\"') }}",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "{{ city_name }}",
-      "addressCountry": "PL",
-      "streetAddress": "{{ (event.analysis.address if event.analysis else '') | default('') | replace('"', '\"') }}"
-    }
-  },
-  "image": ["https://corobicw.pl{{ event.image_url or '/assets/placeholder.svg?v=2' }}"],
-  "description": "{{ (event.analysis.editorial_lead if event.analysis and event.analysis.editorial_lead else event.title) | replace('"', '\"') }}",
-  "offers": {
-    "@type": "Offer",
-    "url": "{{ event.source_url or 'https://corobicw.pl' }}"
-  }
-}
-</script>
-
 </body>
 </html>

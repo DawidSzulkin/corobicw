@@ -60,12 +60,12 @@ class BanialukaPlScraper(BaseScraper):
                 # Pobranie pełnego opisu
                 desc_container = soup.select_one(".content, .entry-content, .show-desc, article, .wysiwyg, .spectacle__description")
                 if desc_container:
-                    paragraphs = [p.get_text(" ", strip=True) for p in desc_container.select("p") if len(p.get_text(strip=True)) > 20]
+                    paragraphs = [p.get_text(strip=True) for p in desc_container.select("p") if len(p.get_text(strip=True)) > 20]
                     if paragraphs:
                         data["description"] = "\n\n".join(paragraphs[:4])
 
                 # Czas trwania
-                full_text = soup.get_text()
+                full_text = soup.decode_contents()
                 dur_m = re.search(r"czas\s+trwania:?\s*(\d+\s*(?:min|h))", full_text, re.IGNORECASE)
                 if dur_m:
                     data["duration"] = dur_m.group(1)

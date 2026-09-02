@@ -37,3 +37,11 @@ desktop.ini
 # Narz?dzia lokalne
 start_server.bat
 start_kwarantanna.bat
+
+# Auto-added project exclusions
+*.pyc
+data/*.sqlite
+data/raw/
+data/processed/
+map_all_scrapers.py
+run_full_audit.py

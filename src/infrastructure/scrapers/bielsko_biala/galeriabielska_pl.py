@@ -43,7 +43,7 @@ class GaleriaBielskaPlScraper(BaseScraper):
                 s = BeautifulSoup(r.content, "html.parser")
                 content_div = s.select_one(".content, .entry-content, article, .event-details")
                 if content_div:
-                    paragraphs = [p.get_text(" ", strip=True) for p in content_div.select("p") if len(p.get_text(strip=True)) > 20]
+                    paragraphs = [p.get_text(strip=True) for p in content_div.select("p") if len(p.get_text(strip=True)) > 20]
                     if paragraphs:
                         details["description"] = "\n\n".join(paragraphs[:4])
 

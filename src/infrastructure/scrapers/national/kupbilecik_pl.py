@@ -72,7 +72,7 @@ class KupBilecikPlScraper(BaseScraper):
             if resp.status_code != 200:
                 return None
 
-            soup = BeautifulSoup(resp.content.decode("utf-8", "ignore"), "html.parser")
+            soup = BeautifulSoup(resp.content, "html.parser")
             
             h1_el = soup.select_one("h1")
             title = h1_el.get_text(strip=True) if h1_el else fallback_title
@@ -199,7 +199,7 @@ class KupBilecikPlScraper(BaseScraper):
             if resp.status_code != 200:
                 return events
 
-            soup = BeautifulSoup(resp.content.decode("utf-8", "ignore"), "html.parser")
+            soup = BeautifulSoup(resp.content, "html.parser")
             seen_urls = set()
             urls_to_scrape = []
 

@@ -119,7 +119,7 @@ class CavatinaHallPlScraper(BaseScraper):
                     raw_content = item.get("content", {}).get("rendered", "")
                     if raw_content:
                         c_soup = BeautifulSoup(raw_content, "html.parser")
-                        clean_desc = c_soup.get_text(" ", strip=True)
+                        clean_desc = c_soup.get_text("\n\n", strip=True)
                         desc = re.sub(r"\s+", " ", clean_desc).strip()
                         if len(desc) > 300:
                             desc = desc[:300].rsplit(" ", 1)[0] + "..."
