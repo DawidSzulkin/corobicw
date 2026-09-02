@@ -1,4 +1,3 @@
-﻿import hashlib
 import json
 from datetime import datetime
 import os
@@ -10,29 +9,6 @@ from src.core.models import FullEventPage
 
 
 class HTMLRenderer:
-
-    def _load_build_cache(self) -> dict:
-        cache_path = Path("data/.build_cache.json")
-        if cache_path.exists():
-            try:
-                with open(cache_path, "r", encoding="utf-8") as f:
-                    return json.load(f)
-            except Exception:
-                return {"places": {}, "events": {}}
-        return {"places": {}, "events": {}}
-
-    def _save_build_cache(self, cache: dict):
-        cache_path = Path("data/.build_cache.json")
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        try:
-            with open(cache_path, "w", encoding="utf-8") as f:
-                json.dump(cache, f, ensure_ascii=False, indent=2)
-        except Exception as e:
-            print(f"[CACHE] Błąd zapisu cache: {e}")
-
-    def _calculate_hash(self, data: Any) -> str:
-        serialized = json.dumps(data, sort_keys=True, ensure_ascii=False, default=str)
-        return hashlib.md5(serialized.encode("utf-8")).hexdigest()
 
     def __init__(self, template_dir: str = "templates"):
         self.env = Environment(loader=FileSystemLoader(template_dir))
@@ -82,8 +58,8 @@ class HTMLRenderer:
                 ev=ev,
                 event=ev,
                 place=place_obj,
-                city_name=city_name,
                 city=city_name,
+                city_name=city_name,
                 city_tag=city_tag
             )
             with open(single_file, "w", encoding="utf-8") as f:
@@ -121,10 +97,11 @@ class HTMLRenderer:
             p_file = p_folder / "index.html"
 
             p_html = place_template.render(
-                city=city_name,
-                city_tag=city_tag,
                 place=place_data,
-                upcoming_events=upcoming
+                upcoming_events=upcoming,
+                city=city_name,
+                city_name=city_name,
+                city_tag=city_tag
             )
             with open(p_file, "w", encoding="utf-8") as f:
                 f.write(p_html)
@@ -132,7 +109,12 @@ class HTMLRenderer:
 
         # 3. Renderowanie agendy miasta
         home_template = self.env.get_template("home.html")
-        home_html = home_template.render(city=city_name, city_tag=city_tag, events=events)
+        home_html = home_template.render(
+            events=events,
+            city=city_name,
+            city_name=city_name,
+            city_tag=city_tag
+        )
         home_file = city_dir / "index.html"
         with open(home_file, "w", encoding="utf-8") as f:
             f.write(home_html)

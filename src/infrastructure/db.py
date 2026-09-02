@@ -197,10 +197,11 @@ def sync_city_events(city_tag: str, deduplicated_events: list):
     try:
         cursor.execute("DELETE FROM events WHERE city_tag = ?", (city_tag,))
         for ev in deduplicated_events:
-            s_url = ev.get("source_url", "")
-            d_start = str(ev.get("date_start", ev.get("date", "")))[:10]
-            title = ev.get("title", "")
-            payload_str = json.dumps(ev, ensure_ascii=False)
+            ev_dict = ev.model_dump(mode='json') if hasattr(ev, 'model_dump') else (ev.dict() if hasattr(ev, 'dict') else ev)
+            s_url = ev_dict.get("source_url", "")
+            d_start = str(ev_dict.get("date_start", ev_dict.get("date", "")))[:10]
+            title = ev_dict.get("title", "")
+            payload_str = json.dumps(ev_dict, ensure_ascii=False)
             cursor.execute(
                 """
                 INSERT INTO events (city_tag, source_url, date_start, title, payload)
