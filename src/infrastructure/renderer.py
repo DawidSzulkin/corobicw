@@ -7,6 +7,16 @@ from typing import Any, Dict, List
 from jinja2 import Environment, FileSystemLoader
 from src.core.models import FullEventPage
 
+def _resolve_strict_city_name(tag: str) -> str:
+    if not tag: return ""
+    cmap = {
+        "kedzierzyn_kozle": "Kędzierzyn-Koźle",
+        "opole": "Opole",
+        "bielsko_biala": "Bielsko-Biała"
+    }
+    return cmap.get(tag.lower(), tag.title().replace("_", "-"))
+
+
 
 class HTMLRenderer:
 
@@ -58,8 +68,8 @@ class HTMLRenderer:
                 ev=ev,
                 event=ev,
                 place=place_obj,
-                city=city_name,
-                city_name=city_name,
+                city=_resolve_strict_city_name(city_tag),
+                city_name=_resolve_strict_city_name(city_tag),
                 city_tag=city_tag
             )
             with open(single_file, "w", encoding="utf-8") as f:
@@ -99,8 +109,8 @@ class HTMLRenderer:
             p_html = place_template.render(
                 place=place_data,
                 upcoming_events=upcoming,
-                city=city_name,
-                city_name=city_name,
+                city=_resolve_strict_city_name(city_tag),
+                city_name=_resolve_strict_city_name(city_tag),
                 city_tag=city_tag
             )
             with open(p_file, "w", encoding="utf-8") as f:
@@ -111,8 +121,8 @@ class HTMLRenderer:
         home_template = self.env.get_template("home.html")
         home_html = home_template.render(
             events=events,
-            city=city_name,
-            city_name=city_name,
+            city=_resolve_strict_city_name(city_tag),
+            city_name=_resolve_strict_city_name(city_tag),
             city_tag=city_tag
         )
         home_file = city_dir / "index.html"
