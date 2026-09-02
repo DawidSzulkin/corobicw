@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agenda Wydarzeń: {{ city }} | CoRobićW</title>
-  <meta name="description" content="Aktualny harmonogram spektakli, koncertów i wydarzeń w {{ city }}.">
+  <title>Agenda Wydarzeń: {{ city_name or city }} | CoRobićW</title>
+  <meta name="description" content="Aktualny harmonogram spektakli, koncertów i wydarzeń w {{ city_name or city }}.">
   
   <script>
     (function() {
@@ -267,7 +267,7 @@
 <body>
   <header>
     <div class="nav-container">
-      <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city }}</span></a>
+      <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city_name or city }}</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
           <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
@@ -279,7 +279,7 @@
   </header>
   <main>
     <nav class="breadcrumbs">
-      <a href="/">Polska</a><span>/</span><span class="current">{{ city }}</span>
+      <a href="/">Polska</a><span>/</span><span class="current">{{ city_name or city }}</span>
     </nav>
     <div class="filter-bar">
       <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
@@ -328,7 +328,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-col">
-        <h4>CoRobićW {{ city }}</h4>
+        <h4>CoRobićW {{ city_name or city }}</h4>
         <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny harmonogram wydarzeń miejskich. Wszystkie wydarzenia pobierane bezpośrednio ze scen i galerii.</p>
       </div>
       <div class="footer-col">
@@ -338,7 +338,7 @@
         <h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
       </div>
     </div>
-    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda {{ city }}</span></div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda {{ city_name or city }}</span></div>
   </footer>
   
   <script>
