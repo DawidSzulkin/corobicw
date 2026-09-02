@@ -155,7 +155,7 @@ class BiletynaPlScraper(BaseScraper):
             resp = self.session.get(event_url, timeout=(3.05, 10), verify=False)
             if resp.status_code != 200:
                 return page_events
-            soup = BeautifulSoup(resp.content.decode("utf-8", "ignore"), "html.parser")
+            soup = BeautifulSoup(resp.content, "html.parser")
 
             h1_el = soup.select_one("h1")
             global_title = self._clean_seo_title(h1_el.get_text(strip=True)) if h1_el else self._clean_seo_title(fallback_title)
@@ -226,7 +226,7 @@ class BiletynaPlScraper(BaseScraper):
             resp = self.session.get(self.events_url, timeout=(3.05, 10), verify=False)
             if resp.status_code != 200:
                 return events
-            soup = BeautifulSoup(resp.content.decode("utf-8", "ignore"), "html.parser")
+            soup = BeautifulSoup(resp.content, "html.parser")
             
             event_links = soup.select("a[href*='/event/'], a[href*='/spektakl/'], a[href*='/koncert/'], a[href*='/kabaret/'], a[href*='/stand-up/']")
             seen_urls = set()

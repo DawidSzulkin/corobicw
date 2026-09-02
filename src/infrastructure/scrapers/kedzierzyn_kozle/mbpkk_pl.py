@@ -153,7 +153,7 @@ class MbpKkPlScraper(BaseScraper):
                 thumb_path = self.save_thumbnail(raw_image, title, prefix="mbpkk") if raw_image else ""
 
                 desc_el = card.select_one("p, .entry-summary, .elementor-post__excerpt")
-                raw_desc = desc_el.get_text(" ", strip=True) if desc_el else card_text
+                raw_desc = desc_el.get_text("\n\n", strip=True) if desc_el else card_text
                 clean_desc = re.sub(r"^[A-Za-ząćęłńóśźżĄŹĘŁŃÓŚŹŻ]+\s+\d{4}-\d{2}-\d{2}T[^\s]+", "", raw_desc)
                 clean_desc = clean_desc.replace("Czytaj więcej", "").strip(" |–- \n\t")
 
