@@ -7,6 +7,18 @@ from typing import Any, Dict, List
 from jinja2 import Environment, FileSystemLoader
 from src.core.models import FullEventPage
 
+CITY_CANONICAL_MAP = {
+    "kedzierzyn_kozle": "Kędzierzyn-Koźle",
+    "opole": "Opole",
+    "bielsko_biala": "Bielsko-Biała"
+}
+
+def resolve_canonical_city(tag: str) -> str:
+    if not tag:
+        return ""
+    return CITY_CANONICAL_MAP.get(str(tag).lower(), str(tag).title().replace("_", "-"))
+
+
 def _resolve_strict_city_name(tag: str) -> str:
     if not tag: return ""
     cmap = {
