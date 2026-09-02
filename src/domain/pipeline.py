@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional
 import concurrent.futures
 from difflib import SequenceMatcher
 
-from src.infrastructure.db import sync_city_events, get_active_events, save_events_batch, DB_PATH
+from src.infrastructure.db import sync_city_events, get_active_events, save_events_batch, DB_PATH, purge_expired_events
 from src.core.models import FullEventPage, EventAnalysis, QuickFacts, TicketInfo, NearbyGastro
 from src.infrastructure.renderer import HTMLRenderer
 from src.infrastructure.scrapers.registry import get_scrapers_for_city
@@ -563,6 +563,13 @@ def run_city_pipeline(
     print(f"\n==========================================")
     print(f"  URUCHAMIANIE PIPELINE: {city_name.upper()} ({raw_tag})")
     print(f"==========================================")
+
+    try:
+        deleted = purge_expired_events(raw_tag)
+        if deleted > 0:
+            print(f"[DB] Twarde czyszczenie: usunięto {deleted} przeterminowanych wydarzeń przed startem potoku.")
+    except Exception as e:
+        print(f"[DB WARN] Nie udało się wykonać czyszczenia: {e}")
 
     if render_only:
         raw_events = []

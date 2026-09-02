@@ -1,3 +1,4 @@
+from datetime import datetime
 from src.utils.helpers import normalize_title, slugify
 from difflib import SequenceMatcher
 import json
@@ -174,7 +175,7 @@ def get_active_events(city_tag: str, min_date: str) -> List[Dict[str, Any]]:
         cursor = conn.cursor()
         cursor.execute("""
             SELECT payload FROM events
-            WHERE city_tag = ? AND COALESCE(json_extract(payload, '$.date_end'), date_start) >= ?
+            WHERE city_tag = ? AND COALESCE(NULLIF(json_extract(payload, '$.date_end'), ''), date_start) >= ?
             ORDER BY date_start ASC
         """, (city_tag, min_date))
         rows = cursor.fetchall()
@@ -217,3 +218,17 @@ def sync_city_events(city_tag: str, deduplicated_events: list):
     finally:
         conn.close()
 
+
+
+def purge_expired_events(city_tag: str):
+    '''Twarde usunięcie przeterminowanych wydarzeń z bazy. Optymalizuje ETL.'''
+    today_iso = datetime.now().strftime("%Y-%m-%d")
+    with sqlite3.connect(DB_PATH) as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            "DELETE FROM events WHERE COALESCE(NULLIF(json_extract(payload, '$.date_end'), ''), date_start) < ? AND city_tag = ?", 
+            (today_iso, city_tag)
+        )
+        deleted = cursor.rowcount
+        conn.commit()
+        return deleted
