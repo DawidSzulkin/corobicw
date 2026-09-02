@@ -116,7 +116,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     {% set og_img = event.image_url if event.image_url and event.image_url.startswith('http') else ('https://corobicw.pl' + event.image_url if event.image_url else 'https://corobicw.pl/assets/placeholder.svg') %}
@@ -197,7 +204,25 @@
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">{{ event.analysis.quick_facts.parking }}</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">{{ event.analysis.ticket_info.price_range }}</div></div>
-          {% if event.source_url %}<a href="{{ event.source_url }}" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>{% endif %}
+          {% if event.source_url %}
+            <a href="{{ event.source_url }}" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: {{ event.title }}">
+              🎟️ {% if 'bilet' in event.source_url or 'kupbilecik' in event.source_url %}Kup bilet online{% else %}Kup bilet / Szczegóły{% endif %}
+            </a>
+            {% endif %}
+            {% if event.ticket_offers and event.ticket_offers|length > 1 %}
+            <div class="secondary-offers">
+              <span class="secondary-offers-label">Dostępne również na:</span>
+              <div class="secondary-pills">
+                {% for offer in event.ticket_offers %}
+                  {% if offer.url and offer.url != event.source_url %}
+                  <a href="{{ offer.url }}" target="_blank" rel="nofollow noopener" class="offer-pill" aria-label="Sprawdź ofertę na stronie {{ offer.provider }}">
+                    🔗 {{ offer.provider }}{% if offer.price %} · <small>{{ offer.price }}</small>{% endif %}
+                  </a>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
         </div>
         
         {% if event.nearby_gastro %}

@@ -118,7 +118,14 @@ przedstawiciele alternatywnej i niezależnej  polskiej sceny muzycznej, zaprasza
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -158,9 +165,11 @@ przedstawiciele alternatywnej i niezależnej  polskiej sceny muzycznej, zaprasza
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://www.kupbilecik.pl/imprezy/216199/Bielsko-Bia%C5%82a/BAiKA/#2026-10-02-2000" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://www.kupbilecik.pl/imprezy/216199/Bielsko-Bia%C5%82a/BAiKA/#2026-10-02-2000" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: BAiKA">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/kupbilecik_bielsko_biala_baika.webp');"></div>
-          <img src="/assets/thumbnails/kupbilecik_bielsko_biala_baika.webp" alt="Plakat: BAiKA" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/kupbilecik_bielsko_biala_baika.webp" alt="Plakat: BAiKA" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -196,14 +205,18 @@ przedstawiciele alternatywnej i niezależnej  polskiej sceny muzycznej, zaprasza
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/bielsko_biala/miejsca/bb-bielska-scena-reja/" class="venue-link"><strong>Bielska Scena Reja</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Andrzeja Frycza-Modrzewskiego 12 , Bielsko Biala</small>
+              <strong>Bielska Scena Reja</strong>
+              <br><small style="color: var(--text-muted);">Andrzeja Frycza-Modrzewskiego 12, Bielsko Biala</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">od 95 zł</div></div>
-          <a href="https://www.kupbilecik.pl/imprezy/216199/Bielsko-Bia%C5%82a/BAiKA/#2026-10-02-2000" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://www.kupbilecik.pl/imprezy/216199/Bielsko-Bia%C5%82a/BAiKA/#2026-10-02-2000" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: BAiKA">
+              🎟️ Kup bilet online
+            </a>
+            
+            
         </div>
         
         
@@ -255,5 +268,35 @@ przedstawiciele alternatywnej i niezależnej  polskiej sceny muzycznej, zaprasza
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "BAiKA",
+  "startDate": "2026-10-02T20:00",
+  "endDate": "2026-10-02",
+  "location": {
+    "@type": "Place",
+    "name": "Bielska Scena Reja",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bielsko-Biała",
+      "addressCountry": "PL",
+      "streetAddress": "Andrzeja Frycza-Modrzewskiego 12, Bielsko Biala"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_baika.webp"],
+  "description": "BAiKA, czyli Banach i Kafi,
+
+przedstawiciele alternatywnej i niezależnej  polskiej sceny muzycznej, zapraszają na jesienną trasę "Czas końca złudzeń", promującą najnowszy album o t",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.kupbilecik.pl/imprezy/216199/Bielsko-Bia%C5%82a/BAiKA/#2026-10-02-2000"
+  }
+}
+</script>
+
 </body>
 </html>

@@ -118,7 +118,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -158,9 +165,11 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://www.kupbilecik.pl/imprezy/206417/Bielsko-Bia%C5%82a/Stand-up%3A+Adam+Van+Bendler/?utm_source=pp&utm_medium=14#2026-12-17-1900" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://www.kupbilecik.pl/imprezy/206417/Bielsko-Bia%C5%82a/Stand-up%3A+Adam+Van+Bendler/?utm_source=pp&utm_medium=14#2026-12-17-1900" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Stand-up: Adam Van Bendler">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/kupbilecik_bielsko_biala_stand-up-adam-van-bendler.webp');"></div>
-          <img src="/assets/thumbnails/kupbilecik_bielsko_biala_stand-up-adam-van-bendler.webp" alt="Plakat: Stand-up: Adam Van Bendler" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/kupbilecik_bielsko_biala_stand-up-adam-van-bendler.webp" alt="Plakat: Stand-up: Adam Van Bendler" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -190,14 +199,18 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/bielsko_biala/miejsca/bb-bielska-scena-reja/" class="venue-link"><strong>Bielska Scena Reja</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Andrzeja Frycza-Modrzewskiego 12 , Bielsko Biala</small>
+              <strong>Bielska Scena Reja</strong>
+              <br><small style="color: var(--text-muted);">Andrzeja Frycza-Modrzewskiego 12, Bielsko Biala</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne</div></div>
-          <a href="https://www.kupbilecik.pl/imprezy/206417/Bielsko-Bia%C5%82a/Stand-up%3A+Adam+Van+Bendler/?utm_source=pp&utm_medium=14#2026-12-17-1900" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://www.kupbilecik.pl/imprezy/206417/Bielsko-Bia%C5%82a/Stand-up%3A+Adam+Van+Bendler/?utm_source=pp&utm_medium=14#2026-12-17-1900" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Stand-up: Adam Van Bendler">
+              🎟️ Kup bilet online
+            </a>
+            
+            
         </div>
         
         
@@ -249,5 +262,35 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Stand-up: Adam Van Bendler",
+  "startDate": "2026-12-17T19:00",
+  "endDate": "2026-12-17",
+  "location": {
+    "@type": "Place",
+    "name": "Bielska Scena Reja",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bielsko-Biała",
+      "addressCountry": "PL",
+      "streetAddress": "Andrzeja Frycza-Modrzewskiego 12, Bielsko Biala"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_stand-up-adam-van-bendler.webp"],
+  "description": "Już 17 grudnia w Bielsku-Białej wystąpi Adam Van Bendler ze swoim najnowszym programem!
+
+"ADfullHD" to nowy program Adama Van Bendlera. Jest to stand-up mocny jak skok na bungee, w",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.kupbilecik.pl/imprezy/206417/Bielsko-Bia%C5%82a/Stand-up%3A+Adam+Van+Bendler/?utm_source=pp&utm_medium=14#2026-12-17-1900"
+  }
+}
+</script>
+
 </body>
 </html>

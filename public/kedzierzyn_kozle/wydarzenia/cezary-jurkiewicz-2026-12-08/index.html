@@ -116,7 +116,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -152,9 +159,11 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://www.kupbilecik.pl/imprezy/206227/K%C4%99dzierzyn+Ko%C5%BAle/Cezary+Jurkiewicz/#2026-12-08-1900" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://www.kupbilecik.pl/imprezy/206227/K%C4%99dzierzyn+Ko%C5%BAle/Cezary+Jurkiewicz/#2026-12-08-1900" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Cezary Jurkiewicz">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/kupbilecik_kedzierzyn_kozle_cezary-jurkiewicz.webp');"></div>
-          <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_cezary-jurkiewicz.webp" alt="Plakat: Cezary Jurkiewicz" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'">
+          <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_cezary-jurkiewicz.webp" alt="Plakat: Cezary Jurkiewicz" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -185,14 +194,18 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/kedzierzyn_kozle/miejsca/kk-klub-kameleon/" class="venue-link"><strong>Klub Kameleon</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Dworcowa 1a , Kedzierzyn Kozle</small>
+              <strong>Klub Kameleon</strong>
+              <br><small style="color: var(--text-muted);">Dworcowa 1a, Kedzierzyn Kozle</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne</div></div>
-          <a href="https://www.kupbilecik.pl/imprezy/206227/K%C4%99dzierzyn+Ko%C5%BAle/Cezary+Jurkiewicz/#2026-12-08-1900" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://www.kupbilecik.pl/imprezy/206227/K%C4%99dzierzyn+Ko%C5%BAle/Cezary+Jurkiewicz/#2026-12-08-1900" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Cezary Jurkiewicz">
+              🎟️ Kup bilet online
+            </a>
+            
+            
         </div>
         
         
@@ -244,5 +257,33 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Cezary Jurkiewicz",
+  "startDate": "2026-12-08T19:00",
+  "endDate": "2026-12-08",
+  "location": {
+    "@type": "Place",
+    "name": "Klub Kameleon",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kędzierzyn-Koźle",
+      "addressCountry": "PL",
+      "streetAddress": "Dworcowa 1a, Kedzierzyn Kozle"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/kupbilecik_kedzierzyn_kozle_cezary-jurkiewicz.webp"],
+  "description": "Ruszam w trasę z nowymi tekstami nad którymi pracuję już od jakiegoś czasu. Nowy monolog zrobił się bardzo gęsty komediowo (wycieka wszystkimi otworami z mojego laptopa). Czas najw",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.kupbilecik.pl/imprezy/206227/K%C4%99dzierzyn+Ko%C5%BAle/Cezary+Jurkiewicz/#2026-12-08-1900"
+  }
+}
+</script>
+
 </body>
 </html>

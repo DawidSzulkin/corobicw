@@ -120,7 +120,14 @@ Zainteresowane osoby proszone są">
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -164,9 +171,11 @@ Zainteresowane osoby proszone są">
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://galeriabielska.pl/pawel-althamer-open-call-do-pojektu-swieto-lasu/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://galeriabielska.pl/pawel-althamer-open-call-do-pojektu-swieto-lasu/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Paweł Althamer – open call do pojektu Święto Lasu">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/galeriabielska_pawel-althamer-open-call-do-pojektu-swieto-lasu.webp');"></div>
-          <img src="/assets/thumbnails/galeriabielska_pawel-althamer-open-call-do-pojektu-swieto-lasu.webp" alt="Plakat: Paweł Althamer – open call do pojektu Święto Lasu" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/galeriabielska_pawel-althamer-open-call-do-pojektu-swieto-lasu.webp" alt="Plakat: Paweł Althamer – open call do pojektu Święto Lasu" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -183,7 +192,7 @@ Zainteresowane osoby proszone są">
 <p>17 października w godz. 15:00– 18:00, Las Cygański, Bielsko-Biała</p>
 <p>Zainteresowane osoby proszone są o wypełnienie formularzu (link w wpisie). Zgłoszenia przyjmowane są do niedzieli 6 września 2026, do godz. 23:59</p>
 <p>Galeria Bielska BWA ogłasza otwarty nabór do udziału w dwudniowych warsztatach liderskich prowadzonych przez Pawła Althamera, przygotowujących do projektu Święto Lasu.</p>
-<p>Warsztaty odbędą się 12 i 13 września 2026 roku w Galerii Bielskiej BWA i będą początkiem wspólnej pracy nad wydarzeniem, którego finał zaplanowano na 17 października 2026 roku w Lesie Cygańskim .</p>
+<p>Warsztaty odbędą się12 i 13 września 2026 roku w Galerii Bielskiej BWAi będą początkiem wspólnej pracy nad wydarzeniem, którego finał zaplanowano na17 października 2026 roku w Lesie Cygańskim.</p>
 <p>Do udziału zapraszamy wszystkich zainteresowanych wspólnym działaniem, pracą z grupami i społecznościami oraz poszukiwaniem nowych sposobów budowania zaangażowania i relacji poprzez sztukę.</p>
 <p>Osoby uczestniczące w warsztatach otrzymają narzędzia, które będą mogły wykorzystać w pracy z własnymi grupami, przygotowując je do udziału w Święcie Lasu. Po zakończeniu warsztatów staną się Wysłanniczkami i Wysłannikami Lasu, współtworzącymi przygotowania do wydarzenia.</p></div>
           
@@ -199,14 +208,18 @@ Zainteresowane osoby proszone są">
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/bielsko_biala/miejsca/bb-galeria-bielska-bwa/" class="venue-link"><strong>Galeria Bielska BWA</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Adama Mickiewicza 24 , Bielsko Biala</small>
+              <strong>Galeria Bielska BWA</strong>
+              <br><small style="color: var(--text-muted);">Adama Mickiewicza 24, Bielsko Biala</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Wstęp bezpłatny</div></div>
-          <a href="https://galeriabielska.pl/pawel-althamer-open-call-do-pojektu-swieto-lasu/" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://galeriabielska.pl/pawel-althamer-open-call-do-pojektu-swieto-lasu/" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Paweł Althamer – open call do pojektu Święto Lasu">
+              🎟️ Kup bilet / Szczegóły
+            </a>
+            
+            
         </div>
         
         
@@ -258,5 +271,37 @@ Zainteresowane osoby proszone są">
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Paweł Althamer – open call do pojektu Święto Lasu",
+  "startDate": "2026-09-12T12:00",
+  "endDate": "2026-09-13",
+  "location": {
+    "@type": "Place",
+    "name": "Galeria Bielska BWA",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bielsko-Biała",
+      "addressCountry": "PL",
+      "streetAddress": "Adama Mickiewicza 24, Bielsko Biala"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/galeriabielska_pawel-althamer-open-call-do-pojektu-swieto-lasu.webp"],
+  "description": "12 i 13 września 2026 w godz. 12:00– 17:00, Galeria Bielska BWA, Bielsko-Biała
+
+17 października w godz. 15:00– 18:00, Las Cygański, Bielsko-Biała
+
+Zainteresowane osoby proszone są",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://galeriabielska.pl/pawel-althamer-open-call-do-pojektu-swieto-lasu/"
+  }
+}
+</script>
+
 </body>
 </html>

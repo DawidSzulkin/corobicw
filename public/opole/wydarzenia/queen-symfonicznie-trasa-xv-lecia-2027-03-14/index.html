@@ -116,7 +116,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -152,9 +159,11 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://biletyna.pl/koncert/Queen-Symfonicznie-Chor-i-Orkiestra-Alla-Vienna/Opole#opole" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://biletyna.pl/koncert/Queen-Symfonicznie-Chor-i-Orkiestra-Alla-Vienna/Opole#opole" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Queen Symfonicznie – trasa XV-lecia">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_opole_queen-symfonicznie-trasa-xv-lecia.webp');"></div>
-          <img src="/assets/thumbnails/biletyna_opole_queen-symfonicznie-trasa-xv-lecia.webp" alt="Plakat: Queen Symfonicznie – trasa XV-lecia" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/biletyna_opole_queen-symfonicznie-trasa-xv-lecia.webp" alt="Plakat: Queen Symfonicznie – trasa XV-lecia" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -191,12 +200,32 @@
             <div class="info-val">
               <a href="/opole/miejsca/o-filharmonia-opolska/" class="venue-link"><strong>Filharmonia Opolska</strong></a>
               
-              <br><small style="color: var(--text-muted);">ul. Krakowska 24, Opole</small>
+              <br><small style="color: var(--text-muted);">Krakowska, Opole</small>
             </div>
           </div>
-          <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Płatny parking (37m, ul. )</div></div>
+          <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Płatny parking (~37m)</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">od 200.72 zł</div></div>
-          <a href="https://biletyna.pl/koncert/Queen-Symfonicznie-Chor-i-Orkiestra-Alla-Vienna/Opole#opole" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://biletyna.pl/koncert/Queen-Symfonicznie-Chor-i-Orkiestra-Alla-Vienna/Opole#opole" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Queen Symfonicznie – trasa XV-lecia">
+              🎟️ Kup bilet online
+            </a>
+            
+            
+            <div class="secondary-offers">
+              <span class="secondary-offers-label">Dostępne również na:</span>
+              <div class="secondary-pills">
+                
+                  
+                
+                  
+                  <a href="https://biletyna.pl/koncert/Queen-Symfonicznie-Chor-i-Orkiestra-Alla-Vienna#opole-20" target="_blank" rel="nofollow noopener" class="offer-pill" aria-label="Sprawdź ofertę na stronie Biletyna">
+                    🔗 Biletyna · <small>Od 200.72 zł</small>
+                  </a>
+                  
+                
+              </div>
+            </div>
+            
         </div>
         
         
@@ -248,5 +277,33 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Queen Symfonicznie – trasa XV-lecia",
+  "startDate": "2027-03-14T19:00",
+  "endDate": "2027-03-14",
+  "location": {
+    "@type": "Place",
+    "name": "Filharmonia Opolska",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Opole",
+      "addressCountry": "PL",
+      "streetAddress": "Krakowska, Opole"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/biletyna_opole_queen-symfonicznie-trasa-xv-lecia.webp"],
+  "description": "Queen Symfonicznie świętuje XV-lecie! 🎸🎻 Największe hity legendarnego Queen w potężnych symfonicznych aranżacjach, z chórem, orkiestrą i rockową energią 🔥👑 To widowisko, które trze",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://biletyna.pl/koncert/Queen-Symfonicznie-Chor-i-Orkiestra-Alla-Vienna/Opole#opole"
+  }
+}
+</script>
+
 </body>
 </html>

@@ -116,7 +116,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -152,9 +159,11 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://biletyna.pl/koncert/Legenda-Republiki-i-Obywatela-GC-spotkanie-z-Leszkiem-Gnoinskim-oraz-koncert-na-zywo#kedzierzyn_kozle" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://biletyna.pl/koncert/Legenda-Republiki-i-Obywatela-GC-spotkanie-z-Leszkiem-Gnoinskim-oraz-koncert-na-zywo#kedzierzyn_kozle" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo.webp');"></div>
-          <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo.webp" alt="Plakat: Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'">
+          <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo.webp" alt="Plakat: Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -192,14 +201,18 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/kedzierzyn_kozle/miejsca/kk-mbp-glowna/" class="venue-link"><strong>Miejska Biblioteka Publiczna (Główna)</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Jana Pawła II 27, Kędzierzyn-Koźle</small>
+              <strong>Miejska Biblioteka Publiczna (Główna)</strong>
+              <br><small style="color: var(--text-muted);">Kędzierzyn-Koźle</small>
             </div>
           </div>
-          <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Bezpłatny (50m, ul. Jana Pawła II)</div></div>
+          <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">od 84.96 zł</div></div>
-          <a href="https://biletyna.pl/koncert/Legenda-Republiki-i-Obywatela-GC-spotkanie-z-Leszkiem-Gnoinskim-oraz-koncert-na-zywo#kedzierzyn_kozle" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://biletyna.pl/koncert/Legenda-Republiki-i-Obywatela-GC-spotkanie-z-Leszkiem-Gnoinskim-oraz-koncert-na-zywo#kedzierzyn_kozle" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo">
+              🎟️ Kup bilet online
+            </a>
+            
+            
         </div>
         
         
@@ -251,5 +264,33 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo",
+  "startDate": "2026-11-07T18:00",
+  "endDate": "2026-11-07",
+  "location": {
+    "@type": "Place",
+    "name": "Miejska Biblioteka Publiczna (Główna)",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kędzierzyn-Koźle",
+      "addressCountry": "PL",
+      "streetAddress": "Kędzierzyn-Koźle"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo.webp"],
+  "description": "Zamek Piastowski zaprasza na wyjątkowe wydarzenie, które przeniesie publiczność w samo serce historii polskiego rocka. Wieczór poświęcony fenomenowi twórczości Republiki oraz Obywa",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://biletyna.pl/koncert/Legenda-Republiki-i-Obywatela-GC-spotkanie-z-Leszkiem-Gnoinskim-oraz-koncert-na-zywo#kedzierzyn_kozle"
+  }
+}
+</script>
+
 </body>
 </html>

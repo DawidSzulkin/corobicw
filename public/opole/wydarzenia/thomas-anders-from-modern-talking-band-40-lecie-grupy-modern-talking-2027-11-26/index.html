@@ -116,7 +116,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -152,9 +159,11 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://biletyna.pl/koncert/Thomas-Anders/from-Modern-Talking-Band-40-lecie-grupy/Opole#opole" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://biletyna.pl/koncert/Thomas-Anders/from-Modern-Talking-Band-40-lecie-grupy/Opole#opole" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Thomas Anders from Modern Talking & Band - 40-lecie grupy Modern Talking">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_opole_thomas-anders-from-modern-talking-band-40-lecie-grupy-modern-talking.webp');"></div>
-          <img src="/assets/thumbnails/biletyna_opole_thomas-anders-from-modern-talking-band-40-lecie-grupy-modern-talking.webp" alt="Plakat: Thomas Anders from Modern Talking & Band - 40-lecie grupy Modern Talking" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/biletyna_opole_thomas-anders-from-modern-talking-band-40-lecie-grupy-modern-talking.webp" alt="Plakat: Thomas Anders from Modern Talking & Band - 40-lecie grupy Modern Talking" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -188,9 +197,14 @@
               <br><small style="color: var(--text-muted);">Opole</small>
             </div>
           </div>
-          <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Płatny parking (261m, ul. )</div></div>
+          <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Płatny parking (~261m)</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">od 299 zł</div></div>
-          <a href="https://biletyna.pl/koncert/Thomas-Anders/from-Modern-Talking-Band-40-lecie-grupy/Opole#opole" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://biletyna.pl/koncert/Thomas-Anders/from-Modern-Talking-Band-40-lecie-grupy/Opole#opole" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Thomas Anders from Modern Talking & Band - 40-lecie grupy Modern Talking">
+              🎟️ Kup bilet online
+            </a>
+            
+            
         </div>
         
         
@@ -242,5 +256,33 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Thomas Anders from Modern Talking & Band - 40-lecie grupy Modern Talking",
+  "startDate": "2027-11-26T19:30",
+  "endDate": "2027-11-26",
+  "location": {
+    "@type": "Place",
+    "name": "Hala Sportowa Politechniki Opolskiej",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Opole",
+      "addressCountry": "PL",
+      "streetAddress": "Opole"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/biletyna_opole_thomas-anders-from-modern-talking-band-40-lecie-grupy-modern-talking.webp"],
+  "description": "🎤 Thomas Anders z Modern Talking świętuje 40-lecie zespołu! Usłysz na żywo hity "Cheri, Cheri Lady", "You’re My Heart, You’re My Soul", "Brother Louie" i wiele więcej. Zbierz ekipę",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://biletyna.pl/koncert/Thomas-Anders/from-Modern-Talking-Band-40-lecie-grupy/Opole#opole"
+  }
+}
+</script>
+
 </body>
 </html>

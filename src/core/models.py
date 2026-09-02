@@ -24,6 +24,13 @@ class NearbyGastro(BaseModel):
     category: str
 
 
+class TicketOffer(BaseModel):
+    provider: str
+    url: str
+    price: Optional[str] = None
+    is_primary: bool = False
+
+
 class EventAnalysis(BaseModel):
     category: str
     badges: List[str]
@@ -47,4 +54,5 @@ class FullEventPage(BaseModel):
     place_id: Optional[str] = None
     analysis: EventAnalysis
     nearby_gastro: List[NearbyGastro] = []
+    ticket_offers: List[TicketOffer] = []
 
