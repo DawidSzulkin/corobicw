@@ -155,7 +155,7 @@ class BiletynaPlScraper(BaseScraper):
             resp = self.session.get(event_url, timeout=(3.05, 10), verify=False)
             if resp.status_code != 200:
                 return page_events
-            soup = BeautifulSoup(resp.text, "html.parser")
+            soup = BeautifulSoup(resp.content.decode("utf-8", "ignore"), "html.parser")
 
             h1_el = soup.select_one("h1")
             global_title = self._clean_seo_title(h1_el.get_text(strip=True)) if h1_el else self._clean_seo_title(fallback_title)
@@ -167,15 +167,23 @@ class BiletynaPlScraper(BaseScraper):
             global_img = ""
             global_venue = ""
 
+            # 1. Scrapowanie DOM (Główny tekst)
+            desc_el = soup.select_one("#artist-view-description, .description-text, .event-description, .desc, .description, #description, .event-details")
+            if desc_el:
+                global_desc = desc_el.get_text("\n", strip=True)
+
+            # 2. Scrapowanie JSON-LD (Uzupełnienie / Fallback)
             for s in soup.find_all("script", type="application/ld+json"):
                 if not s.string:
                     continue
                 try:
+                    import json
                     schema = json.loads(s.string.strip())
                     items = schema if isinstance(schema, list) else [schema]
                     for item in items:
                         if isinstance(item, dict):
                             desc = item.get("description")
+                            # Podmiana tylko jesli JSON ma dluzy tekst niz DOM
                             if desc and len(desc) > len(global_desc):
                                 global_desc = desc.strip()
                             img = item.get("image")
@@ -190,12 +198,6 @@ class BiletynaPlScraper(BaseScraper):
                                     global_venue = loc_name
                 except Exception:
                     pass
-
-            if not global_desc:
-                desc_el = soup.select_one(".event-description, .desc, .description, #description, .event-details")
-                if desc_el:
-                    global_desc = desc_el.get_text("\n", strip=True)
-
             if not global_img:
                 img_el = soup.select_one(".event-image img, meta[property='og:image']")
                 if img_el:
@@ -224,7 +226,7 @@ class BiletynaPlScraper(BaseScraper):
             resp = self.session.get(self.events_url, timeout=(3.05, 10), verify=False)
             if resp.status_code != 200:
                 return events
-            soup = BeautifulSoup(resp.text, "html.parser")
+            soup = BeautifulSoup(resp.content.decode("utf-8", "ignore"), "html.parser")
             
             event_links = soup.select("a[href*='/event/'], a[href*='/spektakl/'], a[href*='/koncert/'], a[href*='/kabaret/'], a[href*='/stand-up/']")
             seen_urls = set()
