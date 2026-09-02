@@ -300,7 +300,7 @@
                 </span>
               </div>
               <img src="{{ ev.image_url }}" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-              <img src="{{ ev.image_url }}" class="thumb-fg" alt="Plakat: {{ ev.title }}" loading="lazy" onerror="this.src='/assets/placeholder.svg'" draggable="false">
+              <img src="{{ ev.image_url or '/assets/placeholder.svg?v=2' }}" class="thumb-fg" alt="Plakat: {{ ev.title }}" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
             </div>
             <div class="event-content">
               <div class="text-container">

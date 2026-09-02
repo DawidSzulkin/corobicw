@@ -452,7 +452,11 @@ def _prepare_event_models(events: List[Any], city_cfg: Dict[str, Any], city_name
         date_end = str(e.get("date_end", date_start)).strip()[:10]
         date_formatted = e.get("date_formatted") or date_start
         source_url = e.get("source_url") or e.get("url") or ""
-        thumb_url = e.get("thumbnail_url") or e.get("image_url") or "/assets/placeholder.svg"
+        raw_thumb = e.get("thumbnail_url") or e.get("image_url") or ""
+        if not raw_thumb or "placeholder.svg" in raw_thumb:
+            thumb_url = "/assets/placeholder.svg?v=2"
+        else:
+            thumb_url = raw_thumb
         analysis_raw = e.get("analysis") or {}
 
         time_start = _sanitize_llm_string(analysis_raw.get("ticket_info", {}).get("time_start") or e.get("time_start") or "18:00")
