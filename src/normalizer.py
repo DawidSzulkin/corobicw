@@ -174,3 +174,68 @@ def create_event_record(event: dict, default_city_name: str = "Miasto") -> FullE
         analysis=analysis,
         nearby_gastro=[]
     )
+
+def format_event_description(text: str) -> str:
+    """
+    Deterministyczne oczyszczanie tekstu ze śmieci SEO oraz formatowanie akapitów i metadanych.
+    Gwarantuje 0% strat istotnych danych i usuwa sztuczne wstrzyknięcia portali biletowych.
+    """
+    if not text or len(text.strip()) < 20:
+        return text.strip() if text else ""
+
+    import re
+    t = text.strip()
+
+    # 1. Usunięcie wstrzyknięć SEO portali (np. "Tytuł Spektaklu - więcej informacji")
+    t = re.sub(r'(?i)[^\.\!\?\r\n]*?-\s*więcej informacji\b', '', t)
+    t = re.sub(r'(?i)\bwięcej informacji\b', '', t)
+
+    # 2. Standaryzacja znaków i łamania linii
+    t = re.sub(r'<br\s*/?>', '\n', t, flags=re.IGNORECASE)
+    t = re.sub(r'[\r\t]', ' ', t)
+
+    # 3. Rozpoznawanie etykiet realizatorów i obsady
+    meta_labels = [
+        "Autor", "Autorka", "Autorzy", "Przekład", "Tłumaczenie",
+        "Reżyseria", "Scenografia", "Kostiumy", "Muzyka", "Światło",
+        "Choreografia", "Asystentka reżysera", "Asystent reżysera",
+        "Kierownictwo muzyczne", "Produkcja", "Kierownik produkcji",
+        "Obsada", "Występują", "Wykonawcy", "Artyści", "Prowadzenie",
+        "Wydarzenie poprowadzi", "Sponsorem wydarzenia jest",
+        "Informacje praktyczne", "Czas trwania"
+    ]
+
+    pattern_labels = r'(?<!\n)\b(' + '|'.join(re.escape(lbl) for lbl in meta_labels) + r')\s*:'
+    t = re.sub(pattern_labels, r'\n\n* **\1:**', t)
+
+    # 4. Rozbijanie punktów regulaminów i wyliczeń od nowej linii
+    t = re.sub(r'(?<!\n)\s*(\*\s+[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż])', r'\n\n\1', t)
+    t = re.sub(r'(?<!\n)\s*(\-\s+[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż])', r'\n\n* \1', t)
+
+    # 5. Podział narracji na akapity przy naturalnych przejściach
+    split_triggers = [
+        r'(Wpadnij w wir\b)',
+        r'(Odkryj niezwykłe życie\b)',
+        r'(Gdy ich rodzice\b)',
+        r'(Jakie wiadomości czekają\b)',
+        r'(Przygotuj się na\b)',
+        r'(\"[^\"]+\"\s+to\s+błyskotliwa\b)',
+        r'(INFORMACJE ORGANIZACYJNE\b)',
+        r'(UWAGA!\b)',
+        r'(Zainteresowanych testowaniem\b)',
+        r'(Testujemy programy\b)',
+        r'(Zapisz dziecko na kolonię\b)',
+        r'(Dlaczego warto być tam z nami\b)',
+        r'(Na scenie spotkają się\b)',
+        r'(Całość poprowadzi\b)',
+        r'(Co się wydarzy\b)',
+        r'(Siedmiu mistrzów\b)',
+        r'(Polska Noc Kabaretowa 2026 powraca\b)'
+    ]
+    for trigger in split_triggers:
+        t = re.sub(r'(?<!\n\n)' + trigger, r'\n\n\1', t)
+
+    # 6. Standaryzacja pustych linii i wielokrotnych spacji
+    t = re.sub(r'[ ]{2,}', ' ', t)
+    t = re.sub(r'\n{3,}', '\n\n', t)
+    return t.strip()

@@ -72,7 +72,7 @@ class KupBilecikPlScraper(BaseScraper):
             if resp.status_code != 200:
                 return None
 
-            soup = BeautifulSoup(resp.content, "html.parser")
+            soup = BeautifulSoup(resp.content.decode("utf-8", "ignore"), "html.parser")
             
             h1_el = soup.select_one("h1")
             title = h1_el.get_text(strip=True) if h1_el else fallback_title
@@ -125,15 +125,21 @@ class KupBilecikPlScraper(BaseScraper):
             else:
                 address = f"{venue}, {self.canonical_city}".strip(", ")
 
-            desc_parts = []
+            description = ""
             desc_container = soup.select_one(".box-tresc, .wyd-tresc, .wyd-opis, article, .description-content")
             if desc_container:
-                for p in desc_container.select("p, div.lead, div.txt"):
-                    t = p.get_text(" ", strip=True)
-                    if len(t) > 20 and not any(ign in t.lower() for ign in ["regulamin", "bilety", "cookies", "kup bilet"]):
-                        desc_parts.append(t)
-            
-            description = "\n\n".join(desc_parts[:4])
+                # Usuniecie skryptow i stylow psujacych tekst
+                for ext in desc_container.select("script, style"):
+                    ext.decompose()
+                
+                raw_text = desc_container.get_text("\n", strip=True)
+                desc_parts = []
+                for line in raw_text.split("\n"):
+                    line = line.strip()
+                    if line and not any(ign in line.lower() for ign in ["regulamin", "cookies", "kup bilet"]):
+                        desc_parts.append(line)
+                
+                description = "\n\n".join(desc_parts)
             if not description:
                 meta_desc = soup.select_one("meta[name='description'], meta[property='og:description']")
                 if meta_desc and meta_desc.get("content"):
@@ -193,7 +199,7 @@ class KupBilecikPlScraper(BaseScraper):
             if resp.status_code != 200:
                 return events
 
-            soup = BeautifulSoup(resp.content, "html.parser")
+            soup = BeautifulSoup(resp.content.decode("utf-8", "ignore"), "html.parser")
             seen_urls = set()
             urls_to_scrape = []
 
