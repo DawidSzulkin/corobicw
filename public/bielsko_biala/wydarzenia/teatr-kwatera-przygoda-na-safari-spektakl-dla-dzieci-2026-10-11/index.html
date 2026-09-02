@@ -116,7 +116,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -152,9 +159,11 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://cavatinahall.pl/events/teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://cavatinahall.pl/events/teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: TEATR KWATERA – przygoda na Safari – spektakl dla dzieci">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/cavatina_teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci.webp');"></div>
-          <img src="/assets/thumbnails/cavatina_teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci.webp" alt="Plakat: TEATR KWATERA – przygoda na Safari – spektakl dla dzieci" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/cavatina_teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci.webp" alt="Plakat: TEATR KWATERA – przygoda na Safari – spektakl dla dzieci" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -181,14 +190,18 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/bielsko_biala/miejsca/bb-cavatina-hall/" class="venue-link"><strong>Cavatina Hall</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Dworkowa 2 , Bielsko Biala</small>
+              <strong>Cavatina Hall</strong>
+              <br><small style="color: var(--text-muted);">Dworkowa 2, Bielsko Biala</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne</div></div>
-          <a href="https://cavatinahall.pl/events/teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci/" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://cavatinahall.pl/events/teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci/" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: TEATR KWATERA – przygoda na Safari – spektakl dla dzieci">
+              🎟️ Kup bilet / Szczegóły
+            </a>
+            
+            
         </div>
         
         
@@ -240,5 +253,33 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "TEATR KWATERA – przygoda na Safari – spektakl dla dzieci",
+  "startDate": "2026-10-11T16:00",
+  "endDate": "2026-10-11",
+  "location": {
+    "@type": "Place",
+    "name": "Cavatina Hall",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bielsko-Biała",
+      "addressCountry": "PL",
+      "streetAddress": "Dworkowa 2, Bielsko Biala"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/cavatina_teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci.webp"],
+  "description": "Wyruszcie z nami w sam środek afrykańskiego safari, gdzie czeka tajemnicza zagadka, niezwykłe zwierzęta i misja, od której zależą losy całego królestwa! „Przygoda na Safari” to bar",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://cavatinahall.pl/events/teatr-kwatera-przygoda-na-safari-spektakl-dla-dzieci/"
+  }
+}
+</script>
+
 </body>
 </html>

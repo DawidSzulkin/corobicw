@@ -1,3 +1,16 @@
+def _get_url_priority(url: str) -> tuple[int, str]:
+    u = (url or "").lower()
+    if "kupbilecik" in u: return (100, "KupBilecik")
+    if "biletyna" in u: return (95, "Biletyna")
+    if "ebilet" in u: return (90, "eBilet")
+    if "eventim" in u: return (85, "Eventim")
+    if "goingapp" in u: return (80, "Going.")
+    if "ticketmaster" in u: return (75, "Ticketmaster")
+    if any(k in u for k in ["teatr", "bck", "cavatina", "galeriabielska", "banialuka", "mok", "mosir", "mbp"]):
+        return (50, "Organizator")
+    return (10, "Strona źródłowa")
+
+
 from datetime import datetime
 from src.utils.helpers import normalize_title, slugify
 from difflib import SequenceMatcher
@@ -58,8 +71,6 @@ def save_events_batch(city_tag: str, events: List[Dict[str, Any]]):
 
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
-        
-        # Pobieramy wszystko dla danego miasta do RAM - wyłapie zmiany dat
         cursor.execute("SELECT id, source_url, date_start, title, payload FROM events WHERE city_tag = ?", (city_tag,))
         
         existing_by_url = {}
@@ -75,18 +86,25 @@ def save_events_batch(city_tag: str, events: List[Dict[str, Any]]):
 
         for event_data in events:
             event_data = sanitize_payload(event_data)
-            
-            # Zapobieganie UNIQUE constraint dla pustych URL z wadliwych scraperów
             url = event_data.get("source_url", "").strip()
             if not url:
                 url = f"local://{city_tag}/{slugify(event_data.get('title', ''))}-{event_data.get('date_start', '')}"
                 event_data["source_url"] = url
 
-            date_start = event_data.get("date_start", "")
+            date_start = str(event_data.get("date_start") or "")[:10]
             title = event_data.get("title", "")
             norm_new = normalize_title(title)
 
-            # 1. Update po unikalnym URL (nadpisze np. przesuniętą datę)
+            prio_new, prov_new = _get_url_priority(url)
+            price_new = event_data.get("price_range", "")
+            if "ticket_offers" not in event_data or not event_data["ticket_offers"]:
+                event_data["ticket_offers"] = [{
+                    "provider": prov_new,
+                    "url": url,
+                    "price": price_new,
+                    "is_primary": True
+                }]
+
             if url in existing_by_url:
                 ex_id = existing_by_url[url][0]
                 cursor.execute(
@@ -95,7 +113,6 @@ def save_events_batch(city_tag: str, events: List[Dict[str, Any]]):
                 )
                 continue
 
-            # 2. Szukanie logicznych duplikatów
             merged = False
             if date_start in existing_by_date:
                 for ex_item in existing_by_date[date_start]:
@@ -106,32 +123,52 @@ def save_events_batch(city_tag: str, events: List[Dict[str, Any]]):
                     if norm_new == norm_ex or norm_new in norm_ex or norm_ex in norm_new or similarity >= 0.65:
                         ex_payload = json.loads(ex_payload_json)
 
-                        # Scalanie danych
                         desc_new = event_data.get("description", "")
                         desc_ex = ex_payload.get("description", "")
                         if desc_new and (not desc_ex or len(desc_new) > len(desc_ex)):
                             ex_payload["description"] = desc_new
 
-                        price_new = event_data.get("price_range", "")
-                        price_ex = ex_payload.get("price_range", "")
-                        if price_new and "sprawdź" not in price_new.lower():
-                            ex_payload["price_range"] = price_new
-                        elif not price_ex and price_new:
-                            ex_payload["price_range"] = price_new
-
                         img_new = event_data.get("image_url", "")
                         img_ex = ex_payload.get("image_url", "")
-                        if img_new and ("unsplash" in img_ex or not img_ex):
+                        if img_new and ("/assets/thumbnails/" in img_new or not img_ex):
                             ex_payload["image_url"] = img_new
 
-                        if "analysis" in event_data and isinstance(event_data["analysis"], dict):
-                            if "analysis" not in ex_payload or not isinstance(ex_payload["analysis"], dict):
-                                ex_payload["analysis"] = event_data["analysis"]
-                            else:
-                                new_lead = event_data["analysis"].get("editorial_lead", "")
-                                ex_lead = ex_payload["analysis"].get("editorial_lead", "")
-                                chosen_lead = new_lead if len(new_lead) > len(ex_lead) else ex_lead
-                                ex_payload["analysis"]["editorial_lead"] = chosen_lead[:272] + "..." if len(chosen_lead) > 275 else chosen_lead
+                        current_offers = ex_payload.get("ticket_offers") or []
+                        if not current_offers and ex_payload.get("source_url"):
+                            p_ex, pr_ex = _get_url_priority(ex_payload.get("source_url"))
+                            current_offers = [{
+                                "provider": pr_ex,
+                                "url": ex_payload.get("source_url"),
+                                "price": ex_payload.get("price_range", ""),
+                                "is_primary": True
+                            }]
+
+                        incoming_offers = event_data.get("ticket_offers") or [{
+                            "provider": prov_new,
+                            "url": url,
+                            "price": price_new,
+                            "is_primary": False
+                        }]
+
+                        seen_u = {o.get("url") for o in current_offers if o.get("url")}
+                        for inc in incoming_offers:
+                            inc_u = inc.get("url")
+                            if inc_u and inc_u not in seen_u:
+                                current_offers.append(inc)
+                                seen_u.add(inc_u)
+
+                        current_offers.sort(key=lambda x: _get_url_priority(x.get("url", ""))[0], reverse=True)
+                        for idx, o in enumerate(current_offers):
+                            o["is_primary"] = (idx == 0)
+
+                        ex_payload["ticket_offers"] = current_offers
+                        if current_offers:
+                            ex_payload["source_url"] = current_offers[0]["url"]
+                            if current_offers[0].get("price"):
+                                ex_payload["price_range"] = current_offers[0]["price"]
+
+                        if len(title) < len(ex_title) and len(title) > 3:
+                            ex_payload["title"] = title
 
                         new_payload_json = json.dumps(sanitize_payload(ex_payload), ensure_ascii=False)
                         cursor.execute(
@@ -145,7 +182,6 @@ def save_events_batch(city_tag: str, events: List[Dict[str, Any]]):
             if merged:
                 continue
 
-            # 3. Dodawanie nowego, niezduplikowanego rekordu
             try:
                 cursor.execute("""
                     INSERT INTO events (city_tag, source_url, date_start, title, payload)
@@ -158,17 +194,10 @@ def save_events_batch(city_tag: str, events: List[Dict[str, Any]]):
                 if date_start not in existing_by_date:
                     existing_by_date[date_start] = []
                 existing_by_date[date_start].append([new_id, title, new_payload_json])
-            except sqlite3.IntegrityError as e:
-                # Ostateczny bezpiecznik, żeby baza się nie zawiesiła
-                print(f"[DB WARN] Błąd zapisu {url}: {e}")
+            except sqlite3.IntegrityError:
+                pass
 
         conn.commit()
-
-
-def save_event(city_tag: str, event_data: Dict[str, Any]) -> str:
-    save_events_batch(city_tag, [event_data])
-    return "processed"
-
 
 def get_active_events(city_tag: str, min_date: str) -> List[Dict[str, Any]]:
     with sqlite3.connect(DB_PATH) as conn:

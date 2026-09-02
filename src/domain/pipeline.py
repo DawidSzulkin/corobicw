@@ -1,3 +1,16 @@
+def _get_url_priority(url: str) -> tuple[int, str]:
+    u = (url or "").lower()
+    if "kupbilecik" in u: return (100, "KupBilecik")
+    if "biletyna" in u: return (95, "Biletyna")
+    if "ebilet" in u: return (90, "eBilet")
+    if "eventim" in u: return (85, "Eventim")
+    if "goingapp" in u: return (80, "Going.")
+    if "ticketmaster" in u: return (75, "Ticketmaster")
+    if any(k in u for k in ["teatr", "bck", "cavatina", "galeriabielska", "banialuka", "mok", "mosir", "mbp"]):
+        return (50, "Organizator")
+    return (10, "Strona źródłowa")
+
+
 from src.utils.helpers import haversine, slugify
 import json
 import os
@@ -11,7 +24,7 @@ import concurrent.futures
 from difflib import SequenceMatcher
 
 from src.infrastructure.db import sync_city_events, get_active_events, save_events_batch, DB_PATH, purge_expired_events
-from src.core.models import FullEventPage, EventAnalysis, QuickFacts, TicketInfo, NearbyGastro
+from src.core.models import FullEventPage, EventAnalysis, QuickFacts, TicketInfo, NearbyGastro, TicketOffer
 from src.infrastructure.renderer import HTMLRenderer
 from src.infrastructure.scrapers.registry import get_scrapers_for_city
 from src.normalizer import normalize_ticket_price, format_polish_date
@@ -374,10 +387,28 @@ def deduplicate_events(events: list, city_name: str = "") -> list:
         
         for cluster in clusters:
             if len(cluster) == 1:
-                merged_results.append(cluster[0])
+                single = dict(cluster[0])
+                u = single.get("source_url") or single.get("url") or ""
+                offers = single.get("ticket_offers") or []
+                if not offers and u:
+                    prio, prov = _get_url_priority(u)
+                    single["ticket_offers"] = [{
+                        "provider": prov,
+                        "url": u,
+                        "price": single.get("price_range") or single.get("price") or "",
+                        "is_primary": True
+                    }]
+                merged_results.append(single)
                 continue
             
             best_title = min([c.get("title", "") for c in cluster if c.get("title")], key=len)
+            
+            desc_candidates = [
+                c.get("description") or (c.get("analysis", {}).get("full_description") if isinstance(c.get("analysis"), dict) else "") or ""
+                for c in cluster
+            ]
+            best_desc = max(desc_candidates, key=len) if desc_candidates else ""
+            
             best_img = ""
             for c in cluster:
                 img = c.get("image_url") or c.get("thumbnail_url", "")
@@ -391,7 +422,7 @@ def deduplicate_events(events: list, city_name: str = "") -> list:
             best_place_id = None
             best_address = ""
             for c in cluster:
-                p_id = c.get("place_id") or c.get("analysis", {}).get("ticket_info", {}).get("place_id")
+                p_id = c.get("place_id") or (c.get("analysis", {}).get("ticket_info", {}).get("place_id") if isinstance(c.get("analysis"), dict) else None)
                 if p_id:
                     best_place_id = p_id
                     best_venue = c.get("venue") or c.get("analysis", {}).get("ticket_info", {}).get("venue_name", "")
@@ -402,8 +433,36 @@ def deduplicate_events(events: list, city_name: str = "") -> list:
                 best_venue = cluster[0].get("venue", "")
                 best_address = cluster[0].get("address", "")
             
+            all_offers_map = {}
+            for c in cluster:
+                for off in (c.get("ticket_offers") or []):
+                    u_off = off.get("url", "").strip()
+                    if u_off:
+                        all_offers_map[u_off] = off
+                c_url = (c.get("source_url") or c.get("url") or "").strip()
+                if c_url and c_url not in all_offers_map:
+                    prio, prov = _get_url_priority(c_url)
+                    all_offers_map[c_url] = {
+                        "provider": prov,
+                        "url": c_url,
+                        "price": c.get("price_range") or c.get("price") or "",
+                        "is_primary": False
+                    }
+
+            ranked_offers = list(all_offers_map.values())
+            ranked_offers.sort(key=lambda x: _get_url_priority(x.get("url", ""))[0], reverse=True)
+            for idx, o in enumerate(ranked_offers):
+                o["is_primary"] = (idx == 0)
+
+            primary_url = ranked_offers[0]["url"] if ranked_offers else cluster[0].get("source_url", "")
+            primary_price = next((o.get("price") for o in ranked_offers if o.get("price")), "")
+
             primary = dict(cluster[0])
             primary["title"] = best_title
+            if best_desc:
+                primary["description"] = best_desc
+                if isinstance(primary.get("analysis"), dict):
+                    primary["analysis"]["full_description"] = best_desc
             primary["image_url"] = best_img
             if best_place_id:
                 primary["place_id"] = best_place_id
@@ -411,7 +470,11 @@ def deduplicate_events(events: list, city_name: str = "") -> list:
                 primary["venue"] = best_venue
             if best_address:
                 primary["address"] = best_address
-                
+            primary["source_url"] = primary_url
+            if primary_price:
+                primary["price_range"] = primary_price
+            primary["ticket_offers"] = ranked_offers
+            
             merged_results.append(primary)
             
     return merged_results
@@ -424,14 +487,13 @@ def _generate_event_slug(title: str, date_start: str, time_start: str, seen_slug
     if candidate not in seen_slugs:
         seen_slugs.add(candidate)
         return candidate
-        
-    clean_time = re.sub(r'[^0-9]', '', str(time_start))[:4]
-    if clean_time:
-        time_candidate = f"{candidate}-{clean_time}"
-        if time_candidate not in seen_slugs:
-            seen_slugs.add(time_candidate)
-            return time_candidate
-            
+    
+    clean_time = time_start.replace(":", "").strip() if time_start else ""
+    time_candidate = f"{candidate}-{clean_time}" if clean_time else candidate
+    if time_candidate not in seen_slugs:
+        seen_slugs.add(time_candidate)
+        return time_candidate
+
     idx = 2
     while f"{candidate}-{idx}" in seen_slugs:
         idx += 1
@@ -439,44 +501,58 @@ def _generate_event_slug(title: str, date_start: str, time_start: str, seen_slug
     seen_slugs.add(final_slug)
     return final_slug
 
-def _prepare_event_models(events: List[Any], city_cfg: Dict[str, Any], city_name: str, places_by_id: Dict[str, Dict[str, Any]]) -> List[FullEventPage]:
+
+def _format_address(raw_addr: Any, default_city: str = "") -> str:
+    if isinstance(raw_addr, dict):
+        street = str(raw_addr.get("street", "")).strip()
+        postal = str(raw_addr.get("postal_code", "")).strip()
+        city = str(raw_addr.get("city", default_city)).strip()
+        parts = [p for p in [street, postal, city] if p]
+        return ", ".join(parts) if parts else default_city
+    if isinstance(raw_addr, str):
+        return raw_addr.strip() or default_city
+    return default_city
+
+
+def _prepare_event_models(
+    events: List[Any],
+    city_cfg: Dict[str, Any],
+    city_name: str,
+    places_by_id: Dict[str, Dict[str, Any]]
+) -> List[FullEventPage]:
     models: List[FullEventPage] = []
     seen_slugs: set = set()
+    city_tag = city_cfg.get("city_tag", "").strip()
 
     for e in events:
-        if not isinstance(e, dict):
+        if isinstance(e, FullEventPage):
+            models.append(e)
             continue
-
-        title = _sanitize_llm_string(e.get("title", ""))
-        date_start = str(e.get("date_start", e.get("date", ""))).strip()[:10]
-        date_end = str(e.get("date_end", date_start)).strip()[:10]
-        date_formatted = e.get("date_formatted") or date_start
+            
+        title = _clean_event_title(e.get("title", ""), city_name)
+        if not title:
+            continue
+            
+        date_start = str(e.get("date_start") or e.get("date") or "")[:10]
+        if not date_start:
+            continue
+            
+        date_end = str(e.get("date_end") or date_start)[:10]
+        image_url = e.get("image_url") or e.get("thumbnail_url") or ""
         source_url = e.get("source_url") or e.get("url") or ""
-        raw_thumb = e.get("thumbnail_url") or e.get("image_url") or ""
-        if not raw_thumb or "placeholder.svg" in raw_thumb:
-            thumb_url = "/assets/placeholder.svg?v=2"
-        else:
-            thumb_url = raw_thumb
-        analysis_raw = e.get("analysis") or {}
-
+        
+        analysis_raw = e.get("analysis") if isinstance(e.get("analysis"), dict) else {}
         time_start = _sanitize_llm_string(analysis_raw.get("ticket_info", {}).get("time_start") or e.get("time_start") or "18:00")
         slug = _generate_event_slug(title, date_start, time_start, seen_slugs)
-
+        
         matched_place = _resolve_place(e, places_by_id, city_cfg)
-        resolved_place_id = (matched_place.get("place_id") or matched_place.get("id")) if matched_place else None
-
+        resolved_pid = matched_place.get("id") if matched_place else (e.get("place_id") or analysis_raw.get("ticket_info", {}).get("place_id"))
+        
         if matched_place:
-            venue_name = _sanitize_llm_string(matched_place.get("name", "Obiekt Miejski"))
-            addr_obj = matched_place.get("address") if isinstance(matched_place.get("address"), dict) else {}
-            street = _sanitize_llm_string(addr_obj.get("street") or matched_place.get("street", ""))
-            house = _sanitize_llm_string(addr_obj.get("housenumber") or matched_place.get("housenumber", ""))
-            place_city = _sanitize_llm_string(addr_obj.get("city") or matched_place.get("city") or city_name)
-
-            address = f"ul. {street} {house}, {place_city}".strip(" ,") if street else place_city
-
-            parking_details = matched_place.get("logistics", {}).get("parking_details", [])
-            nearest_p = matched_place.get("nearest_parking")
-
+            venue_name = _sanitize_llm_string(matched_place.get("name", "Wydarzenie"))
+            address_val = _format_address(matched_place.get("address"), default_city=city_name)
+            parking_details = matched_place.get("parking_details", [])
+            nearest_p = matched_place.get("nearest_parking", {})
             if parking_details:
                 top_p = parking_details[0]
                 fee = _sanitize_llm_string(top_p.get("fee_label", "Parking"))
@@ -490,7 +566,8 @@ def _prepare_event_models(events: List[Any], city_cfg: Dict[str, Any], city_name
                 parking_str = "Dostępny w strefie miejskiej"
         else:
             venue_name = _sanitize_llm_string(analysis_raw.get("ticket_info", {}).get("venue_name") or e.get("venue") or "Wydarzenie")
-            address = _sanitize_llm_string(analysis_raw.get("address") or e.get("address") or city_name)
+            raw_addr = analysis_raw.get("address") or e.get("address")
+            address_val = _format_address(raw_addr, default_city=city_name)
             parking_str = "Parking ogólnodostępny w pobliżu obiektu"
 
         category = _sanitize_llm_string(analysis_raw.get("category") or e.get("category") or "Kultura i Rozrywka")
@@ -511,37 +588,58 @@ def _prepare_event_models(events: List[Any], city_cfg: Dict[str, Any], city_name
 
         nearby_gastro = _find_nearest_gastro(matched_place, places_by_id)
 
+        # Mapowanie ticket_offers (Record Merge)
+        raw_offers = e.get("ticket_offers") or []
+        parsed_offers = []
+        for o in raw_offers:
+            if isinstance(o, dict) and o.get("url"):
+                parsed_offers.append(TicketOffer(
+                    provider=o.get("provider", "Bilety"),
+                    url=o.get("url", ""),
+                    price=o.get("price"),
+                    is_primary=o.get("is_primary", False)
+                ))
+            elif isinstance(o, TicketOffer):
+                parsed_offers.append(o)
+
+        quick_facts = QuickFacts(
+            duration=_sanitize_llm_string(analysis_raw.get("quick_facts", {}).get("duration", "~2h")),
+            age_rating=_sanitize_llm_string(analysis_raw.get("quick_facts", {}).get("age_rating", "Wszyscy")),
+            parking=parking_str
+        )
+
+        ticket_info = TicketInfo(
+            time_start=time_start,
+            venue_name=venue_name,
+            price_range=price_range,
+            doors_open=doors_open if doors_open else None,
+            place_id=resolved_pid
+        )
+
+        analysis_obj = EventAnalysis(
+            category=category,
+            badges=badges,
+            organizer=organizer,
+            editorial_lead=lead,
+            full_description=full_desc,
+            details_bullets=bullets,
+            quick_facts=quick_facts,
+            ticket_info=ticket_info,
+            address=address_val
+        )
+
         event_obj = FullEventPage(
             slug=slug,
             title=title,
             date_start=date_start,
             date_end=date_end,
             date_formatted=date_formatted,
-            image_url=thumb_url,
+            image_url=image_url,
             source_url=source_url,
-            place_id=resolved_place_id,
+            place_id=resolved_pid,
+            analysis=analysis_obj,
             nearby_gastro=nearby_gastro,
-            analysis=EventAnalysis(
-                category=category,
-                badges=badges,
-                organizer=organizer,
-                editorial_lead=lead,
-                full_description=full_desc,
-                details_bullets=bullets,
-                quick_facts=QuickFacts(
-                    duration=_sanitize_llm_string(analysis_raw.get("quick_facts", {}).get("duration", "~2h")),
-                    age_rating=_sanitize_llm_string(analysis_raw.get("quick_facts", {}).get("age_rating", "Wszyscy")),
-                    parking=parking_str
-                ),
-                ticket_info=TicketInfo(
-                    time_start=time_start,
-                    doors_open=doors_open if doors_open else None,
-                    venue_name=venue_name,
-                    price_range=price_range,
-                    place_id=resolved_place_id
-                ),
-                address=address
-            )
+            ticket_offers=parsed_offers
         )
         models.append(event_obj)
 

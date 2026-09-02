@@ -120,7 +120,14 @@ Radomska
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -164,9 +171,11 @@ Radomska
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://www.kupbilecik.pl/imprezy/214936/Opole/Aleksandra+Radomska/#2026-11-13-1900" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://www.kupbilecik.pl/imprezy/214936/Opole/Aleksandra+Radomska/#2026-11-13-1900" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Aleksandra Radomska">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/kupbilecik_opole_aleksandra-radomska.webp');"></div>
-          <img src="/assets/thumbnails/kupbilecik_opole_aleksandra-radomska.webp" alt="Plakat: Aleksandra Radomska" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/kupbilecik_opole_aleksandra-radomska.webp" alt="Plakat: Aleksandra Radomska" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -195,14 +204,18 @@ Radomska
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/opole/miejsca/o-studenckie-centrum-kultury/" class="venue-link"><strong>Studenckie Centrum Kultury</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Katowicka 95 , Opole</small>
+              <strong>Studenckie Centrum Kultury</strong>
+              <br><small style="color: var(--text-muted);">Katowicka 95, Opole</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne</div></div>
-          <a href="https://www.kupbilecik.pl/imprezy/214936/Opole/Aleksandra+Radomska/#2026-11-13-1900" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://www.kupbilecik.pl/imprezy/214936/Opole/Aleksandra+Radomska/#2026-11-13-1900" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Aleksandra Radomska">
+              🎟️ Kup bilet online
+            </a>
+            
+            
         </div>
         
         
@@ -254,5 +267,37 @@ Radomska
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Aleksandra Radomska",
+  "startDate": "2026-11-13T19:00",
+  "endDate": "2026-11-13",
+  "location": {
+    "@type": "Place",
+    "name": "Studenckie Centrum Kultury",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Opole",
+      "addressCountry": "PL",
+      "streetAddress": "Katowicka 95, Opole"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/kupbilecik_opole_aleksandra-radomska.webp"],
+  "description": "Aleksandra Radomska w programie "Co się może wydarzyć" | Nowy program stand-up!
+
+Radomska
+
+- na scenie stand-upowej od października 2021 roku. Ma za sobą kilkaset występów w kraju",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.kupbilecik.pl/imprezy/214936/Opole/Aleksandra+Radomska/#2026-11-13-1900"
+  }
+}
+</script>
+
 </body>
 </html>

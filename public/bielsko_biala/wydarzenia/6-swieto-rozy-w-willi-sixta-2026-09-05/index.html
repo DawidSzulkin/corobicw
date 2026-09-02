@@ -120,7 +120,14 @@ Galeria Bielska BWA po raz szósty zaprasza miłośników tych pięknych kwiató
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -164,9 +171,11 @@ Galeria Bielska BWA po raz szósty zaprasza miłośników tych pięknych kwiató
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://galeriabielska.pl/6-swieto-rozy-w-willi-sixta/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://galeriabielska.pl/6-swieto-rozy-w-willi-sixta/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: 6. Święto Róży w Willi Sixta">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/galeriabielska_6-swieto-rozy-w-willi-sixta.webp');"></div>
-          <img src="/assets/thumbnails/galeriabielska_6-swieto-rozy-w-willi-sixta.webp" alt="Plakat: 6. Święto Róży w Willi Sixta" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/galeriabielska_6-swieto-rozy-w-willi-sixta.webp" alt="Plakat: 6. Święto Róży w Willi Sixta" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -182,11 +191,11 @@ Galeria Bielska BWA po raz szósty zaprasza miłośników tych pięknych kwiató
           <div class="event-desc"><p>Sobota, 5 września 2026, godz. 12:00–18:00</p>
 <p>Willa Sixta, ogród willi, ul. Adama Mickiewicza 24</p>
 <p>Galeria Bielska BWA po raz szósty zaprasza miłośników tych pięknych kwiatów do Willi Sixta – do otaczającego willę ogrodu różanego, miniaturowego parku z pomnikowymi drzewami oraz do wnętrz zabytkowej budowli.</p>
-<p>Tegoroczna edycja Święta Róży – zaplanowana na pierwszą sobotę września – połączy działania artystyczne, rozmowy, warsztaty i wspólne spędzanie czasu w ogrodzie jednego z wyjątkowych zabytków Bielska-Białej.</p>
-<p>W sobotnim programie znajdują się m.in. spotkania z artystami i artystkami uczestniczącymi w międzynarodowych rezydencjach artystycznych, artystkami realizującymi projekty edukacyjne Galerii Bielskiej BWA, a także na warsztaty wspólnego malowania i sypania mandali.</p>
-<p>Uczestnicy i uczestniczki będą mogli również posłuchać wykładu o mandalach, odbywającym się w ogrodzie, oraz DJ seta w wykonaniu Blink Monce. Święto Róży będzie też okazją do premierowej prezentacji wideo-artu Ani Tomaszewskiej-Nelson pt.</p>
+<p>Tegoroczna edycja Święta Róży – zaplanowana na pierwszą sobotę września – połączy działania artystyczne, rozmowy, warsztaty i wspólne spędzanie czasu w ogrodzie jednego z wyjątkowych zabytków Bielska-Białej.W sobotnim programie znajdują się m.in.</p>
+<p>spotkania z artystami i artystkami uczestniczącymi w międzynarodowych rezydencjach artystycznych, artystkami realizującymi projekty edukacyjne Galerii Bielskiej BWA, a także na warsztaty wspólnego malowania i sypania mandali.</p>
+<p>Uczestnicy i uczestniczki będą mogli również posłuchać wykładu o mandalach, odbywającym się w ogrodzie, oraz DJ seta w wykonaniu Blink Monce.Święto Róży będzie też okazją do premierowej prezentacji wideo-artu Ani Tomaszewskiej-Nelson pt.</p>
 <p>„30 Wschodów Słońca” – filmu, powstałego podczas rezydencji artystycznej w Bielsku-Białej.</p>
-<p>Program 6. Święta Róży Sobota, 5 września 2026 Galeria Bielska BWA – ogród Willi Sixta, ul. Adama Mickiewicza 24, Bielsko-Biała</p></div>
+<p>Program 6. Święta RóżySobota, 5 września 2026Galeria Bielska BWA – ogród Willi Sixta, ul. Adama Mickiewicza 24, Bielsko-Biała</p></div>
           
           
         </div>
@@ -200,14 +209,18 @@ Galeria Bielska BWA po raz szósty zaprasza miłośników tych pięknych kwiató
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/bielsko_biala/miejsca/bb-galeria-bielska-bwa/" class="venue-link"><strong>Galeria Bielska BWA</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Adama Mickiewicza 24 , Bielsko Biala</small>
+              <strong>Galeria Bielska BWA</strong>
+              <br><small style="color: var(--text-muted);">Adama Mickiewicza 24, Bielsko Biala</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Wstęp bezpłatny</div></div>
-          <a href="https://galeriabielska.pl/6-swieto-rozy-w-willi-sixta/" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://galeriabielska.pl/6-swieto-rozy-w-willi-sixta/" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: 6. Święto Róży w Willi Sixta">
+              🎟️ Kup bilet / Szczegóły
+            </a>
+            
+            
         </div>
         
         
@@ -259,5 +272,37 @@ Galeria Bielska BWA po raz szósty zaprasza miłośników tych pięknych kwiató
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "6. Święto Róży w Willi Sixta",
+  "startDate": "2026-09-05T12:00",
+  "endDate": "2026-09-05",
+  "location": {
+    "@type": "Place",
+    "name": "Galeria Bielska BWA",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bielsko-Biała",
+      "addressCountry": "PL",
+      "streetAddress": "Adama Mickiewicza 24, Bielsko Biala"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/galeriabielska_6-swieto-rozy-w-willi-sixta.webp"],
+  "description": "Sobota, 5 września 2026, godz. 12:00–18:00
+
+Willa Sixta, ogród willi, ul. Adama Mickiewicza 24
+
+Galeria Bielska BWA po raz szósty zaprasza miłośników tych pięknych kwiatów do Willi",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://galeriabielska.pl/6-swieto-rozy-w-willi-sixta/"
+  }
+}
+</script>
+
 </body>
 </html>

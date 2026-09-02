@@ -116,7 +116,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -152,9 +159,11 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://biletyna.pl/kabaret/Kabaret-Skeczow-Meczacych/Wielcy-wracaja/Kedzierzyn-Kozle#kedzierzyn_kozle" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://biletyna.pl/kabaret/Kabaret-Skeczow-Meczacych/Wielcy-wracaja/Kedzierzyn-Kozle#kedzierzyn_kozle" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Kabaret Skeczów Męczących - Wielcy wracają">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_kabaret-skeczow-meczacych-wielcy-wracaja.webp');"></div>
-          <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_kabaret-skeczow-meczacych-wielcy-wracaja.webp" alt="Plakat: Kabaret Skeczów Męczących - Wielcy wracają" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'">
+          <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_kabaret-skeczow-meczacych-wielcy-wracaja.webp" alt="Plakat: Kabaret Skeczów Męczących - Wielcy wracają" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -185,14 +194,34 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/kedzierzyn_kozle/miejsca/kk-hala-sportowa/" class="venue-link"><strong>Hala Sportowa</strong></a>
+              <a href="/kedzierzyn_kozle/miejsca/kk_sport_142/" class="venue-link"><strong>Hala Sportowa</strong></a>
               
-              <br><small style="color: var(--text-muted);">ul. Władysława Planetorza 23, Cisek</small>
+              <br><small style="color: var(--text-muted);">Władysława Planetorza, Cisek</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">od 138.06 zł</div></div>
-          <a href="https://biletyna.pl/kabaret/Kabaret-Skeczow-Meczacych/Wielcy-wracaja/Kedzierzyn-Kozle#kedzierzyn_kozle" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://biletyna.pl/kabaret/Kabaret-Skeczow-Meczacych/Wielcy-wracaja/Kedzierzyn-Kozle#kedzierzyn_kozle" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Kabaret Skeczów Męczących - Wielcy wracają">
+              🎟️ Kup bilet online
+            </a>
+            
+            
+            <div class="secondary-offers">
+              <span class="secondary-offers-label">Dostępne również na:</span>
+              <div class="secondary-pills">
+                
+                  
+                
+                  
+                  <a href="https://biletyna.pl/kabaret/Kabaret-Skeczow-Meczacych/Wielcy-wracaja#kedzierzyn_kozle-19" target="_blank" rel="nofollow noopener" class="offer-pill" aria-label="Sprawdź ofertę na stronie Biletyna">
+                    🔗 Biletyna · <small>Od 138.06 zł</small>
+                  </a>
+                  
+                
+              </div>
+            </div>
+            
         </div>
         
         
@@ -239,5 +268,33 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Kabaret Skeczów Męczących - Wielcy wracają",
+  "startDate": "2026-11-21T17:00",
+  "endDate": "2026-11-21",
+  "location": {
+    "@type": "Place",
+    "name": "Hala Sportowa",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kędzierzyn-Koźle",
+      "addressCountry": "PL",
+      "streetAddress": "Władysława Planetorza, Cisek"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_kabaret-skeczow-meczacych-wielcy-wracaja.webp"],
+  "description": "Kabaret Skeczów Męczących wraca z nowym programem "Wielcy wracają"! 😂🔥 Kultowe postacie w zupełnie nowych, premierowych odsłonach i świeże skecze komentujące dzisiejszą rzeczywisto",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://biletyna.pl/kabaret/Kabaret-Skeczow-Meczacych/Wielcy-wracaja/Kedzierzyn-Kozle#kedzierzyn_kozle"
+  }
+}
+</script>
+
 </body>
 </html>

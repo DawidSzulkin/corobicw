@@ -116,7 +116,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -152,9 +159,11 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://bb2026.pl/program/archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://bb2026.pl/program/archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Archiwum wahań. Polska premiera wystawy w Pawilonie Polskim na Malta Biennale 2026">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bb2026_archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026.webp');"></div>
-          <img src="/assets/thumbnails/bb2026_archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026.webp" alt="Plakat: Archiwum wahań. Polska premiera wystawy w Pawilonie Polskim na Malta Biennale 2026" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/bb2026_archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026.webp" alt="Plakat: Archiwum wahań. Polska premiera wystawy w Pawilonie Polskim na Malta Biennale 2026" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -191,14 +200,18 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/bielsko_biala/miejsca/bb-galeria-bielska-bwa/" class="venue-link"><strong>Galeria Bielska BWA</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Adama Mickiewicza 24 , Bielsko Biala</small>
+              <strong>Galeria Bielska BWA</strong>
+              <br><small style="color: var(--text-muted);">Adama Mickiewicza 24, Bielsko Biala</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Sprawdź szczegóły</div></div>
-          <a href="https://bb2026.pl/program/archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026/" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://bb2026.pl/program/archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026/" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Archiwum wahań. Polska premiera wystawy w Pawilonie Polskim na Malta Biennale 2026">
+              🎟️ Kup bilet / Szczegóły
+            </a>
+            
+            
         </div>
         
         
@@ -250,5 +263,33 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Archiwum wahań. Polska premiera wystawy w Pawilonie Polskim na Malta Biennale 2026",
+  "startDate": "2026-10-14",
+  "endDate": "2026-10-25",
+  "location": {
+    "@type": "Place",
+    "name": "Galeria Bielska BWA",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bielsko-Biała",
+      "addressCountry": "PL",
+      "streetAddress": "Adama Mickiewicza 24, Bielsko Biala"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/bb2026_archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026.webp"],
+  "description": "Po prezentacji w Pawilonie Polskim podczas Malta Biennale 2026 wystawa „Archiwum wahań” Weroniki Zalewskiej zostanie zaprezentowana publiczności w Polsce. Polska premiera ekspozycj",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://bb2026.pl/program/archiwum-wahan-polska-premiera-wystawy-w-pawilonie-polskim-na-malta-biennale-2026/"
+  }
+}
+</script>
+
 </body>
 </html>

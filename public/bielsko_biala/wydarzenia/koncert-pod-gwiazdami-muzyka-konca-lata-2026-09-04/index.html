@@ -116,7 +116,14 @@
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -152,9 +159,11 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://biletyna.pl/koncert/Koncert-Pod-Gwiazdami-Muzyka-Konca-Lata#bielsko_biala" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://biletyna.pl/koncert/Koncert-Pod-Gwiazdami-Muzyka-Konca-Lata#bielsko_biala" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Koncert Pod Gwiazdami- Muzyka Końca Lata">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_bielsko_biala_koncert-pod-gwiazdami-muzyka-konca-lata.webp');"></div>
-          <img src="/assets/thumbnails/biletyna_bielsko_biala_koncert-pod-gwiazdami-muzyka-konca-lata.webp" alt="Plakat: Koncert Pod Gwiazdami- Muzyka Końca Lata" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/biletyna_bielsko_biala_koncert-pod-gwiazdami-muzyka-konca-lata.webp" alt="Plakat: Koncert Pod Gwiazdami- Muzyka Końca Lata" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -186,14 +195,34 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/bielsko_biala/miejsca/bb-ulubiona-caffe/" class="venue-link"><strong>Ulubiona Caffe</strong></a>
+              <a href="/bielsko_biala/miejsca/bb_gastronomia_047/" class="venue-link"><strong>Ulubiona Caffe</strong></a>
               
-              <br><small style="color: var(--text-muted);">Bielsko-Biała</small>
+              <br><small style="color: var(--text-muted);">None, Bielsko-Biała</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">od 58.41 zł</div></div>
-          <a href="https://biletyna.pl/koncert/Koncert-Pod-Gwiazdami-Muzyka-Konca-Lata#bielsko_biala" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://biletyna.pl/koncert/Koncert-Pod-Gwiazdami-Muzyka-Konca-Lata#bielsko_biala" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Koncert Pod Gwiazdami- Muzyka Końca Lata">
+              🎟️ Kup bilet online
+            </a>
+            
+            
+            <div class="secondary-offers">
+              <span class="secondary-offers-label">Dostępne również na:</span>
+              <div class="secondary-pills">
+                
+                  
+                
+                  
+                  <a href="https://biletyna.pl/koncert/Koncert-Pod-Gwiazdami-Muzyka-Konca-Lata/Bielsko-Biala#bielsko_biala" target="_blank" rel="nofollow noopener" class="offer-pill" aria-label="Sprawdź ofertę na stronie Biletyna">
+                    🔗 Biletyna · <small>Od 58.41 zł</small>
+                  </a>
+                  
+                
+              </div>
+            </div>
+            
         </div>
         
         
@@ -245,5 +274,33 @@
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Koncert Pod Gwiazdami- Muzyka Końca Lata",
+  "startDate": "2026-09-04T20:30",
+  "endDate": "2026-09-04",
+  "location": {
+    "@type": "Place",
+    "name": "Ulubiona Caffe",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bielsko-Biała",
+      "addressCountry": "PL",
+      "streetAddress": "None, Bielsko-Biała"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/biletyna_bielsko_biala_koncert-pod-gwiazdami-muzyka-konca-lata.webp"],
+  "description": "Koncert pod Gwiazdami | Muzyka Końca Lata ✨ Sierpień ma w sobie coś wyjątkowego. Dni wciąż są długie, wieczory ciepłe, ale czuć już, że lato powoli zwalnia. To najlepszy moment, że",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://biletyna.pl/koncert/Koncert-Pod-Gwiazdami-Muzyka-Konca-Lata#bielsko_biala"
+  }
+}
+</script>
+
 </body>
 </html>

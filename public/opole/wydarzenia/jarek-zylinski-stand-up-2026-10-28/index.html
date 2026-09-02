@@ -122,7 +122,14 @@ To okazja by pośmiać się z tego, co nas rodziców na co dzień wkurza! Są rz
         .desc-meta { list-style: none; padding-left: 1.25rem; }
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
-</style>
+
+      .secondary-offers { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+      .secondary-offers-label { font-size: 0.75rem; color: var(--text-muted, #718096); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .secondary-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+      .offer-pill { font-size: 0.8rem; font-weight: 600; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong, #4a5568); border-radius: 4px; color: var(--text, #e2e8f0); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+      .offer-pill:hover { border-color: var(--accent, #3182ce); color: var(--accent, #3182ce); background: rgba(49,130,206,0.1); }
+
+    </style>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     
@@ -170,9 +177,11 @@ To okazja by pośmiać się z tego, co nas rodziców na co dzień wkurza! Są rz
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="https://www.kupbilecik.pl/imprezy/212169/Opole/Jarek+%C5%BByli%C5%84ski+Stand-up/#2026-10-28-1900" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło">
+        <a href="https://www.kupbilecik.pl/imprezy/212169/Opole/Jarek+%C5%BByli%C5%84ski+Stand-up/#2026-10-28-1900" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej wydarzenia: Jarek Żyliński Stand-up">
+
           <div class="ambient-bg" style="background-image: url('/assets/thumbnails/kupbilecik_opole_jarek-zylinski-stand-up.webp');"></div>
-          <img src="/assets/thumbnails/kupbilecik_opole_jarek-zylinski-stand-up.webp" alt="Plakat: Jarek Żyliński Stand-up" class="ambient-fg" onerror="this.src='/assets/placeholder.svg'">
+          <img src="/assets/thumbnails/kupbilecik_opole_jarek-zylinski-stand-up.webp" alt="Plakat: Jarek Żyliński Stand-up" class="ambient-fg" onerror="this.src='/assets/placeholder.svg?v=2'" fetchpriority="high">
+
         </a>
         
         <div class="event-body">
@@ -207,14 +216,18 @@ To okazja by pośmiać się z tego, co nas rodziców na co dzień wkurza! Są rz
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              <a href="/opole/miejsca/op-miejsce-x/" class="venue-link"><strong>Miejsce X</strong></a>
-              
-              <br><small style="color: var(--text-muted);">ul. Henryka Sienkiewicza 20 oficyna , Opole</small>
+              <strong>Miejsce X</strong>
+              <br><small style="color: var(--text-muted);">Henryka Sienkiewicza 20 oficyna, Opole</small>
             </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
           <div class="info-row"><div class="info-label">Cena</div><div class="info-val" style="font-weight: 800;">Bilety płatne</div></div>
-          <a href="https://www.kupbilecik.pl/imprezy/212169/Opole/Jarek+%C5%BByli%C5%84ski+Stand-up/#2026-10-28-1900" target="_blank" rel="nofollow noopener" class="btn-ticket">Kup bilet / Szczegóły</a>
+          
+            <a href="https://www.kupbilecik.pl/imprezy/212169/Opole/Jarek+%C5%BByli%C5%84ski+Stand-up/#2026-10-28-1900" target="_blank" rel="nofollow noopener" class="btn-ticket" aria-label="Przejdź do zakupu biletów lub strony wydarzenia: Jarek Żyliński Stand-up">
+              🎟️ Kup bilet online
+            </a>
+            
+            
         </div>
         
         
@@ -251,5 +264,39 @@ To okazja by pośmiać się z tego, co nas rodziców na co dzień wkurza! Są rz
       updateToggleBtn(document.documentElement.getAttribute('data-theme'));
     });
   </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Jarek Żyliński Stand-up",
+  "startDate": "2026-10-28T19:00",
+  "endDate": "2026-10-28",
+  "location": {
+    "@type": "Place",
+    "name": "Miejsce X",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Opole",
+      "addressCountry": "PL",
+      "streetAddress": "Henryka Sienkiewicza 20 oficyna, Opole"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/kupbilecik_opole_jarek-zylinski-stand-up.webp"],
+  "description": "STRAJK RODZICIELSKI
+
+to drugi program
+
+Jarka Żylińskiego.
+
+To okazja by pośmiać się z tego, co nas rodziców na co dzień wkurza! Są rzeczy, których Tobie powiedzieć nie wypada, Jark",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.kupbilecik.pl/imprezy/212169/Opole/Jarek+%C5%BByli%C5%84ski+Stand-up/#2026-10-28-1900"
+  }
+}
+</script>
+
 </body>
 </html>
