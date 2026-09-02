@@ -472,7 +472,7 @@
       "name:en": "Martin Luther Monument",
       "name:nl": "Maarten Luther-monument",
       "name:pl": "Pomnik ks. Marcina Lutra",
-      "name:sk": "Pamätník Martina Luthera",
+      "name:sk": "Pam"tník Martina Luthera",
       "name:uk": "Памятник Мартіну Лютеру",
       "nid:inscription_date": "2004-10-18",
       "nid:website": "https://zabytek.pl/pl/obiekty/zabytek?inspire_id=PL.1.9.ZIPOZ.NID_N_24_BL.114593&rejestr=rejestr-zabytkow",
@@ -10387,7 +10387,7 @@
     "wheelchair": null,
     "raw_tags": {
       "historic": "memorial",
-      "inscription": "Ś.P. JAN BIEROŃSKI PRZYJACIEL GÓR, RATOWNIK GOPR, DZIAŁACZ PTTK INSTRUKTOR I SEDZIA NARCIARSKI, TURYSTA, NARCIARZ ZMARŁ W TYM MIEJSCU W GRUDNIU 1981 R. WIECZNY ODPOCZYNEK RACZ MU DAĆ PANIE",
+      "inscription": "Ś.P. JAN BIEROŃSKI PRZYJACIEL GÓR, RATOWNIK GOPR, DZIAŁACZ PTTK INSTRUKTOR I SEDZIA NARCIARSKI, TURYSTA, NARCIARZ ZMARŁ W TYM MIEJSCU W GRUDNIU 1981 R. WIECZNY ODPOCZYNEK RACZ MU DAŹ PANIE",
       "memorial": "plaque",
       "name": "Jan B. 1981.12"
     }
@@ -83621,7 +83621,7 @@
       "addr:street": "Pod Grodziskiem",
       "area": "yes",
       "name": "Chodnik z oznaczeniami grodziska w Starym Bielsku",
-      "name:cs": "Dlažba s vyznačení dávného hradiska ve Starém Bielsku",
+      "name:cs": "Dlažba s vyznaźení dávného hradiska ve Starém Bielsku",
       "name:en": "Marking the ancient fort of the Stare Bielsko in the pavement",
       "tourism": "attraction"
     }
