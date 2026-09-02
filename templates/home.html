@@ -401,8 +401,11 @@
 
         const badge = el.querySelector('.badge-container');
         if (!badge) return;
-        if (start === today || (start <= today && end >= today)) badge.innerHTML = '<span class="tag-highlight">DZIŚ</span>';
-        else if (start === tomorrow) badge.innerHTML = '<span class="tag-highlight">JUTRO</span>';
+        if (start === today) {
+            badge.innerHTML = '<span class="tag-highlight">DZIŚ</span>';
+          } else if (start < today && end && end >= today) {
+            badge.innerHTML = '<span class="tag-highlight" style="background:#0ea5e9;">TRWA</span>';
+          }else if (start === tomorrow) badge.innerHTML = '<span class="tag-highlight">JUTRO</span>';
         else badge.innerHTML = '';
       });
     }
