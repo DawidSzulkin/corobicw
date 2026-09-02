@@ -7,27 +7,165 @@ from typing import Any, Dict, List
 from jinja2 import Environment, FileSystemLoader
 from src.core.models import FullEventPage
 
-CITY_CANONICAL_MAP = {
-    "kedzierzyn_kozle": "Kędzierzyn-Koźle",
-    "opole": "Opole",
-    "bielsko_biala": "Bielsko-Biała"
-}
+def _resolve_strict_city_name(tag: str) -> str:
+    if not tag: return ""
+    cmap = {"kedzierzyn_kozle": "Kędzierzyn-Koźle", "opole": "Opole", "bielsko_biala": "Bielsko-Biała"}
+    return cmap.get(str(tag).lower(), str(tag).title().replace("_", "-"))
+
+def _process_event_description_to_html(ev) -> str:
+    # Ekstrakcja surowego opisu z modelu lub słownika
+    raw_desc = ""
+    analysis = getattr(ev, 'analysis', None) or (ev.get('analysis') if isinstance(ev, dict) else None)
+    if analysis:
+        raw_desc = getattr(analysis, 'full_description', '') or (analysis.get('full_description', '') if isinstance(analysis, dict) else '')
+    if not raw_desc:
+        raw_desc = getattr(ev, 'description', '') or (ev.get('description', '') if isinstance(ev, dict) else '')
+
+    if not raw_desc or len(str(raw_desc).strip()) < 5:
+        return "<p>Brak szczegółowego opisu wydarzenia.</p>"
+
+    import re
+    t = str(raw_desc).replace("\r", " ").replace("\t", " ")
+    t = re.sub(r'<br\s*/?>', '\n', t, flags=re.IGNORECASE)
+    t = re.sub(r'[ \u202f\u200b]', ' ', t)
+
+    # 1. Usuwanie spamu SEO (- więcej informacji)
+    target = "więcej informacji"
+    while target in t.lower():
+        pos = t.lower().find(target)
+        start_search = max(0, pos - 250)
+        prefix = t[start_search:pos]
+        emoji_matches = list(re.finditer(r'[\U00010000-\U0010ffff\u2600-\u27ff]+', prefix))
+        punc_matches = list(re.finditer(r'[\.!\?\n]', prefix))
+        if emoji_matches:
+            cut_start = start_search + emoji_matches[-1].start()
+        elif punc_matches:
+            cut_start = start_search + punc_matches[-1].end()
+        else:
+            cut_start = max(0, pos - 60)
+        t = t[:cut_start].rstrip(" .-\t") + ". " + t[pos + len(target):].lstrip(" .-\t")
+
+    # 2. Standaryzacja etykiet
+    META_LABELS = [
+        "Autor", "Autorka", "Autorzy", "Przekład", "Tłumaczenie",
+        "Reżyseria", "Scenografia", "Kostiumy", "Muzyka", "Światło",
+        "Choreografia", "Asystentka reżysera", "Asystent reżysera",
+        "Kierownictwo muzyczne", "Produkcja", "Kierownik produkcji",
+        "Obsada", "Występują", "Wykonawcy", "Artyści", "Prowadzenie",
+        "Wydarzenie poprowadzi", "Sponsorem wydarzenia jest",
+        "Informacje praktyczne", "Czas trwania", "Bramy", "Start", "Bilety"
+    ]
+    for lbl in META_LABELS:
+        t = re.sub(r'(?<!\n)\b' + re.escape(lbl) + r'\s*:', f'\n\n* **{lbl}:**', t)
+
+    t = re.sub(r'(?<!\n)\s*(P\.S\..*)$', r'\n\n\1', t, flags=re.IGNORECASE)
+    t = re.sub(r'\s*\.\s*\.', '.', t)
+    t = re.sub(r'[ ]{2,}', ' ', t)
+
+    # 3. Podział narracji na akapity (~160-240 znaków)
+    raw_blocks = [b.strip() for b in t.split("\n") if b.strip()]
+    final_paragraphs = []
+    for block in raw_blocks:
+        if block.startswith("*") or block.startswith("-"):
+            final_paragraphs.append(block)
+            continue
+        sentences = [s.strip() for s in re.split(r'(?<=[.!?…])\s+', block) if s.strip()]
+        curr_buf, curr_len = [], 0
+        for s in sentences:
+            if s.upper().startswith("P.S.") or s.upper().startswith("UWAGA"):
+                if curr_buf:
+                    final_paragraphs.append(" ".join(curr_buf))
+                    curr_buf, curr_len = [], 0
+                final_paragraphs.append(s)
+                continue
+            curr_buf.append(s)
+            curr_len += len(s)
+            if curr_len >= 160:
+                final_paragraphs.append(" ".join(curr_buf))
+                curr_buf, curr_len = [], 0
+        if curr_buf:
+            final_paragraphs.append(" ".join(curr_buf))
+
+    # 4. Generowanie semantycznego HTML
+    html_parts = []
+    for p in final_paragraphs:
+        if p.startswith("* **"):
+            item = re.sub(r'^\*\s*\*\*([^\*]+)\*\*(.*)$', r'<li><strong>\1</strong>\2</li>', p)
+            html_parts.append(f'<ul class="desc-meta">{item}</ul>')
+        elif p.startswith("* ") or p.startswith("- "):
+            item = re.sub(r'^[\*\-]\s*(.*)$', r'<li>\1</li>', p)
+            html_parts.append(f'<ul class="desc-list">{item}</ul>')
+        elif p.upper().startswith("P.S."):
+            html_parts.append(f'<p class="desc-ps"><em>{p}</em></p>')
+        else:
+            html_parts.append(f'<p>{p}</p>')
+
+    res = "\n".join(html_parts)
+    res = re.sub(r'</ul>\s*<ul class="desc-meta">', '', res)
+    res = re.sub(r'</ul>\s*<ul class="desc-list">', '', res)
+    return res
+
+
+
+def _extract_raw_description(obj) -> str:
+    """Wyczerpująca ekstrakcja surowego opisu z obiektu/słownika dowolnego typu."""
+    if not obj:
+        return ""
+    
+    # Próba 1: analysis.full_description (obiekt)
+    analysis = getattr(obj, "analysis", None)
+    if analysis:
+        if hasattr(analysis, "full_description") and analysis.full_description:
+            return str(analysis.full_description)
+        if isinstance(analysis, dict) and analysis.get("full_description"):
+            return str(analysis["full_description"])
+        if isinstance(analysis, str):
+            try:
+                import json
+                a_dict = json.loads(analysis)
+                if isinstance(a_dict, dict) and a_dict.get("full_description"):
+                    return str(a_dict["full_description"])
+            except Exception:
+                pass
+
+    # Próba 2: direct description attribute / key
+    if hasattr(obj, "description") and obj.description:
+        return str(obj.description)
+    if isinstance(obj, dict):
+        if obj.get("description"):
+            return str(obj["description"])
+        if obj.get("raw_description"):
+            return str(obj["raw_description"])
+        if obj.get("full_description"):
+            return str(obj["full_description"])
+        # Zagnieżdżony słownik analysis
+        if isinstance(obj.get("analysis"), dict):
+            if obj["analysis"].get("full_description"):
+                return str(obj["analysis"]["full_description"])
+            if obj["analysis"].get("description"):
+                return str(obj["analysis"]["description"])
+
+    # Próba 3: raw_data JSON
+    raw_data = getattr(obj, "raw_data", None) or (obj.get("raw_data") if isinstance(obj, dict) else None)
+    if raw_data:
+        if isinstance(raw_data, str):
+            try:
+                import json
+                r_dict = json.loads(raw_data)
+                if isinstance(r_dict, dict) and r_dict.get("description"):
+                    return str(r_dict["description"])
+            except Exception:
+                pass
+        elif isinstance(raw_data, dict) and raw_data.get("description"):
+            return str(raw_data["description"])
+
+    return ""
+
 
 def resolve_canonical_city(tag: str) -> str:
     if not tag:
         return ""
     return CITY_CANONICAL_MAP.get(str(tag).lower(), str(tag).title().replace("_", "-"))
-
-
-def _resolve_strict_city_name(tag: str) -> str:
-    if not tag: return ""
-    cmap = {
-        "kedzierzyn_kozle": "Kędzierzyn-Koźle",
-        "opole": "Opole",
-        "bielsko_biala": "Bielsko-Biała"
-    }
-    return cmap.get(tag.lower(), tag.title().replace("_", "-"))
-
 
 
 class HTMLRenderer:
@@ -77,10 +215,13 @@ class HTMLRenderer:
             place_obj = places.get(p_id) if p_id else None
             
             single_html = event_template.render(
+                formatted_description=_process_event_description_to_html(ev),
+
                 ev=ev,
                 event=ev,
                 place=place_obj,
-                city=_resolve_strict_city_name(city_tag),
+                city=_resolve_strict_city_name(city_tag
+            ),
                 city_name=_resolve_strict_city_name(city_tag),
                 city_tag=city_tag
             )

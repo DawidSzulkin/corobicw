@@ -176,66 +176,76 @@ def create_event_record(event: dict, default_city_name: str = "Miasto") -> FullE
     )
 
 def format_event_description(text: str) -> str:
-    """
-    Deterministyczne oczyszczanie tekstu ze śmieci SEO oraz formatowanie akapitów i metadanych.
-    Gwarantuje 0% strat istotnych danych i usuwa sztuczne wstrzyknięcia portali biletowych.
-    """
-    if not text or len(text.strip()) < 20:
-        return text.strip() if text else ""
-
-    import re
-    t = text.strip()
-
-    # 1. Usunięcie wstrzyknięć SEO portali (np. "Tytuł Spektaklu - więcej informacji")
-    t = re.sub(r'(?i)[^\.\!\?\r\n]*?-\s*więcej informacji\b', '', t)
-    t = re.sub(r'(?i)\bwięcej informacji\b', '', t)
-
-    # 2. Standaryzacja znaków i łamania linii
+    if not text:
+        return ""
+    
+    t = str(text).replace("\r", " ").replace("\t", " ")
     t = re.sub(r'<br\s*/?>', '\n', t, flags=re.IGNORECASE)
-    t = re.sub(r'[\r\t]', ' ', t)
+    t = re.sub(r'[ \u202f\u200b]', ' ', t)
 
-    # 3. Rozpoznawanie etykiet realizatorów i obsady
-    meta_labels = [
-        "Autor", "Autorka", "Autorzy", "Przekład", "Tłumaczenie",
-        "Reżyseria", "Scenografia", "Kostiumy", "Muzyka", "Światło",
-        "Choreografia", "Asystentka reżysera", "Asystent reżysera",
-        "Kierownictwo muzyczne", "Produkcja", "Kierownik produkcji",
-        "Obsada", "Występują", "Wykonawcy", "Artyści", "Prowadzenie",
-        "Wydarzenie poprowadzi", "Sponsorem wydarzenia jest",
-        "Informacje praktyczne", "Czas trwania"
-    ]
+    # 1. Usuwanie spamu SEO ("- więcej informacji") wraz z powtórzonym tytułem i emoji
+    target = "więcej informacji"
+    while target in t.lower():
+        pos = t.lower().find(target)
+        # Szukamy początku wstrzyknięcia wstecz (do 250 znaków)
+        start_search = max(0, pos - 250)
+        prefix = t[start_search:pos]
+        
+        # Szukamy klastra emoji lub znaku interpunkcyjnego
+        emoji_matches = list(re.finditer(r'[\U00010000-\U0010ffff\u2600-\u27ff]+', prefix))
+        punc_matches = list(re.finditer(r'[\.!\?\n]', prefix))
+        
+        if emoji_matches:
+            cut_start = start_search + emoji_matches[-1].start()
+        elif punc_matches:
+            cut_start = start_search + punc_matches[-1].end()
+        else:
+            cut_start = max(0, pos - 60)
+            
+        t = t[:cut_start].rstrip(" .-\t") + ". " + t[pos + len(target):].lstrip(" .-\t")
 
-    pattern_labels = r'(?<!\n)\b(' + '|'.join(re.escape(lbl) for lbl in meta_labels) + r')\s*:'
-    t = re.sub(pattern_labels, r'\n\n* **\1:**', t)
+    # 2. Standaryzacja etykiet metadanych
+    for lbl in META_LABELS:
+        pattern = r'(?<!\n)\b' + re.escape(lbl) + r'\s*:'
+        t = re.sub(pattern, f'\n\n* **{lbl}:**', t)
 
-    # 4. Rozbijanie punktów regulaminów i wyliczeń od nowej linii
-    t = re.sub(r'(?<!\n)\s*(\*\s+[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż])', r'\n\n\1', t)
-    t = re.sub(r'(?<!\n)\s*(\-\s+[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż])', r'\n\n* \1', t)
+    # 3. Wyodrębnienie P.S. i komunikatów specjalnych
+    t = re.sub(r'(?<!\n)\s*(P\.S\..*)$', r'\n\n\1', t, flags=re.IGNORECASE)
+    t = re.sub(r'(?<!\n)\s*(UWAGA!?:?|INFORMACJE ORGANIZACYJNE:?|WAŻNE:?)', r'\n\n\1', t, flags=re.IGNORECASE)
 
-    # 5. Podział narracji na akapity przy naturalnych przejściach
-    split_triggers = [
-        r'(Wpadnij w wir\b)',
-        r'(Odkryj niezwykłe życie\b)',
-        r'(Gdy ich rodzice\b)',
-        r'(Jakie wiadomości czekają\b)',
-        r'(Przygotuj się na\b)',
-        r'(\"[^\"]+\"\s+to\s+błyskotliwa\b)',
-        r'(INFORMACJE ORGANIZACYJNE\b)',
-        r'(UWAGA!\b)',
-        r'(Zainteresowanych testowaniem\b)',
-        r'(Testujemy programy\b)',
-        r'(Zapisz dziecko na kolonię\b)',
-        r'(Dlaczego warto być tam z nami\b)',
-        r'(Na scenie spotkają się\b)',
-        r'(Całość poprowadzi\b)',
-        r'(Co się wydarzy\b)',
-        r'(Siedmiu mistrzów\b)',
-        r'(Polska Noc Kabaretowa 2026 powraca\b)'
-    ]
-    for trigger in split_triggers:
-        t = re.sub(r'(?<!\n\n)' + trigger, r'\n\n\1', t)
-
-    # 6. Standaryzacja pustych linii i wielokrotnych spacji
+    # Czyszczenie zbiegów kropek i spacji
+    t = re.sub(r'\s*\.\s*\.', '.', t)
     t = re.sub(r'[ ]{2,}', ' ', t)
-    t = re.sub(r'\n{3,}', '\n\n', t)
-    return t.strip()
+
+    # 4. Dynamiczny podział na akapity (~160-240 znaków)
+    raw_blocks = [b.strip() for b in t.split("\n") if b.strip()]
+    final_paragraphs = []
+
+    for block in raw_blocks:
+        if block.startswith("*") or block.startswith("-"):
+            final_paragraphs.append(block)
+            continue
+
+        sentences = [s.strip() for s in re.split(r'(?<=[.!?…])\s+', block) if s.strip()]
+        curr_buf = []
+        curr_len = 0
+
+        for s in sentences:
+            if s.upper().startswith("P.S.") or s.upper().startswith("UWAGA"):
+                if curr_buf:
+                    final_paragraphs.append(" ".join(curr_buf))
+                    curr_buf, curr_len = [], 0
+                final_paragraphs.append(s)
+                continue
+
+            curr_buf.append(s)
+            curr_len += len(s)
+
+            if curr_len >= 160:
+                final_paragraphs.append(" ".join(curr_buf))
+                curr_buf, curr_len = [], 0
+
+        if curr_buf:
+            final_paragraphs.append(" ".join(curr_buf))
+
+    return "\n\n".join(final_paragraphs)
