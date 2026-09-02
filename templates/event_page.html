@@ -117,6 +117,22 @@
         .desc-meta li strong { color: var(--accent, #38bdf8); margin-right: 6px; }
         
 </style>
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    {% set og_img = event.image_url if event.image_url and event.image_url.startswith('http') else ('https://corobicw.pl' + event.image_url if event.image_url else 'https://corobicw.pl/assets/placeholder.svg') %}
+    {% set og_desc = event.analysis.editorial_lead if event.analysis and event.analysis.editorial_lead else event.title %}
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ event.title | escape }} | CoRobićW {{ city_name }}">
+    <meta property="og:description" content="{{ og_desc | escape }}">
+    <meta property="og:image" content="{{ og_img }}">
+    <meta property="og:url" content="https://corobicw.pl/{{ city_tag }}/wydarzenia/{{ event.slug }}/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ event.title | escape }}">
+    <meta name="twitter:description" content="{{ og_desc | escape }}">
+    <meta name="twitter:image" content="{{ og_img }}">
+
 </head>
 <body>
   <header>
