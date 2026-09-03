@@ -29,6 +29,8 @@ class TicketOffer(BaseModel):
     url: str
     price: Optional[str] = None
     is_primary: bool = False
+    is_official: bool = False
+    official_badge: Optional[str] = None
     tag: Optional[str] = None
     tag_class: Optional[str] = None
     discounts: list[dict[str, Any]] = []
@@ -58,4 +60,5 @@ class FullEventPage(BaseModel):
     analysis: EventAnalysis
     nearby_gastro: List[NearbyGastro] = []
     ticket_offers: List[TicketOffer] = []
+    discounts: Optional[List[Dict[str, Any]]] = None
 

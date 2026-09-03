@@ -2,13 +2,16 @@ city_tag: opole
 city: Opole
 city_name: "Opole"
 name: "Opole"
-description: Wydarzenia, koncerty, spektakle i atrakcje w mieście Opole.
+description: Wydarzenia, koncerty, spektakle i atrakcje w mieĹ›cie Opole.
 seo_keywords: Opole wydarzenia, koncerty Opole, teatr Opole, imprezy Opole
 color_primary: '#1A365D'
 color_secondary: '#2B6CB0'
 color_accent: '#E53E3E'
 theme: modern
 sources:
+  ncpp_opole_pl:
+    enabled: true
+    name: NCPP Opole
   kupbilecik_pl:
     enabled: true
     name: KupBilecik (Opole)
@@ -71,17 +74,17 @@ venue_match_rules:
   - studenckie centrum kultury
   - uniwersytet
 - keywords:
-  - szkoła muzyczna
+  - szkoĹ‚a muzyczna
   - psm
   - chopina
   target_keywords:
-  - szkoła muzyczna
-  - państwowa szkoła
+  - szkoĹ‚a muzyczna
+  - paĹ„stwowa szkoĹ‚a
 - keywords:
   - aula seminarium
   target_keywords:
   - seminarium
-  - kościół
+  - koĹ›ciĂłĹ‚
   - parafia
 - keywords:
   - bar u kuby

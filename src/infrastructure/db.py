@@ -1,18 +1,9 @@
-def _get_url_priority(url: str) -> tuple[int, str]:
-    u = (url or "").lower()
-    if "kupbilecik" in u: return (100, "KupBilecik")
-    if "biletyna" in u: return (95, "Biletyna")
-    if "ebilet" in u: return (90, "eBilet")
-    if "eventim" in u: return (85, "Eventim")
-    if "goingapp" in u: return (80, "Going.")
-    if "ticketmaster" in u: return (75, "Ticketmaster")
-    if any(k in u for k in ["teatr", "bck", "cavatina", "galeriabielska", "banialuka", "mok", "mosir", "mbp"]):
-        return (50, "Organizator")
-    return (10, "Strona źródłowa")
-
+def _get_url_priority(url: str, organizer: str = "") -> tuple[int, str]:
+    prio, name, _ = resolve_ticket_provider(url, organizer)
+    return (prio, name)
 
 from datetime import datetime
-from src.utils.helpers import normalize_title, slugify
+from src.utils.helpers import normalize_title, slugify, resolve_ticket_provider
 from difflib import SequenceMatcher
 import json
 from pathlib import Path
@@ -132,6 +123,11 @@ def save_events_batch(city_tag: str, events: List[Dict[str, Any]]):
                         img_ex = ex_payload.get("image_url", "")
                         if img_new and ("/assets/thumbnails/" in img_new or not img_ex):
                             ex_payload["image_url"] = img_new
+
+                        disc_new = event_data.get("discounts")
+                        disc_ex = ex_payload.get("discounts")
+                        if disc_new and isinstance(disc_new, list) and (not disc_ex or len(disc_new) > len(disc_ex or [])):
+                            ex_payload["discounts"] = disc_new
 
                         current_offers = ex_payload.get("ticket_offers") or []
                         if not current_offers and ex_payload.get("source_url"):

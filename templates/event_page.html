@@ -57,9 +57,15 @@
     
     .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 6px; }
     
+    /* KONTENER BANNERA Z TARCZĄ OCHRONNĄ */
     .ambient-banner {
       position: relative; width: 100%; height: 420px; overflow: hidden; display: block;
       background: #000; border-bottom: 1px solid var(--border);
+      user-select: none; -webkit-user-select: none;
+    }
+    .ambient-shield {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 10; background: transparent; cursor: default;
     }
     .ambient-bg {
       position: absolute; top: -5%; left: -5%; right: -5%; bottom: -5%;
@@ -68,7 +74,7 @@
     }
     .ambient-fg {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: contain; z-index: 2;
+      object-fit: contain; z-index: 2; pointer-events: none; -webkit-user-drag: none;
     }
     
     .event-body { padding: 32px; }
@@ -90,18 +96,17 @@
     .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.5px; }
     .info-val { width: 65%; font-weight: 600; color: var(--text); }
     
-      .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
-      .venue-link:hover { color: var(--accent-blue); }
-      
-      /* CANCELLED STATE STYLING */
-      .event-cancelled-banner { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
-      .offer-box.cancelled-box { border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.04); }
-      .offer-tag.cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-      .offer-price-val.cancelled-text { color: #f87171; font-weight: 700; }
-      .offer-btn-buy.cancelled { background: #262626; color: #888888; border: 1px solid #444444; cursor: not-allowed; pointer-events: none; opacity: 0.75; }
-
+    .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    .venue-link:hover { color: var(--accent-blue); }
     
-    /* TICKET MARKET (CENEO STYLE) */
+    /* CANCELLED STATE STYLING */
+    .event-cancelled-banner { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+    .offer-box.cancelled-box { border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.04); }
+    .offer-tag.cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .offer-price-val.cancelled-text { color: #f87171; font-weight: 700; }
+    .offer-btn-buy.cancelled { background: #262626; color: #888888; border: 1px solid #444444; cursor: not-allowed; pointer-events: none; opacity: 0.75; }
+
+    /* TICKET MARKET */
     .ticket-market-header { margin: 22px 0 12px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--border); padding-top: 16px; }
     .ticket-market-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
     .ticket-count { font-size: 0.72rem; color: var(--text-muted); }
@@ -133,16 +138,18 @@
     .offer-btn-buy.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .offer-btn-buy.secondary:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
 
-    /* AKORDEON ZNIŻEK BCK */
-    .bck-discounts-box { border-top: 1px dashed var(--border); background: rgba(56, 189, 248, 0.04); }
-    .bck-discounts-box details summary { padding: 9px 14px; font-size: 0.72rem; font-weight: 700; color: var(--accent-blue); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 0.5px; }
-    .bck-discounts-box details summary::-webkit-details-marker { display: none; }
-    .bck-discounts-box details summary::after { content: "▼"; font-size: 0.6rem; opacity: 0.7; }
-    .bck-discounts-box details[open] summary::after { transform: rotate(180deg); }
-    .bck-discounts-list { list-style: none; padding: 0 14px 12px; margin: 0; display: flex; flex-direction: column; gap: 6px; }
-    .bck-discounts-list li { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 4px; }
-    .bck-discounts-list li:last-child { border-bottom: none; }
-    .bck-discounts-list .disc-val { font-weight: 700; color: var(--accent-green); }
+    /* UNIWERSALNY MODUŁ ZNIŻEK I ULG */
+    .discounts-box { border-top: 1px dashed var(--border); background: rgba(56, 189, 248, 0.04); }
+    .discounts-box details summary { padding: 9px 14px; font-size: 0.72rem; font-weight: 700; color: var(--accent-blue); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 0.5px; }
+    .discounts-box details summary::-webkit-details-marker { display: none; }
+    .discounts-box details summary::after { content: "▼"; font-size: 0.6rem; opacity: 0.7; }
+    .discounts-box details[open] summary::after { transform: rotate(180deg); }
+    .discounts-list { list-style: none; padding: 0 14px 12px; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .discounts-list li { display: flex; flex-direction: column; gap: 2px; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 6px; }
+    .discounts-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .discounts-list .disc-head { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; color: var(--text); }
+    .discounts-list .disc-val { color: var(--accent-green); font-weight: 800; }
+    .discounts-list .disc-desc { font-size: 0.7rem; color: var(--text-muted); line-height: 1.3; }
 
     .gastro-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
     .gastro-item:last-child { border-bottom: none; padding-bottom: 0; }
@@ -191,10 +198,12 @@
     
     <div class="container-grid">
       <div class="main-content">
-        <a href="{{ event.source_url or '#' }}" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej: {{ event.title }}">
+        <!-- ZABEZPIECZONY BANNER PLAKATU -->
+        <div class="ambient-banner" oncontextmenu="return false;">
+          <div class="ambient-shield" title="CoRobićW - {{ event.title }}"></div>
           <div class="ambient-bg" style="background-image: url('{{ event.image_url or '/assets/placeholder.svg' }}');"></div>
-          <img src="{{ event.image_url or '/assets/placeholder.svg' }}" alt="Plakat: {{ event.title }}" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high">
-        </a>
+          <img src="{{ event.image_url or '/assets/placeholder.svg' }}" alt="Plakat: {{ event.title }}" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+        </div>
         
         <div class="event-body">
           <div>{% for b in event.analysis.badges %}<span class="badge">{{ b }}</span>{% endfor %}</div>
@@ -235,7 +244,7 @@
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">{{ event.analysis.quick_facts.parking }}</div></div>
 
-                      {% if event.ticket_offers and event.ticket_offers|length > 0 %}
+          {% if event.ticket_offers and event.ticket_offers|length > 0 %}
             <div class="ticket-market-header">
               <span class="ticket-market-title">Dostępne bilety</span>
               <span class="ticket-count">{{ event.ticket_offers|length }} {% if event.ticket_offers|length == 1 %}opcja{% else %}opcje{% endif %}</span>
@@ -250,6 +259,9 @@
                     <div class="offer-info-col">
                       <div class="offer-provider-line">
                         <span class="offer-provider-name">{{ offer.provider }}</span>
+                          {% if offer.is_official or offer.official_badge %}
+                            <span class="offer-tag official" style="margin-left: 6px; font-size: 0.65rem; padding: 2px 6px;">Oficjalna kasa</span>
+                          {% endif %}
                         {% if is_cancelled %}
                           <span class="offer-tag cancelled">Odwołane</span>
                         {% elif offer.tag and not is_free %}
@@ -270,27 +282,38 @@
                       {% endif %}
                     </div>
                   </div>
-                  {% if not is_free and offer.discounts and offer.discounts|length > 0 %}
-                <div class="bck-discounts-box">
-                  <details>
-                    <summary>Honorowane zniżki ({{ offer.discounts|length }})</summary>
-                    <ul class="bck-discounts-list">
-                      {% for d in offer.discounts %}
-                      <li><span>{{ d.name }}</span><span class="disc-val">{{ d.val }}</span></li>
-                      {% endfor %}
-                    </ul>
-                  </details>
-                </div>
-                {% endif %}
-              </div>
-              {% endfor %}
+                  
+                  {% endfor %}
             </div>
           {% elif event.source_url %}
-            <a href="{{ event.source_url }}" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary" style="width: 100%; margin-top: 14px;">🎟️ Kup bilet / Szczegóły</a>
+            <a href="{{ event.source_url }}" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary" style="width: 100%; margin-top: 14px;">🎫 Kup bilet / Szczegóły</a>
           {% endif %}
-        </div>
 
-        {% if event.nearby_gastro %}
+          
+            {# DEDYKOWANY, POJEDYNCZY MODUŁ ZASAD WSTĘPU I ZNIŻEK INSTYTUCJI #}
+            {% if event.discounts and event.discounts|length > 0 and not is_free %}
+            <div class="discounts-box" style="margin-top: 14px; border: 1px solid var(--border); border-radius: 6px;">
+              <details open>
+                <summary style="padding: 10px 14px; font-weight: 700; color: var(--accent-blue); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                  🛡️ Zasady wstępu i ulgi ({{ event.discounts|length }})
+                </summary>
+                <ul class="discounts-list" style="list-style: none; padding: 4px 14px 12px; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                  {% for d in event.discounts %}
+                  <li style="display: flex; flex-direction: column; gap: 2px; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 6px;">
+                    <div class="disc-head" style="font-weight: 700; color: var(--text);">
+                      <span>{{ d.label or d.name }}</span>
+                      {% if d.val %}<span class="disc-val" style="color: var(--accent-green); float: right;">{{ d.val }}</span>{% endif %}
+                    </div>
+                    {% if d.desc %}<div class="disc-desc" style="font-size: 0.7rem; color: var(--text-muted); line-height: 1.3;">{{ d.desc }}</div>{% endif %}
+                  </li>
+                  {% endfor %}
+                </ul>
+              </details>
+            </div>
+            {% endif %}
+
+          </div>
+{% if event.nearby_gastro %}
         <div class="card">
           <h3>W okolicy (Gastro)</h3>
           {% for g in event.nearby_gastro %}
