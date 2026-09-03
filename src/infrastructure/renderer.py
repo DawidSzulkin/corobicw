@@ -1,19 +1,55 @@
 import json
-from datetime import datetime
 import os
-from pathlib import Path
+import re
 import shutil
-from typing import Any, Dict, List
+import unicodedata
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 from jinja2 import Environment, FileSystemLoader
 from src.core.models import FullEventPage
 
-def _resolve_strict_city_name(tag: str) -> str:
-    if not tag: return ""
-    cmap = {"kedzierzyn_kozle": "Kędzierzyn-Koźle", "opole": "Opole", "bielsko_biala": "Bielsko-Biała"}
-    return cmap.get(str(tag).lower(), str(tag).title().replace("_", "-"))
+CITY_NAMES = {
+    "kedzierzyn_kozle": "Kędzierzyn-Koźle",
+    "opole": "Opole",
+    "bielsko_biala": "Bielsko-Biała"
+}
 
-def _process_event_description_to_html(ev) -> str:
-    # Ekstrakcja surowego opisu z modelu lub słownika
+def _resolve_strict_city_name(tag: str) -> str:
+    if not tag:
+        return ""
+    norm = str(tag).lower().replace("-", "_")
+    return CITY_NAMES.get(norm, str(tag).title().replace("_", "-"))
+
+def resolve_canonical_city(tag: str) -> str:
+    return _resolve_strict_city_name(tag)
+
+META_LABELS = [
+    "Autor", "Autorka", "Autorzy", "Przekład", "Tłumaczenie",
+    "Reżyseria", "Scenografia", "Kostiumy", "Muzyka", "Światło",
+    "Choreografia", "Asystentka reżysera", "Asystent reżysera",
+    "Kierownictwo muzyczne", "Produkcja", "Kierownik produkcji",
+    "Obsada", "Występują", "Wykonawcy", "Artyści", "Prowadzenie",
+    "Wydarzenie poprowadzi", "Sponsorem wydarzenia jest",
+    "Informacje praktyczne", "Czas trwania", "Bramy", "Start", "Bilety"
+]
+
+RE_BR = re.compile(r'<br\s*/?>', re.IGNORECASE)
+RE_SPACES = re.compile(r'[ \u202f\u200b]+')
+RE_EMOJI = re.compile(r'[\U00010000-\U0010ffff\u2600-\u27ff]+')
+RE_PUNCT = re.compile(r'[\.!\?\n]')
+RE_DOUBLE_DOT = re.compile(r'\s*\.\s*\.')
+RE_MULTI_SPACE = re.compile(r'[ ]{2,}')
+RE_SENTENCE_SPLIT = re.compile(r'(?<=[.!?…])\s+')
+RE_PS = re.compile(r'(?<!\n)\s*(P\.S\..*)$', re.IGNORECASE)
+
+META_LABEL_PATTERNS = [
+    (re.compile(r'(?<!\n)\b' + re.escape(lbl) + r'\s*:', re.IGNORECASE), f'\n\n* **{lbl}:**')
+    for lbl in META_LABELS
+]
+
+def _process_event_description_to_html(ev: Any) -> str:
     raw_desc = ""
     analysis = getattr(ev, 'analysis', None) or (ev.get('analysis') if isinstance(ev, dict) else None)
     if analysis:
@@ -24,19 +60,18 @@ def _process_event_description_to_html(ev) -> str:
     if not raw_desc or len(str(raw_desc).strip()) < 5:
         return "<p>Brak szczegółowego opisu wydarzenia.</p>"
 
-    import re
     t = str(raw_desc).replace("\r", " ").replace("\t", " ")
-    t = re.sub(r'<br\s*/?>', '\n', t, flags=re.IGNORECASE)
-    t = re.sub(r'[ \u202f\u200b]', ' ', t)
+    t = RE_BR.sub('\n', t)
+    t = RE_SPACES.sub(' ', t)
 
-    # 1. Usuwanie spamu SEO (- więcej informacji)
+    # Usuwanie spamu SEO
     target = "więcej informacji"
     while target in t.lower():
         pos = t.lower().find(target)
         start_search = max(0, pos - 250)
         prefix = t[start_search:pos]
-        emoji_matches = list(re.finditer(r'[\U00010000-\U0010ffff\u2600-\u27ff]+', prefix))
-        punc_matches = list(re.finditer(r'[\.!\?\n]', prefix))
+        emoji_matches = list(RE_EMOJI.finditer(prefix))
+        punc_matches = list(RE_PUNCT.finditer(prefix))
         if emoji_matches:
             cut_start = start_search + emoji_matches[-1].start()
         elif punc_matches:
@@ -45,31 +80,20 @@ def _process_event_description_to_html(ev) -> str:
             cut_start = max(0, pos - 60)
         t = t[:cut_start].rstrip(" .-\t") + ". " + t[pos + len(target):].lstrip(" .-\t")
 
-    # 2. Standaryzacja etykiet
-    META_LABELS = [
-        "Autor", "Autorka", "Autorzy", "Przekład", "Tłumaczenie",
-        "Reżyseria", "Scenografia", "Kostiumy", "Muzyka", "Światło",
-        "Choreografia", "Asystentka reżysera", "Asystent reżysera",
-        "Kierownictwo muzyczne", "Produkcja", "Kierownik produkcji",
-        "Obsada", "Występują", "Wykonawcy", "Artyści", "Prowadzenie",
-        "Wydarzenie poprowadzi", "Sponsorem wydarzenia jest",
-        "Informacje praktyczne", "Czas trwania", "Bramy", "Start", "Bilety"
-    ]
-    for lbl in META_LABELS:
-        t = re.sub(r'(?<!\n)\b' + re.escape(lbl) + r'\s*:', f'\n\n* **{lbl}:**', t)
+    for pattern, repl in META_LABEL_PATTERNS:
+        t = pattern.sub(repl, t)
 
-    t = re.sub(r'(?<!\n)\s*(P\.S\..*)$', r'\n\n\1', t, flags=re.IGNORECASE)
-    t = re.sub(r'\s*\.\s*\.', '.', t)
-    t = re.sub(r'[ ]{2,}', ' ', t)
+    t = RE_PS.sub(r'\n\n\1', t)
+    t = RE_DOUBLE_DOT.sub('.', t)
+    t = RE_MULTI_SPACE.sub(' ', t)
 
-    # 3. Podział narracji na akapity (~160-240 znaków)
     raw_blocks = [b.strip() for b in t.split("\n") if b.strip()]
     final_paragraphs = []
     for block in raw_blocks:
         if block.startswith("*") or block.startswith("-"):
             final_paragraphs.append(block)
             continue
-        sentences = [s.strip() for s in re.split(r'(?<=[.!?…])\s+', block) if s.strip()]
+        sentences = [s.strip() for s in RE_SENTENCE_SPLIT.split(block) if s.strip()]
         curr_buf, curr_len = [], 0
         for s in sentences:
             if s.upper().startswith("P.S.") or s.upper().startswith("UWAGA"):
@@ -86,7 +110,6 @@ def _process_event_description_to_html(ev) -> str:
         if curr_buf:
             final_paragraphs.append(" ".join(curr_buf))
 
-    # 4. Generowanie semantycznego HTML
     html_parts = []
     for p in final_paragraphs:
         if p.startswith("* **"):
@@ -105,80 +128,20 @@ def _process_event_description_to_html(ev) -> str:
     res = re.sub(r'</ul>\s*<ul class="desc-list">', '', res)
     return res
 
-
-
-def _extract_raw_description(obj) -> str:
-    """Wyczerpująca ekstrakcja surowego opisu z obiektu/słownika dowolnego typu."""
-    if not obj:
-        return ""
-    
-    # Próba 1: analysis.full_description (obiekt)
-    analysis = getattr(obj, "analysis", None)
-    if analysis:
-        if hasattr(analysis, "full_description") and analysis.full_description:
-            return str(analysis.full_description)
-        if isinstance(analysis, dict) and analysis.get("full_description"):
-            return str(analysis["full_description"])
-        if isinstance(analysis, str):
-            try:
-                import json
-                a_dict = json.loads(analysis)
-                if isinstance(a_dict, dict) and a_dict.get("full_description"):
-                    return str(a_dict["full_description"])
-            except Exception:
-                pass
-
-    # Próba 2: direct description attribute / key
-    if hasattr(obj, "description") and obj.description:
-        return str(obj.description)
-    if isinstance(obj, dict):
-        if obj.get("description"):
-            return str(obj["description"])
-        if obj.get("raw_description"):
-            return str(obj["raw_description"])
-        if obj.get("full_description"):
-            return str(obj["full_description"])
-        # Zagnieżdżony słownik analysis
-        if isinstance(obj.get("analysis"), dict):
-            if obj["analysis"].get("full_description"):
-                return str(obj["analysis"]["full_description"])
-            if obj["analysis"].get("description"):
-                return str(obj["analysis"]["description"])
-
-    # Próba 3: raw_data JSON
-    raw_data = getattr(obj, "raw_data", None) or (obj.get("raw_data") if isinstance(obj, dict) else None)
-    if raw_data:
-        if isinstance(raw_data, str):
-            try:
-                import json
-                r_dict = json.loads(raw_data)
-                if isinstance(r_dict, dict) and r_dict.get("description"):
-                    return str(r_dict["description"])
-            except Exception:
-                pass
-        elif isinstance(raw_data, dict) and raw_data.get("description"):
-            return str(raw_data["description"])
-
-    return ""
-
-
-def resolve_canonical_city(tag: str) -> str:
-    if not tag:
-        return ""
-    return CITY_CANONICAL_MAP.get(str(tag).lower(), str(tag).title().replace("_", "-"))
-
-
 class HTMLRenderer:
-
     def __init__(self, template_dir: str = "templates"):
-        self.env = Environment(loader=FileSystemLoader(template_dir))
+        self.env = Environment(loader=FileSystemLoader(template_dir), auto_reload=False)
+        self._assets_synced = False
 
     def _sync_assets(self, output_dir: str):
+        if self._assets_synced:
+            return
         out_assets = Path(output_dir) / "assets"
         src_assets = Path("assets") if Path("assets").exists() else Path("docs/assets")
         if src_assets.exists():
             out_assets.mkdir(parents=True, exist_ok=True)
             shutil.copytree(src_assets, out_assets, dirs_exist_ok=True)
+        self._assets_synced = True
 
     def render_portal_hub(self, active_cities: List[Dict[str, str]], output_dir: str = "public"):
         out_path = Path(output_dir)
@@ -189,27 +152,34 @@ class HTMLRenderer:
         html_out = template.render(cities=active_cities)
 
         hub_file = out_path / "index.html"
-        with open(hub_file, "w", encoding="utf-8") as f:
-            f.write(html_out)
-        print(f"[RENDERER] Strona główna portalu (Wybór miast): {hub_file}")
+        hub_file.write_text(html_out, encoding="utf-8")
+        print(f"[RENDERER] Strona główna portalu: {hub_file}")
 
-    def render_city(self, city_name: str, city_tag: str, events: List[FullEventPage], places: Dict[str, Dict[str, Any]], output_dir: str = "public"):
+    def render_city(
+        self,
+        city_name: str,
+        city_tag: str,
+        events: List[FullEventPage],
+        places: Dict[str, Dict[str, Any]],
+        output_dir: str = "public"
+    ):
         city_dir = Path(output_dir) / city_tag
         events_dir = city_dir / "wydarzenia"
         places_dir = city_dir / "miejsca"
 
         self._sync_assets(output_dir)
 
-        # 1. Czyszczenie i renderowanie podstron wydarzeń
+        # 1. Czyszczenie i przygotowanie katalogu wydarzeń
         if events_dir.exists():
             shutil.rmtree(events_dir)
         events_dir.mkdir(parents=True, exist_ok=True)
 
+        strict_city = _resolve_strict_city_name(city_tag)
         event_template = self.env.get_template("event_page.html")
-        for ev in events:
+
+        def _write_single_event(ev: FullEventPage):
             single_folder = events_dir / ev.slug
             single_folder.mkdir(parents=True, exist_ok=True)
-            single_file = single_folder / "index.html"
             
             p_id = getattr(ev, 'place_id', None) or (ev.get('place_id') if isinstance(ev, dict) else None)
             if not p_id:
@@ -218,77 +188,87 @@ class HTMLRenderer:
                     t_inf = getattr(an_data, 'ticket_info', None) or (an_data.get('ticket_info') if isinstance(an_data, dict) else None)
                     if t_inf:
                         p_id = getattr(t_inf, 'place_id', None) or (t_inf.get('place_id') if isinstance(t_inf, dict) else None)
-            place_obj = places.get(p_id) if p_id else None
             
-            single_html = event_template.render(
-                formatted_description=_process_event_description_to_html(ev),
+            place_obj = places.get(p_id) if p_id else None
+            desc_html = _process_event_description_to_html(ev)
 
+            single_html = event_template.render(
+                formatted_description=desc_html,
                 ev=ev,
                 event=ev,
                 place=place_obj,
-                city=_resolve_strict_city_name(city_tag
-            ),
-                city_name=_resolve_strict_city_name(city_tag),
+                city=strict_city,
+                city_name=strict_city,
                 city_tag=city_tag
             )
-            with open(single_file, "w", encoding="utf-8") as f:
-                f.write(single_html)
+            (single_folder / "index.html").write_text(single_html, encoding="utf-8")
 
-        # 2. Czyszczenie i renderowanie podstron stałych miejsc
+        # Równoległy zapis podstron wydarzeń (Thread Pool)
+        with ThreadPoolExecutor(max_workers=min(16, (os.cpu_count() or 4) * 2)) as executor:
+            list(executor.map(_write_single_event, events))
+
+        # 2. Preindeksacja powiązań wydarzeń do miejsc w O(N) zamiast zagnieżdżonego O(M * N)
+        events_by_place: Dict[str, List[FullEventPage]] = {}
+        for ev in events:
+            ev_pid = getattr(ev, 'place_id', None)
+            if not ev_pid:
+                an = getattr(ev, 'analysis', None)
+                t_inf = getattr(an, 'ticket_info', None) if an else None
+                ev_pid = getattr(t_inf, 'place_id', None) if t_inf else None
+            if ev_pid:
+                events_by_place.setdefault(str(ev_pid), []).append(ev)
+
         places_dir.mkdir(parents=True, exist_ok=True)
 
-        # Pobranie konfiguracji premium venues
-        premium_venues = []
+        premium_venues = set()
         cfg_file = Path("config") / f"{city_tag}.yaml"
         if cfg_file.exists():
             import yaml
-            with open(cfg_file, "r", encoding="utf-8") as yf:
-                city_data = yaml.safe_load(yf) or {}
-                premium_venues = city_data.get("premium_venues", [])
-        
+            try:
+                with open(cfg_file, "r", encoding="utf-8") as yf:
+                    city_data = yaml.safe_load(yf) or {}
+                    premium_venues = set(city_data.get("premium_venues", []))
+            except Exception:
+                pass
+
         place_template = self.env.get_template("place_page.html")
         rendered_places = 0
-        for place_id, place_data in places.items():
-            upcoming = []
-            for ev in events:
-                ev_pid = getattr(ev, 'place_id', None)
-                analysis_pid = getattr(getattr(ev, 'analysis', None), 'ticket_info', None)
-                analysis_pid_val = getattr(analysis_pid, 'place_id', None) if analysis_pid else None
-                if ev_pid == place_id or analysis_pid_val == place_id:
-                    upcoming.append(ev)
-            
+
+        def _write_single_place(item):
+            place_id, place_data = item
+            upcoming = events_by_place.get(str(place_id), [])
             is_premium = place_id in premium_venues or place_data.get("group") in ["kultura", "theatre"]
             if not upcoming and not is_premium:
-                continue
-            
-            p_folder = places_dir / place_id
+                return False
+
+            p_folder = places_dir / str(place_id)
             p_folder.mkdir(parents=True, exist_ok=True)
-            p_file = p_folder / "index.html"
 
             p_html = place_template.render(
                 place=place_data,
                 upcoming_events=upcoming,
-                city=_resolve_strict_city_name(city_tag),
-                city_name=_resolve_strict_city_name(city_tag),
+                city=strict_city,
+                city_name=strict_city,
                 city_tag=city_tag
             )
-            with open(p_file, "w", encoding="utf-8") as f:
-                f.write(p_html)
-            rendered_places += 1
+            (p_folder / "index.html").write_text(p_html, encoding="utf-8")
+            return True
 
-        # 3. Renderowanie agendy miasta
+        with ThreadPoolExecutor(max_workers=min(16, (os.cpu_count() or 4) * 2)) as executor:
+            results = list(executor.map(_write_single_place, places.items()))
+            rendered_places = sum(1 for r in results if r)
+
+        # 3. Renderowanie agendy głównej miasta
         home_template = self.env.get_template("home.html")
         home_html = home_template.render(
             events=events,
-            city=_resolve_strict_city_name(city_tag),
-            city_name=_resolve_strict_city_name(city_tag),
+            city=strict_city,
+            city_name=strict_city,
             city_tag=city_tag
         )
-        home_file = city_dir / "index.html"
-        with open(home_file, "w", encoding="utf-8") as f:
-            f.write(home_html)
+        (city_dir / "index.html").write_text(home_html, encoding="utf-8")
 
-        print(f"[RENDERER] {city_name}: Wygenerowano {len(events)} wydarzeń oraz {rendered_places} wizytówek miejsc.")
+        print(f"[RENDERER] {city_name}: Wygenerowano {len(events)} podstron wydarzeń i {rendered_places} wizytówek miejsc.")
 
     def render_seo_files(self, output_dir: str = "public", base_url: str = "https://corobicw.pl") -> None:
         today_iso = datetime.now().strftime("%Y-%m-%d")
@@ -303,19 +283,14 @@ class HTMLRenderer:
         
         urls = sorted(set(urls))
 
-        # 1. Sitemap.xml
         xml_entries = "\n".join([
             f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{today_iso}</lastmod>\n  </url>"
             for u in urls
         ])
         sitemap_content = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{xml_entries}\n</urlset>'
-        
-        with open(out_path / "sitemap.xml", "w", encoding="utf-8") as f:
-            f.write(sitemap_content)
+        (out_path / "sitemap.xml").write_text(sitemap_content, encoding="utf-8")
 
-        # 2. Robots.txt
         robots_content = f"User-agent: *\nAllow: /\n\nSitemap: {base_url.rstrip('/')}/sitemap.xml\n"
-        with open(out_path / "robots.txt", "w", encoding="utf-8") as f:
-            f.write(robots_content)
+        (out_path / "robots.txt").write_text(robots_content, encoding="utf-8")
 
         print(f"[SEO] Wygenerowano sitemap.xml ({len(urls)} adresów) oraz robots.txt.")
