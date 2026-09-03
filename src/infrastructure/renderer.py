@@ -212,6 +212,12 @@ class HTMLRenderer:
             single_file = single_folder / "index.html"
             
             p_id = getattr(ev, 'place_id', None) or (ev.get('place_id') if isinstance(ev, dict) else None)
+            if not p_id:
+                an_data = getattr(ev, 'analysis', None) or (ev.get('analysis') if isinstance(ev, dict) else None)
+                if an_data:
+                    t_inf = getattr(an_data, 'ticket_info', None) or (an_data.get('ticket_info') if isinstance(an_data, dict) else None)
+                    if t_inf:
+                        p_id = getattr(t_inf, 'place_id', None) or (t_inf.get('place_id') if isinstance(t_inf, dict) else None)
             place_obj = places.get(p_id) if p_id else None
             
             single_html = event_template.render(

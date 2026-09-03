@@ -46,6 +46,7 @@ class EventAnalysis(BaseModel):
 
 
 class FullEventPage(BaseModel):
+    is_cancelled: bool = False
     slug: str
     title: str
     date_start: str

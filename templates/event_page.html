@@ -89,7 +89,17 @@
     .info-row { display: flex; margin-bottom: 12px; font-size: 0.9rem; align-items: baseline; }
     .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.5px; }
     .info-val { width: 65%; font-weight: 600; color: var(--text); }
-    .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    
+      .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+      .venue-link:hover { color: var(--accent-blue); }
+      
+      /* CANCELLED STATE STYLING */
+      .event-cancelled-banner { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+      .offer-box.cancelled-box { border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.04); }
+      .offer-tag.cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+      .offer-price-val.cancelled-text { color: #f87171; font-weight: 700; }
+      .offer-btn-buy.cancelled { background: #262626; color: #888888; border: 1px solid #444444; cursor: not-allowed; pointer-events: none; opacity: 0.75; }
+
     
     /* TICKET MARKET (CENEO STYLE) */
     .ticket-market-header { margin: 22px 0 12px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--border); padding-top: 16px; }
@@ -217,10 +227,11 @@
           <div class="info-row">
             <div class="info-label">Miejsce</div>
             <div class="info-val">
-              {% if event.place_id %}<a href="/{{ city_tag }}/miejsca/{{ event.place_id }}/" class="venue-link"><strong>{{ event.analysis.ticket_info.venue_name }}</strong></a>
-              {% else %}<strong>{{ event.analysis.ticket_info.venue_name }}</strong>{% endif %}
-              <br><small style="color: var(--text-muted);">{{ event.analysis.address }}</small>
-            </div>
+                {%- set venue_slug = event.place_id or (event.analysis.ticket_info.place_id if event.analysis and event.analysis.ticket_info else None) or (place.id if place else None) -%}
+                {%- set venue_title = (event.analysis.ticket_info.venue_name if event.analysis and event.analysis.ticket_info and event.analysis.ticket_info.venue_name else None) or (place.name if place else (event.venue or 'Miejsce wydarzenia')) -%}
+                {% if venue_slug %}<a href="/{{ city_tag }}/miejsca/{{ venue_slug }}/" class="venue-link"><strong>{{ venue_title }}</strong></a>{% else %}<strong>{{ venue_title }}</strong>{% endif %}
+                {%- if event.analysis and event.analysis.address %}<br><small style="color: var(--text-muted);">{{ event.analysis.address }}</small>{% elif place and place.address %}<br><small style="color: var(--text-muted);">{{ place.address }}</small>{% endif %}
+              </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">{{ event.analysis.quick_facts.parking }}</div></div>
 
@@ -231,25 +242,35 @@
             </div>
             <div class="offers-stack">
               {% for offer in event.ticket_offers %}
-              {% set is_free = ('wolny' in (offer.price|lower) or 'bezpłat' in (offer.price|lower) or 'za darmo' in (offer.price|lower)) %}
-              <div class="offer-box {% if loop.first and not is_free %}highlight{% endif %}">
-                <div class="offer-row">
-                  <div class="offer-info-col">
-                    <div class="offer-provider-line">
-                      <span class="offer-provider-name">{{ offer.provider }}</span>
-                      {% if offer.tag and not is_free %}<span class="offer-tag {{ offer.tag_class }}">{{ offer.tag }}</span>{% endif %}
+                {% set price_str = (offer.price or '') | lower %}
+                {% set is_cancelled = ('odwo' in price_str or 'cancel' in price_str) %}
+                {% set is_free = ('wolny' in price_str or 'bezpłat' in price_str or 'za darmo' in price_str) %}
+                <div class="offer-box {% if is_cancelled %}cancelled-box{% elif loop.first and not is_free %}highlight{% endif %}">
+                  <div class="offer-row">
+                    <div class="offer-info-col">
+                      <div class="offer-provider-line">
+                        <span class="offer-provider-name">{{ offer.provider }}</span>
+                        {% if is_cancelled %}
+                          <span class="offer-tag cancelled">Odwołane</span>
+                        {% elif offer.tag and not is_free %}
+                          <span class="offer-tag {{ offer.tag_class }}">{{ offer.tag }}</span>
+                        {% endif %}
+                      </div>
+                      <div class="offer-price-val {% if is_cancelled %}cancelled-text{% elif 'zł' not in offer.price and 'Od' not in offer.price %}text-mode{% endif %}">{{ offer.price }}</div>
                     </div>
-                    <div class="offer-price-val {% if 'zł' not in offer.price and 'Od' not in offer.price %}text-mode{% endif %}">{{ offer.price }}</div>
+                    <div class="offer-action-col">
+                      {% if is_cancelled %}
+                        <span class="offer-btn-buy cancelled" aria-disabled="true">Odwołane</span>
+                      {% else %}
+                        <a href="{{ offer.url }}" target="_blank" rel="nofollow noopener" 
+                           class="offer-btn-buy {% if loop.first and not is_free %}primary{% else %}secondary{% endif %}" 
+                           aria-label="{% if is_free %}Szczegóły wydarzenia: {{ event.title }}{% else %}Kup bilet na {{ event.title }} w {{ offer.provider }}{% endif %}">
+                          {% if is_free %}Szczegóły{% else %}Kup bilet{% endif %}
+                        </a>
+                      {% endif %}
+                    </div>
                   </div>
-                  <div class="offer-action-col">
-                    <a href="{{ offer.url }}" target="_blank" rel="nofollow noopener" 
-                       class="offer-btn-buy {% if loop.first and not is_free %}primary{% else %}secondary{% endif %}" 
-                       aria-label="{% if is_free %}Szczegóły wydarzenia: {{ event.title }}{% else %}Kup bilet na {{ event.title }} w {{ offer.provider }}{% endif %}">
-                      {% if is_free %}Szczegóły{% else %}Kup bilet{% endif %}
-                    </a>
-                  </div>
-                </div>
-                {% if not is_free and offer.discounts and offer.discounts|length > 0 %}
+                  {% if not is_free and offer.discounts and offer.discounts|length > 0 %}
                 <div class="bck-discounts-box">
                   <details>
                     <summary>Honorowane zniżki ({{ offer.discounts|length }})</summary>

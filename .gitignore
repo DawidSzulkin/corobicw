@@ -22,7 +22,8 @@ data/*.db
 debug_*.*
 diag_*.*
 inspect_*.*
-test_*.py
+/test_*.py
+!tests/**
 find_*.*
 *.log
 
