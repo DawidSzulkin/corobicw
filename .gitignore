@@ -55,3 +55,9 @@ CONTEXT.md
 
 # Wygenerowany portal statyczny (publikowany na gh-pages)
 public/
+
+data/http_cache/
+
+data/*.tmp
+
+*.tmp

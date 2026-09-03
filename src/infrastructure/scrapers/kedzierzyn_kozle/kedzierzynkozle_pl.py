@@ -1,3 +1,4 @@
+import concurrent.futures
 import os
 import re
 import sys
@@ -76,7 +77,6 @@ class KedzierzynKozlePlScraper(BaseScraper):
         return res
 
     def _fetch_description(self, relative_url: str) -> str:
-        """Pobiera wyłącznie pełny opis z podstrony (miniatura i adres są z listy)."""
         try:
             soup = self.get_soup(relative_url)
             article = soup.select_one(".field-name-body, .node-content, #content")
@@ -86,21 +86,18 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 if valid_paragraphs:
                     return "\n\n".join(valid_paragraphs)
                 return article.get_text(separator="\n\n", strip=True)[:600]
-        except Exception as e:
-            print(f"[{self.source_name}] Błąd pobierania opisu {relative_url}: {e}")
+        except Exception:
+            pass
         return ""
 
-    def scrape_month(self, year: int, month: int, today_iso: str) -> List[Dict[str, Any]]:
+    def scrape_month_cards(self, year: int, month: int, today_iso: str) -> List[Dict[str, Any]]:
         url = f"/pl/calendar-node-field-date/month/{year}-{month:02d}"
-        print(f"[{self.source_name}] Skanowanie kalendarza: {year}-{month:02d}")
-
         try:
             soup = self.get_soup(url)
-        except Exception as e:
-            print(f"[{self.source_name}] Błąd pobierania kalendarza: {e}")
+        except Exception:
             return []
 
-        new_events = []
+        parsed_items = []
         rows = soup.select('.view-Wydarzenia .views-row')
 
         for row in rows:
@@ -133,11 +130,7 @@ class KedzierzynKozlePlScraper(BaseScraper):
             raw_image = img_el.get('src') if img_el else ""
             thumb_path = self.save_thumbnail(raw_image, title, prefix="kk") if raw_image else ""
 
-            description = self._fetch_description(relative_url)
-            if not description:
-                description = f"Wydarzenie w Kędzierzynie-Koźlu: {title}."
-
-            new_events.append({
+            parsed_items.append({
                 "title": title,
                 "date_start": date_meta['start_date'],
                 "date_end": date_meta['end_date'],
@@ -145,26 +138,40 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 "venue": venue,
                 "address": f"{venue}, Kędzierzyn-Koźle" if "Kędzierzyn" not in venue else venue,
                 "price_range": "Wstęp wolny / Sprawdź bilety",
-                "description": description,
                 "image_url": thumb_path or raw_image or "/assets/placeholder.svg",
                 "source_url": full_url,
                 "source": self.source_name,
-                "organizer": "Urząd Miasta Kędzierzyn-Koźle"
+                "organizer": "Urząd Miasta Kędzierzyn-Koźle",
+                "_rel_url": relative_url
             })
 
-        return new_events
+        return parsed_items
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         self.seen_urls.clear()
         today_iso = datetime.now().strftime("%Y-%m-%d")
         now = datetime.now()
-        all_events = []
+        raw_events = []
 
         for offset in range(3):
             target_month = (now.month - 1 + offset) % 12 + 1
             target_year = now.year + ((now.month - 1 + offset) // 12)
-            events = self.scrape_month(target_year, target_month, today_iso)
-            all_events.extend(events)
+            events = self.scrape_month_cards(target_year, target_month, today_iso)
+            raw_events.extend(events)
 
-        print(f"[{self.source_name}] Łącznie pobrano {len(all_events)} unikalnych wydarzeń.")
-        return all_events
+        print(f"[{self.source_name}] Równoległe pobieranie opisów dla {len(raw_events)} wydarzeń...")
+        
+        def _enrich_desc(item: dict) -> dict:
+            rel_url = item.pop("_rel_url", "")
+            desc = self._fetch_description(rel_url) if rel_url else ""
+            if not desc:
+                desc = f"Wydarzenie w Kędzierzynie-Koźlu: {item['title']}."
+            item["description"] = desc
+            return item
+
+        final_events = []
+        with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+            final_events = list(executor.map(_enrich_desc, raw_events))
+
+        print(f"[{self.source_name}] Łącznie pobrano {len(final_events)} unikalnych wydarzeń.")
+        return final_events

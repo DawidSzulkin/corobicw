@@ -1,3 +1,4 @@
+import concurrent.futures
 import html
 import re
 import urllib.parse
@@ -61,12 +62,13 @@ class KupBilecikPlScraper(BaseScraper):
             return match.group(1).replace(".", ":")
         return "19:00"
 
-    def _scrape_detail_page(self, event_url: str, fallback_title: str, fb_date: str, fb_time: str, fb_venue: str) -> Optional[Dict[str, Any]]:
+    def _scrape_detail_page(self, item_tuple: tuple) -> Optional[Dict[str, Any]]:
+        event_url, fallback_title, fb_date, fb_time, fb_venue = item_tuple
         try:
             resp = self.session.get(
                 event_url,
                 headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"},
-                timeout=(3.05, 10)
+                timeout=(3.05, 8.0)
             )
             if resp.status_code != 200:
                 return None
@@ -127,17 +129,11 @@ class KupBilecikPlScraper(BaseScraper):
             description = ""
             desc_container = soup.select_one(".box-tresc, .wyd-tresc, .wyd-opis, article, .description-content")
             if desc_container:
-                # Usuniecie skryptow i stylow psujacych tekst
                 for ext in desc_container.select("script, style"):
                     ext.decompose()
                 
                 raw_text = desc_container.get_text("\n", strip=True)
-                desc_parts = []
-                for line in raw_text.split("\n"):
-                    line = line.strip()
-                    if line and not any(ign in line.lower() for ign in ["regulamin", "cookies", "kup bilet"]):
-                        desc_parts.append(line)
-                
+                desc_parts = [line.strip() for line in raw_text.split("\n") if line.strip() and not any(ign in line.lower() for ign in ["regulamin", "cookies", "kup bilet"])]
                 description = "\n\n".join(desc_parts)
             if not description:
                 meta_desc = soup.select_one("meta[name='description'], meta[property='og:description']")
@@ -182,8 +178,7 @@ class KupBilecikPlScraper(BaseScraper):
                 "category": "Kultura i Rozrywka",
                 "city_tag": self.city_tag
             }
-        except Exception as e:
-            print(f"[{self.source_name}] Błąd podstrony {event_url}: {e}")
+        except Exception:
             return None
 
     def fetch_events(self) -> List[Dict[str, Any]]:
@@ -192,7 +187,7 @@ class KupBilecikPlScraper(BaseScraper):
             resp = self.session.get(
                 self.events_url,
                 headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"},
-                timeout=(3.05, 10)
+                timeout=(3.05, 8.0)
             )
             if resp.status_code != 200:
                 return events
@@ -205,7 +200,6 @@ class KupBilecikPlScraper(BaseScraper):
                 title_fallback = ""
                 href = ""
                 
-                # Kluczowa poprawka: szukamy PRAWIDŁOWEGO linku, ignorujemy przyciski "Kup bilet"
                 for a in card.select("a[href*='/imprezy/']"):
                     txt = a.get_text(strip=True)
                     if txt and txt.lower() not in ["informacje", "kup bilet", "bilety", "kup bilety"]:
@@ -241,13 +235,14 @@ class KupBilecikPlScraper(BaseScraper):
 
                     urls_to_scrape.append((full_url, title_fallback, fb_date, fb_time, fb_venue))
 
-            print(f"[{self.source_name}] Pobieranie szczegółów dla {len(urls_to_scrape)} wydarzeń...")
-            for full_url, title_fallback, fb_date, fb_time, fb_venue in urls_to_scrape:
-                ev = self._scrape_detail_page(full_url, title_fallback, fb_date, fb_time, fb_venue)
-                if ev:
-                    events.append(ev)
+            print(f"[{self.source_name}] Równoległe pobieranie detali dla {len(urls_to_scrape)} wydarzeń ({self.city_tag})...")
+            with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+                results = executor.map(self._scrape_detail_page, urls_to_scrape)
+                for ev in results:
+                    if ev:
+                        events.append(ev)
         except Exception as e:
             print(f"[{self.source_name}] Błąd parsera głównego: {e}")
 
-        print(f"[{self.source_name}] Zakończono. Pobrano {len(events)} zweryfikowanych wydarzeń.")
+        print(f"[{self.source_name}] Zakończono dla '{self.city_tag}'. Pobrano {len(events)} wydarzeń.")
         return events

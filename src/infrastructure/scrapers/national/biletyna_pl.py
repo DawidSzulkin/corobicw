@@ -1,3 +1,4 @@
+import concurrent.futures
 import json
 import os
 import re
@@ -149,10 +150,11 @@ class BiletynaPlScraper(BaseScraper):
             "city_tag": self.city_tag
         }
 
-    def _scrape_detail_page(self, event_url: str, fallback_title: str) -> List[Dict[str, Any]]:
+    def _scrape_detail_page(self, item_tuple: tuple) -> List[Dict[str, Any]]:
+        event_url, fallback_title = item_tuple
         page_events = []
         try:
-            resp = self.session.get(event_url, timeout=(3.05, 10))
+            resp = self.session.get(event_url, timeout=(3.05, 8.0))
             if resp.status_code != 200:
                 return page_events
             soup = BeautifulSoup(resp.content, "html.parser")
@@ -167,23 +169,19 @@ class BiletynaPlScraper(BaseScraper):
             global_img = ""
             global_venue = ""
 
-            # 1. Scrapowanie DOM (Główny tekst)
             desc_el = soup.select_one("#artist-view-description, .description-text, .event-description, .desc, .description, #description, .event-details")
             if desc_el:
                 global_desc = desc_el.get_text("\n", strip=True)
 
-            # 2. Scrapowanie JSON-LD (Uzupełnienie / Fallback)
             for s in soup.find_all("script", type="application/ld+json"):
                 if not s.string:
                     continue
                 try:
-                    import json
                     schema = json.loads(s.string.strip())
                     items = schema if isinstance(schema, list) else [schema]
                     for item in items:
                         if isinstance(item, dict):
                             desc = item.get("description")
-                            # Podmiana tylko jesli JSON ma dluzy tekst niz DOM
                             if desc and len(desc) > len(global_desc):
                                 global_desc = desc.strip()
                             img = item.get("image")
@@ -223,7 +221,7 @@ class BiletynaPlScraper(BaseScraper):
     def fetch_events(self) -> List[Dict[str, Any]]:
         events = []
         try:
-            resp = self.session.get(self.events_url, timeout=(3.05, 10))
+            resp = self.session.get(self.events_url, timeout=(3.05, 8.0))
             if resp.status_code != 200:
                 return events
             soup = BeautifulSoup(resp.content, "html.parser")
@@ -245,9 +243,12 @@ class BiletynaPlScraper(BaseScraper):
                     seen_urls.add(full_url)
                     urls_to_scrape.append((full_url, link.get_text(strip=True)))
 
-            print(f"[{self.source_name}] Pobieranie detali dla {len(urls_to_scrape)} unikalnych stron...")
-            for full_url, fallback_title in urls_to_scrape:
-                events.extend(self._scrape_detail_page(full_url, fallback_title))
+            print(f"[{self.source_name}] Równoległe pobieranie detali dla {len(urls_to_scrape)} stron ({self.city_tag})...")
+            with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+                results = executor.map(self._scrape_detail_page, urls_to_scrape)
+                for res in results:
+                    if res:
+                        events.extend(res)
         except Exception as e:
             print(f"[{self.source_name}] Błąd głównego parsera: {e}")
             
