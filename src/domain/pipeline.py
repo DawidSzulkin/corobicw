@@ -684,7 +684,7 @@ def _prepare_full_event_pages(
         slug = _generate_event_slug(title, date_start, time_start, seen_slugs)
         
         matched_place = _resolve_place(e, places_by_id, city_cfg)
-        resolved_pid = matched_place.get("id") if matched_place else (e.get("place_id") or analysis_raw.get("ticket_info", {}).get("place_id"))
+        resolved_pid = ((matched_place.get("place_id") or matched_place.get("id") or matched_place.get("slug")) if matched_place else None) or e.get("place_id") or analysis_raw.get("ticket_info", {}).get("place_id")
         
         if matched_place:
             venue_name = _sanitize_llm_string(matched_place.get("name", "Wydarzenie"))
@@ -752,6 +752,16 @@ def _prepare_full_event_pages(
             elif isinstance(o, TicketOffer):
                 parsed_offers.append(o)
 
+        # Detekcja stanu odwołania wydarzenia
+        price_check = (raw_price_str or "").lower()
+        title_check = title.lower()
+        offers_check = any("odwo" in (o.get("price") or "").lower() or "cancel" in (o.get("price") or "").lower() for o in (e.get("ticket_offers") or []))
+        is_cancelled_flag = bool(
+            "odwo" in price_check or "cancel" in price_check or
+            "odwo" in title_check or "cancel" in title_check or
+            offers_check or e.get("status") == "cancelled"
+        )
+
         quick_facts = QuickFacts(
             duration=_sanitize_llm_string(analysis_raw.get("quick_facts", {}).get("duration", "~2h")),
             age_rating=_sanitize_llm_string(analysis_raw.get("quick_facts", {}).get("age_rating", "Wszyscy")),
@@ -789,7 +799,8 @@ def _prepare_full_event_pages(
             place_id=resolved_pid,
             analysis=analysis_obj,
             nearby_gastro=nearby_gastro,
-            ticket_offers=parsed_offers
+            ticket_offers=parsed_offers,
+            is_cancelled=is_cancelled_flag
         )
         models.append(event_obj)
 

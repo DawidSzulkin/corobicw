@@ -99,7 +99,11 @@
 .leaflet-popup-content b { color: #38bdf8 !important; }
 .leaflet-control-zoom a { background-color: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
 
-</style>
+
+      .event-card-mini.cancelled { opacity: 0.70; border-left: 3px solid #ef4444; }
+      .badge-cancelled-mini { color: #f87171; font-weight: 700; font-size: 0.8rem; }
+
+    </style>
 </head>
 <body>
   {% set addr = place.address if place.address is mapping else {} %}
@@ -132,12 +136,18 @@
         <h3 style="margin-bottom: 16px; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;">Nadchodzące wydarzenia ({{ upcoming_events|length }})</h3>
         {% if upcoming_events %}
           {% for ev in upcoming_events %}
-          <a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/" class="event-card-mini">
+          <a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/" class="event-card-mini {% if ev.is_cancelled %}cancelled{% endif %}">
             <img src="{{ ev.image_url }}" alt="{{ ev.title }}" class="event-thumb-mini" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&q=80'">
             <div>
               <div class="event-meta-mini">{{ ev.date_formatted }} &bull; {{ ev.analysis.ticket_info.time_start }}</div>
               <div class="event-title-mini">{{ ev.title }}</div>
-              <div class="event-meta-mini" style="color: var(--text);">{{ ev.analysis.ticket_info.price_range }}</div>
+              <div class="event-meta-mini" style="color: var(--text);">
+                  {% if ev.is_cancelled %}
+                    <span class="badge-cancelled-mini">⚠️ Występ odwołany</span>
+                  {% else %}
+                    {{ ev.analysis.ticket_info.price_range }}
+                  {% endif %}
+                </div>
             </div>
           </a>
           {% endfor %}

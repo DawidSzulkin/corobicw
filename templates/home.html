@@ -262,7 +262,12 @@
       cursor: pointer;
     }
 
-  </style>
+  
+      .event-card.cancelled { opacity: 0.72; border-color: rgba(239, 68, 68, 0.35); }
+      .event-card.cancelled:hover { border-color: rgba(239, 68, 68, 0.7); }
+      .badge-cancelled-pill { background: rgba(239, 68, 68, 0.18); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 1px 6px; border-radius: 3px; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.5px; display: inline-block; margin-right: 6px; vertical-align: middle; }
+
+    </style>
 </head>
 <body>
   <header>
@@ -290,7 +295,7 @@
     <div id="events-agenda">
       {% for ev in events %}
         <article class="event-item" data-start="{{ ev.date_start }}" data-end="{{ ev.date_end }}">
-          <div class="event-card">
+          <div class="event-card {% if ev.is_cancelled %}cancelled{% endif %}">
             <div class="thumb-wrap">
               <div class="date-badge">
                 <span class="day">{{ ev.date_start.split('-')[2] }}</span>
@@ -305,7 +310,7 @@
             <div class="event-content">
               <div class="text-container">
                 <div class="meta-top">
-                      <span class="badge-container"></span>
+                      <span class="badge-container">{% if ev.is_cancelled %}<span class="badge-cancelled-pill">ODWOŁANE</span>{% endif %}</span>
                       <span class="cat-accent">{{ ev.analysis.category }}</span>
                       <span>&bull;</span>
                       <span class="date-accent">{{ ev.date_formatted }}</span>
@@ -316,7 +321,7 @@
                 <p class="event-desc">{{ ev.analysis.full_description }}</p>
               </div>
               <div class="meta-bottom">
-                <span class="price">{{ ev.analysis.ticket_info.price_range }}</span>
+                <span class="price">{% if ev.is_cancelled %}<del style="color: var(--text-muted); margin-right: 6px;">{{ ev.analysis.ticket_info.price_range }}</del><span style="color: #f87171; font-weight: 700;">Występ odwołany</span>{% else %}{{ ev.analysis.ticket_info.price_range }}{% endif %}</span>
                 <span class="arrow-link">Szczegóły &rarr;</span>
               </div>
             </div>
