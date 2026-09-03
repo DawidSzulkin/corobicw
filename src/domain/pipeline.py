@@ -827,8 +827,7 @@ def run_city_pipeline(
     renderer: HTMLRenderer,
     output_dir: str = "public",
     render_only: bool = False,
-    source_filter: Optional[str] = None,
-    skip_enrich: bool = False
+    source_filter: Optional[str] = None
 ) -> None:
     raw_tag = city_cfg.get("city_tag", "").strip()
     city_name = city_cfg.get("city", "").strip()

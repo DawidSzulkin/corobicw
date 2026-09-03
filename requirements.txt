@@ -2,11 +2,9 @@ beautifulsoup4
 Jinja2
 pillow
 pydantic
-pytesseract
 pytest
 pytest-cov
 PyYAML
-rapidocr_onnxruntime
 requests
 requests-cache
 urllib3
