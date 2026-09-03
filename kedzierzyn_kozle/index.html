@@ -1,0 +1,2720 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Wydarzeń: Kędzierzyn-Koźle | CoRobićW</title>
+  <meta name="description" content="Aktualny harmonogram spektakli, koncertów i wydarzeń w Kędzierzyn-Koźle.">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <style>
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
+      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
+      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+      --badge-bg: #000000; --badge-text: #ffffff; --badge-month: #e4e4e7;
+      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
+    }
+    :root[data-theme="light"] {
+      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
+      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
+      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+      --badge-bg: #09090b; --badge-text: #ffffff; --badge-month: #f8fafc;
+      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+      -webkit-font-smoothing: antialiased; font-size: 16px;
+    }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; }
+    
+    .filter-bar { display: flex; gap: 8px; overflow-x: auto; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 28px; scrollbar-width: none; }
+    .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 8px 18px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; white-space: nowrap; }
+    .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
+    .filter-btn.active { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
+
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      display: flex;
+      position: relative;
+      height: 176px;
+      overflow: hidden;
+      border-radius: 4px;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .event-card:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(3px); }
+
+    .thumb-wrap {
+      width: 220px;
+      min-width: 220px;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background: #000000;
+      flex-shrink: 0;
+    }
+    .thumb-bg {
+      position: absolute;
+      top: -10%; left: -10%; width: 120%; height: 120%;
+      object-fit: cover;
+      filter: blur(14px) brightness(0.35);
+      transform: scale(1.1);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .thumb-fg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      z-index: 2;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .event-card:hover .thumb-fg { transform: scale(1.03); }
+
+    .date-badge {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 56px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 12px;
+      text-align: center;
+      line-height: 1.05;
+      z-index: 3;
+    }
+    .date-badge .day {
+      font-size: 1.35rem;
+      font-weight: 900;
+      display: block;
+      letter-spacing: -0.5px;
+    }
+    .date-badge .month {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      color: var(--badge-month);
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .event-content {
+      padding: 10px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+    .text-container {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .meta-top {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .tag-highlight {
+      background: var(--tag-inv-bg);
+      color: var(--tag-inv-text);
+      padding: 2px 6px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    .event-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 3px;
+      letter-spacing: -0.3px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .event-title a { color: var(--text); text-decoration: none; }
+    .event-title a::after { content: ""; position: absolute; inset: 0; z-index: 10; }
+    
+    /* GRADIENTOWE ZANIKANIE TEKSTU */
+    .event-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      max-height: 2.7em; /* 1.35 * 2 = 2.7 */
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 1;
+    }
+    .event-desc::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 22%;
+      height: 1.35em;
+      background: linear-gradient(to right, transparent 0%, var(--card-bg) 85%);
+      pointer-events: none;
+    }
+    .event-card:hover .event-desc::after {
+      background: linear-gradient(to right, transparent 0%, var(--card-hover) 85%);
+    }
+    
+    .meta-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .price { font-weight: 800; color: var(--text); }
+    .arrow-link { font-weight: 800; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; color: var(--text-muted); }
+    .event-card:hover .arrow-link { color: var(--text); }
+
+    @media (max-width: 768px) {
+      .event-card { height: auto; flex-direction: column; }
+      .thumb-wrap { width: 100%; min-width: 100%; height: 200px; }
+      .btn-nav { display: none; }
+    }
+
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+  
+    .cat-accent { color: #34d399; font-weight: 800; letter-spacing: 0.5px; }
+    .date-accent { color: var(--text); font-weight: 700; }
+    .time-accent { color: #34d399; font-weight: 800; }
+
+  
+    .event-card .event-desc {
+      cursor: pointer;
+    }
+
+  
+    .event-card {
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .event-card img,
+    .event-card .event-image,
+    .event-card .date-badge {
+      pointer-events: none;
+      -webkit-user-drag: none;
+      user-drag: none;
+      user-select: none;
+    }
+    .event-card * {
+      cursor: pointer;
+    }
+
+  
+      .event-card.cancelled { opacity: 0.72; border-color: rgba(239, 68, 68, 0.35); }
+      .event-card.cancelled:hover { border-color: rgba(239, 68, 68, 0.7); }
+      .badge-cancelled-pill { background: rgba(239, 68, 68, 0.18); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 1px 6px; border-radius: 3px; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.5px; display: inline-block; margin-right: 6px; vertical-align: middle; }
+
+    </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/kedzierzyn_kozle/" class="brand">CoRobićW <span>Kędzierzyn-Koźle</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
+          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
+        </button>
+        <a href="/" class="btn-nav">Miasta</a>
+        <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <nav class="breadcrumbs">
+      <a href="/">Polska</a><span>/</span><span class="current">Kędzierzyn-Koźle</span>
+    </nav>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
+      <button class="filter-btn" onclick="filterEvents('today', this)">Dzisiaj</button>
+      <button class="filter-btn" onclick="filterEvents('tomorrow', this)">Jutro</button>
+      <button class="filter-btn" onclick="filterEvents('weekend', this)">W ten weekend</button>
+    </div>
+    <div id="events-agenda">
+      
+        <article class="event-item" data-start="2026-09-01" data-end="2026-09-03">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">01</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy.webp" class="thumb-fg" alt="Plakat: Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy?"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 1 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:30</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy-2026-09-01/">Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy?"</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy".</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-01" data-end="2026-09-30">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">01</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/placeholder.svg" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/placeholder.svg" class="thumb-fg" alt="Plakat: Jesienna Zabawa Biegowa" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 1 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">Według harmonogramu</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/jesienna-zabawa-biegowa-2026-09-01/">Jesienna Zabawa Biegowa</a></h3>
+                <p class="event-desc">Wydarzenie sportowe MOSiR Kędzierzyn-Koźle: Jesienna Zabawa Biegowa. Termin: wrzesień/październik.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Cennik obiektu</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">04</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/mbpkk_narodowe-czytanie-dziady-adama-mickiewicza.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/mbpkk_narodowe-czytanie-dziady-adama-mickiewicza.webp" class="thumb-fg" alt="Plakat: Narodowe Czytanie – „Dziady” Adama Mickiewicza" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 4 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">12:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/narodowe-czytanie-dziady-adama-mickiewicza-2026-09-04/">Narodowe Czytanie – „Dziady” Adama Mickiewicza</a></h3>
+                <p class="event-desc">Patrycja Mynarek
+
+2026-08-21T08:49:40+02:00
+
+Termin: 04.09.2026 r., godz. 12:00</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp bezpłatny</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-04" data-end="2026-09-04">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">04</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_letnie-kino-plenerowe-skomplikowani.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_letnie-kino-plenerowe-skomplikowani.webp" class="thumb-fg" alt="Plakat: Letnie kino plenerowe – „Skomplikowani”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 4 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">21:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/letnie-kino-plenerowe-skomplikowani-2026-09-04/">Letnie kino plenerowe – „Skomplikowani”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Letnie kino plenerowe – „Skomplikowani”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-05" data-end="2026-09-05">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">05</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-fg" alt="Plakat: parkrun Kędzierzyn-Koźle" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 5 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/parkrun-kedzierzyn-kozle-2026-09-05/">parkrun Kędzierzyn-Koźle</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: parkrun Kędzierzyn-Koźle.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-05" data-end="2026-09-05">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">05</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_bababoo-20-grand-opening.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_bababoo-20-grand-opening.webp" class="thumb-fg" alt="Plakat: Bababoo 2.0 Grand opening" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 5 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">22:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/bababoo-20-grand-opening-2026-09-05/">Bababoo 2.0 Grand opening</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Bababoo 2.0 Grand opening.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-06" data-end="2026-09-06">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">06</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/mbpkk_koncert-pt-wsrod-zieleni.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/mbpkk_koncert-pt-wsrod-zieleni.webp" class="thumb-fg" alt="Plakat: Koncert pt. „Wśród zieleni”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 6 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">16:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/koncert-pt-wsrod-zieleni-2026-09-06/">Koncert pt. „Wśród zieleni”</a></h3>
+                <p class="event-desc">Patrycja Mynarek
+
+2026-09-01T10:31:59+02:00
+
+Termin: 06.09.2026 r., godz. 16:00</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp bezpłatny</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-07" data-end="2026-09-07">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">07</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_podsumowanie-akcji-goraczka-zlota-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_podsumowanie-akcji-goraczka-zlota-2026.webp" class="thumb-fg" alt="Plakat: Podsumowanie akcji „GORĄCZKA ZŁOTA 2026”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Poniedziałek, 7 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">11:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/podsumowanie-akcji-goraczka-zlota-2026-2026-09-07/">Podsumowanie akcji „GORĄCZKA ZŁOTA 2026”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Podsumowanie akcji „GORĄCZKA ZŁOTA 2026”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-08" data-end="2026-09-08">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">08</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_dni-seniora-2026-wycieczka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_dni-seniora-2026-wycieczka.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 – wycieczka" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 8 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">Według harmonogramu</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-wycieczka-2026-09-08/">Dni Seniora 2026 – wycieczka</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 – wycieczka.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-08" data-end="2026-09-10">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">08</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej.webp" class="thumb-fg" alt="Plakat: Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 8 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:30</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej-2026-09-08/">Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-08" data-end="2026-09-08">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">08</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_dni-seniora-2026-taniec-pokolen-na-rynku-w-kozlu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_dni-seniora-2026-taniec-pokolen-na-rynku-w-kozlu.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 – Taniec pokoleń na Rynku w Koźlu" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 8 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">13:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-taniec-pokolen-na-rynku-w-kozlu-2026-09-08/">Dni Seniora 2026 – Taniec pokoleń na Rynku w Koźlu</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 – Taniec pokoleń na Rynku w Koźlu.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-08" data-end="2026-09-08">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">08</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/mbpkk_spotkanie-autorskie-z-magdalena-woch.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/mbpkk_spotkanie-autorskie-z-magdalena-woch.webp" class="thumb-fg" alt="Plakat: Spotkanie autorskie z Magdaleną Woch" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 8 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">16:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/spotkanie-autorskie-z-magdalena-woch-2026-09-08/">Spotkanie autorskie z Magdaleną Woch</a></h3>
+                <p class="event-desc">Anna Śliwińska
+
+2026-08-24T12:48:22+02:00
+
+Termin: 08.09.2026 r., godz. 16:00</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp bezpłatny</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-09" data-end="2026-09-18">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">09</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_dni-seniora-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_dni-seniora-2026.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Środa, 9 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">Według harmonogramu</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-2026-09-09/">Dni Seniora 2026</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-09" data-end="2026-09-09">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">09</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_podroze-sabiny-nowosielskiej-prezydent-jakiej-nie-znacie.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_podroze-sabiny-nowosielskiej-prezydent-jakiej-nie-znacie.webp" class="thumb-fg" alt="Plakat: Podróże Sabiny Nowosielskiej - Prezydent, jakiej nie znacie!" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Środa, 9 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/podroze-sabiny-nowosielskiej-prezydent-jakiej-nie-znacie-2026-09-09/">Podróże Sabiny Nowosielskiej - Prezydent, jakiej nie znacie!</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Podróże Sabiny Nowosielskiej - Prezydent, jakiej nie znacie!.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-11" data-end="2026-09-13">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">11</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_iv-runda-final-mistrzostw-polski-modeli-plywajacych-klas-m.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_iv-runda-final-mistrzostw-polski-modeli-plywajacych-klas-m.webp" class="thumb-fg" alt="Plakat: IV Runda Finał Mistrzostw Polski Modeli Pływających Klas M" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 11 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/iv-runda-final-mistrzostw-polski-modeli-plywajacych-klas-m-2026-09-11/">IV Runda Finał Mistrzostw Polski Modeli Pływających Klas M</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: IV Runda Finał Mistrzostw Polski Modeli Pływających Klas M.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-12" data-end="2026-09-12">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">12</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-fg" alt="Plakat: parkrun Kędzierzyn-Koźle" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 12 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/parkrun-kedzierzyn-kozle-2026-09-12/">parkrun Kędzierzyn-Koźle</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: parkrun Kędzierzyn-Koźle.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-12" data-end="2026-09-12">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">12</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_militarny-dzien-otwarty-ramie-w-ramie-z-wojskiem-3.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_militarny-dzien-otwarty-ramie-w-ramie-z-wojskiem-3.webp" class="thumb-fg" alt="Plakat: Militarny Dzień Otwarty ,,RAMIĘ W RAMIĘ z Wojskiem 3"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 12 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">13:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/militarny-dzien-otwarty-ramie-w-ramie-z-wojskiem-3-2026-09-12/">Militarny Dzień Otwarty ,,RAMIĘ W RAMIĘ z Wojskiem 3"</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Militarny Dzień Otwarty ,,RAMIĘ W RAMIĘ z Wojskiem 3".</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-12" data-end="2026-09-12">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">12</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_rekrutrun-zaprawa-3k-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_rekrutrun-zaprawa-3k-2026.webp" class="thumb-fg" alt="Plakat: RekrutRUN - Zaprawa 3K 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 12 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">15:40</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rekrutrun-zaprawa-3k-2026-2026-09-12/">RekrutRUN - Zaprawa 3K 2026</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: RekrutRUN - Zaprawa 3K 2026.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-12" data-end="2026-09-12">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">12</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_kkoffeina-szarlota.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_kkoffeina-szarlota.webp" class="thumb-fg" alt="Plakat: KKoffeina – "Szarlota"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 12 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/kkoffeina-szarlota-2026-09-12/">KKoffeina – "Szarlota"</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: KKoffeina – "Szarlota".</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-12" data-end="2026-09-12">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">12</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/mok_kk_letni-plener-malarski-w-slawiecicach.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/mok_kk_letni-plener-malarski-w-slawiecicach.webp" class="thumb-fg" alt="Plakat: Letni Plener Malarski w Slawięcicach" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 12 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">10:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/letni-plener-malarski-w-slawiecicach-2026-09-12/">Letni Plener Malarski w Slawięcicach</a></h3>
+                <p class="event-desc">Letni Plener Malarski w Slawięcicach Data i godzina wydarzenia: 12.09.2026 r. godz. 10.00 -14.00, Park Pojednania Serdecznie zapraszamy na Letni Plener Malarski, który odbędzie się 12.09 w Parku w Sławięcicach. Koszt udziału w plenerze - 100 zł Ilosć miejsc jest ograniczona. +</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">100 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-13" data-end="2026-09-13">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">13</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/placeholder.svg" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/placeholder.svg" class="thumb-fg" alt="Plakat: Bieg GAZ-SYSTEM na piątkę!" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 13 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">Według harmonogramu</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/bieg-gaz-system-na-piatke-2026-09-13/">Bieg GAZ-SYSTEM na piątkę!</a></h3>
+                <p class="event-desc">Wydarzenie sportowe MOSiR Kędzierzyn-Koźle: Bieg GAZ-SYSTEM na piątkę!. Termin: 13 września.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Cennik obiektu</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-13" data-end="2026-09-13">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">13</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_candle-live-music-koncert-przy-swiecach.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_candle-live-music-koncert-przy-swiecach.webp" class="thumb-fg" alt="Plakat: Candle Live Music: Koncert przy świecach" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 13 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:30</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/candle-live-music-koncert-przy-swiecach-2026-09-13/">Candle Live Music: Koncert przy świecach</a></h3>
+                <p class="event-desc">✨ Koncert instrumentalny przy świecach to wyjątkowe muzyczne przeżycie, które łączy klasykę, jazz, pop i filmowe hity w magicznych aranżacjach 🎻🕯️W blasku świec czeka Cię intymna atmosfera i emocje, które zostają na długo. Candle Live Music: Koncert przy świecach - więcej informacji Koncert instrumentalny przy świecach to magiczne wydarzenie, które ożywia zmysły i tworzy niepowtarzalną atmosferę. W przyćmionym świetle świec, artyści wypełniają przestrzeń swoją muzyką, tworząc intymną i emocjonalną aurę. Dbamy o to, aby każdy miłośnik dobrego brzmienia znalazł coś dla siebie. Oferujemy szeroką gamę tematów i gatunków muzycznych w unikalnych, instrumentalnych aranżacjach: muzykę klasyczną, jazz, muzykę popularną, a także hitowe motywy z muzyki filmowej. Z pasją tworzymy niezapomniane muzyczne doświadczenia, które łączą piękno dźwięków z magiczną, pełną natury atmosferą, tworząc chwile, które na długo pozostają w pamięci. Każdy koncert powstaje z pasją, dbałością o detale i najwyższą jakość. Wszystko po to, aby zapewnić każdemu gościowi wyjątkowe, wielozmysłowe przeżycie. Dołącz do grona zadowolonych uczestników naszych koncertów!</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">od 95.58 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-15" data-end="2026-09-17">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">15</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy.webp" class="thumb-fg" alt="Plakat: Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy?’" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 15 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:30</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy-2026-09-15/">Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy?’</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy’.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-17" data-end="2026-09-17">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">17</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_festiwale-pilkarskie-dla-dziewczyn.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_festiwale-pilkarskie-dla-dziewczyn.webp" class="thumb-fg" alt="Plakat: Festiwale Piłkarskie dla dziewczyn" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 17 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">10:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/festiwale-pilkarskie-dla-dziewczyn-2026-09-17/">Festiwale Piłkarskie dla dziewczyn</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Festiwale Piłkarskie dla dziewczyn.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-17" data-end="2026-09-17">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">17</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/mbpkk_dyskusyjny-klub-ksiazki.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/mbpkk_dyskusyjny-klub-ksiazki.webp" class="thumb-fg" alt="Plakat: Dyskusyjny Klub Książki" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 17 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">16:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/dyskusyjny-klub-ksiazki-2026-09-17/">Dyskusyjny Klub Książki</a></h3>
+                <p class="event-desc">Anna Śliwińska
+
+2026-08-21T08:30:00+02:00
+
+Termin: 17.09.2026 r., godz. 16:00</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp bezpłatny</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-19">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">19</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_aktywny-orlik-2026-orlik-kids-cup.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_aktywny-orlik-2026-orlik-kids-cup.webp" class="thumb-fg" alt="Plakat: Aktywny Orlik 2026! – Orlik Kids cup" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 19 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">Według harmonogramu</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/aktywny-orlik-2026-orlik-kids-cup-2026-09-19/">Aktywny Orlik 2026! – Orlik Kids cup</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Aktywny Orlik 2026! – Orlik Kids cup.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-20">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">19</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_final-mistrzostwa-miasta-amatorow-w-tenisie-w-grach-pojedynczych-kobiet-i-mezczyzn.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_final-mistrzostwa-miasta-amatorow-w-tenisie-w-grach-pojedynczych-kobiet-i-mezczyzn.webp" class="thumb-fg" alt="Plakat: FINAŁ Mistrzostwa Miasta Amatorów w tenisie w grach pojedynczych kobiet i mężczyzn" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 19 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">08:30</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/final-mistrzostwa-miasta-amatorow-w-tenisie-w-grach-pojedynczych-kobiet-i-mezczyzn-2026-09-19/">FINAŁ Mistrzostwa Miasta Amatorów w tenisie w grach pojedynczych kobiet i mężczyzn</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: FINAŁ Mistrzostwa Miasta Amatorów w tenisie w grach pojedynczych kobiet i mężczyzn.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-19">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">19</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-fg" alt="Plakat: parkrun Kędzierzyn-Koźle" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 19 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/parkrun-kedzierzyn-kozle-2026-09-19/">parkrun Kędzierzyn-Koźle</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: parkrun Kędzierzyn-Koźle.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-19">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">19</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona.webp" class="thumb-fg" alt="Plakat: Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 19 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">11:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona-2026-09-19/">Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-19">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">19</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_rejs-statkiem-wycieczkowym-silesia.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_rejs-statkiem-wycieczkowym-silesia.webp" class="thumb-fg" alt="Plakat: Rejs statkiem wycieczkowym "Silesia"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 19 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">12:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rejs-statkiem-wycieczkowym-silesia-2026-09-19/">Rejs statkiem wycieczkowym "Silesia"</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Rejs statkiem wycieczkowym "Silesia".</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-20">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">19</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_miasto-dawniej-i-dzis-wirtualny-spacer-przez-dzieje-ziemi-kozielskiej.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_miasto-dawniej-i-dzis-wirtualny-spacer-przez-dzieje-ziemi-kozielskiej.webp" class="thumb-fg" alt="Plakat: „Miasto dawniej i dziś – wirtualny spacer przez dzieje Ziemi Kozielskiej”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 19 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">13:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/miasto-dawniej-i-dzis-wirtualny-spacer-przez-dzieje-ziemi-kozielskiej-2026-09-19/">„Miasto dawniej i dziś – wirtualny spacer przez dzieje Ziemi Kozielskiej”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: „Miasto dawniej i dziś – wirtualny spacer przez dzieje Ziemi Kozielskiej”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-20" data-end="2026-09-20">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">20</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_zamotane-miasto-kedzierzyn-kozle-od-owieczki-do-niteczki-proces-obrobki-runa-i-powstania-wloczki-warsztaty-przedzenia.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_zamotane-miasto-kedzierzyn-kozle-od-owieczki-do-niteczki-proces-obrobki-runa-i-powstania-wloczki-warsztaty-przedzenia.webp" class="thumb-fg" alt="Plakat: Zamotane Miasto Kędzierzyn-Koźle. Od owieczki do niteczki - proces obróbki runa i powstania włóczki - warsztaty przędzenia" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 20 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/zamotane-miasto-kedzierzyn-kozle-od-owieczki-do-niteczki-proces-obrobki-runa-i-powstania-wloczki-warsztaty-przedzenia-2026-09-20/">Zamotane Miasto Kędzierzyn-Koźle. Od owieczki do niteczki - proces obróbki runa i powstania włóczki - warsztaty przędzenia</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Zamotane Miasto Kędzierzyn-Koźle. Od owieczki do niteczki - proces obróbki runa i powstania włóczki - warsztaty przędzenia.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-20" data-end="2026-09-20">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">20</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_muzyka-polnocy-grieg-sibelius-koncert-w-wykonaniu-orkiestry-kameralnej-con-vigore.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_muzyka-polnocy-grieg-sibelius-koncert-w-wykonaniu-orkiestry-kameralnej-con-vigore.webp" class="thumb-fg" alt="Plakat: „Muzyka północy: Grieg – Sibelius” - koncert w wykonaniu Orkiestry Kameralnej „Con Vigore”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 20 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">15:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/muzyka-polnocy-grieg-sibelius-koncert-w-wykonaniu-orkiestry-kameralnej-con-vigore-2026-09-20/">„Muzyka północy: Grieg – Sibelius” - koncert w wykonaniu Orkiestry Kameralnej „Con Vigore”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: „Muzyka północy: Grieg – Sibelius” - koncert w wykonaniu Orkiestry Kameralnej „Con Vigore”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-22" data-end="2026-09-24">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">22</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej.webp" class="thumb-fg" alt="Plakat: Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 22 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:30</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej-2026-09-22/">Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-24" data-end="2026-09-24">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">24</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_konkurs-literacko-plastyczny-moj-przyjaciel-adopciak.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_konkurs-literacko-plastyczny-moj-przyjaciel-adopciak.webp" class="thumb-fg" alt="Plakat: Konkurs literacko-plastyczny "Mój przyjaciel adopciak"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 24 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/konkurs-literacko-plastyczny-moj-przyjaciel-adopciak-2026-09-24/">Konkurs literacko-plastyczny "Mój przyjaciel adopciak"</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Konkurs literacko-plastyczny "Mój przyjaciel adopciak".</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-24" data-end="2026-09-24">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">24</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_spotkanie-autorskie-z-barbara-saczko-bomba.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_spotkanie-autorskie-z-barbara-saczko-bomba.webp" class="thumb-fg" alt="Plakat: Spotkanie autorskie z Barbarą Saczko-Bombą" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 24 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/spotkanie-autorskie-z-barbara-saczko-bomba-2026-09-24/">Spotkanie autorskie z Barbarą Saczko-Bombą</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Spotkanie autorskie z Barbarą Saczko-Bombą.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-25" data-end="2026-09-25">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">25</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-fg" alt="Plakat: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 25 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026-2026-09-25/">XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-25" data-end="2026-09-25">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">25</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_metallica-night-klub-kameleon.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_metallica-night-klub-kameleon.webp" class="thumb-fg" alt="Plakat: METALLICA NIGHT – Klub Kameleon" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 25 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">20:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/metallica-night-klub-kameleon-2026-09-25/">METALLICA NIGHT – Klub Kameleon</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: METALLICA NIGHT – Klub Kameleon.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-25" data-end="2026-09-25">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">25</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_proby-jozefa-k-wg-procesu-f-kafki-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_proby-jozefa-k-wg-procesu-f-kafki-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-fg" alt="Plakat: PRÓBY JÓZEFA K. wg ,,Procesu'' F. Kafki - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Piątek, 25 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/proby-jozefa-k-wg-procesu-f-kafki-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-25/">PRÓBY JÓZEFA K. wg ,,Procesu'' F. Kafki - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</a></h3>
+                <p class="event-desc">Teatr Gdynia Główna - ,, Próby Józefa K.'' wg „Procesu” Franza Kafki Według słynnego socjologa i psychoanalityka Ericha Fromma Józef K., główny bohater „Procesu” Franza Kafki, jest człowiekiem, który nie umie wziąć odpowiedzialności za własną egzystencję. Nie stać go na poświęcenie się żadnej idei. Prowadzi nudne, monotonne życie, pozbawione wartości. Jest w zasadzie człowiekiem zbędnym, nieprzydatnym ani społeczeństwu, ani nawet żadnej jednostce. W adaptacji Ewy Ignaczak tytułowy proces jest więc ostatnim momentem, w którym K. może odmienić swoje życie. Jednak zamiast tego staje się jeszcze bardziej egocentryczny, interesowny, niesamodzielny i powierzchowny. Czy sytuacja aresztowania wywoła w nim jakąkolwiek refleksję na temat jego płaskiej i „letniej” egzystencji Czy Józef K. odnajdzie odpowiedzi na pytania: Kto go oskarża Jaka władza prowadzi postępowanie Wobec jakiego prawa jest winien Czy pozna szczęście i skorzysta z szansy, by delektować się życiem Scenariusz i reżyseria: Ewa Ignaczak Obsada: Jakub Kornacki i Marek Kościółek Światło: Marzena Chojnowska Czas trwania spektaklu: 70 min</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">od 22.24 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-26" data-end="2026-09-26">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">26</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_festiwal-traw.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_festiwal-traw.webp" class="thumb-fg" alt="Plakat: Festiwal Traw" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 26 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">08:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/festiwal-traw-2026-09-26/">Festiwal Traw</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Festiwal Traw.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-26" data-end="2026-09-26">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">26</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_parkrun-kedzierzyn-kozle.webp" class="thumb-fg" alt="Plakat: parkrun Kędzierzyn-Koźle" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 26 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/parkrun-kedzierzyn-kozle-2026-09-26/">parkrun Kędzierzyn-Koźle</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: parkrun Kędzierzyn-Koźle.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-26" data-end="2026-09-26">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">26</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-fg" alt="Plakat: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 26 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026-2026-09-26/">XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-27" data-end="2026-09-27">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">27</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_mistrzostwa-miasta-amatorow-w-pilce-siatkowej-mezczyzn.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_mistrzostwa-miasta-amatorow-w-pilce-siatkowej-mezczyzn.webp" class="thumb-fg" alt="Plakat: Mistrzostwa Miasta Amatorów w piłce siatkowej mężczyzn" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 27 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/mistrzostwa-miasta-amatorow-w-pilce-siatkowej-mezczyzn-2026-09-27/">Mistrzostwa Miasta Amatorów w piłce siatkowej mężczyzn</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Mistrzostwa Miasta Amatorów w piłce siatkowej mężczyzn.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-27" data-end="2026-09-27">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">27</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-fg" alt="Plakat: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 27 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">12:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026-2026-09-27/">XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-27" data-end="2026-09-27">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">27</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-fg" alt="Plakat: Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 27 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">16:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-27/">Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka</a></h3>
+                <p class="event-desc">"Tańczyła charlestona" monodram w wykonaniu PAULINY SZCZĘSNEJ Spektakl oparty jest o teatr fizyczny i teatr formy, koncentrujący się na tajemniczym zniknięciu Agathy Christie w 1926 roku. Przez 11 dni cała Anglia była poruszona jej nagłym zniknięciem, a spektakl ten jest próbą eksploracji możliwych scenariuszy, które mogłyby wyjaśnić, co się z nią działo. Stawia on pytanie o to, czy Agatha Christie mogła zaaranżować swoje własne zniknięcie. Oprócz elementu zagadki, spektakl zagłębia się w postać kobiecą Agathy Christie, eksplorując tematy kobiecości oraz wewnętrznej podróży bohaterki. Poprzez metaforę "Night sea journey" spektakl dotyka momentów ciemności w życiu, konfrontacji z własnymi lękami i demonami, które, według Carla Junga, są niezbędne dla rozwoju jednostki. Spektakl jest jednocześnie fizyczny, pełen humoru, z elementami tajemnicy i surrealizmu. Akcja rozgrywa się w fantasmagorycznej przestrzeni, gdzie główna postać, inspirowana Agathą Christie, spotyka swoje marzenia, demony i lęki, a sen miesza się z jawą. Przedstawienie staje się zatem nie tylko kryminalną zagadką, ale również głęboką introspekcją i refleksją nad ludzką naturą w stanie przejścia. Twórcy spektaklu: Paulina Szczęsna – scenariusz, reżyseria, rola aktorska Paweł Paluch – muzyka Jędrzej Skajster – światło, projekcje wideo Alicja Siemko – scenografia Agnieszka Magiera – kostiumy Gavin Glover – wsparcie dramaturgiczne Michal Schmueli – ruch sceniczny</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">od 22.24 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-29" data-end="2026-09-30">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">29</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy.webp" class="thumb-fg" alt="Plakat: Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy?’’" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 29 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:30</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy-2026-09-29/">Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy?’’</a></h3>
+                <p class="event-desc">Zapisy pod tel.: 799-029-292</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-09-30" data-end="2026-09-30">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">30</span>
+                <span class="month">
+                  
+                  WRZ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_wernisaz-wystawy-pt-biechonski.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_wernisaz-wystawy-pt-biechonski.webp" class="thumb-fg" alt="Plakat: Wernisaż wystawy pt. „Biechoński”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Środa, 30 września</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">12:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/wernisaz-wystawy-pt-biechonski-2026-09-30/">Wernisaż wystawy pt. „Biechoński”</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Wernisaż wystawy pt. „Biechoński”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-01" data-end="2026-10-31">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">01</span>
+                <span class="month">
+                  
+                  PAŹ
+                </span>
+              </div>
+              <img src="/assets/placeholder.svg" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/placeholder.svg" class="thumb-fg" alt="Plakat: Mistrzostwa Miasta Amatorów w szachach pod Honorowym Patronatem Prezydenta Miasta Kędzierzyn-Koźle" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 1 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">Według harmonogramu</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/mistrzostwa-miasta-amatorow-w-szachach-pod-honorowym-patronatem-prezydenta-miasta-kedzierzyn-kozle-2026-10-01/">Mistrzostwa Miasta Amatorów w szachach pod Honorowym Patronatem Prezydenta Miasta Kędzierzyn-Koźle</a></h3>
+                <p class="event-desc">Wydarzenie sportowe MOSiR Kędzierzyn-Koźle: Mistrzostwa Miasta Amatorów w piłce siatkowej mężczyzn pod Honorowym Patronatem Prezydenta Miasta Kędzierzyn-Koźle. Termin: październik.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Wstęp bezpłatny</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-01" data-end="2026-10-01">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">01</span>
+                <span class="month">
+                  
+                  PAŹ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_czeslaw-mozil.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_czeslaw-mozil.webp" class="thumb-fg" alt="Plakat: Czesław Mozil" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 1 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/czeslaw-mozil-2026-10-01/">Czesław Mozil</a></h3>
+                <p class="event-desc">🎤🔥 Czesław Mozil wraca na scenę w wyjątkowym show łączącym muzykę, emocje i błyskotliwy humor! 🎶💫 Usłysz hity, nowości i premierowe utwory artysty, który bawi i wzrusza jak nikt inny. ❤️🎟️ Nie przegap – kup bilet i przeżyj to na żywo! 🎹✨ Czesław Mozil - więcej informacji To jest świetny czas Czesława! Wygrał Festiwal Piosenki w Opolu 2024 utworem „Ławeczka” (razem z Michałem Zabłockim), jego singiel „Leń” promujący „Akademię Pana Kleksa 2” stał się prawdziwym hitem a wiosną otrzymał kolejnego Fryderyka za album Czesław Mozil & Grajkowie Przyszłości „Inwazja Nerdów vol. 1”. Po krótkiej przerwie artysta wraca do koncertowania ze swoim solowym repertuarem. Obok piosenek znanych i lubianych pojawią się również utwory z dwóch albumów wydanych w ostatnim czasie. Będą też piosenki premierowe (!) szykowane na kolejną płytę, nad którą już pracuje. Czesław Mozil Solo to jedyne w Polsce, unikatowe połączenie koncertu muzycznego ze stand-upem, okraszonego błyskotliwymi komentarzami do otaczającej nas rzeczywistości. Charyzmatyczny artysta w zręczny i przenikliwy sposób lawiruje między emocjami odbiorców, żadnego z nich nie pozostawiając obojętnym. Raz słuchacze płaczą ze śmiechu, a za chwilę ze wzruszenia. To sztuka, która porusza, elektryzuje, dotyka i przejmuje. Czesław Mozil - wykształcony muzyk, absolwent Duńskiej Królewskiej Akademii Muzycznej w Kopenhadze, w klasie akordeonu. Laureat pięciu Fryderyków, festiwalu w Opolu i potrójnej platyny. Autor tekstów, kompozytor, aktor dubbingowy (m.in. legendarny Bałwanek Olaf z „Krainy Lodu”) i osobowość telewizyjna. Jego ostatnia płyta „#ideologiamozila” znalazła się w pierwszej dziesiątce zestawienia najlepszych płyt roku wg m.in. portalu Onet pl i magazynu „Polityka”.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">od 116.82 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-12" data-end="2026-10-12">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">12</span>
+                <span class="month">
+                  
+                  PAŹ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_maz-mojej-zony-kreatywna-pantera.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_maz-mojej-zony-kreatywna-pantera.webp" class="thumb-fg" alt="Plakat: Mąż mojej żony - Kreatywna Pantera" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Poniedziałek, 12 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/maz-mojej-zony-kreatywna-pantera-2026-10-12/">Mąż mojej żony - Kreatywna Pantera</a></h3>
+                <p class="event-desc">Polsko-śląska komedia pomyłek
+
+, w której śląski humor, temperament i gwara spotykają się z błyskotliwymi dialogami i nieprzewidywalnymi zwrotami akcji. Jedna z głównych postaci mówi po śląsku, dzięki czemu spektakl zyskuje wyjątkowy klimat i autentyczność.
+
+Co się stanie, gdy pewnego dnia do Twoich drzwi zapuka... mąż Twojej żony
+
+Zeflik, Ślązak od lat mieszkający we Frankfurcie, nie spodziewa się, że niepozorna wizyta całkowicie wywróci jego życie do góry nogami. Gość z Warszawy, Edmund, ma mu do przekazania wiadomość, której nikt nie chciałby usłyszeć. Okazuje się, że obaj mają... tę samą żonę - Helenę. Od pierwszych minut na scenie iskrzy od emocji, zaskoczeń i doskonałego humoru. Kolejne kieliszki nie ułatwiają rozwiązania sytuacji, a zamiast odpowiedzi pojawiają się jeszcze bardziej absurdalne pytania. Jak zakończy się to niezwykłe spotkanie Kto mówi prawdę I czy z tej historii można wyjść z twarzą
+
+"Mąż mojej żony" to znakomita komedia autorstwa Miro Gavrana - jednego z najczęściej wystawianych współczesnych europejskich dramaturgów. To spektakl pełen błyskotliwych dialogów, świetnego humoru i sytuacji, w których każdy odnajdzie coś znajomego.
+
+Na scenie zobaczycie doskonały duet aktorski: Dariusza Niebudka, doskonale znanego widzom m.in. z roli mecenasa Zakościelnego w serialu "Na Wspólnej", oraz Dariusza Wiktorowicza.
+
+Ich sceniczna energia, komediowe wyczucie i świetna chemia sprawiają, że publiczność od pierwszych minut daje się porwać tej niezwykłej historii. Zapraszamy na wieczór pełen śmiechu, emocji i inteligentnego teatru. Jeśli cenicie śląski humor, znakomite aktorstwo i komedie, które bawią od pierwszej do ostatniej minuty - tego spektaklu nie możecie przegapić!
+
+Autor: Miro Gavran
+
+Przekład: Anna Tuszyńska
+
+Reżyseria: Henryk Adamek
+
+Muzyka: Rafał Smoleń
+
+Scenografia: Barbara Wiktorowicz
+
+Produkcja: Formacja Artystyczna KANDYD 2
+
+Management: Impresariat Artystyczny KREATYWNA PANTERA & Fundacja GALOP</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Bilety płatne</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-17" data-end="2026-10-18">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">17</span>
+                <span class="month">
+                  
+                  PAŹ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_ekspodycja-orientalna-w-kedzierzynie-kozlu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_ekspodycja-orientalna-w-kedzierzynie-kozlu.webp" class="thumb-fg" alt="Plakat: Ekspodycja Orientalna w Kędzierzynie-Koźlu" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 17 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">12:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/ekspodycja-orientalna-w-kedzierzynie-kozlu-2026-10-17/">Ekspodycja Orientalna w Kędzierzynie-Koźlu</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Ekspodycja Orientalna w Kędzierzynie-Koźlu.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-17" data-end="2026-10-17">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">17</span>
+                <span class="month">
+                  
+                  PAŹ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_ekspedycja-smaku.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_ekspedycja-smaku.webp" class="thumb-fg" alt="Plakat: Ekspedycja Smaku" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 17 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">12:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/ekspedycja-smaku-2026-10-17/">Ekspedycja Smaku</a></h3>
+                <p class="event-desc">Zapraszamy na Ekspedycję Smaku - wyjątkowe wydarzenie, które łączy trzy festiwale w jednym miejscu. Przez dwa dni Kędzierzyn-Koźle stanie się centrum smaków, zapachów i inspiracji z całego świata.
+
+W ramach jednego biletu:
+
+- Orientalna Ekspedycja - Festiwal Kuchni i Kultury Azjatyckiej
+
+- Aromatyczne dania kuchni azjatyckiej i orientalnej: pad thai, curry, sushi, owoce morza, koreańskie bowl'e, gruzińskie chaczapuri i wiele innych wyjątkowych smaków.
+
+- Ekspedycja Słodkości - Festiwal Czekolady i Słodkości
+
+- Czekoladowe fontanny, rzemieślnicze wyroby czekoladowe, baklawy, chałwy, churros, bubble tea, ciasta, praliny, lizaki oraz owoce w czekoladzie. Całość dopełni aromatyczna kawa z polskich palarni.
+
+- Ekspedycja Rzemiosła i Cudów - Targi Rzeczy Wyjątkowych
+
+- Rękodzieło i produkty tworzone z pasją: biżuteria, świece, ceramika, naturalne kosmetyki, dekoracje, torby, ilustracje i wiele innych unikatowych przedmiotów.
+
+Warsztaty i pokazy - kultura Japonii na żywo
+
+- W trakcie wydarzenia na uczestników czeka bogaty program pokazów i atrakcji inspirowanych tradycją Japonii:
+
+- pokazy walk samurajów
+
+- pokaz japońskiej szermierki
+
+- strefa muzealna tradycji Japonii
+
+- degustacja japońskiej herbaty
+
+- pokazy tradycyjnych kimon
+
+To wyjątkowa okazja, by z bliska poznać kulturę Kraju Kwitnącej Wiśni - zarówno w formie widowiskowej, jak i edukacyjnej.
+
+Informacje dodatkowe:
+
+- jedno wydarzenie - trzy festiwale,
+
+- atrakcje kulinarne, kulturalne i targowe,
+
+- warsztaty i pokazy w cenie biletu,
+
+- wydarzenie dla całych rodzin,
+
+- dzieci do 13. roku życia - wstęp bezpłatny (na bilet osoby dorosłej).
+
+Dwa dni pełne smaków, kultury i rzeczy wartych zachwytu. Do zobaczenia na Ekspedycji Smaku w Kędzierzyn-Koźle!</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Bilety płatne</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-18" data-end="2026-10-18">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">18</span>
+                <span class="month">
+                  
+                  PAŹ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_ekspedycja-smaku.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_ekspedycja-smaku.webp" class="thumb-fg" alt="Plakat: Ekspedycja Smaku" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 18 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">11:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/ekspedycja-smaku-2026-10-18/">Ekspedycja Smaku</a></h3>
+                <p class="event-desc">Zapraszamy na Ekspedycję Smaku - wyjątkowe wydarzenie, które łączy trzy festiwale w jednym miejscu. Przez dwa dni Kędzierzyn-Koźle stanie się centrum smaków, zapachów i inspiracji z całego świata.
+
+W ramach jednego biletu:
+
+- Orientalna Ekspedycja - Festiwal Kuchni i Kultury Azjatyckiej
+
+- Aromatyczne dania kuchni azjatyckiej i orientalnej: pad thai, curry, sushi, owoce morza, koreańskie bowl'e, gruzińskie chaczapuri i wiele innych wyjątkowych smaków.
+
+- Ekspedycja Słodkości - Festiwal Czekolady i Słodkości
+
+- Czekoladowe fontanny, rzemieślnicze wyroby czekoladowe, baklawy, chałwy, churros, bubble tea, ciasta, praliny, lizaki oraz owoce w czekoladzie. Całość dopełni aromatyczna kawa z polskich palarni.
+
+- Ekspedycja Rzemiosła i Cudów - Targi Rzeczy Wyjątkowych
+
+- Rękodzieło i produkty tworzone z pasją: biżuteria, świece, ceramika, naturalne kosmetyki, dekoracje, torby, ilustracje i wiele innych unikatowych przedmiotów.
+
+Warsztaty i pokazy - kultura Japonii na żywo
+
+- W trakcie wydarzenia na uczestników czeka bogaty program pokazów i atrakcji inspirowanych tradycją Japonii:
+
+- pokazy walk samurajów
+
+- pokaz japońskiej szermierki
+
+- strefa muzealna tradycji Japonii
+
+- degustacja japońskiej herbaty
+
+- pokazy tradycyjnych kimon
+
+To wyjątkowa okazja, by z bliska poznać kulturę Kraju Kwitnącej Wiśni - zarówno w formie widowiskowej, jak i edukacyjnej.
+
+Informacje dodatkowe:
+
+- jedno wydarzenie - trzy festiwale,
+
+- atrakcje kulinarne, kulturalne i targowe,
+
+- warsztaty i pokazy w cenie biletu,
+
+- wydarzenie dla całych rodzin,
+
+- dzieci do 13. roku życia - wstęp bezpłatny (na bilet osoby dorosłej).
+
+Dwa dni pełne smaków, kultury i rzeczy wartych zachwytu. Do zobaczenia na Ekspedycji Smaku w Kędzierzyn-Koźle!</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Bilety płatne</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-24" data-end="2026-10-24">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">24</span>
+                <span class="month">
+                  
+                  PAŹ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_zamotane-miasto-kedzierzyn-kozle-barwna-welna-warsztaty-naturalnego-farbowania-welny-owczej.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_zamotane-miasto-kedzierzyn-kozle-barwna-welna-warsztaty-naturalnego-farbowania-welny-owczej.webp" class="thumb-fg" alt="Plakat: Zamotane Miasto Kędzierzyn-Koźle. Barwna wełna - warsztaty naturalnego farbowania wełny owczej" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 24 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">09:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/zamotane-miasto-kedzierzyn-kozle-barwna-welna-warsztaty-naturalnego-farbowania-welny-owczej-2026-10-24/">Zamotane Miasto Kędzierzyn-Koźle. Barwna wełna - warsztaty naturalnego farbowania wełny owczej</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Zamotane Miasto Kędzierzyn-Koźle. Barwna wełna - warsztaty naturalnego farbowania wełny owczej.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-10-31" data-end="2026-10-31">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">31</span>
+                <span class="month">
+                  
+                  PAŹ
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kk_aktywny-orlik-2026-orlik-fitness-day-run.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kk_aktywny-orlik-2026-orlik-fitness-day-run.webp" class="thumb-fg" alt="Plakat: Aktywny Orlik 2026! – Orlik Fitness Day & Run" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 31 października</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">Według harmonogramu</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/aktywny-orlik-2026-orlik-fitness-day-run-2026-10-31/">Aktywny Orlik 2026! – Orlik Fitness Day & Run</a></h3>
+                <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Aktywny Orlik 2026! – Orlik Fitness Day & Run.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Sprawdź szczegóły</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-11-07" data-end="2026-11-07">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">07</span>
+                <span class="month">
+                  
+                  LIS
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo.webp" class="thumb-fg" alt="Plakat: Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 7 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/legenda-republiki-i-obywatela-gc-spotkanie-z-leszkiem-gnoinskim-oraz-koncert-na-zywo-2026-11-07/">Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo</a></h3>
+                <p class="event-desc">Zamek Piastowski zaprasza na wyjątkowe wydarzenie, które przeniesie publiczność w samo serce historii polskiego rocka. Wieczór poświęcony fenomenowi twórczości Republiki oraz Obywatela G.C. uświetni spotkanie z jednym z najważniejszych dziennikarzy muzycznych w Polsce – Leszkiem Gnoińskim – oraz koncert w wykonaniu duetu Magdalena Wydriński i Janusz Adamowski. Legenda polskiej muzyki w słowach i dźwiękach Podczas spotkania przyjrzymy się bliżej niezwykłemu dorobkowi artystycznemu Grzegorza Ciechowskiego i zespołu Republika. O kulisach powstawania tych ponadczasowych utworów oraz o specyfice polskiej sceny muzycznej opowie Leszek Gnoiński – ceniony dziennikarz muzyczny, członek Akademii Fonograficznej ZPAV i laureat tytułu Dziennikarza Kulturalnego Małopolski. Leszek Gnoiński to postać, której wkład w dokumentację rodzimego rocka jest nieoceniony. Jest autorem i współtwórcą głośnych projektów, takich jak seria filmów „Historia polskiego rocka” czy pełnometrażowy obraz „Beats of Freedom – Zew wolności”. Przez lata pracował jako redaktor przy niemal setce płyt, w tym przy wydawnictwach z serii „Złota kolekcja” oraz albumach SACD takich legend jak Republika, Obywatel G.C., Perfect, Lady Pank czy Siekiera. Jako współtwórca wystawy stałej w jarocińskim Spichlerzu Polskiego Rocka oraz prowadzący cykl koncertów „Był kiedyś Jarocin”, potrafi jak nikt inny przybliżyć fenomen artystów, którzy kształtowali wrażliwość pokoleń Polaków. Muzyczna podróż: Koncert na żywo Teoretyczne spojrzenie na historię muzyki zostanie dopełnione przez występy na żywo. Utwory, które zdefiniowały brzmienie lat 80. i 90., zaprezentują Magdalena Wydriński oraz Janusz Adamowski. Duet ten ma na swoim koncie liczne, entuzjastycznie przyjmowane recitale, w tym programy poświęcone magii rocka oraz muzyce filmowej. Ich interpretacje łączą techniczną maestrię z emocjonalnym ładunkiem, który idealnie koresponduje z dorobkiem Republiki i Obywatela G.C. To wydarzenie to coś więcej niż koncert czy spotkanie autorskie – to głębokie zanurzenie w polskiej kulturze muzycznej. Dzięki ogromnej wiedzy Leszka Gnoińskiego oraz kunsztowi wykonawczemu Magdaleny Wydriński i Janusza Adamowskiego, uczestnicy będą mieli okazję nie tylko posłuchać największych przebojów, ale również poznać historie, które kryją się za kultowymi nagraniami. W cenie poczęstunek w zamkowej Cafe Residenz.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">od 84.96 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-11-14" data-end="2026-11-14">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">14</span>
+                <span class="month">
+                  
+                  LIS
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_wielka-gala-wiedenska-johann-strauss-show-cz-ii.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_wielka-gala-wiedenska-johann-strauss-show-cz-ii.webp" class="thumb-fg" alt="Plakat: Wielka Gala Wiedeńska Johann Strauss Show - CZ. II" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 14 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/wielka-gala-wiedenska-johann-strauss-show-cz-ii-2026-11-14/">Wielka Gala Wiedeńska Johann Strauss Show - CZ. II</a></h3>
+                <p class="event-desc">Wielka Gala Wiedeńska Johann Strauss Show – magia walca na żywo! 🎻✨ Orkiestra, soliści i balet przeniosą Cię do świata operetek i najpiękniejszych kompozycji Straussów. Elegancki wieczór pełen klasy, muzyki i zachwytu! 💫🎶 Wielka Gala Wiedeńska Johann Strauss Show - CZ. II - więcej informacji WIELKA GALA WIEDEŃSKA JOHANN STRAUSS SHOW CZ. II **WIELKA GALA WIEDEŃSKA JOHANN STRAUSS SHOW - POWRACA DO RACIBORZA ! GOSPODARZ WIECZORU - RYSZARD REMBISZEWSKI Wielka Gala Wiedeńska Johann Strauss Show- Orkiestra, soliści i balet - to muzyczna podróż do baśniowej krainy walca - świata wprost ze snu pełnego wirujących sukien, pięknych kobiet i flirtujących gentlemenów. Ten jedyny w swoim rodzaju koncert zachwycił już tysiące widzów. W projekcie oprócz znakomitych Solistów bierze udział jedna z najlepszych orkiestr świata Grand Royal Orchestra. Zaprezentujemy Państwu najsłynniejsze kompozycje rodziny Straussów. W programie koncertu znajdziemy cudowne walce, zabawne polki oraz najpopularniejsze fragmenty z operetek: Zemsta nietoperza, Baron cygański, Wiedeńska krew, Noc w Wenecji. Przepiękne układy choreograficzne w perfekcyjnym wykonaniu Solistów Grand Royal Balet; wirtuozerskie arie w wykonaniu Gwiazd - Teatr Wielki Opera Narodowa w Warszawie, Opera w Magdeburgu, K&K Berliner Philharmoniker sprawią, że spektakl ten będzie niesamowitym przeżyciem.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">od 138 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-11-15" data-end="2026-11-15">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">15</span>
+                <span class="month">
+                  
+                  LIS
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_rafal-rutkowski.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_rafal-rutkowski.webp" class="thumb-fg" alt="Plakat: Rafał Rutkowski" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 15 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/rafal-rutkowski-2026-11-15/">Rafał Rutkowski</a></h3>
+                <p class="event-desc">W czwartym solowym programie
+
+Rafał Rutkowski
+
+podróżuje w czasie. W swoim stylu zderza teraźniejszość z przeszłością.  Czy kiedyś było lepiej Czy właśnie teraz żyjemy w najlepszych czasach Czy sztuczna inteligencja jest nadzieją dla ludzkości, czy może początkiem jej końca Jak bardzo zmieniła nas technologia Czy jesteśmy mądrzejsi od naszych przodków A może głupota ludzka ma się coraz lepiej Rutkowski wraca też do dzieciństwa w PRL i przypomina absurdy tamtych czasów. Wspomina fenomen Fiata 126p, kolejki po musztardę, kartki na mięso oraz imprezy podczas stanu wojennego. Opowiada też o pierwszym wyjeździe "na zachód" i flirtowaniu na odległość ze swoją szwedzką żoną. Zdradzi też jak zaimponował dziewczynie akrobacjami lotniczymi i jak korzystał z antykoncepcji na Białorusi.
+
+Kupując bilet akceptujesz poniższe warunki:
+
+1) Występ przeznaczony jest dla widzów od 16 roku życia,
+
+2) Prosimy o wyłączenie lub wyciszenie telefonów na czas występu,
+
+3) Nagrywanie występu w formie audio i video jest zabronione,
+
+4) Przy robieniu zdjęć występującym, prosimy o wyłączenie lamp błyskowych,
+
+5) Bilet nie daje prawa do przeszkadzania występującym. Organizator zastrzega sobie prawo do wyproszenia osób zakłócających przebieg występu, bez możliwości zwrotu za bilety.
+
+6) Występ może zostać utrwalony, dokonując zakupu wyrażasz zgodę na udostępnienie wizerunku.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Bilety płatne</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-11-21" data-end="2026-11-21">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">21</span>
+                <span class="month">
+                  
+                  LIS
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_kabaret-skeczow-meczacych-wielcy-wracaja.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_kabaret-skeczow-meczacych-wielcy-wracaja.webp" class="thumb-fg" alt="Plakat: Kabaret Skeczów Męczących - Wielcy wracają" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Sobota, 21 listopada</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/kabaret-skeczow-meczacych-wielcy-wracaja-2026-11-21/">Kabaret Skeczów Męczących - Wielcy wracają</a></h3>
+                <p class="event-desc">Kabaret Skeczów Męczących wraca z nowym programem "Wielcy wracają"! 😂🔥 Kultowe postacie w zupełnie nowych, premierowych odsłonach i świeże skecze komentujące dzisiejszą rzeczywistość. Szykuj się na wieczór pełen śmiechu i kabaretu w najlepszym stylu! 🎭👏 Kabaret Skeczów Męczących - Wielcy wracają - więcej informacji Kabaret Skeczów Męczących w nowym programie “Wielcy wracają” Po spektakularnym sukcesie trasy „Jeszcze nigdy nie było tak dobrze” Kabaret Skeczów Męczących zaprasza na zupełnie nowy program, w którym sięgną do korzeni. Na scenę powrócą legendarne postacie, doskonale znane i uwielbiane przez publiczność. Powrócą w absolutnie premierowych odsłonach. „Wielcy wracają” to spotkanie kultowych bohaterów z teraźniejszością – z aktualnymi tematami, nowymi absurdami i rzeczywistością, która sama prosi się o komentarz. Będzie ostro, celnie i bez taryfy ulgowej, dokładnie tak, jak fani KSM lubią najbardziej. To nie tylko sentymentalna podróż, ale przede wszystkim świeży program pełen premierowych skeczów, zaskoczeń i humoru na najwyższym poziomie. Jedno jest pewne – ten powrót będzie mocny. Jeśli kochasz Kabaret Skeczów Męczących za ich postaci – „Wielcy wracają” to program, którego nie możesz przegapić. Jeżeli jeszcze ich nie widziałeś na żywo – musisz to zobaczyć !</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">od 138.06 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-12-01" data-end="2026-12-31">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">01</span>
+                <span class="month">
+                  
+                  GRU
+                </span>
+              </div>
+              <img src="/assets/placeholder.svg" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/placeholder.svg" class="thumb-fg" alt="Plakat: Silent Disco" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 1 grudnia</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">Według harmonogramu</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/silent-disco-2026-12-01/">Silent Disco</a></h3>
+                <p class="event-desc">Wydarzenie sportowe MOSiR Kędzierzyn-Koźle: Silent Disco. Termin: grudzień.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Cennik obiektu</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2026-12-08" data-end="2026-12-08">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">08</span>
+                <span class="month">
+                  
+                  GRU
+                </span>
+              </div>
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_cezary-jurkiewicz.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_cezary-jurkiewicz.webp" class="thumb-fg" alt="Plakat: Cezary Jurkiewicz" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Wtorek, 8 grudnia</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">19:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/cezary-jurkiewicz-2026-12-08/">Cezary Jurkiewicz</a></h3>
+                <p class="event-desc">Ruszam w trasę z nowymi tekstami nad którymi pracuję już od jakiegoś czasu. Nowy monolog zrobił się bardzo gęsty komediowo (wycieka wszystkimi otworami z mojego laptopa). Czas najwyższy pojechać w trasę i zagrać na instrumencie zwanym publicznością. Mogę Wam obiecać duży współczynnik durnot na minutę oraz punktów widzenia, z którymi, jeśli się utożsamiasz, to pewnie skończymy razem w tym samym ośrodku. Do zobaczenia!
+
+Przed Cezarym wystąpi również support.
+
+* Wydarzenie dla osób dorosłych!
+
+* Brak zgody na nagrywanie audio/video.
+
+* Osoby, które będą przeszkadzać podczas wydarzenia zostaną wyproszone. Bez zwrotu pieniędzy za bilet.
+
+* Bilety mogą zostać okazane w formie elektronicznej w pliku PDF.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">Bilety płatne</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2027-01-07" data-end="2027-01-07">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">07</span>
+                <span class="month">
+                  
+                  STY
+                </span>
+              </div>
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_katarzyna-piasecka-nowy-program-stand-up-bagus.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_katarzyna-piasecka-nowy-program-stand-up-bagus.webp" class="thumb-fg" alt="Plakat: Katarzyna Piasecka - Nowy program stand-up „BAGUS”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Czwartek, 7 stycznia</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">18:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/katarzyna-piasecka-nowy-program-stand-up-bagus-2027-01-07/">Katarzyna Piasecka - Nowy program stand-up „BAGUS”</a></h3>
+                <p class="event-desc">🎤😂 Katarzyna Piasecka wraca z nowym stand-upem "BAGUS" – świeże historie, bezkompromisowe żarty i charyzma w topowej formie. Wieczór rozkręci też support Szymona Baranieckiego – gwarancja śmiechu od pierwszej minuty! 🔥🎟️ Katarzyna Piasecka - Nowy program stand-up „BAGUS” - więcej informacji Nowy program stand-up „ BAGUS ” Katarzyna Piasecka wraca z najnowszym stand-upem „ BAGUS ”. Dużo zmian w życiu przyniosło dużo śmiesznych historii. Świeże, zabawne i bezkompromisowe żarty w niezmiennie charyzmatycznym wydaniu. Podczas wieczoru wystąpi również support Szymon Baraniecki.</p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">od 84.96 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+        <article class="event-item" data-start="2027-02-28" data-end="2027-02-28">
+          <div class="event-card ">
+            <div class="thumb-wrap">
+              <div class="date-badge">
+                <span class="day">28</span>
+                <span class="month">
+                  
+                  LUT
+                </span>
+              </div>
+              <img src="/assets/thumbnails/mok_kk_jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+              <img src="/assets/thumbnails/mok_kk_jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu.webp" class="thumb-fg" alt="Plakat: jacek dewódzki & dżem session – spotkanie z prawdziwą historią dżemu!" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+            </div>
+            <div class="event-content">
+              <div class="text-container">
+                <div class="meta-top">
+                      <span class="badge-container"></span>
+                      <span class="cat-accent">Kultura i Rozrywka</span>
+                      <span>&bull;</span>
+                      <span class="date-accent">Niedziela, 28 lutego</span>
+                      <span>&bull;</span>
+                      <span class="time-accent">17:00</span>
+                    </div>
+                <h3 class="event-title"><a href="/kedzierzyn_kozle/wydarzenia/jacek-dewodzki-dzem-session-spotkanie-z-prawdziwa-historia-dzemu-2027-02-28/">jacek dewódzki & dżem session – spotkanie z prawdziwą historią dżemu!</a></h3>
+                <p class="event-desc"><p><a href="https://bilety.mok.com.pl/MSI/Default._id=51615&amp;typetran=0&amp;returnlink=%7e%2fmvc%2fpl%3fsort%3dNameDesc%26date%3d2027-02-28">KUP ON-LINE</a><br/><br/><br/>Jacek Dewódzki – były wokalista Dżemu – razem z zespołem Dżem Session zabiera publiczność w muzyczną podróż przez największe przeboje z okresu Jacka w Dżemie, a także niezapomniane utwory Ryśka Riedla.</p>
+
+<p>Grają muzykę Dżemu z miłości do tego zespołu, z ogromną dbałością o brzmienie, klimat i każdy szczegół. Nic dziwnego, że publiczność nazywa ich „Małym Dżemem”. </p>
+
+<p><strong>Największe przeboje. Prawdziwy klimat. Muzyka Dżemu bez kompromisów.</strong></p></p>
+              </div>
+              <div class="meta-bottom">
+                <span class="price">100 zł</span>
+                <span class="arrow-link">Szczegóły &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      
+    </div>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>CoRobićW Kędzierzyn-Koźle</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny harmonogram wydarzeń miejskich. Wszystkie wydarzenia pobierane bezpośrednio ze scen i galerii.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li><li><a href="#">Współpraca lokalna</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda Kędzierzyn-Koźle</span></div>
+  </footer>
+  
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+
+    function getLocalDateStr(offsetDays = 0) {
+      const d = new Date(); d.setDate(d.getDate() + offsetDays);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+    function getThisWeekendRange() {
+      const now = new Date();
+      const currentDay = now.getDay();
+      const dFri = new Date(now);
+      const dSun = new Date(now);
+      if (currentDay === 0) {
+        dFri.setDate(now.getDate() - 2);
+        dSun.setDate(now.getDate());
+      } else if (currentDay === 6) {
+        dFri.setDate(now.getDate() - 1);
+        dSun.setDate(now.getDate() + 1);
+      } else if (currentDay === 5) {
+        dFri.setDate(now.getDate());
+        dSun.setDate(now.getDate() + 2);
+      } else {
+        const toFri = 5 - currentDay;
+        dFri.setDate(now.getDate() + toFri);
+        dSun.setDate(now.getDate() + toFri + 2);
+      }
+      const fmt = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      return { start: fmt(dFri), end: fmt(dSun) };
+    }
+
+    function initDynamicBadges() {
+      const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+        
+        if (end < today) {
+          el.style.display = 'none';
+          return;
+        }
+
+        const badge = el.querySelector('.badge-container');
+        if (!badge) return;
+        if (start === today) {
+            badge.innerHTML = '<span class="tag-highlight">DZIŚ</span>';
+          } else if (start < today && end && end >= today) {
+            badge.innerHTML = '<span class="tag-highlight" style="background:#0ea5e9;">TRWA</span>';
+          }else if (start === tomorrow) badge.innerHTML = '<span class="tag-highlight">JUTRO</span>';
+        else badge.innerHTML = '';
+      });
+    }
+
+    function filterEvents(mode, btn) {
+      if (btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
+      const weekend = getThisWeekendRange();
+      
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+        
+        if (end < today) {
+          el.style.display = 'none';
+          return;
+        }
+
+        if (mode === 'all') el.style.display = 'block';
+        else if (mode === 'today') el.style.display = (start <= today && end >= today) ? 'block' : 'none';
+        else if (mode === 'tomorrow') el.style.display = (start === tomorrow) ? 'block' : 'none';
+        else if (mode === 'weekend') {
+          const inWeekend = (start <= weekend.end && end >= weekend.start);
+          el.style.display = inWeekend ? 'block' : 'none';
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      initDynamicBadges();
+      filterEvents('all', null);
+    });
+  </script>
+</body>
+</html>

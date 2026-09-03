@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia" | Bielsko-Biała - CoRobićW</title>
+  <meta name="description" content="Zabierz swoje dziecko do magicznego świata Baniek!
+
+Zapraszamy na bajeczny festiwal baniek mydlanych połączony z niesamowitą dawkę humoru oraz mocą pozytywnych wrażeń dla całej rod">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <style>
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
+      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
+      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+      --accent-green: #10b981; --accent-blue: #38bdf8;
+    }
+    :root[data-theme="light"] {
+      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
+      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
+      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+      --accent-green: #059669; --accent-blue: #0284c7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+      -webkit-font-smoothing: antialiased; font-size: 16px;
+    }
+    
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    
+    .container-grid { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
+    @media (max-width: 900px) { .container-grid { grid-template-columns: 1fr; } .btn-nav { display: none; } }
+    
+    .main-content { background: var(--card-bg); border: 1px solid var(--border); overflow: hidden; border-radius: 6px; }
+    
+    .ambient-banner {
+      position: relative; width: 100%; height: 420px; overflow: hidden; display: block;
+      background: #000; border-bottom: 1px solid var(--border);
+    }
+    .ambient-bg {
+      position: absolute; top: -5%; left: -5%; right: -5%; bottom: -5%;
+      background-size: cover; background-position: center;
+      filter: blur(20px) brightness(0.3); z-index: 1;
+    }
+    .ambient-fg {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: contain; z-index: 2;
+    }
+    
+    .event-body { padding: 32px; }
+    .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; }
+    h1 { font-size: 2.1rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 12px; font-weight: 800; color: var(--text); }
+    .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; border-radius: 4px; }
+    .event-actions-bar { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
+    .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; border-radius: 4px; }
+    .action-btn:hover { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
+    
+    .event-desc p { margin-bottom: 1.25rem; line-height: 1.75; font-size: 1rem; color: var(--text); }
+    .event-desc .desc-ps { color: var(--text-muted); margin-top: 1.5rem; font-style: italic; }
+
+    /* SIDEBAR */
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 22px; margin-bottom: 24px; border-radius: 6px; }
+    .sidebar h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; font-weight: 800; }
+    .info-row { display: flex; margin-bottom: 12px; font-size: 0.9rem; align-items: baseline; }
+    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.5px; }
+    .info-val { width: 65%; font-weight: 600; color: var(--text); }
+    
+      .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+      .venue-link:hover { color: var(--accent-blue); }
+      
+      /* CANCELLED STATE STYLING */
+      .event-cancelled-banner { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+      .offer-box.cancelled-box { border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.04); }
+      .offer-tag.cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+      .offer-price-val.cancelled-text { color: #f87171; font-weight: 700; }
+      .offer-btn-buy.cancelled { background: #262626; color: #888888; border: 1px solid #444444; cursor: not-allowed; pointer-events: none; opacity: 0.75; }
+
+    
+    /* TICKET MARKET (CENEO STYLE) */
+    .ticket-market-header { margin: 22px 0 12px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--border); padding-top: 16px; }
+    .ticket-market-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+    .ticket-count { font-size: 0.72rem; color: var(--text-muted); }
+    
+    .offers-stack { display: flex; flex-direction: column; gap: 10px; }
+    .offer-box { border: 1px solid var(--border); background: var(--card-hover); border-radius: 5px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s; }
+    .offer-box:hover { border-color: rgba(255,255,255,0.25); }
+    .offer-box.highlight { border-color: var(--border-strong); }
+    
+    .offer-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 12px 14px; }
+    .offer-info-col { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .offer-provider-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .offer-provider-name { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); }
+    
+    .offer-tag { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 3px; }
+    .offer-tag.best-price { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .offer-tag.official { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
+    
+    .offer-price-val { font-size: 1.05rem; font-weight: 800; color: var(--text); letter-spacing: -0.2px; }
+    .offer-price-val.text-mode { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+    
+    .offer-btn-buy {
+      display: inline-flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 9px 15px; border-radius: 4px; min-width: 96px; text-align: center; transition: all 0.15s ease;
+    }
+    .offer-btn-buy.primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); }
+    .offer-btn-buy.primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .offer-btn-buy.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .offer-btn-buy.secondary:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
+
+    /* AKORDEON ZNIŻEK BCK */
+    .bck-discounts-box { border-top: 1px dashed var(--border); background: rgba(56, 189, 248, 0.04); }
+    .bck-discounts-box details summary { padding: 9px 14px; font-size: 0.72rem; font-weight: 700; color: var(--accent-blue); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 0.5px; }
+    .bck-discounts-box details summary::-webkit-details-marker { display: none; }
+    .bck-discounts-box details summary::after { content: "▼"; font-size: 0.6rem; opacity: 0.7; }
+    .bck-discounts-box details[open] summary::after { transform: rotate(180deg); }
+    .bck-discounts-list { list-style: none; padding: 0 14px 12px; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+    .bck-discounts-list li { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 4px; }
+    .bck-discounts-list li:last-child { border-bottom: none; }
+    .bck-discounts-list .disc-val { font-weight: 700; color: var(--accent-green); }
+
+    .gastro-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .gastro-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .gastro-dist { font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 4px; }
+    
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+  </style>
+
+  <!-- Open Graph -->
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Teatr Baniek Mydlanych &#34;Tajemnica Bańki Szczęścia&#34; | CoRobićW Bielsko-Biała">
+  <meta property="og:description" content="Zabierz swoje dziecko do magicznego świata Baniek!
+
+Zapraszamy na bajeczny festiwal baniek mydlanych połączony z niesamowitą dawkę humoru oraz mocą pozytywnych wrażeń dla całej rod">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_teatr-baniek-mydlanych-tajemnica-banki-szczescia.webp">
+  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/teatr-baniek-mydlanych-tajemnica-banki-szczescia-2026-10-18/">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Teatr Baniek Mydlanych &#34;Tajemnica Bańki Szczęścia&#34;">
+  <meta name="twitter:description" content="Zabierz swoje dziecko do magicznego świata Baniek!
+
+Zapraszamy na bajeczny festiwal baniek mydlanych połączony z niesamowitą dawkę humoru oraz mocą pozytywnych wrażeń dla całej rod">
+  <meta name="twitter:image" content="https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_teatr-baniek-mydlanych-tajemnica-banki-szczescia.webp">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/bielsko_biala/" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw"><span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span></button>
+        <a href="/bielsko_biala/" class="btn-nav">&larr; Agenda</a>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <nav class="breadcrumbs">
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"</span>
+    </nav>
+    
+    <div class="container-grid">
+      <div class="main-content">
+        <a href="https://www.kupbilecik.pl/imprezy/200832/Bielsko-Bia%C5%82a/Teatr+Baniek+Mydlanych+%22Tajemnica+Ba%C5%84ki+Szcz%C4%99%C5%9Bcia%22/" target="_blank" rel="noopener nofollow" class="ambient-banner" title="Kliknij plakat, aby otworzyć źródło" aria-label="Przejdź do strony źródłowej: Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"">
+          <div class="ambient-bg" style="background-image: url('/assets/thumbnails/kupbilecik_bielsko_biala_teatr-baniek-mydlanych-tajemnica-banki-szczescia.webp');"></div>
+          <img src="/assets/thumbnails/kupbilecik_bielsko_biala_teatr-baniek-mydlanych-tajemnica-banki-szczescia.webp" alt="Plakat: Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high">
+        </a>
+        
+        <div class="event-body">
+          <div><span class="badge">Kultura i Rozrywka</span></div>
+          <h1>Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"</h1>
+          
+          <div class="event-actions-bar">
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Teatr%20Baniek%20Mydlanych%20%22Tajemnica%20Ba%C5%84ki%20Szcz%C4%99%C5%9Bcia%22&details=Zabierz%20swoje%20dziecko%20do%20magicznego%20%C5%9Bwiata%20Baniek%21%0A%0AZapraszamy%20na%20bajeczny%20festiwal%20baniek%20mydlanych%20po%C5%82%C4%85czony%20z%20niesamowit%C4%85%20dawk%C4%99%20humoru%20oraz..." target="_blank" rel="noopener" class="action-btn">📅 Dodaj do kalendarza</a>
+            <a href="https://wa.me/?text=Teatr%20Baniek%20Mydlanych%20%22Tajemnica%20Ba%C5%84ki%20Szcz%C4%99%C5%9Bcia%22%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/teatr-baniek-mydlanych-tajemnica-banki-szczescia-2026-10-18/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij na WhatsApp</a>
+          </div>
+          
+          <h3 class="section-title">O wydarzeniu</h3>
+          <div class="event-desc"><p>Zabierz swoje dziecko do magicznego świata Baniek!</p>
+<p>Zapraszamy na bajeczny festiwal baniek mydlanych połączony z niesamowitą dawkę humoru oraz mocą pozytywnych wrażeń dla całej rodziny. Przygotowaliśmy dla was interaktywne show w wykonaniu naszych międzynarodowych artystów, którzy zabiorą Was w fascynującą podróż do krainy magii i kolorów Sprawimy że nawet Ty poczujesz się jak dziecko!</p>
+<p>Zapraszamy do magicznej krainy Bańkolandi, gdzie w laboratorium znanego wynalazcy Bąbelka trwają prace nad tajemniczą recepturą Mydlanej Bańki Szczęścia. Mimo nieudanych prób odkrycia sekretu szczęścia Bąbelek wie, że pomogą mu jego przyjaciele:</p>
+<p>Mydlaneczka</p>
+<ul class="desc-list"><li>prymuska mydlanej edukacji</li></ul>
+<p>Wróżka Czarodziejówna</p>
+<ul class="desc-list"><li>mądra nauczycielka</li></ul>
+<p>Profesor Bulbulas</p>
+<ul class="desc-list"><li>osobliwy naukowiec</li></ul>
+<p>A także Wy!</p>
+<ul class="desc-list"><li>widzowie naszej Bańkolandii</li></ul>
+<p>Czy wraz z nami pomożecie Bąbelkowi Musicie się przygotować do prawdziwej mydlanej przygody! Wspólnie będziemy rozwiązywać bańkowe zagadki. Wspierać Mydlaneczkę i Bąbelka oklaskami.</p>
+<p>Walczyć ze złośliwym Bulbulasem i wspólnie zmieniać stworzone przez niego dziwadła w kolorowe bańki radości. Otworzy się przed Wami świat prawdziwych cudów i baśni który nasi artyści stworzą na scenie Bajkolandii.</p>
+<p>A więc wspólnie wyruszamy na poszukiwanie szczęścia!</p>
+<p>Uwaga!</p>
+<p>Widowisko rekomendowane dla dzieci od 2 do 10 roku życia.</p>
+<p>Czas trwania około 60 minut.</p></div>
+          
+          
+        </div>
+      </div>
+      
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Bilety i Organizacja</h3>
+          <div class="info-row"><div class="info-label">Data</div><div class="info-val">Niedziela, 18 października</div></div>
+          <div class="info-row"><div class="info-label">Start</div><div class="info-val">14:00</div></div>
+          <div class="info-row">
+            <div class="info-label">Miejsce</div>
+            <div class="info-val"><a href="/bielsko_biala/miejsca/bb-bielska-scena-reja/" class="venue-link"><strong>Bielska Scena Reja</strong></a><br><small style="color: var(--text-muted);">Andrzeja Frycza-Modrzewskiego 12, Bielsko Biala</small>
+              </div>
+          </div>
+          <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
+
+                      
+            <div class="ticket-market-header">
+              <span class="ticket-market-title">Dostępne bilety</span>
+              <span class="ticket-count">1 opcja</span>
+            </div>
+            <div class="offers-stack">
+              
+                
+                
+                
+                <div class="offer-box highlight">
+                  <div class="offer-row">
+                    <div class="offer-info-col">
+                      <div class="offer-provider-line">
+                        <span class="offer-provider-name">KupBilecik</span>
+                        
+                      </div>
+                      <div class="offer-price-val text-mode">Sprawdź dostępność</div>
+                    </div>
+                    <div class="offer-action-col">
+                      
+                        <a href="https://www.kupbilecik.pl/imprezy/200832/Bielsko-Bia%C5%82a/Teatr+Baniek+Mydlanych+%22Tajemnica+Ba%C5%84ki+Szcz%C4%99%C5%9Bcia%22/" target="_blank" rel="nofollow noopener" 
+                           class="offer-btn-buy primary" 
+                           aria-label="Kup bilet na Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia" w KupBilecik">
+                          Kup bilet
+                        </a>
+                      
+                    </div>
+                  </div>
+                  
+              </div>
+              
+            </div>
+          
+        </div>
+
+        
+        <div class="card">
+          <h3>W okolicy (Gastro)</h3>
+          
+          <div class="gastro-item">
+            <strong style="color: var(--text);">Lele Pizza</strong>
+            <span class="gastro-dist">59m stąd (~1 min) &bull; restaurant</span>
+          </div>
+          
+          <div class="gastro-item">
+            <strong style="color: var(--text);">Kanon Smaku</strong>
+            <span class="gastro-dist">136m stąd (~2 min) &bull; fast_food</span>
+          </div>
+          
+        </div>
+        
+      </aside>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col"><h4>CoRobićW Bielsko-Biała</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li></ul></div>
+      <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda miejska</span></div>
+  </footer>
+  
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+  </script>
+
+<!-- SEO: Schema.org Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Teatr Baniek Mydlanych \"Tajemnica Ba\u0144ki Szcz\u0119\u015bcia\"",
+  "startDate": "2026-10-18T14:00",
+  "endDate": "2026-10-18",
+  "location": {
+    "@type": "Place",
+    "name": "Bielska Scena Reja",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bielsko-Biała",
+      "addressCountry": "PL",
+      "streetAddress": "Andrzeja Frycza-Modrzewskiego 12, Bielsko Biala"
+    }
+  },
+  "image": ["https://corobicw.pl/assets/thumbnails/kupbilecik_bielsko_biala_teatr-baniek-mydlanych-tajemnica-banki-szczescia.webp"],
+  "description": "Zabierz swoje dziecko do magicznego \u015bwiata Baniek!\n\nZapraszamy na bajeczny festiwal baniek mydlanych po\u0142\u0105czony z niesamowit\u0105 dawk\u0119 humoru oraz moc\u0105 pozytywnych wra\u017ce\u0144 dla ca\u0142ej rod",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.kupbilecik.pl/imprezy/200832/Bielsko-Bia%C5%82a/Teatr+Baniek+Mydlanych+%22Tajemnica+Ba%C5%84ki+Szcz%C4%99%C5%9Bcia%22/"
+  }
+}
+</script>
+
+</body>
+</html>
