@@ -1,3 +1,16 @@
+
+def _clean_ticket_url(url: str) -> str:
+    if not url:
+        return ""
+    u = url.split("#")[0].strip()
+    parsed = urllib.parse.urlparse(u)
+    if not parsed.query:
+        return u
+    qs = urllib.parse.parse_qsl(parsed.query, keep_blank_values=True)
+    clean_qs = [(k, v) for k, v in qs if not k.lower().startswith("utm_") and k.lower() not in ("fbclid", "gclid", "_ga")]
+    new_query = urllib.parse.urlencode(clean_qs)
+    return urllib.parse.urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, ""))
+
 def _get_url_priority(url: str) -> tuple[int, str]:
     u = (url or "").lower()
     if "kupbilecik" in u: return (100, "KupBilecik")
@@ -16,6 +29,7 @@ import json
 import os
 import re
 import unicodedata
+import urllib.parse
 import sqlite3
 from datetime import datetime
 from pathlib import Path
@@ -390,11 +404,12 @@ def _deduplicate_ticket_offers_list(offers: list, fallback_url: str = "", fallba
         if not u:
             continue
         prio, prov = _get_url_priority(u)
-        clean_u = u.split("#")[0].split("?")[0]
+        clean_u = _clean_ticket_url(u)
         raw_p = off.get("price") or fallback_price or ""
         sanitized_p = sanitize_price(raw_p, prov)
         
-        key = prov if prov != "Inne" else clean_u
+        domain = urllib.parse.urlparse(clean_u).netloc.lower()
+        key = prov if prov not in ("Organizator", "Strona źródłowa", "Inne") else f"{prov}:{domain}"
         
         if key not in grouped:
             grouped[key] = {
@@ -414,7 +429,7 @@ def _deduplicate_ticket_offers_list(offers: list, fallback_url: str = "", fallba
                 
     if not grouped and fallback_url:
         prio, prov = _get_url_priority(fallback_url)
-        clean_u = fallback_url.split("#")[0].split("?")[0]
+        clean_u = _clean_ticket_url(fallback_url)
         grouped[prov] = {
             "provider": prov,
             "url": clean_u,
