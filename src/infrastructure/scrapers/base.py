@@ -39,6 +39,10 @@ class BaseScraper(ABC):
             allowable_methods=["GET", "POST"],
             stale_if_error=True
         )
+        try:
+            self.session.remove_expired_responses()
+        except Exception:
+            pass
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
@@ -47,7 +51,7 @@ class BaseScraper(ABC):
 
     def get_soup(self, url: str, params: Optional[dict] = None) -> BeautifulSoup:
         full_url = urljoin(self.base_url, url)
-        response = self.session.get(full_url, params=params, verify=False, timeout=(3.05, 10))
+        response = self.session.get(full_url, params=params, timeout=(3.05, 10))
         response.raise_for_status()
         return BeautifulSoup(response.content, "html.parser")
 
@@ -65,7 +69,7 @@ class BaseScraper(ABC):
             return rel_path
 
         try:
-            resp = self.session.get(full_img_url, timeout=(3.05, 10), verify=False)
+            resp = self.session.get(full_img_url, timeout=(3.05, 10))
             if resp.status_code == 200 and resp.content:
                 img = Image.open(io.BytesIO(resp.content)).convert("RGB")
                 max_width = 600

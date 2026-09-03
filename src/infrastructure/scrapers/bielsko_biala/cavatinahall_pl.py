@@ -80,7 +80,7 @@ class CavatinaHallPlScraper(BaseScraper):
                 "page": page
             }
             try:
-                resp = self.session.get(self.api_url, params=params, timeout=(4.0, 10.0), verify=False)
+                resp = self.session.get(self.api_url, params=params, timeout=(4.0, 10.0))
 
                 if resp.status_code in [400, 404]:
                     break

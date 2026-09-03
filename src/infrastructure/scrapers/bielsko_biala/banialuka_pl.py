@@ -36,7 +36,7 @@ class BanialukaPlScraper(BaseScraper):
             return show_url, data
 
         try:
-            resp = self.session.get(show_url, timeout=(3.0, 8.0), verify=False)
+            resp = self.session.get(show_url, timeout=(3.0, 8.0))
             if resp.status_code == 200:
                 soup = BeautifulSoup(resp.content, "html.parser")
                 
@@ -92,7 +92,7 @@ class BanialukaPlScraper(BaseScraper):
         }
 
         try:
-            resp = self.session.get(self.ajax_url, headers=ajax_headers, timeout=(4.0, 12.0), verify=False)
+            resp = self.session.get(self.ajax_url, headers=ajax_headers, timeout=(4.0, 12.0))
             if resp.status_code != 200:
                 print(f"[{self.source_name}] Błąd HTTP {resp.status_code} z endpointu AJAX.")
                 return []

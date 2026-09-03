@@ -68,7 +68,6 @@ class Bb2026PlScraper(BaseScraper):
                 resp = self.session.get(
                     self.api_url,
                     params=params,
-                    verify=False,
                     timeout=(5.0, 15.0)
                 )
 

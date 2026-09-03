@@ -66,8 +66,7 @@ class KupBilecikPlScraper(BaseScraper):
             resp = self.session.get(
                 event_url,
                 headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"},
-                timeout=(3.05, 10),
-                verify=False
+                timeout=(3.05, 10)
             )
             if resp.status_code != 200:
                 return None
@@ -193,8 +192,7 @@ class KupBilecikPlScraper(BaseScraper):
             resp = self.session.get(
                 self.events_url,
                 headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"},
-                timeout=(3.05, 10),
-                verify=False
+                timeout=(3.05, 10)
             )
             if resp.status_code != 200:
                 return events
