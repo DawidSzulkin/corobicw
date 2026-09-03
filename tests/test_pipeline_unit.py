@@ -78,3 +78,24 @@ def test_sync_city_events_db_isolation(tmp_path, monkeypatch):
     cursor.execute("SELECT COUNT(*) FROM events WHERE city_tag = 'opole'")
     assert cursor.fetchone()[0] == 2
     conn.close()
+
+def test_dedup_preserves_ticket_affiliate_params():
+    from src.domain.pipeline import _deduplicate_ticket_offers_list
+    raw_offers = [
+        {"provider": "KupBilecik", "url": "https://www.kupbilecik.pl/imprezy/123/?ref=corobicw&id=45", "price": "50 zł"},
+        {"provider": "Biletyna", "url": "https://biletyna.pl/event/view/id/999?utm_source=fb&partner=co_robic", "price": "60 zł"}
+    ]
+    deduped = _deduplicate_ticket_offers_list(raw_offers)
+    assert len(deduped) == 2
+    assert "ref=corobicw" in deduped[0]["url"]
+    assert "partner=co_robic" in deduped[1]["url"]
+    assert "utm_source" not in deduped[1]["url"]
+
+def test_dedup_multi_organizer_distinct_domains():
+    from src.domain.pipeline import _deduplicate_ticket_offers_list
+    raw_offers = [
+        {"provider": "Organizator", "url": "https://teatr.bielsko.pl/spektakl/1", "price": "70 zł"},
+        {"provider": "Organizator", "url": "https://bck.bielsko.pl/bilety/2", "price": "70 zł"}
+    ]
+    deduped = _deduplicate_ticket_offers_list(raw_offers)
+    assert len(deduped) == 2
