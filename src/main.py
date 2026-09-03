@@ -58,7 +58,6 @@ def main():
     parser.add_argument("--render-only", action="store_true", help="Pomiń scraping i LLM – generuj HTML bezpośrednio z bazy danych")
     parser.add_argument("--source", type=str, help="Uruchom tylko wybrany scraper (np. cavatinahall_pl, banialuka_pl)")
     parser.add_argument("--preflight", action="store_true", help="Uruchom szybki healthcheck selektorów przed scrapingiem")
-    parser.add_argument("--skip-enrich", action="store_true", help="Pomiń fazę wzbogacania LLM/OCR")
     args = parser.parse_args()
 
     init_db()
@@ -121,8 +120,7 @@ def main():
                 renderer=renderer,
                 output_dir=str(output_dir),
                 render_only=args.render_only,
-                source_filter=args.source,
-                skip_enrich=args.skip_enrich
+                source_filter=args.source
             )
         except Exception as e:
             print(f"[BŁĄD MIASTA] Nie udało się przetworzyć '{city_name}': {e}")
