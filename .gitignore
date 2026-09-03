@@ -52,3 +52,6 @@ run_full_audit.py
 
 # Lokalny bufor kontekstu AI
 CONTEXT.md
+
+# Wygenerowany portal statyczny (publikowany na gh-pages)
+public/
