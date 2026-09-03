@@ -45,3 +45,6 @@ data/raw/
 data/processed/
 map_all_scrapers.py
 run_full_audit.py
+
+# Skrypty wsadowe Windows
+*.bat

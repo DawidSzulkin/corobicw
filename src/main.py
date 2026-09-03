@@ -1,3 +1,26 @@
+import os
+import sys
+import argparse
+from pathlib import Path
+import yaml
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+os.environ["PYTHONUTF8"] = "1"
+
+from src.infrastructure.db import init_db
+from src.domain.pipeline import run_city_pipeline
+from src.infrastructure.renderer import HTMLRenderer
+from src.infrastructure.scrapers.registry import get_scrapers_for_city
+
 
 def run_preflight_checks(scrapers):
     print("\n=== SZYBKI PREFLIGHT HEALTHCHECK SELECTORÓW ===")
@@ -22,33 +45,6 @@ def run_preflight_checks(scrapers):
     else:
         print("[PREFLIGHT] Wszystkie źródła odpowiadają prawidłowo.\n")
 
-import os
-import sys
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(BASE_DIR))
-
-from src.infrastructure.scrapers.bielsko_biala.galeriabielska_pl import GaleriaBielskaPlScraper
-from src.infrastructure.scrapers.national.kupbilecik_pl import KupBilecikPlScraper
-
-if sys.platform == "win32":
-    try:
-        sys.stdout.reconfigure(encoding="utf-8")
-        sys.stderr.reconfigure(encoding="utf-8")
-    except Exception:
-        pass
-os.environ["PYTHONUTF8"] = "1"
-import argparse
-import yaml
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(BASE_DIR))
-
-from src.infrastructure.db import init_db
-from src.domain.pipeline import run_city_pipeline
-from src.infrastructure.renderer import HTMLRenderer
-
 
 def load_yaml(path: Path) -> dict:
     with open(path, "r", encoding="utf-8") as f:
@@ -68,7 +64,6 @@ def main():
     init_db()
     renderer = HTMLRenderer()
     
-    # Zmiana z "docs" na "public", aby wszystko lądowało w jednym spójnym folderze
     output_dir = BASE_DIR / "public"
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -79,7 +74,6 @@ def main():
 
     config_files = sorted(list(config_dir.glob("*.yaml")) + list(config_dir.glob("*.yml")))
     
-    # 1. Pobierz wszystkie poprawnie zdefiniowane miasta do HUB-a
     all_configured_cities = []
     for cfg_path in config_files:
         city_cfg = load_yaml(cfg_path)
@@ -97,7 +91,21 @@ def main():
             "cfg": city_cfg
         })
 
-    # 2. Przetwarzanie miast (z opcją filtrowania)
+    # Obsługa flagi preflight przez rejestr scraperów
+    if args.preflight:
+        scrapers_to_check = []
+        for item in all_configured_cities:
+            if args.city and args.city.lower() != item["tag"].lower():
+                continue
+            city_scrapers = get_scrapers_for_city(item["tag"])
+            if args.source:
+                city_scrapers = [s for s in city_scrapers if s.source_name == args.source]
+            scrapers_to_check.extend(city_scrapers)
+            
+        run_preflight_checks(scrapers_to_check)
+        return
+
+    # Standardowy potok przetwarzania miast
     for item in all_configured_cities:
         city_tag = item["tag"]
         city_name = item["name"]
@@ -106,7 +114,7 @@ def main():
         if args.city and args.city.lower() != city_tag.lower():
             continue
 
-        print(f"\n{'='*20} PRZETWARZANIE: {city_name.upper()} ({city_tag}) {'='*20}")
+        print(f"\n==================== PRZETWARZANIE: {city_name.upper()} ({city_tag}) ====================")
         try:
             run_city_pipeline(
                 city_cfg,
@@ -119,45 +127,15 @@ def main():
         except Exception as e:
             print(f"[BŁĄD MIASTA] Nie udało się przetworzyć '{city_name}': {e}")
 
-    # 3. HUB zawsze uwzględnia wszystkie skonfigurowane miasta
+    # Hub główny portalu
     if not args.source and all_configured_cities:
         print("\n=== GENEROWANIE STRONY GŁÓWNEJ (HUB) ===")
         hub_cities = [{"name": c["name"], "tag": c["tag"]} for c in all_configured_cities]
         renderer.render_portal_hub(active_cities=hub_cities, output_dir=str(output_dir))
-        
-        # Wpięcie automatycznego generowania mapy witryny i SEO (przeniesione z usuniętego build_all.py)
         renderer.render_seo_files(output_dir=str(output_dir), base_url="https://corobicw.pl")
 
     print("\n[SUKCES] Synchronizacja zakończona.")
 
-
-
-# Minimalne progi dla Circuit Breakera
-MIN_THRESHOLDS = {
-    "kupbilecik_pl": 5,
-    "cavatinahall_pl": 10,
-    "banialuka_pl": 5,
-    "bck_bielsko_pl": 10
-}
-
-def safe_fetch(scraper_instance):
-    source = scraper_instance.source_name
-    print(f"\n---> Uruchamianie {source}...")
-    try:
-        events = scraper_instance.fetch_events()
-        count = len(events)
-        
-        # Weryfikacja Circuit Breaker
-        threshold = MIN_THRESHOLDS.get(source, 1) # domyślnie min 1 wydarzenie dla pozostałych
-        if count < threshold:
-            print(f"[CIRCUIT BREAKER] Źródło {source} zwróciło {count} rekordów (wymagane min. {threshold}). Odrzucam dane by chronić bazę.")
-            return []
-            
-        print(f"[OK] {source} przeszło walidację: {count} wydarzeń.")
-        return events
-    except Exception as e:
-        print(f"[CRITICAL] Błąd wykonania scrapera {source}: {e}")
-        return []
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,6 @@
 import sqlite3
 from pathlib import Path
-db_path = next(Path(".").glob("*.db"), Path("data/portal.db"))
+db_path = next(Path(".").glob("*.db"), Path("data/events.db"))
 conn = sqlite3.connect(db_path)
 conn.row_factory = sqlite3.Row
 cur = conn.cursor()
