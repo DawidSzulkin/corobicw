@@ -89,7 +89,17 @@
     .info-row { display: flex; margin-bottom: 12px; font-size: 0.9rem; align-items: baseline; }
     .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.5px; }
     .info-val { width: 65%; font-weight: 600; color: var(--text); }
-    .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    
+      .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+      .venue-link:hover { color: var(--accent-blue); }
+      
+      /* CANCELLED STATE STYLING */
+      .event-cancelled-banner { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+      .offer-box.cancelled-box { border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.04); }
+      .offer-tag.cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+      .offer-price-val.cancelled-text { color: #f87171; font-weight: 700; }
+      .offer-btn-buy.cancelled { background: #262626; color: #888888; border: 1px solid #444444; cursor: not-allowed; pointer-events: none; opacity: 0.75; }
+
     
     /* TICKET MARKET (CENEO STYLE) */
     .ticket-market-header { margin: 22px 0 12px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--border); padding-top: 16px; }
@@ -216,10 +226,8 @@
           <div class="info-row"><div class="info-label">Start</div><div class="info-val">19:00</div></div>
           <div class="info-row">
             <div class="info-label">Miejsce</div>
-            <div class="info-val">
-              <strong>Cavatina Hall</strong>
-              <br><small style="color: var(--text-muted);">Dworkowa 2, Bielsko Biala</small>
-            </div>
+            <div class="info-val"><a href="/bielsko_biala/miejsca/bb-cavatina-hall/" class="venue-link"><strong>Cavatina Hall</strong></a><br><small style="color: var(--text-muted);">Dworkowa 2, Bielsko Biala</small>
+              </div>
           </div>
           <div class="info-row"><div class="info-label">Parking</div><div class="info-val" style="font-size: 0.85rem;">Dostępny w strefie miejskiej</div></div>
 
@@ -230,67 +238,83 @@
             </div>
             <div class="offers-stack">
               
-              
-              <div class="offer-box highlight">
-                <div class="offer-row">
-                  <div class="offer-info-col">
-                    <div class="offer-provider-line">
-                      <span class="offer-provider-name">Biletyna</span>
-                      <span class="offer-tag best-price">Najlepsza cena</span>
-                    </div>
-                    <div class="offer-price-val ">Od 190.10 zł</div>
-                  </div>
-                  <div class="offer-action-col">
-                    <a href="https://biletyna.pl/koncert/Wymyslilem-Ciebie-wieczor-z-muzyka-Andrzeja-Zauchy/Bielsko-Biala" target="_blank" rel="nofollow noopener" 
-                       class="offer-btn-buy primary" 
-                       aria-label="Kup bilet na Wymyśliłem Ciebie - Koncert Pamięci Andrzeja Zauchy w Biletyna">
-                      Kup bilet
-                    </a>
-                  </div>
-                </div>
                 
-              </div>
-              
-              
-              <div class="offer-box ">
-                <div class="offer-row">
-                  <div class="offer-info-col">
-                    <div class="offer-provider-line">
-                      <span class="offer-provider-name">KupBilecik</span>
+                
+                
+                <div class="offer-box highlight">
+                  <div class="offer-row">
+                    <div class="offer-info-col">
+                      <div class="offer-provider-line">
+                        <span class="offer-provider-name">Biletyna</span>
+                        
+                          <span class="offer-tag best-price">Najlepsza cena</span>
+                        
+                      </div>
+                      <div class="offer-price-val ">Od 190.10 zł</div>
+                    </div>
+                    <div class="offer-action-col">
+                      
+                        <a href="https://biletyna.pl/koncert/Wymyslilem-Ciebie-wieczor-z-muzyka-Andrzeja-Zauchy/Bielsko-Biala" target="_blank" rel="nofollow noopener" 
+                           class="offer-btn-buy primary" 
+                           aria-label="Kup bilet na Wymyśliłem Ciebie - Koncert Pamięci Andrzeja Zauchy w Biletyna">
+                          Kup bilet
+                        </a>
                       
                     </div>
-                    <div class="offer-price-val text-mode">Sprawdź dostępność</div>
                   </div>
-                  <div class="offer-action-col">
-                    <a href="https://www.kupbilecik.pl/imprezy/209205/Bielsko-Bia%C5%82a/Wymy%C5%9Bli%C5%82em+Ciebie+-+Koncert+Pami%C4%99ci+Andrzeja+Zauchy/" target="_blank" rel="nofollow noopener" 
-                       class="offer-btn-buy secondary" 
-                       aria-label="Kup bilet na Wymyśliłem Ciebie - Koncert Pamięci Andrzeja Zauchy w KupBilecik">
-                      Kup bilet
-                    </a>
-                  </div>
-                </div>
-                
+                  
               </div>
               
-              
-              <div class="offer-box ">
-                <div class="offer-row">
-                  <div class="offer-info-col">
-                    <div class="offer-provider-line">
-                      <span class="offer-provider-name">Organizator</span>
-                      <span class="offer-tag official">Oficjalna kasa</span>
-                    </div>
-                    <div class="offer-price-val text-mode">Sprawdź dostępność</div>
-                  </div>
-                  <div class="offer-action-col">
-                    <a href="https://cavatinahall.pl/events/wymyslilem-ciebie/" target="_blank" rel="nofollow noopener" 
-                       class="offer-btn-buy secondary" 
-                       aria-label="Kup bilet na Wymyśliłem Ciebie - Koncert Pamięci Andrzeja Zauchy w Organizator">
-                      Kup bilet
-                    </a>
-                  </div>
-                </div>
                 
+                
+                
+                <div class="offer-box ">
+                  <div class="offer-row">
+                    <div class="offer-info-col">
+                      <div class="offer-provider-line">
+                        <span class="offer-provider-name">KupBilecik</span>
+                        
+                      </div>
+                      <div class="offer-price-val text-mode">Sprawdź dostępność</div>
+                    </div>
+                    <div class="offer-action-col">
+                      
+                        <a href="https://www.kupbilecik.pl/imprezy/209205/Bielsko-Bia%C5%82a/Wymy%C5%9Bli%C5%82em+Ciebie+-+Koncert+Pami%C4%99ci+Andrzeja+Zauchy/" target="_blank" rel="nofollow noopener" 
+                           class="offer-btn-buy secondary" 
+                           aria-label="Kup bilet na Wymyśliłem Ciebie - Koncert Pamięci Andrzeja Zauchy w KupBilecik">
+                          Kup bilet
+                        </a>
+                      
+                    </div>
+                  </div>
+                  
+              </div>
+              
+                
+                
+                
+                <div class="offer-box ">
+                  <div class="offer-row">
+                    <div class="offer-info-col">
+                      <div class="offer-provider-line">
+                        <span class="offer-provider-name">Organizator</span>
+                        
+                          <span class="offer-tag official">Oficjalna kasa</span>
+                        
+                      </div>
+                      <div class="offer-price-val text-mode">Sprawdź dostępność</div>
+                    </div>
+                    <div class="offer-action-col">
+                      
+                        <a href="https://cavatinahall.pl/events/wymyslilem-ciebie/" target="_blank" rel="nofollow noopener" 
+                           class="offer-btn-buy secondary" 
+                           aria-label="Kup bilet na Wymyśliłem Ciebie - Koncert Pamięci Andrzeja Zauchy w Organizator">
+                          Kup bilet
+                        </a>
+                      
+                    </div>
+                  </div>
+                  
               </div>
               
             </div>
