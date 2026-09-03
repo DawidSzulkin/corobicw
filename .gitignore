@@ -48,3 +48,6 @@ run_full_audit.py
 
 # Skrypty wsadowe Windows
 *.bat
+
+# Lokalny bufor kontekstu AI
+CONTEXT.md
