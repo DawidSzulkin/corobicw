@@ -55,7 +55,7 @@ class TeatrBielskoPlScraper(BaseScraper):
                 "User-Agent": self.session.headers.get("User-Agent", "Mozilla/5.0"),
                 "Accept": "*/*"
             }
-            resp = self.session.get(show_url, headers=rsc_headers, timeout=(3.0, 8.0), verify=False)
+            resp = self.session.get(show_url, headers=rsc_headers, timeout=(3.0, 8.0))
             if resp.status_code == 200:
                 cdn_images = re.findall(
                     r'https://[^\s"\'<>]*(?:teapp\.pl|teatr\.bielsko\.pl)[^\s"\'<>]+/uploads/[^\s"\'<>]+\.(?:jpg|jpeg|png|webp)',
@@ -91,7 +91,7 @@ class TeatrBielskoPlScraper(BaseScraper):
         print(f"\n[{self.source_name}] Pobieranie repertuaru i grafik spektakli...")
 
         try:
-            resp = self.session.get(self.api_url, verify=False, timeout=(4.0, 12.0))
+            resp = self.session.get(self.api_url, timeout=(4.0, 12.0))
             if resp.status_code != 200:
                 print(f"[{self.source_name}] Błąd HTTP API: {resp.status_code}")
                 return events

@@ -30,7 +30,7 @@ def run_preflight_checks(scrapers):
         try:
             # Sprawdzenie dostępności URL
             url = getattr(sc, 'calendar_url', None) or getattr(sc, 'events_url', None) or getattr(sc, 'api_url', None) or sc.base_url
-            r = sc.session.get(url, timeout=(3.0, 6.0), verify=False)
+            r = sc.session.get(url, timeout=(3.0, 6.0))
             if r.status_code != 200:
                 print(f"  * [{name}] OSTRZEŻENIE: Status HTTP {r.status_code}")
                 failed.append(name)

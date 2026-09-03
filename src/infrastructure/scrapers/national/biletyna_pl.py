@@ -152,7 +152,7 @@ class BiletynaPlScraper(BaseScraper):
     def _scrape_detail_page(self, event_url: str, fallback_title: str) -> List[Dict[str, Any]]:
         page_events = []
         try:
-            resp = self.session.get(event_url, timeout=(3.05, 10), verify=False)
+            resp = self.session.get(event_url, timeout=(3.05, 10))
             if resp.status_code != 200:
                 return page_events
             soup = BeautifulSoup(resp.content, "html.parser")
@@ -223,7 +223,7 @@ class BiletynaPlScraper(BaseScraper):
     def fetch_events(self) -> List[Dict[str, Any]]:
         events = []
         try:
-            resp = self.session.get(self.events_url, timeout=(3.05, 10), verify=False)
+            resp = self.session.get(self.events_url, timeout=(3.05, 10))
             if resp.status_code != 200:
                 return events
             soup = BeautifulSoup(resp.content, "html.parser")

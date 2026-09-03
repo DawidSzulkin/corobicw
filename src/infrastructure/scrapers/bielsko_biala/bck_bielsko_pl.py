@@ -82,7 +82,7 @@ class BckBielskoPlScraper(BaseScraper):
         if not event_url or event_url == self.repertoire_url:
             return []
         try:
-            resp = self.session.get(event_url, timeout=(3.05, 7), verify=False)
+            resp = self.session.get(event_url, timeout=(3.05, 7))
             if resp.status_code != 200:
                 return []
             soup = BeautifulSoup(resp.content, "html.parser")
@@ -104,7 +104,7 @@ class BckBielskoPlScraper(BaseScraper):
         for page_idx in range(6):
             page_url = f"{self.repertoire_url}?page={page_idx}" if page_idx > 0 else self.repertoire_url
             try:
-                resp = self.session.get(page_url, timeout=(3.05, 10), verify=False)
+                resp = self.session.get(page_url, timeout=(3.05, 10))
                 if resp.status_code != 200:
                     break
 

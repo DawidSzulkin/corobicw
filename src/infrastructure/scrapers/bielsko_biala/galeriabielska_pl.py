@@ -38,7 +38,7 @@ class GaleriaBielskaPlScraper(BaseScraper):
     def _fetch_event_details(self, url: str) -> Dict[str, Any]:
         details = {"description": "", "time_start": "10:00", "price": "Wst?p wolny / Bilety w kasie"}
         try:
-            r = self.session.get(url, timeout=(4.0, 10.0), verify=False)
+            r = self.session.get(url, timeout=(4.0, 10.0))
             if r.status_code == 200:
                 s = BeautifulSoup(r.content, "html.parser")
                 content_div = s.select_one(".content, .entry-content, article, .event-details")
@@ -65,7 +65,7 @@ class GaleriaBielskaPlScraper(BaseScraper):
 
         print(f"\n[{self.source_name}] Pobieranie kalendarium Galerii Bielskiej BWA...")
         try:
-            resp = self.session.get(self.calendar_url, timeout=(4.0, 10.0), verify=False)
+            resp = self.session.get(self.calendar_url, timeout=(4.0, 10.0))
             if resp.status_code != 200:
                 print(f"[{self.source_name}] B??d HTTP {resp.status_code}")
                 return []

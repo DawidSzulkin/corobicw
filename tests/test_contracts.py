@@ -28,7 +28,7 @@ def get_resilient_session():
 def test_kupbilecik_contract():
     session = get_resilient_session()
     url = "https://www.kupbilecik.pl/szukaj/?q=Bielsko"
-    resp = session.get(url, headers=HEADERS, verify=False, timeout=(5, 15))
+    resp = session.get(url, headers=HEADERS, timeout=(5, 15))
     assert resp.status_code == 200, f"KupBilecik odrzucił połączenie: {resp.status_code}"
     
     soup = BeautifulSoup(resp.content, "html.parser")
@@ -45,7 +45,7 @@ def test_banialuka_contract():
         "Referer": "https://banialuka.pl/repertuar",
         "Accept": "application/json, text/plain, */*"
     }
-    resp = session.get(url, headers=ajax_headers, verify=False, timeout=(5, 20))
+    resp = session.get(url, headers=ajax_headers, timeout=(5, 20))
     assert resp.status_code == 200, f"Banialuka AJAX odrzuciła połączenie: {resp.status_code}"
     
     data = resp.json()
@@ -59,6 +59,6 @@ def test_banialuka_contract():
 def test_cavatina_contract():
     session = get_resilient_session()
     url = "https://cavatinahall.pl/wp-json/wp/v2/events?per_page=1"
-    resp = session.get(url, headers=HEADERS, verify=False, timeout=(5, 15))
+    resp = session.get(url, headers=HEADERS, timeout=(5, 15))
     assert resp.status_code == 200, "Cavatina API przestało odpowiadać."
     assert isinstance(resp.json(), list), "Cavatina API zmieniło strukturę odpowiedzi."
