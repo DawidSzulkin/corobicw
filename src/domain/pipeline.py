@@ -11,20 +11,11 @@ def _clean_ticket_url(url: str) -> str:
     new_query = urllib.parse.urlencode(clean_qs)
     return urllib.parse.urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, ""))
 
-def _get_url_priority(url: str) -> tuple[int, str]:
-    u = (url or "").lower()
-    if "kupbilecik" in u: return (100, "KupBilecik")
-    if "biletyna" in u: return (95, "Biletyna")
-    if "ebilet" in u: return (90, "eBilet")
-    if "eventim" in u: return (85, "Eventim")
-    if "goingapp" in u: return (80, "Going.")
-    if "ticketmaster" in u: return (75, "Ticketmaster")
-    if any(k in u for k in ["teatr", "bck", "cavatina", "galeriabielska", "banialuka", "mok", "mosir", "mbp"]):
-        return (50, "Organizator")
-    return (10, "Strona źródłowa")
+def _get_url_priority(url: str, organizer: str = "") -> tuple[int, str]:
+    prio, name, _ = resolve_ticket_provider(url, organizer)
+    return (prio, name)
 
-
-from src.utils.helpers import haversine, slugify
+from src.utils.helpers import haversine, slugify, resolve_ticket_provider
 import json
 import os
 import re
@@ -461,10 +452,15 @@ def _deduplicate_ticket_offers_list(offers: list, fallback_url: str = "", fallba
             o["tag"] = None
             o["tag_class"] = None
         else:
+            _, _, is_off = resolve_ticket_provider(o["url"], o["provider"])
+            o["is_official"] = is_off
+            if is_off:
+                o["official_badge"] = "Oficjalna kasa"
+                
             if num_p < float("inf") and num_p == min_paid and len(deduped) > 1:
                 o["tag"] = "Najlepsza cena"
                 o["tag_class"] = "best-price"
-            elif "bck" in u_low or "organizator" in prov_low or "bck" in prov_low:
+            elif is_off:
                 o["tag"] = "Oficjalna kasa"
                 o["tag_class"] = "official"
             # Zniżki zostają dokładnie takie, jakie dostarczył scraper (bez sztywnego mocka!)
@@ -519,7 +515,7 @@ def deduplicate_events(events: list, city_name: str = "") -> list:
             best_img = ""
             for c in cluster:
                 img = c.get("image_url") or c.get("thumbnail_url", "")
-                if "/assets/thumbnails/" in img:
+                if "/assets/thumbnails/" in str(img):
                     best_img = img
                     break
                 elif img and not best_img:
@@ -561,7 +557,23 @@ def deduplicate_events(events: list, city_name: str = "") -> list:
             primary_price = ranked_offers[0]["price"] if ranked_offers else fallback_p
 
             primary = dict(cluster[0])
+            best_img = ""
+            best_discounts = []
+            for c in cluster:
+                img = c.get("image_url") or c.get("thumbnail_url", "")
+                if "/assets/thumbnails/" in str(img):
+                    best_img = img
+                elif img and not best_img:
+                    best_img = img
+                
+                disc = c.get("discounts")
+                if disc and isinstance(disc, list) and len(disc) > len(best_discounts):
+                    best_discounts = disc
+
+            primary = dict(cluster[0])
             primary["title"] = best_title
+            primary["image_url"] = best_img
+            primary["discounts"] = best_discounts if best_discounts else primary.get("discounts")
             if best_desc:
                 primary["description"] = best_desc
                 if isinstance(primary.get("analysis"), dict):
@@ -638,6 +650,8 @@ def _format_address(raw_addr: Any, default_city: str = "") -> str:
                         is_primary=o.get('is_primary', False),
                         tag=o.get('tag'),
                         tag_class=o.get('tag_class'),
+                        is_official=o.get('is_official', False),
+                        official_badge=o.get('official_badge'),
                         discounts=o.get('discounts') or []
                     ))
                 elif isinstance(o, TicketOffer):
@@ -762,6 +776,8 @@ def _prepare_full_event_pages(
                     is_primary=o.get("is_primary", False),
                     tag=o.get("tag"),
                     tag_class=o.get("tag_class"),
+                    is_official=o.get('is_official', False),
+                    official_badge=o.get('official_badge'),
                     discounts=o.get("discounts") or []
                 ))
             elif isinstance(o, TicketOffer):
@@ -803,6 +819,8 @@ def _prepare_full_event_pages(
             address=address_val
         )
 
+        discounts_val = e.get("discounts") or []
+
         event_obj = FullEventPage(
             slug=slug,
             title=title,
@@ -815,6 +833,7 @@ def _prepare_full_event_pages(
             analysis=analysis_obj,
             nearby_gastro=nearby_gastro,
             ticket_offers=parsed_offers,
+            discounts=discounts_val,
             is_cancelled=is_cancelled_flag
         )
         models.append(event_obj)
