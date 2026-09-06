@@ -264,14 +264,33 @@ class HTMLRenderer:
             rendered_places = sum(1 for r in results if r)
 
         # 3. Renderowanie agendy głównej miasta
+        BATCH_SIZE = 40
+        has_more = len(events) > BATCH_SIZE
+        initial_events = events[:BATCH_SIZE] if has_more else events
+        more_events = events[BATCH_SIZE:] if has_more else []
+
         home_template = self.env.get_template("home.html")
         home_html = home_template.render(
-            events=events,
+            events=initial_events,
+            has_more=has_more,
+            more_count=len(more_events),
             city=strict_city,
             city_name=strict_city,
             city_tag=city_tag
         )
         (city_dir / "index.html").write_text(home_html, encoding="utf-8")
+
+        if has_more:
+            chunk_template = self.env.get_template("events_chunk.html")
+            chunk_html = chunk_template.render(
+                events=more_events,
+                city_tag=city_tag
+            )
+            (city_dir / "events_more.html").write_text(chunk_html, encoding="utf-8")
+        else:
+            old_chunk = city_dir / "events_more.html"
+            if old_chunk.exists():
+                old_chunk.unlink()
 
         print(f"[RENDERER] {city_name}: Wygenerowano {len(events)} podstron wydarzeń i {rendered_places} wizytówek miejsc.")
 

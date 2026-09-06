@@ -132,14 +132,7 @@
       margin-top: 2px;
     }
 
-    .event-content {
-      padding: 10px 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-width: 0;
-    }
+    
     .text-container {
       overflow: hidden;
       display: flex;
@@ -183,25 +176,7 @@
     .event-title a::after { content: ""; position: absolute; inset: 0; z-index: 10; }
     
     /* GRADIENTOWE ZANIKANIE TEKSTU */
-    .event-desc {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.35;
-      max-height: 2.7em; /* 1.35 * 2 = 2.7 */
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 1;
-    }
-    .event-desc::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 22%;
-      height: 1.35em;
-      background: linear-gradient(to right, transparent 0%, var(--card-bg) 85%);
-      pointer-events: none;
-    }
+    
     .event-card:hover .event-desc::after {
       background: linear-gradient(to right, transparent 0%, var(--card-hover) 85%);
     }
@@ -267,7 +242,62 @@
       .event-card.cancelled:hover { border-color: rgba(239, 68, 68, 0.7); }
       .badge-cancelled-pill { background: rgba(239, 68, 68, 0.18); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 1px 6px; border-radius: 3px; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.5px; display: inline-block; margin-right: 6px; vertical-align: middle; }
 
-    </style>
+    
+    .btn-load-more {
+      background: var(--bg-card, #141414);
+      color: var(--text-main, #ffffff);
+      border: 1px solid var(--border-color, #27272a);
+      padding: 14px 28px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      min-width: 240px;
+    }
+    .btn-load-more:hover {
+      background: var(--border-color, #27272a);
+      border-color: #52525b;
+      transform: translateY(-1px);
+    }
+    .btn-load-more:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+  
+    /* --- Brutalist Card Balance & Gradient Fade --- */
+    .event-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+    .event-desc {
+      position: relative;
+      max-height: 5.6em;
+      line-height: 1.42;
+      overflow: hidden;
+      color: var(--text-muted, #9ca3af);
+      margin: 6px 0 10px 0;
+      font-size: 0.86rem;
+      word-break: break-word;
+    }
+    .event-desc::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2.2em;
+      background: linear-gradient(to bottom, rgba(20, 20, 20, 0) 0%, var(--bg-card, #141414) 95%);
+      pointer-events: none;
+    }
+
+  </style>
 </head>
 <body>
   <header>
@@ -294,40 +324,15 @@
     </div>
     <div id="events-agenda">
       {% for ev in events %}
-        <article class="event-item" data-start="{{ ev.date_start }}" data-end="{{ ev.date_end }}">
-          <div class="event-card {% if ev.is_cancelled %}cancelled{% endif %}">
-            <div class="thumb-wrap">
-              <div class="date-badge">
-                <span class="day">{{ ev.date_start.split('-')[2] }}</span>
-                <span class="month">
-                  {% set m = ev.date_start.split('-')[1] %}
-                  {% if m == '01' %}STY{% elif m == '02' %}LUT{% elif m == '03' %}MAR{% elif m == '04' %}KWI{% elif m == '05' %}MAJ{% elif m == '06' %}CZE{% elif m == '07' %}LIP{% elif m == '08' %}SIE{% elif m == '09' %}WRZ{% elif m == '10' %}PAŹ{% elif m == '11' %}LIS{% elif m == '12' %}GRU{% endif %}
-                </span>
-              </div>
-              <img src="{{ ev.image_url }}" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-              <img src="{{ ev.image_url or '/assets/placeholder.svg?v=2' }}" class="thumb-fg" alt="Plakat: {{ ev.title }}" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-            </div>
-            <div class="event-content">
-              <div class="text-container">
-                <div class="meta-top">
-                      <span class="badge-container">{% if ev.is_cancelled %}<span class="badge-cancelled-pill">ODWOŁANE</span>{% endif %}</span>
-                      <span class="cat-accent">{{ ev.analysis.category }}</span>
-                      <span>&bull;</span>
-                      <span class="date-accent">{{ ev.date_formatted }}</span>
-                      <span>&bull;</span>
-                      <span class="time-accent">{{ ev.analysis.ticket_info.time_start }}</span>
-                    </div>
-                <h3 class="event-title"><a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/">{{ ev.title }}</a></h3>
-                <p class="event-desc">{{ ev.analysis.full_description }}</p>
-              </div>
-              <div class="meta-bottom">
-                <span class="price">{% if ev.is_cancelled %}<del style="color: var(--text-muted); margin-right: 6px;">{{ ev.analysis.ticket_info.price_range }}</del><span style="color: #f87171; font-weight: 700;">Występ odwołany</span>{% else %}{{ ev.analysis.ticket_info.price_range }}{% endif %}</span>
-                <span class="arrow-link">Szczegóły &rarr;</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      {% endfor %}
+        {% include "_event_card.html" %}
+        {% endfor %}
+        {% if has_more %}
+        <div id="loadMoreContainer" style="grid-column: 1 / -1; text-align: center; margin: 32px 0 16px 0;">
+          <button id="loadMoreBtn" class="btn-load-more" onclick="loadMoreEvents()">
+            Pokaż więcej wydarzeń (+{{ more_count }})
+          </button>
+        </div>
+        {% endif %}
     </div>
   </main>
   <footer>
@@ -445,6 +450,33 @@
       initDynamicBadges();
       filterEvents('all', null);
     });
+  
+    async function loadMoreEvents() {
+      const btn = document.getElementById('loadMoreBtn');
+      const container = document.getElementById('loadMoreContainer');
+      if (!btn) return;
+      
+      btn.disabled = true;
+      btn.textContent = 'Wczytywanie wydarzeń...';
+      
+      try {
+        const response = await fetch('events_more.html');
+        if (!response.ok) throw new Error('Nie udało się pobrać kolejnych wydarzeń');
+        const html = await response.text();
+        
+        container.insertAdjacentHTML('beforebegin', html);
+        container.remove();
+        
+        if (typeof initDynamicBadges === 'function') {
+          initDynamicBadges();
+        }
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = 'Błąd wczytywania. Spróbuj ponownie';
+      }
+    }
+
   </script>
 </body>
 </html>
