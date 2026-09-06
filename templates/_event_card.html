@@ -1,5 +1,5 @@
 <article class="event-item" data-start="{{ ev.date_start }}" data-end="{{ ev.date_end }}">
-  <div class="event-card {% if ev.is_cancelled %}cancelled{% endif %}">
+  <a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/" class="event-card {% if ev.is_cancelled %}cancelled{% endif %}">
     <div class="thumb-wrap">
       <div class="date-badge">
         <span class="day">{{ ev.date_start.split('-')[2] }}</span>
@@ -21,7 +21,7 @@
           <span>&bull;</span>
           <span class="time-accent">{{ ev.analysis.ticket_info.time_start }}</span>
         </div>
-        <h3 class="event-title"><a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/">{{ ev.title }}</a></h3>
+        <h3 class="event-title">{{ ev.title }}</h3>
         <p class="event-desc">{{ (ev.analysis.full_description or ev.analysis.editorial_lead or "") | truncate(400, killwords=False, end="") }}</p>
       </div>
       <div class="meta-bottom">
@@ -29,5 +29,5 @@
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
-  </div>
+  </a>
 </article>

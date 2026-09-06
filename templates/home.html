@@ -14,6 +14,26 @@
   </script>
 
   <style>
+
+    /* --- Global Link Reset --- */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a.event-card {
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      cursor: pointer;
+    }
+    a.event-card:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+    .event-title {
+      color: var(--text);
+    }
+    
     :root[data-theme="dark"] {
       --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
       --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
@@ -59,7 +79,7 @@
     .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
     .filter-btn.active { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
 
-    .event-card {
+        .event-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       margin-bottom: 14px;
@@ -70,7 +90,11 @@
       border-radius: 4px;
       transition: border-color 0.2s, background 0.2s, transform 0.2s;
     }
-    .event-card:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(3px); }
+    .event-card:hover { 
+      border-color: var(--border-strong); 
+      background: var(--card-hover); 
+      transform: translateX(3px); 
+    }
 
     .thumb-wrap {
       width: 220px;
@@ -132,12 +156,20 @@
       margin-top: 2px;
     }
 
-    
+    .event-content {
+      padding: 10px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
     .text-container {
       overflow: hidden;
       display: flex;
       flex-direction: column;
       min-height: 0;
+      flex: 1;
     }
     .meta-top {
       font-size: 0.72rem;
@@ -172,15 +204,31 @@
       overflow: hidden;
       flex-shrink: 0;
     }
-    .event-title a { color: var(--text); text-decoration: none; }
-    .event-title a::after { content: ""; position: absolute; inset: 0; z-index: 10; }
-    
-    /* GRADIENTOWE ZANIKANIE TEKSTU */
-    
-    .event-card:hover .event-desc::after {
-      background: linear-gradient(to right, transparent 0%, var(--card-hover) 85%);
+    .event-desc {
+      position: relative;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      line-height: 1.38;
+      margin: 4px 0 0 0;
+      overflow: hidden;
+      flex: 1;
+      min-height: 0;
+      word-break: break-word;
     }
-    
+    .event-desc::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1.8em;
+      background: linear-gradient(to bottom, transparent 0%, var(--card-bg) 95%);
+      pointer-events: none;
+    }
+    .event-card:hover .event-desc::after {
+      background: linear-gradient(to bottom, transparent 0%, var(--card-hover) 95%);
+    }
+
     .meta-bottom {
       border-top: 1px solid var(--border);
       padding-top: 6px;
@@ -191,14 +239,31 @@
       font-size: 0.85rem;
       flex-shrink: 0;
     }
-    .price { font-weight: 800; color: var(--text); }
-    .arrow-link { font-weight: 800; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; color: var(--text-muted); }
-    .event-card:hover .arrow-link { color: var(--text); }
 
-    @media (max-width: 768px) {
-      .event-card { height: auto; flex-direction: column; }
-      .thumb-wrap { width: 100%; min-width: 100%; height: 200px; }
-      .btn-nav { display: none; }
+    /* Przycisk Wariantu 2 dopasowany do motywu */
+    .btn-load-more {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      min-width: 240px;
+    }
+    .btn-load-more:hover {
+      background: var(--card-hover);
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+    .btn-load-more:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
     }
 
     footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
