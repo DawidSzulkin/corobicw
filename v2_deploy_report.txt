@@ -1,0 +1,5 @@
+=== WDROŻENIE WARIANTU 2 (HTML CHUNK + LOAD MORE) ===
+[1/4] Utworzono komponent szablonu: templates/_event_card.html
+[2/4] Utworzono szablon partii odroczonej: templates/events_chunk.html
+[3/4] Zaktualizowano pętlę wydarzeń i dodano kontener przycisku w templates/home.html
+[4/4] Zaktualizowano potok renderera w src/infrastructure/renderer.py
