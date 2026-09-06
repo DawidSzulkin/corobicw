@@ -36,7 +36,7 @@ class GaleriaBielskaPlScraper(BaseScraper):
             return ""
 
     def _fetch_event_details(self, url: str) -> Dict[str, Any]:
-        details = {"description": "", "time_start": "10:00", "price": "Wst?p wolny / Bilety w kasie"}
+        details = {"description": "", "time_start": "10:00", "price": "Wstęp wolny / Bilety w kasie"}
         try:
             r = self.session.get(url, timeout=(4.0, 10.0))
             if r.status_code == 200:
@@ -51,8 +51,8 @@ class GaleriaBielskaPlScraper(BaseScraper):
                 time_m = re.search(r"godz(?:ina|\.)?\s*(\d{1,2}[:.]\d{2})", txt, re.IGNORECASE)
                 if time_m:
                     details["time_start"] = time_m.group(1).replace(".", ":")
-                if "bezp?atn" in txt.lower() or "wst?p wolny" in txt.lower():
-                    details["price"] = "Wst?p bezp?atny"
+                if "bezpłatn" in txt.lower() or "wstęp wolny" in txt.lower():
+                    details["price"] = "Wstęp bezpłatny"
         except Exception:
             pass
         return details
@@ -67,7 +67,7 @@ class GaleriaBielskaPlScraper(BaseScraper):
         try:
             resp = self.session.get(self.calendar_url, timeout=(4.0, 10.0))
             if resp.status_code != 200:
-                print(f"[{self.source_name}] B??d HTTP {resp.status_code}")
+                print(f"[{self.source_name}] Błąd HTTP {resp.status_code}")
                 return []
 
             soup = BeautifulSoup(resp.content, "html.parser")
@@ -128,10 +128,10 @@ class GaleriaBielskaPlScraper(BaseScraper):
                 thumb_path = self.save_thumbnail(remote_img, title, prefix="galeriabielska") if remote_img else ""
 
                 venue_name = "Galeria Bielska BWA"
-                address = "ul. 3 Maja 11, Bielsko-Bia?a"
+                address = "ul. 3 Maja 11, Bielsko-Biała"
                 if "willi sixta" in full_txt.lower() or "willa sixta" in title.lower():
                     venue_name = "Willa Sixta (Galeria Bielska BWA)"
-                    address = "ul. Mickiewicza 24, Bielsko-Bia?a"
+                    address = "ul. Mickiewicza 24, Bielsko-Biała"
 
                 sub_data = self._fetch_event_details(event_url)
                 desc = sub_data["description"] if len(sub_data["description"]) > 30 else f"{category}: {title} w przestrzeni {venue_name}."
@@ -152,7 +152,7 @@ class GaleriaBielskaPlScraper(BaseScraper):
                     "category": category
                 })
         except Exception as e:
-            print(f"[{self.source_name}] B??d krytyczny: {e}")
+            print(f"[{self.source_name}] Błąd krytyczny: {e}")
 
-        print(f"[{self.source_name}] Sparsowano {len(events)} rekord?w.")
+        print(f"[{self.source_name}] Sparsowano {len(events)} rekordów.")
         return events
