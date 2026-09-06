@@ -2,7 +2,6 @@ import json
 import os
 import re
 import shutil
-from src.infrastructure.rules_engine import compile_venue_rules
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
@@ -192,11 +191,9 @@ class HTMLRenderer:
             
             place_obj = places.get(p_id) if p_id else None
             desc_html = _process_event_description_to_html(ev)
-            compiled_rules = compile_venue_rules(place_obj, ev)
 
             single_html = event_template.render(
                 formatted_description=desc_html,
-                  compiled_rules=compiled_rules,
                 ev=ev,
                 event=ev,
                 place=place_obj,
@@ -221,8 +218,6 @@ class HTMLRenderer:
             if ev_pid:
                 events_by_place.setdefault(str(ev_pid), []).append(ev)
 
-        if places_dir.exists():
-            shutil.rmtree(places_dir)
         places_dir.mkdir(parents=True, exist_ok=True)
 
         premium_venues = set()

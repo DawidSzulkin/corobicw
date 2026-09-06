@@ -50,7 +50,7 @@ venue_match_rules:
 - keywords:
   - droga do bullerbyn
   - mity i opowie
-  - miko?ajek opowiada
+  - mikołajek opowiada
   - tajemnicza biblioteka
   - brzechw
   - zawody marze?
@@ -61,12 +61,12 @@ venue_match_rules:
   - narodowe czytanie
   - dyskusyjny klub
   - spotkanie autorskie
-  - w?r?d zieleni
+  - wśród zieleni
   - mbp
   - bibliotek
   target_id: kk-mbp-glowna
 - keywords:
-  - s?awi?cic
+  - sławięcic
   - slawiecic
   - plener malarski
   target_id: kk-park-slawiecice
@@ -77,12 +77,12 @@ venue_match_rules:
 - keywords:
   - nightskating
   - rolkowanie
-  - ?r?dmie?cie
+  - śródmieście
   - srodmiescie
   target_id: kk-hala-srodmiescie
 - keywords:
   - hala azoty
-  - siatk?wk
+  - siatkówk
   - grand prix
   - azoty
   - hala widowiskowo-sportowa

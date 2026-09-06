@@ -807,6 +807,7 @@ def _prepare_full_event_pages(
             place_id=resolved_pid
         )
 
+        rules_data = analysis_raw.get("rules") if isinstance(analysis_raw.get("rules"), dict) else (e.get("rules") or {})
         analysis_obj = EventAnalysis(
             category=category,
             badges=badges,
@@ -816,7 +817,8 @@ def _prepare_full_event_pages(
             details_bullets=bullets,
             quick_facts=quick_facts,
             ticket_info=ticket_info,
-            address=address_val
+            address=address_val,
+            rules=rules_data
         )
 
         discounts_val = e.get("discounts") or []

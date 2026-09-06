@@ -1,0 +1,75 @@
+================================================================================
+AUDYT TESTOWEGO WZBOGACANIA DANYCH Z OPENSTREETMAP (data_test/)
+================================================================================
+
+###############################################################################
+MIASTO: BIELSKO_BIALA
+  * Liczba obiektów w bazie:       440
+  * Dopasowano punktów OSM (<=40m): 407
+  * Pokrycie tagiem 'wheelchair':  44 -> 46 (+2)
+###############################################################################
+
+PRÓBKA DOPASOWAŃ I ANALIZA ODCHYLENIA (Pierwsze 15):
+  [0.0m] 'Helios' <=> OSM: 'Helios' (ID: 299360186, cinema)
+  [0.0m] 'Pod Źródłem' <=> OSM: 'Pod Źródłem' (ID: 434309762, restaurant)
+  [0.0m] 'Jama' <=> OSM: 'Jama' (ID: 434309763, bar)
+  [0.0m] 'Adona Restauracja Orientalna' <=> OSM: 'Adona Restauracja Orientalna' (ID: 442044769, restaurant)
+  [0.0m] 'La vie en rose' <=> OSM: 'La vie en rose' (ID: 442044772, cafe)
+  [0.0m] 'Piwnica Zamkowa' <=> OSM: 'Piwnica Zamkowa' (ID: 442047590, pub)
+  [0.0m] 'Rock Caffe' <=> OSM: 'Rock Caffe' (ID: 442047593, pub)
+  [0.0m] 'Sabotage' <=> OSM: 'Sabotage' (ID: 442047594, pub)
+  [0.0m] 'KFC' <=> OSM: 'KFC' (ID: 921259505, fast_food)
+  [0.0m] 'Herbaciarnia Assam' <=> OSM: 'Herbaciarnia Assam' (ID: 442455795, cafe)
+  [0.0m] 'Stolarnia' <=> OSM: 'Stolarnia' (ID: 442455849, pub)
+  [0.0m] 'Kapitan Morgan' <=> OSM: 'Kapitan Morgan' (ID: 442497705, pub)
+  [0.0m] 'All Star's Pub' <=> OSM: 'All Star's Pub' (ID: 442497706, pub)
+  [0.0m] 'Arytmia' <=> OSM: 'Arytmia' (ID: 442497708, pub)
+  [0.0m] 'Dzielnicowa Biblioteka Publiczna' <=> OSM: 'Dzielnicowa Biblioteka Publiczna' (ID: 740152399, library)
+
+###############################################################################
+MIASTO: KEDZIERZYN_KOZLE
+  * Liczba obiektów w bazie:       197
+  * Dopasowano punktów OSM (<=40m): 142
+  * Pokrycie tagiem 'wheelchair':  7 -> 7 (+0)
+###############################################################################
+
+PRÓBKA DOPASOWAŃ I ANALIZA ODCHYLENIA (Pierwsze 15):
+  [0.0m] 'Da Ci Kumo Sushi' <=> OSM: 'Da Ci Kumo Sushi' (ID: 1629676346, fast_food)
+  [0.0m] 'Gruby Benek' <=> OSM: 'Gruby Benek' (ID: 1761138238, restaurant)
+  [0.0m] 'Big Boom' <=> OSM: 'Big Boom' (ID: 2260593976, bar)
+  [0.0m] 'Restauracja - Damian Kania' <=> OSM: 'Restauracja - Damian Kania' (ID: 2260669246, restaurant)
+  [0.0m] 'Restauracja Viktorjan' <=> OSM: 'Restauracja Viktorjan' (ID: 2260669367, restaurant)
+  [0.0m] 'Hula-Gula' <=> OSM: 'Hula-Gula' (ID: 2409017895, fast_food)
+  [0.0m] 'Magdalena Zalewska' <=> OSM: 'Magdalena Zalewska' (ID: 2932868990, cafe)
+  [0.0m] 'Pod Lwami' <=> OSM: 'Pod Lwami' (ID: 2932905121, pub)
+  [27.8m] 'Powódź tysiąclecia' <=> OSM: '[brak nazwy w OSM]' (ID: 289748965, parking)
+  [10.6m] 'Henryk Sienkiewicz' <=> OSM: '[brak nazwy w OSM]' (ID: 2935500820, bench)
+  [0.0m] 'GastroFazza' <=> OSM: 'GastroFazza' (ID: 2935557568, fast_food)
+  [0.0m] 'Garden - Cafe' <=> OSM: 'Garden - Cafe' (ID: 2956937788, cafe)
+  [8.3m] 'Dostrzegalnia pożarowa "Kędzierzyn"' <=> OSM: '[brak nazwy w OSM]' (ID: 13748667608, waste_basket)
+  [0.0m] 'Lucio's Jack and Restaurant' <=> OSM: 'Lucio's Jack and Restaurant' (ID: 4396000986, restaurant)
+  [0.0m] 'Spichlerz' <=> OSM: 'Spichlerz' (ID: 4486421588, restaurant)
+
+###############################################################################
+MIASTO: OPOLE
+  * Liczba obiektów w bazie:       229
+  * Dopasowano punktów OSM (<=40m): 216
+  * Pokrycie tagiem 'wheelchair':  0 -> 23 (+23)
+###############################################################################
+
+PRÓBKA DOPASOWAŃ I ANALIZA ODCHYLENIA (Pierwsze 15):
+  [0.0m] 'Pizzeria Promyk' <=> OSM: 'Pizzeria Promyk' (ID: 836062636, fast_food)
+  [0.0m] 'Przystanek Malinka' <=> OSM: 'Przystanek Malinka' (ID: 836062639, restaurant)
+  [0.0m] 'Kwant' <=> OSM: 'Kwant' (ID: 849416890, restaurant)
+  [0.0m] 'Hotel Festival' <=> OSM: 'Hotel Festival' (ID: 974124033, restaurant)
+  [0.0m] 'Biblioteka Miejska Filia nr 6' <=> OSM: 'Biblioteka Miejska Filia nr 6' (ID: 1407289819, library) -> OzN: no
+  [0.0m] 'Book A Coffee' <=> OSM: 'Book A Coffee' (ID: 1472357071, cafe) -> OzN: no
+  [0.0m] 'Quchnia.com' <=> OSM: 'Quchnia.com' (ID: 1472361187, restaurant) -> OzN: yes
+  [0.0m] 'Grabówka' <=> OSM: 'Grabówka' (ID: 1472384071, restaurant)
+  [0.0m] 'Pizza Hut' <=> OSM: 'Pizza Hut' (ID: 1461858467, restaurant)
+  [0.0m] 'Tulsi' <=> OSM: 'Tulsi' (ID: 1472877389, restaurant)
+  [0.0m] 'Laboratorium' <=> OSM: 'Laboratorium' (ID: 1472877414, bar)
+  [0.0m] 'Wintydż' <=> OSM: 'Wintydż' (ID: 1472877443, bar)
+  [0.0m] 'Highlander' <=> OSM: 'Highlander' (ID: 1472877444, pub)
+  [0.0m] 'Pod arkadami' <=> OSM: 'Pod arkadami' (ID: 1472877446, cafe) -> OzN: yes
+  [0.0m] 'Szara Willa' <=> OSM: 'Szara Willa' (ID: 1472982078, restaurant) -> OzN: limited

@@ -36,6 +36,7 @@ class TicketOffer(BaseModel):
     discounts: list[dict[str, Any]] = []
 
 class EventAnalysis(BaseModel):
+    rules: dict = {}
     category: str
     badges: List[str]
     organizer: str

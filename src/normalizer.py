@@ -1,4 +1,5 @@
 from src.utils.helpers import slugify
+from src.application.extractor import extract_rules_from_text
 from datetime import datetime
 import re
 import unicodedata
@@ -136,7 +137,12 @@ def create_event_record(event: dict, default_city_name: str = "Miasto") -> FullE
 
     organizer = event.get("organizer") or ("Miejski Ośrodek Kultury" if "mok" in source_name else default_city_name)
 
+    # WYWOŁANIE EKSTRAKTORA REGUŁ (KATEGORIA A)
+    extracted_rules = extract_rules_from_text(full_description)
+    
     analysis = EventAnalysis(
+        rules=extracted_rules,
+
         category=category,
         badges=[category, source_name],
         organizer=organizer,

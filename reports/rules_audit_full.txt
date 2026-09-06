@@ -1,0 +1,401 @@
+================================================================================
+PEŁNY AUDYT EKSTRAKCJI REGUŁ (data/events.db)
+Łączna liczba analizowanych rekordów: 417
+================================================================================
+
+POKRYCIE: 68/417 wydarzeń (16.3%) otrzymało flagi.
+
+ROZKŁAD FLAG:
+  * age_policy        :  29 wystąpień
+  * duration          :  24 wystąpień
+  * photo_policy      :  12 wystąpień
+  * gastro_policy     :   7 wystąpień
+  * ticket_format     :   3 wystąpień
+  * latecomers        :   2 wystąpień
+  * health_warnings   :   1 wystąpień
+
+================================================================================
+LISTA WYDARZEŃ Z WYKRYTYMI REGUŁAMI I DOWODAMI TEKSTOWYMI
+================================================================================
+
+###############################################################################
+MIASTO: BIELSKO_BIALA (Liczba dopasowań: 36)
+###############################################################################
+
+[ID 14459] FOLK FEST Festiwal Sploty Kultury i Natury
+  ├── Flaga: gastro_policy (🍔 Gastronomia -> [Strefa gastro])
+  │   Opis UI:  Na terenie wydarzenia dostępna jest strefa gastronomiczna, kawiarnia lub punkty z jedzeniem.
+  └── Źródło:   ...ach wydarzenia funkcjonować będzie strefa gastronomiczna, a także zielony bazar, gdzie loka...
+
+[ID 14466] Viva Maria!
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...l: viva maria!. scena: duża scena. czas trwania: 150 min....
+
+[ID 14477] Depresja komika - Adam Woronowicz i Rafał Rutkowski
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...ia: 90 minut, bez przerwy spektakl od 18 roku życia...
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...ucent wykonawczy: marta więcławska czas trwania: 90 minut, bez przerwy spektakl od 18 roku ż...
+
+[ID 14479] Wanda
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...pektakl: wanda. scena: mała scena. czas trwania: 75 min....
+
+[ID 14486] Wystawa laureata Grand Prix 47. Biennale Malarstwa Bielska Jesień 2025
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...olsce lub za granicą, organizowany od 1962 roku. laureat lub laureatka nagrody gra...
+
+[ID 14493] Tina
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...spektakl: tina. scena: mała scena. czas trwania: 75 min....
+
+[ID 14494] Stand-up: Bartek Zajda
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...sze sekrety - na żywo na scenie. * 18+ występ tylko dla widzów pełnoletni...
+
+[ID 14496] Rafał Bojdys – Malarstwo
+  ├── Flaga: gastro_policy (🍔 Gastronomia -> [Strefa gastro])
+  │   Opis UI:  Na terenie wydarzenia dostępna jest strefa gastronomiczna, kawiarnia lub punkty z jedzeniem.
+  └── Źródło:   ...galeria bielska bwa, klubokawiarnia aquarium środa, 23 września 2026,...
+
+[ID 14505] Koncert przy świecach: Muzyka filmowa - Hans Zimmer i inni
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...zywołując sceny i emocje, które na trwałe zapisały się w historii kina. repertuar dopełnią utwory innych legend muzyki filmowej: ennio morricone , john williams oraz james horner . każda z tych kompozycji to osobna filmowa opowieść - pełna napięcia, wzruszeń, nostalgii i epickiego rozmachu. migoczące światło świec, starannie dobrany repertuar oraz wyjątkowa akustyka sprawiają, że koncert nabiera szczególnego charakteru. to doskonała okazja, by na chwilę oderwać się od codzienności i zanurzyć w dźwiękach, które przez lata towarzyszyły najważniejszym filmowym historiom i wciąż poruszają kolejne pokolenia widzów. nietuzinkowe wnętrze, tysiąc świec i nastrojowe brzmienia wprawią cię we wspaniały nastrój i dostarczą świetnej rozrywki. artyści: kwartet smyczkowy w klasycznym składzie: • i skrzypce • ii skrzypce • wiolonczela • altówka program: ścieżka dźwiękowa z filmów: gladiator, piraci z karaibów, ojciec chrzestny, amelia, james bond, harry potter, pearl harbor... i wiele innych. program może ulec małym modyfikacjom. informacje dodatkowe: - drzwi otwieramy 30 minut przed rozpoczęciem koncertu, prosi...
+  ├── Flaga: latecomers (🔔 Spóźnienia -> [Ograniczenia wejścia])
+  │   Opis UI:  Osoby spóźnione mogą nie zostać wpuszczone na salę przed przerwą (antraktem).
+  └── Źródło:   ...szacunku do uczestników i muzyków osoby spóźnione mogą nie zostać wpuszczone na salę...
+
+[ID 14510] Oskar Zięta – Szepty Lasu – Odbicia Inauguracja instalacji
+  ├── Flaga: gastro_policy (🍔 Gastronomia -> [Strefa gastro])
+  │   Opis UI:  Na terenie wydarzenia dostępna jest strefa gastronomiczna, kawiarnia lub punkty z jedzeniem.
+  └── Źródło:   ...z. 18:30 galeria bielska bwa, klubokawiarnia aquarium...
+
+[ID 14513] Rezydencja artystyczna – Karolina Wiktor – Pamięć miłości
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...zydencji, którą artystka realizuje od 2024 roku. obiektem jej badań jest kamienica...
+
+[ID 14515] Bielsko-Biala Gaming Festival 4.0.
+  ├── Flaga: gastro_policy (🍔 Gastronomia -> [Strefa gastro])
+  │   Opis UI:  Na terenie wydarzenia dostępna jest strefa gastronomiczna, kawiarnia lub punkty z jedzeniem.
+  └── Źródło:   ...a zaplecze gastronomiczne zapewnią food trucki. na scenie głównej odbywać się będ...
+
+[ID 14527] Kabaret
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...ktakl: kabaret. scena: duża scena. czas trwania: 150 min....
+
+[ID 14528] Lettycja i lubczyk
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...ycja i lubczyk. scena: mała scena. czas trwania: 140 min....
+
+[ID 14532] Stand-up: Arkadiusz Jaksa Jakszewicz
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...b pełnoletnich i uśmiechniętych. - zakaz nagrywania występu w audio, video itp. - zaka...
+
+[ID 14534] 24. Objazdowy Festiwal Filmowy WATCH DOCS Prawa Człowieka w Filmie
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...bielsku-białej festiwal odbywa się od 2009 roku. wydarzenie obejmuje cztery dni pr...
+
+[ID 14542] Seksmisja
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...akl: seksmisja. scena: duża scena. czas trwania: 120 min....
+
+[ID 14544] XV Giełda Projektów
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...zasowe edycje giełdy, organizowane od 2014 roku w różnych województwach, angażował...
+
+[ID 14554] Tajemnica 16 piętra - komedia na najwyższym poziomie
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...minut przerwy. kategoria wiekowa : od 18 roku życia...
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...! używane są efekty stroboskopowe. czas trwania spektaklu 100 minut + 15 minut przerwy. kategoria wiek...
+  ├── Flaga: health_warnings (⚡ Efekty sceniczne -> [Stroboskopy / Dym])
+  │   Opis UI:  Uwaga: Podczas wydarzenia mogą być używane intensywne światła stroboskopowe, dym lub głośny dźwięk.
+  └── Źródło:   ...krok to niespodzianka? używane są efekty stroboskopowe! obsada: michał żurawski / mariusz...
+
+[ID 14557] SICK SAINTS + Hypnosaur
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ..."jurassic punk". formacja istnieje od 2017 roku i od tego czasu wydała dwie ep-ki...
+
+[ID 14558] Testosteron
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...l: testosteron. scena: duża scena. czas trwania: 130 min....
+
+[ID 14559] DŻENTELMENI POLSKIEJ PIOSENKI - Koncert-Hołd Legendom Polskiej Muzyki
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...i znów rozbrzmiewa – razem z nami! czas trwania: 90 minut....
+
+[ID 14562] Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...ratorium znanego wynalazcy bąbelka trwają prace nad tajemniczą recepturą mydlanej bańki szczęścia. mimo nieudanych prób odkrycia sekretu szczęścia bąbelek wie, że pomogą mu jego przyjaciele: mydlaneczka - prymuska mydlanej edukacji wróżka czarodziejówna - mądra nauczycielka profesor bulbulas - osobliwy naukowiec a także wy! - widzowie naszej bańkolandii czy wraz z nami pomożecie bąbelkowi? musicie się przygotować do prawdziwej mydlanej przygody! wspólnie będziemy rozwiązywać bańkowe zagadki. wspierać mydlaneczkę i bąbelka oklaskami. walczyć ze złośliwym bulbulasem i wspólnie zmieniać stworzone przez niego dziwadła w kolorowe bańki radości. otworzy się przed wami świat prawdziwych cudów i baśni który nasi artyści stworzą na scenie bajkolandii. a więc wspólnie wyruszamy na poszukiwanie szczęścia! uwaga! widowisko rekomendowane dla dzieci od 2 do 10 roku życia. czas trwania około 60 minut....
+
+[ID 14563] Stand-up: Tomasz Boras
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...życia. podczas występu obowiązuje zakaz nagrywania audio oraz video. każdy uczestnik...
+
+[ID 14567] Jezioro Łabędzie - Classical Etoile Ballet
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...irynę i anatolija khandazhevskich, od 2025 roku działa jako międzynarodowy zespól,...
+
+[ID 14570] POP OPERA - Od Opery do Musicalu
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...sku, francusku, włosku i rosyjsku. od 2014 roku realizuje swój autorski projekt mu...
+
+[ID 14574] Singielka
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...akl: singielka. scena: mała scena. czas trwania: 90 min....
+
+[ID 14575] Włochaty & Darek Dusza i Demony
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...koncerty to mocna strona zespołu. od 2022 roku grupa gościła m. in. na rebelianci...
+
+[ID 14581] Pomoc domowa
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...: pomoc domowa. scena: duża scena. czas trwania: 120 min....
+
+[ID 14588] Sąsiedzi z góry
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...ąsiedzi z góry. scena: mała scena. czas trwania: 75 min....
+
+[ID 14589] Janosik. Nowa historia
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...nowa historia. scena: duża scena. czas trwania: 120 min....
+
+[ID 14601] Grzegorz Turnau – Szósta godzina
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...kim składzie, po wydaniu pierwszej od 11 lat całkowicie autorskiej płyty, grzeg...
+
+[ID 14610] O mało co... - Anna Mucha i Michał Sitarski w kultowej komedii
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...: jola czaja premiera: jesień 2022 czas trwania: 2 godz. 45 min z przerwą...
+
+[ID 14662] Filharmonia Dowcipu & Waldemar Malicki - Filmowy Świat
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...wokalistki, agnieszki twardowskiej czas trwania: 100 min...
+
+[ID 14671] Don Vasyl z zespołem - 55-lecie
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...ozycje artysty z najnowszej płyty. czas trwania koncertu: 90 minut zespół artystyczny don vasyl i rom...
+
+[ID 14718] Moja tajemnica – Daniel Midas – stand-up
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...dczas występu obowiązuje całkowity zakaz nagrywania audio oraz video....
+
+###############################################################################
+MIASTO: KEDZIERZYN_KOZLE (Liczba dopasowań: 11)
+###############################################################################
+
+[ID 14728] Narodowe Czytanie – „Dziady” Adama Mickiewicza
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...patrycja mynarek 2026-08-21t08:49:40+02:00 termin: 04.09.2026 r., godz....
+
+[ID 14737] Koncert pt. „Wśród zieleni”
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...patrycja mynarek 2026-09-01t10:31:59+02:00 termin: 06.09.2026 r., godz....
+
+[ID 14742] Spotkanie autorskie z Magdaleną Woch
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...anna śliwińska 2026-08-24t12:48:22+02:00 termin: 08.09.2026 r., godz....
+
+[ID 14756] Dyskusyjny Klub Książki
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...anna śliwińska 2026-08-21t08:30:00+02:00 termin: 17.09.2026 r., godz....
+
+[ID 14770] PRÓBY JÓZEFA K. wg ,,Procesu'' F. Kafki - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...ciółek światło: marzena chojnowska czas trwania spektaklu: 70 min...
+
+[ID 14782] Rudy w rytmie agenta 007. Muzyka Jamesa Bonda, tajemnice Łowców cieni i nocny przejazd kolejką
+  ├── Flaga: gastro_policy (🍔 Gastronomia -> [Strefa gastro])
+  │   Opis UI:  Na terenie wydarzenia dostępna jest strefa gastronomiczna, kawiarnia lub punkty z jedzeniem.
+  └── Źródło:   ...i historii kolei wąskotorowej oraz poczęstunek: kawa, herbata i słodkie przekąski...
+
+[ID 14783] Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim
+  ├── Flaga: gastro_policy (🍔 Gastronomia -> [Strefa gastro])
+  │   Opis UI:  Na terenie wydarzenia dostępna jest strefa gastronomiczna, kawiarnia lub punkty z jedzeniem.
+  └── Źródło:   ...(kawa, herbata, woda) oraz drobny poczęstunek....
+
+[ID 14792] Legenda Republiki i Obywatela G.C. – spotkanie z Leszkiem Gnoińskim oraz koncert na żywo
+  ├── Flaga: gastro_policy (🍔 Gastronomia -> [Strefa gastro])
+  │   Opis UI:  Na terenie wydarzenia dostępna jest strefa gastronomiczna, kawiarnia lub punkty z jedzeniem.
+  └── Źródło:   ...ę za kultowymi nagraniami. w cenie poczęstunek w zamkowej cafe residenz....
+
+[ID 14793] spektakl "sklep z facetami" - zapraszamy!
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...000 widzów • 🎭 serialowa obsada • ⭐300+ zagranych spektakli! gdyby naprawd...
+
+[ID 14795] Rafał Rutkowski
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...ystęp przeznaczony jest dla widzów od 16 roku życia, 2) prosimy o wyłączenie lub...
+
+[ID 14799] SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...200 zł (raciborska karta ,,senior 60+'' w cenie 110 zł ) od 1xii 220 zł...
+
+###############################################################################
+MIASTO: OPOLE (Liczba dopasowań: 21)
+###############################################################################
+
+[ID 14834] Groove Party
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...rejestrację wizerunku podczas jego trwania. powrót 5 września 2026 18:30 taras amfiteatru ncpp impreza wstep wolny 5 września 2026 18:30 taras amfiteatru ncpp wyjątkowa impreza taneczna wraca na taras amfiteatru. jedyna taka okazja, by potańczyć pod gołym niebem, w malowniczej scenerii opolskiego amfiteatru, z udziałem dj’ów i animacji z tańcem groove, dzięki którym roztańczysz się jak nigdy dotąd, a dobra energia zostanie z tobą na długo czym jest groove? to wyjątkowo prosta i przyjemna forma tańczenia w grupie, która łączy wszystkich w jednym rytmie, ale pozostawia każdemu przestrzeń do poruszania się na swój własny sposób. nie wymaga nauki kroków ani naśladowania. opiera się na prostych ruchach i różnorodnej muzyce. tańcząc groove, zaczynasz tańczyć bardziej kreatywnie, swobodnie, wyzwalając przy tym masę pozytywnych emocji i czerpiąc dobrą energię z otoczenia jaki jest plan? muzyka towarzyszy nam przez 2,5 godziny non stop. rozkręcamy się tańczą...
+
+[ID 14837] Stand-up: Karol Modzelewski
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...z dystansem do siebie i świata, i od 16 roku życia. dzieci przyprowadzone na wy...
+
+[ID 14842] Jacek Stachursky
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...ki", "kieliszki" oraz "doskozzza". od 1994 roku, podczas swojej drogi estradowej,...
+
+[ID 14845] FARBEN LEHRE
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...g.b.h., vibrators czy dritte wahl. od 2004 roku farben lehre był pomysłodawcą oraz...
+
+[ID 14851] Stand-up: Łukasz Tomasz NieMam
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...sz bilet w telefonie. * wydarzenie 18+. * osoby przeszkadzające podczas w...
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...zy za zakupiony bilet. * całkowity zakaz nagrywania występu w formie audio i video. *...
+  ├── Flaga: ticket_format (📱 Format biletu -> [Wymogi weryfikacji])
+  │   Opis UI:  Bileteria stosuje określone zasady skanowania (wymóg wydruku lub akceptacja ekranu).
+  └── Źródło:   ...bądź eko! wystarczy, jak pokażesz bilet w telefonie. * wydarzenie 18+. * osoby przeszk...
+
+[ID 14852] CLUBBING
+  ├── Flaga: latecomers (🔔 Spóźnienia -> [Ograniczenia wejścia])
+  │   Opis UI:  Osoby spóźnione mogą nie zostać wpuszczone na salę przed przerwą (antraktem).
+  └── Źródło:   ...będziecie wspominać jeszcze długo po rozpoczęciu zajęć. bilety działają systemem pu...
+
+[ID 14853] Bartosz Młynarski
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...zęść rzeczy będzie się powtarzać * zakaz nagrywania występu * osoby zakłócające przebi...
+
+[ID 14854] Kacper Ruciński
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...również support: tomek skrzypek. * 18+ występ tylko dla widzów pełnoletni...
+
+[ID 14856] Rafał Rutkowski
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...ystęp przeznaczony jest dla widzów od 16 roku życia, 2) prosimy o wyłączenie lub...
+
+[ID 14857] SynMojegoTaty Stand-up
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...wydarzenia bez zwrotu za bilet. - zakaz nagrywania. najniższa cena z ostatnich 30 dni...
+
+[ID 14859] Bartosz Gajda - "PO LECIE" - stand up NOWY PROGRAM
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...o iść na stand up! bartosz gajda - od 20 lat na scenie. w kabarecie, telewizji,...
+
+[ID 14870] Stand-up: Łukasz Tomasz NieMam
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...wi sajańskiej. komedią zajmuje się od 2020 roku z (nie)wielkimi przerwami na covid...
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...zy za zakupiony bilet. * całkowity zakaz nagrywania występu w formie audio i video....
+  ├── Flaga: ticket_format (📱 Format biletu -> [Wymogi weryfikacji])
+  │   Opis UI:  Bileteria stosuje określone zasady skanowania (wymóg wydruku lub akceptacja ekranu).
+  └── Źródło:   ...bądź eko! wystarczy, jak pokażesz bilet w telefonie. * wydarzenie 18+. * osoby przeszk...
+
+[ID 14872] DŻENTELMENI POLSKIEJ PIOSENKI - Koncert-Hołd Legendom Polskiej Muzyki
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...i znów rozbrzmiewa – razem z nami! czas trwania: 90 minut....
+
+[ID 14873] Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...ratorium znanego wynalazcy bąbelka trwają prace nad tajemniczą recepturą mydlanej bańki szczęścia. mimo nieudanych prób odkrycia sekretu szczęścia bąbelek wie, że pomogą mu jego przyjaciele: mydlaneczka - prymuska mydlanej edukacji wróżka czarodziejówna - mądra nauczycielka profesor bulbulas - osobliwy naukowiec a także wy! - widzowie naszej bańkolandii czy wraz z nami pomożecie bąbelkowi? musicie się przygotować do prawdziwej mydlanej przygody! wspólnie będziemy rozwiązywać bańkowe zagadki. wspierać mydlaneczkę i bąbelka oklaskami. walczyć ze złośliwym bulbulasem i wspólnie zmieniać stworzone przez niego dziwadła w kolorowe bańki radości. otworzy się przed wami świat prawdziwych cudów i baśni który nasi artyści stworzą na scenie bajkolandii. a więc wspólnie wyruszamy na poszukiwanie szczęścia! uwaga! widowisko rekomendowane dla dzieci od 2 do 10 roku życia. czas trwania około 60 minut....
+
+[ID 14875] Stand-up: Łukasz Tomasz NieMam
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...sz bilet w telefonie. * wydarzenie 18+. * osoby przeszkadzające podczas w...
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...zy za zakupiony bilet. * całkowity zakaz nagrywania występu w formie audio i video. *...
+  ├── Flaga: ticket_format (📱 Format biletu -> [Wymogi weryfikacji])
+  │   Opis UI:  Bileteria stosuje określone zasady skanowania (wymóg wydruku lub akceptacja ekranu).
+  └── Źródło:   ...bądź eko! wystarczy, jak pokażesz bilet w telefonie. * wydarzenie 18+. * osoby przeszk...
+
+[ID 14879] Stand-up: Ewa Stasiewicz
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...ieczoru wystąpi support. ------- * zakaz nagrywania występów. * występ dla osób powyże...
+
+[ID 14881] Roman Kostelecki
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...ęść rzeczy będzie się powtarzać. * zakaz nagrywania występu. * osoby zakłócające przeb...
+
+[ID 14885] Zadzwońcie po Milicję
+  ├── Flaga: duration (⏱️ Czas trwania -> [Określony])
+  │   Opis UI:  Organizator podał przewidywany czas trwania wydarzenia lub przerw (szczegóły w opisie).
+  └── Źródło:   ...elkim kinowym ekranie led. koncert trwa blisko 4,5 godziny. producent i organizator: visua...
+
+[ID 14886] ShataQS - Królestwo
+  ├── Flaga: age_policy (🔞 Wiek i wstęp -> [Zasady wiekowe])
+  │   Opis UI:  Wydarzenie posiada określone zasady wiekowe. Sprawdź szczegóły na stronie organizatora.
+  └── Źródło:   ...ęp do klubu zmiana klimatu możliwy od 18 roku życia....
+
+[ID 14888] Mieszko Minkiewicz - Wszystko Dobrze
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...upport. podczas występu obowiązuje zakaz nagrywania audio oraz video. osoby przeszkadz...
+
+[ID 14891] Stand-up: Daniel Midas
+  ├── Flaga: photo_policy (📷 Rejestracja foto/video -> [Zakaz foto pro])
+  │   Opis UI:  Zakaz wnoszenia aparatów z wymienną optyką, kamer i statywów.
+  └── Źródło:   ...dczas występu obowiązuje całkowity zakaz nagrywania audio oraz video....
