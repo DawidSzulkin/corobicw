@@ -1,11 +1,45 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
+    <script>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const theme = saved ? saved : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Magic of Disco Festiwal - Opole | CoRobićW</title>
   <style>
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
     :root {
       --bg: #0c0e12;
       --card-bg: #15181e;
@@ -37,13 +71,13 @@
       --free-border: rgba(5, 150, 105, 0.25);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
-    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    
+    
     .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
     .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
     .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
     .nav-actions { display: flex; gap: 10px; align-items: center; }
-    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
     .btn-theme-toggle:hover { border-color: var(--border-strong); }
     .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
     .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
@@ -140,6 +174,74 @@
   .gastro-name { font-weight: 700; color: var(--text); font-size: 0.92rem; }
   .gastro-meta { font-size: 0.8rem; color: var(--text-muted); }
 
+  
+    /* --- SYSTEMOWY PRZEŁĄCZNIK MOTYWU (PILL SWITCH) --- */
+    .theme-switch {
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .switch-track {
+      width: 54px;
+      height: 28px;
+      background: var(--card-bg, #1e293b);
+      border: 1px solid var(--border, #334155);
+      border-radius: 9999px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+      box-sizing: border-box;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .switch-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      z-index: 1;
+      color: var(--text-muted, #94a3b8);
+      pointer-events: none;
+    }
+    .switch-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--btn-primary-bg, #ffffff);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s ease;
+      z-index: 2;
+    }
+    /* Tryb Jasny: suwak po lewej (na słońcu) */
+    [data-theme="light"] .switch-thumb {
+      transform: translateX(0);
+      background: #0f172a;
+    }
+    [data-theme="light"] .icon-sun {
+      color: #f59e0b;
+    }
+    /* Tryb Ciemny (Domyślny): suwak po prawej (na księżycu) */
+    [data-theme="dark"] .switch-thumb,
+    :root:not([data-theme="light"]) .switch-thumb {
+      transform: translateX(26px);
+      background: #ffffff;
+    }
+    [data-theme="dark"] .icon-moon,
+    :root:not([data-theme="light"]) .icon-moon {
+      color: #38bdf8;
+    }
+
   </style>
   
   
@@ -182,8 +284,16 @@
     <div class="nav-container">
       <a href="/opole/" class="brand">CoRobićW <span>Opole</span></a>
       <div class="nav-actions">
-        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">🌙</span> <span id="themeLabel">Jasny</span>
+        <button id="themeToggle" class="theme-switch" type="button" role="switch" aria-label="Przełącz motyw" onclick="toggleTheme()">
+          <span class="switch-track">
+            <span class="switch-icon icon-sun">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+            <span class="switch-icon icon-moon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span class="switch-thumb"></span>
+          </span>
         </button>
         
         <a href="/opole/" class="btn-nav">&larr; Wróć do agendy</a>
@@ -310,25 +420,21 @@
     </div>
     <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda miejska</span></div>
   </footer>
-  <script>
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('corobicw-theme', next);
-      updateToggleBtn(next);
-    }
-    function updateToggleBtn(theme) {
-      const icon = document.getElementById('themeIcon');
-      const label = document.getElementById('themeLabel');
-      if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+  
+    <script>
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.setAttribute('aria-checked', next === 'dark');
       }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
-    });
-  </script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.setAttribute('aria-checked', current === 'dark');
+      });
+    </script>
 </body>
 </html>

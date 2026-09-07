@@ -1,11 +1,45 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
+    <script>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const theme = saved ? saved : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka - Kędzierzyn-Koźle | CoRobićW</title>
+  <title>spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30 - Bielsko-Biała | CoRobićW</title>
   <style>
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
     :root {
       --bg: #0c0e12;
       --card-bg: #15181e;
@@ -37,13 +71,13 @@
       --free-border: rgba(5, 150, 105, 0.25);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
-    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    
+    
     .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
     .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
     .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
     .nav-actions { display: flex; gap: 10px; align-items: center; }
-    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
     .btn-theme-toggle:hover { border-color: var(--border-strong); }
     .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
     .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
@@ -140,38 +174,106 @@
   .gastro-name { font-weight: 700; color: var(--text); font-size: 0.92rem; }
   .gastro-meta { font-size: 0.8rem; color: var(--text-muted); }
 
+  
+    /* --- SYSTEMOWY PRZEŁĄCZNIK MOTYWU (PILL SWITCH) --- */
+    .theme-switch {
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .switch-track {
+      width: 54px;
+      height: 28px;
+      background: var(--card-bg, #1e293b);
+      border: 1px solid var(--border, #334155);
+      border-radius: 9999px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+      box-sizing: border-box;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .switch-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      z-index: 1;
+      color: var(--text-muted, #94a3b8);
+      pointer-events: none;
+    }
+    .switch-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--btn-primary-bg, #ffffff);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s ease;
+      z-index: 2;
+    }
+    /* Tryb Jasny: suwak po lewej (na słońcu) */
+    [data-theme="light"] .switch-thumb {
+      transform: translateX(0);
+      background: #0f172a;
+    }
+    [data-theme="light"] .icon-sun {
+      color: #f59e0b;
+    }
+    /* Tryb Ciemny (Domyślny): suwak po prawej (na księżycu) */
+    [data-theme="dark"] .switch-thumb,
+    :root:not([data-theme="light"]) .switch-thumb {
+      transform: translateX(26px);
+      background: #ffffff;
+    }
+    [data-theme="dark"] .icon-moon,
+    :root:not([data-theme="light"]) .icon-moon {
+      color: #38bdf8;
+    }
+
   </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka | CoRobićW Kędzierzyn-Koźle">
-  <meta property="og:description" content="„Anatomia Zdarzeń. Kieszenie pełne wspomnień”, w reż. J. Gerigk, Latający Teatr Kantorowi, Rzeszów, Spektakl realizowany w ramach TEATR POLSKA godz. 19.00 - rozmowa z aktorami Wyob">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp">
-  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-24/">
+  <meta property="og:title" content="spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30 | CoRobićW Bielsko-Biała">
+  <meta property="og:description" content="PRZESYŁKA Z ZAŚWIATÓW to pełna humoru, ciepła i wzruszeń komedia o przyjaźni „na wieki” w reż. Cezarego Żaka. Grają: Kinga Preis, Katarzyna Żak, Katarzyna Kwiatkowska, Justyna Duck">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/bck_spektakl-przesylka-z-zaswiatow-g-1600.webp">
+  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-przesylka-z-zaswiatow-g-1830-2026-12-05/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "ANATOMIA ZDARZE\u0143. KIESZENIE PE\u0141NE WSPOMNIE\u0143 - spektakl - V Og\u00f3lnopolski Festiwal Teatralny OFF-ka",
-    "startDate": "2026-09-24T18:00",
-    "endDate": "2026-09-24",
+    "name": "spektakl PRZESY\u0141KA Z ZA\u015aWIAT\u00d3W g. 18.30",
+    "startDate": "2026-12-05T18:30",
+    "endDate": "2026-12-05",
     "location": {
       "@type": "Place",
-      "name": "Wydarzenie",
+      "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Kędzierzyn-Koźle",
+        "addressLocality": "Bielsko-Biała",
         "addressCountry": "PL",
-        "streetAddress": "K\u0119dzierzyn-Ko\u017ale"
+        "streetAddress": "S\u0142owackiego 27, Bielsko Biala"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp"],
-    "description": "\u201eAnatomia Zdarze\u0144. Kieszenie pe\u0142ne wspomnie\u0144\u201d, w re\u017c. J. Gerigk, Lataj\u0105cy Teatr Kantorowi, Rzesz\u00f3w, Spektakl realizowany w ramach TEATR POLSKA godz. 19.00 - rozmowa z aktorami Wyob",
+    "image": ["https://corobicw.pl/assets/thumbnails/bck_spektakl-przesylka-z-zaswiatow-g-1600.webp"],
+    "description": "PRZESY\u0141KA Z ZA\u015aWIAT\u00d3W to pe\u0142na humoru, ciep\u0142a i wzrusze\u0144 komedia o przyja\u017ani \u201ena wieki\u201d w re\u017c. Cezarego \u017baka. Graj\u0105: Kinga Preis, Katarzyna \u017bak, Katarzyna Kwiatkowska, Justyna Duck",
     "offers": {
       "@type": "Offer",
-      "url": "https://biletyna.pl/spektakl/ANATOMIA-ZDARZEN-KIESZENIE-PELNE-WSPOMNIEN-spektakl-V-Ogolnopolski-Festiwal-Teatralny-OFF-ka"
+      "url": "https://www.bck.bielsko.pl/spektakl-przesylka-z-zaswiatow-g-1830"
     }
   }
   </script>
@@ -180,13 +282,21 @@
 <body>
   <header>
     <div class="nav-container">
-      <a href="/kedzierzyn_kozle/" class="brand">CoRobićW <span>Kędzierzyn-Koźle</span></a>
+      <a href="/bielsko_biala/" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
       <div class="nav-actions">
-        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">🌙</span> <span id="themeLabel">Jasny</span>
+        <button id="themeToggle" class="theme-switch" type="button" role="switch" aria-label="Przełącz motyw" onclick="toggleTheme()">
+          <span class="switch-track">
+            <span class="switch-icon icon-sun">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+            <span class="switch-icon icon-moon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span class="switch-thumb"></span>
+          </span>
         </button>
         
-        <a href="/kedzierzyn_kozle/" class="btn-nav">&larr; Wróć do agendy</a>
+        <a href="/bielsko_biala/" class="btn-nav">&larr; Wróć do agendy</a>
         
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
       </div>
@@ -195,30 +305,30 @@
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</span>
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp');"></div>
-  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" alt="Plakat: ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_spektakl-przesylka-z-zaswiatow-g-1600.webp');"></div>
+  <img src="/assets/thumbnails/bck_spektakl-przesylka-z-zaswiatow-g-1600.webp" alt="Plakat: spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
   <div><span class="badge">Kultura i Rozrywka</span></div>
-  <h1>ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</h1>
+  <h1>spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=ANATOMIA%20ZDARZE%C5%83.%20KIESZENIE%20PE%C5%81NE%20WSPOMNIE%C5%83%20-%20spektakl%20-%20V%20Og%C3%B3lnopolski%20Festiwal%20Teatralny%20OFF-ka&details=%E2%80%9EAnatomia%20Zdarze%C5%84.%20Kieszenie%20pe%C5%82ne%20wspomnie%C5%84%E2%80%9D%2C%20w%20re%C5%BC.%20J.%20Gerigk%2C%20Lataj%C4%85cy%20Teatr%20Kantorowi%2C%20Rzesz%C3%B3w%2C%20Spektakl%20realizowany%20w%20ramach%20TEATR%20POLSKA..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=ANATOMIA%20ZDARZE%C5%83.%20KIESZENIE%20PE%C5%81NE%20WSPOMNIE%C5%83%20-%20spektakl%20-%20V%20Og%C3%B3lnopolski%20Festiwal%20Teatralny%20OFF-ka%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-24/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=spektakl%20PRZESY%C5%81KA%20Z%20ZA%C5%9AWIAT%C3%93W%20g.%2018.30&details=PRZESY%C5%81KA%20Z%20ZA%C5%9AWIAT%C3%93W%20to%20pe%C5%82na%20humoru%2C%20ciep%C5%82a%20i%20wzrusze%C5%84%20komedia%20o%20przyja%C5%BAni%20%E2%80%9Ena%20wieki%E2%80%9D%20w%20re%C5%BC.%20Cezarego%20%C5%BBaka.%20Graj%C4%85%3A%20Kinga%20Preis%2C%20Katarzyna%20%C5%BBak%2C..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=spektakl%20PRZESY%C5%81KA%20Z%20ZA%C5%9AWIAT%C3%93W%20g.%2018.30%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-przesylka-z-zaswiatow-g-1830-2026-12-05/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>„Anatomia Zdarzeń. Kieszenie pełne wspomnień”, w reż. J. Gerigk, Latający Teatr Kantorowi, Rzeszów, Spektakl realizowany w ramach TEATR POLSKA godz. 19.00 - rozmowa z aktorami Wyobraź sobie, wyjmujesz z szafy od lat nieużywany płaszcz i sięgasz ręką do kieszeni, otwierasz szufladę starej komody albo zaglądasz do stojącej na półce zakurzonej szkatułki - co tam znajdziesz Guzik, stary bilet do kina, żeton, muszelkę, pamiątki z przeszłości, zapomniane przedmioty twoje lub twoich bliskich.</p><p>Bliskich, których już nie ma. Kiedy dotykamy metalowej zardzewiałej puszki, czerwonego guzika, niepełnej talii kart uruchamiają się wspomnienia i nic już nie powstrzyma lawiny, nie uciekniesz od anatomii zdarzeń. Niepostrzeżenie wciągają cię opowieści, udajesz się w podróż pełną ciemnych zakamarków, miejsc do których boisz się zajrzeć, bo po co rozdrapywać stare, dawno zagojone blizny.</p><p>Okazuje się jednak, że nie jesteś w tym sam, że każdy kto słucha opowieści przedmiotów zna te historie, ma je zapisane w genach. Co przyniesie ta wędrówka Może pozwoli oswoić potwora spod dziecięcego łóżka, może zagoi to, co niezagojone, przypomni kogoś o kim warto pamiętać.</p><p>Może pojawi się refleksja skłaniająca do rozmowy, wybaczenia i opowiedzenia dzieciom po co trzymamy w szafie stary zegarek albo czym jest ten zasuszony korzonek w zakorkowanej fiolce.. "Anatomia zdarzeń. Kieszenie pełne wspomnień" Latającego Teatru Kantorowi to rodzaj spotkania z samym sobą w opowieściach innych ludzi.</p><p>To również spotkanie z naszymi przodkami, których obecność ujawnia się w naszych zachowanych, decyzjach czy nieświadomych wyborach. Zapraszamy do naszego kręgu, sprawdź jak sięga twoja pamięć i dokąd zaprowadzą Cię Twoje wspomnienia.</p><p>* **Obsada:** Monika Adamiec Monika Nitkiewicz-Mitrut/Paweł Sroka Karina Góra Grażyna Tabor Anna Jamrozek-Sowa Przemysław Buksiński Marcin Woszczewski Inni realizatorzy: Julian Maziarz/Paweł Maziarz - dźwięk Marcin Nawrocki - oświetlenie Joanna Gerigk - reżyser</p><p>* **Czas trwania:** 70 min grupa wiekowa: młodzież i dorośli</p><p>* **Scenografia:** Barbara Wójcik</p><p>* **Muzyka:** Piotr Madura, Julian Adamiec-Maziarz dramaturgia: Joanna Gerigk data premiery: 9 lipca 2023 miejsce premiery: Rzeszów</p></div>
+  <div class="event-desc"><p>PRZESYŁKA Z ZAŚWIATÓW to pełna humoru, ciepła i wzruszeń komedia o przyjaźni „na wieki” w reż. Cezarego Żaka. Grają: Kinga Preis, Katarzyna Żak, Katarzyna Kwiatkowska, Justyna Ducka, Kuba Gąsowski/Michał Kucharski</p></div>
 
   
 </div>
@@ -228,13 +338,13 @@
     ﻿<div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
-    <div class="info-label">Data</div><div class="info-val">Czwartek, 24 września</div>
-    <div class="info-label">Start</div><div class="info-val">18:00</div>
+    <div class="info-label">Data</div><div class="info-val">Sobota, 5 grudnia</div>
+    <div class="info-label">Start</div><div class="info-val">18:30</div>
     <div class="info-label">Miejsce</div>
-    <div class="info-val"><strong>Wydarzenie</strong><span class="address">Kędzierzyn-Koźle</span>
+    <div class="info-val"><a href="/bielsko_biala/miejsca/bb-bielskie-centrum-kultury-im-marii-koterbskiej/"><strong>Bielskie Centrum Kultury im. Marii Koterbskiej</strong></a><span class="address">Słowackiego 27, Bielsko Biala</span>
     </div>
     
-    <div class="info-label">Parking</div><div class="info-val">Parking ogólnodostępny w pobliżu obiektu</div>
+    <div class="info-label">Parking</div><div class="info-val">Dostępny w strefie miejskiej</div>
     
   </div>
 
@@ -260,15 +370,19 @@
           <div class="offer-main-row">
             <div class="offer-info-col">
               <div class="offer-provider-line">
-                <span class="offer-provider-name">Biletyna</span>
+                <span class="offer-provider-name">BCK Bielsko</span>
                 
+                  <span class="offer-tag official">Oficjalna kasa</span>
+                
+                
+                  <span class="offer-tag best-price">Oficjalna kasa</span>
                 
               </div>
-              <div class="offer-price-val">Od 22.24 zł</div>
+              <div class="offer-price-val">Sprawdź dostępność</div>
             </div>
             <div>
               
-                <a href="https://biletyna.pl/spektakl/ANATOMIA-ZDARZEN-KIESZENIE-PELNE-WSPOMNIEN-spektakl-V-Ogolnopolski-Festiwal-Teatralny-OFF-ka" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
+                <a href="https://www.bck.bielsko.pl/spektakl-przesylka-z-zaswiatow-g-1830" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
               
             </div>
           </div>
@@ -280,38 +394,72 @@
   
 </div>
     ﻿
+<div class="card">
+  <h2>Dostępność i obiekt</h2>
+  <div class="info-grid">
+    
+    <div class="info-label">Dostęp dla wózków</div>
+    <div class="info-val is-yes">
+      
+        Tak (winda / podjazd)
+      
+    </div>
+    
+    <div class="info-label">Kasa biletowa</div>
+    <div class="info-val is-yes">
+      
+        <a href="tel:33 828 16 45" style="color: var(--accent-blue); text-decoration: none;">33 828 16 45</a>
+      
+    </div>
+    
+  </div>
+</div>
+
     ﻿
+<div class="card">
+  <h2>W okolicy (Gastro)</h2>
+  <div class="gastro-list">
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Chopina 5</div>
+      <div class="gastro-meta">124m stąd (~2 min) &bull; restaurant</div>
+    </div>
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Shakespeare's pub</div>
+      <div class="gastro-meta">298m stąd (~4 min) &bull; pub</div>
+    </div>
+    
+  </div>
+</div>
+
   </aside>
 </div>
 
   </main>
   <footer>
     <div class="footer-inner">
-      <div class="footer-col"><h4>CoRobićW Kędzierzyn-Koźle</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>CoRobićW Bielsko-Biała</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
       <div class="footer-col"><h4>Scena</h4><ul><li><a href="mailto:kontakt@corobicw.pl">Dodaj wydarzenie</a></li></ul></div>
       <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
     </div>
     <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda miejska</span></div>
   </footer>
-  <script>
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('corobicw-theme', next);
-      updateToggleBtn(next);
-    }
-    function updateToggleBtn(theme) {
-      const icon = document.getElementById('themeIcon');
-      const label = document.getElementById('themeLabel');
-      if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+  
+    <script>
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.setAttribute('aria-checked', next === 'dark');
       }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
-    });
-  </script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.setAttribute('aria-checked', current === 'dark');
+      });
+    </script>
 </body>
 </html>
