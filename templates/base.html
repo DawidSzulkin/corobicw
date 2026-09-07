@@ -1,9 +1,10 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
+    <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}{{ event.title if event else (city_name or city) }} | CoRobiÄ‡W{% endblock %}</title>
+  <title>{% block title %}{{ event.title if event else (city_name or city) }} | CoRobiæW{% endblock %}</title>
   <style>
     :root {
       --bg: #0c0e12;
@@ -71,22 +72,23 @@
 </head>
 <body>
   <header>
+    <meta name="robots" content="noindex, nofollow">
     <div class="nav-container">
-      <a href="/{{ city_tag }}/" class="brand">CoRobiÄ‡W <span>{{ city_name or city }}</span></a>
+      <a href="/{{ city_tag }}/" class="brand">CoRobiæW <span>{{ city_name or city }}</span></a>
       <div class="nav-actions">
-        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="ZmieÅ„ motyw">
-          <span id="themeIcon">ðŸŒ™</span> <span id="themeLabel">Jasny</span>
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmieñ motyw">
+          <span id="themeIcon">??</span> <span id="themeLabel">Jasny</span>
         </button>
         {% block nav_links %}
-        <a href="/{{ city_tag }}/" class="btn-nav">&larr; WrÃ³Ä‡ do agendy</a>
+        <a href="/{{ city_tag }}/" class="btn-nav">&larr; Wróæ do agendy</a>
         {% endblock %}
-        <a href="mailto:kontakt@corobicw.pl?subject=ZgÅ‚oszenie" class="btn-add">+ Dodaj</a>
+        <a href="mailto:kontakt@corobicw.pl?subject=Zg³oszenie" class="btn-add">+ Dodaj</a>
       </div>
     </div>
   </header>
   <main>
     {% block breadcrumbs %}
-    <nav class="breadcrumbs" aria-label="ÅšcieÅ¼ka powrotu">
+    <nav class="breadcrumbs" aria-label="Œcie¿ka powrotu">
       <a href="/">Polska</a><span>/</span><a href="/{{ city_tag }}/">{{ city_name or city }}</a><span>/</span><span class="current">{{ event.title if event else '' }}</span>
     </nav>
     {% endblock %}
@@ -94,11 +96,11 @@
   </main>
   <footer>
     <div class="footer-inner">
-      <div class="footer-col"><h4>CoRobiÄ‡W {{ city_name or city }}</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">NiezaleÅ¼ny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>CoRobiæW {{ city_name or city }}</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezale¿ny przewodnik kulturalny.</p></div>
       <div class="footer-col"><h4>Scena</h4><ul><li><a href="mailto:kontakt@corobicw.pl">Dodaj wydarzenie</a></li></ul></div>
       <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
     </div>
-    <div class="footer-copy"><span>&copy; 2026 CoRobiÄ‡W</span><span>Agenda miejska</span></div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobiæW</span><span>Agenda miejska</span></div>
   </footer>
   <script>
     function toggleTheme() {
@@ -112,8 +114,8 @@
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = 'â˜€ï¸'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = 'ðŸŒ™'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = '??'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '??'; label.textContent = 'Ciemny'; }
       }
     }
     document.addEventListener('DOMContentLoaded', () => {
