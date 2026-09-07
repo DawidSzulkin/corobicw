@@ -1,4 +1,4 @@
-import json
+﻿import json
 import os
 import re
 import shutil
@@ -65,7 +65,12 @@ def _process_event_description_to_html(ev: Any) -> str:
     t = RE_BR.sub('\n', t)
     t = RE_SPACES.sub(' ', t)
 
-    # Usuwanie spamu SEO
+    import re
+    t = re.sub(r'([\wąćęłńóśźżĄĆĘŁŃÓŚŹŻ0-9])\(', r'\1 (', t)
+    t = re.sub(r'\)([\wąćęłńóśźżĄĆĘŁŃÓŚŹŻ0-9])', r') \1', t)
+    t = re.sub(r'([a-ząćęłńóśźż])([A-ZĄĆĘŁŃÓŚŹŻ]{2,})', r'\1 \2', t)
+    t = re.sub(r'([a-ząćęłńóśźż])([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż])', r'\1 \2', t)
+
     target = "więcej informacji"
     while target in t.lower():
         pos = t.lower().find(target)
@@ -81,8 +86,8 @@ def _process_event_description_to_html(ev: Any) -> str:
             cut_start = max(0, pos - 60)
         t = t[:cut_start].rstrip(" .-\t") + ". " + t[pos + len(target):].lstrip(" .-\t")
 
-    for pattern, repl in META_LABEL_PATTERNS:
-        t = pattern.sub(repl, t)
+    for p_re, repl in META_LABEL_PATTERNS:
+        t = p_re.sub(repl, t)
 
     t = RE_PS.sub(r'\n\n\1', t)
     t = RE_DOUBLE_DOT.sub('.', t)
@@ -101,11 +106,9 @@ def _process_event_description_to_html(ev: Any) -> str:
                 if curr_buf:
                     final_paragraphs.append(" ".join(curr_buf))
                     curr_buf, curr_len = [], 0
-                final_paragraphs.append(s)
-                continue
             curr_buf.append(s)
             curr_len += len(s)
-            if curr_len >= 160:
+            if curr_len > 220:
                 final_paragraphs.append(" ".join(curr_buf))
                 curr_buf, curr_len = [], 0
         if curr_buf:
@@ -113,21 +116,9 @@ def _process_event_description_to_html(ev: Any) -> str:
 
     html_parts = []
     for p in final_paragraphs:
-        if p.startswith("* **"):
-            item = re.sub(r'^\*\s*\*\*([^\*]+)\*\*(.*)$', r'<li><strong>\1</strong>\2</li>', p)
-            html_parts.append(f'<ul class="desc-meta">{item}</ul>')
-        elif p.startswith("* ") or p.startswith("- "):
-            item = re.sub(r'^[\*\-]\s*(.*)$', r'<li>\1</li>', p)
-            html_parts.append(f'<ul class="desc-list">{item}</ul>')
-        elif p.upper().startswith("P.S."):
-            html_parts.append(f'<p class="desc-ps"><em>{p}</em></p>')
-        else:
-            html_parts.append(f'<p>{p}</p>')
+        html_parts.append(f"<p>{p}</p>")
 
-    res = "\n".join(html_parts)
-    res = re.sub(r'</ul>\s*<ul class="desc-meta">', '', res)
-    res = re.sub(r'</ul>\s*<ul class="desc-list">', '', res)
-    return res
+    return "".join(html_parts)
 
 class HTMLRenderer:
     def __init__(self, template_dir: str = "templates"):

@@ -1,0 +1,17 @@
+{% if compiled_rules and compiled_rules|length > 0 %}
+<div class="card">
+  <h2>Dostępność i obiekt</h2>
+  <div class="info-grid">
+    {% for d in compiled_rules.values() %}
+    <div class="info-label">{{ d.label or d.name }}</div>
+    <div class="info-val {% if d.is_positive is sameas true or d.val in ['Tak', 'Dostępny', 'Dostępna', 'Tak (winda / podjazd)', 'Smycz', 'Brak limitu', '18+'] %}is-yes{% elif d.is_positive is sameas false or d.val in ['Brak', 'Brak podjazdu', 'Selekcja'] %}is-neutral{% endif %}">
+      {% if d.is_phone %}
+        <a href="tel:{{ d.val }}" style="color: var(--accent-blue); text-decoration: none;">{{ d.val }}</a>
+      {% else %}
+        {{ d.val }}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
