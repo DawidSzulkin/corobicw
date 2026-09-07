@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
     <div class="info-label">Data</div><div class="info-val">{{ event.date_formatted }}</div>
@@ -15,11 +15,11 @@
     {% endif %}
   </div>
 
-  {# Weryfikacja bezplatnego wstepu #}
+  {# Weryfikacja bezpłatnego wstępu #}
   {% set ns = namespace(has_paid=false) %}
   {% for offer in (event.ticket_offers or []) %}
-    {% set price_str = (offer.price or '') | lower %}
-    {% if 'wolny' not in price_str and 'bezpłat' not in price_str and 'za darmo' not in price_str and price_str != '0 zł' and price_str != '0,00 zł' %}
+    {% set p_low = (offer.price or '') | lower %}
+    {% if 'wolny' not in p_low and 'bezpłat' not in p_low and 'za darmo' not in p_low and p_low != '0 zł' and p_low != '0,00 zł' %}
       {% set ns.has_paid = true %}
     {% endif %}
   {% endfor %}

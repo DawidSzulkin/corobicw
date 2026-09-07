@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
 {% block title %}{{ event.title }} - {{ city_name or city }} | CoRobićW{% endblock %}
 
@@ -115,13 +115,11 @@
 
 {% block content %}
 <div class="container-grid">
-  <!-- LEWA KOLUMNA: TREŚĆ GŁÓWNA -->
   <article class="main-content">
     {% include "event/_hero_banner.html" %}
     {% include "event/_description.html" %}
   </article>
 
-  <!-- PRAWA KOLUMNA: SIDEBAR -->
   <aside class="sidebar">
     {% include "event/_sidebar_tickets.html" %}
     {% include "event/_sidebar_facility.html" %}

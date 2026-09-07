@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ event.title if event else (city_name or city) }} | CoRobićW{% endblock %}</title>
+  <style>
+    :root {
+      --bg: #0c0e12;
+      --card-bg: #15181e;
+      --card-hover: #1b1f27;
+      --border: #282f3d;
+      --border-strong: #3b4559;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-green: #34d399;
+      --btn-primary-bg: #ffffff;
+      --btn-primary-text: #000000;
+      --free-bg: rgba(52, 211, 153, 0.08);
+      --free-border: rgba(52, 211, 153, 0.35);
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --accent-blue: #0284c7;
+      --accent-green: #059669;
+      --btn-primary-bg: #0f172a;
+      --btn-primary-text: #ffffff;
+      --free-bg: rgba(5, 150, 105, 0.06);
+      --free-border: rgba(5, 150, 105, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; white-space: nowrap; overflow: hidden; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs span:not(.current) { color: var(--text-muted); opacity: 0.6; }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; overflow: hidden; text-overflow: ellipsis; max-width: 520px; }
+    @media (max-width: 960px) {
+      main { padding: 0 15px; margin: 16px auto 40px; }
+      .breadcrumbs .current { max-width: 220px; }
+    }
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+    {% block page_styles %}{% endblock %}
+  </style>
+  {% block meta_extra %}{% endblock %}
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city_name or city }}</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
+          <span id="themeIcon">🌙</span> <span id="themeLabel">Jasny</span>
+        </button>
+        {% block nav_links %}
+        <a href="/{{ city_tag }}/" class="btn-nav">&larr; Wróć do agendy</a>
+        {% endblock %}
+        <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    {% block breadcrumbs %}
+    <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
+      <a href="/">Polska</a><span>/</span><a href="/{{ city_tag }}/">{{ city_name or city }}</a><span>/</span><span class="current">{{ event.title if event else '' }}</span>
+    </nav>
+    {% endblock %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col"><h4>CoRobićW {{ city_name or city }}</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>Scena</h4><ul><li><a href="mailto:kontakt@corobicw.pl">Dodaj wydarzenie</a></li></ul></div>
+      <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda miejska</span></div>
+  </footer>
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+  </script>
+</body>
+</html>
