@@ -1,4 +1,4 @@
-Ôªøimport json
+import json
 import os
 import re
 import shutil
@@ -12,9 +12,9 @@ from jinja2 import Environment, FileSystemLoader
 from src.core.models import FullEventPage
 
 CITY_NAMES = {
-    "kedzierzyn_kozle": "Kƒôdzierzyn-Ko≈∫le",
+    "kedzierzyn_kozle": "KÍdzierzyn-Koüle",
     "opole": "Opole",
-    "bielsko_biala": "Bielsko-Bia≈Ça"
+    "bielsko_biala": "Bielsko-Bia≥a"
 }
 
 def _resolve_strict_city_name(tag: str) -> str:
@@ -27,11 +27,11 @@ def resolve_canonical_city(tag: str) -> str:
     return _resolve_strict_city_name(tag)
 
 META_LABELS = [
-    "Autor", "Autorka", "Autorzy", "Przek≈Çad", "T≈Çumaczenie",
-    "Re≈ºyseria", "Scenografia", "Kostiumy", "Muzyka", "≈öwiat≈Ço",
-    "Choreografia", "Asystentka re≈ºysera", "Asystent re≈ºysera",
+    "Autor", "Autorka", "Autorzy", "Przek≥ad", "T≥umaczenie",
+    "Reøyseria", "Scenografia", "Kostiumy", "Muzyka", "åwiat≥o",
+    "Choreografia", "Asystentka reøysera", "Asystent reøysera",
     "Kierownictwo muzyczne", "Produkcja", "Kierownik produkcji",
-    "Obsada", "WystƒôpujƒÖ", "Wykonawcy", "Arty≈õci", "Prowadzenie",
+    "Obsada", "WystÍpujπ", "Wykonawcy", "Artyúci", "Prowadzenie",
     "Wydarzenie poprowadzi", "Sponsorem wydarzenia jest",
     "Informacje praktyczne", "Czas trwania", "Bramy", "Start", "Bilety"
 ]
@@ -42,7 +42,7 @@ RE_EMOJI = re.compile(r'[\U00010000-\U0010ffff\u2600-\u27ff]+')
 RE_PUNCT = re.compile(r'[\.!\?\n]')
 RE_DOUBLE_DOT = re.compile(r'\s*\.\s*\.')
 RE_MULTI_SPACE = re.compile(r'[ ]{2,}')
-RE_SENTENCE_SPLIT = re.compile(r'(?<=[.!?‚Ä¶])\s+')
+RE_SENTENCE_SPLIT = re.compile(r'(?<=[.!?Ö])\s+')
 RE_PS = re.compile(r'(?<!\n)\s*(P\.S\..*)$', re.IGNORECASE)
 
 META_LABEL_PATTERNS = [
@@ -59,19 +59,19 @@ def _process_event_description_to_html(ev: Any) -> str:
         raw_desc = getattr(ev, 'description', '') or (ev.get('description', '') if isinstance(ev, dict) else '')
 
     if not raw_desc or len(str(raw_desc).strip()) < 5:
-        return "<p>Brak szczeg√≥≈Çowego opisu wydarzenia.</p>"
+        return "<p>Brak szczegÛ≥owego opisu wydarzenia.</p>"
 
     t = str(raw_desc).replace("\r", " ").replace("\t", " ")
     t = RE_BR.sub('\n', t)
     t = RE_SPACES.sub(' ', t)
 
     import re
-    t = re.sub(r'([\wƒÖƒáƒô≈Ç≈Ñ√≥≈õ≈∫≈ºƒÑƒÜƒò≈Å≈É√ì≈ö≈π≈ª0-9])\(', r'\1 (', t)
-    t = re.sub(r'\)([\wƒÖƒáƒô≈Ç≈Ñ√≥≈õ≈∫≈ºƒÑƒÜƒò≈Å≈É√ì≈ö≈π≈ª0-9])', r') \1', t)
-    t = re.sub(r'([a-zƒÖƒáƒô≈Ç≈Ñ√≥≈õ≈∫≈º])([A-ZƒÑƒÜƒò≈Å≈É√ì≈ö≈π≈ª]{2,})', r'\1 \2', t)
-    t = re.sub(r'([a-zƒÖƒáƒô≈Ç≈Ñ√≥≈õ≈∫≈º])([A-ZƒÑƒÜƒò≈Å≈É√ì≈ö≈π≈ª][a-zƒÖƒáƒô≈Ç≈Ñ√≥≈õ≈∫≈º])', r'\1 \2', t)
+    t = re.sub(r'([\wπÊÍ≥ÒÛúüø•∆ £—”åèØ0-9])\(', r'\1 (', t)
+    t = re.sub(r'\)([\wπÊÍ≥ÒÛúüø•∆ £—”åèØ0-9])', r') \1', t)
+    t = re.sub(r'([a-zπÊÍ≥ÒÛúüø])([A-Z•∆ £—”åèØ]{2,})', r'\1 \2', t)
+    t = re.sub(r'([a-zπÊÍ≥ÒÛúüø])([A-Z•∆ £—”åèØ][a-zπÊÍ≥ÒÛúüø])', r'\1 \2', t)
 
-    target = "wiƒôcej informacji"
+    target = "wiÍcej informacji"
     while target in t.lower():
         pos = t.lower().find(target)
         start_search = max(0, pos - 250)
@@ -145,7 +145,7 @@ class HTMLRenderer:
 
         hub_file = out_path / "index.html"
         hub_file.write_text(html_out, encoding="utf-8")
-        print(f"[RENDERER] Strona g≈Ç√≥wna portalu: {hub_file}")
+        print(f"[RENDERER] Strona g≥Ûwna portalu: {hub_file}")
 
     def render_city(
         self,
@@ -161,7 +161,7 @@ class HTMLRenderer:
 
         self._sync_assets(output_dir)
 
-        # 1. Czyszczenie i przygotowanie katalogu wydarze≈Ñ
+        # 1. Czyszczenie i przygotowanie katalogu wydarzeÒ
         if events_dir.exists():
             shutil.rmtree(events_dir)
         events_dir.mkdir(parents=True, exist_ok=True)
@@ -197,11 +197,11 @@ class HTMLRenderer:
             )
             (single_folder / "index.html").write_text(single_html, encoding="utf-8")
 
-        # R√≥wnoleg≈Çy zapis podstron wydarze≈Ñ (Thread Pool)
+        # RÛwnoleg≥y zapis podstron wydarzeÒ (Thread Pool)
         with ThreadPoolExecutor(max_workers=min(16, (os.cpu_count() or 4) * 2)) as executor:
             list(executor.map(_write_single_event, events))
 
-        # 2. Preindeksacja powiƒÖza≈Ñ wydarze≈Ñ do miejsc w O(N) zamiast zagnie≈ºd≈ºonego O(M * N)
+        # 2. Preindeksacja powiπzaÒ wydarzeÒ do miejsc w O(N) zamiast zagnieødøonego O(M * N)
         events_by_place: Dict[str, List[FullEventPage]] = {}
         for ev in events:
             ev_pid = getattr(ev, 'place_id', None)
@@ -254,7 +254,7 @@ class HTMLRenderer:
             results = list(executor.map(_write_single_place, places.items()))
             rendered_places = sum(1 for r in results if r)
 
-        # 3. Renderowanie agendy g≈Ç√≥wnej miasta
+        # 3. Renderowanie agendy g≥Ûwnej miasta
         BATCH_SIZE = 40
         has_more = len(events) > BATCH_SIZE
         initial_events = events[:BATCH_SIZE] if has_more else events
@@ -283,7 +283,7 @@ class HTMLRenderer:
             if old_chunk.exists():
                 old_chunk.unlink()
 
-        print(f"[RENDERER] {city_name}: Wygenerowano {len(events)} podstron wydarze≈Ñ i {rendered_places} wizyt√≥wek miejsc.")
+        print(f"[RENDERER] {city_name}: Wygenerowano {len(events)} podstron wydarzeÒ i {rendered_places} wizytÛwek miejsc.")
 
     def render_seo_files(self, output_dir: str = "public", base_url: str = "https://corobicw.pl") -> None:
         today_iso = datetime.now().strftime("%Y-%m-%d")
@@ -305,7 +305,7 @@ class HTMLRenderer:
         sitemap_content = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{xml_entries}\n</urlset>'
         (out_path / "sitemap.xml").write_text(sitemap_content, encoding="utf-8")
 
-        robots_content = f"User-agent: *\nAllow: /\n\nSitemap: {base_url.rstrip('/')}/sitemap.xml\n"
+        robots_content = "User-agent: *\nDisallow: /\n"
         (out_path / "robots.txt").write_text(robots_content, encoding="utf-8")
 
-        print(f"[SEO] Wygenerowano sitemap.xml ({len(urls)} adres√≥w) oraz robots.txt.")
+        print(f"[SEO] Wygenerowano sitemap.xml ({len(urls)} adresÛw) oraz robots.txt.")
