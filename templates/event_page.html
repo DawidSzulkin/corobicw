@@ -137,7 +137,19 @@
     .brand { font-family: inherit; font-size: 1.35rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
     .brand-tag, .brand span { background: #fff !important; color: #000 !important; padding: 2px 8px !important; font-size: 0.85rem !important; font-weight: 900 !important; letter-spacing: 0.5px !important; border-radius: 2px !important; text-transform: uppercase !important; display: inline-block !important; }
     header { background: #0c0e12; border-bottom: 1px solid #282f3d; padding: 18px 24px; }
-</style>
+
+      /* Dostępność OzN - style semantyczne */
+      .badge-acc-yes { background: rgba(16, 185, 129, 0.15) !important; border-color: rgba(16, 185, 129, 0.4) !important; color: #34d399 !important; }
+      .badge-acc-no { background: rgba(239, 68, 68, 0.15) !important; border-color: rgba(239, 68, 68, 0.35) !important; color: #f87171 !important; }
+      .sidebar-acc { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+      .sidebar-acc.is-yes { background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); }
+      .sidebar-acc.is-no { background: rgba(239, 68, 68, 0.12); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); }
+      .venue-rule-item.is-positive { border-left: 3px solid #10b981; }
+      .venue-rule-item.is-negative { border-left: 3px solid #ef4444; }
+      .venue-rule-val.val-yes { color: #34d399; }
+      .venue-rule-val.val-no { color: #f87171; }
+
+    </style>
 
   <!-- Open Graph -->
   {% set og_img = event.image_url if event.image_url and event.image_url.startswith('http') else ('https://corobicw.pl' + event.image_url if event.image_url else 'https://corobicw.pl/assets/placeholder.svg') %}
@@ -156,7 +168,7 @@
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
           <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
         </button>
-        <a href="/" class="btn-nav">Miasta</a>
+        <a href="/{{ city_tag }}/" class="btn-nav">&larr; Wróć do agendy</a>
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
       </div>
     </div>
@@ -198,16 +210,16 @@
           {% endif %}
 
           {# MODUŁ ZASAD OBIEKTU I DOSTĘPNOŚCI (LEWA STRONA - POD OPISEM) #}
-          {% if event.discounts and event.discounts|length > 0 and not is_free %}
+          {% if compiled_rules and compiled_rules|length > 0 %}
           <div class="venue-rules-card">
             <h3>🏛️ Informacje o obiekcie i zasady wstępu</h3>
             <p>Poniższe zasady dotyczą uczestnictwa na terenie obiektu i obowiązują niezależnie od wybranego sprzedawcy biletów.</p>
             <div class="venue-rules-grid">
-              {% for d in event.discounts %}
-              <div class="venue-rule-item">
+              {% for d in compiled_rules.values() %}
+              <div class="venue-rule-item {% if d.val == 'Dostępny' %}is-positive{% elif d.val == 'Brak' %}is-negative{% endif %}">
                 <div class="venue-rule-head">
                   {{ d.label or d.name }}
-                  {% if d.val %}<span class="venue-rule-val">{{ d.val }}</span>{% endif %}
+                  {% if d.val %}<span class="venue-rule-val {% if d.val == 'Dostępny' %}val-yes{% elif d.val == 'Brak' %}val-no{% endif %}">{{ d.val }}</span>{% endif %}
                 </div>
                 {% if d.desc %}<div class="venue-rule-desc">{{ d.desc }}</div>{% endif %}
               </div>
