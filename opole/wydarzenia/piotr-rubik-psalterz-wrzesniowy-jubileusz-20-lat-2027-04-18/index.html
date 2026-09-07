@@ -1,0 +1,333 @@
+﻿﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piotr Rubik: Psałterz Wrześniowy - jubileusz 20 lat - Opole | CoRobićW</title>
+  <style>
+    :root {
+      --bg: #0c0e12;
+      --card-bg: #15181e;
+      --card-hover: #1b1f27;
+      --border: #282f3d;
+      --border-strong: #3b4559;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-green: #34d399;
+      --btn-primary-bg: #ffffff;
+      --btn-primary-text: #000000;
+      --free-bg: rgba(52, 211, 153, 0.08);
+      --free-border: rgba(52, 211, 153, 0.35);
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --accent-blue: #0284c7;
+      --accent-green: #059669;
+      --btn-primary-bg: #0f172a;
+      --btn-primary-text: #ffffff;
+      --free-bg: rgba(5, 150, 105, 0.06);
+      --free-border: rgba(5, 150, 105, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; white-space: nowrap; overflow: hidden; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs span:not(.current) { color: var(--text-muted); opacity: 0.6; }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; overflow: hidden; text-overflow: ellipsis; max-width: 520px; }
+    @media (max-width: 960px) {
+      main { padding: 0 15px; margin: 16px auto 40px; }
+      .breadcrumbs .current { max-width: 220px; }
+    }
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+    
+  .container-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 32px; align-items: start; }
+  @media (max-width: 960px) {
+    .container-grid { display: flex; flex-direction: column; }
+    .sidebar { order: 2; width: 100%; }
+    .main-content { order: 1; width: 100%; }
+  }
+
+  .main-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; min-width: 0; }
+  .ambient-banner { position: relative; width: 100%; height: clamp(340px, 45vh, 560px); overflow: hidden; background: #06080b; display: flex; justify-content: center; align-items: center; contain: paint; }
+  .ambient-bg { position: absolute; inset: -20px; background-size: cover; background-position: center; filter: blur(35px) opacity(0.35); transform: scale(1.15); pointer-events: none; will-change: transform; }
+  .ambient-fg { position: relative; max-height: 94%; max-width: 92%; width: auto; height: auto; object-fit: contain; z-index: 2; border-radius: 4px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); }
+  .ambient-shield { position: absolute; inset: 0; z-index: 3; }
+
+  .event-body-header { padding: 32px 32px 0 32px; }
+  .event-body-content { padding: 0 32px 32px 32px; }
+  .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; border-radius: 4px; }
+  h1 { font-size: 2.1rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+  .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 28px 0 12px; font-weight: 800; color: var(--text); }
+  .event-actions-bar { display: flex; gap: 12px; margin: 24px 0 16px; flex-wrap: wrap; }
+  .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border-radius: 4px; }
+  .action-btn:hover { background: var(--btn-primary-bg); color: var(--btn-primary-text); }
+  .event-desc p { margin-bottom: 1.25rem; line-height: 1.75; font-size: 1rem; color: var(--text); }
+  .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; border-radius: 4px; }
+
+  .sidebar { display: flex; flex-direction: column; gap: 24px; }
+  .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; border-radius: 6px; }
+  .sidebar h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px; font-weight: 800; }
+  
+  .info-grid { display: grid; grid-template-columns: minmax(85px, auto) 1fr; gap: 16px 14px; align-items: baseline; }
+  .info-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; }
+  .info-val { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+  .info-val a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+  .info-val a:hover { color: var(--accent-blue); }
+  .info-val .address { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; display: block; margin-top: 4px; }
+  
+  .info-val.is-yes { color: var(--accent-green); }
+  .info-val.is-neutral { color: var(--text); font-weight: 500; }
+
+  .free-entry-banner { margin-top: 20px; background-color: var(--free-bg); border: 1px solid var(--free-border); border-radius: 6px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .free-entry-banner .status { color: var(--accent-green); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem; }
+
+  .ticket-market-header { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .ticket-market-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+  .ticket-count { font-size: 0.72rem; color: var(--text-muted); }
+  .offers-stack { display: flex; flex-direction: column; gap: 12px; }
+  .offer-box { border: 1px solid var(--border); background: var(--card-hover); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s; }
+  .offer-box:hover { border-color: rgba(255,255,255,0.25); }
+  .offer-box.highlight { border-color: rgba(56, 189, 248, 0.35); background: linear-gradient(180deg, rgba(56, 189, 248, 0.04) 0%, var(--card-hover) 100%); }
+  .offer-main-row { display: flex; justify-content: space-between; align-items: center; padding: 14px; gap: 12px; width: 100%; }
+  .offer-info-col { display: flex; flex-direction: column; gap: 4px; }
+  .offer-provider-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .offer-provider-name { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); }
+  .offer-tag { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 3px; }
+  .offer-tag.best-price { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+  .offer-tag.official { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
+  .offer-tag.cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+  .offer-price-val { font-size: 1.15rem; font-weight: 800; color: var(--text); letter-spacing: -0.2px; margin-top: 2px; }
+  .offer-btn-buy { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 9px 16px; border-radius: 4px; min-width: 96px; text-align: center; white-space: nowrap; }
+  .offer-btn-buy.primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); }
+  .offer-btn-buy.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+
+  .offer-discounts-drawer { border-top: 1px dashed var(--border); padding: 8px 14px 10px; background: rgba(56, 189, 248, 0.02); width: 100%; }
+  .offer-discounts-drawer details summary { font-size: 0.72rem; font-weight: 700; color: var(--accent-blue); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 0.5px; user-select: none; }
+  .offer-discounts-drawer details summary::-webkit-details-marker { display: none; }
+  .offer-discounts-drawer ul { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .offer-discounts-drawer li { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.72rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 4px; }
+  .offer-discounts-drawer li:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .gastro-list { display: flex; flex-direction: column; gap: 14px; }
+  .gastro-item { display: flex; flex-direction: column; gap: 3px; }
+  .gastro-name { font-weight: 700; color: var(--text); font-size: 0.92rem; }
+  .gastro-meta { font-size: 0.8rem; color: var(--text-muted); }
+
+  </style>
+  
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Piotr Rubik: Psałterz Wrześniowy - jubileusz 20 lat | CoRobićW Opole">
+  <meta property="og:description" content="Jubileuszowy koncert Piotr Rubik z okazji 20-lecia oratorium &#34;Psałterz wrześniowy&#34; – monumentalne brzmienie chóru, orkiestry i wybitnych solistów 🎻✨ Przeżyj wieczór pełen wzruszeń">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_opole_piotr-rubik-psalterz-wrzesniowy-jubileusz-20-lat.webp">
+  <meta property="og:url" content="https://corobicw.pl/opole/wydarzenia/piotr-rubik-psalterz-wrzesniowy-jubileusz-20-lat-2027-04-18/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Piotr Rubik: Psa\u0142terz Wrze\u015bniowy - jubileusz 20 lat",
+    "startDate": "2027-04-18T18:00",
+    "endDate": "2027-04-18",
+    "location": {
+      "@type": "Place",
+      "name": "Hala Sportowa Politechniki Opolskiej",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Opole",
+        "addressCountry": "PL",
+        "streetAddress": "Opole"
+      }
+    },
+    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_opole_piotr-rubik-psalterz-wrzesniowy-jubileusz-20-lat.webp"],
+    "description": "Jubileuszowy koncert Piotr Rubik z okazji 20-lecia oratorium \"Psa\u0142terz wrze\u015bniowy\" \u2013 monumentalne brzmienie ch\u00f3ru, orkiestry i wybitnych solist\u00f3w \ud83c\udfbb\u2728 Prze\u017cyj wiecz\u00f3r pe\u0142en wzrusze\u0144",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://biletyna.pl/koncert/Piotr-Rubik/Psalterz-Wrzesniowy-jubileusz-20-lat/Opole"
+    }
+  }
+  </script>
+
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/opole/" class="brand">CoRobićW <span>Opole</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
+          <span id="themeIcon">🌙</span> <span id="themeLabel">Jasny</span>
+        </button>
+        
+        <a href="/opole/" class="btn-nav">&larr; Wróć do agendy</a>
+        
+        <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    
+    <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
+      <a href="/">Polska</a><span>/</span><a href="/opole/">Opole</a><span>/</span><span class="current">Piotr Rubik: Psałterz Wrześniowy - jubileusz 20 lat</span>
+    </nav>
+    
+    
+<div class="container-grid">
+  <article class="main-content">
+    ﻿<div class="ambient-banner" oncontextmenu="return false;">
+  <div class="ambient-shield" title="CoRobićW - Piotr Rubik: Psałterz Wrześniowy - jubileusz 20 lat"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_opole_piotr-rubik-psalterz-wrzesniowy-jubileusz-20-lat.webp');"></div>
+  <img src="/assets/thumbnails/biletyna_opole_piotr-rubik-psalterz-wrzesniowy-jubileusz-20-lat.webp" alt="Plakat: Piotr Rubik: Psałterz Wrześniowy - jubileusz 20 lat" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+</div>
+
+<div class="event-body-header">
+  <div><span class="badge">Kultura i Rozrywka</span></div>
+  <h1>Piotr Rubik: Psałterz Wrześniowy - jubileusz 20 lat</h1>
+
+  <div class="event-actions-bar">
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Piotr%20Rubik%3A%20Psa%C5%82terz%20Wrze%C5%9Bniowy%20-%20jubileusz%2020%20lat&details=Jubileuszowy%20koncert%20Piotr%20Rubik%20z%20okazji%2020-lecia%20oratorium%20%22Psa%C5%82terz%20wrze%C5%9Bniowy%22%20%E2%80%93%20monumentalne%20brzmienie%20ch%C3%B3ru%2C%20orkiestry%20i%20wybitnych%20solist%C3%B3w..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=Piotr%20Rubik%3A%20Psa%C5%82terz%20Wrze%C5%9Bniowy%20-%20jubileusz%2020%20lat%20-%20https://corobicw.pl/opole/wydarzenia/piotr-rubik-psalterz-wrzesniowy-jubileusz-20-lat-2027-04-18/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+  </div>
+</div>
+    ﻿<div class="event-body-content">
+  <h2 class="section-title">O wydarzeniu</h2>
+  <div class="event-desc"><p>Jubileuszowy koncert Piotr Rubik z okazji 20-lecia oratorium "Psałterz wrześniowy" – monumentalne brzmienie chóru, orkiestry i wybitnych solistów 🎻✨ Przeżyj wieczór pełen wzruszeń i duchowej refleksji, który od lat łączy pokolenia.</p><p>Zanurz się w niezwykłym świecie muzyki i emocji podczas jubileuszowego koncertu Piotra Rubika, z okazji 20-lecia powstania oratorium „Psałterz wrześniowy” – dzieła, które na trwałe zapisało się w historii polskiej muzyki współczesnej.</p><p>Oratorium, które od premiery w 2006 roku wzruszyło setki tysięcy słuchaczy, powraca w wyjątkowej, jubileuszowej odsłonie z ponad 100 osobami na scenie. Na scenie wystąpią: Piotr Rubik – dyrygent i kompozytor Wybitni soliści, chór i orkiestra symfoniczna To będzie niezapomniany wieczór – pełen wzruszeń, wielkich emocji i piękna, które łączy pokolenia.</p><p>Trasa koncertowa po największych miastach w Polsce! Skład chóru oraz orkiestry może się różnić w zależności od miasta. Nie przegap tego wydarzenia – świętuj razem z nami 20-lecie jednego z najważniejszych oratoriów Piotra Rubika!</p></div>
+
+  
+</div>
+  </article>
+
+  <aside class="sidebar">
+    ﻿<div class="card">
+  <h2>Bilety i Organizacja</h2>
+  <div class="info-grid">
+    <div class="info-label">Data</div><div class="info-val">Niedziela, 18 kwietnia</div>
+    <div class="info-label">Start</div><div class="info-val">18:00</div>
+    <div class="info-label">Miejsce</div>
+    <div class="info-val"><a href="/opole/miejsca/o-hala-sportowa-politechniki-opolskiej/"><strong>Hala Sportowa Politechniki Opolskiej</strong></a><span class="address">Opole</span>
+    </div>
+    
+    <div class="info-label">Parking</div><div class="info-val">Płatny parking (~261m)</div>
+    
+  </div>
+
+  
+  
+  
+    
+    
+      
+    
+  
+
+  
+    <div class="ticket-market-header">
+      <span class="ticket-market-title">Dostępne bilety</span>
+      <span class="ticket-count">1 opcja</span>
+    </div>
+    <div class="offers-stack">
+      
+        
+        
+        <div class="offer-box highlight">
+          <div class="offer-main-row">
+            <div class="offer-info-col">
+              <div class="offer-provider-line">
+                <span class="offer-provider-name">Biletyna</span>
+                
+                
+              </div>
+              <div class="offer-price-val">Od 179.48 zł</div>
+            </div>
+            <div>
+              
+                <a href="https://biletyna.pl/koncert/Piotr-Rubik/Psalterz-Wrzesniowy-jubileusz-20-lat/Opole" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
+              
+            </div>
+          </div>
+
+          
+        </div>
+      
+    </div>
+  
+</div>
+    ﻿
+    ﻿
+<div class="card">
+  <h2>W okolicy (Gastro)</h2>
+  <div class="gastro-list">
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Szara Willa</div>
+      <div class="gastro-meta">411m stąd (~5 min) &bull; restaurant</div>
+    </div>
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Pizzeria Sapore</div>
+      <div class="gastro-meta">437m stąd (~5 min) &bull; restaurant</div>
+    </div>
+    
+  </div>
+</div>
+
+  </aside>
+</div>
+
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col"><h4>CoRobićW Opole</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>Scena</h4><ul><li><a href="mailto:kontakt@corobicw.pl">Dodaj wydarzenie</a></li></ul></div>
+      <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda miejska</span></div>
+  </footer>
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+  </script>
+</body>
+</html>
