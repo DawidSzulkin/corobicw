@@ -29,4 +29,4 @@ jobs:
 
       - name: Run fast unit tests
         run: |
-          python -m pytest -v
+          python -m pytest -v -m "not integration"
