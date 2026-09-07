@@ -62,3 +62,11 @@ data/*.tmp
 
 *.tmp
 
+
+# Pliki prototypów i podglądów HTML
+preview_*.html
+
+# Skrypty robocze i jednorazowe uruchamiacze
+run_preview_*.py
+_*.py
+serve.py
