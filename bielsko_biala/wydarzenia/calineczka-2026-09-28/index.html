@@ -187,7 +187,7 @@ Pewna kobieta bardzo chciała mieć maleńkie dziecko – nie widziała jednak s
       <a href="/bielsko_biala/" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">??</span> <span id="themeLabel">Jasny</span>
+          <span id="themeIcon">🌙</span> <span id="themeLabel">Jasny</span>
         </button>
         
         <a href="/bielsko_biala/" class="btn-nav">&larr; Wróć do agendy</a>
@@ -351,8 +351,8 @@ Pewna kobieta bardzo chciała mieć maleńkie dziecko – nie widziała jednak s
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '??'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '??'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
       }
     }
     document.addEventListener('DOMContentLoaded', () => {

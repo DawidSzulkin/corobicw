@@ -185,7 +185,7 @@ Polska Noc Kabaretowa 2026 – Siedmiu wspaniałych Siedmiu">
       <a href="/opole/" class="brand">CoRobićW <span>Opole</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">??</span> <span id="themeLabel">Jasny</span>
+          <span id="themeIcon">🌙</span> <span id="themeLabel">Jasny</span>
         </button>
         
         <a href="/opole/" class="btn-nav">&larr; Wróć do agendy</a>
@@ -384,8 +384,8 @@ Polska Noc Kabaretowa 2026 – Siedmiu wspaniałych Siedmiu">
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '??'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '??'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
       }
     }
     document.addEventListener('DOMContentLoaded', () => {
