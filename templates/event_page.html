@@ -37,13 +37,13 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background-color: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
     
-    header { border-bottom: 1px solid var(--border); padding: 16px 24px; background: var(--bg); position: sticky; top: 0; z-index: 50; }
-    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .brand { font-weight: 900; font-size: 1.15rem; color: var(--text); text-decoration: none; letter-spacing: -0.5px; }
-    .brand span { color: var(--accent-blue); }
-    .nav-actions { display: flex; gap: 12px; align-items: center; }
-    .btn-nav, .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; cursor: pointer; text-decoration: none; }
-    .btn-nav:hover, .btn-theme-toggle:hover { border-color: var(--text); }
+    
+    
+    
+    
+    
+    
+    
 
     main { max-width: 1200px; margin: 0 auto; padding: 24px; }
     .breadcrumbs { font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 700; letter-spacing: 0.5px; }
@@ -89,7 +89,7 @@
     .venue-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
 
     /* KAFELKI OFERT BILETOWYCH */
-    .ticket-market-header { margin: 22px 0 12px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--border); padding-top: 16px; }
+    .ticket-market-
     .ticket-market-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
     .ticket-count { font-size: 0.72rem; color: var(--text-muted); }
 
@@ -133,13 +133,8 @@
     .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
     .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
   
-    /* BRUTALIST BRANDING Z HOME.HTML */
-    .brand { font-family: inherit; font-size: 1.35rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-    .brand-tag, .brand span { background: #fff !important; color: #000 !important; padding: 2px 8px !important; font-size: 0.85rem !important; font-weight: 900 !important; letter-spacing: 0.5px !important; border-radius: 2px !important; text-transform: uppercase !important; display: inline-block !important; }
-    header { background: #0c0e12; border-bottom: 1px solid #282f3d; padding: 18px 24px; }
-
-      /* Dostępność OzN - style semantyczne */
-      .badge-acc-yes { background: rgba(16, 185, 129, 0.15) !important; border-color: rgba(16, 185, 129, 0.4) !important; color: #34d399 !important; }
+    
+    
       .badge-acc-no { background: rgba(239, 68, 68, 0.15) !important; border-color: rgba(239, 68, 68, 0.35) !important; color: #f87171 !important; }
       .sidebar-acc { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
       .sidebar-acc.is-yes { background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); }
@@ -148,6 +143,101 @@
       .venue-rule-item.is-negative { border-left: 3px solid #ef4444; }
       .venue-rule-val.val-yes { color: #34d399; }
       .venue-rule-val.val-no { color: #f87171; }
+
+    
+    /* ==========================================================================
+       HEADER & NAWIGACJA (UJEDNOLICONE Z HOME.HTML)
+       ========================================================================== */
+    header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand span {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn-theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 7px 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-theme-toggle:hover {
+      border-color: var(--border-strong);
+    }
+    .btn-nav {
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn-nav:hover {
+      border-color: var(--border-strong);
+      color: var(--text);
+    }
+    .btn-add {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      border: 1px solid var(--btn-primary-bg);
+      padding: 7px 14px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn-add:hover {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--text);
+    }
 
     </style>
 
@@ -161,18 +251,18 @@
   <meta property="og:url" content="https://corobicw.pl/{{ city_tag }}/wydarzenia/{{ event.slug }}/">
 </head>
 <body>
-  <header>
-    <div class="nav-container">
-      <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city_name or city }}</span></a>
-      <div class="nav-actions">
-        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
-        </button>
-        <a href="/{{ city_tag }}/" class="btn-nav">&larr; Wróć do agendy</a>
-        <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
+      <header>
+      <div class="nav-container">
+        <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city_name or city }}</span></a>
+        <div class="nav-actions">
+          <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
+            <span id="themeIcon">🌙</span> <span id="themeLabel">Jasny</span>
+          </button>
+          <a href="/{{ city_tag }}/" class="btn-nav">&larr; Wróć do agendy</a>
+          <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
   
   <main>
     <nav class="breadcrumbs">

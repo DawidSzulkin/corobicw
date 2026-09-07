@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+﻿from typing import Any, Dict, List, Optional
 from pydantic import BaseModel
 
 
@@ -35,6 +35,7 @@ class TicketOffer(BaseModel):
     tag_class: Optional[str] = None
     discounts: list[dict[str, Any]] = []
 
+
 class EventAnalysis(BaseModel):
     rules: dict = {}
     category: str
@@ -63,3 +64,12 @@ class FullEventPage(BaseModel):
     ticket_offers: List[TicketOffer] = []
     discounts: Optional[List[Dict[str, Any]]] = None
 
+    # Pola widokowe (kontrakt szablonów event_detail.html / event_page.html)
+    description: str = ""
+    interval_str: str = "Brak"
+    stage_name: Optional[str] = None
+    age_limit: Optional[str] = None
+    wheelchair_accessible: Optional[bool] = None
+    hearing_loop: Optional[bool] = None
+    box_office_phone: Optional[str] = None
+    warnings: List[str] = []

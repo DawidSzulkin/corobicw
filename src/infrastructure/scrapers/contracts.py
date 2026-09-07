@@ -2,79 +2,127 @@
 from typing import List, Optional, Dict, Any
 
 @dataclass
-class ShowContract:
+class EventContract:
     """
-    Ujednolicony standard danych spektaklu dla dowolnego teatru w Polsce.
-    Każdy nowy scraper MUSI mapować pobrane dane do tego schematu.
+    Uniwersalny standard danych dla dowolnego wydarzenia (koncert, wystawa, plener, stand-up).
+    Bazowa klasa dla wszystkich scraperów w systemie.
     """
 
-    # --- 1. IDENTYFIKACJA WYDARZENIA ---
-    title: str                                # Czysty tytuł spektaklu (bez "Premiera!", bez cudzysłowów)
-    date_start: str                           # RRRR-MM-DD (ISO)
-    time_start: str                           # GG:MM (np. "19:00")
-    source_url: str                           # Bezpośredni link do podstrony spektaklu
-    source: str                               # Identyfikator scrapera (np. "teatr_bielsko_pl", "teatr_slaski_katowice")
+    # --- 1. IDENTYFIKACJA I ŹRÓDŁO ---
+    title: str                                          # Czysty tytuł wydarzenia
+    date_start: str                                     # RRRR-MM-DD (ISO)
+    time_start: Optional[str] = None                    # GG:MM (np. "19:00") lub None
+    date_end: Optional[str] = None                      # RRRR-MM-DD (dla wystaw i festiwali)
+    time_end: Optional[str] = None                      # GG:MM
+    source_url: str = ""                                # Bezpośredni link do podstrony wydarzenia
+    source: str = ""                                    # Identyfikator scrapera (np. "galeriabielska_pl", "ncpp_opole_pl")
+    external_id: Optional[str] = None                   # ID w systemie źródłowym (np. ID w Biletynie)
 
-    # --- 2. LOKALIZACJA I BUDYNEK (POZIOM SCENY) ---
-    venue: str                                # Oficjalna nazwa teatru (np. "Teatr Polski w Bielsku-Białej")
-    stage_name: str                           # Dokładna nazwa sali: "Duża Scena", "Mała Scena", "Scena Kameralna"
-    address: str                              # Pełny adres z miastem
-    city: str                                 # Slug miasta (np. "bielsko_biala", "katowice")
+    # --- 2. LOKALIZACJA I BUDYNEK ---
+    venue: str = ""                                     # Oficjalna nazwa obiektu / instytucji
+    stage_name: Optional[str] = None                    # Dokładna nazwa sali / sceny / galerii
+    address: str = ""                                   # Pełny adres (ulica, numer, miasto)
+    city: str = ""                                      # Slug miasta (np. "bielsko_biala", "opole", "kedzierzyn_kozle")
 
-    # --- 3. DOSTĘPNOŚĆ BUDYNKU (DETERMINISTYCZNA ZE SCENY) ---
-    # Nigdy nie parsuj tego tekstem z opisów spektaklu. Przypisuj na podstawie stage_name i Deklaracji Dostępności teatru.
-    wheelchair_accessible: bool = False       # True TYLKO gdy na salę jest wjazd bez barier / platforma
-    hearing_loop: bool = False                # True TYLKO gdy sala posiada działającą pętlę indukcyjną dla aparatów słuchowych
-    box_office_phone: Optional[str] = None    # Telefon kasy (niezbędny do rezerwacji miejsc na wózki)
+    # --- 3. KATEGORYZACJA I TYP ---
+    category: str = "other"                             # "theatre", "concert", "exhibition", "cinema", "kids", "comedy", "workshop", "outdoor"
+    tags: List[str] = field(default_factory=list)       # np. ["premiera", "darmowe", "festiwal"]
 
-    # --- 4. PARAMETRY CZASOWO-MERYTORYCZNE SPEKTAKLU ---
-    duration_str: Optional[str] = None        # Sam czysty czas: "150 min", "90 min" (bez nawiasów z przerwami)
-    interval_str: str = "Brak"                # "1 przerwa", "2 przerwy" lub "Brak"
-    premiere_date: Optional[str] = None       # Data premiery jako element metryczki (np. "14.12.2024")
+    # --- 4. DOSTĘPNOŚĆ BUDYNKU I CYFROWA (TRZYSTANOWA) ---
+    # True = Dostępne, False = Niedostępne, None = Brak danych / Niezweryfikowane
+    wheelchair_accessible: Optional[bool] = None        # Wjazd bez barier / winda / podjazd
+    hearing_loop: Optional[bool] = None                 # Pętla indukcyjna dla aparatów słuchowych
+    pjm_translation: bool = False                       # Tłumaczenie na Polski Język Migowy
+    audio_description: bool = False                     # Audiodeskrypcja dla osób niewidomych
+    subtitles_lang: Optional[str] = None                # Napisy: "pl", "en", "uk" lub None
+    box_office_phone: Optional[str] = None              # Telefon do kasy (np. rezerwacja miejsc dla OzN)
 
-    # --- 5. OSTRZEŻENIA I OGRANICZENIA TREŚCIOWE ---
-    age_limit: Optional[str] = None           # "18+", "16+", "12+", "Dla dzieci" lub None
-    warnings: List[str] = field(default_factory=list) 
-    # Dopuszczalne triggery: "światła stroboskopowe", "dym sceniczny", "dosadny język", "efekty hukowe / wystrzały", "nagość"
+    # --- 5. LOGISTYKA, CZAS I OBOSTRZENIA ---
+    duration_str: Optional[str] = None                  # Czysty czas trwania: "90 min", "120 min"
+    interval_str: str = "Brak"                          # "1 przerwa", "2 przerwy" lub "Brak"
+    age_limit: Optional[str] = None                     # "18+", "16+", "12+", "Dla dzieci" lub None
+    warnings: List[str] = field(default_factory=list)   # ["światła stroboskopowe", "dym sceniczny", "głośny dźwięk", "nagość"]
 
-    # --- 6. TREŚĆ I MULTIMEDIA ---
-    description: str = ""                     # Czysta fabuła bez numerów kont, cookies, regulaminów i telefonów kasy
-    image_url: Optional[str] = None           # Plakat w wysokiej rozdzielczości (zapisany lokalnie lub link CDN)
-    price_range: str = "Bilety płatne"        # "Bilety płatne", "Wstęp wolny", "Bilety wyprzedane"
+    # --- 6. BILETY I TRANSAKCJE ---
+    price_range: str = "Bilety płatne"                  # "Bilety płatne", "Wstęp wolny", "Bilety wyprzedane"
+    ticket_url: Optional[str] = None                    # Bezpośredni URL do zakupu biletu
+    is_free: bool = False                               # True jeśli wstęp wolny / bezpłatny
+    is_sold_out: bool = False                           # True jeśli bilety zostały wyprzedane
+    ticket_offers: List[Dict[str, Any]] = field(default_factory=list) # Zgodne z kontraktem ticket_offers w bazie
 
-    # --- 7. ZESPÓŁ ARTYSTYCZNY (STRUKTURA LISTY SŁOWNIKÓW) ---
-    # Format: [{"role": "Reżyseria", "name": "Jan Kowalski"}]
-    creators: List[Dict[str, str]] = field(default_factory=list)
-
-    # Format: [{"character": "Hamlet", "actor": "Piotr Nowak"}]
-    # Muzycy: [{"character": "Muzyk (fortepian)", "actor": "Adam Małysz"}] - imię wykonawcy ZAWSZE czyste w polu actor
-    cast: List[Dict[str, str]] = field(default_factory=list)
+    # --- 7. TREŚĆ I MULTIMEDIA ---
+    description: str = ""                               # Czysty opis merytoryczny wydarzenia
+    image_url: Optional[str] = None                     # Plakat / grafika w wysokiej rozdzielczości
+    organizer: Optional[str] = None                     # Nazwa organizatora (jeśli inna niż venue)
 
     def to_dict(self) -> Dict[str, Any]:
-        """Konwersja do słownika zgodnego z silnikiem bazy danych portalu."""
+        """Konwersja do słownika zgodnego z silnikiem bazy danych i rendererem."""
+        venue_display = f"{self.venue} ({self.stage_name})" if (self.stage_name and self.stage_name != self.venue) else self.venue
+        
+        # Automatyczne budowanie ticket_offers jeśli podano ticket_url
+        offers = list(self.ticket_offers)
+        if self.ticket_url and not offers:
+            offers.append({
+                "provider": self.source,
+                "url": self.ticket_url,
+                "price": self.price_range,
+                "raw_price": self.price_range,
+                "is_primary": True,
+                "discounts": []
+            })
+
         return {
             "title": self.title,
             "date_start": self.date_start,
-            "date_end": self.date_start,
-            "time_start": self.time_start,
-            "venue": f"{self.venue} ({self.stage_name})" if self.stage_name else self.venue,
-            "stage_name": self.stage_name,
+            "date_end": self.date_end or self.date_start,
+            "time_start": self.time_start or "",
+            "time_end": self.time_end or "",
+            "venue": venue_display,
+            "stage_name": self.stage_name or "",
             "address": self.address,
             "city": self.city,
-            "price_range": self.price_range,
+            "category": self.category,
+            "tags": self.tags,
+            "price_range": "Wstęp wolny" if self.is_free else self.price_range,
+            "is_free": self.is_free,
+            "is_sold_out": self.is_sold_out,
+            "ticket_url": self.ticket_url,
+            "ticket_offers": offers,
             "description": self.description,
             "duration_str": self.duration_str,
             "interval_str": self.interval_str,
-            "premiere_date": self.premiere_date,
             "age_limit": self.age_limit,
             "warnings": self.warnings,
             "wheelchair_accessible": self.wheelchair_accessible,
             "hearing_loop": self.hearing_loop,
+            "pjm_translation": self.pjm_translation,
+            "audio_description": self.audio_description,
+            "subtitles_lang": self.subtitles_lang,
             "box_office_phone": self.box_office_phone,
-            "creators": self.creators,
-            "cast": self.cast,
             "image_url": self.image_url,
             "source_url": self.source_url,
             "source": self.source,
-            "organizer": self.venue
+            "organizer": self.organizer or self.venue,
+            "external_id": self.external_id
         }
+
+
+@dataclass
+class ShowContract(EventContract):
+    """
+    Rozszerzony kontrakt dedykowany dla teatrów, oper i filharmonii.
+    Zachowuje 100% kompatybilności wstecznej z istniejącym kodem.
+    """
+    category: str = "theatre"
+    premiere_date: Optional[str] = None                 # Data premiery (np. "14.12.2024")
+    creators: List[Dict[str, str]] = field(default_factory=list) # [{"role": "Reżyseria", "name": "..."}]
+    cast: List[Dict[str, str]] = field(default_factory=list)     # [{"character": "Hamlet", "actor": "..."}]
+
+    def to_dict(self) -> Dict[str, Any]:
+        data = super().to_dict()
+        data.update({
+            "premiere_date": self.premiere_date,
+            "creators": self.creators,
+            "cast": self.cast
+        })
+        return data

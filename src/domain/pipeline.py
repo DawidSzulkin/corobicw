@@ -823,6 +823,33 @@ def _prepare_full_event_pages(
 
         discounts_val = e.get("discounts") or []
 
+        # --- KASKADOWY FALLBACK DOSTĘPNOŚCI I SPECYFIKACJI ---
+        wheelchair_val = e.get("wheelchair_accessible")
+        if wheelchair_val is None and matched_place:
+            raw_w = matched_place.get("wheelchair")
+            if raw_w in [True, "yes", "limited"]:
+                wheelchair_val = True
+            elif raw_w in [False, "no"]:
+                wheelchair_val = False
+
+        hearing_loop_val = e.get("hearing_loop")
+        if hearing_loop_val is None and matched_place:
+            raw_hl = matched_place.get("hearing_loop")
+            if raw_hl in [True, "yes"]:
+                hearing_loop_val = True
+            elif raw_hl in [False, "no"]:
+                hearing_loop_val = False
+
+        box_office_phone_val = e.get("box_office_phone") or (
+            matched_place.get("box_office_phone") or matched_place.get("phone") if matched_place else None
+        )
+
+        stage_name_val = e.get("stage_name")
+        interval_str_val = e.get("interval_str") or "Brak"
+        age_limit_val = e.get("age_limit") or (analysis_raw.get("quick_facts", {}).get("age_rating") if isinstance(analysis_raw, dict) else None)
+        warnings_val = e.get("warnings") or []
+        desc_val = e.get("description") or full_desc
+
         event_obj = FullEventPage(
             slug=slug,
             title=title,
@@ -836,7 +863,15 @@ def _prepare_full_event_pages(
             nearby_gastro=nearby_gastro,
             ticket_offers=parsed_offers,
             discounts=discounts_val,
-            is_cancelled=is_cancelled_flag
+            is_cancelled=is_cancelled_flag,
+            description=desc_val,
+            interval_str=interval_str_val,
+            stage_name=stage_name_val,
+            age_limit=age_limit_val,
+            wheelchair_accessible=wheelchair_val,
+            hearing_loop=hearing_loop_val,
+            box_office_phone=box_office_phone_val,
+            warnings=warnings_val
         )
         models.append(event_obj)
 

@@ -1,0 +1,118 @@
+[
+  {
+    "venue": "Bielska Scena Reja",
+    "active_events": 6,
+    "place_id": "bb-bielska-scena-reja",
+    "contact_website": null,
+    "contact_phone": null,
+    "sample_events": [
+      "Zbrodnia i kara i Bóg",
+      "BAiKA"
+    ],
+    "manual_override": {
+      "wheelchair": null,
+      "notes": ""
+    }
+  },
+  {
+    "venue": "Kamienica Pod Orłem",
+    "active_events": 3,
+    "place_id": "bb-kamienica-pod-orlem",
+    "contact_website": null,
+    "contact_phone": null,
+    "sample_events": [
+      "Frank Sinatra Tribute w wykonaniu Randol",
+      "Candle Live Music: Koncert przy świecach"
+    ],
+    "manual_override": {
+      "wheelchair": null,
+      "notes": ""
+    }
+  },
+  {
+    "venue": "Restauracja Miasto",
+    "active_events": 3,
+    "place_id": "bi-restauracja-miasto",
+    "contact_website": null,
+    "contact_phone": null,
+    "sample_events": [
+      "Stand-up: Bartek Zajda",
+      "Stand-up: Tomasz Boras"
+    ],
+    "manual_override": {
+      "wheelchair": null,
+      "notes": ""
+    }
+  },
+  {
+    "venue": "Rudeboy Club",
+    "active_events": 3,
+    "place_id": "bb-rudeboy-club",
+    "contact_website": null,
+    "contact_phone": null,
+    "sample_events": [
+      "Trasa ILLUSION, HOSTIA, IRON HEAD 2026",
+      "Closterkeller"
+    ],
+    "manual_override": {
+      "wheelchair": null,
+      "notes": ""
+    }
+  },
+  {
+    "venue": "NovaPatria",
+    "active_events": 1,
+    "place_id": "bi-novapatria",
+    "contact_website": null,
+    "contact_phone": null,
+    "sample_events": [
+      "Stand-up: Arkadiusz Jaksa Jakszewicz"
+    ],
+    "manual_override": {
+      "wheelchair": null,
+      "notes": ""
+    }
+  },
+  {
+    "venue": "Cmentarz Żydowski",
+    "active_events": 1,
+    "place_id": "bb-cmentarz-zydowski",
+    "contact_website": null,
+    "contact_phone": null,
+    "sample_events": [
+      "24. Święto Drzewa"
+    ],
+    "manual_override": {
+      "wheelchair": null,
+      "notes": ""
+    }
+  },
+  {
+    "venue": "Stolarnia",
+    "active_events": 1,
+    "place_id": "bb-stolarnia",
+    "contact_website": null,
+    "contact_phone": null,
+    "sample_events": [
+      "SICK SAINTS + Hypnosaur"
+    ],
+    "manual_override": {
+      "wheelchair": null,
+      "notes": ""
+    }
+  },
+  {
+    "venue": "Schronisko PTTK Szyndzielnia",
+    "active_events": 1,
+    "place_id": "bb-schronisko-pttk-szyndzielnia",
+    "contact_website": null,
+    "contact_phone": null,
+    "sample_events": [
+      "W górach jest wszystko co kocham"
+    ],
+    "manual_override": {
+      "wheelchair": null,
+      "notes": ""
+    }
+  }
+]
