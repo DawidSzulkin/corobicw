@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
+    <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CoRobićW | Wydarzenia, Koncerty i Spektakle w Twoim Mieście</title>
@@ -184,7 +185,7 @@
       <a href="/" class="brand">CoRobićW <span>Polska</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
+          <span id="themeIcon">??</span> <span id="themeLabel">Jasny</span>
         </button>
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
       </div>
@@ -366,8 +367,8 @@
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; }
-        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = '??'; label.textContent = 'Jasny'; }
+        else { icon.textContent = '??'; label.textContent = 'Ciemny'; }
       }
     }
 

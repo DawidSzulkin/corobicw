@@ -1,6 +1,7 @@
 ﻿﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
+    <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kabaret - Bielsko-Biała | CoRobićW</title>
@@ -154,7 +155,7 @@
     "@context": "https://schema.org",
     "@type": "Event",
     "name": "Kabaret",
-    "startDate": "2026-10-04T17:00",
+    "startDate": "2026-10-04T19:00",
     "endDate": "2026-10-04",
     "location": {
       "@type": "Place",
@@ -182,7 +183,7 @@
       <a href="/bielsko_biala/" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">🌙</span> <span id="themeLabel">Jasny</span>
+          <span id="themeIcon">??</span> <span id="themeLabel">Jasny</span>
         </button>
         
         <a href="/bielsko_biala/" class="btn-nav">&larr; Wróć do agendy</a>
@@ -228,7 +229,7 @@
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
     <div class="info-label">Data</div><div class="info-val">Niedziela, 4 października</div>
-    <div class="info-label">Start</div><div class="info-val">17:00</div>
+    <div class="info-label">Start</div><div class="info-val">19:00</div>
     <div class="info-label">Miejsce</div>
     <div class="info-val"><a href="/bielsko_biala/miejsca/bb-teatr-polski/"><strong>Teatr Polski</strong></a><span class="address">1 Maja, Bielsko-Biała</span>
     </div>
@@ -360,8 +361,8 @@
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = '??'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '??'; label.textContent = 'Ciemny'; }
       }
     }
     document.addEventListener('DOMContentLoaded', () => {

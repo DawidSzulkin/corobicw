@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
+    <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Miejska Biblioteka Publiczna - Oddział dla Dzieci | Kędzierzyn-Koźle - CoRobićW</title>
@@ -152,7 +153,7 @@
       <a href="/kedzierzyn_kozle/" class="brand">CoRobićW <span>Kędzierzyn-Koźle</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
+          <span id="themeIcon">??</span> <span id="themeLabel">Jasny</span>
         </button>
         <a href="/kedzierzyn_kozle/" class="btn-nav">&larr; Wróć do agendy</a>
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
@@ -170,7 +171,7 @@
         <span class="badge">Kultura</span>
         <h1>Miejska Biblioteka Publiczna - Oddział dla Dzieci</h1>
         <p class="place-address">
-          <span>📍</span>
+          <span>??</span>
           <span>ul. Rynek 3, Kędzierzyn-Koźle</span>
         </p>
         
@@ -180,10 +181,25 @@
 
         <div class="events-section-title">
           <span>Nadchodzące wydarzenia w tym miejscu</span>
-          <span class="events-count">1</span>
+          <span class="events-count">2</span>
         </div>
 
         
+          
+          <a href="/kedzierzyn_kozle/wydarzenia/dyskusyjny-klub-ksiazki-chwila-przed-podroza-reportaze-z-prl-2026-09-17/" class="event-card-mini ">
+            <img src="/assets/thumbnails/kk_dyskusyjny-klub-ksiazki-chwila-przed-podroza-reportaze-z-prl.webp" alt="Dyskusyjny Klub Książki – „Chwila przed podróżą. Reportaże z PRL”" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
+            <div class="event-info-mini">
+              <div class="event-meta-mini">
+                Czwartek, 17 września &bull; 16:00
+              </div>
+              <div class="event-title-mini">Dyskusyjny Klub Książki – „Chwila przed podróżą. Reportaże z PRL”</div>
+              <div class="event-price-mini">
+                
+                  Sprawdź szczegóły
+                
+              </div>
+            </div>
+          </a>
           
           <a href="/kedzierzyn_kozle/wydarzenia/spotkanie-autorskie-z-barbara-saczko-bomba-2026-09-24/" class="event-card-mini ">
             <img src="/assets/thumbnails/kk_spotkanie-autorskie-z-barbara-saczko-bomba.webp" alt="Spotkanie autorskie z Barbarą Saczko-Bombą" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
@@ -260,8 +276,8 @@
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = '??'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '??'; label.textContent = 'Ciemny'; }
       }
     }
     document.addEventListener('DOMContentLoaded', () => {

@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
+    <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hala Sportowa Śródmieście | Kędzierzyn-Koźle - CoRobićW</title>
@@ -152,7 +153,7 @@
       <a href="/kedzierzyn_kozle/" class="brand">CoRobićW <span>Kędzierzyn-Koźle</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
+          <span id="themeIcon">??</span> <span id="themeLabel">Jasny</span>
         </button>
         <a href="/kedzierzyn_kozle/" class="btn-nav">&larr; Wróć do agendy</a>
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
@@ -170,7 +171,7 @@
         <span class="badge">Sport</span>
         <h1>Hala Sportowa Śródmieście</h1>
         <p class="place-address">
-          <span>📍</span>
+          <span>??</span>
           <span>ul. al. Jana Pawła II 29, Kędzierzyn-Koźle</span>
         </p>
         
@@ -180,10 +181,25 @@
 
         <div class="events-section-title">
           <span>Nadchodzące wydarzenia w tym miejscu</span>
-          <span class="events-count">5</span>
+          <span class="events-count">6</span>
         </div>
 
         
+          
+          <a href="/kedzierzyn_kozle/wydarzenia/bieg-gaz-system-na-piatke-2026-09-13/" class="event-card-mini ">
+            <img src="/assets/thumbnails/kk_gaz-system-na-piatke.webp" alt="Bieg GAZ-SYSTEM na piątkę!" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
+            <div class="event-info-mini">
+              <div class="event-meta-mini">
+                Niedziela, 13 września &bull; 10:15
+              </div>
+              <div class="event-title-mini">Bieg GAZ-SYSTEM na piątkę!</div>
+              <div class="event-price-mini">
+                
+                  Cennik obiektu
+                
+              </div>
+            </div>
+          </a>
           
           <a href="/kedzierzyn_kozle/wydarzenia/turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona-2026-09-19/" class="event-card-mini ">
             <img src="/assets/thumbnails/kk_turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona.webp" alt="Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
@@ -320,8 +336,8 @@
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = '??'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '??'; label.textContent = 'Ciemny'; }
       }
     }
     document.addEventListener('DOMContentLoaded', () => {
