@@ -69,3 +69,5 @@ preview_*.html
 run_preview_*.py
 _*.py
 serve.py
+
+raw_places_osm.json
