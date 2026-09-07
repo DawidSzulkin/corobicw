@@ -54,7 +54,6 @@ run_full_audit.py
 CONTEXT*.md
 
 # Wygenerowany portal statyczny (publikowany na gh-pages)
-public/
 
 data/http_cache/
 
