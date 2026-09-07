@@ -129,7 +129,7 @@ class HTMLRenderer:
         if self._assets_synced:
             return
         out_assets = Path(output_dir) / "assets"
-        src_assets = Path("assets") if Path("assets").exists() else Path("docs/assets")
+        src_assets = Path("assets")
         if src_assets.exists():
             out_assets.mkdir(parents=True, exist_ok=True)
             shutil.copytree(src_assets, out_assets, dirs_exist_ok=True)
