@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agenda Wydarzeń: {{ city_name or city }} | CoRobićW</title>
-  <meta name="description" content="Aktualny harmonogram spektakli, koncertów i wydarzeń w {{ city_name or city }}.">
+  <title>Agenda WydarzeĹ„: {{ city_name or city }} | CoRobiÄ‡W</title>
+  <meta name="description" content="Aktualny harmonogram spektakli, koncertĂłw i wydarzeĹ„ w {{ city_name or city }}.">
   
   <script>
     (function() {
@@ -367,15 +367,14 @@
 </head>
 <body>
   <header>
-    <meta name="robots" content="noindex, nofollow">
     <div class="nav-container">
-      <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city_name or city }}</span></a>
+      <a href="/{{ city_tag }}/" class="brand">CoRobiÄ‡W <span>{{ city_name or city }}</span></a>
       <div class="nav-actions">
-        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="ZmieĹ„ motyw">
+          <span id="themeIcon">â€ď¸Ź</span> <span id="themeLabel">Jasny</span>
         </button>
         <a href="/" class="btn-nav">Miasta</a>
-        <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
+        <a href="mailto:kontakt@corobicw.pl?subject=ZgĹ‚oszenie" class="btn-add">+ Dodaj</a>
       </div>
     </div>
   </header>
@@ -396,7 +395,7 @@
         {% if has_more %}
         <div id="loadMoreContainer" style="grid-column: 1 / -1; text-align: center; margin: 32px 0 16px 0;">
           <button id="loadMoreBtn" class="btn-load-more" onclick="loadMoreEvents()">
-            Pokaż więcej wydarzeń (+{{ more_count }})
+            PokaĹĽ wiÄ™cej wydarzeĹ„ (+{{ more_count }})
           </button>
         </div>
         {% endif %}
@@ -405,17 +404,17 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-col">
-        <h4>CoRobićW {{ city_name or city }}</h4>
-        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny harmonogram wydarzeń miejskich. Wszystkie wydarzenia pobierane bezpośrednio ze scen i galerii.</p>
+        <h4>CoRobiÄ‡W {{ city_name or city }}</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">NiezaleĹĽny harmonogram wydarzeĹ„ miejskich. Wszystkie wydarzenia pobierane bezpoĹ›rednio ze scen i galerii.</p>
       </div>
       <div class="footer-col">
-        <h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li><li><a href="#">Współpraca lokalna</a></li></ul>
+        <h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li><li><a href="#">WspĂłĹ‚praca lokalna</a></li></ul>
       </div>
       <div class="footer-col">
-        <h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
+        <h4>Kontakt</h4><ul><li><a href="#">ZgĹ‚oĹ› bĹ‚Ä…d</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
       </div>
     </div>
-    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda {{ city_name or city }}</span></div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobiÄ‡W</span><span>Agenda {{ city_name or city }}</span></div>
   </footer>
   
   <script>
@@ -430,8 +429,8 @@
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = 'â€ď¸Ź'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = 'đźŚ™'; label.textContent = 'Ciemny'; }
       }
     }
     document.addEventListener('DOMContentLoaded', () => {
@@ -479,7 +478,7 @@
         const badge = el.querySelector('.badge-container');
         if (!badge) return;
         if (start === today) {
-            badge.innerHTML = '<span class="tag-highlight">DZIŚ</span>';
+            badge.innerHTML = '<span class="tag-highlight">DZIĹš</span>';
           } else if (start < today && end && end >= today) {
             badge.innerHTML = '<span class="tag-highlight" style="background:#0ea5e9;">TRWA</span>';
           }else if (start === tomorrow) badge.innerHTML = '<span class="tag-highlight">JUTRO</span>';
@@ -524,11 +523,11 @@
       if (!btn) return;
       
       btn.disabled = true;
-      btn.textContent = 'Wczytywanie wydarzeń...';
+      btn.textContent = 'Wczytywanie wydarzeĹ„...';
       
       try {
         const response = await fetch('events_more.html');
-        if (!response.ok) throw new Error('Nie udało się pobrać kolejnych wydarzeń');
+        if (!response.ok) throw new Error('Nie udaĹ‚o siÄ™ pobraÄ‡ kolejnych wydarzeĹ„');
         const html = await response.text();
         
         container.insertAdjacentHTML('beforebegin', html);
@@ -540,7 +539,7 @@
       } catch (err) {
         console.error(err);
         btn.disabled = false;
-        btn.textContent = 'Błąd wczytywania. Spróbuj ponownie';
+        btn.textContent = 'BĹ‚Ä…d wczytywania. SprĂłbuj ponownie';
       }
     }
 
