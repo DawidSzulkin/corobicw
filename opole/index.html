@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Wydarzeń: Opole | CoRobićW</title>
+  <meta name="description" content="Aktualny harmonogram spektakli, koncertów i wydarzeń w Opole.">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <style>
+
+    /* --- Global Link Reset --- */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a.event-card {
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      cursor: pointer;
+    }
+    a.event-card:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+    .event-title {
+      color: var(--text);
+    }
+    
+    :root[data-theme="dark"] {
+      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
+      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
+      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
+      --badge-bg: #000000; --badge-text: #ffffff; --badge-month: #e4e4e7;
+      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
+    }
+    :root[data-theme="light"] {
+      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
+      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
+      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
+      --badge-bg: #09090b; --badge-text: #ffffff; --badge-month: #f8fafc;
+      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+      -webkit-font-smoothing: antialiased; font-size: 16px;
+    }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-theme-toggle:hover { border-color: var(--border-strong); }
+    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
+    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
+    
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--text); }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; }
+    
+    .filter-bar { display: flex; gap: 8px; overflow-x: auto; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 28px; scrollbar-width: none; }
+    .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 8px 18px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; white-space: nowrap; }
+    .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
+    .filter-btn.active { background: var(--btn-primary-bg); color: var(--btn-primary-text); border-color: var(--btn-primary-bg); }
+
+        .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      display: flex;
+      position: relative;
+      height: 176px;
+      overflow: hidden;
+      border-radius: 4px;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .event-card:hover { 
+      border-color: var(--border-strong); 
+      background: var(--card-hover); 
+      transform: translateX(3px); 
+    }
+
+    .thumb-wrap {
+      width: 220px;
+      min-width: 220px;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background: #000000;
+      flex-shrink: 0;
+    }
+    .thumb-bg {
+      position: absolute;
+      top: -10%; left: -10%; width: 120%; height: 120%;
+      object-fit: cover;
+      filter: blur(14px) brightness(0.35);
+      transform: scale(1.1);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .thumb-fg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      z-index: 2;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .event-card:hover .thumb-fg { transform: scale(1.03); }
+
+    .date-badge {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 56px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 12px;
+      text-align: center;
+      line-height: 1.05;
+      z-index: 3;
+    }
+    .date-badge .day {
+      font-size: 1.35rem;
+      font-weight: 900;
+      display: block;
+      letter-spacing: -0.5px;
+    }
+    .date-badge .month {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      color: var(--badge-month);
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .event-content {
+      padding: 10px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+    .text-container {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      flex: 1;
+    }
+    .meta-top {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .tag-highlight {
+      background: var(--tag-inv-bg);
+      color: var(--tag-inv-text);
+      padding: 2px 6px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    .event-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 3px;
+      letter-spacing: -0.3px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .event-desc {
+      position: relative;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      line-height: 1.38;
+      margin: 4px 0 0 0;
+      overflow: hidden;
+      flex: 1;
+      min-height: 0;
+      word-break: break-word;
+    }
+    .event-desc::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1.8em;
+      background: linear-gradient(to bottom, transparent 0%, var(--card-bg) 95%);
+      pointer-events: none;
+    }
+    .event-card:hover .event-desc::after {
+      background: linear-gradient(to bottom, transparent 0%, var(--card-hover) 95%);
+    }
+
+    .meta-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    /* Przycisk Wariantu 2 dopasowany do motywu */
+    .btn-load-more {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      min-width: 240px;
+    }
+    .btn-load-more:hover {
+      background: var(--card-hover);
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+    .btn-load-more:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
+    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+  
+    .cat-accent { color: #34d399; font-weight: 800; letter-spacing: 0.5px; }
+    .date-accent { color: var(--text); font-weight: 700; }
+    .time-accent { color: #34d399; font-weight: 800; }
+
+  
+    .event-card .event-desc {
+      cursor: pointer;
+    }
+
+  
+    .event-card {
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .event-card img,
+    .event-card .event-image,
+    .event-card .date-badge {
+      pointer-events: none;
+      -webkit-user-drag: none;
+      user-drag: none;
+      user-select: none;
+    }
+    .event-card * {
+      cursor: pointer;
+    }
+
+  
+      .event-card.cancelled { opacity: 0.72; border-color: rgba(239, 68, 68, 0.35); }
+      .event-card.cancelled:hover { border-color: rgba(239, 68, 68, 0.7); }
+      .badge-cancelled-pill { background: rgba(239, 68, 68, 0.18); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 1px 6px; border-radius: 3px; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.5px; display: inline-block; margin-right: 6px; vertical-align: middle; }
+
+    
+    .btn-load-more {
+      background: var(--bg-card, #141414);
+      color: var(--text-main, #ffffff);
+      border: 1px solid var(--border-color, #27272a);
+      padding: 14px 28px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      min-width: 240px;
+    }
+    .btn-load-more:hover {
+      background: var(--border-color, #27272a);
+      border-color: #52525b;
+      transform: translateY(-1px);
+    }
+    .btn-load-more:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+  
+    /* --- Brutalist Card Balance & Gradient Fade --- */
+    .event-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+    .event-desc {
+      position: relative;
+      max-height: 5.6em;
+      line-height: 1.42;
+      overflow: hidden;
+      color: var(--text-muted, #9ca3af);
+      margin: 6px 0 10px 0;
+      font-size: 0.86rem;
+      word-break: break-word;
+    }
+    .event-desc::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2.2em;
+      background: linear-gradient(to bottom, rgba(20, 20, 20, 0) 0%, var(--bg-card, #141414) 95%);
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/opole/" class="brand">CoRobićW <span>Opole</span></a>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
+          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
+        </button>
+        <a href="/" class="btn-nav">Miasta</a>
+        <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <nav class="breadcrumbs">
+      <a href="/">Polska</a><span>/</span><span class="current">Opole</span>
+    </nav>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterEvents('all', this)">Wszystkie aktywne</button>
+      <button class="filter-btn" onclick="filterEvents('today', this)">Dzisiaj</button>
+      <button class="filter-btn" onclick="filterEvents('tomorrow', this)">Jutro</button>
+      <button class="filter-btn" onclick="filterEvents('weekend', this)">W ten weekend</button>
+    </div>
+    <div id="events-agenda">
+      
+        <article class="event-item" data-start="2026-09-08" data-end="2026-09-08">
+  <a href="/opole/wydarzenia/znajdz-x-komedia-niewiadoma-2026-09-08/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">08</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_znajdz-x-komedia-niewiadoma.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_znajdz-x-komedia-niewiadoma.webp" class="thumb-fg" alt="Plakat: Znajdź X - komedia niewiadoma" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Wtorek, 8 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:30</span>
+        </div>
+        <h3 class="event-title">Znajdź X - komedia niewiadoma</h3>
+        <p class="event-desc">Babka może ci wywróżyć, że na Twoją imprezę przyjdzie sto osób, ale nie powie ci, że jedna z tych osób to nieproszone mydło!
+
+Babka potrafi się wzruszyć, gdy ktoś do niej powie wat-da-fak, bo każda emocja jest dostępna dla Babki.
+
+Babka potrafi wróżyć i do przodu, i do tyłu. I nawet powróży jak jej zabierzecie samogłoski, wszak niejedna dziwna rzecz wychodziła z ust Babki już.
+
+Babka zna filmy,</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-11" data-end="2026-09-11">
+  <a href="/opole/wydarzenia/polska-noc-kabaretowa-2026-2026-09-11/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">11</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_polska-noc-kabaretowa-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_polska-noc-kabaretowa-2026.webp" class="thumb-fg" alt="Plakat: Polska Noc Kabaretowa 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Koncert</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 11 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">20:00</span>
+        </div>
+        <h3 class="event-title">Polska Noc Kabaretowa 2026</h3>
+        <p class="event-desc">11 września 2026 20:00 Amfiteatr NCPP Bilety : 170 zł; 180 zł; 190 zł; 210 zł; 250 zł; 270 zł; 300 zł. Miejsca numerowane.
+
+Polska Noc Kabaretowa 2026 – Siedmiu wspaniałych Siedmiu mistrzów polskiego humoru. Siedem premierowych skeczów. Jeden wieczór, którego nie da się zapomnieć. Polska Noc Kabaretowa 2026 powraca w zupełnie nowym wydaniu – z energią, błyskiem i humorem, który nie zna granic! Na</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-13" data-end="2026-09-13">
+  <a href="/opole/wydarzenia/maryla-rodowicz-niech-zyje-bal-lato-2026-2026-09-13/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">13</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_maryla-rodowicz.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_maryla-rodowicz.webp" class="thumb-fg" alt="Plakat: Maryla Rodowicz - Niech żyje bal. Lato 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Koncert</span>
+          <span>&bull;</span>
+          <span class="date-accent">Niedziela, 13 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">17:00</span>
+        </div>
+        <h3 class="event-title">Maryla Rodowicz - Niech żyje bal. Lato 2026</h3>
+        <p class="event-desc">13 września 2026 17:00 Amfiteatr NCPP Bilety : 140 zł; 200 zł. Miejsca numerowane.
+
+Maryla Rodowicz na żywo pod błękitnym niebem Występy Maryli Rodowicz to coś więcej niż tylko koncert. To pełne energii widowisko – barwne, żywiołowe i niepowtarzalne. Każde pojawienie się artystki na scenie to eksplozja kolorów, charyzmy i niezwykłego kontaktu z publicznością, dzięki któremu każdy czuje się</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-14" data-end="2026-09-14">
+  <a href="/opole/wydarzenia/tomek-skrzypek-2026-09-14/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">14</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_tomek-skrzypek.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_tomek-skrzypek.webp" class="thumb-fg" alt="Plakat: Tomek Skrzypek" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Poniedziałek, 14 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Tomek Skrzypek</h3>
+        <p class="event-desc">Tomek Skrzypek zaprasza na swój program "PETARDA".
+
+Jeżeli widziałeś Tomka na żywo, to wiesz, że wszystko może się wydarzyć. Jeżeli nie widziałeś - tym bardziej wszystko może się wydarzyć. Absurd Jest. Nieoczywiste skojarzenia Są. Historie, które zaczynają się normalnie, a kończą w miejscu, którego nikt nie przewidział Oczywiście. Do tego jeden z najmocniejszych crowdworkerów na polskiej scenie.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-16" data-end="2026-09-16">
+  <a href="/opole/wydarzenia/jacek-stachursky-2026-09-16/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">16</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_jacek-stachursky.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_jacek-stachursky.webp" class="thumb-fg" alt="Plakat: Jacek Stachursky" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Środa, 16 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">18:00</span>
+        </div>
+        <h3 class="event-title">Jacek Stachursky</h3>
+        <p class="event-desc">Jacek Stachursky - wokalista, twórca i współautor wielu znanych i popularnych ogólnopolskich przebojów.
+
+Zadebiutował na scenie w 1994 roku, współtworząc i wykonując swój pierwszy, większy przebój pt. "Taki jestem", pochodzący z debiutanckiej płyty pod tym samym tytułem. Wydawnictwo odniosło umiarkowany sukces rynkowy, niemniej jednak powszechna popularność debiutanckiego singla, szczególnie</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-18" data-end="2026-09-18">
+  <a href="/opole/wydarzenia/lady-pank-2026-09-18/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">18</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_lady-pank.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_lady-pank.webp" class="thumb-fg" alt="Plakat: Lady Pank" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Koncert</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 18 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Lady Pank</h3>
+        <p class="event-desc">18 września 2026 19:00 Amfiteatr NCPP Bilety : 159 zł , 169 zł ; 179 zł ; 209 zł. Miejsca numerowane. Koncert BRAK BILETÓW Zapraszamy na wyjątkowe koncerty, które zabiorą publiczność w muzyczną podróż przez historię zespołu – pełną ponadczasowych przebojów i prawdziwego rockandrollowego ducha. Członkowie Lady Pank sami opowiedzą ze sceny o najważniejszych – zarówno tych najbardziej znanych, jak i</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-18" data-end="2026-09-18">
+  <a href="/opole/wydarzenia/bartek-walos-2026-09-18/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">18</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_bartek-walos.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_bartek-walos.webp" class="thumb-fg" alt="Plakat: Bartek Walos" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 18 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Bartek Walos</h3>
+        <p class="event-desc">Cofnijmy się razem w rozwoju.
+
+"
+
+Imponujący regres
+
+" - to stand-upowa podróż w głąb siebie aż do samego głąba. To próba zidentyfikowania rzeczy, które ciągną nas w dół i wspięcia się po nich na prawdziwe wyżyny własnej głupoty. Czasami warto zrobić kilka kroków do tyłu, żeby zobaczyć, jak niewiele posunęliśmy się do przodu. Jeśli wydaje wam się, że wiecie, czym jest utrudnianie sobie życia i</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-19" data-end="2026-09-19">
+  <a href="/opole/wydarzenia/farben-lehre-2026-09-19/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">19</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_farben-lehre.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_farben-lehre.webp" class="thumb-fg" alt="Plakat: FARBEN LEHRE" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Sobota, 19 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">FARBEN LEHRE</h3>
+        <p class="event-desc">Farben Lehre – legenda polskiego punk rocka – wraca z energią, która nie zna kompromisów! 🔥🎸 Usłysz na żywo kultowe hity jak "Ali-Baba" i "Manifest" oraz premierowe numery z najnowszej płyty 🎶⚡ To koncert grany na 100% – wpadaj pod scenę! 🎟️ FARBEN LEHRE - więcej informacji Brawurowa i energetyczna formacja FARBEN LEHRE powstała we wrześniu 1986 roku. Od tamtego czasu na bogatą dyskografię kapeli</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 49 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-20" data-end="2026-09-20">
+  <a href="/opole/wydarzenia/krolowie-zycia-skawinskitkaczyk-2026-09-20/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">20</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/ncpp_opole_krolowie-zycia-skawinskitkaczyk.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/ncpp_opole_krolowie-zycia-skawinskitkaczyk.webp" class="thumb-fg" alt="Plakat: KRÓLOWIE ŻYCIA - Skawiński/Tkaczyk" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Koncert</span>
+          <span>&bull;</span>
+          <span class="date-accent">Niedziela, 20 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">KRÓLOWIE ŻYCIA - Skawiński/Tkaczyk</h3>
+        <p class="event-desc">20 września 2026 18.30 Amfiteatr NCPP Bilety : 149 zł; 159 zł; 169 zł; 189 zł; 229 zł.
+
+KRÓLOWIE ŻYCIA Skawiński/Tkaczyk 50 LAT NA SCENIE Grzegorz Skawiński i Waldemar Tkaczyk zapraszają na wyjątkowy koncert z okazji 50-lecia pracy artystycznej. To będzie opowieść o przyjaźni, która przetrwała dekady, o odwadze artystów, o buncie oraz pragnieniu zmiany. O brzmieniu, które przez lata zmieniało</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-20" data-end="2026-09-20">
+  <a href="/opole/wydarzenia/kombii-skawinskitkaczyk-50-lat-na-scenie-2026-09-20/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">20</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_kombii.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_kombii.webp" class="thumb-fg" alt="Plakat: KOMBII Skawiński/Tkaczyk 50 lat na scenie" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Niedziela, 20 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">18:30</span>
+        </div>
+        <h3 class="event-title">KOMBII Skawiński/Tkaczyk 50 lat na scenie</h3>
+        <p class="event-desc">Skawiński/Tkaczyk
+
+50 LAT NA SCENIE
+
+Gościnnie: Michał Szpak
+
+Grzegorz Skawiński i Waldemar Tkaczyk zapraszają na wyjątkowy koncert z okazji 50-lecia pracy artystycznej. To będzie opowieść o przyjaźni, która przetrwała dekady, o odwadze artystów, o buncie oraz pragnieniu zmiany. O brzmieniu, które przez lata zmieniało się, ale nie traciło tożsamości. To będzie lot po całości! Od już kultowego</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-22" data-end="2026-09-22">
+  <a href="/opole/wydarzenia/znajdz-x-komedia-niewiadoma-2026-09-22/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">22</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_znajdz-x-komedia-niewiadoma.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_znajdz-x-komedia-niewiadoma.webp" class="thumb-fg" alt="Plakat: Znajdź X - komedia niewiadoma" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Wtorek, 22 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:30</span>
+        </div>
+        <h3 class="event-title">Znajdź X - komedia niewiadoma</h3>
+        <p class="event-desc">Babka może ci wywróżyć, że na Twoją imprezę przyjdzie sto osób, ale nie powie ci, że jedna z tych osób to nieproszone mydło!
+
+Babka potrafi się wzruszyć, gdy ktoś do niej powie wat-da-fak, bo każda emocja jest dostępna dla Babki.
+
+Babka potrafi wróżyć i do przodu, i do tyłu. I nawet powróży jak jej zabierzecie samogłoski, wszak niejedna dziwna rzecz wychodziła z ust Babki już.
+
+Babka zna filmy,</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-25" data-end="2026-09-25">
+  <a href="/opole/wydarzenia/the-magic-of-disco-festiwal-2026-09-25/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">25</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_the-magic-of-disco-festiwal.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_the-magic-of-disco-festiwal.webp" class="thumb-fg" alt="Plakat: The Magic of Disco Festiwal" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 25 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">The Magic of Disco Festiwal</h3>
+        <p class="event-desc">THE MAGIC OF DISCO FESTIWAL w Opolu.
+
+Przygotuj się na muzyczną podróż w czasie do złotych lat muzyki tanecznej!
+
+The Magic Of Disco to wyjątkowy festiwal, który gromadzi legendy sceny disco i eurodance, artystów, których przeboje podbiły parkiety na całym świecie. To właśnie ich utwory stały się symbolem niezapomnianych imprez, emocji i wspomnień, które do dziś łączą pokolenia fanów. Teraz te</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-29" data-end="2026-09-29">
+  <a href="/opole/wydarzenia/pawel-konkiel-stand-up-2026-09-29/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">29</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_pawel-konkiel-stand-up.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_pawel-konkiel-stand-up.webp" class="thumb-fg" alt="Plakat: Paweł Konkiel stand-up" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Wtorek, 29 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Paweł Konkiel stand-up</h3>
+        <p class="event-desc">Facet, który kończy 34 lata jest jak samochód z 200 tysiącami kilometrów przebiegu. Ja mam obie te rzeczy, więc wiem, że nie da się już funkcjonować bezobsługowo. A to prowadzi do wielu sytuacji, które warto Wam opowiedzieć.
+
+Ten program będzie krótszy, niż poprzedni, maks półtorej godziny, ale szykujcie się na mocne historie i dobrze spędzony czas. Poprzedni program na żywo zobaczyło ponad 5000</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-29" data-end="2026-09-29">
+  <a href="/opole/wydarzenia/stand-up-lukasz-tomasz-niemam-2026-09-29/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">29</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-lukasz-tomasz-niemam.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-lukasz-tomasz-niemam.webp" class="thumb-fg" alt="Plakat: Stand-up: Łukasz Tomasz NieMam" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Wtorek, 29 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">20:00</span>
+        </div>
+        <h3 class="event-title">Stand-up: Łukasz Tomasz NieMam</h3>
+        <p class="event-desc">Scena komediowa w Opolu, Rybniku oraz Raciborzu zaprasza na regularne spotkania Stand-up, Open Mic.
+
+Racibórz (Klub Amnezja)
+
+- drugi wtorek miesiąca
+
+Rybnik (klub Face 2 Face)
+
+- trzeci wtorek miesiąca
+
+Opole (Przystanek Malinka)
+
+- ostatni wtorek miesiąca
+
+Zainteresowanych testowaniem swoich żartów prosimy o wysłanie zgłoszenia na adres:
+
+Zyskstandupopole_małpa_gmail.com
+
+Wydarzenie poprowadzi:</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 200 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-02" data-end="2026-10-02">
+  <a href="/opole/wydarzenia/clubbing-2026-10-02/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">02</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_clubbing.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_clubbing.webp" class="thumb-fg" alt="Plakat: CLUBBING" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 2 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">22:00</span>
+        </div>
+        <h3 class="event-title">CLUBBING</h3>
+        <p class="event-desc">Nadchodzi coś wielkiego. Już 2 października 2026 przejmujemy klub Mango i oficjalnie rozpoczynamy nowy rok akademicki najlepszą imprezą w mieście.
+
+● Klub Mango - ul. Oleska 102
+
+● Start: 21:00
+
+Czeka na Was wspólna zabawa w tropikalnym klimacie, tysiące uczestników, nowi znajomi i noc, którą będziecie wspominać jeszcze długo po rozpoczęciu zajęć.
+
+Bilety działają systemem pulowym - kto pierwszy,</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-04" data-end="2026-10-04">
+  <a href="/opole/wydarzenia/bartosz-mlynarski-2026-10-04/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">04</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_bartosz-mlynarski.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_bartosz-mlynarski.webp" class="thumb-fg" alt="Plakat: Bartosz Młynarski" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Niedziela, 4 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">18:00</span>
+        </div>
+        <h3 class="event-title">Bartosz Młynarski</h3>
+        <p class="event-desc">Cześć, tu Bartek i jaram się życiem. Mam 42 lata i codziennie afirmuje radość. Zapraszam na mój pierwszy solo program w którym postaram się Ciebie rozbawić moim prostym życiem. Jeżeli jarają Cię zakupy w Auchan, jedzenie parówek a denerwuje karmienie wiewiórek to zapraszam. Moje żarty są raczej jak czarna kawa, gorzkie i pobudzają, ale nie ma w nich mleczka (na pewno nie grochowego). Jaram się</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-05" data-end="2026-10-05">
+  <a href="/opole/wydarzenia/kacper-rucinski-2026-10-05/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">05</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_kacper-rucinski.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_kacper-rucinski.webp" class="thumb-fg" alt="Plakat: Kacper Ruciński" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Poniedziałek, 5 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Kacper Ruciński</h3>
+        <p class="event-desc">"Szósty raz ci mówię"
+
+Opis programu: Zamiast czytać opisy, po prostu przyjdź i baw się dobrze. Piona! Kacper
+
+Kacper Ruciński
+
+swoją determinacją wprowadził stand-up na polską scenę. Zdobywca niezliczonych nagród i wyróżnień, scenarzysta, aktor, improwizator, prezenter telewizyjny, ale przede wszystkim Stand-uper. Jest współzałożycielem pierwszego w Polsce projektu stand-upowego "Bez Cenzury" w</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-06" data-end="2026-10-06">
+  <a href="/opole/wydarzenia/stand-up-bartek-strusinski-2026-10-06/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">06</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-bartek-strusinski.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-bartek-strusinski.webp" class="thumb-fg" alt="Plakat: Stand-up: Bartek Strusiński" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Wtorek, 6 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Stand-up: Bartek Strusiński</h3>
+        <p class="event-desc">Zapraszam Was na podróż po najdalszych zakątkach umysłu młodego człowieka który opowie Ci jak w dzisiejszych czasach komunikacja między ludźmi jest skomplikowana. Razem przebrniemy przez tematy które nigdy nie poruszysz prywatnie, oraz tematy które chciałbyś poruszyć prywatnie, ale żona wyrzuci Cię z domu. Wpadnij do mojej krainy żartów, gdzie jedyny co musisz zrobić to dobrze się bawić. A co się</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-09" data-end="2026-10-09">
+  <a href="/opole/wydarzenia/rafal-rutkowski-2026-10-09/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">09</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_rafal-rutkowski.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_rafal-rutkowski.webp" class="thumb-fg" alt="Plakat: Rafał Rutkowski" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 9 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Rafał Rutkowski</h3>
+        <p class="event-desc">W czwartym solowym programie
+
+Rafał Rutkowski
+
+podróżuje w czasie. W swoim stylu zderza teraźniejszość z przeszłością.  Czy kiedyś było lepiej Czy właśnie teraz żyjemy w najlepszych czasach Czy sztuczna inteligencja jest nadzieją dla ludzkości, czy może początkiem jej końca Jak bardzo zmieniła nas technologia Czy jesteśmy mądrzejsi od naszych przodków A może głupota ludzka ma się coraz lepiej</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 15 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-09" data-end="2026-10-09">
+  <a href="/opole/wydarzenia/synmojegotaty-stand-up-2026-10-09/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">09</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_synmojegotaty-stand-up.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_synmojegotaty-stand-up.webp" class="thumb-fg" alt="Plakat: SynMojegoTaty Stand-up" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 9 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">SynMojegoTaty Stand-up</h3>
+        <p class="event-desc">SynMojegoTaty
+
+zaprasza na swój
+
+POPIS. POPIS
+
+w roli ojca, komika oraz osoby dorosłej. W najnowszym programie opowie o trudach tacierzyństwa, o swojej relacji z kościołem, WOŚP-em i Taco-Hemingwayem.  A także o polityce, bodypositive i krwiożerczych wegetarianach. Czy koniec świata jest bliski I czy to w sumie źle Przekonaj się i wpadnij na nowy program.
+
+Na supporcie niezastąpiony Wojciech</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 49 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-10" data-end="2026-10-10">
+  <a href="/opole/wydarzenia/stand-up-kobieca-strona-stand-upu-2026-10-10/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">10</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-kobieca-strona-stand-upu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-kobieca-strona-stand-upu.webp" class="thumb-fg" alt="Plakat: Stand-up: Kobieca Strona Stand-up'u" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Sobota, 10 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Stand-up: Kobieca Strona Stand-up'u</h3>
+        <p class="event-desc">Na scenie zobaczymy komiczki i stand-uperki z różnych stron Polski. Kobiece poczucie humoru w różnych odsłonach. Będzie nie tylko różowo i cukierkowo ale czasem bardzo ostro i brutalnie. Będą występować osoby, które mają już duże doświadczenie na scenie, a także zaczynające swoją przygodę na scenie. Posłuchamy nowych żartów i jednego możemy być pewni, nie będzie nudno. Zobaczymy m. in. Karolinę</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-15" data-end="2026-10-15">
+  <a href="/opole/wydarzenia/bartosz-gajda-po-lecie-stand-up-nowy-program-2026-10-15/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">15</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/biletyna_opole_bartosz-gajda-po-lecie-stand-up-nowy-program.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/biletyna_opole_bartosz-gajda-po-lecie-stand-up-nowy-program.webp" class="thumb-fg" alt="Plakat: Bartosz Gajda - "PO LECIE" - stand up NOWY PROGRAM" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Czwartek, 15 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Bartosz Gajda - "PO LECIE" - stand up NOWY PROGRAM</h3>
+        <p class="event-desc">😂⏳ Czas leci jak szalony To idealny moment na solidną dawkę śmiechu! Bartosz Gajda wraca z nowym stand-upem – inteligentny humor, absurd i zero zbędnych wulgaryzmów. Przyjdź i pośmiej się z życia, zanim znów przyspieszy 🎤✨🎟️ Bartosz Gajda - "PO LECIE" - stand up NOWY PROGRAM - więcej informacji No i zaraz zakwitnie rzepak, zaraz długi weekend, potem Boże Ciało, krótki urlop, dzieciaki do szkoły,</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 84.96 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-16" data-end="2026-10-16">
+  <a href="/opole/wydarzenia/szymon-majewski-kto-panu-to-zrobil-2026-10-16/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">16</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/biletyna_opole_szymon-majewski-kto-panu-to-zrobil.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/biletyna_opole_szymon-majewski-kto-panu-to-zrobil.webp" class="thumb-fg" alt="Plakat: Szymon Majewski - Kto Panu to zrobił?" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 16 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">20:00</span>
+        </div>
+        <h3 class="event-title">Szymon Majewski - Kto Panu to zrobił?</h3>
+        <p class="event-desc">Szymon Majewski wraca z nowym stand-upem pełnym śmiechu, autoironii i życiowych absurdów! 😂 Netflix, Górniak, Instagram Rozenek – nic się przed nim nie ukryje. Przyjdź i przekonaj się... kto mu to zrobił! 😉🔥 Szymon Majewski - Kto Panu to zrobił - więcej informacji Szymon Majewski - Kto Panu to zrobił Szymon Majewski zaprasza na występ pełen humoru i autoironii! Jego solowy program to istny</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 127.44 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-17" data-end="2026-10-17">
+  <a href="/opole/wydarzenia/stand-up-martyna-podwysocka-2026-10-17/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">17</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-martyna-podwysocka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-martyna-podwysocka.webp" class="thumb-fg" alt="Plakat: Stand-up: Martyna Podwysocka" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Sobota, 17 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Stand-up: Martyna Podwysocka</h3>
+        <p class="event-desc">Martyna Podwysocka w NOWYM PROGRAMIE stand-up.
+
+Będzie miał tytuł, ale jeszcze nie teraz.  Jak widać ilość komentarzy po poprzednim programie "Yes Comment" była niewystarczająca i Martyna ponownie rusza w Polskę.
+
+Martynę mogłeś już widzieć w programach komediowych "Masz Minutę" i "Roast Me" a także w wielu projektach grupowych takich jak: "Roast Machnickiego" czy "Roast Harcerstwa". Wrzuciła</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-17" data-end="2026-10-17">
+  <a href="/opole/wydarzenia/dadoo-2026-10-17/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">17</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_dadoo.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_dadoo.webp" class="thumb-fg" alt="Plakat: DaDoo" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Sobota, 17 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">22:00</span>
+        </div>
+        <h3 class="event-title">DaDoo</h3>
+        <p class="event-desc">DaDoo po raz pierwszy w Mango Club Opole! Już w sobotę, 17 października, zapraszamy na wyjątkową noc z DaDoo - DJ-em z Zagrzebia, który od ponad 15 lat rozgrzewa parkiety najlepszych klubów i festiwali w Europie, w tym legendarnego Ultra Europe.
+
+DaDoo słynie z doskonałego wyczucia publiczności, dynamicznych setów i energii, która od pierwszego utworu porywa do tańca. Każdy jego występ to</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-22" data-end="2026-10-22">
+  <a href="/opole/wydarzenia/frank-gambale-all-star-group-drumfest-2026-10-22/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">22</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/biletyna_opole_frank-gambale-all-star-group-drumfest.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/biletyna_opole_frank-gambale-all-star-group-drumfest.webp" class="thumb-fg" alt="Plakat: Frank Gambale - All Star Group DRUMFEST" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Czwartek, 22 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Frank Gambale - All Star Group DRUMFEST</h3>
+        <p class="event-desc">Frank Gambale All Star na Drumfest w Opolu - Prawdziwe Święto Muzycznej Wirtuozerii! Przygotujcie się na absolutną bombę energetyczną i jedno z najważniejszych wydarzeń tegorocznego festiwalu Drumfest w Opolu! Na scenie zobaczymy formację Frank Gambale All Star, prowadzoną przez żywą legendę gitary, w otoczeniu muzycznych tytanów światowego formatu. To nie będzie zwykły koncert - to wybuchowa</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 127.44 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-22" data-end="2026-10-22">
+  <a href="/opole/wydarzenia/miedzynarodowy-festiwal-drum-fest-2026-10-22/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">22</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_miedzynarodowy-festiwal-drum-fest.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_miedzynarodowy-festiwal-drum-fest.webp" class="thumb-fg" alt="Plakat: Miedzynarodowy Festiwal Drum Fest" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Czwartek, 22 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Miedzynarodowy Festiwal Drum Fest</h3>
+        <p class="event-desc">Frank Gambale All Star na Drumfest w Opolu - Prawdziwe Święto Muzycznej Wirtuozerii!
+
+Przygotujcie się na absolutną bombę energetyczną i jedno z najważniejszych wydarzeń tegorocznego festiwalu Drumfest w Opolu! Na scenie zobaczymy formację Frank Gambale All Star, prowadzoną przez żywą legendę gitary, w otoczeniu muzycznych tytanów światowego formatu. To nie będzie zwykły koncert - to wybuchowa</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-23" data-end="2026-10-23">
+  <a href="/opole/wydarzenia/katarzyna-piasecka-nowy-program-stand-up-bagus-2026-10-23/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">23</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/biletyna_opole_katarzyna-piasecka-nowy-program-stand-up-bagus.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/biletyna_opole_katarzyna-piasecka-nowy-program-stand-up-bagus.webp" class="thumb-fg" alt="Plakat: Katarzyna Piasecka - Nowy program stand-up „BAGUS”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 23 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">18:00</span>
+        </div>
+        <h3 class="event-title">Katarzyna Piasecka - Nowy program stand-up „BAGUS”</h3>
+        <p class="event-desc">🎤😂 Katarzyna Piasecka wraca z nowym stand-upem "BAGUS" – świeże historie, bezkompromisowe żarty i charyzma w topowej formie. Wieczór rozkręci też support Szymona Baranieckiego – gwarancja śmiechu od pierwszej minuty! 🔥🎟️ Katarzyna Piasecka - Nowy program stand-up „BAGUS” - więcej informacji Nowy program stand-up „ BAGUS ” Katarzyna Piasecka wraca z najnowszym stand-upem „ BAGUS ”. Dużo zmian w</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 74.34 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-23" data-end="2026-10-23">
+  <a href="/opole/wydarzenia/paul-wertico-international-group-drumfest-2026-10-23/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">23</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/biletyna_opole_paul-wertico-international-group-drumfest.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/biletyna_opole_paul-wertico-international-group-drumfest.webp" class="thumb-fg" alt="Plakat: Paul Wertico International Group DRUMFEST" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 23 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Paul Wertico International Group DRUMFEST</h3>
+        <p class="event-desc">PAUL WERTICO INTERNATIONAL GROUP - Paul Wertico, Krzysztof Puma Piasecki, Krzysztof Ścierański Obok tego koncertu po prostu nie można tak normalnie przejść! Kiedy na jednej scenie spotykają się trzy absolutne legendy, świat jazzu i fusion po prostu musi zapłonąć. Na mapie koncertowej kraju szykuje się wydarzenie, które wielu z nas zapamięta na lata. Przed nami ekskluzywne spotkanie gigantów:</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 106.20 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-23" data-end="2026-10-23">
+  <a href="/opole/wydarzenia/miedzynarodowy-festiwal-drum-fest-2026-10-23/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">23</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_miedzynarodowy-festiwal-drum-fest.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_miedzynarodowy-festiwal-drum-fest.webp" class="thumb-fg" alt="Plakat: Miedzynarodowy Festiwal Drum Fest" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 23 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">17:00</span>
+        </div>
+        <h3 class="event-title">Miedzynarodowy Festiwal Drum Fest</h3>
+        <p class="event-desc">PAUL WERTICO INTERNATIONAL GROUP - Paul Wertico, Krzysztof Puma Piasecki, Krzysztof Ścierański
+
+Obok tego koncertu po prostu nie można tak normalnie przejść!
+
+Kiedy na jednej scenie spotykają się trzy absolutne legendy, świat jazzu i fusion po prostu musi zapłonąć. Na mapie koncertowej kraju szykuje się wydarzenie, które wielu z nas zapamięta na lata. Przed nami ekskluzywne spotkanie gigantów:</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-24" data-end="2026-10-24">
+  <a href="/opole/wydarzenia/dzem-2026-10-24/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">24</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/biletyna_opole_dzem.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/biletyna_opole_dzem.webp" class="thumb-fg" alt="Plakat: Dżem" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Sobota, 24 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">18:00</span>
+        </div>
+        <h3 class="event-title">Dżem</h3>
+        <p class="event-desc">Zapraszamy na sentymentalną podróż po rockowych wspomnieniach i dźwiękach bluesa z zespołem Dżem🎸Ich piosenki zna chyba każdy, a możliwość zaśpiewania ich razem z zespołem na żywo to gwarancja niezapomnianych emocji!🔥Na tym koncercie trzeba być, poczuć muzykę i klimat🤘🏻👉🏻🎫 Dżem - więcej informacji Dżem z nowym wokalistą - Sebastianem Riedlem. Mówi się o nich "polscy Rolling Stonesi"... I</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 168.86 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-24" data-end="2026-10-24">
+  <a href="/opole/wydarzenia/miedzynarodowy-festiwal-drum-fest-2026-10-24/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">24</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_miedzynarodowy-festiwal-drum-fest.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_miedzynarodowy-festiwal-drum-fest.webp" class="thumb-fg" alt="Plakat: Miedzynarodowy Festiwal Drum Fest" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Sobota, 24 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">15:00</span>
+        </div>
+        <h3 class="event-title">Miedzynarodowy Festiwal Drum Fest</h3>
+        <p class="event-desc">"GOAT FACTORY"  ( Sherinian/Minnemann/ "Bumblefoot" Thal/Fierabracci ) wgniecie Opole w ziemię!
+
+"Greatest Of All Time FACTORY" - absolutni bogowie prog-metalu na Drum Feście!
+
+Zapomnijcie o wszystkim, co do tej pory słyszeliście o muzycznym rzemiośle. Na scenie tegorocznego festiwalu Drum Fest w Opolu zamelduje się
+
+GOAT FACTORY
+
+- supergrupa, której sama nazwa (
+
+Greatest Of All Time
+
+)</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-24" data-end="2026-10-24">
+  <a href="/opole/wydarzenia/stand-up-lukasz-tomasz-niemam-2026-10-24/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">24</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-lukasz-tomasz-niemam.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-lukasz-tomasz-niemam.webp" class="thumb-fg" alt="Plakat: Stand-up: Łukasz Tomasz NieMam" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Sobota, 24 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Stand-up: Łukasz Tomasz NieMam</h3>
+        <p class="event-desc">Wieczór uświetni trzech komików:
+
+Kuba Nycz
+
+- Wieczny student. Absolwent. Lifestyler. Freelancer. Bodybuilder. Fancy boy. Beach fan. Modern Talking. Mocny w gębie. Slaby na rękę. Ale ćwiczy. Brak umiejętności pracy pod presja. Abnegat. Socjolog. Pato muzyk. Fan ciał. Szczególnie damskich nosów. Lirykomat. Słowotokarz. Malo do powiedzenia. Dużo do zaoferowania. Ale finalnie tez śpiewa. Antyfan</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-25" data-end="2026-10-25">
+  <a href="/opole/wydarzenia/miedzynarodowy-festiwal-drum-fest-2026-10-25/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">25</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_miedzynarodowy-festiwal-drum-fest.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_miedzynarodowy-festiwal-drum-fest.webp" class="thumb-fg" alt="Plakat: Miedzynarodowy Festiwal Drum Fest" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Niedziela, 25 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">15:00</span>
+        </div>
+        <h3 class="event-title">Miedzynarodowy Festiwal Drum Fest</h3>
+        <p class="event-desc">STARRDUST (Starr/Mendoza/Andersen) - Tego koncertu po prostu nie można przegapić!
+
+Kiedy tytani rocka łączą siły, Opole po prostu musi zapłonąć. Na mapie koncertowej kraju szykuje się wydarzenie, które przejdzie do historii festiwalu Drum Fest, a zapomnieć o wszystkim, co do tej pory wiedzieliście o koncertowym uderzeniu, pozwoli Wam jeden wyjątkowy wieczór. Na scenie zadebiutuje STARRDUST -</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-26" data-end="2026-10-26">
+  <a href="/opole/wydarzenia/dzentelmeni-polskiej-piosenki-koncert-hold-legendom-polskiej-muzyki-2026-10-26/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">26</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/biletyna_opole_dzentelmeni-polskiej-piosenki-koncert-hold-legendom-polskiej-muzyki.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/biletyna_opole_dzentelmeni-polskiej-piosenki-koncert-hold-legendom-polskiej-muzyki.webp" class="thumb-fg" alt="Plakat: DŻENTELMENI POLSKIEJ PIOSENKI - Koncert-Hołd Legendom Polskiej Muzyki" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Poniedziałek, 26 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">20:00</span>
+        </div>
+        <h3 class="event-title">DŻENTELMENI POLSKIEJ PIOSENKI - Koncert-Hołd Legendom Polskiej Muzyki</h3>
+        <p class="event-desc">🎶✨ "Dżentelmeni Polskiej Piosenki" to wyjątkowy koncert pełen wzruszeń, klasyki i największych hitów legend polskiej sceny. Nowe aranżacje, niezwykła atmosfera i muzyka, która łączy pokolenia. Przeżyj wieczór, który zostaje w sercu! 🎤💛 DŻENTELMENI POLSKIEJ PIOSENKI - Koncert-Hołd Legendom Polskiej Muzyki - więcej informacji DŻENTELMENI POLSKIEJ PIOSENKI WYJĄTKOWY KONCERT PEŁEN EMOCJI I KLASYKI 🎶</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 105.14 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-26" data-end="2026-10-26">
+  <a href="/opole/wydarzenia/teatr-baniek-mydlanych-tajemnica-banki-szczescia-2026-10-26/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">26</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_teatr-baniek-mydlanych-tajemnica-banki-szczescia.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_teatr-baniek-mydlanych-tajemnica-banki-szczescia.webp" class="thumb-fg" alt="Plakat: Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Poniedziałek, 26 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">11:00</span>
+        </div>
+        <h3 class="event-title">Teatr Baniek Mydlanych "Tajemnica Bańki Szczęścia"</h3>
+        <p class="event-desc">Zabierz swoje dziecko do magicznego świata Baniek!
+
+Zapraszamy na bajeczny festiwal baniek mydlanych połączony z niesamowitą dawkę humoru oraz mocą pozytywnych wrażeń dla całej rodziny. Przygotowaliśmy dla was interaktywne show w wykonaniu naszych międzynarodowych artystów, którzy zabiorą Was w fascynującą podróż do krainy magii i kolorów Sprawimy że nawet Ty poczujesz się jak dziecko! Zapraszamy</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-27" data-end="2026-10-27">
+  <a href="/opole/wydarzenia/anita-lipnicka-2026-10-27/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">27</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/biletyna_opole_anita-lipnicka-trasa-jubileuszowa-30-lat-wszystko-sie-moze-zdarzyc.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/biletyna_opole_anita-lipnicka-trasa-jubileuszowa-30-lat-wszystko-sie-moze-zdarzyc.webp" class="thumb-fg" alt="Plakat: Anita Lipnicka" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Wtorek, 27 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Anita Lipnicka</h3>
+        <p class="event-desc">🎶 Anita Lipnicka świętuje 30-lecie kultowego "Wszystko się może zdarzyć" i zaprasza na wyjątkową muzyczną podróż pełną wspomnień. ✨ Nowe aranżacje, sekcja dęta, smyczki i baśniowa oprawa stworzą niezapomniany wieczór! Anita Lipnicka | Trasa jubileuszowa: 30 lat "Wszystko się może zdarzyć" - więcej informacji Kiedy Anita Lipnicka opuszczała zespół Varius Manx u szczytu jego popularności, nie mogła</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 20 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-27" data-end="2026-10-27">
+  <a href="/opole/wydarzenia/stand-up-lukasz-tomasz-niemam-2026-10-27/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">27</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-lukasz-tomasz-niemam.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_stand-up-lukasz-tomasz-niemam.webp" class="thumb-fg" alt="Plakat: Stand-up: Łukasz Tomasz NieMam" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Wtorek, 27 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">20:00</span>
+        </div>
+        <h3 class="event-title">Stand-up: Łukasz Tomasz NieMam</h3>
+        <p class="event-desc">Scena komediowa w Opolu, Rybniku oraz Raciborzu zaprasza na regularne spotkania Stand-up, Open Mic.
+
+Racibórz (Klub Amnezja)
+
+- drugi wtorek miesiąca
+
+Rybnik (klub Face 2 Face)
+
+- trzeci wtorek miesiąca
+
+Opole (Przystanek Malinka)
+
+- ostatni wtorek miesiąca
+
+Zainteresowanych testowaniem swoich żartów prosimy o wysłanie zgłoszenia na adres:
+
+Zyskstandupopole_małpa_gmail.com
+
+Wydarzenie poprowadzi:</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 200 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-28" data-end="2026-10-28">
+  <a href="/opole/wydarzenia/mlody-stuhr-u-bram-starosci-2026-10-28/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">28</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/biletyna_opole_mlody-stuhr-u-bram-starosci.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/biletyna_opole_mlody-stuhr-u-bram-starosci.webp" class="thumb-fg" alt="Plakat: Młody Stuhr u bram starości" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Środa, 28 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">17:00</span>
+        </div>
+        <h3 class="event-title">Młody Stuhr u bram starości</h3>
+        <p class="event-desc">🎤 Maciej Stuhr wraca z nowym stand-upem "Młody Stuhr u bram starości"! 😂 Błyskotliwy humor, trafne obserwacje i wieczór pełen śmiechu z dystansem do życia. Nie przegap – zarezerwuj bilet! Młody Stuhr u bram starości - więcej informacji Maciej Stuhr powraca na scenę z nowym programem standupowym, w którym z charakterystyczną lekkością i dystansem przygląda się upływowi czasu, dojrzałości oraz</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 105.14 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-10-28" data-end="2026-10-28">
+  <a href="/opole/wydarzenia/jarek-zylinski-stand-up-2026-10-28/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">28</span>
+        <span class="month">
+          
+          PAŹ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_opole_jarek-zylinski-stand-up.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_opole_jarek-zylinski-stand-up.webp" class="thumb-fg" alt="Plakat: Jarek Żyliński Stand-up" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Środa, 28 października</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Jarek Żyliński Stand-up</h3>
+        <p class="event-desc">STRAJK RODZICIELSKI
+
+to drugi program
+
+Jarka Żylińskiego.
+
+To okazja by pośmiać się z tego, co nas rodziców na co dzień wkurza! Są rzeczy, których Tobie powiedzieć nie wypada, Jarkowi jako psychologowi też nie ... ale jako komikowi....
+
+"Jarek ma ogromne wyczucie i talent aktorski. Jego "Strajk rodzicielski" to sytuacje z życia wzięte - czasem śmieszne, czasem straszne - ale prawdziwe. Super</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Bilety płatne</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        
+        <div id="loadMoreContainer" style="grid-column: 1 / -1; text-align: center; margin: 32px 0 16px 0;">
+          <button id="loadMoreBtn" class="btn-load-more" onclick="loadMoreEvents()">
+            Pokaż więcej wydarzeń (+24)
+          </button>
+        </div>
+        
+    </div>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>CoRobićW Opole</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny harmonogram wydarzeń miejskich. Wszystkie wydarzenia pobierane bezpośrednio ze scen i galerii.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li><li><a href="#">Współpraca lokalna</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda Opole</span></div>
+  </footer>
+  
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('corobicw-theme', next);
+      updateToggleBtn(next);
+    }
+    function updateToggleBtn(theme) {
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (icon && label) {
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
+    });
+
+    function getLocalDateStr(offsetDays = 0) {
+      const d = new Date(); d.setDate(d.getDate() + offsetDays);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+    function getThisWeekendRange() {
+      const now = new Date();
+      const currentDay = now.getDay();
+      const dFri = new Date(now);
+      const dSun = new Date(now);
+      if (currentDay === 0) {
+        dFri.setDate(now.getDate() - 2);
+        dSun.setDate(now.getDate());
+      } else if (currentDay === 6) {
+        dFri.setDate(now.getDate() - 1);
+        dSun.setDate(now.getDate() + 1);
+      } else if (currentDay === 5) {
+        dFri.setDate(now.getDate());
+        dSun.setDate(now.getDate() + 2);
+      } else {
+        const toFri = 5 - currentDay;
+        dFri.setDate(now.getDate() + toFri);
+        dSun.setDate(now.getDate() + toFri + 2);
+      }
+      const fmt = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      return { start: fmt(dFri), end: fmt(dSun) };
+    }
+
+    function initDynamicBadges() {
+      const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+        
+        if (end < today) {
+          el.style.display = 'none';
+          return;
+        }
+
+        const badge = el.querySelector('.badge-container');
+        if (!badge) return;
+        if (start === today) {
+            badge.innerHTML = '<span class="tag-highlight">DZIŚ</span>';
+          } else if (start < today && end && end >= today) {
+            badge.innerHTML = '<span class="tag-highlight" style="background:#0ea5e9;">TRWA</span>';
+          }else if (start === tomorrow) badge.innerHTML = '<span class="tag-highlight">JUTRO</span>';
+        else badge.innerHTML = '';
+      });
+    }
+
+    function filterEvents(mode, btn) {
+      if (btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      const today = getLocalDateStr(0), tomorrow = getLocalDateStr(1);
+      const weekend = getThisWeekendRange();
+      
+      document.querySelectorAll('.event-item').forEach(el => {
+        const start = el.getAttribute('data-start');
+        const end = el.getAttribute('data-end') || start;
+        
+        if (end < today) {
+          el.style.display = 'none';
+          return;
+        }
+
+        if (mode === 'all') el.style.display = 'block';
+        else if (mode === 'today') el.style.display = (start <= today && end >= today) ? 'block' : 'none';
+        else if (mode === 'tomorrow') el.style.display = (start === tomorrow) ? 'block' : 'none';
+        else if (mode === 'weekend') {
+          const inWeekend = (start <= weekend.end && end >= weekend.start);
+          el.style.display = inWeekend ? 'block' : 'none';
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      initDynamicBadges();
+      filterEvents('all', null);
+    });
+  
+    async function loadMoreEvents() {
+      const btn = document.getElementById('loadMoreBtn');
+      const container = document.getElementById('loadMoreContainer');
+      if (!btn) return;
+      
+      btn.disabled = true;
+      btn.textContent = 'Wczytywanie wydarzeń...';
+      
+      try {
+        const response = await fetch('events_more.html');
+        if (!response.ok) throw new Error('Nie udało się pobrać kolejnych wydarzeń');
+        const html = await response.text();
+        
+        container.insertAdjacentHTML('beforebegin', html);
+        container.remove();
+        
+        if (typeof initDynamicBadges === 'function') {
+          initDynamicBadges();
+        }
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = 'Błąd wczytywania. Spróbuj ponownie';
+      }
+    }
+
+  </script>
+</body>
+</html>
