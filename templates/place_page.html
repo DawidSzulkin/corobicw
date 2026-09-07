@@ -153,7 +153,7 @@
       <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city_name or city }}</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">??</span> <span id="themeLabel">Jasny</span>
+          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
         </button>
         <a href="/{{ city_tag }}/" class="btn-nav">&larr; Wróć do agendy</a>
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
@@ -171,7 +171,7 @@
         <span class="badge">{{ place.category or place.raw_amenity or place.group or 'Obiekt Kulturalny' }}</span>
         <h1>{{ place.name }}</h1>
         <p class="place-address">
-          <span>??</span>
+          <span>📍</span>
           <span>{% if street %}ul. {{ street }} {{ housenumber }}, {{ p_city }}{% else %}{{ place.name }}, {{ p_city }}{% endif %}</span>
         </p>
         
@@ -195,7 +195,7 @@
               <div class="event-title-mini">{{ ev.title }}</div>
               <div class="event-price-mini">
                 {% if ev.is_cancelled %}
-                  <span class="badge-cancelled-mini">?? Występ odwołany</span>
+                  <span class="badge-cancelled-mini">⚠️ Występ odwołany</span>
                 {% else %}
                   {{ ev.analysis.ticket_info.price_range if ev.analysis and ev.analysis.ticket_info and ev.analysis.ticket_info.price_range else 'Sprawdź bilety' }}
                 {% endif %}
@@ -272,8 +272,8 @@
       const icon = document.getElementById('themeIcon');
       const label = document.getElementById('themeLabel');
       if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '??'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '??'; label.textContent = 'Ciemny'; }
+        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
+        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
       }
     }
     document.addEventListener('DOMContentLoaded', () => {
