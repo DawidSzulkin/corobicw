@@ -1,4 +1,4 @@
-﻿name: CI/CD Pipeline - Test, Build & Deploy
+name: CI/CD Pipeline - Test, Build & Deploy
 
 on:
   push:
