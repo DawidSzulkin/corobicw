@@ -1,4 +1,4 @@
-﻿<div class="card">
+<div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
     <div class="info-label">Data</div><div class="info-val">{{ event.date_formatted }}</div>
@@ -10,9 +10,6 @@
       {% if venue_slug %}<a href="/{{ city_tag }}/miejsca/{{ venue_slug }}/"><strong>{{ venue_title }}</strong></a>{% else %}<strong>{{ venue_title }}</strong>{% endif %}
       {%- if event.analysis and event.analysis.address %}<span class="address">{{ event.analysis.address }}</span>{% elif place and place.address %}<span class="address">{{ place.address }}</span>{% endif %}
     </div>
-    {% if event.analysis.quick_facts.parking %}
-    <div class="info-label">Parking</div><div class="info-val">{{ event.analysis.quick_facts.parking }}</div>
-    {% endif %}
   </div>
 
   {# Weryfikacja bezpłatnego wstępu #}
@@ -30,31 +27,27 @@
       <span style="font-size: 1.2rem;">🎫</span>
     </div>
   {% elif event.ticket_offers and event.ticket_offers|length > 0 %}
-    <div class="ticket-market-header">
-      <span class="ticket-market-title">Dostępne bilety</span>
-      <span class="ticket-count">{{ event.ticket_offers|length }} {% if event.ticket_offers|length == 1 %}opcja{% else %}opcje{% endif %}</span>
-    </div>
     <div class="offers-stack">
       {% for offer in event.ticket_offers %}
         {% set price_str = (offer.price or '') | lower %}
         {% set is_cancelled = ('odwo' in price_str or 'cancel' in price_str) %}
+        {% set is_text_price = ('sprawd' in price_str or 'dost' in price_str or price_str|length > 10) %}
         <div class="offer-box {% if is_cancelled %}cancelled-box{% elif loop.first %}highlight{% endif %}">
           <div class="offer-main-row">
             <div class="offer-info-col">
               <div class="offer-provider-line">
                 <span class="offer-provider-name">{{ offer.provider }}</span>
-                {% if offer.is_official or offer.official_badge %}
-                  <span class="offer-tag official">Oficjalna kasa</span>
-                {% endif %}
                 {% if is_cancelled %}
                   <span class="offer-tag cancelled">Odwołane</span>
+                {% elif offer.is_official or offer.official_badge or (offer.tag and 'oficjaln' in offer.tag|lower) %}
+                  <span class="offer-tag official">Oficjalna kasa</span>
                 {% elif offer.tag %}
                   <span class="offer-tag best-price">{{ offer.tag }}</span>
                 {% endif %}
               </div>
-              <div class="offer-price-val">{{ offer.price }}</div>
+              <div class="offer-price-val {% if is_text_price %}is-text-price{% endif %}">{{ offer.price }}</div>
             </div>
-            <div>
+            <div class="offer-btn-col">
               {% if is_cancelled %}
                 <span class="offer-btn-buy secondary" aria-disabled="true">Odwołane</span>
               {% else %}
