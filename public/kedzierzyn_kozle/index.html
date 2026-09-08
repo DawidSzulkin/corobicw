@@ -28,16 +28,90 @@ html {
       color: inherit;
       text-decoration: none;
     }
-    a.event-card {
+    a
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      display: flex;
+      position: relative;
+      height: 176px;
+      overflow: hidden;
+      border-radius: 4px;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
       color: inherit;
       text-decoration: none;
-      display: flex;
       cursor: pointer;
     }
-    a.event-card:hover {
+
+    .event-card:hover { 
+      border-color: var(--border-strong); 
+      background: var(--card-hover); 
+      transform: translateX(3px); 
       text-decoration: none;
       color: inherit;
     }
+
+    .thumb-wrap {
+      width: 220px;
+      min-width: 220px;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background: #000000;
+      flex-shrink: 0;
+    }
+
+    .event-content {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .text-container {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .event-desc {
+      position: relative;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      line-height: 1.4;
+      margin: 4px 0 0 0;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-height: 2.8em !important;
+      word-break: break-word;
+    }
+    .event-desc::after {
+      display: none !important;
+    }
+
+    .event-desc::after {
+      display: none !important;
+    }
+
+    .meta-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
     .event-title {
       color: var(--text);
     }
@@ -216,26 +290,21 @@ html {
       position: relative;
       color: var(--text-muted);
       font-size: 0.83rem;
-      line-height: 1.38;
+      line-height: 1.4;
       margin: 4px 0 0 0;
-      overflow: hidden;
-      flex: 1;
-      min-height: 0;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-height: 2.8em !important;
       word-break: break-word;
     }
     .event-desc::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1.8em;
-      background: linear-gradient(to bottom, transparent 0%, var(--card-bg) 95%);
-      pointer-events: none;
+      display: none !important;
     }
-    .event-card:hover .event-desc::after {
-      background: linear-gradient(to bottom, transparent 0%, var(--card-hover) 95%);
-    }
+    /* gradient overlay usunięty na rzecz line-clamp */
+    
 
     .meta-bottom {
       border-top: 1px solid var(--border);
@@ -289,7 +358,21 @@ html {
 
   
     .event-card .event-desc {
-      cursor: pointer;
+      position: relative;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      line-height: 1.4;
+      margin: 4px 0 0 0;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-height: 2.8em !important;
+      word-break: break-word;
+    }
+    .event-desc::after {
+      display: none !important;
     }
 
   
@@ -351,24 +434,22 @@ html {
     }
     .event-desc {
       position: relative;
-      max-height: 5.6em;
-      line-height: 1.42;
-      overflow: hidden;
-      color: var(--text-muted, #9ca3af);
-      margin: 6px 0 10px 0;
-      font-size: 0.86rem;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      line-height: 1.4;
+      margin: 4px 0 0 0;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-height: 2.8em !important;
       word-break: break-word;
     }
     .event-desc::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2.2em;
-      background: linear-gradient(to bottom, rgba(20, 20, 20, 0) 0%, var(--bg-card, #141414) 95%);
-      pointer-events: none;
+      display: none !important;
     }
+    /* gradient overlay usunięty na rzecz line-clamp */
 
   
     /* --- SYSTEMOWY PRZEŁĄCZNIK MOTYWU (PILL SWITCH) --- */
@@ -439,6 +520,9 @@ html {
     }
 
   </style>
+
+
+
 </head>
 <body>
   <header>
@@ -1288,7 +1372,7 @@ Termin: 08.09.2026 r., godz. 16:00</p>
         <p class="event-desc">Wydarzenie: Koncert przy świecach: Tribute to Michael Jackson. Miejsce: Kędzierzyn Koźle, Kędzierzyn-Koźle. Bilety dostępne online na KupBilecik.pl.</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">od 15 zł</span>
+        <span class="price">od 90 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1846,7 +1930,7 @@ Termin: 17.09.2026 r., godz. 16:00</p>
         
         <div id="loadMoreContainer" style="grid-column: 1 / -1; text-align: center; margin: 32px 0 16px 0;">
           <button id="loadMoreBtn" class="btn-load-more" onclick="loadMoreEvents()">
-            Pokaż więcej wydarzeń (+50)
+            Pokaż więcej wydarzeń (+51)
           </button>
         </div>
         

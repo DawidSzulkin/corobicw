@@ -1,9 +1,10 @@
-from datetime import datetime
+﻿from datetime import datetime
 import html
 import os
 import re
 import sys
 from typing import Any, Dict, List, Set
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from bs4 import BeautifulSoup
 import urllib3
 
@@ -64,8 +65,65 @@ class CavatinaHallPlScraper(BaseScraper):
 
         return ""
 
+    def _fetch_event_details(self, event_url: str) -> tuple:
+        price_str = "Dostępność"
+        direct_ticket_url = event_url
+
+        if not event_url or "cavatinahall.pl" not in event_url:
+            return price_str, direct_ticket_url
+
+        try:
+            resp = self.session.get(event_url, timeout=(3.05, 8.0))
+            if resp.status_code != 200:
+                return price_str, direct_ticket_url
+
+            soup = BeautifulSoup(resp.content, "html.parser")
+            page_text = soup.get_text().lower()
+
+            if "odwołan" in page_text or "cancelled" in page_text:
+                return "Odwołane", direct_ticket_url
+
+            for a in soup.find_all("a", href=True):
+                href = a["href"]
+                if any(k in href.lower() for k in ["eventim.pl", "bilety24.pl", "kupbilecik.pl", "ebilet.pl"]) and "facebook" not in href:
+                    direct_ticket_url = href
+                    break
+
+            price_nodes = soup.select(".pos--price, .price, .pos-price, .ticket-price, [class*='price']")
+            prices = []
+            for pn in price_nodes:
+                txt = pn.get_text(strip=True)
+                m = re.search(r"(\d+(?:[\.,]\d+)?)", txt)
+                if m:
+                    try:
+                        val = float(m.group(1).replace(",", "."))
+                        if val > 0:
+                            prices.append(val)
+                    except ValueError:
+                        pass
+
+            if not prices:
+                m_all = re.findall(r"(?:od\s*)?(\d+(?:[\.,]\d+)?)\s*(?:zł|PLN)", page_text, re.IGNORECASE)
+                for val_str in m_all:
+                    try:
+                        v = float(val_str.replace(",", "."))
+                        if 10.0 <= v <= 2000.0:
+                            prices.append(v)
+                    except ValueError:
+                        pass
+
+            if prices:
+                min_p = min(prices)
+                p_num = f"{int(min_p)} zł" if min_p.is_integer() else f"{min_p:.2f}".replace(".", ",") + " zł"
+                price_str = f"Od {p_num}" if len(set(prices)) > 1 else p_num
+
+        except Exception:
+            pass
+
+        return price_str, direct_ticket_url
+
     def fetch_events(self) -> List[Dict[str, Any]]:
-        events = []
+        raw_items = []
         today_iso = datetime.now().strftime("%Y-%m-%d")
         self.seen_signatures.clear()
 
@@ -94,8 +152,6 @@ class CavatinaHallPlScraper(BaseScraper):
 
                 for item in items:
                     event_url = item.get("link", f"{self.base_url}/wydarzenia/")
-                    
-                    # Odrzucenie angielskich duplikatów
                     if "/en/" in event_url or "/en-" in event_url:
                         continue
 
@@ -126,14 +182,13 @@ class CavatinaHallPlScraper(BaseScraper):
                     else:
                         desc = f"Koncert i wydarzenie muzyczne w Cavatina Hall: {title}."
 
-                    events.append({
+                    raw_items.append({
                         "title": title,
                         "date_start": date_iso,
                         "date_end": date_iso,
                         "time_start": time_str,
                         "venue": "Cavatina Hall",
                         "address": "ul. Dworkowa 2, Bielsko-Biała",
-                        "price_range": "Bilety płatne (Kasa / Eventim / Cavatina)",
                         "description": desc,
                         "image_url": thumb_path or full_remote_img,
                         "source_url": event_url,
@@ -147,5 +202,34 @@ class CavatinaHallPlScraper(BaseScraper):
                 print(f"[{self.source_name}] Błąd strony {page}: {e}")
                 break
 
-        print(f"[{self.source_name}] Pomyślnie sparsowano {len(events)} aktywnych wydarzeń Cavatina Hall.")
+        print(f"[{self.source_name}] Pobieranie cenników dla {len(raw_items)} wydarzeń Cavatina Hall...")
+        events = []
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            future_to_ev = {
+                executor.submit(self._fetch_event_details, it["source_url"]): it 
+                for it in raw_items
+            }
+            for future in as_completed(future_to_ev):
+                it = future_to_ev[future]
+                try:
+                    price_str, direct_url = future.result()
+                except Exception:
+                    price_str, direct_url = "Dostępność", it["source_url"]
+
+                it["price_range"] = price_str
+                it["ticket_offers"] = [{
+                    "provider": "Cavatina Hall",
+                    "url": direct_url,
+                    "price": price_str,
+                    "raw_price": price_str,
+                    "is_primary": True,
+                    "discounts": [],
+                    "tag": "Oficjalna kasa",
+                    "tag_class": "official",
+                    "is_official": True,
+                    "official_badge": "Oficjalna kasa"
+                }]
+                events.append(it)
+
+        print(f"[{self.source_name}] Pomyślnie sparsowano {len(events)} aktywnych wydarzeń Cavatina Hall z cennikami.")
         return events

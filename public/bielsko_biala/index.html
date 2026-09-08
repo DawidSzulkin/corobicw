@@ -28,16 +28,90 @@ html {
       color: inherit;
       text-decoration: none;
     }
-    a.event-card {
+    a
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      display: flex;
+      position: relative;
+      height: 176px;
+      overflow: hidden;
+      border-radius: 4px;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
       color: inherit;
       text-decoration: none;
-      display: flex;
       cursor: pointer;
     }
-    a.event-card:hover {
+
+    .event-card:hover { 
+      border-color: var(--border-strong); 
+      background: var(--card-hover); 
+      transform: translateX(3px); 
       text-decoration: none;
       color: inherit;
     }
+
+    .thumb-wrap {
+      width: 220px;
+      min-width: 220px;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background: #000000;
+      flex-shrink: 0;
+    }
+
+    .event-content {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .text-container {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .event-desc {
+      position: relative;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      line-height: 1.4;
+      margin: 4px 0 0 0;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-height: 2.8em !important;
+      word-break: break-word;
+    }
+    .event-desc::after {
+      display: none !important;
+    }
+
+    .event-desc::after {
+      display: none !important;
+    }
+
+    .meta-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
     .event-title {
       color: var(--text);
     }
@@ -216,26 +290,21 @@ html {
       position: relative;
       color: var(--text-muted);
       font-size: 0.83rem;
-      line-height: 1.38;
+      line-height: 1.4;
       margin: 4px 0 0 0;
-      overflow: hidden;
-      flex: 1;
-      min-height: 0;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-height: 2.8em !important;
       word-break: break-word;
     }
     .event-desc::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1.8em;
-      background: linear-gradient(to bottom, transparent 0%, var(--card-bg) 95%);
-      pointer-events: none;
+      display: none !important;
     }
-    .event-card:hover .event-desc::after {
-      background: linear-gradient(to bottom, transparent 0%, var(--card-hover) 95%);
-    }
+    /* gradient overlay usunięty na rzecz line-clamp */
+    
 
     .meta-bottom {
       border-top: 1px solid var(--border);
@@ -289,7 +358,21 @@ html {
 
   
     .event-card .event-desc {
-      cursor: pointer;
+      position: relative;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      line-height: 1.4;
+      margin: 4px 0 0 0;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-height: 2.8em !important;
+      word-break: break-word;
+    }
+    .event-desc::after {
+      display: none !important;
     }
 
   
@@ -351,24 +434,22 @@ html {
     }
     .event-desc {
       position: relative;
-      max-height: 5.6em;
-      line-height: 1.42;
-      overflow: hidden;
-      color: var(--text-muted, #9ca3af);
-      margin: 6px 0 10px 0;
-      font-size: 0.86rem;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      line-height: 1.4;
+      margin: 4px 0 0 0;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-height: 2.8em !important;
       word-break: break-word;
     }
     .event-desc::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2.2em;
-      background: linear-gradient(to bottom, rgba(20, 20, 20, 0) 0%, var(--bg-card, #141414) 95%);
-      pointer-events: none;
+      display: none !important;
     }
+    /* gradient overlay usunięty na rzecz line-clamp */
 
   
     /* --- SYSTEMOWY PRZEŁĄCZNIK MOTYWU (PILL SWITCH) --- */
@@ -439,6 +520,9 @@ html {
     }
 
   </style>
+
+
+
 </head>
 <body>
   <header>
@@ -604,7 +688,7 @@ Bo czy przyjaźń to nie największa siła we wszechświecie</p>
         <p class="event-desc">Poczuj moc relaksu i odnowy w wyjątkowym otoczeniu. Zapraszamy na wyjątkową sesję jogi w Cavatina Hall w Bielsku-Białej. Zajęcia poprowadzi Tomasz Słowioczek. Informacje praktyczne: prosimy o zabranie własnej maty do ćwiczeń i przyjście w wygodnym stroju sportowym. Czas trwania zajęć: 2h. Po...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">69 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -678,7 +762,7 @@ STREET ART –</p>
         <p class="event-desc">Zapraszamy na spotkanie z Tai Chi na dachu Cavatina Hall! Poznacie również ćwiczenia Qigong – wspaniałą drogę rozwijania świadomości ciała, uważności, oddechu. Prowadzący: Adam Trocki – nauczyciel Tai Chi, Qigong i medytacji z 27-letnim doświadczeniem, uczeń wybitnych mistrzów chińskich sztuk...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">69 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -686,7 +770,7 @@ STREET ART –</p>
 </article>
         
         <article class="event-item" data-start="2026-09-11" data-end="2026-09-11">
-  <a href="/bielsko_biala/wydarzenia/luname-feat-paulina-przybysz-2026-09-11/" class="event-card cancelled">
+  <a href="/bielsko_biala/wydarzenia/luname-feat-paulina-przybysz-2026-09-11/" class="event-card ">
     <div class="thumb-wrap">
       <div class="date-badge">
         <span class="day">11</span>
@@ -701,7 +785,7 @@ STREET ART –</p>
     <div class="event-content">
       <div class="text-container">
         <div class="meta-top">
-          <span class="badge-container"><span class="badge-cancelled-pill">ODWOŁANE</span></span>
+          <span class="badge-container"></span>
           <span class="cat-accent">Kultura i Rozrywka</span>
           <span>&bull;</span>
           <span class="date-accent">Piątek, 11 września</span>
@@ -712,7 +796,7 @@ STREET ART –</p>
         <p class="event-desc">Tym razem Lunamë pojawi się na scenie Bielskiego Centrum Kultury w wyjątkowej odsłonie – u boku jednej z najbardziej wyrazistych postaci polskiej sceny muzycznej, Paulina Przybysz. To spotkanie zapowiada się jako intensywne, pełne emocji i bezkompromisowe muzyczne doświadczenie, w którym alternatywa, groove i jazz splatają się w jedną, pulsującą całość.</p>
       </div>
       <div class="meta-bottom">
-        <span class="price"><del style="color: var(--text-muted); margin-right: 6px;">Sprawdź szczegóły</del><span style="color: #f87171; font-weight: 700;">Występ odwołany</span></span>
+        <span class="price">100 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -746,7 +830,7 @@ STREET ART –</p>
         <p class="event-desc">Oszałamiający głos, niepowtarzalna melodyka i absolutna charyzma. Dla wielu Pierwsza Dama Polskiej Piosenki. Legenda polskiej sceny. Nazywana polską Arethą Franklin czy współczesną Billie Holiday. Już od ponad 50 lat stale zachwyca publiczność. I to nie tylko piosenkami napisanymi specjalnie dla...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">99 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -854,7 +938,7 @@ Jury 47. Biennale Malarstwa Bielska Jesień 2025 wyróżniło twórczość</p>
         <p class="event-desc">🎙️ Andrzej Poniedzielski zaprasza na wieczór pełen inteligentnego humoru, poezji i piosenek — tych dobrze znanych i zupełnie nowych! Subtelna satyra, marzenia, miłość i błyskotliwe puenty w wykonaniu mistrza słowa. ✨🎭 Andrzej Poniedzielski - Dobry wieczór... - więcej informacji Wieczór kabaretowy Andrzeja Poniedzielskiego pt. "Dobry wieczór..." Najnowszy program "Dobry wieczór..." to niezwykły,</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">od 129 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -888,7 +972,7 @@ Jury 47. Biennale Malarstwa Bielska Jesień 2025 wyróżniło twórczość</p>
         <p class="event-desc">Zapraszamy na wyjątkowe popołudnie na dachu Cavatina Hall. To doskonała okazja, by zobaczyć jedno z najbardziej niezwykłych miejsc w Bielsku-Białej, odpocząć na wygodnych leżakach i podziwiać zachwycającą panoramę Beskidów. Wstęp kosztuje symboliczne 1 zł – to cegiełka, dzięki której wspierasz...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">1 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -936,40 +1020,6 @@ Galeria Bielska BWA realizuje kolejny etap projektu Święto Lasu. Otwarty nabó
 </article>
         
         <article class="event-item" data-start="2026-09-13" data-end="2026-09-13">
-  <a href="/bielsko_biala/wydarzenia/depresja-komika-adam-woronowicz-i-rafal-rutkowski-2026-09-13/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">13</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kupbilecik_bielsko_biala_depresja-komika-adam-woronowicz-i-rafal-rutkowski.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kupbilecik_bielsko_biala_depresja-komika-adam-woronowicz-i-rafal-rutkowski.webp" class="thumb-fg" alt="Plakat: Depresja komika - Adam Woronowicz i Rafał Rutkowski" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Niedziela, 13 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">15:00</span>
-        </div>
-        <h3 class="event-title">Depresja komika - Adam Woronowicz i Rafał Rutkowski</h3>
-        <p class="event-desc">🎭 Depresja, śmiech i życiowa prawda w jednym spektaklu! "Depresja komika" to błyskotliwy 2-men show Rutkowskiego i Woronowicza – pełen emocji, humoru i refleksji. Zobacz, jak śmiech może być terapią 🎤🧠✨ Depresja komika - Adam Woronowicz i Rafał Rutkowski - więcej informacji Przygotuj się na wieczór pełen nieoczekiwanych zwrotów akcji, śmiechu i głębokich refleksji! „Depresja komika” to spektakl,</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-13" data-end="2026-09-13">
   <a href="/bielsko_biala/wydarzenia/wpadnij-na-dach-2026-09-13/" class="event-card ">
     <div class="thumb-wrap">
       <div class="date-badge">
@@ -996,7 +1046,7 @@ Galeria Bielska BWA realizuje kolejny etap projektu Święto Lasu. Otwarty nabó
         <p class="event-desc">Zapraszamy na wyjątkowe popołudnie na dachu Cavatina Hall. To doskonała okazja, by zobaczyć jedno z najbardziej niezwykłych miejsc w Bielsku-Białej, odpocząć na wygodnych leżakach i podziwiać zachwycającą panoramę Beskidów. Wstęp kosztuje symboliczne 1 zł – to cegiełka, dzięki której wspierasz...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">1 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1064,7 +1114,41 @@ Galeria Bielska BWA realizuje kolejny etap projektu Święto Lasu. Otwarty nabó
         <p class="event-desc">Przygotuj się na wieczór pełen nieoczekiwanych zwrotów akcji, śmiechu i głębokich refleksji! „Depresja komika” to spektakl, który łączy humor z poważnym tematem – depresją, ale robi to z wielkim wdziękiem i humorem.</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">od 119 zł</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-13" data-end="2026-09-13">
+  <a href="/bielsko_biala/wydarzenia/depresja-komika-adam-woronowicz-i-rafal-rutkowski-2026-09-13/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">13</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kupbilecik_bielsko_biala_depresja-komika-adam-woronowicz-i-rafal-rutkowski.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_bielsko_biala_depresja-komika-adam-woronowicz-i-rafal-rutkowski.webp" class="thumb-fg" alt="Plakat: Depresja komika - Adam Woronowicz i Rafał Rutkowski" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Niedziela, 13 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">15:00</span>
+        </div>
+        <h3 class="event-title">Depresja komika - Adam Woronowicz i Rafał Rutkowski</h3>
+        <p class="event-desc">🎭 Depresja, śmiech i życiowa prawda w jednym spektaklu! "Depresja komika" to błyskotliwy 2-men show Rutkowskiego i Woronowicza – pełen emocji, humoru i refleksji. Zobacz, jak śmiech może być terapią 🎤🧠✨ Depresja komika - Adam Woronowicz i Rafał Rutkowski - więcej informacji Przygotuj się na wieczór pełen nieoczekiwanych zwrotów akcji, śmiechu i głębokich refleksji! „Depresja komika” to spektakl,</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">od 126.38 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1098,7 +1182,7 @@ Galeria Bielska BWA realizuje kolejny etap projektu Święto Lasu. Otwarty nabó
         <p class="event-desc">Powakacyjny Offbeat Organ zapowiada się niezwykle ciekawie. Już 16 września na scenie Bielskiego Centrum Kultury wystąpi Natalia Niemen – wokalistka, altowiolistka, kompozytorka, autorka tekstów i jedna z najbardziej charakterystycznych osobowości polskiej sceny muzycznej.</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">60 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1132,7 +1216,7 @@ Galeria Bielska BWA realizuje kolejny etap projektu Święto Lasu. Otwarty nabó
         <p class="event-desc">Pod czujnym okiem wykwalifikowanej instruktorki, Pauliny Witkowskiej, odkryjecie nowe wymiary pilatesu, łącząc ruch, oddech i świadomość. Paulina Witkowska to medyczna trenerka i instruktorka pilates z 8-letnim doświadczeniem zawodowym. Swoją sportową przygodę zaczynała jako instruktor na sali...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">69 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1200,7 +1284,7 @@ Galeria Bielska BWA realizuje kolejny etap projektu Święto Lasu. Otwarty nabó
         <p class="event-desc">Najbardziej kultowe światy kina, magii i fantastycznych przygód spotkają się na jednej scenie podczas wyjątkowego koncertu w wykonaniu Cavatina Philharmonic Orchestra pod batutą Stanleya Doddsa. Muzyka ma niezwykłą moc przenoszenia nas do miejsc, które znamy z wielkiego ekranu i ekranów naszych...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">99 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1240,7 +1324,7 @@ Sting
 jest jednym z najbardziej wpływowych brytyjskich artystów naszych czasów: frontman The Police, autor tekstów, zdobywca 17 statuetek Grammy i muzyk</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">od 15 zł</span>
+        <span class="price">od 85 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1308,7 +1392,7 @@ jest jednym z najbardziej wpływowych brytyjskich artystów naszych czasów: fro
         <p class="event-desc">Zapraszamy na wyjątkowy koncert Hania Derej Trio na dachu Cavatina Hall, podczas którego po raz pierwszy na żywo zabrzmi premierowy materiał z nadchodzącego albumu „Don’t Look Behind, Always Forward” . Muzyka powstała w Cavatina Studio, dlatego możliwość zaprezentowania jej właśnie w Cavatina Hall...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">89 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1342,7 +1426,7 @@ jest jednym z najbardziej wpływowych brytyjskich artystów naszych czasów: fro
         <p class="event-desc">Liryczna wrażliwość i delikatny pop idą ze sobą w parze, natomiast Mikromusic do zestawu dwa w jednym dodaje jeszcze kilka własnych, autorskich elementów, które czynią ich muzykę tak nadzwyczajną. Po pierwsze: eteryczny wokal Natalii Grosiak, obok którego nie sposób przejść obojętnie, po drugie:...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">89 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1416,7 +1500,7 @@ Wernisażowi wystawy będzie towarzyszył występQby Janickiego(Jakub Janicki) �
         <p class="event-desc">🎭 Co powiesz na spektakl zaskakujący, zabawny i wciągający od pierwszych minut ⭐ Do tego dochodzi gwiazdorska obsada złożona z najlepszych aktorów i aktorek komediowych! Tego tytułu nie możesz przegapić. 🤩 To wyjątkowa opowieść rodzinna, pełna prawdziwych emocji, śmiechu i wzruszeń. 🥰 My bawiliśmy się doskonale! Rodzinne rewolucje - więcej informacji Wpadnij w wir rodzinnych tajemnic i</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">od 15 zł</span>
+        <span class="price">od 79.65 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1450,7 +1534,7 @@ Wernisażowi wystawy będzie towarzyszył występQby Janickiego(Jakub Janicki) �
         <p class="event-desc">Zeppelinians – zespół, który powstał z miłości do muzyki LED ZEPPELIN . Założony w 2016 roku przez fanów oraz profesjonalnych muzyków. Od marca 2017 z powodzeniem koncertuje w Polsce i za granicą. Utwory LED ZEPPELIN w wykonaniu Zeppelinians można było usłyszeć m.in. w radiowej Trójce, Radio 3/5/7,...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">139 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1522,7 +1606,7 @@ Historia burzliwego, toksycznego związku Tiny i Ike’a będzie jednak przede w
 Na koniec dodatkowo 15 minut crowdworku z publicznością! To będzie czysty crowdwork:</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">od 15 zł</span>
+        <span class="price">od 49 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1556,7 +1640,7 @@ Na koniec dodatkowo 15 minut crowdworku z publicznością! To będzie czysty cro
         <p class="event-desc">Zajęcia poprowadzi Wojtek Myga. Posiada ponad 20 letnie międzynarodowe doświadczenie jako nauczyciel. Na stałe współpracuje z GWSH w Katowicach pomagając w szkoleniu przyszłych nauczycieli. Zajęcia prowadzi z dużą lekkością, dokładnością i poczuciem humoru. Jesteśmy pewni, że wspólna joga Was...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">69 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1628,7 +1712,7 @@ Najnowsze obrazy artysty, z których każdy jest osobną opowieścią o ludziach
         <p class="event-desc">30 lat na scenie - zapraszamy na jubileuszowy koncert GRUPY FURMANA, który będzie jednocześnie promocją nowej płyty "3x10 na trzydziestolecie".</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">50 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1662,7 +1746,7 @@ Najnowsze obrazy artysty, z których każdy jest osobną opowieścią o ludziach
         <p class="event-desc">24 września zapraszamy na wyjątkowy wieczór inaugurujący nowy sezon artystyczny Cavatina Philharmonic Orchestra. Gala Inauguracyjna będzie uroczystym otwarciem pełnym muzycznych emocji, mistrzowskich interpretacji i niezwykłej atmosfery. To wydarzenie rozpocznie kolejny sezon spotkań z muzyką na...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">49 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1732,7 +1816,7 @@ Po raz drugi w Galerii Bielskiej BWA usłyszymy Wojtka Mazolewskiego, znanego ba
         <p class="event-desc">Koncert w Cavatina Hall będzie wyjątkową okazją do świętowania 25-lecia działalności zespołu Fisz Emade Tworzywo oraz premiery ich najnowszego projektu „25”, która odbyła się 14 lutego 2025 roku. Fisz Emade Tworzywo to jeden z najważniejszych zespołów na polskiej scenie muzycznej. Na najnowszej...</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">99 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1770,7 +1854,7 @@ Spektakl teatralny na podstawie powieści Fiodora Dostojewskiego w wykonaniu Kuc
 Patronat nad spektaklem objął Peter Kracik, dyrektor Tesinskiego Divadla, Teatru w Czeskim Cieszynie.</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">od 15 zł</span>
+        <span class="price">od 30 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1878,7 +1962,7 @@ Spotkania w cyklu Bliżej sztuki – realizowane</p>
         <p class="event-desc">🤣🎁 "Wpadka" to przebojowa komedia o Janku, który po powrocie z pracy odkrywa... że ma aż troje dzieci! Czekają go miłosne zawirowania, totalny chaos i masa śmiechu. Wejdź w ten zwariowany świat i spędź wieczór pełen humoru! 🎭✨🎟️ Wpadka - więcej informacji Janek to polski spawacz z platformy. Wiertniczej. Dzielnie spawa, by móc połączyć koniec z końcem. Z Mają, która nieprzerwanie na niego czeka.</p>
       </div>
       <div class="meta-bottom">
-        <span class="price">Bilety płatne</span>
+        <span class="price">130 zł</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1888,7 +1972,7 @@ Spotkania w cyklu Bliżej sztuki – realizowane</p>
         
         <div id="loadMoreContainer" style="grid-column: 1 / -1; text-align: center; margin: 32px 0 16px 0;">
           <button id="loadMoreBtn" class="btn-load-more" onclick="loadMoreEvents()">
-            Pokaż więcej wydarzeń (+242)
+            Pokaż więcej wydarzeń (+244)
           </button>
         </div>
         

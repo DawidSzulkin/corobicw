@@ -36,7 +36,6 @@ TAXONOMY_DISCOUNTS = {
     "42": {"name": "legitymacja ZASŁUŻONY DLA ZDROWIA NARODU", "val": "-50%"}
 }
 
-
 class BckBielskoPlScraper(BaseScraper):
     def __init__(self):
         super().__init__(
@@ -58,10 +57,7 @@ class BckBielskoPlScraper(BaseScraper):
         if m_date:
             d, m_name, y = m_date.groups()
             m_num = POLISH_MONTH_MAP[m_name.lower()]
-            if y:
-                year_val = int(y)
-            else:
-                year_val = now.year if m_num >= now.month else now.year + 1
+            year_val = int(y) if y else (now.year if m_num >= now.month else now.year + 1)
             return f"{year_val}-{m_num:02d}-{int(d):02d}", time_str
 
         date_el = card.select_one(".event-date")
@@ -78,28 +74,84 @@ class BckBielskoPlScraper(BaseScraper):
 
         return "", time_str
 
-    def _fetch_event_discounts(self, event_url: str) -> List[Dict[str, str]]:
+    def _fetch_event_details(self, event_url: str, default_price_range: str) -> tuple:
         if not event_url or event_url == self.repertoire_url:
-            return []
+            return [], default_price_range, event_url
+
+        discounts = []
+        final_price = default_price_range
+        direct_ticket_url = event_url
+        extracted_prices: List[float] = []
+
         try:
-            resp = self.session.get(event_url, timeout=(3.05, 7))
+            resp = self.session.get(event_url, timeout=(3.05, 8.0))
             if resp.status_code != 200:
-                return []
+                return discounts, final_price, direct_ticket_url
+
+            resp.encoding = "utf-8"
             soup = BeautifulSoup(resp.content, "html.parser")
-            found = []
+            page_text = soup.get_text("\n", strip=True)
+
             for term_id, disc in TAXONOMY_DISCOUNTS.items():
                 if soup.find("a", href=re.compile(rf"/taxonomy/term/{term_id}(?:/|\b|$)")):
-                    found.append(disc)
-            return found
+                    discounts.append(disc)
+
+            for a in soup.find_all("a", href=True):
+                href = a["href"].strip()
+                if "bilety.bck.bielsko.pl" in href:
+                    direct_ticket_url = href
+                    if "id=" in href or "kup-bilet" in href:
+                        break
+
+            ticket_section = re.search(r"Bilety\s*\n+((?:\s*\d{2,4}\s*\n+)+)", page_text, re.IGNORECASE)
+            if ticket_section:
+                nums = re.findall(r"\b(\d{2,4})\b", ticket_section.group(1))
+                for n in nums:
+                    val = float(n)
+                    if 15.0 <= val <= 2500.0:
+                        extracted_prices.append(val)
+
+            raw_prices = re.findall(r"(\d+(?:[\.,]\d+)?)\s*(?:zł|PLN)", page_text, re.IGNORECASE)
+            for rp in raw_prices:
+                try:
+                    val = float(rp.replace(",", "."))
+                    if 15.0 <= val <= 2500.0:
+                        extracted_prices.append(val)
+                except ValueError:
+                    pass
+
+            if not extracted_prices and direct_ticket_url != event_url and "bilety.bck.bielsko.pl" in direct_ticket_url:
+                try:
+                    t_resp = self.session.get(direct_ticket_url, timeout=(3.05, 8.0))
+                    if t_resp.status_code == 200:
+                        t_soup = BeautifulSoup(t_resp.content, "html.parser")
+                        price_elements = t_soup.select(".legend-price, span[class*='price']")
+                        for sp in price_elements:
+                            m = re.search(r"(\d+(?:[\.,]\d+)?)", sp.get_text(strip=True))
+                            if m:
+                                try:
+                                    val = float(m.group(1).replace(",", "."))
+                                    if val > 0:
+                                        extracted_prices.append(val)
+                                except ValueError:
+                                    pass
+                except Exception:
+                    pass
+
+            if extracted_prices:
+                min_val = min(extracted_prices)
+                p_num = f"{int(min_val)} zł" if min_val.is_integer() else f"{min_val:.2f}".replace(".", ",") + " zł"
+                final_price = f"Od {p_num}" if len(set(extracted_prices)) > 1 else p_num
+
         except Exception:
-            return []
+            pass
+
+        return discounts, final_price, direct_ticket_url
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         raw_cards = []
         today_iso = datetime.now().strftime("%Y-%m-%d")
         self.seen_signatures.clear()
-
-        print(f"\n[{self.source_name}] Pobieranie repertuaru Bielskiego Centrum Kultury...")
 
         for page_idx in range(6):
             page_url = f"{self.repertoire_url}?page={page_idx}" if page_idx > 0 else self.repertoire_url
@@ -144,16 +196,14 @@ class BckBielskoPlScraper(BaseScraper):
                     full_remote_img = urljoin(self.base_url, remote_img_url) if remote_img_url else ""
                     thumbnail_path = self.save_thumbnail(full_remote_img, title, prefix="bck")
 
-                    price_info = "Bilety płatne"
+                    price_info = "Dostępność"
                     btn_el = card.select_one(".aktualbtn, .btn-theme, a[href*='bilety']")
                     if btn_el:
                         btn_text = btn_el.get_text(strip=True)
                         if "wolny" in btn_text.lower() or "bezpłat" in btn_text.lower():
                             price_info = "Wstęp wolny"
-                        elif "bilet" in btn_text.lower():
-                            price_info = "Bilety płatne"
-                        elif len(btn_text) > 2:
-                            price_info = btn_text
+                        elif "odwoł" in btn_text.lower() or "cancel" in btn_text.lower():
+                            price_info = "Odwołane"
 
                     desc_el = card.select_one(".event-description, .field--name-field-skrot")
                     description = desc_el.get_text("\n\n", strip=True) if desc_el else f"Wydarzenie w Bielskim Centrum Kultury: {title}."
@@ -177,25 +227,32 @@ class BckBielskoPlScraper(BaseScraper):
             except Exception as e:
                 print(f"[{self.source_name}] Błąd parsowania strony {page_idx}: {e}")
 
-        print(f"[{self.source_name}] Skanowanie taksonomii zniżek dla {len(raw_cards)} wydarzeń...")
         events = []
         with ThreadPoolExecutor(max_workers=8) as executor:
-            future_to_ev = {executor.submit(self._fetch_event_discounts, ev["source_url"]): ev for ev in raw_cards}
+            future_to_ev = {
+                executor.submit(self._fetch_event_details, ev["source_url"], ev["price_range"]): ev 
+                for ev in raw_cards
+            }
             for future in as_completed(future_to_ev):
                 ev = future_to_ev[future]
                 try:
-                    discs = future.result()
+                    discounts, final_price, direct_ticket_url = future.result()
                 except Exception:
-                    discs = []
-                
+                    discounts, final_price, direct_ticket_url = [], ev["price_range"], ev["source_url"]
+
+                ev["price_range"] = final_price
                 ev["ticket_offers"] = [{
-                    "provider": "Organizator",
-                    "url": ev["source_url"],
-                    "price": ev["price_range"],
+                    "provider": "BCK Bielsko",
+                    "url": direct_ticket_url,
+                    "price": final_price,
+                    "raw_price": final_price,
                     "is_primary": True,
-                    "discounts": discs
+                    "discounts": discounts,
+                    "tag": "Oficjalna kasa",
+                    "tag_class": "official",
+                    "is_official": True,
+                    "official_badge": "Oficjalna kasa"
                 }]
                 events.append(ev)
 
-        print(f"[{self.source_name}] Pomyślnie sparsowano {len(events)} wydarzeń BCK.")
         return events
