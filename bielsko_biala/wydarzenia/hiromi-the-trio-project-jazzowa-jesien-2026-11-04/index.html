@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>spektakl PUŁAPKA g. 19.00 - Bielsko-Biała | CoRobićW</title>
+  <title>HIROMI: The Trio Project - Jazzowa Jesień - Bielsko-Biała | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -365,38 +365,464 @@ html {
       }
     }
 
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 10px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-price.is-text {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: normal;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 6px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 12px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      line-height: 1.25;
+      white-space: normal !important; /* BRAK UCINANIA NAZWY DOSTAWCY */
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+
+  
+    /* --- OPCJA 1: SYMETRYCZNE KAFLE RYNKOWE (BEZ DARK PATTERNS) --- */
+    .clean-market-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 8px;
+    }
+    .clean-market-card {
+      border: 1px solid var(--border, #1f2937);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+      overflow: hidden;
+    }
+    .clean-market-card:hover:not(.is-cancelled) {
+      border-color: #374151;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .clean-market-card.is-cancelled {
+      opacity: 0.55;
+      border-color: rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.02);
+    }
+    .clean-market-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: var(--text, #f9fafb);
+      gap: 12px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .clean-market-tile.disabled {
+      cursor: not-allowed;
+    }
+    .clean-market-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .clean-market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-sub.status-cancelled {
+      color: #f87171;
+    }
+    .clean-market-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .clean-market-price {
+      font-size: 1.05rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+    }
+    .clean-market-status {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-arrow {
+      font-size: 0.85rem;
+      color: var(--text-muted, #9ca3af);
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+    .clean-market-tile:hover .clean-market-arrow {
+      color: #ffffff;
+      transform: translate(2px, -2px);
+    }
+
+    /* Subtelny pasek ulg powiązany z kaflem */
+    .clean-market-discounts {
+      border-top: 1px dashed rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.15);
+      padding: 6px 14px;
+    }
+    .clean-market-discounts details {
+      font-size: 0.72rem;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-discounts summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .clean-market-discounts summary::-webkit-details-marker {
+      display: none;
+    }
+    .clean-market-discounts summary:hover {
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts ul {
+      margin: 6px 0 2px 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .clean-market-discounts li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts .discount-val {
+      color: var(--accent-green, #4ade80);
+      font-weight: 700;
+    }
+
+    /* Notka prawna UOKiK / DSA */
+    .clean-market-notice {
+      font-size: 0.65rem;
+      color: rgba(156, 163, 175, 0.7);
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.35;
+      padding: 0 4px;
+    }
+
   </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="spektakl PUŁAPKA g. 19.00 | CoRobićW Bielsko-Biała">
-  <meta property="og:description" content="PUŁAPKA – trzymający w napięciu kryminał Edwarda Taylora, w reżyserii Cezarego Żaka i nowym tłumaczeniu Alicji Przerazińskiej i Adama Kasjaniuka. PUŁAPKA –luksusowy apartament, w n">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/bck_spektakl-pulapka-g-1600.webp">
-  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-pulapka-g-1900-2026-11-28/">
+  <meta property="og:title" content="HIROMI: The Trio Project - Jazzowa Jesień | CoRobićW Bielsko-Biała">
+  <meta property="og:description" content="Jazzowa Jesień w Bielsku-Białej to od wielu lat jeden z najważniejszych festiwali jazzowych w Polsce. Bielskie święto jazzu ma już ponad dwudziestoletnią tradycję. Pierwsza edycja">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp">
+  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/hiromi-the-trio-project-jazzowa-jesien-2026-11-04/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "spektakl PU\u0141APKA g. 19.00",
-    "startDate": "2026-11-28T19:00",
-    "endDate": "2026-11-28",
+    "name": "HIROMI: The Trio Project - Jazzowa Jesie\u0144",
+    "startDate": "2026-11-04",
+    "endDate": "2026-11-08",
     "location": {
       "@type": "Place",
-      "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+      "name": "Piwnica Zamkowa",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Bielsko-Biała",
         "addressCountry": "PL",
-        "streetAddress": "S\u0142owackiego 27, Bielsko Biala"
+        "streetAddress": "Wzg\u00f3rze, Bielsko-Bia\u0142a"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/bck_spektakl-pulapka-g-1600.webp"],
-    "description": "PU\u0141APKA \u2013 trzymaj\u0105cy w napi\u0119ciu krymina\u0142 Edwarda Taylora, w re\u017cyserii Cezarego \u017baka i nowym t\u0142umaczeniu Alicji Przerazi\u0144skiej i Adama Kasjaniuka. PU\u0141APKA \u2013luksusowy apartament, w n",
+    "image": ["https://corobicw.pl/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp"],
+    "description": "Jazzowa Jesie\u0144 w Bielsku-Bia\u0142ej to od wielu lat jeden z najwa\u017cniejszych festiwali jazzowych w Polsce. Bielskie \u015bwi\u0119to jazzu ma ju\u017c ponad dwudziestoletni\u0105 tradycj\u0119. Pierwsza edycja",
     "offers": {
       "@type": "Offer",
-      "url": "https://www.bck.bielsko.pl/spektakl-pulapka-g-1900"
+      "url": "https://bb2026.pl/program/jazzowa-jesien/"
     }
   }
   </script>
@@ -428,30 +854,30 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">spektakl PUŁAPKA g. 19.00</span>
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">HIROMI: The Trio Project - Jazzowa Jesień</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - spektakl PUŁAPKA g. 19.00"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_spektakl-pulapka-g-1600.webp');"></div>
-  <img src="/assets/thumbnails/bck_spektakl-pulapka-g-1600.webp" alt="Plakat: spektakl PUŁAPKA g. 19.00" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - HIROMI: The Trio Project - Jazzowa Jesień"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp');"></div>
+  <img src="/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp" alt="Plakat: HIROMI: The Trio Project - Jazzowa Jesień" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
-  <div><span class="badge">Kultura i Rozrywka</span></div>
-  <h1>spektakl PUŁAPKA g. 19.00</h1>
+  <div><span class="badge">Kultura i Sztuka</span></div>
+  <h1>HIROMI: The Trio Project - Jazzowa Jesień</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=spektakl%20PU%C5%81APKA%20g.%2019.00&details=PU%C5%81APKA%20%E2%80%93%20trzymaj%C4%85cy%20w%20napi%C4%99ciu%20krymina%C5%82%20Edwarda%20Taylora%2C%20w%20re%C5%BCyserii%20Cezarego%20%C5%BBaka%20i%20nowym%20t%C5%82umaczeniu%20Alicji%20Przerazi%C5%84skiej%20i%20Adama%20Kasjaniuka...." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=spektakl%20PU%C5%81APKA%20g.%2019.00%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-pulapka-g-1900-2026-11-28/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=HIROMI%3A%20The%20Trio%20Project%20-%20Jazzowa%20Jesie%C5%84&details=Jazzowa%20Jesie%C5%84%20w%20Bielsku-Bia%C5%82ej%20to%20od%20wielu%20lat%20jeden%20z%20najwa%C5%BCniejszych%20festiwali%20jazzowych%20w%20Polsce.%20Bielskie%20%C5%9Bwi%C4%99to%20jazzu%20ma%20ju%C5%BC%20ponad..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=HIROMI%3A%20The%20Trio%20Project%20-%20Jazzowa%20Jesie%C5%84%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/hiromi-the-trio-project-jazzowa-jesien-2026-11-04/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>PUŁAPKA – trzymający w napięciu kryminał Edwarda Taylora, w reżyserii Cezarego Żaka i nowym tłumaczeniu Alicji Przerazińskiej i Adama Kasjaniuka. PUŁAPKA –luksusowy apartament, w nowoczesnym, stojącym na klifie wieżowcu, z widokiem na morze.</p><p>Architektura domu i jego lokalizacja tworzą niepokojącą atmosferę, są zapowiedzią przyszłych wydarzeń.</p></div>
+  <div class="event-desc"><p>Jazzowa Jesień w Bielsku-Białej to od wielu lat jeden z najważniejszych festiwali jazzowych w Polsce. Bielskie święto jazzu ma już ponad dwudziestoletnią tradycję. Pierwsza edycja odbyła się roku 2003. Od początku dobrym duchem i dyrektorem artystycznym Festiwalu był znakomity trębacz Tomasz Stańko.</p><p>Po śmierci muzyka Jazzowa Jesień przyjęła jego imię.</p></div>
 
   
 </div>
@@ -461,10 +887,10 @@ html {
     <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
-    <div class="info-label">Data</div><div class="info-val">Sobota, 28 listopada</div>
-    <div class="info-label">Start</div><div class="info-val">19:00</div>
+    <div class="info-label">Data</div><div class="info-val">Środa, 4 listopada</div>
+    <div class="info-label">Start</div><div class="info-val">Całodniowe</div>
     <div class="info-label">Miejsce</div>
-    <div class="info-val"><a href="/bielsko_biala/miejsca/bb-bielskie-centrum-kultury-im-marii-koterbskiej/"><strong>Bielskie Centrum Kultury im. Marii Koterbskiej</strong></a><span class="address">Słowackiego 27, Bielsko Biala</span>
+    <div class="info-val"><a href="/bielsko_biala/miejsca/bb-piwnica-zamkowa/"><strong>Piwnica Zamkowa</strong></a><span class="address">Wzgórze, Bielsko-Biała</span>
     </div>
   </div>
 
@@ -473,82 +899,78 @@ html {
   
     
     
+  
+    
+    
       
     
   
 
   
-    <div class="offers-stack">
+    <div class="clean-market-stack">
       
         
         
         
-        <div class="offer-box highlight">
-          <div class="offer-main-row">
-            <div class="offer-info-col">
-              <div class="offer-provider-line">
-                <span class="offer-provider-name">BCK Bielsko</span>
-                
-                  <span class="offer-tag official">Oficjalna kasa</span>
-                
+        
+
+        <div class="clean-market-card ">
+          
+            <a href="https://bb2026.pl/program/jazzowa-jesien/" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Bilety - Wstęp wolny">
+              <div class="clean-market-left">
+                <span class="clean-market-name">Bilety</span>
+                <span class="clean-market-sub">
+                  
+                    Dystrybutor online
+                  
+                </span>
               </div>
-              <div class="offer-price-val is-text-price">Sprawdź dostępność</div>
-            </div>
-            <div class="offer-btn-col">
-              
-                <a href="https://www.bck.bielsko.pl/spektakl-pulapka-g-1900" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
-              
-            </div>
-          </div>
+              <div class="clean-market-right">
+                
+                  <span class="clean-market-price">Wstęp wolny</span>
+                
+                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              </div>
+            </a>
+          
 
           
-          <div class="offer-discounts-drawer">
-            <details>
-              <summary>
-                <span>🏷️ 4 ulgi u sprzedawcy</span>
-                <span style="font-size: 0.65rem; color: var(--text-muted);">rozwiń ▾</span>
-              </summary>
-              <ul>
+        </div>
+      
+        
+        
+        
+        
+
+        <div class="clean-market-card ">
+          
+            <a href="https://www.bck.bielsko.pl/jazzowa-jesien-w-bielsku-bialej" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w BCK Bielsko - sprawdź dostępność">
+              <div class="clean-market-left">
+                <span class="clean-market-name">BCK Bielsko</span>
+                <span class="clean-market-sub">
+                  
+                    Oficjalna kasa obiektu
+                  
+                </span>
+              </div>
+              <div class="clean-market-right">
                 
-                <li>
-                  <div>
-                    <span style="font-weight: 600; color: var(--text);">Karta Weteran +</span>
-                    
-                  </div>
-                  <span style="color: var(--accent-green); font-weight: 700; white-space: nowrap; margin-left: 8px;">-50%</span>
-                </li>
+                  <span class="clean-market-status">Dostępność</span>
                 
-                <li>
-                  <div>
-                    <span style="font-weight: 600; color: var(--text);">Bielska Karta Rodzina +</span>
-                    
-                  </div>
-                  <span style="color: var(--accent-green); font-weight: 700; white-space: nowrap; margin-left: 8px;">-50%</span>
-                </li>
-                
-                <li>
-                  <div>
-                    <span style="font-weight: 600; color: var(--text);">Bielska Karta SENIORA</span>
-                    
-                  </div>
-                  <span style="color: var(--accent-green); font-weight: 700; white-space: nowrap; margin-left: 8px;">-50%</span>
-                </li>
-                
-                <li>
-                  <div>
-                    <span style="font-weight: 600; color: var(--text);">legitymacja ZASŁUŻONY DLA ZDROWIA NARODU</span>
-                    
-                  </div>
-                  <span style="color: var(--accent-green); font-weight: 700; white-space: nowrap; margin-left: 8px;">-50%</span>
-                </li>
-                
-              </ul>
-            </details>
-          </div>
+                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              </div>
+            </a>
+          
+
           
         </div>
       
     </div>
+
+    <div class="clean-market-notice">
+      Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+    </div>
+
   
 </div>
     
@@ -557,16 +979,16 @@ html {
   <div class="info-grid">
     
     <div class="info-label">Dostęp dla wózków</div>
-    <div class="info-val is-yes">
+    <div class="info-val is-neutral">
       
-        Tak (winda / podjazd)
+        Brak podjazdu
       
     </div>
     
     <div class="info-label">Kasa biletowa</div>
     <div class="info-val is-yes">
       
-        <a href="tel:33 828 16 45" style="color: var(--accent-blue); text-decoration: none;">33 828 16 45</a>
+        <a href="tel:33 821 03 03" style="color: var(--accent-blue); text-decoration: none;">33 821 03 03</a>
       
     </div>
     
@@ -579,13 +1001,13 @@ html {
   <div class="gastro-list">
     
     <div class="gastro-item">
-      <div class="gastro-name">Chopina 5</div>
-      <div class="gastro-meta">124m stąd (~2 min) &bull; restaurant</div>
+      <div class="gastro-name">Kultura i Kawa</div>
+      <div class="gastro-meta">53m stąd (~1 min) &bull; ice_cream</div>
     </div>
     
     <div class="gastro-item">
-      <div class="gastro-name">Shakespeare's pub</div>
-      <div class="gastro-meta">298m stąd (~4 min) &bull; pub</div>
+      <div class="gastro-name">Kawiarnia Imbryk</div>
+      <div class="gastro-meta">55m stąd (~1 min) &bull; cafe</div>
     </div>
     
   </div>

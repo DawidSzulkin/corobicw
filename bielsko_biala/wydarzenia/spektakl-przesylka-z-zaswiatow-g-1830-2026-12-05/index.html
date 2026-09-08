@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka - Kędzierzyn-Koźle | CoRobićW</title>
+  <title>spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30 - Bielsko-Biała | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -365,38 +365,464 @@ html {
       }
     }
 
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 10px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-price.is-text {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: normal;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 6px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 12px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      line-height: 1.25;
+      white-space: normal !important; /* BRAK UCINANIA NAZWY DOSTAWCY */
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+
+  
+    /* --- OPCJA 1: SYMETRYCZNE KAFLE RYNKOWE (BEZ DARK PATTERNS) --- */
+    .clean-market-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 8px;
+    }
+    .clean-market-card {
+      border: 1px solid var(--border, #1f2937);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+      overflow: hidden;
+    }
+    .clean-market-card:hover:not(.is-cancelled) {
+      border-color: #374151;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .clean-market-card.is-cancelled {
+      opacity: 0.55;
+      border-color: rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.02);
+    }
+    .clean-market-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: var(--text, #f9fafb);
+      gap: 12px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .clean-market-tile.disabled {
+      cursor: not-allowed;
+    }
+    .clean-market-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .clean-market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-sub.status-cancelled {
+      color: #f87171;
+    }
+    .clean-market-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .clean-market-price {
+      font-size: 1.05rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+    }
+    .clean-market-status {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-arrow {
+      font-size: 0.85rem;
+      color: var(--text-muted, #9ca3af);
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+    .clean-market-tile:hover .clean-market-arrow {
+      color: #ffffff;
+      transform: translate(2px, -2px);
+    }
+
+    /* Subtelny pasek ulg powiązany z kaflem */
+    .clean-market-discounts {
+      border-top: 1px dashed rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.15);
+      padding: 6px 14px;
+    }
+    .clean-market-discounts details {
+      font-size: 0.72rem;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-discounts summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .clean-market-discounts summary::-webkit-details-marker {
+      display: none;
+    }
+    .clean-market-discounts summary:hover {
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts ul {
+      margin: 6px 0 2px 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .clean-market-discounts li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts .discount-val {
+      color: var(--accent-green, #4ade80);
+      font-weight: 700;
+    }
+
+    /* Notka prawna UOKiK / DSA */
+    .clean-market-notice {
+      font-size: 0.65rem;
+      color: rgba(156, 163, 175, 0.7);
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.35;
+      padding: 0 4px;
+    }
+
   </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Tańczyła charlestona&#39;&#39; - monodram - V Ogólnopolski festiwal Teatralny OFF-ka | CoRobićW Kędzierzyn-Koźle">
-  <meta property="og:description" content="&#34;Tańczyła charlestona&#34; monodram w wykonaniu PAULINY SZCZĘSNEJ Spektakl oparty jest o teatr fizyczny i teatr formy, koncentrujący się na tajemniczym zniknięciu Agathy Christie w 192">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp">
-  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-27/">
+  <meta property="og:title" content="spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30 | CoRobićW Bielsko-Biała">
+  <meta property="og:description" content="PRZESYŁKA Z ZAŚWIATÓW to pełna humoru, ciepła i wzruszeń komedia o przyjaźni „na wieki” w reż. Cezarego Żaka. Grają: Kinga Preis, Katarzyna Żak, Katarzyna Kwiatkowska, Justyna Duck">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/bck_spektakl-przesylka-z-zaswiatow-g-1600.webp">
+  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-przesylka-z-zaswiatow-g-1830-2026-12-05/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Ta\u0144czy\u0142a charlestona\u0027\u0027 - monodram - V Og\u00f3lnopolski festiwal Teatralny OFF-ka",
-    "startDate": "2026-09-27T16:00",
-    "endDate": "2026-09-27",
+    "name": "spektakl PRZESY\u0141KA Z ZA\u015aWIAT\u00d3W g. 18.30",
+    "startDate": "2026-12-05T18:30",
+    "endDate": "2026-12-05",
     "location": {
       "@type": "Place",
-      "name": "Wydarzenie",
+      "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Kędzierzyn-Koźle",
+        "addressLocality": "Bielsko-Biała",
         "addressCountry": "PL",
-        "streetAddress": "K\u0119dzierzyn-Ko\u017ale"
+        "streetAddress": "S\u0142owackiego 27, Bielsko Biala"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp"],
-    "description": "\"Ta\u0144czy\u0142a charlestona\" monodram w wykonaniu PAULINY SZCZ\u0118SNEJ Spektakl oparty jest o teatr fizyczny i teatr formy, koncentruj\u0105cy si\u0119 na tajemniczym znikni\u0119ciu Agathy Christie w 192",
+    "image": ["https://corobicw.pl/assets/thumbnails/bck_spektakl-przesylka-z-zaswiatow-g-1600.webp"],
+    "description": "PRZESY\u0141KA Z ZA\u015aWIAT\u00d3W to pe\u0142na humoru, ciep\u0142a i wzrusze\u0144 komedia o przyja\u017ani \u201ena wieki\u201d w re\u017c. Cezarego \u017baka. Graj\u0105: Kinga Preis, Katarzyna \u017bak, Katarzyna Kwiatkowska, Justyna Duck",
     "offers": {
       "@type": "Offer",
-      "url": "https://biletyna.pl/spektakl/Tanczyla-charlestona-monodram-V-Ogolnopolski-festiwal-Teatralny-OFF-ka"
+      "url": "https://www.bck.bielsko.pl/spektakl-przesylka-z-zaswiatow-g-1830"
     }
   }
   </script>
@@ -405,7 +831,7 @@ html {
 <body>
   <header>
     <div class="nav-container">
-      <a href="/kedzierzyn_kozle/" class="brand">CoRobićW <span>Kędzierzyn-Koźle</span></a>
+      <a href="/bielsko_biala/" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="theme-switch" type="button" role="switch" aria-label="Przełącz motyw" onclick="toggleTheme()">
           <span class="switch-track">
@@ -419,7 +845,7 @@ html {
           </span>
         </button>
         
-        <a href="/kedzierzyn_kozle/" class="btn-nav">&larr; Wróć do agendy</a>
+        <a href="/bielsko_biala/" class="btn-nav">&larr; Wróć do agendy</a>
         
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
       </div>
@@ -428,30 +854,30 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka</span>
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp');"></div>
-  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp" alt="Plakat: Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_spektakl-przesylka-z-zaswiatow-g-1600.webp');"></div>
+  <img src="/assets/thumbnails/bck_spektakl-przesylka-z-zaswiatow-g-1600.webp" alt="Plakat: spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
   <div><span class="badge">Kultura i Rozrywka</span></div>
-  <h1>Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka</h1>
+  <h1>spektakl PRZESYŁKA Z ZAŚWIATÓW g. 18.30</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Ta%C5%84czy%C5%82a%20charlestona%27%27%20-%20monodram%20-%20V%20Og%C3%B3lnopolski%20festiwal%20Teatralny%20OFF-ka&details=%22Ta%C5%84czy%C5%82a%20charlestona%22%20monodram%20w%20wykonaniu%20PAULINY%20SZCZ%C4%98SNEJ%20Spektakl%20oparty%20jest%20o%20teatr%20fizyczny%20i%20teatr%20formy%2C%20koncentruj%C4%85cy%20si%C4%99%20na..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=Ta%C5%84czy%C5%82a%20charlestona%27%27%20-%20monodram%20-%20V%20Og%C3%B3lnopolski%20festiwal%20Teatralny%20OFF-ka%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-27/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=spektakl%20PRZESY%C5%81KA%20Z%20ZA%C5%9AWIAT%C3%93W%20g.%2018.30&details=PRZESY%C5%81KA%20Z%20ZA%C5%9AWIAT%C3%93W%20to%20pe%C5%82na%20humoru%2C%20ciep%C5%82a%20i%20wzrusze%C5%84%20komedia%20o%20przyja%C5%BAni%20%E2%80%9Ena%20wieki%E2%80%9D%20w%20re%C5%BC.%20Cezarego%20%C5%BBaka.%20Graj%C4%85%3A%20Kinga%20Preis%2C%20Katarzyna%20%C5%BBak%2C..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=spektakl%20PRZESY%C5%81KA%20Z%20ZA%C5%9AWIAT%C3%93W%20g.%2018.30%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-przesylka-z-zaswiatow-g-1830-2026-12-05/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>"Tańczyła charlestona" monodram w wykonaniu PAULINY SZCZĘSNEJ Spektakl oparty jest o teatr fizyczny i teatr formy, koncentrujący się na tajemniczym zniknięciu Agathy Christie w 1926 roku. Przez 11 dni cała Anglia była poruszona jej nagłym zniknięciem, a spektakl ten jest próbą eksploracji możliwych scenariuszy, które mogłyby wyjaśnić, co się z nią działo.</p><p>Stawia on pytanie o to, czy Agatha Christie mogła zaaranżować swoje własne zniknięcie. Oprócz elementu zagadki, spektakl zagłębia się w postać kobiecą Agathy Christie, eksplorując tematy kobiecości oraz wewnętrznej podróży bohaterki.</p><p>Poprzez metaforę "Night sea journey" spektakl dotyka momentów ciemności w życiu, konfrontacji z własnymi lękami i demonami, które, według Carla Junga, są niezbędne dla rozwoju jednostki. Spektakl jest jednocześnie fizyczny, pełen humoru, z elementami tajemnicy i surrealizmu.</p><p>Akcja rozgrywa się w fantasmagorycznej przestrzeni, gdzie główna postać, inspirowana Agathą Christie, spotyka swoje marzenia, demony i lęki, a sen miesza się z jawą. Przedstawienie staje się zatem nie tylko kryminalną zagadką, ale również głęboką introspekcją i refleksją nad ludzką naturą w stanie przejścia.</p><p>Twórcy spektaklu: Paulina Szczęsna – scenariusz, reżyseria, rola aktorska Paweł Paluch – muzyka Jędrzej Skajster – światło, projekcje wideo Alicja Siemko – scenografia Agnieszka Magiera – kostiumy Gavin Glover – wsparcie dramaturgiczne Michal Schmueli – ruch sceniczny</p></div>
+  <div class="event-desc"><p>PRZESYŁKA Z ZAŚWIATÓW to pełna humoru, ciepła i wzruszeń komedia o przyjaźni „na wieki” w reż. Cezarego Żaka. Grają: Kinga Preis, Katarzyna Żak, Katarzyna Kwiatkowska, Justyna Ducka, Kuba Gąsowski/Michał Kucharski</p></div>
 
   
 </div>
@@ -461,10 +887,10 @@ html {
     <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
-    <div class="info-label">Data</div><div class="info-val">Niedziela, 27 września</div>
-    <div class="info-label">Start</div><div class="info-val">16:00</div>
+    <div class="info-label">Data</div><div class="info-val">Sobota, 5 grudnia</div>
+    <div class="info-label">Start</div><div class="info-val">18:30</div>
     <div class="info-label">Miejsce</div>
-    <div class="info-val"><strong>Wydarzenie</strong><span class="address">Kędzierzyn-Koźle</span>
+    <div class="info-val"><a href="/bielsko_biala/miejsca/bb-bielskie-centrum-kultury-im-marii-koterbskiej/"><strong>Bielskie Centrum Kultury im. Marii Koterbskiej</strong></a><span class="address">Słowackiego 27, Bielsko Biala</span>
     </div>
   </div>
 
@@ -478,42 +904,91 @@ html {
   
 
   
-    <div class="offers-stack">
+    <div class="clean-market-stack">
       
         
         
         
-        <div class="offer-box highlight">
-          <div class="offer-main-row">
-            <div class="offer-info-col">
-              <div class="offer-provider-line">
-                <span class="offer-provider-name">Biletyna</span>
-                
+        
+
+        <div class="clean-market-card ">
+          
+            <a href="https://www.bck.bielsko.pl/spektakl-przesylka-z-zaswiatow-g-1830" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w BCK Bielsko - sprawdź dostępność">
+              <div class="clean-market-left">
+                <span class="clean-market-name">BCK Bielsko</span>
+                <span class="clean-market-sub">
+                  
+                    Oficjalna kasa obiektu
+                  
+                </span>
               </div>
-              <div class="offer-price-val is-text-price">Od 22.24 zł</div>
-            </div>
-            <div class="offer-btn-col">
-              
-                <a href="https://biletyna.pl/spektakl/Tanczyla-charlestona-monodram-V-Ogolnopolski-festiwal-Teatralny-OFF-ka" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
-              
-            </div>
-          </div>
+              <div class="clean-market-right">
+                
+                  <span class="clean-market-status">Dostępność</span>
+                
+                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              </div>
+            </a>
+          
 
           
         </div>
       
     </div>
+
+    <div class="clean-market-notice">
+      Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+    </div>
+
   
 </div>
     
+<div class="card">
+  <h2>Dostępność i obiekt</h2>
+  <div class="info-grid">
     
+    <div class="info-label">Dostęp dla wózków</div>
+    <div class="info-val is-yes">
+      
+        Tak (winda / podjazd)
+      
+    </div>
+    
+    <div class="info-label">Kasa biletowa</div>
+    <div class="info-val is-yes">
+      
+        <a href="tel:33 828 16 45" style="color: var(--accent-blue); text-decoration: none;">33 828 16 45</a>
+      
+    </div>
+    
+  </div>
+</div>
+
+    
+<div class="card">
+  <h2>W okolicy (Gastro)</h2>
+  <div class="gastro-list">
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Chopina 5</div>
+      <div class="gastro-meta">124m stąd (~2 min) &bull; restaurant</div>
+    </div>
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Shakespeare's pub</div>
+      <div class="gastro-meta">298m stąd (~4 min) &bull; pub</div>
+    </div>
+    
+  </div>
+</div>
+
   </aside>
 </div>
 
   </main>
   <footer>
     <div class="footer-inner">
-      <div class="footer-col"><h4>CoRobićW Kędzierzyn-Koźle</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>CoRobićW Bielsko-Biała</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
       <div class="footer-col"><h4>Scena</h4><ul><li><a href="mailto:kontakt@corobicw.pl">Dodaj wydarzenie</a></li></ul></div>
       <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
     </div>

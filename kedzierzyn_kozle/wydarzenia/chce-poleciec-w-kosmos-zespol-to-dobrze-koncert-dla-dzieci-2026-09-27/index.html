@@ -365,14 +365,440 @@ html {
       }
     }
 
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 10px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-price.is-text {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: normal;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 6px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 12px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      line-height: 1.25;
+      white-space: normal !important; /* BRAK UCINANIA NAZWY DOSTAWCY */
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+
+  
+    /* --- OPCJA 1: SYMETRYCZNE KAFLE RYNKOWE (BEZ DARK PATTERNS) --- */
+    .clean-market-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 8px;
+    }
+    .clean-market-card {
+      border: 1px solid var(--border, #1f2937);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+      overflow: hidden;
+    }
+    .clean-market-card:hover:not(.is-cancelled) {
+      border-color: #374151;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .clean-market-card.is-cancelled {
+      opacity: 0.55;
+      border-color: rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.02);
+    }
+    .clean-market-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: var(--text, #f9fafb);
+      gap: 12px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .clean-market-tile.disabled {
+      cursor: not-allowed;
+    }
+    .clean-market-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .clean-market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-sub.status-cancelled {
+      color: #f87171;
+    }
+    .clean-market-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .clean-market-price {
+      font-size: 1.05rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+    }
+    .clean-market-status {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-arrow {
+      font-size: 0.85rem;
+      color: var(--text-muted, #9ca3af);
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+    .clean-market-tile:hover .clean-market-arrow {
+      color: #ffffff;
+      transform: translate(2px, -2px);
+    }
+
+    /* Subtelny pasek ulg powiązany z kaflem */
+    .clean-market-discounts {
+      border-top: 1px dashed rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.15);
+      padding: 6px 14px;
+    }
+    .clean-market-discounts details {
+      font-size: 0.72rem;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-discounts summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .clean-market-discounts summary::-webkit-details-marker {
+      display: none;
+    }
+    .clean-market-discounts summary:hover {
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts ul {
+      margin: 6px 0 2px 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .clean-market-discounts li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts .discount-val {
+      color: var(--accent-green, #4ade80);
+      font-weight: 700;
+    }
+
+    /* Notka prawna UOKiK / DSA */
+    .clean-market-notice {
+      font-size: 0.65rem;
+      color: rgba(156, 163, 175, 0.7);
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.35;
+      padding: 0 4px;
+    }
+
   </style>
   
   
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="Chcę polecieć w kosmos – zespół &#34;To dobrze&#34; koncert dla dzieci | CoRobićW Kędzierzyn-Koźle">
-  <meta property="og:description" content="Wydarzenie w Kędzierzynie-Koźlu: Chcę polecieć w kosmos – zespół &#34;To dobrze&#34; koncert dla dzieci.">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/kk_chce-poleciec-w-kosmos-zespol-to-dobrze-koncert-dla-dzieci.webp">
+  <meta property="og:description" content="Zespół TO DOBRZE w koncercie &#34;Chcę polecieć w kosmos&#34; Data i godzina wydarzenia: 27.09.2026 r., godz. 12.00, DK &#34;Chemik&#34;, bilety: 30 zł/normalny, 20 zł/ulgowy 3..... 2..... 1......">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/mok_kk_zespol-to-dobrze-w-koncercie-chce-poleciec-w-kosmos.webp">
   <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/chce-poleciec-w-kosmos-zespol-to-dobrze-koncert-dla-dzieci-2026-09-27/">
 
   <script type="application/ld+json">
@@ -392,8 +818,8 @@ html {
         "streetAddress": "None, K\u0119dzierzyn-Ko\u017ale"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/kk_chce-poleciec-w-kosmos-zespol-to-dobrze-koncert-dla-dzieci.webp"],
-    "description": "Wydarzenie w K\u0119dzierzynie-Ko\u017alu: Chc\u0119 polecie\u0107 w kosmos \u2013 zesp\u00f3\u0142 \"To dobrze\" koncert dla dzieci.",
+    "image": ["https://corobicw.pl/assets/thumbnails/mok_kk_zespol-to-dobrze-w-koncercie-chce-poleciec-w-kosmos.webp"],
+    "description": "Zesp\u00f3\u0142 TO DOBRZE w koncercie \"Chc\u0119 polecie\u0107 w kosmos\" Data i godzina wydarzenia: 27.09.2026 r., godz. 12.00, DK \"Chemik\", bilety: 30 z\u0142/normalny, 20 z\u0142/ulgowy 3..... 2..... 1......",
     "offers": {
       "@type": "Offer",
       "url": "https://kedzierzynkozle.pl/pl/wydarzenie/chce-poleciec-w-kosmos-zespol-dobrze-koncert-dla-dzieci"
@@ -436,8 +862,8 @@ html {
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
   <div class="ambient-shield" title="CoRobićW - Chcę polecieć w kosmos – zespół "To dobrze" koncert dla dzieci"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/kk_chce-poleciec-w-kosmos-zespol-to-dobrze-koncert-dla-dzieci.webp');"></div>
-  <img src="/assets/thumbnails/kk_chce-poleciec-w-kosmos-zespol-to-dobrze-koncert-dla-dzieci.webp" alt="Plakat: Chcę polecieć w kosmos – zespół "To dobrze" koncert dla dzieci" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/mok_kk_zespol-to-dobrze-w-koncercie-chce-poleciec-w-kosmos.webp');"></div>
+  <img src="/assets/thumbnails/mok_kk_zespol-to-dobrze-w-koncercie-chce-poleciec-w-kosmos.webp" alt="Plakat: Chcę polecieć w kosmos – zespół "To dobrze" koncert dla dzieci" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
@@ -445,13 +871,13 @@ html {
   <h1>Chcę polecieć w kosmos – zespół "To dobrze" koncert dla dzieci</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Chc%C4%99%20polecie%C4%87%20w%20kosmos%20%E2%80%93%20zesp%C3%B3%C5%82%20%22To%20dobrze%22%20koncert%20dla%20dzieci&details=Wydarzenie%20w%20K%C4%99dzierzynie-Ko%C5%BAlu%3A%20Chc%C4%99%20polecie%C4%87%20w%20kosmos%20%E2%80%93%20zesp%C3%B3%C5%82%20%22To%20dobrze%22%20koncert%20dla%20dzieci." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Chc%C4%99%20polecie%C4%87%20w%20kosmos%20%E2%80%93%20zesp%C3%B3%C5%82%20%22To%20dobrze%22%20koncert%20dla%20dzieci&details=Zesp%C3%B3%C5%82%20TO%20DOBRZE%20w%20koncercie%20%22Chc%C4%99%20polecie%C4%87%20w%20kosmos%22%20Data%20i%20godzina%20wydarzenia%3A%2027.09.2026%20r.%2C%20godz.%2012.00%2C%20DK%20%22Chemik%22%2C%20bilety%3A%2030%20z%C5%82/normalny%2C..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
     <a href="https://wa.me/?text=Chc%C4%99%20polecie%C4%87%20w%20kosmos%20%E2%80%93%20zesp%C3%B3%C5%82%20%22To%20dobrze%22%20koncert%20dla%20dzieci%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/chce-poleciec-w-kosmos-zespol-to-dobrze-koncert-dla-dzieci-2026-09-27/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>Wydarzenie w Kędzierzynie-Koźlu: Chcę polecieć w kosmos – zespół "To dobrze" koncert dla dzieci.</p></div>
+  <div class="event-desc"><p>Zespół TO DOBRZE w koncercie "Chcę polecieć w kosmos" Data i godzina wydarzenia: 27.09.2026 r., godz. 12.00, DK "Chemik",</p><p>* **Bilety:** 30 zł/normalny, 20 zł/ulgowy 3... 2... 1... ODPALAMY MUZYCZNE SILNIKI! Ziemia zostaje daleko w tyle! Zespół TO DOBRZE zabiera dzieci i całe rodziny w niezwykłą muzyczną podróż po kosmosie! Będą planety, rakiety, gwiazdy, Mały Książę i mnóstwo muzycznej energii. Autorskie piosenki, wspólne śpiewanie, zabawa i odkrywanie Wszechświata sprawią, że na chwilę naprawdę oderwiemy się od Ziemi. A po takim locie jedno jest pewne..Uwaga! Istnieje poważne ryzyko, że kos</p></div>
 
   
 </div>
@@ -476,7 +902,7 @@ html {
   
 
   
-    <div class="free-entry-banner">
+    <div class="free-entry-banner" style="margin-top: 14px;">
       <span class="status">Wstęp wolny</span>
       <span style="font-size: 1.2rem;">🎫</span>
     </div>
