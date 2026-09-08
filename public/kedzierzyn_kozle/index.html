@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <script>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const theme = saved ? saved : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agenda Wydarzeń: Kędzierzyn-Koźle | CoRobićW</title>
   <meta name="description" content="Aktualny harmonogram spektakli, koncertów i wydarzeń w Kędzierzyn-Koźle.">
   
-  <script>
-    (function() {
-      const savedTheme = localStorage.getItem('corobicw-theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    })();
-  </script>
+  
 
   <style>
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 
     /* --- Global Link Reset --- */
     a {
@@ -53,7 +61,7 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
       background: var(--bg); color: var(--text); line-height: 1.6;
-      overflow-y: scroll; display: flex; flex-direction: column; min-height: 100vh;
+       display: flex; flex-direction: column; min-height: 100vh;
       -webkit-font-smoothing: antialiased; font-size: 16px;
     }
     header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
@@ -61,7 +69,7 @@
     .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
     .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
     .nav-actions { display: flex; gap: 10px; align-items: center; }
-    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
     .btn-theme-toggle:hover { border-color: var(--border-strong); }
     .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
     .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
@@ -362,6 +370,74 @@
       pointer-events: none;
     }
 
+  
+    /* --- SYSTEMOWY PRZEŁĄCZNIK MOTYWU (PILL SWITCH) --- */
+    .theme-switch {
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .switch-track {
+      width: 54px;
+      height: 28px;
+      background: var(--card-bg, #1e293b);
+      border: 1px solid var(--border, #334155);
+      border-radius: 9999px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+      box-sizing: border-box;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .switch-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      z-index: 1;
+      color: var(--text-muted, #94a3b8);
+      pointer-events: none;
+    }
+    .switch-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--btn-primary-bg, #ffffff);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s ease;
+      z-index: 2;
+    }
+    /* Tryb Jasny: suwak po lewej (na słońcu) */
+    [data-theme="light"] .switch-thumb {
+      transform: translateX(0);
+      background: #0f172a;
+    }
+    [data-theme="light"] .icon-sun {
+      color: #f59e0b;
+    }
+    /* Tryb Ciemny (Domyślny): suwak po prawej (na księżycu) */
+    [data-theme="dark"] .switch-thumb,
+    :root:not([data-theme="light"]) .switch-thumb {
+      transform: translateX(26px);
+      background: #ffffff;
+    }
+    [data-theme="dark"] .icon-moon,
+    :root:not([data-theme="light"]) .icon-moon {
+      color: #38bdf8;
+    }
+
   </style>
 </head>
 <body>
@@ -369,8 +445,16 @@
     <div class="nav-container">
       <a href="/kedzierzyn_kozle/" class="brand">CoRobićW <span>Kędzierzyn-Koźle</span></a>
       <div class="nav-actions">
-        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">☀️</span> <span id="themeLabel">Jasny</span>
+        <button id="themeToggle" class="theme-switch" type="button" role="switch" aria-label="Przełącz motyw" onclick="toggleTheme()">
+          <span class="switch-track">
+            <span class="switch-icon icon-sun">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+            <span class="switch-icon icon-moon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span class="switch-thumb"></span>
+          </span>
         </button>
         <a href="/" class="btn-nav">Miasta</a>
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
@@ -417,40 +501,6 @@
       </div>
       <div class="meta-bottom">
         <span class="price">Cennik obiektu</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-07" data-end="2026-09-07">
-  <a href="/kedzierzyn_kozle/wydarzenia/podsumowanie-akcji-goraczka-zlota-2026-2026-09-07/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">07</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_podsumowanie-akcji-goraczka-zlota-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_podsumowanie-akcji-goraczka-zlota-2026.webp" class="thumb-fg" alt="Plakat: Podsumowanie akcji „GORĄCZKA ZŁOTA 2026”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Poniedziałek, 7 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">11:00</span>
-        </div>
-        <h3 class="event-title">Podsumowanie akcji „GORĄCZKA ZŁOTA 2026”</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Podsumowanie akcji „GORĄCZKA ZŁOTA 2026”.</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -735,6 +785,40 @@ Termin: 08.09.2026 r., godz. 16:00</p>
   </a>
 </article>
         
+        <article class="event-item" data-start="2026-09-10" data-end="2026-09-10">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-dni-otwarte-w-domach-dziennego-pobytu-odkryj-swoj-talent-2026-09-10/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">10</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-dni-otwarte-w-domach-dziennego-pobytu-odkryj-swoj-talent.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-dni-otwarte-w-domach-dziennego-pobytu-odkryj-swoj-talent.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Dni otwarte w Domach Dziennego Pobytu "Odkryj swój talent"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Czwartek, 10 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">10:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Dni otwarte w Domach Dziennego Pobytu "Odkryj swój talent"</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Dni otwarte w Domach Dziennego Pobytu "Odkryj swój talent".</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
         <article class="event-item" data-start="2026-09-11" data-end="2026-09-13">
   <a href="/kedzierzyn_kozle/wydarzenia/iv-runda-final-mistrzostw-polski-modeli-plywajacych-klas-m-2026-09-11/" class="event-card ">
     <div class="thumb-wrap">
@@ -794,6 +878,40 @@ Termin: 08.09.2026 r., godz. 16:00</p>
         </div>
         <h3 class="event-title">Koncert: Infree, Honker, Blues jak K, Vintage</h3>
         <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Koncert: Infree, Honker, Blues jak K, Vintage.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-11" data-end="2026-09-11">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-happening-literacki-trzeci-wiek-szosty-bieg-2026-09-11/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">11</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-happening-literacki-trzeci-wiek-szosty-bieg.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-happening-literacki-trzeci-wiek-szosty-bieg.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Happening Literacki "Trzeci wiek, szósty bieg!"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 11 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">17:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Happening Literacki "Trzeci wiek, szósty bieg!"</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Happening Literacki "Trzeci wiek, szósty bieg!".</p>
       </div>
       <div class="meta-bottom">
         <span class="price">Sprawdź szczegóły</span>
@@ -1007,6 +1125,40 @@ Termin: 08.09.2026 r., godz. 16:00</p>
   </a>
 </article>
         
+        <article class="event-item" data-start="2026-09-12" data-end="2026-09-12">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-parkrun-edycja-dla-seniorow-2026-09-12/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">12</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-parkrun-edycja-dla-seniorow.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-parkrun-edycja-dla-seniorow.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - parkrun edycja dla seniorów!" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Sobota, 12 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">09:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - parkrun edycja dla seniorów!</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - parkrun edycja dla seniorów!.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
         <article class="event-item" data-start="2026-09-13" data-end="2026-09-13">
   <a href="/kedzierzyn_kozle/wydarzenia/bieg-gaz-system-na-piatke-2026-09-13/" class="event-card ">
     <div class="thumb-wrap">
@@ -1110,7 +1262,7 @@ Termin: 08.09.2026 r., godz. 16:00</p>
 </article>
         
         <article class="event-item" data-start="2026-09-13" data-end="2026-09-13">
-  <a href="/kedzierzyn_kozle/wydarzenia/koncert-przy-swiecach-tribute-to-michael-jackson-2026-09-13/" class="event-card ">
+  <a href="/kedzierzyn_kozle/wydarzenia/koncert-kwartu-smyczkowego-przy-blasku-tysiaca-swiec-tribute-to-michael-jackson-2026-09-13/" class="event-card ">
     <div class="thumb-wrap">
       <div class="date-badge">
         <span class="day">13</span>
@@ -1120,7 +1272,7 @@ Termin: 08.09.2026 r., godz. 16:00</p>
         </span>
       </div>
       <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_koncert-przy-swiecach-tribute-to-michael-jackson.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_koncert-przy-swiecach-tribute-to-michael-jackson.webp" class="thumb-fg" alt="Plakat: Koncert przy świecach: Tribute to Michael Jackson" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+      <img src="/assets/thumbnails/kupbilecik_kedzierzyn_kozle_koncert-przy-swiecach-tribute-to-michael-jackson.webp" class="thumb-fg" alt="Plakat: Koncert Kwartu Smyczkowego przy blasku tysiąca świec Tribute to Michael Jackson" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
     </div>
     <div class="event-content">
       <div class="text-container">
@@ -1132,7 +1284,7 @@ Termin: 08.09.2026 r., godz. 16:00</p>
           <span>&bull;</span>
           <span class="time-accent">19:30</span>
         </div>
-        <h3 class="event-title">Koncert przy świecach: Tribute to Michael Jackson</h3>
+        <h3 class="event-title">Koncert Kwartu Smyczkowego przy blasku tysiąca świec Tribute to Michael Jackson</h3>
         <p class="event-desc">Wydarzenie: Koncert przy świecach: Tribute to Michael Jackson. Miejsce: Kędzierzyn Koźle, Kędzierzyn-Koźle. Bilety dostępne online na KupBilecik.pl.</p>
       </div>
       <div class="meta-bottom">
@@ -1177,6 +1329,40 @@ Termin: 08.09.2026 r., godz. 16:00</p>
   </a>
 </article>
         
+        <article class="event-item" data-start="2026-09-14" data-end="2026-09-14">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-lesna-przygoda-na-dwoch-kolkach-2026-09-14/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">14</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-lesna-przygoda-na-dwoch-kolkach.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-lesna-przygoda-na-dwoch-kolkach.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Leśna przygoda na dwóch kółkach" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Poniedziałek, 14 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">11:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Leśna przygoda na dwóch kółkach</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Leśna przygoda na dwóch kółkach.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
         <article class="event-item" data-start="2026-09-15" data-end="2026-09-17">
   <a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-detektywi-przeszlosci-co-robia-muzealnicy-2026-09-15/" class="event-card ">
     <div class="thumb-wrap">
@@ -1202,6 +1388,176 @@ Termin: 08.09.2026 r., godz. 16:00</p>
         </div>
         <h3 class="event-title">Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy?’</h3>
         <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Lekcje muzealne ,,Detektywi przeszłości. Co robią muzealnicy’.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-15" data-end="2026-09-15">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-warsztaty-fotografii-zatrzymaj-chwile-2026-09-15/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">15</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-warsztaty-fotografii-zatrzymaj-chwile.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-warsztaty-fotografii-zatrzymaj-chwile.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Warsztaty fotografii "Zatrzymaj chwile"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Wtorek, 15 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">10:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Warsztaty fotografii "Zatrzymaj chwile"</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Warsztaty fotografii "Zatrzymaj chwile".</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-15" data-end="2026-09-15">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-miedzypokoleniowy-seans-pod-chmurka-2026-09-15/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">15</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-miedzypokoleniowy-seans-pod-chmurka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-miedzypokoleniowy-seans-pod-chmurka.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Międzypokoleniowy seans pod chmurką" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Wtorek, 15 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">19:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Międzypokoleniowy seans pod chmurką</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Międzypokoleniowy seans pod chmurką.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-16" data-end="2026-09-16">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-kregle-pokolen-turniej-bowlingu-2026-09-16/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">16</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-kregle-pokolen-turniej-bowlingu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-kregle-pokolen-turniej-bowlingu.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Kręgle pokoleń. Turniej Bowlingu" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Środa, 16 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">10:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Kręgle pokoleń. Turniej Bowlingu</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Kręgle pokoleń. Turniej Bowlingu.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-16" data-end="2026-09-16">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-joga-dla-seniora-2026-09-16/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">16</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-joga-dla-seniora.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-joga-dla-seniora.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Joga dla seniora" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Środa, 16 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">16:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Joga dla seniora</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Joga dla seniora.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-16" data-end="2026-09-20">
+  <a href="/kedzierzyn_kozle/wydarzenia/zywe-motyle-2026-09-16/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">16</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_zywe-motyle.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_zywe-motyle.webp" class="thumb-fg" alt="Plakat: Żywe Motyle" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Środa, 16 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">18:00</span>
+        </div>
+        <h3 class="event-title">Żywe Motyle</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Żywe Motyle.</p>
       </div>
       <div class="meta-bottom">
         <span class="price">Sprawdź szczegóły</span>
@@ -1277,6 +1633,108 @@ Termin: 17.09.2026 r., godz. 16:00</p>
       </div>
       <div class="meta-bottom">
         <span class="price">Wstęp bezpłatny</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-17" data-end="2026-09-17">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-senior-w-ruchu-2026-09-17/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">17</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-senior-w-ruchu.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-senior-w-ruchu.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Senior w ruchu" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Czwartek, 17 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">10:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Senior w ruchu</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Senior w ruchu.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-17" data-end="2026-09-17">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-splyw-kajakowy-miedzypokoleniowy-2026-09-17/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">17</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-splyw-kajakowy-miedzypokoleniowy.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-splyw-kajakowy-miedzypokoleniowy.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Spływ kajakowy międzypokoleniowy" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Czwartek, 17 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">13:00</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Spływ kajakowy międzypokoleniowy</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Spływ kajakowy międzypokoleniowy.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
+        <span class="arrow-link">Szczegóły &rarr;</span>
+      </div>
+    </div>
+  </a>
+</article>
+        
+        <article class="event-item" data-start="2026-09-18" data-end="2026-09-18">
+  <a href="/kedzierzyn_kozle/wydarzenia/dni-seniora-2026-kunkurs-na-najlepsza-stylizacje-krol-i-krolowa-rock-and-rolla-2026-09-18/" class="event-card ">
+    <div class="thumb-wrap">
+      <div class="date-badge">
+        <span class="day">18</span>
+        <span class="month">
+          
+          WRZ
+        </span>
+      </div>
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-kunkurs-na-najlepsza-stylizacje-krol-i-krolowa-rock-and-rolla.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      <img src="/assets/thumbnails/kk_dni-seniora-2026-kunkurs-na-najlepsza-stylizacje-krol-i-krolowa-rock-and-rolla.webp" class="thumb-fg" alt="Plakat: Dni Seniora 2026 - Kunkurs na najlepszą stylizację Król i Królowa Rock and Rolla" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
+    </div>
+    <div class="event-content">
+      <div class="text-container">
+        <div class="meta-top">
+          <span class="badge-container"></span>
+          <span class="cat-accent">Kultura i Rozrywka</span>
+          <span>&bull;</span>
+          <span class="date-accent">Piątek, 18 września</span>
+          <span>&bull;</span>
+          <span class="time-accent">16:30</span>
+        </div>
+        <h3 class="event-title">Dni Seniora 2026 - Kunkurs na najlepszą stylizację Król i Królowa Rock and Rolla</h3>
+        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Dni Seniora 2026 - Kunkurs na najlepszą stylizację Król i Królowa Rock and Rolla.</p>
+      </div>
+      <div class="meta-bottom">
+        <span class="price">Sprawdź szczegóły</span>
         <span class="arrow-link">Szczegóły &rarr;</span>
       </div>
     </div>
@@ -1385,384 +1843,10 @@ Termin: 17.09.2026 r., godz. 16:00</p>
   </a>
 </article>
         
-        <article class="event-item" data-start="2026-09-19" data-end="2026-09-19">
-  <a href="/kedzierzyn_kozle/wydarzenia/turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona-2026-09-19/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">19</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_turniej-w-zapasach-w-stylu-klasycznym-im-wiktora-zarzeckiego-i-mariana-balona.webp" class="thumb-fg" alt="Plakat: Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Sobota, 19 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">11:00</span>
-        </div>
-        <h3 class="event-title">Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Turniej w Zapasach w Stylu Klasycznym im. Wiktora Zarzeckiego i Mariana Balona.</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-19" data-end="2026-09-19">
-  <a href="/kedzierzyn_kozle/wydarzenia/rejs-statkiem-wycieczkowym-silesia-2026-09-19/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">19</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_rejs-statkiem-wycieczkowym-silesia.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_rejs-statkiem-wycieczkowym-silesia.webp" class="thumb-fg" alt="Plakat: Rejs statkiem wycieczkowym "Silesia"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Sobota, 19 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">12:00</span>
-        </div>
-        <h3 class="event-title">Rejs statkiem wycieczkowym "Silesia"</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Rejs statkiem wycieczkowym "Silesia".</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-19" data-end="2026-09-20">
-  <a href="/kedzierzyn_kozle/wydarzenia/miasto-dawniej-i-dzis-wirtualny-spacer-przez-dzieje-ziemi-kozielskiej-2026-09-19/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">19</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_miasto-dawniej-i-dzis-wirtualny-spacer-przez-dzieje-ziemi-kozielskiej.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_miasto-dawniej-i-dzis-wirtualny-spacer-przez-dzieje-ziemi-kozielskiej.webp" class="thumb-fg" alt="Plakat: „Miasto dawniej i dziś – wirtualny spacer przez dzieje Ziemi Kozielskiej”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Sobota, 19 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">13:00</span>
-        </div>
-        <h3 class="event-title">„Miasto dawniej i dziś – wirtualny spacer przez dzieje Ziemi Kozielskiej”</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: „Miasto dawniej i dziś – wirtualny spacer przez dzieje Ziemi Kozielskiej”.</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-20" data-end="2026-09-20">
-  <a href="/kedzierzyn_kozle/wydarzenia/zamotane-miasto-kedzierzyn-kozle-od-owieczki-do-niteczki-proces-obrobki-runa-i-powstania-wloczki-warsztaty-przedzenia-2026-09-20/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">20</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_zamotane-miasto-kedzierzyn-kozle-od-owieczki-do-niteczki-proces-obrobki-runa-i-powstania-wloczki-warsztaty-przedzenia.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_zamotane-miasto-kedzierzyn-kozle-od-owieczki-do-niteczki-proces-obrobki-runa-i-powstania-wloczki-warsztaty-przedzenia.webp" class="thumb-fg" alt="Plakat: Zamotane Miasto Kędzierzyn-Koźle. Od owieczki do niteczki - proces obróbki runa i powstania włóczki - warsztaty przędzenia" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Niedziela, 20 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">09:00</span>
-        </div>
-        <h3 class="event-title">Zamotane Miasto Kędzierzyn-Koźle. Od owieczki do niteczki - proces obróbki runa i powstania włóczki - warsztaty przędzenia</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Zamotane Miasto Kędzierzyn-Koźle. Od owieczki do niteczki - proces obróbki runa i powstania włóczki - warsztaty przędzenia.</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-20" data-end="2026-09-20">
-  <a href="/kedzierzyn_kozle/wydarzenia/muzyka-polnocy-grieg-sibelius-koncert-w-wykonaniu-orkiestry-kameralnej-con-vigore-2026-09-20/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">20</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_muzyka-polnocy-grieg-sibelius-koncert-w-wykonaniu-orkiestry-kameralnej-con-vigore.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_muzyka-polnocy-grieg-sibelius-koncert-w-wykonaniu-orkiestry-kameralnej-con-vigore.webp" class="thumb-fg" alt="Plakat: „Muzyka północy: Grieg – Sibelius” - koncert w wykonaniu Orkiestry Kameralnej „Con Vigore”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Niedziela, 20 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">15:00</span>
-        </div>
-        <h3 class="event-title">„Muzyka północy: Grieg – Sibelius” - koncert w wykonaniu Orkiestry Kameralnej „Con Vigore”</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: „Muzyka północy: Grieg – Sibelius” - koncert w wykonaniu Orkiestry Kameralnej „Con Vigore”.</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-22" data-end="2026-09-24">
-  <a href="/kedzierzyn_kozle/wydarzenia/lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej-2026-09-22/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">22</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_lekcje-muzealne-dzieciecy-swiat-zabaw-na-ziemi-kozielskiej.webp" class="thumb-fg" alt="Plakat: Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Wtorek, 22 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">09:30</span>
-        </div>
-        <h3 class="event-title">Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Lekcje muzealne ,,Dziecięcy Świat Zabaw na Ziemi Kozielskiej”.</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-24" data-end="2026-09-24">
-  <a href="/kedzierzyn_kozle/wydarzenia/konkurs-literacko-plastyczny-moj-przyjaciel-adopciak-2026-09-24/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">24</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_konkurs-literacko-plastyczny-moj-przyjaciel-adopciak.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_konkurs-literacko-plastyczny-moj-przyjaciel-adopciak.webp" class="thumb-fg" alt="Plakat: Konkurs literacko-plastyczny "Mój przyjaciel adopciak"" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Czwartek, 24 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">17:00</span>
-        </div>
-        <h3 class="event-title">Konkurs literacko-plastyczny "Mój przyjaciel adopciak"</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Konkurs literacko-plastyczny "Mój przyjaciel adopciak".</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-24" data-end="2026-09-24">
-  <a href="/kedzierzyn_kozle/wydarzenia/spotkanie-autorskie-z-barbara-saczko-bomba-2026-09-24/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">24</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_spotkanie-autorskie-z-barbara-saczko-bomba.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_spotkanie-autorskie-z-barbara-saczko-bomba.webp" class="thumb-fg" alt="Plakat: Spotkanie autorskie z Barbarą Saczko-Bombą" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Czwartek, 24 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">17:00</span>
-        </div>
-        <h3 class="event-title">Spotkanie autorskie z Barbarą Saczko-Bombą</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: Spotkanie autorskie z Barbarą Saczko-Bombą.</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-24" data-end="2026-09-24">
-  <a href="/kedzierzyn_kozle/wydarzenia/anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-24/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">24</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" class="thumb-fg" alt="Plakat: ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Czwartek, 24 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">18:00</span>
-        </div>
-        <h3 class="event-title">ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</h3>
-        <p class="event-desc">„Anatomia Zdarzeń. Kieszenie pełne wspomnień”, w reż. J. Gerigk, Latający Teatr Kantorowi, Rzeszów, Spektakl realizowany w ramach TEATR POLSKA godz. 19.00 - rozmowa z aktorami Wyobraź sobie, wyjmujesz z szafy od lat nieużywany płaszcz i sięgasz ręką do kieszeni, otwierasz szufladę starej komody albo zaglądasz do stojącej na półce zakurzonej szkatułki - co tam znajdziesz Guzik, stary bilet do</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">od 22.24 zł</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-25" data-end="2026-09-25">
-  <a href="/kedzierzyn_kozle/wydarzenia/xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026-2026-09-25/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">25</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_xxxviii-ogolnopolski-przeglad-piosenki-turystycznej-poezji-spiewanej-i-sztuk-roznych-wrzosowisko-2026.webp" class="thumb-fg" alt="Plakat: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Piątek, 25 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">18:00</span>
-        </div>
-        <h3 class="event-title">XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: XXXVIII Ogólnopolski Przegląd Piosenki Turystycznej, Poezji Śpiewanej i Sztuk Różnych „Wrzosowisko 2026.</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
-        <article class="event-item" data-start="2026-09-25" data-end="2026-09-25">
-  <a href="/kedzierzyn_kozle/wydarzenia/metallica-night-klub-kameleon-2026-09-25/" class="event-card ">
-    <div class="thumb-wrap">
-      <div class="date-badge">
-        <span class="day">25</span>
-        <span class="month">
-          
-          WRZ
-        </span>
-      </div>
-      <img src="/assets/thumbnails/kk_metallica-night-klub-kameleon.webp" class="thumb-bg" alt="" aria-hidden="true" loading="lazy" draggable="false">
-      <img src="/assets/thumbnails/kk_metallica-night-klub-kameleon.webp" class="thumb-fg" alt="Plakat: METALLICA NIGHT – Klub Kameleon" loading="lazy" onerror="this.src='/assets/placeholder.svg?v=2'" draggable="false">
-    </div>
-    <div class="event-content">
-      <div class="text-container">
-        <div class="meta-top">
-          <span class="badge-container"></span>
-          <span class="cat-accent">Kultura i Rozrywka</span>
-          <span>&bull;</span>
-          <span class="date-accent">Piątek, 25 września</span>
-          <span>&bull;</span>
-          <span class="time-accent">20:00</span>
-        </div>
-        <h3 class="event-title">METALLICA NIGHT – Klub Kameleon</h3>
-        <p class="event-desc">Wydarzenie w Kędzierzynie-Koźlu: METALLICA NIGHT – Klub Kameleon.</p>
-      </div>
-      <div class="meta-bottom">
-        <span class="price">Sprawdź szczegóły</span>
-        <span class="arrow-link">Szczegóły &rarr;</span>
-      </div>
-    </div>
-  </a>
-</article>
-        
         
         <div id="loadMoreContainer" style="grid-column: 1 / -1; text-align: center; margin: 32px 0 16px 0;">
           <button id="loadMoreBtn" class="btn-load-more" onclick="loadMoreEvents()">
-            Pokaż więcej wydarzeń (+37)
+            Pokaż więcej wydarzeń (+50)
           </button>
         </div>
         
@@ -1911,5 +1995,20 @@ Termin: 17.09.2026 r., godz. 16:00</p>
     }
 
   </script>
+    <script>
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.setAttribute('aria-checked', next === 'dark');
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.setAttribute('aria-checked', current === 'dark');
+      });
+    </script>
 </body>
 </html>

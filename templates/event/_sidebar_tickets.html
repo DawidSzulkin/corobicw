@@ -2,51 +2,63 @@
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
     <div class="info-label">Data</div><div class="info-val">{{ event.date_formatted }}</div>
-    <div class="info-label">Start</div><div class="info-val">{{ event.analysis.ticket_info.time_start or event.time_start or 'Brak danych' }}</div>
+    <div class="info-label">Start</div><div class="info-val">{{ (event.analysis.ticket_info.time_start if event.analysis and event.analysis.ticket_info else None) or event.time_start or 'Brak danych' }}</div>
     <div class="info-label">Miejsce</div>
     <div class="info-val">
       {%- set venue_slug = event.place_id or (event.analysis.ticket_info.place_id if event.analysis and event.analysis.ticket_info else None) or (place.id if place else None) -%}
-      {%- set venue_title = (event.analysis.ticket_info.venue_name if event.analysis and event.analysis.ticket_info and event.analysis.ticket_info.venue_name else None) or (place.name if place else (event.venue or 'Miejsce wydarzenia')) -%}
+      {%- set venue_title = (place.name if place else None) or (event.analysis.ticket_info.venue_name if event.analysis and event.analysis.ticket_info and event.analysis.ticket_info.venue_name else None) or event.venue or 'Miejsce wydarzenia' -%}
       {% if venue_slug %}<a href="/{{ city_tag }}/miejsca/{{ venue_slug }}/"><strong>{{ venue_title }}</strong></a>{% else %}<strong>{{ venue_title }}</strong>{% endif %}
       {%- if event.analysis and event.analysis.address %}<span class="address">{{ event.analysis.address }}</span>{% elif place and place.address %}<span class="address">{{ place.address }}</span>{% endif %}
     </div>
   </div>
 
-  {# Weryfikacja bezpłatnego wstępu #}
-  {% set ns = namespace(has_paid=false) %}
+  {# Sprawdzenie statusu ofert #}
+  {% set ns = namespace(has_active_paid=false, has_free=false, all_cancelled=true) %}
   {% for offer in (event.ticket_offers or []) %}
-    {% set p_low = (offer.price or '') | lower %}
-    {% if 'wolny' not in p_low and 'bezpłat' not in p_low and 'za darmo' not in p_low and p_low != '0 zł' and p_low != '0,00 zł' %}
-      {% set ns.has_paid = true %}
+    {% set p_disp = offer | format_ticket_price %}
+    {% if p_disp != 'Odwołane' %}
+      {% set ns.all_cancelled = false %}
+      {% if p_disp in ['Wstęp wolny', '0 zł', '0,00 zł'] %}
+        {% set ns.has_free = true %}
+      {% else %}
+        {% set ns.has_active_paid = true %}
+      {% endif %}
     {% endif %}
   {% endfor %}
 
-  {% if event.ticket_offers and not ns.has_paid %}
-    <div class="free-entry-banner" style="margin-top: 14px;">
-      <span class="status">Wstęp wolny</span>
-      <span style="font-size: 1.2rem;">🎫</span>
+  {# 1. Całe wydarzenie lub wszystkie oferty odwołane #}
+  {% if event.is_cancelled or (event.ticket_offers and ns.all_cancelled) %}
+    <div class="cancelled-event-banner" style="margin-top: 14px;">
+      <div class="cancelled-event-left">
+        <span class="status">Wydarzenie odwołane</span>
+        <span class="cancelled-event-sub">Sprzedaż biletów została wstrzymana</span>
+      </div>
+      <span class="cancelled-event-icon" aria-hidden="true">⛔</span>
     </div>
+
+  {# 2. Wydarzenie w 100% bezpłatne #}
+  {% elif (event.ticket_offers and not ns.has_active_paid and ns.has_free) or (event.price and ('wolny' in event.price|lower or 'bezpłat' in event.price|lower or '0 zł' in event.price)) %}
+    <div class="free-entry-banner" style="margin-top: 14px;">
+      <div class="free-entry-left">
+        <span class="status">Wstęp wolny</span>
+        <span class="free-entry-sub">Wydarzenie bezpłatne / brak biletów</span>
+      </div>
+      <span class="free-entry-icon" aria-hidden="true">🎟️</span>
+    </div>
+
+  {# 3. Aktywne oferty biletowe #}
   {% elif event.ticket_offers and event.ticket_offers|length > 0 %}
     <div class="clean-market-stack">
       {% for offer in event.ticket_offers %}
-        {% set price_str = (offer.price or '') | lower | trim %}
-        {% set is_cancelled = ('odwo' in price_str or 'cancel' in price_str) %}
-        {% set is_status = ('sprawd' in price_str or 'dost' in price_str or 'brak' in price_str or 'kasa' in price_str) %}
+        {% set p_disp = offer | format_ticket_price %}
+        {% set is_cancelled = (p_disp == 'Odwołane') %}
+        {% set is_free = (p_disp in ['Wstęp wolny', '0 zł', '0,00 zł']) %}
+        {% set is_status = (p_disp in ['Dostępność', 'Odwołane', 'Wstęp wolny']) %}
         {% set is_official = (offer.is_official or offer.official_badge or (offer.tag and 'oficjaln' in offer.tag|lower)) %}
 
         <div class="clean-market-card {% if is_cancelled %}is-cancelled{% endif %}">
           {% if is_cancelled %}
             <div class="clean-market-tile disabled" aria-disabled="true">
-              <div class="clean-market-left">
-                <span class="clean-market-name">{{ offer.provider }}</span>
-                <span class="clean-market-sub status-cancelled">Wydarzenie odwołane</span>
-              </div>
-              <div class="clean-market-right">
-                <span class="clean-market-status">Odwołane</span>
-              </div>
-            </div>
-          {% else %}
-            <a href="{{ offer.url }}" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w {{ offer.provider }} - {{ offer.price if not is_status else 'sprawdź dostępność' }}">
               <div class="clean-market-left">
                 <span class="clean-market-name">{{ offer.provider }}</span>
                 <span class="clean-market-sub">
@@ -57,13 +69,25 @@
                   {% endif %}
                 </span>
               </div>
-              <div class="clean-market-right">
-                {% if is_status %}
-                  <span class="clean-market-status">Dostępność</span>
-                {% else %}
-                  <span class="clean-market-price">{{ offer.price }}</span>
-                {% endif %}
-                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              <div class="v2-pill is-cancelled">
+                <span class="v2-status">Odwołane</span>
+              </div>
+            </div>
+          {% else %}
+            <a href="{{ offer.url }}" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w {{ offer.provider }} - {{ p_disp }}">
+              <div class="clean-market-left">
+                <span class="clean-market-name">{{ offer.provider }}</span>
+                <span class="clean-market-sub">
+                  {% if is_official %}
+                    Oficjalna kasa obiektu
+                  {% else %}
+                    Dystrybutor online
+                  {% endif %}
+                </span>
+              </div>
+              <div class="v2-pill {% if is_free %}is-free{% endif %}">
+                <span class="{% if is_status %}v2-status{% else %}v2-price{% endif %}">{{ p_disp }}</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
               </div>
             </a>
           {% endif %}
@@ -90,14 +114,18 @@
       {% endfor %}
     </div>
 
-    <div class="clean-market-notice">
-      Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
-    </div>
+    {# Notka prawna UOKiK/DSA - TYLKO gdy istnieją aktywne, płatne oferty #}
+    {% if ns.has_active_paid %}
+      <div class="clean-market-notice">
+        Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+      </div>
+    {% endif %}
 
+  {# 4. Link awaryjny ze źródła #}
   {% elif event.source_url %}
-    <div style="margin-top: 16px;">
+    <div style="margin-top: 14px;">
       <a href="{{ event.source_url }}" target="_blank" rel="nofollow noopener" class="clean-market-tile" style="justify-content: center; text-align: center; font-weight: 700;">
-        🎫 Sprawdź szczegóły wydarzenia ↗
+        🎟️ Sprawdź szczegóły wydarzenia ↗
       </a>
     </div>
   {% endif %}

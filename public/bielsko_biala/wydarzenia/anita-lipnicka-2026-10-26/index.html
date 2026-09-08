@@ -1,10 +1,45 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
+    <script>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const theme = saved ? saved : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anita Lipnicka - Bielsko-Biała | CoRobićW</title>
   <style>
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
     :root {
       --bg: #0c0e12;
       --card-bg: #15181e;
@@ -36,13 +71,13 @@
       --free-border: rgba(5, 150, 105, 0.25);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
-    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    
+    
     .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
     .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
     .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
     .nav-actions { display: flex; gap: 10px; align-items: center; }
-    .btn-theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
     .btn-theme-toggle:hover { border-color: var(--border-strong); }
     .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
     .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
@@ -139,7 +174,739 @@
   .gastro-name { font-weight: 700; color: var(--text); font-size: 0.92rem; }
   .gastro-meta { font-size: 0.8rem; color: var(--text-muted); }
 
-  </style>
+  
+    /* --- SYSTEMOWY PRZEŁĄCZNIK MOTYWU (PILL SWITCH) --- */
+    .theme-switch {
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .switch-track {
+      width: 54px;
+      height: 28px;
+      background: var(--card-bg, #1e293b);
+      border: 1px solid var(--border, #334155);
+      border-radius: 9999px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+      box-sizing: border-box;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .switch-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      z-index: 1;
+      color: var(--text-muted, #94a3b8);
+      pointer-events: none;
+    }
+    .switch-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--btn-primary-bg, #ffffff);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s ease;
+      z-index: 2;
+    }
+    /* Tryb Jasny: suwak po lewej (na słońcu) */
+    [data-theme="light"] .switch-thumb {
+      transform: translateX(0);
+      background: #0f172a;
+    }
+    [data-theme="light"] .icon-sun {
+      color: #f59e0b;
+    }
+    /* Tryb Ciemny (Domyślny): suwak po prawej (na księżycu) */
+    [data-theme="dark"] .switch-thumb,
+    :root:not([data-theme="light"]) .switch-thumb {
+      transform: translateX(26px);
+      background: #ffffff;
+    }
+    [data-theme="dark"] .icon-moon,
+    :root:not([data-theme="light"]) .icon-moon {
+      color: #38bdf8;
+    }
+
+  
+    
+    .container-grid {
+      display: grid;
+      align-items: start !important;
+    }
+    .sidebar {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    .sidebar > .card:first-child {
+      margin-top: 0 !important;
+    }
+    .sidebar > .card:first-child h2 {
+      margin-top: 0 !important;
+    }
+
+  
+    
+    
+    .main-content {
+      min-width: 0; /* blokuje rozpychanie grida przez szerokie elementy */
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      height: auto !important;
+      min-height: 0 !important;
+      justify-content: flex-start !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > .card {
+      margin: 0 !important; /* likwiduje sztuczne odstępy między klockami */
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* DESKTOP: Cały kompaktowy stos jedzie równo z długim opisem */
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    /* TABLET / MOBILE: Płynne przejście w jedną kolumnę */
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .sidebar > .card {
+        border-radius: 8px;
+      }
+    }
+
+  
+    /* --- ZWARTY STOS SIDEBARA (BILETY + OBIEKT + GASTRO) --- */
+    
+    .main-content {
+      min-width: 0;
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-self: start !important;
+      gap: 16px !important;
+      height: fit-content !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > * {
+      margin: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+      }
+    }
+
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 10px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-price.is-text {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: normal;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 6px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 12px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      line-height: 1.25;
+      white-space: normal !important; /* BRAK UCINANIA NAZWY DOSTAWCY */
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+
+  
+    /* --- OPCJA 2: KAFLE RYNKOWE Z KAPSUŁKĄ, BANER WSTĘP WOLNY I ODWOŁANE --- */
+    .clean-market-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .clean-market-card {
+      border: 1px solid var(--border, #1f2937);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+      overflow: hidden;
+    }
+    .clean-market-card:hover:not(.is-cancelled) {
+      border-color: #374151;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .clean-market-card.is-cancelled {
+      opacity: 0.6;
+      border-color: rgba(239, 68, 68, 0.25);
+      background: rgba(239, 68, 68, 0.02);
+    }
+    .clean-market-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      text-decoration: none;
+      color: var(--text, #f9fafb);
+      gap: 12px;
+      width: 100%;
+      box-sizing: border-box;
+      min-height: 52px;
+    }
+    .clean-market-tile.disabled {
+      cursor: not-allowed;
+    }
+    .clean-market-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      min-width: 0;
+      flex: 1;
+    }
+    .clean-market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      color: var(--text, #f9fafb);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .clean-market-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Kapsułka cenowa (Wariant 2) */
+    .v2-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+    .clean-market-card:hover .v2-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+    .v2-pill.is-free {
+      background: rgba(74, 222, 128, 0.08);
+      border-color: rgba(74, 222, 128, 0.25);
+    }
+    .v2-pill.is-cancelled {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+    .v2-price {
+      font-size: 0.95rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+      line-height: 1;
+    }
+    .v2-status {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1;
+    }
+    .v2-pill.is-free .v2-status {
+      color: var(--accent-green, #4ade80);
+    }
+    .v2-pill.is-cancelled .v2-status {
+      color: #f87171;
+    }
+    .v2-arrow {
+      font-size: 0.78rem;
+      color: var(--text-muted, #9ca3af);
+      transition: transform 0.15s ease, color 0.15s ease;
+      line-height: 1;
+    }
+    .clean-market-card:hover .v2-arrow {
+      color: #ffffff;
+      transform: translate(2px, -2px);
+    }
+
+    /* Baner bezpłatnego wstępu */
+    .free-entry-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(74, 222, 128, 0.06);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .free-entry-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .free-entry-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent-green, #4ade80);
+      line-height: 1.2;
+    }
+    .free-entry-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .free-entry-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    /* Baner odwołanego wydarzenia */
+    .cancelled-event-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .cancelled-event-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cancelled-event-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #f87171;
+      line-height: 1.2;
+    }
+    .cancelled-event-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .cancelled-event-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    .clean-market-discounts {
+      border-top: 1px dashed rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.15);
+      padding: 6px 14px;
+    }
+    .clean-market-discounts details {
+      font-size: 0.72rem;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-discounts summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .clean-market-discounts summary::-webkit-details-marker {
+      display: none;
+    }
+    .clean-market-discounts summary:hover {
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts ul {
+      margin: 6px 0 2px 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .clean-market-discounts li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts .discount-val {
+      color: var(--accent-green, #4ade80);
+      font-weight: 700;
+    }
+    .clean-market-notice {
+      font-size: 0.65rem;
+      color: rgba(156, 163, 175, 0.7);
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.35;
+      padding: 0 4px;
+    }
+
+  
+    .container-grid {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 380px !important;
+      gap: 32px !important;
+      align-items: start !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+    
+  
+    /* --- ZUNIFIKOWANY SIDEBAR I INFO-GRID (WSP?LNY DLA EVENT I PLACE) --- */
+    .sidebar { display: flex !important; flex-direction: column !important; gap: 24px !important; }
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; border-radius: 6px; box-sizing: border-box; }
+    .sidebar h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px; font-weight: 800; margin-top: 0; }
+    
+    .info-grid { display: grid; grid-template-columns: minmax(85px, auto) 1fr; gap: 16px 14px; align-items: baseline; }
+    .info-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; }
+    .info-val { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .info-val a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    .info-val a:hover { color: var(--accent-blue); }
+    .info-val .address { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; display: block; margin-top: 4px; }
+    .info-val.is-yes { color: var(--accent-green); }
+    .info-val.is-neutral { color: var(--text); font-weight: 500; }
+    
+  
+    </style>
   
   
   
@@ -181,8 +948,16 @@
     <div class="nav-container">
       <a href="/bielsko_biala/" class="brand">CoRobićW <span>Bielsko-Biała</span></a>
       <div class="nav-actions">
-        <button id="themeToggle" class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Zmień motyw">
-          <span id="themeIcon">🌙</span> <span id="themeLabel">Jasny</span>
+        <button id="themeToggle" class="theme-switch" type="button" role="switch" aria-label="Przełącz motyw" onclick="toggleTheme()">
+          <span class="switch-track">
+            <span class="switch-icon icon-sun">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </span>
+            <span class="switch-icon icon-moon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </span>
+            <span class="switch-thumb"></span>
+          </span>
         </button>
         
         <a href="/bielsko_biala/" class="btn-nav">&larr; Wróć do agendy</a>
@@ -224,7 +999,7 @@
   </article>
 
   <aside class="sidebar">
-    ﻿<div class="card">
+    <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
     <div class="info-label">Data</div><div class="info-val">Poniedziałek, 26 października</div>
@@ -232,9 +1007,6 @@
     <div class="info-label">Miejsce</div>
     <div class="info-val"><a href="/bielsko_biala/miejsca/bb-cavatina-hall/"><strong>Cavatina Hall</strong></a><span class="address">Dworkowa 2, Bielsko Biala</span>
     </div>
-    
-    <div class="info-label">Parking</div><div class="info-val">Dostępny w strefie miejskiej</div>
-    
   </div>
 
   
@@ -243,102 +1015,126 @@
     
     
       
-    
-  
-    
-    
+      
+        
       
     
   
     
     
+      
+      
+        
+      
+    
+  
+    
+    
+      
+      
+        
       
     
   
 
   
-    <div class="ticket-market-header">
-      <span class="ticket-market-title">Dostępne bilety</span>
-      <span class="ticket-count">3 opcje</span>
+  
+    <div class="clean-market-stack">
+      
+        
+        
+        
+        
+        
+
+        <div class="clean-market-card ">
+          
+            <a href="https://www.kupbilecik.pl/imprezy/210551/Bielsko-Bia%C5%82a/Anita+Lipnicka/" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w KupBilecik - Od 20 zł">
+              <div class="clean-market-left">
+                <span class="clean-market-name">KupBilecik</span>
+                <span class="clean-market-sub">
+                  
+                    Dystrybutor online
+                  
+                </span>
+              </div>
+              <div class="v2-pill ">
+                <span class="v2-price">Od 20 zł</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
+              </div>
+            </a>
+          
+
+          
+        </div>
+      
+        
+        
+        
+        
+        
+
+        <div class="clean-market-card ">
+          
+            <a href="https://biletyna.pl/koncert/Anita-Lipnicka/30-lat-Wszystko-sie-morze-zdarzyc/Bielsko-Biala" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Biletyna - Od 211,34 zł">
+              <div class="clean-market-left">
+                <span class="clean-market-name">Biletyna</span>
+                <span class="clean-market-sub">
+                  
+                    Dystrybutor online
+                  
+                </span>
+              </div>
+              <div class="v2-pill ">
+                <span class="v2-price">Od 211,34 zł</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
+              </div>
+            </a>
+          
+
+          
+        </div>
+      
+        
+        
+        
+        
+        
+
+        <div class="clean-market-card ">
+          
+            <a href="https://cavatinahall.pl/events/anita-lipnicka-trasa-jubileuszowa-wszystko-sie-moze-zdarzyc/" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Cavatina Hall - Dostępność">
+              <div class="clean-market-left">
+                <span class="clean-market-name">Cavatina Hall</span>
+                <span class="clean-market-sub">
+                  
+                    Oficjalna kasa obiektu
+                  
+                </span>
+              </div>
+              <div class="v2-pill ">
+                <span class="v2-status">Dostępność</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
+              </div>
+            </a>
+          
+
+          
+        </div>
+      
     </div>
-    <div class="offers-stack">
-      
-        
-        
-        <div class="offer-box highlight">
-          <div class="offer-main-row">
-            <div class="offer-info-col">
-              <div class="offer-provider-line">
-                <span class="offer-provider-name">KupBilecik</span>
-                
-                
-                  <span class="offer-tag best-price">Najlepsza cena</span>
-                
-              </div>
-              <div class="offer-price-val">Od 20 zł</div>
-            </div>
-            <div>
-              
-                <a href="https://www.kupbilecik.pl/imprezy/210551/Bielsko-Bia%C5%82a/Anita+Lipnicka/" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
-              
-            </div>
-          </div>
 
-          
-        </div>
-      
-        
-        
-        <div class="offer-box ">
-          <div class="offer-main-row">
-            <div class="offer-info-col">
-              <div class="offer-provider-line">
-                <span class="offer-provider-name">Biletyna</span>
-                
-                
-              </div>
-              <div class="offer-price-val">Od 211.34 zł</div>
-            </div>
-            <div>
-              
-                <a href="https://biletyna.pl/koncert/Anita-Lipnicka/30-lat-Wszystko-sie-morze-zdarzyc/Bielsko-Biala" target="_blank" rel="nofollow noopener" class="offer-btn-buy secondary">Kup bilet</a>
-              
-            </div>
-          </div>
+    
+    
+      <div class="clean-market-notice">
+        Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+      </div>
+    
 
-          
-        </div>
-      
-        
-        
-        <div class="offer-box ">
-          <div class="offer-main-row">
-            <div class="offer-info-col">
-              <div class="offer-provider-line">
-                <span class="offer-provider-name">Cavatina Hall</span>
-                
-                  <span class="offer-tag official">Oficjalna kasa</span>
-                
-                
-                  <span class="offer-tag best-price">Oficjalna kasa</span>
-                
-              </div>
-              <div class="offer-price-val">Sprawdź dostępność</div>
-            </div>
-            <div>
-              
-                <a href="https://cavatinahall.pl/events/anita-lipnicka-trasa-jubileuszowa-wszystko-sie-moze-zdarzyc/" target="_blank" rel="nofollow noopener" class="offer-btn-buy secondary">Kup bilet</a>
-              
-            </div>
-          </div>
-
-          
-        </div>
-      
-    </div>
+  
   
 </div>
-    ﻿
+    
 <div class="card">
   <h2>Dostępność i obiekt</h2>
   <div class="info-grid">
@@ -360,7 +1156,7 @@
   </div>
 </div>
 
-    ﻿
+    
 <div class="card">
   <h2>W okolicy (Gastro)</h2>
   <div class="gastro-list">
@@ -390,25 +1186,21 @@
     </div>
     <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda miejska</span></div>
   </footer>
-  <script>
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('corobicw-theme', next);
-      updateToggleBtn(next);
-    }
-    function updateToggleBtn(theme) {
-      const icon = document.getElementById('themeIcon');
-      const label = document.getElementById('themeLabel');
-      if (icon && label) {
-        if (theme === 'dark') { icon.textContent = '☀️'; label.textContent = 'Jasny'; } 
-        else { icon.textContent = '🌙'; label.textContent = 'Ciemny'; }
+  
+    <script>
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.setAttribute('aria-checked', next === 'dark');
       }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      updateToggleBtn(document.documentElement.getAttribute('data-theme'));
-    });
-  </script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.setAttribute('aria-checked', current === 'dark');
+      });
+    </script>
 </body>
 </html>

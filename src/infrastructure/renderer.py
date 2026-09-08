@@ -120,9 +120,58 @@ def _process_event_description_to_html(ev: Any) -> str:
 
     return "".join(html_parts)
 
+
+
+def format_ticket_price(raw_price: Any) -> str:
+    """
+    Systemowe formatowanie cen do kafla biletowego:
+    - Usuwa .00 / ,00 dla kwot całkowitych (137.00 zł -> 137 zł, Od 137.00 zł -> Od 137 zł).
+    - Zachowuje grosze (137.50 zł -> 137,50 zł).
+    - Mapuje statusy techniczne na 'Dostępność'.
+    - Zachowuje prefiks 'Od'.
+    """
+    if not raw_price:
+        return "Dostępność"
+
+    raw = ""
+    if isinstance(raw_price, dict):
+        raw = str(raw_price.get("price") or raw_price.get("raw_price") or "").strip()
+    elif hasattr(raw_price, "price"):
+        raw = str(getattr(raw_price, "price") or getattr(raw_price, "raw_price", "") or "").strip()
+    else:
+        raw = str(raw_price).strip()
+
+    raw_lower = raw.lower()
+
+    if "odwo" in raw_lower or "cancel" in raw_lower:
+        return "Odwołane"
+
+    if any(w in raw_lower for w in ["sprawd", "dost", "kasa", "brak", "płatne", "platne", "rezerw"]):
+        return "Dostępność"
+
+    if any(w in raw_lower for w in ["wolny", "bezpłat", "za darmo", "gratis"]) or raw in ["0 zł", "0,00 zł", "0.00 zł"]:
+        return "Wstęp wolny"
+
+    has_od = "od" in raw_lower
+
+    match = re.search(r"(\d+(?:[\.,]\d+)?)", raw)
+    if match:
+        num_str = match.group(1).replace(",", ".")
+        try:
+            val = float(num_str)
+            if val.is_integer():
+                formatted_num = f"{int(val)} zł"
+            else:
+                formatted_num = f"{val:.2f}".replace(".", ",") + " zł"
+            return f"Od {formatted_num}" if has_od else formatted_num
+        except ValueError:
+            pass
+
+    return raw
 class HTMLRenderer:
     def __init__(self, template_dir: str = "templates"):
         self.env = Environment(loader=FileSystemLoader(template_dir), auto_reload=False)
+        self.env.filters['format_ticket_price'] = format_ticket_price
         self._assets_synced = False
 
     def _sync_assets(self, output_dir: str):
