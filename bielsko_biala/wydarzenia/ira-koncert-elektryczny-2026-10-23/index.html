@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IRA – Koncert Elektryczny - Bielsko-Biała | CoRobićW</title>
+  <title>Ira - Koncert Elektryczny - Bielsko-Biała | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -261,16 +261,7 @@ html {
 
   
     
-    .container-grid {
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 32px;
-      align-items: start !important;
-      max-width: 1140px;
-      margin: 20px auto 40px;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
+    
     .main-content {
       min-width: 0; /* blokuje rozpychanie grida przez szerokie elementy */
     }
@@ -317,16 +308,7 @@ html {
 
   
     /* --- ZWARTY STOS SIDEBARA (BILETY + OBIEKT + GASTRO) --- */
-    .container-grid {
-      display: grid !important;
-      grid-template-columns: 1fr 380px !important;
-      gap: 32px !important;
-      align-items: start !important;
-      max-width: 1140px;
-      margin: 20px auto 40px;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
+    
     .main-content {
       min-width: 0;
     }
@@ -791,12 +773,40 @@ html {
       padding: 0 4px;
     }
 
+  
+    .container-grid {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 380px !important;
+      gap: 32px !important;
+      align-items: start !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+    
+  
+    /* --- ZUNIFIKOWANY SIDEBAR I INFO-GRID (WSP?LNY DLA EVENT I PLACE) --- */
+    .sidebar { display: flex !important; flex-direction: column !important; gap: 24px !important; }
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; border-radius: 6px; box-sizing: border-box; }
+    .sidebar h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px; font-weight: 800; margin-top: 0; }
+    
+    .info-grid { display: grid; grid-template-columns: minmax(85px, auto) 1fr; gap: 16px 14px; align-items: baseline; }
+    .info-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; }
+    .info-val { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .info-val a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    .info-val a:hover { color: var(--accent-blue); }
+    .info-val .address { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; display: block; margin-top: 4px; }
+    .info-val.is-yes { color: var(--accent-green); }
+    .info-val.is-neutral { color: var(--text); font-weight: 500; }
+    
   </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="IRA – Koncert Elektryczny | CoRobićW Bielsko-Biała">
+  <meta property="og:title" content="Ira - Koncert Elektryczny | CoRobićW Bielsko-Biała">
   <meta property="og:description" content="🔥 Legenda polskiego rocka wraca na scenę! IRA to energia, emocje i hity, które poruszają serca fanów mocnych riffów i rockowych ballad 🎸❤️ Nie przegap koncertu pełnego ognia i nost">
   <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_bielsko_biala_ira-koncert-elektryczny.webp">
   <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/ira-koncert-elektryczny-2026-10-23/">
@@ -805,7 +815,7 @@ html {
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "IRA \u2013 Koncert Elektryczny",
+    "name": "Ira - Koncert Elektryczny",
     "startDate": "2026-10-23T19:00",
     "endDate": "2026-10-23",
     "location": {
@@ -854,25 +864,25 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">IRA – Koncert Elektryczny</span>
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">Ira - Koncert Elektryczny</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - IRA – Koncert Elektryczny"></div>
+  <div class="ambient-shield" title="CoRobićW - Ira - Koncert Elektryczny"></div>
   <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_bielsko_biala_ira-koncert-elektryczny.webp');"></div>
-  <img src="/assets/thumbnails/biletyna_bielsko_biala_ira-koncert-elektryczny.webp" alt="Plakat: IRA – Koncert Elektryczny" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <img src="/assets/thumbnails/biletyna_bielsko_biala_ira-koncert-elektryczny.webp" alt="Plakat: Ira - Koncert Elektryczny" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
   <div><span class="badge">Kultura i Rozrywka</span></div>
-  <h1>IRA – Koncert Elektryczny</h1>
+  <h1>Ira - Koncert Elektryczny</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=IRA%20%E2%80%93%20Koncert%20Elektryczny&details=%F0%9F%94%A5%20Legenda%20polskiego%20rocka%20wraca%20na%20scen%C4%99%21%20IRA%20to%20energia%2C%20emocje%20i%20hity%2C%20kt%C3%B3re%20poruszaj%C4%85%20serca%20fan%C3%B3w%20mocnych%20riff%C3%B3w%20i%20rockowych%20ballad%20%F0%9F%8E%B8%E2%9D%A4%EF%B8%8F%20Nie..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=IRA%20%E2%80%93%20Koncert%20Elektryczny%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/ira-koncert-elektryczny-2026-10-23/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Ira%20-%20Koncert%20Elektryczny&details=%F0%9F%94%A5%20Legenda%20polskiego%20rocka%20wraca%20na%20scen%C4%99%21%20IRA%20to%20energia%2C%20emocje%20i%20hity%2C%20kt%C3%B3re%20poruszaj%C4%85%20serca%20fan%C3%B3w%20mocnych%20riff%C3%B3w%20i%20rockowych%20ballad%20%F0%9F%8E%B8%E2%9D%A4%EF%B8%8F%20Nie..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=Ira%20-%20Koncert%20Elektryczny%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/ira-koncert-elektryczny-2026-10-23/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
@@ -902,11 +912,6 @@ html {
       
     
   
-    
-    
-      
-    
-  
 
   
     <div class="clean-market-stack">
@@ -930,34 +935,6 @@ html {
               <div class="clean-market-right">
                 
                   <span class="clean-market-price">Od 179.48 zł</span>
-                
-                <span class="clean-market-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-          
-
-          
-        </div>
-      
-        
-        
-        
-        
-
-        <div class="clean-market-card ">
-          
-            <a href="https://cavatinahall.pl/events/ira-koncert-elektryczny-2/" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Cavatina Hall - sprawdź dostępność">
-              <div class="clean-market-left">
-                <span class="clean-market-name">Cavatina Hall</span>
-                <span class="clean-market-sub">
-                  
-                    Oficjalna kasa obiektu
-                  
-                </span>
-              </div>
-              <div class="clean-market-right">
-                
-                  <span class="clean-market-status">Dostępność</span>
                 
                 <span class="clean-market-arrow" aria-hidden="true">↗</span>
               </div>

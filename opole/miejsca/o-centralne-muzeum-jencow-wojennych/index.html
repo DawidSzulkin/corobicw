@@ -12,48 +12,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Centralne Muzeum Jeńców Wojennych | Opole - CoRobićW</title>
-  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Centralne Muzeum Jeńców Wojennych w Opole.">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  
-  
-
   <style>
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+}
+
 html {
   overflow-y: scroll;
   scrollbar-gutter: stable;
 }
 
-    :root[data-theme="dark"] {
-      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
-      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
-      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
-      --badge-bg: #000000; --badge-text: #ffffff;
-      --accent-blue: #38bdf8; --accent-blue-bg: rgba(56, 189, 248, 0.12);
-      --accent-green: #34d399; --accent-green-bg: rgba(52, 211, 153, 0.12);
-      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
+    :root {
+      --bg: #0c0e12;
+      --card-bg: #15181e;
+      --card-hover: #1b1f27;
+      --border: #282f3d;
+      --border-strong: #3b4559;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-green: #34d399;
+      --btn-primary-bg: #ffffff;
+      --btn-primary-text: #000000;
+      --free-bg: rgba(52, 211, 153, 0.08);
+      --free-border: rgba(52, 211, 153, 0.35);
     }
-    :root[data-theme="light"] {
-      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
-      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
-      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
-      --badge-bg: #09090b; --badge-text: #ffffff;
-      --accent-blue: #0284c7; --accent-blue-bg: rgba(2, 132, 199, 0.12);
-      --accent-green: #059669; --accent-green-bg: rgba(5, 150, 105, 0.12);
-      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --accent-blue: #0284c7;
+      --accent-green: #059669;
+      --btn-primary-bg: #0f172a;
+      --btn-primary-text: #ffffff;
+      --free-bg: rgba(5, 150, 105, 0.06);
+      --free-border: rgba(5, 150, 105, 0.25);
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
-    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.6;
-       display: flex; flex-direction: column; min-height: 100vh;
-      -webkit-font-smoothing: antialiased; font-size: 16px;
-    }
-
-    /* HEADER & BRANDING */
-    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    
     .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
     .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
     .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
@@ -64,87 +83,112 @@ html {
     .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
     .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
     .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
-
-    /* LAYOUT & MAIN */
     main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
-    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; white-space: nowrap; overflow: hidden; }
     .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
     .breadcrumbs a:hover { color: var(--text); }
-    .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 480px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    .container-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 32px; align-items: start; }
+    .breadcrumbs span:not(.current) { color: var(--text-muted); opacity: 0.6; }
+    .breadcrumbs .current { color: var(--text); font-weight: 700; overflow: hidden; text-overflow: ellipsis; max-width: 520px; }
     @media (max-width: 960px) {
-      .container-grid { display: flex; flex-direction: column; }
-      .sidebar { order: 2; width: 100%; }
-      .main-content { order: 1; width: 100%; }
-      .btn-nav { display: none; }
+      main { padding: 0 15px; margin: 16px auto 40px; }
+      .breadcrumbs .current { max-width: 220px; }
     }
-
-    /* LEWA KOLUMNA: TREŚĆ OBIEKTU */
-    .main-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 32px; }
-    .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-radius: 4px; }
-    h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 8px; }
-    .place-address { color: var(--text-muted); font-size: 1rem; margin-bottom: 24px; display: flex; align-items: center; gap: 6px; }
-    
-    #map { height: 340px; width: 100%; border: 1px solid var(--border); border-radius: 6px; margin-top: 12px; margin-bottom: 32px; z-index: 1; }
-
-    /* SEKCJA NADCHODZĄCYCH WYDARZEŃ */
-    .events-section-title { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 18px; font-weight: 900; color: var(--text); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 28px; }
-    .events-count { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
-    
-    .event-card-mini {
-      display: flex;
-      gap: 16px;
-      padding: 14px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      border-radius: 6px;
-      text-decoration: none;
-      color: inherit;
-      align-items: center;
-      margin-bottom: 12px;
-      transition: border-color 0.2s, background 0.2s, transform 0.2s;
-    }
-    .event-card-mini:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(3px); }
-    .event-card-mini.cancelled { opacity: 0.72; border-color: rgba(239, 68, 68, 0.4); }
-    
-    .event-thumb-mini { width: 110px; height: 80px; object-fit: cover; background: #000; border-radius: 4px; flex-shrink: 0; }
-    .event-info-mini { flex: 1; min-width: 0; }
-    .event-meta-mini { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-    .event-title-mini { margin: 2px 0 6px; font-size: 1.05rem; font-weight: 800; color: var(--text); line-height: 1.3; }
-    .event-price-mini { font-size: 0.82rem; font-weight: 800; color: var(--accent-green); }
-    .badge-cancelled-mini { color: #f87171; font-weight: 800; font-size: 0.75rem; background: rgba(239, 68, 68, 0.15); padding: 2px 6px; border-radius: 2px; }
-
-    /* PRAWA KOLUMNA: SIDEBAR LOGISTYKI */
-    .sidebar { display: flex; flex-direction: column; gap: 24px; }
-    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 22px; border-radius: 6px; }
-    .sidebar h3 { font-size: 0.88rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; font-weight: 900; }
-    .info-row { display: flex; margin-bottom: 14px; font-size: 0.9rem; align-items: baseline; }
-    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
-    .info-val { width: 65%; font-weight: 600; color: var(--text); }
-
-    /* LEAFLET DARK LOOK */
-    .leaflet-tile { filter: brightness(0.65) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important; }
-    [data-theme="light"] .leaflet-tile { filter: none !important; }
-    .leaflet-container { background-color: var(--bg) !important; }
-    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-      background: var(--card-bg) !important;
-      color: var(--text) !important;
-      border: 1px solid var(--border) !important;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
-    }
-    .leaflet-popup-content b { color: var(--accent-blue) !important; }
-    .leaflet-control-zoom a { background-color: var(--card-bg) !important; color: var(--text) !important; border-color: var(--border) !important; }
-
-    /* FOOTER */
     footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
     .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
     .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 10px; }
     .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
-    .footer-col ul a:hover { color: var(--text); }
     .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
+    
+  .main-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 32px; overflow: hidden; min-width: 0; }
+  .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-radius: 4px; }
+  h1 { font-size: 2.1rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .place-address { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+  .place-address svg { flex-shrink: 0; color: var(--text-muted); }
+
+  #map {
+    height: 360px;
+    width: calc(100% + 64px) !important;
+    margin: 20px -32px 28px -32px !important;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+    z-index: 1;
+  }
+
+  .events-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 26px;
+    margin-bottom: 18px;
+  }
+  .events-section-title {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 900;
+    color: var(--text);
+    margin: 0;
+  }
+  .events-count-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 9999px;
+    line-height: 1.2;
+  }
+
+  .event-card-mini {
+    display: flex;
+    gap: 16px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .event-card-mini:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(3px); }
+  .event-card-mini.cancelled { opacity: 0.72; border-color: rgba(239, 68, 68, 0.4); }
+
+  .event-thumb-mini { width: 110px; height: 80px; object-fit: cover; background: #000; border-radius: 4px; flex-shrink: 0; }
+  .event-info-mini { flex: 1; min-width: 0; }
+  .event-meta-mini { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .event-title-mini { margin: 2px 0 6px; font-size: 1.05rem; font-weight: 800; color: var(--text); line-height: 1.3; }
+  .event-price-mini { font-size: 0.82rem; font-weight: 800; color: var(--accent-green); }
+  .badge-cancelled-mini { color: #f87171; font-weight: 800; font-size: 0.75rem; background: rgba(239, 68, 68, 0.15); padding: 2px 6px; border-radius: 2px; }
+
+  /* LEAFLET DARK LOOK & ATTRYBUCJA */
+  .leaflet-tile { filter: brightness(0.65) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important; }
+  [data-theme="light"] .leaflet-tile { filter: none !important; }
+  .leaflet-container { background-color: var(--bg) !important; }
+  .leaflet-control-attribution {
+    background: rgba(9, 9, 11, 0.75) !important;
+    color: var(--text-muted) !important;
+    font-size: 0.65rem !important;
+    backdrop-filter: blur(4px);
+  }
+  .leaflet-control-attribution a { color: var(--text-muted) !important; }
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: var(--card-bg) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+  }
+  .leaflet-popup-content b { color: var(--accent-blue) !important; }
+  .leaflet-control-zoom a { background-color: var(--card-bg) !important; color: var(--text) !important; border-color: var(--border) !important; }
+
   
     /* --- SYSTEMOWY PRZEŁĄCZNIK MOTYWU (PILL SWITCH) --- */
     .theme-switch {
@@ -213,16 +257,573 @@ html {
       color: #38bdf8;
     }
 
+  
+    
+    .container-grid {
+      display: grid;
+      align-items: start !important;
+    }
+    .sidebar {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    .sidebar > .card:first-child {
+      margin-top: 0 !important;
+    }
+    .sidebar > .card:first-child h2 {
+      margin-top: 0 !important;
+    }
+
+  
+    
+    
+    .main-content {
+      min-width: 0; /* blokuje rozpychanie grida przez szerokie elementy */
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      height: auto !important;
+      min-height: 0 !important;
+      justify-content: flex-start !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > .card {
+      margin: 0 !important; /* likwiduje sztuczne odstępy między klockami */
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* DESKTOP: Cały kompaktowy stos jedzie równo z długim opisem */
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    /* TABLET / MOBILE: Płynne przejście w jedną kolumnę */
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .sidebar > .card {
+        border-radius: 8px;
+      }
+    }
+
+  
+    /* --- ZWARTY STOS SIDEBARA (BILETY + OBIEKT + GASTRO) --- */
+    
+    .main-content {
+      min-width: 0;
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-self: start !important;
+      gap: 16px !important;
+      height: fit-content !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > * {
+      margin: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+      }
+    }
+
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 10px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-price.is-text {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: normal;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 6px;
+    }
+    .market-row-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 12px 0;
+    }
+    .market-row-item:first-child {
+      padding-top: 2px;
+    }
+    .market-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .market-provider {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+      flex: 1;
+    }
+    .market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      line-height: 1.25;
+      white-space: normal !important; /* BRAK UCINANIA NAZWY DOSTAWCY */
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+    .market-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .market-tag.best-price {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .market-tag.official {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .market-tag.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .market-pricing {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .market-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+    .market-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .market-btn.primary {
+      background: #ffffff;
+      color: #09090b;
+    }
+    .market-btn.primary:hover {
+      opacity: 0.9;
+    }
+    .market-btn.secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .market-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .market-discounts-drawer details {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+    .market-discounts-drawer summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .market-discounts-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-discounts-drawer ul {
+      margin-top: 6px;
+      list-style: none;
+      padding: 0;
+    }
+    .market-discounts-drawer li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+  
+    
+
+  
+    /* --- OPCJA 1: SYMETRYCZNE KAFLE RYNKOWE (BEZ DARK PATTERNS) --- */
+    .clean-market-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 8px;
+    }
+    .clean-market-card {
+      border: 1px solid var(--border, #1f2937);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+      overflow: hidden;
+    }
+    .clean-market-card:hover:not(.is-cancelled) {
+      border-color: #374151;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .clean-market-card.is-cancelled {
+      opacity: 0.55;
+      border-color: rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.02);
+    }
+    .clean-market-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: var(--text, #f9fafb);
+      gap: 12px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .clean-market-tile.disabled {
+      cursor: not-allowed;
+    }
+    .clean-market-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .clean-market-name {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-sub.status-cancelled {
+      color: #f87171;
+    }
+    .clean-market-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .clean-market-price {
+      font-size: 1.05rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+    }
+    .clean-market-status {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-arrow {
+      font-size: 0.85rem;
+      color: var(--text-muted, #9ca3af);
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+    .clean-market-tile:hover .clean-market-arrow {
+      color: #ffffff;
+      transform: translate(2px, -2px);
+    }
+
+    /* Subtelny pasek ulg powiązany z kaflem */
+    .clean-market-discounts {
+      border-top: 1px dashed rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.15);
+      padding: 6px 14px;
+    }
+    .clean-market-discounts details {
+      font-size: 0.72rem;
+      color: var(--text-muted, #9ca3af);
+    }
+    .clean-market-discounts summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .clean-market-discounts summary::-webkit-details-marker {
+      display: none;
+    }
+    .clean-market-discounts summary:hover {
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts ul {
+      margin: 6px 0 2px 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .clean-market-discounts li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text, #f9fafb);
+    }
+    .clean-market-discounts .discount-val {
+      color: var(--accent-green, #4ade80);
+      font-weight: 700;
+    }
+
+    /* Notka prawna UOKiK / DSA */
+    .clean-market-notice {
+      font-size: 0.65rem;
+      color: rgba(156, 163, 175, 0.7);
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.35;
+      padding: 0 4px;
+    }
+
+  
+    .container-grid {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 380px !important;
+      gap: 32px !important;
+      align-items: start !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+    
+  
+    /* --- ZUNIFIKOWANY SIDEBAR I INFO-GRID (WSP?LNY DLA EVENT I PLACE) --- */
+    .sidebar { display: flex !important; flex-direction: column !important; gap: 24px !important; }
+    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; border-radius: 6px; box-sizing: border-box; }
+    .sidebar h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px; font-weight: 800; margin-top: 0; }
+    
+    .info-grid { display: grid; grid-template-columns: minmax(85px, auto) 1fr; gap: 16px 14px; align-items: baseline; }
+    .info-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; }
+    .info-val { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .info-val a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    .info-val a:hover { color: var(--accent-blue); }
+    .info-val .address { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; display: block; margin-top: 4px; }
+    .info-val.is-yes { color: var(--accent-green); }
+    .info-val.is-neutral { color: var(--text); font-weight: 500; }
+    
   </style>
+  
+  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Centralne Muzeum Jeńców Wojennych w Opole.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
 </head>
 <body>
-  
-  
-  
-  
-  
-  
-
   <header>
     <div class="nav-container">
       <a href="/opole/" class="brand">CoRobićW <span>Opole</span></a>
@@ -238,101 +839,106 @@ html {
             <span class="switch-thumb"></span>
           </span>
         </button>
+        
         <a href="/opole/" class="btn-nav">&larr; Wróć do agendy</a>
+        
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
       </div>
     </div>
   </header>
-  
   <main>
-    <nav class="breadcrumbs">
-      <a href="/">Polska</a><span>/</span><a href="/opole/">Opole</a><span>/</span><span class="current">Centralne Muzeum Jeńców Wojennych</span>
-    </nav>
     
-    <div class="container-grid">
-      <article class="main-content">
-        <span class="badge">museum</span>
-        <h1>Centralne Muzeum Jeńców Wojennych</h1>
-        <p class="place-address">
-          <span>📍</span>
-          <span>ul. Minorytów 3, Opole</span>
-        </p>
-        
-        
-          <div id="map"></div>
-        
+<nav class="breadcrumbs" aria-label="Ścieżka powrotu">
+  <a href="/">Polska</a><span>/</span><a href="/opole/">Opole</a><span>/</span><span class="current">Centralne Muzeum Jeńców Wojennych</span>
+</nav>
 
-        <div class="events-section-title">
-          <span>Nadchodzące wydarzenia w tym miejscu</span>
-          <span class="events-count">0</span>
-        </div>
+    
 
-        
-          <p style="color: var(--text-muted); font-style: italic; padding: 12px 0;">Brak zaplanowanych wydarzeń w najbliższym czasie.</p>
-        
-      </article>
 
-      <aside class="sidebar">
-        <div class="card">
-          <h3>Logistyka i Dojazd</h3>
-          <div class="info-row">
-            <div class="info-label">Adres</div>
-            <div class="info-val">ul. Minorytów 3</div>
-          </div>
-          <div class="info-row">
-            <div class="info-label">Parking</div>
-            <div class="info-val">
-              
-                Płatny parking (27m)
-              
-            </div>
-          </div>
-          <div class="info-row">
-            <div class="info-label">Dostępność</div>
-            <div class="info-val">
-              Brak danych
-              
-            </div>
-          </div>
-        </div>
-      </aside>
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="container-grid">
+  <article class="main-content">
+    <span class="badge">Galeria / Muzeum</span>
+    <h1>Centralne Muzeum Jeńców Wojennych</h1>
+    <p class="place-address">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      <span>ul. Minorytów 3, Opole</span>
+    </p>
+
+    
+      <div id="map"></div>
+    
+
+    <div class="events-section-header">
+      <h2 class="events-section-title">Nadchodzące wydarzenia w tym miejscu</h2>
+      <span class="events-count-badge">0</span>
     </div>
-  </main>
 
+    
+      <p style="color: var(--text-muted); font-style: italic; padding: 12px 0;">Brak zaplanowanych wydarzeń w najbliższym czasie.</p>
+    
+  </article>
+
+  <aside class="sidebar">
+    <div class="card">
+      <h2>Logistyka i Dojazd</h2>
+      <div class="info-grid">
+        <div class="info-label">Adres</div>
+        <div class="info-val">ul. Minorytów 3</div>
+
+        <div class="info-label">Parking</div>
+        <div class="info-val">
+          
+            Płatny parking (27m)
+          
+        </div>
+
+        <div class="info-label">Dostępność</div>
+        <div class="info-val">
+          Brak danych
+          
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const lat = 50.6668616; const lon = 17.9219053;
+    if (typeof L !== 'undefined' && document.getElementById('map')) {
+      const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lon], 15);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap'
+      }).addTo(map);
+      L.marker([lat, lon]).addTo(map).bindPopup("<b>Centralne Muzeum Jeńców Wojennych</b>").openPopup();
+    }
+  });
+</script>
+
+
+  </main>
   <footer>
     <div class="footer-inner">
-      <div class="footer-col">
-        <h4>CoRobićW Opole</h4>
-        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny harmonogram wydarzeń miejskich. Wszystkie wydarzenia pobierane bezpośrednio ze scen i galerii.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li><li><a href="#">Współpraca lokalna</a></li></ul>
-      </div>
-      <div class="footer-col">
-        <h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
-      </div>
+      <div class="footer-col"><h4>CoRobićW Opole</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>Scena</h4><ul><li><a href="mailto:kontakt@corobicw.pl">Dodaj wydarzenie</a></li></ul></div>
+      <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
     </div>
-    <div class="footer-copy">
-      <span>&copy; 2026 CoRobićW.</span><span>Obiekt: Centralne Muzeum Jeńców Wojennych (Opole)</span>
-    </div>
+    <div class="footer-copy"><span>&copy; 2026 CoRobićW</span><span>Agenda miejska</span></div>
   </footer>
-  
-  
-
-  
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const lat = 50.6668616; const lon = 17.9219053;
-      const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lon], 15);
-      
-      const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-      }).addTo(map);
-
-      L.marker([lat, lon]).addTo(map).bindPopup("<b>Centralne Muzeum Jeńców Wojennych</b>").openPopup();
-    });
-  </script>
   
     <script>
       function toggleTheme() {
