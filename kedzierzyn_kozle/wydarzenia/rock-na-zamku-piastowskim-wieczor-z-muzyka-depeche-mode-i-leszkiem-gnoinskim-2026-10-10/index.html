@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Znajdź X - komedia niewiadoma - Opole | CoRobićW</title>
+  <title>Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim - Kędzierzyn-Koźle | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -635,11 +635,11 @@ html {
     
 
   
-    /* --- OPCJA 1: SYMETRYCZNE KAFLE RYNKOWE (BEZ DARK PATTERNS) --- */
+    /* --- OPCJA 2: KAFLE RYNKOWE Z KAPSUŁKĄ, BANER WSTĘP WOLNY I ODWOŁANE --- */
     .clean-market-stack {
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 8px;
       margin-top: 8px;
     }
     .clean-market-card {
@@ -654,20 +654,21 @@ html {
       background: rgba(255, 255, 255, 0.05);
     }
     .clean-market-card.is-cancelled {
-      opacity: 0.55;
-      border-color: rgba(239, 68, 68, 0.3);
+      opacity: 0.6;
+      border-color: rgba(239, 68, 68, 0.25);
       background: rgba(239, 68, 68, 0.02);
     }
     .clean-market-tile {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 14px;
+      padding: 10px 14px;
       text-decoration: none;
       color: var(--text, #f9fafb);
       gap: 12px;
       width: 100%;
       box-sizing: border-box;
+      min-height: 52px;
     }
     .clean-market-tile.disabled {
       cursor: not-allowed;
@@ -675,8 +676,10 @@ html {
     .clean-market-left {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 2px;
       min-width: 0;
+      flex: 1;
     }
     .clean-market-name {
       font-size: 0.82rem;
@@ -685,43 +688,146 @@ html {
       letter-spacing: 0.03em;
       line-height: 1.25;
       color: var(--text, #f9fafb);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .clean-market-sub {
       font-size: 0.68rem;
       color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .clean-market-sub.status-cancelled {
-      color: #f87171;
-    }
-    .clean-market-right {
-      display: flex;
+
+    /* Kapsułka cenowa (Wariant 2) */
+    .v2-pill {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      padding: 5px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 6px;
+      transition: all 0.15s ease;
       flex-shrink: 0;
     }
-    .clean-market-price {
-      font-size: 1.05rem;
+    .clean-market-card:hover .v2-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+    .v2-pill.is-free {
+      background: rgba(74, 222, 128, 0.08);
+      border-color: rgba(74, 222, 128, 0.25);
+    }
+    .v2-pill.is-cancelled {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+    .v2-price {
+      font-size: 0.95rem;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
       color: #ffffff;
       letter-spacing: -0.2px;
+      line-height: 1;
     }
-    .clean-market-status {
+    .v2-status {
       font-size: 0.78rem;
       font-weight: 700;
       color: var(--text-muted, #9ca3af);
+      line-height: 1;
     }
-    .clean-market-arrow {
-      font-size: 0.85rem;
+    .v2-pill.is-free .v2-status {
+      color: var(--accent-green, #4ade80);
+    }
+    .v2-pill.is-cancelled .v2-status {
+      color: #f87171;
+    }
+    .v2-arrow {
+      font-size: 0.78rem;
       color: var(--text-muted, #9ca3af);
       transition: transform 0.15s ease, color 0.15s ease;
+      line-height: 1;
     }
-    .clean-market-tile:hover .clean-market-arrow {
+    .clean-market-card:hover .v2-arrow {
       color: #ffffff;
       transform: translate(2px, -2px);
     }
 
-    /* Subtelny pasek ulg powiązany z kaflem */
+    /* Baner bezpłatnego wstępu */
+    .free-entry-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(74, 222, 128, 0.06);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .free-entry-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .free-entry-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent-green, #4ade80);
+      line-height: 1.2;
+    }
+    .free-entry-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .free-entry-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    /* Baner odwołanego wydarzenia */
+    .cancelled-event-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .cancelled-event-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cancelled-event-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #f87171;
+      line-height: 1.2;
+    }
+    .cancelled-event-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .cancelled-event-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
     .clean-market-discounts {
       border-top: 1px dashed rgba(255, 255, 255, 0.06);
       background: rgba(0, 0, 0, 0.15);
@@ -762,8 +868,6 @@ html {
       color: var(--accent-green, #4ade80);
       font-weight: 700;
     }
-
-    /* Notka prawna UOKiK / DSA */
     .clean-market-notice {
       font-size: 0.65rem;
       color: rgba(156, 163, 175, 0.7);
@@ -801,38 +905,39 @@ html {
     .info-val.is-yes { color: var(--accent-green); }
     .info-val.is-neutral { color: var(--text); font-weight: 500; }
     
-  </style>
+  
+    </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Znajdź X - komedia niewiadoma | CoRobićW Opole">
-  <meta property="og:description" content="Wydarzenie: Znajdź X - komedia niewiadoma. Miejsce: Vinoteka Opole, Opole. Bilety dostępne online na KupBilecik.pl.">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/kupbilecik_opole_znajdz-x-komedia-niewiadoma.webp">
-  <meta property="og:url" content="https://corobicw.pl/opole/wydarzenia/znajdz-x-komedia-niewiadoma-2026-09-08/">
+  <meta property="og:title" content="Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim | CoRobićW Kędzierzyn-Koźle">
+  <meta property="og:description" content="Muzyka, historia i opowieści o jednym z najważniejszych zespołów ostatnich dekad spotkają się na scenie Domu Książęcego Zamku Piastowskiego. Bohaterem wieczoru będzie Depeche Mode">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim.webp">
+  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim-2026-10-10/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Znajd\u017a X - komedia niewiadoma",
-    "startDate": "2026-09-08T19:30",
-    "endDate": "2026-09-08",
+    "name": "Rock na Zamku Piastowskim. Wiecz\u00f3r z muzyk\u0105 Depeche Mode i Leszkiem Gnoi\u0144skim",
+    "startDate": "2026-10-10T19:00",
+    "endDate": "2026-10-10",
     "location": {
       "@type": "Place",
-      "name": "Vinoteka Opole",
+      "name": "Zamek Piastowski - Muzeum Ziemi Kozielskiej",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Opole",
+        "addressLocality": "Kędzierzyn-Koźle",
         "addressCountry": "PL",
-        "streetAddress": "Koraszewskiego 7/9, Opole"
+        "streetAddress": "K\u0119dzierzyn-Ko\u017ale"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/kupbilecik_opole_znajdz-x-komedia-niewiadoma.webp"],
-    "description": "Wydarzenie: Znajd\u017a X - komedia niewiadoma. Miejsce: Vinoteka Opole, Opole. Bilety dost\u0119pne online na KupBilecik.pl.",
+    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim.webp"],
+    "description": "Muzyka, historia i opowie\u015bci o jednym z najwa\u017cniejszych zespo\u0142\u00f3w ostatnich dekad spotkaj\u0105 si\u0119 na scenie Domu Ksi\u0105\u017c\u0119cego Zamku Piastowskiego. Bohaterem wieczoru b\u0119dzie Depeche Mode",
     "offers": {
       "@type": "Offer",
-      "url": "https://www.kupbilecik.pl/pl/event/215090/opole/znajdz-x-komedia-niewiadoma"
+      "url": "https://biletyna.pl/koncert/Rock-na-Zamku-Piastowskim-Wieczor-z-muzyka-Depeche-Mode-i-Leszkiem-Gnoinskim"
     }
   }
   </script>
@@ -841,7 +946,7 @@ html {
 <body>
   <header>
     <div class="nav-container">
-      <a href="/opole/" class="brand">CoRobićW <span>Opole</span></a>
+      <a href="/kedzierzyn_kozle/" class="brand">CoRobićW <span>Kędzierzyn-Koźle</span></a>
       <div class="nav-actions">
         <button id="themeToggle" class="theme-switch" type="button" role="switch" aria-label="Przełącz motyw" onclick="toggleTheme()">
           <span class="switch-track">
@@ -855,7 +960,7 @@ html {
           </span>
         </button>
         
-        <a href="/opole/" class="btn-nav">&larr; Wróć do agendy</a>
+        <a href="/kedzierzyn_kozle/" class="btn-nav">&larr; Wróć do agendy</a>
         
         <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
       </div>
@@ -864,30 +969,30 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/opole/">Opole</a><span>/</span><span class="current">Znajdź X - komedia niewiadoma</span>
+      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - Znajdź X - komedia niewiadoma"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/kupbilecik_opole_znajdz-x-komedia-niewiadoma.webp');"></div>
-  <img src="/assets/thumbnails/kupbilecik_opole_znajdz-x-komedia-niewiadoma.webp" alt="Plakat: Znajdź X - komedia niewiadoma" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim.webp');"></div>
+  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim.webp" alt="Plakat: Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
   <div><span class="badge">Kultura i Rozrywka</span></div>
-  <h1>Znajdź X - komedia niewiadoma</h1>
+  <h1>Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Znajd%C5%BA%20X%20-%20komedia%20niewiadoma&details=Wydarzenie%3A%20Znajd%C5%BA%20X%20-%20komedia%20niewiadoma.%20Miejsce%3A%20Vinoteka%20Opole%2C%20Opole.%20Bilety%20dost%C4%99pne%20online%20na%20KupBilecik.pl." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=Znajd%C5%BA%20X%20-%20komedia%20niewiadoma%20-%20https://corobicw.pl/opole/wydarzenia/znajdz-x-komedia-niewiadoma-2026-09-08/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Rock%20na%20Zamku%20Piastowskim.%20Wiecz%C3%B3r%20z%20muzyk%C4%85%20Depeche%20Mode%20i%20Leszkiem%20Gnoi%C5%84skim&details=Muzyka%2C%20historia%20i%20opowie%C5%9Bci%20o%20jednym%20z%20najwa%C5%BCniejszych%20zespo%C5%82%C3%B3w%20ostatnich%20dekad%20spotkaj%C4%85%20si%C4%99%20na%20scenie%20Domu%20Ksi%C4%85%C5%BC%C4%99cego%20Zamku%20Piastowskiego...." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=Rock%20na%20Zamku%20Piastowskim.%20Wiecz%C3%B3r%20z%20muzyk%C4%85%20Depeche%20Mode%20i%20Leszkiem%20Gnoi%C5%84skim%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim-2026-10-10/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>Wydarzenie: Znajdź X - komedia niewiadoma. Miejsce: Vinoteka Opole, Opole. Bilety dostępne online na Kup Bilecik.pl.</p></div>
+  <div class="event-desc"><p>Muzyka, historia i opowieści o jednym z najważniejszych zespołów ostatnich dekad spotkają się na scenie Domu Książęcego Zamku Piastowskiego. Bohaterem wieczoru będzie Depeche Mode – grupa, która od ponad czterdziestu lat inspiruje kolejne pokolenia słuchaczy na całym świecie, a w 2020 roku została wprowadzona do Rock and Roll Hall of Fame.</p><p>Gospodarzem wydarzenia będzie Leszek Gnoiński – dziennikarz muzyczny, autor książek i reżyser filmów dokumentalnych. Szczególne miejsce w jego dorobku zajmuje książka Depeche Mode/Iron Curtain Warsaw 1985, poświęcona legendarnemu koncertowi zespołu w Warszawie.</p><p>Autor z reporterską precyzją odtworzył okoliczności wydarzenia, jego kulisy oraz społeczno-kulturowe tło Polski lat osiemdziesiątych. Najważniejsza będzie jednak muzyka. Na scenie Domu Książęcego zabrzmią przeboje Depeche Mode w nowych, koncertowych interpretacjach, przygotowanych przez utalentowanych muzyków wywodzących się z Wydziału Jazzu i Muzyki Estradowej Akademii Nauk Stosowanych w Nysie.</p><p>To połączenie młodzieńczej energii, muzycznej wrażliwości i szacunku dla twórczości jednego z najważniejszych zespołów ostatnich dekad. Koncert zostanie wzbogacony opowieściami Leszka Gnoińskiego o historii zespołu, jego fenomenie oraz pamiętnym występie w Warszawie w 1985 roku.</p><p>Dzięki połączeniu muzyki wykonywanej na żywo z komentarzem jednego z najlepszych znawców polskiej sceny rockowej publiczność otrzyma nie tylko koncert, ale również wyjątkową podróż przez historię i kulturę, które towarzyszyły narodzinom fenomenu Depeche Mode.</p><p>To propozycja zarówno dla wieloletnich fanów zespołu, jak i dla wszystkich zainteresowanych historią muzyki, która od dekad przekracza granice pokoleń i państw. W cenie biletu: serwis kawowy (kawa, herbata, woda) oraz drobny poczęstunek.</p></div>
 
   
 </div>
@@ -897,10 +1002,10 @@ html {
     <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
-    <div class="info-label">Data</div><div class="info-val">Wtorek, 8 września</div>
-    <div class="info-label">Start</div><div class="info-val">19:30</div>
+    <div class="info-label">Data</div><div class="info-val">Sobota, 10 października</div>
+    <div class="info-label">Start</div><div class="info-val">19:00</div>
     <div class="info-label">Miejsce</div>
-    <div class="info-val"><a href="/opole/miejsca/o-vinoteka-opole/"><strong>Vinoteka Opole</strong></a><span class="address">Koraszewskiego 7/9, Opole</span>
+    <div class="info-val"><a href="/kedzierzyn_kozle/miejsca/kk-zamek-piastowski/"><strong>Zamek Piastowski - Muzeum Ziemi Kozielskiej</strong></a><span class="address">Kędzierzyn-Koźle</span>
     </div>
   </div>
 
@@ -910,9 +1015,13 @@ html {
     
     
       
+      
+        
+      
     
   
 
+  
   
     <div class="clean-market-stack">
       
@@ -920,23 +1029,22 @@ html {
         
         
         
+        
 
         <div class="clean-market-card ">
           
-            <a href="https://www.kupbilecik.pl/pl/event/215090/opole/znajdz-x-komedia-niewiadoma" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w KupBilecik - Od 15 zł">
+            <a href="https://biletyna.pl/koncert/Rock-na-Zamku-Piastowskim-Wieczor-z-muzyka-Depeche-Mode-i-Leszkiem-Gnoinskim" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Biletyna - Od 106,20 zł">
               <div class="clean-market-left">
-                <span class="clean-market-name">KupBilecik</span>
+                <span class="clean-market-name">Biletyna</span>
                 <span class="clean-market-sub">
                   
                     Dystrybutor online
                   
                 </span>
               </div>
-              <div class="clean-market-right">
-                
-                  <span class="clean-market-price">Od 15 zł</span>
-                
-                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              <div class="v2-pill ">
+                <span class="v2-price">Od 106,20 zł</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
               </div>
             </a>
           
@@ -946,26 +1054,44 @@ html {
       
     </div>
 
-    <div class="clean-market-notice">
-      Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
-    </div>
+    
+    
+      <div class="clean-market-notice">
+        Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+      </div>
+    
 
+  
   
 </div>
     
+<div class="card">
+  <h2>Dostępność i obiekt</h2>
+  <div class="info-grid">
+    
+    <div class="info-label">Dostęp dla wózków</div>
+    <div class="info-val is-yes">
+      
+        Tak (winda / podjazd)
+      
+    </div>
+    
+  </div>
+</div>
+
     
 <div class="card">
   <h2>W okolicy (Gastro)</h2>
   <div class="gastro-list">
     
     <div class="gastro-item">
-      <div class="gastro-name">PRLowska PL</div>
-      <div class="gastro-meta">35m stąd (~1 min) &bull; restaurant</div>
+      <div class="gastro-name">Pod Lwami</div>
+      <div class="gastro-meta">89m stąd (~1 min) &bull; pub</div>
     </div>
     
     <div class="gastro-item">
-      <div class="gastro-name">Cellarium</div>
-      <div class="gastro-meta">42m stąd (~1 min) &bull; cafe</div>
+      <div class="gastro-name">Magdalena Zalewska</div>
+      <div class="gastro-meta">101m stąd (~1 min) &bull; cafe</div>
     </div>
     
   </div>
@@ -977,7 +1103,7 @@ html {
   </main>
   <footer>
     <div class="footer-inner">
-      <div class="footer-col"><h4>CoRobićW Opole</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
+      <div class="footer-col"><h4>CoRobićW Kędzierzyn-Koźle</h4><p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny przewodnik kulturalny.</p></div>
       <div class="footer-col"><h4>Scena</h4><ul><li><a href="mailto:kontakt@corobicw.pl">Dodaj wydarzenie</a></li></ul></div>
       <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul></div>
     </div>

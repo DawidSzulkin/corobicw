@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka - Kędzierzyn-Koźle | CoRobićW</title>
+  <title>RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka - Kędzierzyn-Koźle | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -635,11 +635,11 @@ html {
     
 
   
-    /* --- OPCJA 1: SYMETRYCZNE KAFLE RYNKOWE (BEZ DARK PATTERNS) --- */
+    /* --- OPCJA 2: KAFLE RYNKOWE Z KAPSUŁKĄ, BANER WSTĘP WOLNY I ODWOŁANE --- */
     .clean-market-stack {
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 8px;
       margin-top: 8px;
     }
     .clean-market-card {
@@ -654,20 +654,21 @@ html {
       background: rgba(255, 255, 255, 0.05);
     }
     .clean-market-card.is-cancelled {
-      opacity: 0.55;
-      border-color: rgba(239, 68, 68, 0.3);
+      opacity: 0.6;
+      border-color: rgba(239, 68, 68, 0.25);
       background: rgba(239, 68, 68, 0.02);
     }
     .clean-market-tile {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 14px;
+      padding: 10px 14px;
       text-decoration: none;
       color: var(--text, #f9fafb);
       gap: 12px;
       width: 100%;
       box-sizing: border-box;
+      min-height: 52px;
     }
     .clean-market-tile.disabled {
       cursor: not-allowed;
@@ -675,8 +676,10 @@ html {
     .clean-market-left {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 2px;
       min-width: 0;
+      flex: 1;
     }
     .clean-market-name {
       font-size: 0.82rem;
@@ -685,43 +688,146 @@ html {
       letter-spacing: 0.03em;
       line-height: 1.25;
       color: var(--text, #f9fafb);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .clean-market-sub {
       font-size: 0.68rem;
       color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .clean-market-sub.status-cancelled {
-      color: #f87171;
-    }
-    .clean-market-right {
-      display: flex;
+
+    /* Kapsułka cenowa (Wariant 2) */
+    .v2-pill {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      padding: 5px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 6px;
+      transition: all 0.15s ease;
       flex-shrink: 0;
     }
-    .clean-market-price {
-      font-size: 1.05rem;
+    .clean-market-card:hover .v2-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+    .v2-pill.is-free {
+      background: rgba(74, 222, 128, 0.08);
+      border-color: rgba(74, 222, 128, 0.25);
+    }
+    .v2-pill.is-cancelled {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+    .v2-price {
+      font-size: 0.95rem;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
       color: #ffffff;
       letter-spacing: -0.2px;
+      line-height: 1;
     }
-    .clean-market-status {
+    .v2-status {
       font-size: 0.78rem;
       font-weight: 700;
       color: var(--text-muted, #9ca3af);
+      line-height: 1;
     }
-    .clean-market-arrow {
-      font-size: 0.85rem;
+    .v2-pill.is-free .v2-status {
+      color: var(--accent-green, #4ade80);
+    }
+    .v2-pill.is-cancelled .v2-status {
+      color: #f87171;
+    }
+    .v2-arrow {
+      font-size: 0.78rem;
       color: var(--text-muted, #9ca3af);
       transition: transform 0.15s ease, color 0.15s ease;
+      line-height: 1;
     }
-    .clean-market-tile:hover .clean-market-arrow {
+    .clean-market-card:hover .v2-arrow {
       color: #ffffff;
       transform: translate(2px, -2px);
     }
 
-    /* Subtelny pasek ulg powiązany z kaflem */
+    /* Baner bezpłatnego wstępu */
+    .free-entry-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(74, 222, 128, 0.06);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .free-entry-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .free-entry-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent-green, #4ade80);
+      line-height: 1.2;
+    }
+    .free-entry-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .free-entry-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    /* Baner odwołanego wydarzenia */
+    .cancelled-event-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .cancelled-event-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cancelled-event-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #f87171;
+      line-height: 1.2;
+    }
+    .cancelled-event-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .cancelled-event-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
     .clean-market-discounts {
       border-top: 1px dashed rgba(255, 255, 255, 0.06);
       background: rgba(0, 0, 0, 0.15);
@@ -762,8 +868,6 @@ html {
       color: var(--accent-green, #4ade80);
       font-weight: 700;
     }
-
-    /* Notka prawna UOKiK / DSA */
     .clean-market-notice {
       font-size: 0.65rem;
       color: rgba(156, 163, 175, 0.7);
@@ -801,26 +905,27 @@ html {
     .info-val.is-yes { color: var(--accent-green); }
     .info-val.is-neutral { color: var(--text); font-weight: 500; }
     
-  </style>
+  
+    </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Tańczyła charlestona&#39;&#39; - monodram - V Ogólnopolski festiwal Teatralny OFF-ka | CoRobićW Kędzierzyn-Koźle">
-  <meta property="og:description" content="&#34;Tańczyła charlestona&#34; monodram w wykonaniu PAULINY SZCZĘSNEJ Spektakl oparty jest o teatr fizyczny i teatr formy, koncentrujący się na tajemniczym zniknięciu Agathy Christie w 192">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp">
-  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-27/">
+  <meta property="og:title" content="RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka | CoRobićW Kędzierzyn-Koźle">
+  <meta property="og:description" content="RARYTAS - Koncepcja &amp;amp; Muzyka: &#34;Kwartet Wiejski&#34; (Robert i Ewa Wasilewscy, Jacek Hałas i Alicja Choromańska-Hałas) oraz Wolfgang Niklaus &#34;Pinkas chodził ze swej uliczki codzienn">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka.webp">
+  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-25/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Ta\u0144czy\u0142a charlestona\u0027\u0027 - monodram - V Og\u00f3lnopolski festiwal Teatralny OFF-ka",
-    "startDate": "2026-09-27T16:00",
-    "endDate": "2026-09-27",
+    "name": "RARYTAS - spektakl muzyczny - V Og\u00f3lnopolski Festiwal Teatralny OFF-ka",
+    "startDate": "2026-09-25T20:00",
+    "endDate": "2026-09-25",
     "location": {
       "@type": "Place",
-      "name": "Wydarzenie",
+      "name": "Zamek Piastowski - Muzeum Ziemi Kozielskiej",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Kędzierzyn-Koźle",
@@ -828,11 +933,11 @@ html {
         "streetAddress": "K\u0119dzierzyn-Ko\u017ale"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp"],
-    "description": "\"Ta\u0144czy\u0142a charlestona\" monodram w wykonaniu PAULINY SZCZ\u0118SNEJ Spektakl oparty jest o teatr fizyczny i teatr formy, koncentruj\u0105cy si\u0119 na tajemniczym znikni\u0119ciu Agathy Christie w 192",
+    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka.webp"],
+    "description": "RARYTAS - Koncepcja \u0026amp; Muzyka: \"Kwartet Wiejski\" (Robert i Ewa Wasilewscy, Jacek Ha\u0142as i Alicja Choroma\u0144ska-Ha\u0142as) oraz Wolfgang Niklaus \"Pinkas chodzi\u0142 ze swej uliczki codzienn",
     "offers": {
       "@type": "Offer",
-      "url": "https://biletyna.pl/spektakl/Tanczyla-charlestona-monodram-V-Ogolnopolski-festiwal-Teatralny-OFF-ka"
+      "url": "https://biletyna.pl/spektakl/RARYTAS-spektakl-muzyczny-V-Ogolnopolski-Festiwal-Teatralny-OFF-ka"
     }
   }
   </script>
@@ -864,30 +969,30 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka</span>
+      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp');"></div>
-  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka.webp" alt="Plakat: Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka.webp');"></div>
+  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka.webp" alt="Plakat: RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
   <div><span class="badge">Kultura i Rozrywka</span></div>
-  <h1>Tańczyła charlestona'' - monodram - V Ogólnopolski festiwal Teatralny OFF-ka</h1>
+  <h1>RARYTAS - spektakl muzyczny - V Ogólnopolski Festiwal Teatralny OFF-ka</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Ta%C5%84czy%C5%82a%20charlestona%27%27%20-%20monodram%20-%20V%20Og%C3%B3lnopolski%20festiwal%20Teatralny%20OFF-ka&details=%22Ta%C5%84czy%C5%82a%20charlestona%22%20monodram%20w%20wykonaniu%20PAULINY%20SZCZ%C4%98SNEJ%20Spektakl%20oparty%20jest%20o%20teatr%20fizyczny%20i%20teatr%20formy%2C%20koncentruj%C4%85cy%20si%C4%99%20na..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=Ta%C5%84czy%C5%82a%20charlestona%27%27%20-%20monodram%20-%20V%20Og%C3%B3lnopolski%20festiwal%20Teatralny%20OFF-ka%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/tanczyla-charlestona-monodram-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-27/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=RARYTAS%20-%20spektakl%20muzyczny%20-%20V%20Og%C3%B3lnopolski%20Festiwal%20Teatralny%20OFF-ka&details=RARYTAS%20-%20Koncepcja%20%26amp%3B%20Muzyka%3A%20%22Kwartet%20Wiejski%22%20%28Robert%20i%20Ewa%20Wasilewscy%2C%20Jacek%20Ha%C5%82as%20i%20Alicja%20Choroma%C5%84ska-Ha%C5%82as%29%20oraz%20Wolfgang%20Niklaus..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=RARYTAS%20-%20spektakl%20muzyczny%20-%20V%20Og%C3%B3lnopolski%20Festiwal%20Teatralny%20OFF-ka%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/rarytas-spektakl-muzyczny-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-25/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>"Tańczyła charlestona" monodram w wykonaniu PAULINY SZCZĘSNEJ Spektakl oparty jest o teatr fizyczny i teatr formy, koncentrujący się na tajemniczym zniknięciu Agathy Christie w 1926 roku. Przez 11 dni cała Anglia była poruszona jej nagłym zniknięciem, a spektakl ten jest próbą eksploracji możliwych scenariuszy, które mogłyby wyjaśnić, co się z nią działo.</p><p>Stawia on pytanie o to, czy Agatha Christie mogła zaaranżować swoje własne zniknięcie. Oprócz elementu zagadki, spektakl zagłębia się w postać kobiecą Agathy Christie, eksplorując tematy kobiecości oraz wewnętrznej podróży bohaterki.</p><p>Poprzez metaforę "Night sea journey" spektakl dotyka momentów ciemności w życiu, konfrontacji z własnymi lękami i demonami, które, według Carla Junga, są niezbędne dla rozwoju jednostki. Spektakl jest jednocześnie fizyczny, pełen humoru, z elementami tajemnicy i surrealizmu.</p><p>Akcja rozgrywa się w fantasmagorycznej przestrzeni, gdzie główna postać, inspirowana Agathą Christie, spotyka swoje marzenia, demony i lęki, a sen miesza się z jawą. Przedstawienie staje się zatem nie tylko kryminalną zagadką, ale również głęboką introspekcją i refleksją nad ludzką naturą w stanie przejścia.</p><p>Twórcy spektaklu: Paulina Szczęsna – scenariusz, reżyseria, rola aktorska Paweł Paluch – muzyka Jędrzej Skajster – światło, projekcje wideo Alicja Siemko – scenografia Agnieszka Magiera – kostiumy Gavin Glover – wsparcie dramaturgiczne Michal Schmueli – ruch sceniczny</p></div>
+  <div class="event-desc"><p>RARYTAS - Koncepcja &amp;</p><p>* **Muzyka:** "Kwartet Wiejski" (Robert i Ewa Wasilewscy, Jacek Hałas i Alicja Choromańska-Hałas) oraz Wolfgang Niklaus "Pinkas chodził ze swej uliczki codziennie na zamek do dworu pańskiego i z powrotem. Chodził szyć do jaśnie pana grafa. W sobotę chodził aż do końca uliczki - na spacer. (..) Pan graf był dobry pan i zadowolony z Pinkasa. Chwalił go i pożyczał go nawet innym panom. Potem już przestał pożyczać, chciał go mieć tylko dla siebie (..) I można powiedzieć, że byli to przyjacioły, choć jeden pan, a drugi kapcan. Jeden szył pilnie, jak potrzeba - dzień i noc. Drugi chodził, jeździł, tańczył, także pilnie, trzeba czy nie trzeba, dzień i noc" - zaczyna opowieść Stanisław Vincenz, polski prozaik i eseista, miłośnik i znawca Huculszczyzny i Pokucia, a także myśli i sztuki starożytnej Grecji, zwany Huculskim Homerem. Historia Pinkasa, żydowskiego krawca z Huculszczyzny pierwszą odsłonę teatralną miała w 1986 roku jako część spektaklu Teatru Węgajty "Historie Vincenza. O prawdziwym Żydzie, Antychryście i Preoswiaszczennym Metropolicie", w którym artyści wykorzystali opowieści z monumentalnego dzieła Stanisława Vincenza "Na wysokiej Połoninie”. W nowej wersji spektaklu przygotowanej przez zespół Kwartet Wiejski (Jacek Hałas, Alicja Choromańska-Hałas, Robert i Ewa Wasilewscy) oraz Wolfganga Niklausa tę fascynującą i osobliwą historię opowiadamy w trzech częściach, odwołując się również do muzyki i tańca z regionu wschodnich Karpat. W pierwszej części wschodnia Atlantyda zostaje przywołana za pomocą muzyki tamtego regionu. Zapiski z wypraw terenowych pozyskane bezpośrednio od wiejskich muzykantów, oryginalne instrumentarium (cymbały, koboz, vioara cu guarna, siedmiogrodzki gardon, mołdawski tapan, pasterskie flety, akordeon, skrzypce) oraz wybór utworów (huculski arkan, żydowskie dojny, ekstatyczne freilachy, chasydzkie niguny) składają się na wyjątkowy i oryginalny koncert prezentujący najciekawsze formy muzyczne z kulturowego tygla Huculszczyzny. W drugiej części Wolfgang Niklaus przywołuje niemal zapomniana formę domowego teatru lalkowego. Siedząc za stołem opowiada historię zarówno animując postacie, opowiadając i śpiewając - oczywiście z towarzyszeniem żywej muzyki. Po wysłuchaniu opowieści o krawcu Pinkasie, artyści zapraszają publiczność do trzeciej, aktywnej części huculskiego świętowania którą jest krótka potańcówka z archaicznymi korowodami i skocznymi kołomyjkami Wyjątkowym “rarytasem” jest również strona wizualna spektaklu tworzona na żywo w analogowych technikach „ready-made” przez Julię Hałas Rarytas Koncepcja &amp;</p><p>* **Muzyka:** "Kwartet Wiejski" (Robert i Ewa Wasilewscy, Jacek Hałas i Alicja Choromańska-Hałas) oraz Wolfgang Niklaus Historia Pinkasa Opowiada Johann Wolfgang Niklaus /</p><p>* **Reżyseria:** Wacław Sobaszek Lalki: Małgorzata Dżygadło-Niklaus, Tadeusz Piotrowski Prowadzenie tańców: Jacek Hałas Plastyka sceny: Julia Hałas</p></div>
 
   
 </div>
@@ -897,10 +1002,10 @@ html {
     <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
-    <div class="info-label">Data</div><div class="info-val">Niedziela, 27 września</div>
-    <div class="info-label">Start</div><div class="info-val">16:00</div>
+    <div class="info-label">Data</div><div class="info-val">Piątek, 25 września</div>
+    <div class="info-label">Start</div><div class="info-val">20:00</div>
     <div class="info-label">Miejsce</div>
-    <div class="info-val"><strong>Wydarzenie</strong><span class="address">Kędzierzyn-Koźle</span>
+    <div class="info-val"><a href="/kedzierzyn_kozle/miejsca/kk-zamek-piastowski/"><strong>Zamek Piastowski - Muzeum Ziemi Kozielskiej</strong></a><span class="address">Kędzierzyn-Koźle</span>
     </div>
   </div>
 
@@ -910,9 +1015,13 @@ html {
     
     
       
+      
+        
+      
     
   
 
+  
   
     <div class="clean-market-stack">
       
@@ -920,10 +1029,11 @@ html {
         
         
         
+        
 
         <div class="clean-market-card ">
           
-            <a href="https://biletyna.pl/spektakl/Tanczyla-charlestona-monodram-V-Ogolnopolski-festiwal-Teatralny-OFF-ka" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Biletyna - Od 22.24 zł">
+            <a href="https://biletyna.pl/spektakl/RARYTAS-spektakl-muzyczny-V-Ogolnopolski-Festiwal-Teatralny-OFF-ka" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Biletyna - Od 22,24 zł">
               <div class="clean-market-left">
                 <span class="clean-market-name">Biletyna</span>
                 <span class="clean-market-sub">
@@ -932,11 +1042,9 @@ html {
                   
                 </span>
               </div>
-              <div class="clean-market-right">
-                
-                  <span class="clean-market-price">Od 22.24 zł</span>
-                
-                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              <div class="v2-pill ">
+                <span class="v2-price">Od 22,24 zł</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
               </div>
             </a>
           
@@ -946,14 +1054,49 @@ html {
       
     </div>
 
-    <div class="clean-market-notice">
-      Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
-    </div>
+    
+    
+      <div class="clean-market-notice">
+        Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+      </div>
+    
 
+  
   
 </div>
     
+<div class="card">
+  <h2>Dostępność i obiekt</h2>
+  <div class="info-grid">
     
+    <div class="info-label">Dostęp dla wózków</div>
+    <div class="info-val is-yes">
+      
+        Tak (winda / podjazd)
+      
+    </div>
+    
+  </div>
+</div>
+
+    
+<div class="card">
+  <h2>W okolicy (Gastro)</h2>
+  <div class="gastro-list">
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Pod Lwami</div>
+      <div class="gastro-meta">89m stąd (~1 min) &bull; pub</div>
+    </div>
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Magdalena Zalewska</div>
+      <div class="gastro-meta">101m stąd (~1 min) &bull; cafe</div>
+    </div>
+    
+  </div>
+</div>
+
   </aside>
 </div>
 

@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HIROMI: The Trio Project - Jazzowa Jesień - Bielsko-Biała | CoRobićW</title>
+  <title>Jazzowa Jesień w Bielsku-Białej - Bielsko-Biała | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -635,11 +635,11 @@ html {
     
 
   
-    /* --- OPCJA 1: SYMETRYCZNE KAFLE RYNKOWE (BEZ DARK PATTERNS) --- */
+    /* --- OPCJA 2: KAFLE RYNKOWE Z KAPSUŁKĄ, BANER WSTĘP WOLNY I ODWOŁANE --- */
     .clean-market-stack {
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 8px;
       margin-top: 8px;
     }
     .clean-market-card {
@@ -654,20 +654,21 @@ html {
       background: rgba(255, 255, 255, 0.05);
     }
     .clean-market-card.is-cancelled {
-      opacity: 0.55;
-      border-color: rgba(239, 68, 68, 0.3);
+      opacity: 0.6;
+      border-color: rgba(239, 68, 68, 0.25);
       background: rgba(239, 68, 68, 0.02);
     }
     .clean-market-tile {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 14px;
+      padding: 10px 14px;
       text-decoration: none;
       color: var(--text, #f9fafb);
       gap: 12px;
       width: 100%;
       box-sizing: border-box;
+      min-height: 52px;
     }
     .clean-market-tile.disabled {
       cursor: not-allowed;
@@ -675,8 +676,10 @@ html {
     .clean-market-left {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 2px;
       min-width: 0;
+      flex: 1;
     }
     .clean-market-name {
       font-size: 0.82rem;
@@ -685,43 +688,146 @@ html {
       letter-spacing: 0.03em;
       line-height: 1.25;
       color: var(--text, #f9fafb);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .clean-market-sub {
       font-size: 0.68rem;
       color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .clean-market-sub.status-cancelled {
-      color: #f87171;
-    }
-    .clean-market-right {
-      display: flex;
+
+    /* Kapsułka cenowa (Wariant 2) */
+    .v2-pill {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      padding: 5px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 6px;
+      transition: all 0.15s ease;
       flex-shrink: 0;
     }
-    .clean-market-price {
-      font-size: 1.05rem;
+    .clean-market-card:hover .v2-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+    .v2-pill.is-free {
+      background: rgba(74, 222, 128, 0.08);
+      border-color: rgba(74, 222, 128, 0.25);
+    }
+    .v2-pill.is-cancelled {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+    .v2-price {
+      font-size: 0.95rem;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
       color: #ffffff;
       letter-spacing: -0.2px;
+      line-height: 1;
     }
-    .clean-market-status {
+    .v2-status {
       font-size: 0.78rem;
       font-weight: 700;
       color: var(--text-muted, #9ca3af);
+      line-height: 1;
     }
-    .clean-market-arrow {
-      font-size: 0.85rem;
+    .v2-pill.is-free .v2-status {
+      color: var(--accent-green, #4ade80);
+    }
+    .v2-pill.is-cancelled .v2-status {
+      color: #f87171;
+    }
+    .v2-arrow {
+      font-size: 0.78rem;
       color: var(--text-muted, #9ca3af);
       transition: transform 0.15s ease, color 0.15s ease;
+      line-height: 1;
     }
-    .clean-market-tile:hover .clean-market-arrow {
+    .clean-market-card:hover .v2-arrow {
       color: #ffffff;
       transform: translate(2px, -2px);
     }
 
-    /* Subtelny pasek ulg powiązany z kaflem */
+    /* Baner bezpłatnego wstępu */
+    .free-entry-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(74, 222, 128, 0.06);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .free-entry-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .free-entry-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent-green, #4ade80);
+      line-height: 1.2;
+    }
+    .free-entry-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .free-entry-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    /* Baner odwołanego wydarzenia */
+    .cancelled-event-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .cancelled-event-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cancelled-event-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #f87171;
+      line-height: 1.2;
+    }
+    .cancelled-event-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .cancelled-event-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
     .clean-market-discounts {
       border-top: 1px dashed rgba(255, 255, 255, 0.06);
       background: rgba(0, 0, 0, 0.15);
@@ -762,8 +868,6 @@ html {
       color: var(--accent-green, #4ade80);
       font-weight: 700;
     }
-
-    /* Notka prawna UOKiK / DSA */
     .clean-market-notice {
       font-size: 0.65rem;
       color: rgba(156, 163, 175, 0.7);
@@ -801,21 +905,22 @@ html {
     .info-val.is-yes { color: var(--accent-green); }
     .info-val.is-neutral { color: var(--text); font-weight: 500; }
     
-  </style>
+  
+    </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="HIROMI: The Trio Project - Jazzowa Jesień | CoRobićW Bielsko-Biała">
+  <meta property="og:title" content="Jazzowa Jesień w Bielsku-Białej | CoRobićW Bielsko-Biała">
   <meta property="og:description" content="Jazzowa Jesień w Bielsku-Białej to od wielu lat jeden z najważniejszych festiwali jazzowych w Polsce. Bielskie święto jazzu ma już ponad dwudziestoletnią tradycję. Pierwsza edycja">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp">
-  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/hiromi-the-trio-project-jazzowa-jesien-2026-11-04/">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/bck_jazzowa-jesien-w-bielsku-bialej.webp">
+  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/jazzowa-jesien-w-bielsku-bialej-2026-11-04/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "HIROMI: The Trio Project - Jazzowa Jesie\u0144",
+    "name": "Jazzowa Jesie\u0144 w Bielsku-Bia\u0142ej",
     "startDate": "2026-11-04",
     "endDate": "2026-11-08",
     "location": {
@@ -828,7 +933,7 @@ html {
         "streetAddress": "Wzg\u00f3rze, Bielsko-Bia\u0142a"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp"],
+    "image": ["https://corobicw.pl/assets/thumbnails/bck_jazzowa-jesien-w-bielsku-bialej.webp"],
     "description": "Jazzowa Jesie\u0144 w Bielsku-Bia\u0142ej to od wielu lat jeden z najwa\u017cniejszych festiwali jazzowych w Polsce. Bielskie \u015bwi\u0119to jazzu ma ju\u017c ponad dwudziestoletni\u0105 tradycj\u0119. Pierwsza edycja",
     "offers": {
       "@type": "Offer",
@@ -864,25 +969,25 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">HIROMI: The Trio Project - Jazzowa Jesień</span>
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">Jazzowa Jesień w Bielsku-Białej</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - HIROMI: The Trio Project - Jazzowa Jesień"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp');"></div>
-  <img src="/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp" alt="Plakat: HIROMI: The Trio Project - Jazzowa Jesień" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - Jazzowa Jesień w Bielsku-Białej"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_jazzowa-jesien-w-bielsku-bialej.webp');"></div>
+  <img src="/assets/thumbnails/bck_jazzowa-jesien-w-bielsku-bialej.webp" alt="Plakat: Jazzowa Jesień w Bielsku-Białej" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
   <div><span class="badge">Kultura i Sztuka</span></div>
-  <h1>HIROMI: The Trio Project - Jazzowa Jesień</h1>
+  <h1>Jazzowa Jesień w Bielsku-Białej</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=HIROMI%3A%20The%20Trio%20Project%20-%20Jazzowa%20Jesie%C5%84&details=Jazzowa%20Jesie%C5%84%20w%20Bielsku-Bia%C5%82ej%20to%20od%20wielu%20lat%20jeden%20z%20najwa%C5%BCniejszych%20festiwali%20jazzowych%20w%20Polsce.%20Bielskie%20%C5%9Bwi%C4%99to%20jazzu%20ma%20ju%C5%BC%20ponad..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=HIROMI%3A%20The%20Trio%20Project%20-%20Jazzowa%20Jesie%C5%84%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/hiromi-the-trio-project-jazzowa-jesien-2026-11-04/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Jazzowa%20Jesie%C5%84%20w%20Bielsku-Bia%C5%82ej&details=Jazzowa%20Jesie%C5%84%20w%20Bielsku-Bia%C5%82ej%20to%20od%20wielu%20lat%20jeden%20z%20najwa%C5%BCniejszych%20festiwali%20jazzowych%20w%20Polsce.%20Bielskie%20%C5%9Bwi%C4%99to%20jazzu%20ma%20ju%C5%BC%20ponad..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=Jazzowa%20Jesie%C5%84%20w%20Bielsku-Bia%C5%82ej%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/jazzowa-jesien-w-bielsku-bialej-2026-11-04/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
@@ -909,16 +1014,26 @@ html {
   
     
     
+      
+      
+        
+      
+    
   
     
     
+      
+      
+        
       
     
   
 
   
+  
     <div class="clean-market-stack">
       
+        
         
         
         
@@ -935,11 +1050,9 @@ html {
                   
                 </span>
               </div>
-              <div class="clean-market-right">
-                
-                  <span class="clean-market-price">Wstęp wolny</span>
-                
-                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              <div class="v2-pill is-free">
+                <span class="v2-status">Wstęp wolny</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
               </div>
             </a>
           
@@ -951,10 +1064,11 @@ html {
         
         
         
+        
 
         <div class="clean-market-card ">
           
-            <a href="https://www.bck.bielsko.pl/jazzowa-jesien-w-bielsku-bialej" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w BCK Bielsko - sprawdź dostępność">
+            <a href="https://www.bck.bielsko.pl/hiromi-trio-project-jazzowa-jesien" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w BCK Bielsko - Dostępność">
               <div class="clean-market-left">
                 <span class="clean-market-name">BCK Bielsko</span>
                 <span class="clean-market-sub">
@@ -963,11 +1077,9 @@ html {
                   
                 </span>
               </div>
-              <div class="clean-market-right">
-                
-                  <span class="clean-market-status">Dostępność</span>
-                
-                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              <div class="v2-pill ">
+                <span class="v2-status">Dostępność</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
               </div>
             </a>
           
@@ -977,10 +1089,14 @@ html {
       
     </div>
 
-    <div class="clean-market-notice">
-      Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
-    </div>
+    
+    
+      <div class="clean-market-notice">
+        Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+      </div>
+    
 
+  
   
 </div>
     

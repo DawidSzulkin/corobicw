@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy - Kędzierzyn-Koźle | CoRobićW</title>
+  <title>MATKI ŚNIEŻNE - spektakl w ramach   programu Teatr Polska - Kędzierzyn-Koźle | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -635,11 +635,11 @@ html {
     
 
   
-    /* --- OPCJA 1: SYMETRYCZNE KAFLE RYNKOWE (BEZ DARK PATTERNS) --- */
+    /* --- OPCJA 2: KAFLE RYNKOWE Z KAPSUŁKĄ, BANER WSTĘP WOLNY I ODWOŁANE --- */
     .clean-market-stack {
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 8px;
       margin-top: 8px;
     }
     .clean-market-card {
@@ -654,20 +654,21 @@ html {
       background: rgba(255, 255, 255, 0.05);
     }
     .clean-market-card.is-cancelled {
-      opacity: 0.55;
-      border-color: rgba(239, 68, 68, 0.3);
+      opacity: 0.6;
+      border-color: rgba(239, 68, 68, 0.25);
       background: rgba(239, 68, 68, 0.02);
     }
     .clean-market-tile {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 14px;
+      padding: 10px 14px;
       text-decoration: none;
       color: var(--text, #f9fafb);
       gap: 12px;
       width: 100%;
       box-sizing: border-box;
+      min-height: 52px;
     }
     .clean-market-tile.disabled {
       cursor: not-allowed;
@@ -675,8 +676,10 @@ html {
     .clean-market-left {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 2px;
       min-width: 0;
+      flex: 1;
     }
     .clean-market-name {
       font-size: 0.82rem;
@@ -685,43 +688,146 @@ html {
       letter-spacing: 0.03em;
       line-height: 1.25;
       color: var(--text, #f9fafb);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .clean-market-sub {
       font-size: 0.68rem;
       color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .clean-market-sub.status-cancelled {
-      color: #f87171;
-    }
-    .clean-market-right {
-      display: flex;
+
+    /* Kapsułka cenowa (Wariant 2) */
+    .v2-pill {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      padding: 5px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 6px;
+      transition: all 0.15s ease;
       flex-shrink: 0;
     }
-    .clean-market-price {
-      font-size: 1.05rem;
+    .clean-market-card:hover .v2-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+    .v2-pill.is-free {
+      background: rgba(74, 222, 128, 0.08);
+      border-color: rgba(74, 222, 128, 0.25);
+    }
+    .v2-pill.is-cancelled {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+    .v2-price {
+      font-size: 0.95rem;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
       color: #ffffff;
       letter-spacing: -0.2px;
+      line-height: 1;
     }
-    .clean-market-status {
+    .v2-status {
       font-size: 0.78rem;
       font-weight: 700;
       color: var(--text-muted, #9ca3af);
+      line-height: 1;
     }
-    .clean-market-arrow {
-      font-size: 0.85rem;
+    .v2-pill.is-free .v2-status {
+      color: var(--accent-green, #4ade80);
+    }
+    .v2-pill.is-cancelled .v2-status {
+      color: #f87171;
+    }
+    .v2-arrow {
+      font-size: 0.78rem;
       color: var(--text-muted, #9ca3af);
       transition: transform 0.15s ease, color 0.15s ease;
+      line-height: 1;
     }
-    .clean-market-tile:hover .clean-market-arrow {
+    .clean-market-card:hover .v2-arrow {
       color: #ffffff;
       transform: translate(2px, -2px);
     }
 
-    /* Subtelny pasek ulg powiązany z kaflem */
+    /* Baner bezpłatnego wstępu */
+    .free-entry-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(74, 222, 128, 0.06);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .free-entry-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .free-entry-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent-green, #4ade80);
+      line-height: 1.2;
+    }
+    .free-entry-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .free-entry-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    /* Baner odwołanego wydarzenia */
+    .cancelled-event-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-sizing: border-box;
+      min-height: 50px;
+    }
+    .cancelled-event-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cancelled-event-banner .status {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #f87171;
+      line-height: 1.2;
+    }
+    .cancelled-event-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted, #9ca3af);
+      line-height: 1.2;
+    }
+    .cancelled-event-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
     .clean-market-discounts {
       border-top: 1px dashed rgba(255, 255, 255, 0.06);
       background: rgba(0, 0, 0, 0.15);
@@ -762,8 +868,6 @@ html {
       color: var(--accent-green, #4ade80);
       font-weight: 700;
     }
-
-    /* Notka prawna UOKiK / DSA */
     .clean-market-notice {
       font-size: 0.65rem;
       color: rgba(156, 163, 175, 0.7);
@@ -801,38 +905,39 @@ html {
     .info-val.is-yes { color: var(--accent-green); }
     .info-val.is-neutral { color: var(--text); font-weight: 500; }
     
-  </style>
+  
+    </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy | CoRobićW Kędzierzyn-Koźle">
-  <meta property="og:description" content="Wielki powrót naszego programu sylwestrowego! Stęskniliście się za tą energią Ponownie zabieramy Państwa w muzyczną podróż dookoła świata! Przygotujcie się na wieczór pełen kontra">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy.webp">
-  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy-2026-12-31/">
+  <meta property="og:title" content="MATKI ŚNIEŻNE - spektakl w ramach   programu Teatr Polska | CoRobićW Kędzierzyn-Koźle">
+  <meta property="og:description" content="Matki śnieżne - Teatr Śląski im. Stanisława Wyspiańskiego „MATKA” – pierwotnie maci, dpn. „macierze”, biernik „macierz” (przed XIV wiekiem skr. od mać) i oboczna forma mianownika –">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_matki-sniezne-spektakl-w-ramach-programu-teatr-polska.webp">
+  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/matki-sniezne-spektakl-w-ramach-programu-teatr-polska-2026-10-09/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "SYLWESTROWA PODR\u00d3\u017b PO \u015aWIECIE - OD WIEDNIA DO RIO - koncert galowy",
-    "startDate": "2026-12-31T22:00",
-    "endDate": "2026-12-31",
+    "name": "MATKI \u015aNIE\u017bNE - spektakl w ramach   programu Teatr Polska",
+    "startDate": "2026-10-09T18:00",
+    "endDate": "2026-10-09",
     "location": {
       "@type": "Place",
-      "name": "Chemik",
+      "name": "Wydarzenie",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Kędzierzyn-Koźle",
         "addressCountry": "PL",
-        "streetAddress": "None, K\u0119dzierzyn-Ko\u017ale"
+        "streetAddress": "K\u0119dzierzyn-Ko\u017ale"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy.webp"],
-    "description": "Wielki powr\u00f3t naszego programu sylwestrowego! St\u0119sknili\u015bcie si\u0119 za t\u0105 energi\u0105 Ponownie zabieramy Pa\u0144stwa w muzyczn\u0105 podr\u00f3\u017c dooko\u0142a \u015bwiata! Przygotujcie si\u0119 na wiecz\u00f3r pe\u0142en kontra",
+    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_matki-sniezne-spektakl-w-ramach-programu-teatr-polska.webp"],
+    "description": "Matki \u015bnie\u017cne - Teatr \u015al\u0105ski im. Stanis\u0142awa Wyspia\u0144skiego \u201eMATKA\u201d \u2013 pierwotnie maci, dpn. \u201emacierze\u201d, biernik \u201emacierz\u201d (przed XIV wiekiem skr. od ma\u0107) i oboczna forma mianownika \u2013",
     "offers": {
       "@type": "Offer",
-      "url": "https://biletyna.pl/koncert/SYLWESTROWA-PODROZ-PO-SWIECIE-OD-WIEDNIA-DO-RIO-koncert-galowy"
+      "url": "https://biletyna.pl/spektakl/MATKI-SNIEZNE-spektakl-w-ramach-programu-Teatr-Polska"
     }
   }
   </script>
@@ -864,30 +969,30 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy</span>
+      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">MATKI ŚNIEŻNE - spektakl w ramach   programu Teatr Polska</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy.webp');"></div>
-  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy.webp" alt="Plakat: SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - MATKI ŚNIEŻNE - spektakl w ramach   programu Teatr Polska"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_matki-sniezne-spektakl-w-ramach-programu-teatr-polska.webp');"></div>
+  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_matki-sniezne-spektakl-w-ramach-programu-teatr-polska.webp" alt="Plakat: MATKI ŚNIEŻNE - spektakl w ramach   programu Teatr Polska" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
   <div><span class="badge">Kultura i Rozrywka</span></div>
-  <h1>SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy</h1>
+  <h1>MATKI ŚNIEŻNE - spektakl w ramach   programu Teatr Polska</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=SYLWESTROWA%20PODR%C3%93%C5%BB%20PO%20%C5%9AWIECIE%20-%20OD%20WIEDNIA%20DO%20RIO%20-%20koncert%20galowy&details=Wielki%20powr%C3%B3t%20naszego%20programu%20sylwestrowego%21%20St%C4%99sknili%C5%9Bcie%20si%C4%99%20za%20t%C4%85%20energi%C4%85%20Ponownie%20zabieramy%20Pa%C5%84stwa%20w%20muzyczn%C4%85%20podr%C3%B3%C5%BC%20dooko%C5%82a%20%C5%9Bwiata%21..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=SYLWESTROWA%20PODR%C3%93%C5%BB%20PO%20%C5%9AWIECIE%20-%20OD%20WIEDNIA%20DO%20RIO%20-%20koncert%20galowy%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy-2026-12-31/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=MATKI%20%C5%9ANIE%C5%BBNE%20-%20spektakl%20w%20ramach%20%20%20programu%20Teatr%20Polska&details=Matki%20%C5%9Bnie%C5%BCne%20-%20Teatr%20%C5%9Al%C4%85ski%20im.%20Stanis%C5%82awa%20Wyspia%C5%84skiego%20%E2%80%9EMATKA%E2%80%9D%20%E2%80%93%20pierwotnie%20maci%2C%20dpn.%20%E2%80%9Emacierze%E2%80%9D%2C%20biernik%20%E2%80%9Emacierz%E2%80%9D%20%28przed%20XIV%20wiekiem%20skr.%20od..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=MATKI%20%C5%9ANIE%C5%BBNE%20-%20spektakl%20w%20ramach%20%20%20programu%20Teatr%20Polska%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/matki-sniezne-spektakl-w-ramach-programu-teatr-polska-2026-10-09/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>Wielki powrót naszego programu sylwestrowego! Stęskniliście się za tą energią Ponownie zabieramy Państwa w muzyczną podróż dookoła świata! Przygotujcie się na wieczór pełen kontrastów – od eleganckiej wiedeńskiej klasyki i czaru najpiękniejszych operetek, przez słoneczne melodie południa Europy, aż po namiętne tango i gorącą sambę!</p><p>Tego wydarzenia po prostu nie można przegapić. Do zobaczenia! Muzyczna podróż dookoła świata w jeden wyjątkowy wieczór! W wyjątkowy, jedyny taki wieczór w roku, zapraszamy na wydarzenie pełne blasku, elegancji i najlepszych muzycznych emocji!</p><p>„Sylwestrowa podróż po świecie” to niezwykły koncert galowy, podczas którego publiczność odbędzie fascynującą muzyczną podróż od Wiednia do Rio - przez Europę, Amerykę Południową i Północną. Tego wieczoru zabrzmią największe światowe przeboje – od klasyki wiedeńskich sal koncertowych, przez namiętne tango, zmysłową bossę novę i energetyczną sambę, aż po niezapomniane melodie.</p><p>W programie zabrzmi muzyka Johanna Straussa, Franza Lehara, Georgesa Bizeta i Vittorio Montiego, najpiękniejsze melodie operowe, operetkowe, pełne słońca pieśni neapolitańskie i muzyczne niespodzianki. W programie znajdą się m.in.</p><p>takie utwory jak:„Nad pięknym modrym Dunajem”, „Marsz Radetzkiego”, „O sole mio”, „Dziewczęta z Barcelony”, „Ach jedź do Varasdin”, "Can-can" czy „La Spagnola”. O niezapomniane artystyczne wrażenia zadbają wybitni soliści, których głosy i sceniczna charyzma zachwycają publiczność w Polsce i za granicą: Olivia Ohl-Szulik – sopran, Joanna Wojowska – sopran, Ireneusz Miczka – baryton, Dariusz Pietrzykowski – tenor.</p><p>Towarzyszyć im będzie Appassionata Ensemble - znany z muzycznej wirtuozerii zespół łączący w autorskich aranżacjach klasyczne brzmienie z nowoczesną energią sceniczną. Zespół tworzą: Klaudia Krause – fortepian, aranżacje, Łukasz Grabiński – skrzypce, Piotr Lipiński – perkusja, Marek Krause – gitara basowa, Mirosław Krause – akordeon.</p><p>Magiczny klimat tej wyjątkowej nocy dopełni pełne koloru, ekspresji i pięknych kostiumów taneczne show w wykonaniu tancerzy Sun Dance pod kierownictwem Sabiny Langner. Przewodnikiem sylwestrowej muzycznej podróży będzie Mirosław Krause – charyzmatyczny popularyzator muzyki, który z pasją i humorem łączy wiedzę, anegdotę oraz energię.</p><p>Zapraszamy na elegancki, pełen niezapomnianych melodii sylwestrowy wieczór – idealny, by w najlepszym stylu pożegnać stary rok i powitać nowy!** 🎤 Olivia Ohl-Szulik – jeden z najpiękniejszych głosów operowych w Europie, absolwentka Uniwersytetu Muzycznego we Frankfurcie nad Menem.</p><p>Laureatka licznych konkursów i festiwali, dzieli się swoją muzyczną pasją z publicznością w Polsce i za granicą. Charakteryzuje ją imponująca skala głosu – od partii koloraturowych po dramatyczne – oraz szlachetna barwa, która nadaje wyjątkowy charakter interpretacjom klasycznych dzieł.</p><p>Jej talent rozkwita również w muzyce filmowej i rozrywkowej. Występowała u boku takich artystów jak Sławek Uniatowski, Kayah, Małgorzata Ostrowska czy Kuba Badach. Na scenie urzeka nie tylko brzmieniem, ale też charyzmą i sceniczną naturalnością.</p><p>🎤 JOANNA WOJNOWSKA - sopran - Artystka, której głos łączy szlachetność brzmienia z głęboką muzyczną wrażliwością. Ukończyła z wyróżnieniem Wydział Wokalno-Aktorski Akademii Muzycznej w Katowicach, uzyskując stypendium Ministra Kultury i Sztuki.</p><p>Współpracowała z wieloma renomowanymi instytucjami i zespołami, w tym z Gliwickim Teatrem Muzycznym, orkiestrami Filharmonii Śląskiej i Zielonogórskiej, Śląską Orkiestrą Kameralną, a także zespołami wokalnymi o międzynarodowej renomie, takimi jak Cantores Minores Wratislavienses, Camerata Silesia czy Orfeo Ensemble.</p><p>Jej artystyczna aktywność obejmuje również działalność kameralną, m.in. w duecie wokalnym Sopra Nova, który tworzy wraz z córką Alicją. Artystka koncertuje zarówno w Polsce, jak i za granicą, biorąc udział w prestiżowych festiwalach muzycznych, takich jak Baroque d’Auvergne we Francji, Wratislavia Cantans, Gaude Mater, Gliwicki Festiwal Bachowski czy Festiwal im.</p><p>Jana Kiepury w Krynicy. Równolegle z działalnością sceniczną Joanna Wojnowska z oddaniem realizuje się jako pedagog – kieruje wydziałem wokalistyki Państwowej Szkoły Muzycznej w Gliwicach, kształcąc kolejne pokolenia młodych śpiewaków.</p><p>Jej dorobek został uhonorowany w 2015 roku odznaką „Zasłużony dla Kultury Polskiej”, będącą wyrazem uznania dla jej wkładu w rozwój polskiej kultury muzycznej. 🎤 Ireneusz Miczka – baryton, ceniony solista związany z Gliwickim Teatrem Muzycznym, Operą Śląską i Operą Wrocławską.</p><p>Koncertuje na najważniejszych scenach w kraju, wykonując repertuar operowy, oratoryjny i muzykę rozrywkową. Współpracował z wieloma legendami polskiej sceny, m.in. z Ireną Santor, Grażyną Brodzińską, Małgorzatą Walewską i Wiesławem Ochmanem.</p><p>Regularnie występuje także w popularnym cyklu „Śpiewające fortepiany – koncertowo i z humorem” u boku duetu Czesław Majewski &amp; Janusz Tylman. Równolegle z działalnością sceniczną z sukcesami realizuje się jako pedagog – prowadząc klasę wokalną w Państwowym Policealnym Studium Wokalno-Aktorskim w Chorzowie, kształcąc kolejne pokolenia młodych wokalistów.</p><p>Jego głos i poczucie humoru gwarantują wyjątkowy kontakt z publicznością. 🎤 Dariusz Pietrzykowski - tenor. Należy do grona cenionych polskich tenorów, łączących klasyczną wrażliwość wokalną z bogatym doświadczeniem scenicznym.</p><p>Jest absolwentem bydgoskiej Akademii Muzycznej w klasie Jana Kunerta, którą ukończył z wyróżnieniem. Stypendysta Fundacji Yamaha. Występuje gościnnie na deskach Opery Narodowej w Warszawie, Teatru Wielkiego w Łodzi, Teatru Wielkiego w Poznaniu, Opery Nova w Bydgoszczy, Opery Śląskiej w Bytomiu, Opery Bałtyckiej w Gdańsku, Opery Krakowskiej, Opery Na Zamku w Szczecinie oraz filharmonii w całej Polsce.</p><p>W 2007 roku śpiewał partię solową w balecie Harnasie K. Szymanowskiego podczas koncertu transmitowanego przez Polskie Radio w ramach sezonu koncertowego EBU pod batutą K. Korda. Koncertował również za granicą , m.in. w Austrii, Belgii, Bułgarii, Danii, Francji, Grecji, Niemiec, Holandii, Luksemburgu, Rosji, Hiszpanii, Szwajcarii.</p><p>Appassionata Ensemble to zespół, który łączy klasyczne brzmienie z nowoczesną energią sceniczną. Artyści wyróżniają się wirtuozerią wykonania, muzyczną pasją oraz wyjątkową dbałością o artystyczny detal. W repertuarze zespołu znajdują się zarówno utwory muzyki klasycznej, filmowej i musicalowej, jak również znane standardy oraz autorskie aranżacje przebojów muzyki rozrywkowej.</p><p>Appassionata Ensemble tworzy koncerty pełne emocji, subtelności i muzycznej elegancji, zabierając publiczność w podróże przez różne style i epoki. Zespół często współpracuje z wokalistami, instrumentalistami oraz tancerzami, tworząc widowiska o wyjątkowym klimacie i wysokim poziomie artystycznym.</p><p>Bilety w cenie : do 30 XI 2026r. 200 zł (raciborska karta ,,Senior 60+'' w cenie 110 zł ) od 1XII 220 zł ( raciborska karta ,,Senior 60+'' w cenie 120 zł )</p></div>
+  <div class="event-desc"><p>Matki śnieżne - Teatr Śląski im. Stanisława Wyspiańskiego „MATKA” – pierwotnie maci, dpn. „macierze”, biernik „macierz” (przed XIV wiekiem skr. od mać) i oboczna forma mianownika – „macierz”; w XVI wieku zwycięża forma „matka”.</p><p>W XXI wieku matka nie zawsze zwycięża. Dniami, miesiącami i latami trwa nierówna walka matek: z innymi matkami, nauczycielami, lekarzami, internautami; z rodziną – nadopiekuńczą, nieinteresującą się, we wszystko się wtrącającą; ze zdrową albo z wyniszczającą ambicją; z własnymi oczekiwaniami dotyczącymi macierzyństwa i nierzadko ich rozczarowującą realizacją.</p><p>A jednak nagle, jak za dotknięciem czarodziejskiej różdżki.. Czy widzisz ten znajomy kształt Ten rozbłysk energii, ten blask, tę nadludzką siłę, która wstępuje w nie każdego dnia Tak, to one! SUPERMATKI! Królowe codziennej logistyki i cesarzowe multitaskingu, obrończynie domowego ogniska i pełne poświęcenia boginie, nadludzkie istoty żyjące dla kogoś i wciąż z myślą o kimś, a same nieoczekujące w zamian niczego..</p><p>poza miłością. Spektakl „Matki śnieżne”, stworzony przez kobiety nie tylko dla kobiet, łączy historie z życia współczesnych matek i ich dzieci z ponadczasową „Królową śniegu” Hansa Christiana Andersena. Przenosi nas w świat macierzyństwa spełnionego, pełnego miłości i zrozumienia, ale też skomplikowanego, niejednoznacznego i traumatycznego.</p><p>W świat macierzyństwa prawdziwego. Spektakl porusza uniwersalną tematykę, istotną dla widzów i widzek w różnych częściach Polski, zachęca do dyskusji na temat różnych modeli macierzyństwa, otwiera, daje impuls do podzielenia się własnymi historiami.</p><p>Szczególna wrażliwość twórczyni tekstu i występujących w spektaklu artystek Teatru Śląskiego i ich wkład w tworzenie koncepcji spektaklu wyróżnia ten spektakl spośród oferty Teatru. Czyni go bardziej osobistym i dotykającym codziennego życia spotkaniem z publicznością.</p><p>Osobisty i liryczny ton łączy się z tym, co matki w XXI wieku słyszą na co dzień – obiegowe opinie, przekonania, wygłaszane wydumane oczekiwania. Obecna w spektaklu warstwa multimedialna, prosta i mobilna scenografia, a przede wszystkim warstwa dźwiękowa, w tym napisane na potrzeby spektaklu piosenki, sprawiają, że obrazy macierzyństwa łączą się w płynne kontinuum, podkreślając więź, jaka łączy – bez względu na długość geograficzną i moment w życiu – wszystkie matki i ich dzieci.</p><p>Scenografia „otulona” transparentnymi tkaninami i ożywiona animacją tworzy bezpieczną przestrzeń, zachęca do zwierzeń, daje przestrzeń dla uwolnienia myśl i uczuć związanych z macierzyństwem. Prostota przekazu i różnorodność nastrojów pozwala na zatopienie się w świat „Matek śnieżnych”, wysłuchanie ich opowieści i miękkie włączenie własnych doświadczeń odbiorczych.</p><p>Spektakl został zakwalifikowany do 32. Ogólnopolskiego Konkursu na Wystawienie Polskiej Sztuki Współczesnej.</p><p>* **Obsada:** Matka 2, Supermum - Karina Grabowska Matka 4, Ironmum - Anna Lemieszek Gerda, Batmum - Agnieszka Radzikowska Matka 3, Trupomatka, Spidermum - Violetta Smolińska w nagraniach udział wzięli: Rut Błaszczyńska, Lea Chojnacka, Natalia Chojnacka, Feliks Fiałek, Ignacy Fiałek, Maria Smoczyńska, Antoni Smoczyński Inni realizatorzy: tekst - Katarzyna Błaszczyńska scenografia i animacje - Agata Kurzak muzyka, śpiew, podkłady muzyczne i teksty piosenek - Anna Bratek podkłady muzyczne - Grzegorz Kasperczyk kostiumy, inspicjent, sufler - Anna Kandziora reżyseria i realizacja świateł - Bartłomiej Sowa realizacja nagrań, miks, master - Mikołaj Lichtański piano - Grzegorz Kasperczyk beat - Paweł Szymczak realizacja wideo - Piotr Trzęsowski realizacja dźwięku - Franciszek Borgiel kierownictwo produkcji - Małgorzata Długowska-Błach kierownik techniczny produkcji - Maciej Rokita asystentka produkcji - Dorota Damec-Hanulak autorzy plakatu - Agata Kurzak, Filip Studniarek</p></div>
 
   
 </div>
@@ -897,10 +1002,10 @@ html {
     <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
-    <div class="info-label">Data</div><div class="info-val">Czwartek, 31 grudnia</div>
-    <div class="info-label">Start</div><div class="info-val">22:00</div>
+    <div class="info-label">Data</div><div class="info-val">Piątek, 9 października</div>
+    <div class="info-label">Start</div><div class="info-val">18:00</div>
     <div class="info-label">Miejsce</div>
-    <div class="info-val"><a href="/kedzierzyn_kozle/miejsca/kk-chemik/"><strong>Chemik</strong></a><span class="address">None, Kędzierzyn-Koźle</span>
+    <div class="info-val"><strong>Wydarzenie</strong><span class="address">Kędzierzyn-Koźle</span>
     </div>
   </div>
 
@@ -910,9 +1015,13 @@ html {
     
     
       
+      
+        
+      
     
   
 
+  
   
     <div class="clean-market-stack">
       
@@ -920,10 +1029,11 @@ html {
         
         
         
+        
 
         <div class="clean-market-card ">
           
-            <a href="https://biletyna.pl/koncert/SYLWESTROWA-PODROZ-PO-SWIECIE-OD-WIEDNIA-DO-RIO-koncert-galowy" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Biletyna - Od 213.40 zł">
+            <a href="https://biletyna.pl/spektakl/MATKI-SNIEZNE-spektakl-w-ramach-programu-Teatr-Polska" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Biletyna - Od 54,10 zł">
               <div class="clean-market-left">
                 <span class="clean-market-name">Biletyna</span>
                 <span class="clean-market-sub">
@@ -932,11 +1042,9 @@ html {
                   
                 </span>
               </div>
-              <div class="clean-market-right">
-                
-                  <span class="clean-market-price">Od 213.40 zł</span>
-                
-                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              <div class="v2-pill ">
+                <span class="v2-price">Od 54,10 zł</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
               </div>
             </a>
           
@@ -946,31 +1054,18 @@ html {
       
     </div>
 
-    <div class="clean-market-notice">
-      Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
-    </div>
+    
+    
+      <div class="clean-market-notice">
+        Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+      </div>
+    
 
+  
   
 </div>
     
     
-<div class="card">
-  <h2>W okolicy (Gastro)</h2>
-  <div class="gastro-list">
-    
-    <div class="gastro-item">
-      <div class="gastro-name">Restauracja Athena</div>
-      <div class="gastro-meta">16m stąd (~1 min) &bull; restaurant</div>
-    </div>
-    
-    <div class="gastro-item">
-      <div class="gastro-name">Kosmos</div>
-      <div class="gastro-meta">140m stąd (~2 min) &bull; restaurant</div>
-    </div>
-    
-  </div>
-</div>
-
   </aside>
 </div>
 
