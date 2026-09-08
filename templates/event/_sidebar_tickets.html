@@ -22,65 +22,83 @@
   {% endfor %}
 
   {% if event.ticket_offers and not ns.has_paid %}
-    <div class="free-entry-banner">
+    <div class="free-entry-banner" style="margin-top: 14px;">
       <span class="status">Wstęp wolny</span>
       <span style="font-size: 1.2rem;">🎫</span>
     </div>
   {% elif event.ticket_offers and event.ticket_offers|length > 0 %}
-    <div class="offers-stack">
+    <div class="clean-market-stack">
       {% for offer in event.ticket_offers %}
-        {% set price_str = (offer.price or '') | lower %}
+        {% set price_str = (offer.price or '') | lower | trim %}
         {% set is_cancelled = ('odwo' in price_str or 'cancel' in price_str) %}
-        {% set is_text_price = ('sprawd' in price_str or 'dost' in price_str or price_str|length > 10) %}
-        <div class="offer-box {% if is_cancelled %}cancelled-box{% elif loop.first %}highlight{% endif %}">
-          <div class="offer-main-row">
-            <div class="offer-info-col">
-              <div class="offer-provider-line">
-                <span class="offer-provider-name">{{ offer.provider }}</span>
-                {% if is_cancelled %}
-                  <span class="offer-tag cancelled">Odwołane</span>
-                {% elif offer.is_official or offer.official_badge or (offer.tag and 'oficjaln' in offer.tag|lower) %}
-                  <span class="offer-tag official">Oficjalna kasa</span>
-                {% elif offer.tag %}
-                  <span class="offer-tag best-price">{{ offer.tag }}</span>
-                {% endif %}
-              </div>
-              <div class="offer-price-val {% if is_text_price %}is-text-price{% endif %}">{{ offer.price }}</div>
-            </div>
-            <div class="offer-btn-col">
-              {% if is_cancelled %}
-                <span class="offer-btn-buy secondary" aria-disabled="true">Odwołane</span>
-              {% else %}
-                <a href="{{ offer.url }}" target="_blank" rel="nofollow noopener" class="offer-btn-buy {% if loop.first %}primary{% else %}secondary{% endif %}">Kup bilet</a>
-              {% endif %}
-            </div>
-          </div>
+        {% set is_status = ('sprawd' in price_str or 'dost' in price_str or 'brak' in price_str or 'kasa' in price_str) %}
+        {% set is_official = (offer.is_official or offer.official_badge or (offer.tag and 'oficjaln' in offer.tag|lower)) %}
 
-          {% if offer.discounts and offer.discounts|length > 0 %}
-          <div class="offer-discounts-drawer">
-            <details>
-              <summary>
-                <span>🏷️ {{ offer.discounts|length }} {% if offer.discounts|length == 1 %}ulga{% elif offer.discounts|length < 5 %}ulgi{% else %}ulg{% endif %} u sprzedawcy</span>
-                <span style="font-size: 0.65rem; color: var(--text-muted);">rozwiń ▾</span>
-              </summary>
-              <ul>
-                {% for d in offer.discounts %}
-                <li>
-                  <div>
-                    <span style="font-weight: 600; color: var(--text);">{{ d.label or d.name }}</span>
-                    {% if d.desc %}<div style="font-size: 0.68rem; color: var(--text-muted); line-height: 1.2;">{{ d.desc }}</div>{% endif %}
-                  </div>
-                  {% if d.val %}<span style="color: var(--accent-green); font-weight: 700; white-space: nowrap; margin-left: 8px;">{{ d.val }}</span>{% endif %}
-                </li>
-                {% endfor %}
-              </ul>
-            </details>
-          </div>
+        <div class="clean-market-card {% if is_cancelled %}is-cancelled{% endif %}">
+          {% if is_cancelled %}
+            <div class="clean-market-tile disabled" aria-disabled="true">
+              <div class="clean-market-left">
+                <span class="clean-market-name">{{ offer.provider }}</span>
+                <span class="clean-market-sub status-cancelled">Wydarzenie odwołane</span>
+              </div>
+              <div class="clean-market-right">
+                <span class="clean-market-status">Odwołane</span>
+              </div>
+            </div>
+          {% else %}
+            <a href="{{ offer.url }}" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w {{ offer.provider }} - {{ offer.price if not is_status else 'sprawdź dostępność' }}">
+              <div class="clean-market-left">
+                <span class="clean-market-name">{{ offer.provider }}</span>
+                <span class="clean-market-sub">
+                  {% if is_official %}
+                    Oficjalna kasa obiektu
+                  {% else %}
+                    Dystrybutor online
+                  {% endif %}
+                </span>
+              </div>
+              <div class="clean-market-right">
+                {% if is_status %}
+                  <span class="clean-market-status">Dostępność</span>
+                {% else %}
+                  <span class="clean-market-price">{{ offer.price }}</span>
+                {% endif %}
+                <span class="clean-market-arrow" aria-hidden="true">↗</span>
+              </div>
+            </a>
+          {% endif %}
+
+          {% if offer.discounts and offer.discounts|length > 0 and not is_cancelled %}
+            <div class="clean-market-discounts">
+              <details>
+                <summary>
+                  <span>🏷️ {{ offer.discounts|length }} {% if offer.discounts|length == 1 %}ulga{% elif offer.discounts|length < 5 %}ulgi{% else %}ulg{% endif %}</span>
+                  <span>rozwiń ▾</span>
+                </summary>
+                <ul>
+                  {% for d in offer.discounts %}
+                    <li>
+                      <span>{{ d.label or d.name }}</span>
+                      {% if d.val %}<span class="discount-val">{{ d.val }}</span>{% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              </details>
+            </div>
           {% endif %}
         </div>
       {% endfor %}
     </div>
+
+    <div class="clean-market-notice">
+      Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+    </div>
+
   {% elif event.source_url %}
-    <a href="{{ event.source_url }}" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary" style="width: 100%; margin-top: 20px;">🎫 Kup bilet / Szczegóły</a>
+    <div style="margin-top: 16px;">
+      <a href="{{ event.source_url }}" target="_blank" rel="nofollow noopener" class="clean-market-tile" style="justify-content: center; text-align: center; font-weight: 700;">
+        🎫 Sprawdź szczegóły wydarzenia ↗
+      </a>
+    </div>
   {% endif %}
 </div>
