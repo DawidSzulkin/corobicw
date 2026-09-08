@@ -1,379 +1,218 @@
-﻿<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <script>
-      (function() {
-        const saved = localStorage.getItem('theme');
-        const theme = saved ? saved : 'dark';
-        document.documentElement.setAttribute('data-theme', theme);
-      })();
-    </script>
-    <meta name="robots" content="noindex, nofollow">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ place.name }} | {{ city_name or city }} - CoRobićW</title>
+{% extends "base.html" %}
+
+{% block title %}{{ place.name }} | {{ city_name or city }} - CoRobićW{% endblock %}
+
+{% block meta_extra %}
   <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: {{ place.name }} w {{ city_name or city }}.">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  
-  
+{% endblock %}
 
-  <style>
-html {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-}
+{% block page_styles %}
+  .main-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 32px; overflow: hidden; min-width: 0; }
+  .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-radius: 4px; }
+  h1 { font-size: 2.1rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .place-address { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+  .place-address svg { flex-shrink: 0; color: var(--text-muted); }
 
-    :root[data-theme="dark"] {
-      --bg: #09090b; --card-bg: #121215; --card-hover: #18181b; --text: #f4f4f5;
-      --text-muted: #a1a1aa; --border: #27272a; --border-strong: #ffffff;
-      --btn-primary-bg: #ffffff; --btn-primary-text: #000000;
-      --badge-bg: #000000; --badge-text: #ffffff;
-      --accent-blue: #38bdf8; --accent-blue-bg: rgba(56, 189, 248, 0.12);
-      --accent-green: #34d399; --accent-green-bg: rgba(52, 211, 153, 0.12);
-      --tag-inv-bg: #ffffff; --tag-inv-text: #000000;
-    }
-    :root[data-theme="light"] {
-      --bg: #ffffff; --card-bg: #f8fafc; --card-hover: #f1f5f9; --text: #09090b;
-      --text-muted: #64748b; --border: #e2e8f0; --border-strong: #09090b;
-      --btn-primary-bg: #09090b; --btn-primary-text: #ffffff;
-      --badge-bg: #09090b; --badge-text: #ffffff;
-      --accent-blue: #0284c7; --accent-blue-bg: rgba(2, 132, 199, 0.12);
-      --accent-green: #059669; --accent-green-bg: rgba(5, 150, 105, 0.12);
-      --tag-inv-bg: #09090b; --tag-inv-text: #ffffff;
-    }
+  #map {
+    height: 360px;
+    width: calc(100% + 64px) !important;
+    margin: 20px -32px 28px -32px !important;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+    z-index: 1;
+  }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
-    *:focus-visible { outline: 2px solid var(--border-strong); outline-offset: 2px; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.6;
-       display: flex; flex-direction: column; min-height: 100vh;
-      -webkit-font-smoothing: antialiased; font-size: 16px;
-    }
+  .events-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 26px;
+    margin-bottom: 18px;
+  }
+  .events-section-title {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 900;
+    color: var(--text);
+    margin: 0;
+  }
+  .events-count-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 9999px;
+    line-height: 1.2;
+  }
 
-    /* HEADER & BRANDING */
-    header { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-    .nav-container { max-width: 1140px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
-    .brand { font-size: 1.25rem; font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: -0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-    .brand span { background: var(--btn-primary-bg); color: var(--btn-primary-text); font-size: 0.75rem; padding: 2px 6px; font-weight: 900; letter-spacing: 1px; }
-    .nav-actions { display: flex; gap: 10px; align-items: center; }
-    
-    .btn-theme-toggle:hover { border-color: var(--border-strong); }
-    .btn-nav { font-size: 0.85rem; text-decoration: none; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-    .btn-nav:hover { border-color: var(--border-strong); color: var(--text); }
-    .btn-add { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); padding: 7px 14px; font-size: 0.85rem; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
-    .btn-add:hover { background: transparent; color: var(--text); border-color: var(--text); }
+  .event-card-mini {
+    display: flex;
+    gap: 16px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .event-card-mini:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(3px); }
+  .event-card-mini.cancelled { opacity: 0.72; border-color: rgba(239, 68, 68, 0.4); }
 
-    /* LAYOUT & MAIN */
-    main { flex: 1; max-width: 1140px; margin: 28px auto 60px; padding: 0 20px; width: 100%; }
-    .breadcrumbs { display: flex; gap: 8px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; flex-wrap: wrap; }
-    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
-    .breadcrumbs a:hover { color: var(--text); }
-    .breadcrumbs .current { color: var(--text); font-weight: 700; max-width: 480px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .event-thumb-mini { width: 110px; height: 80px; object-fit: cover; background: #000; border-radius: 4px; flex-shrink: 0; }
+  .event-info-mini { flex: 1; min-width: 0; }
+  .event-meta-mini { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .event-title-mini { margin: 2px 0 6px; font-size: 1.05rem; font-weight: 800; color: var(--text); line-height: 1.3; }
+  .event-price-mini { font-size: 0.82rem; font-weight: 800; color: var(--accent-green); }
+  .badge-cancelled-mini { color: #f87171; font-weight: 800; font-size: 0.75rem; background: rgba(239, 68, 68, 0.15); padding: 2px 6px; border-radius: 2px; }
 
-    .container-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 32px; align-items: start; }
-    @media (max-width: 960px) {
-      .container-grid { display: flex; flex-direction: column; }
-      .sidebar { order: 2; width: 100%; }
-      .main-content { order: 1; width: 100%; }
-      .btn-nav { display: none; }
-    }
+  /* LEAFLET DARK LOOK & ATTRYBUCJA */
+  .leaflet-tile { filter: brightness(0.65) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important; }
+  [data-theme="light"] .leaflet-tile { filter: none !important; }
+  .leaflet-container { background-color: var(--bg) !important; }
+  .leaflet-control-attribution {
+    background: rgba(9, 9, 11, 0.75) !important;
+    color: var(--text-muted) !important;
+    font-size: 0.65rem !important;
+    backdrop-filter: blur(4px);
+  }
+  .leaflet-control-attribution a { color: var(--text-muted) !important; }
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: var(--card-bg) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+  }
+  .leaflet-popup-content b { color: var(--accent-blue) !important; }
+  .leaflet-control-zoom a { background-color: var(--card-bg) !important; color: var(--text) !important; border-color: var(--border) !important; }
+{% endblock %}
 
-    /* LEWA KOLUMNA: TREŚĆ OBIEKTU */
-    .main-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 32px; }
-    .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-radius: 4px; }
-    h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 8px; }
-    .place-address { color: var(--text-muted); font-size: 1rem; margin-bottom: 24px; display: flex; align-items: center; gap: 6px; }
-    
-    #map { height: 340px; width: 100%; border: 1px solid var(--border); border-radius: 6px; margin-top: 12px; margin-bottom: 32px; z-index: 1; }
+{% block breadcrumbs %}
+<nav class="breadcrumbs" aria-label="Ścieżka powrotu">
+  <a href="/">Polska</a><span>/</span><a href="/{{ city_tag }}/">{{ city_name or city }}</a><span>/</span><span class="current">{{ place.name }}</span>
+</nav>
+{% endblock %}
 
-    /* SEKCJA NADCHODZĄCYCH WYDARZEŃ */
-    .events-section-title { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 18px; font-weight: 900; color: var(--text); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 28px; }
-    .events-count { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
-    
-    .event-card-mini {
-      display: flex;
-      gap: 16px;
-      padding: 14px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      border-radius: 6px;
-      text-decoration: none;
-      color: inherit;
-      align-items: center;
-      margin-bottom: 12px;
-      transition: border-color 0.2s, background 0.2s, transform 0.2s;
-    }
-    .event-card-mini:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(3px); }
-    .event-card-mini.cancelled { opacity: 0.72; border-color: rgba(239, 68, 68, 0.4); }
-    
-    .event-thumb-mini { width: 110px; height: 80px; object-fit: cover; background: #000; border-radius: 4px; flex-shrink: 0; }
-    .event-info-mini { flex: 1; min-width: 0; }
-    .event-meta-mini { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-    .event-title-mini { margin: 2px 0 6px; font-size: 1.05rem; font-weight: 800; color: var(--text); line-height: 1.3; }
-    .event-price-mini { font-size: 0.82rem; font-weight: 800; color: var(--accent-green); }
-    .badge-cancelled-mini { color: #f87171; font-weight: 800; font-size: 0.75rem; background: rgba(239, 68, 68, 0.15); padding: 2px 6px; border-radius: 2px; }
+{% block content %}
+{% set addr = place.address if place.address is mapping else {} %}
+{% set street = (addr.street or place.street or '') | trim %}
+{% set housenumber = (addr.housenumber or place.housenumber or '') | trim %}
+{% set p_city = (addr.city or place.city or city_name or city) | trim %}
+{% set lat = place.lat or (place.geo and place.geo.lat) or (place.coordinates and place.coordinates.lat) %}
+{% set lon = place.lon or (place.geo and place.geo.lon) or (place.coordinates and place.coordinates.lon) %}
 
-    /* PRAWA KOLUMNA: SIDEBAR LOGISTYKI */
-    .sidebar { display: flex; flex-direction: column; gap: 24px; }
-    .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 22px; border-radius: 6px; }
-    .sidebar h3 { font-size: 0.88rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px; font-weight: 900; }
-    .info-row { display: flex; margin-bottom: 14px; font-size: 0.9rem; align-items: baseline; }
-    .info-label { width: 35%; font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
-    .info-val { width: 65%; font-weight: 600; color: var(--text); }
+{# Mapowanie kategorii na język polski #}
+{% set raw_cat = (place.category or place.raw_amenity or place.group or '') | lower | trim %}
+{% set cat_label = 'Obiekt Kulturalny' %}
+{% if 'venue' in raw_cat or 'theatre' in raw_cat or 'teatr' in raw_cat %}
+  {% set cat_label = 'Scena / Obiekt' %}
+{% elif 'museum' in raw_cat or 'muzeum' in raw_cat or 'gallery' in raw_cat or 'galeria' in raw_cat %}
+  {% set cat_label = 'Galeria / Muzeum' %}
+{% elif 'cinema' in raw_cat or 'kino' in raw_cat %}
+  {% set cat_label = 'Kino' %}
+{% elif 'pub' in raw_cat or 'bar' in raw_cat or 'klub' in raw_cat %}
+  {% set cat_label = 'Klub Muzyczny' %}
+{% elif place.category %}
+  {% set cat_label = place.category %}
+{% endif %}
 
-    /* LEAFLET DARK LOOK */
-    .leaflet-tile { filter: brightness(0.65) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important; }
-    [data-theme="light"] .leaflet-tile { filter: none !important; }
-    .leaflet-container { background-color: var(--bg) !important; }
-    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-      background: var(--card-bg) !important;
-      color: var(--text) !important;
-      border: 1px solid var(--border) !important;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
-    }
-    .leaflet-popup-content b { color: var(--accent-blue) !important; }
-    .leaflet-control-zoom a { background-color: var(--card-bg) !important; color: var(--text) !important; border-color: var(--border) !important; }
+<div class="container-grid">
+  <article class="main-content">
+    <span class="badge">{{ cat_label }}</span>
+    <h1>{{ place.name }}</h1>
+    <p class="place-address">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      <span>{% if street %}ul. {{ street }}{% if housenumber %} {{ housenumber }}{% endif %}, {{ p_city }}{% else %}{{ place.name }}, {{ p_city }}{% endif %}</span>
+    </p>
 
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); background: var(--bg); padding: 48px 20px 24px; margin-top: 40px; }
-    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 24px; }
-    .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; color: var(--text); }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 10px; }
-    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
-    .footer-col ul a:hover { color: var(--text); }
-    .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
-  
-    /* --- SYSTEMOWY PRZEŁĄCZNIK MOTYWU (PILL SWITCH) --- */
-    .theme-switch {
-      background: transparent;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      outline: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .switch-track {
-      width: 54px;
-      height: 28px;
-      background: var(--card-bg, #1e293b);
-      border: 1px solid var(--border, #334155);
-      border-radius: 9999px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 6px;
-      box-sizing: border-box;
-      transition: background 0.25s ease, border-color 0.25s ease;
-    }
-    .switch-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 14px;
-      height: 14px;
-      z-index: 1;
-      color: var(--text-muted, #94a3b8);
-      pointer-events: none;
-    }
-    .switch-thumb {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--btn-primary-bg, #ffffff);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s ease;
-      z-index: 2;
-    }
-    /* Tryb Jasny: suwak po lewej (na słońcu) */
-    [data-theme="light"] .switch-thumb {
-      transform: translateX(0);
-      background: #0f172a;
-    }
-    [data-theme="light"] .icon-sun {
-      color: #f59e0b;
-    }
-    /* Tryb Ciemny (Domyślny): suwak po prawej (na księżycu) */
-    [data-theme="dark"] .switch-thumb,
-    :root:not([data-theme="light"]) .switch-thumb {
-      transform: translateX(26px);
-      background: #ffffff;
-    }
-    [data-theme="dark"] .icon-moon,
-    :root:not([data-theme="light"]) .icon-moon {
-      color: #38bdf8;
-    }
+    {% if lat and lon %}
+      <div id="map"></div>
+    {% endif %}
 
-  </style>
-</head>
-<body>
-  {% set addr = place.address if place.address is mapping else {} %}
-  {% set street = addr.street or place.street or '' %}
-  {% set housenumber = addr.housenumber or place.housenumber or '' %}
-  {% set p_city = addr.city or place.city or city_name or city %}
-  {% set lat = place.lat or (place.geo and place.geo.lat) or (place.coordinates and place.coordinates.lat) %}
-  {% set lon = place.lon or (place.geo and place.geo.lon) or (place.coordinates and place.coordinates.lon) %}
-
-  <header>
-    <div class="nav-container">
-      <a href="/{{ city_tag }}/" class="brand">CoRobićW <span>{{ city_name or city }}</span></a>
-      <div class="nav-actions">
-        <button id="themeToggle" class="theme-switch" type="button" role="switch" aria-label="Przełącz motyw" onclick="toggleTheme()">
-          <span class="switch-track">
-            <span class="switch-icon icon-sun">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            </span>
-            <span class="switch-icon icon-moon">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            </span>
-            <span class="switch-thumb"></span>
-          </span>
-        </button>
-        <a href="/{{ city_tag }}/" class="btn-nav">&larr; Wróć do agendy</a>
-        <a href="mailto:kontakt@corobicw.pl?subject=Zgłoszenie" class="btn-add">+ Dodaj</a>
-      </div>
+    <div class="events-section-header">
+      <h2 class="events-section-title">Nadchodzące wydarzenia w tym miejscu</h2>
+      <span class="events-count-badge">{{ upcoming_events|length if upcoming_events else 0 }}</span>
     </div>
-  </header>
-  
-  <main>
-    <nav class="breadcrumbs">
-      <a href="/">Polska</a><span>/</span><a href="/{{ city_tag }}/">{{ city_name or city }}</a><span>/</span><span class="current">{{ place.name }}</span>
-    </nav>
-    
-    <div class="container-grid">
-      <article class="main-content">
-        <span class="badge">{{ place.category or place.raw_amenity or place.group or 'Obiekt Kulturalny' }}</span>
-        <h1>{{ place.name }}</h1>
-        <p class="place-address">
-          <span>📍</span>
-          <span>{% if street %}ul. {{ street }} {{ housenumber }}, {{ p_city }}{% else %}{{ place.name }}, {{ p_city }}{% endif %}</span>
-        </p>
-        
-        {% if lat and lon %}
-          <div id="map"></div>
-        {% endif %}
 
-        <div class="events-section-title">
-          <span>Nadchodzące wydarzenia w tym miejscu</span>
-          <span class="events-count">{{ upcoming_events|length if upcoming_events else 0 }}</span>
-        </div>
-
-        {% if upcoming_events and upcoming_events|length > 0 %}
-          {% for ev in upcoming_events %}
-          <a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/" class="event-card-mini {% if ev.is_cancelled %}cancelled{% endif %}">
-            <img src="{{ ev.image_url or '/assets/placeholder.svg' }}" alt="{{ ev.title }}" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-            <div class="event-info-mini">
-              <div class="event-meta-mini">
-                {{ ev.date_formatted }} &bull; {{ (ev.analysis.ticket_info.time_start if ev.analysis and ev.analysis.ticket_info else '') or 'Start wg harmonogramu' }}
-              </div>
-              <div class="event-title-mini">{{ ev.title }}</div>
-              <div class="event-price-mini">
-                {% if ev.is_cancelled %}
-                  <span class="badge-cancelled-mini">⚠️ Występ odwołany</span>
-                {% else %}
-                  {{ ev.analysis.ticket_info.price_range if ev.analysis and ev.analysis.ticket_info and ev.analysis.ticket_info.price_range else 'Sprawdź bilety' }}
-                {% endif %}
-              </div>
-            </div>
-          </a>
-          {% endfor %}
-        {% else %}
-          <p style="color: var(--text-muted); font-style: italic; padding: 12px 0;">Brak zaplanowanych wydarzeń w najbliższym czasie.</p>
-        {% endif %}
-      </article>
-
-      <aside class="sidebar">
-        <div class="card">
-          <h3>Logistyka i Dojazd</h3>
-          <div class="info-row">
-            <div class="info-label">Adres</div>
-            <div class="info-val">{% if street %}ul. {{ street }} {{ housenumber }}{% else %}Brak numeru ulicy{% endif %}</div>
+    {% if upcoming_events and upcoming_events|length > 0 %}
+      {% for ev in upcoming_events %}
+      <a href="/{{ city_tag }}/wydarzenia/{{ ev.slug }}/" class="event-card-mini {% if ev.is_cancelled %}cancelled{% endif %}">
+        <img src="{{ ev.image_url or '/assets/placeholder.svg' }}" alt="{{ ev.title }}" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
+        <div class="event-info-mini">
+          <div class="event-meta-mini">
+            {{ ev.date_formatted }} &bull; {{ (ev.analysis.ticket_info.time_start if ev.analysis and ev.analysis.ticket_info else '') or 'Start wg harmonogramu' }}
           </div>
-          <div class="info-row">
-            <div class="info-label">Parking</div>
-            <div class="info-val">
-              {% if place.logistics and place.logistics.parking_details and place.logistics.parking_details|length > 0 %}
-                {{ place.logistics.parking_details[0].fee_label }} ({{ place.logistics.parking_details[0].distance_m }}m)
-              {% elif place.nearest_parking %}
-                {{ "Płatny" if place.nearest_parking.is_fee else "Bezpłatny" }} (~{{ place.nearest_parking.distance_m }}m)
-              {% else %}
-                Dostępny w strefie miejskiej
-              {% endif %}
-            </div>
-          </div>
-          <div class="info-row">
-            <div class="info-label">Dostępność</div>
-            <div class="info-val">
-              {% if place.wheelchair == 'yes' %}Dostępny dla wózków
-              {% elif place.wheelchair == 'limited' %}Częściowo dostępny
-              {% elif place.wheelchair == 'no' %}Brak dostępności
-              {% else %}Brak danych
-              {% endif %}
-            </div>
+          <div class="event-title-mini">{{ ev.title }}</div>
+          <div class="event-price-mini">
+            {% if ev.is_cancelled %}
+              <span class="badge-cancelled-mini">⚠️ Występ odwołany</span>
+            {% else %}
+              {{ ev.analysis.ticket_info.price_range if ev.analysis and ev.analysis.ticket_info and ev.analysis.ticket_info.price_range else 'Sprawdź bilety' }}
+            {% endif %}
           </div>
         </div>
-      </aside>
-    </div>
-  </main>
+      </a>
+      {% endfor %}
+    {% else %}
+      <p style="color: var(--text-muted); font-style: italic; padding: 12px 0;">Brak zaplanowanych wydarzeń w najbliższym czasie.</p>
+    {% endif %}
+  </article>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-col">
-        <h4>CoRobićW {{ city_name or city }}</h4>
-        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Niezależny harmonogram wydarzeń miejskich. Wszystkie wydarzenia pobierane bezpośrednio ze scen i galerii.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Scena</h4><ul><li><a href="#">Dodaj wydarzenie</a></li><li><a href="#">Współpraca lokalna</a></li></ul>
-      </div>
-      <div class="footer-col">
-        <h4>Kontakt</h4><ul><li><a href="#">Zgłoś błąd</a></li><li><a href="mailto:kontakt@corobicw.pl">kontakt@corobicw.pl</a></li></ul>
-      </div>
-    </div>
-    <div class="footer-copy">
-      <span>&copy; 2026 CoRobićW.</span><span>Obiekt: {{ place.name }} ({{ city_name or city }})</span>
-    </div>
-  </footer>
-  
-  
+  <aside class="sidebar">
+    <div class="card">
+      <h2>Logistyka i Dojazd</h2>
+      <div class="info-grid">
+        <div class="info-label">Adres</div>
+        <div class="info-val">{% if street %}ul. {{ street }}{% if housenumber %} {{ housenumber }}{% endif %}{% else %}Brak numeru ulicy{% endif %}</div>
 
-  {% if lat and lon %}
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const lat = {{ lat }}; const lon = {{ lon }};
+        <div class="info-label">Parking</div>
+        <div class="info-val">
+          {% if place.logistics and place.logistics.parking_details and place.logistics.parking_details|length > 0 %}
+            {{ place.logistics.parking_details[0].fee_label }} ({{ place.logistics.parking_details[0].distance_m }}m)
+          {% elif place.nearest_parking %}
+            {{ "Płatny" if place.nearest_parking.is_fee else "Bezpłatny" }} (~{{ place.nearest_parking.distance_m }}m)
+          {% else %}
+            Dostępny w strefie miejskiej
+          {% endif %}
+        </div>
+
+        <div class="info-label">Dostępność</div>
+        <div class="info-val">
+          {% if place.wheelchair == 'yes' %}<span class="is-yes">Dostępny dla wózków</span>
+          {% elif place.wheelchair == 'limited' %}Częściowo dostępny
+          {% elif place.wheelchair == 'no' %}Brak dostępności
+          {% else %}Brak danych
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+{% if lat and lon %}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const lat = {{ lat }}; const lon = {{ lon }};
+    if (typeof L !== 'undefined' && document.getElementById('map')) {
       const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lon], 15);
-      
-      const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '© OpenStreetMap'
+        attribution: '&copy; OpenStreetMap'
       }).addTo(map);
-
       L.marker([lat, lon]).addTo(map).bindPopup("<b>{{ place.name }}</b>").openPopup();
-    });
-  </script>
-  {% endif %}
-    <script>
-      function toggleTheme() {
-        const current = document.documentElement.getAttribute('data-theme') || 'dark';
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        const btn = document.getElementById('themeToggle');
-        if (btn) btn.setAttribute('aria-checked', next === 'dark');
-      }
-      document.addEventListener('DOMContentLoaded', () => {
-        const current = document.documentElement.getAttribute('data-theme') || 'dark';
-        const btn = document.getElementById('themeToggle');
-        if (btn) btn.setAttribute('aria-checked', current === 'dark');
-      });
-    </script>
-</body>
-</html>
+    }
+  });
+</script>
+{% endif %}
+{% endblock %}
