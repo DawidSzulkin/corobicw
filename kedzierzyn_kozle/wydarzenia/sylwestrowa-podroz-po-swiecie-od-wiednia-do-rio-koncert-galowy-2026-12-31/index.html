@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KK Pearls (PL/IL) - PalmJazz 2026 - Kędzierzyn-Koźle | CoRobićW</title>
+  <title>SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy - Kędzierzyn-Koźle | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -242,38 +242,161 @@ html {
       color: #38bdf8;
     }
 
+  
+    
+    .container-grid {
+      display: grid;
+      align-items: start !important;
+    }
+    .sidebar {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    .sidebar > .card:first-child {
+      margin-top: 0 !important;
+    }
+    .sidebar > .card:first-child h2 {
+      margin-top: 0 !important;
+    }
+
+  
+    
+    .container-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0; /* blokuje rozpychanie grida przez szerokie elementy */
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      height: auto !important;
+      min-height: 0 !important;
+      justify-content: flex-start !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > .card {
+      margin: 0 !important; /* likwiduje sztuczne odstępy między klockami */
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* DESKTOP: Cały kompaktowy stos jedzie równo z długim opisem */
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    /* TABLET / MOBILE: Płynne przejście w jedną kolumnę */
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .sidebar > .card {
+        border-radius: 8px;
+      }
+    }
+
+  
+    /* --- ZWARTY STOS SIDEBARA (BILETY + OBIEKT + GASTRO) --- */
+    .container-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 380px !important;
+      gap: 32px !important;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-self: start !important;
+      gap: 16px !important;
+      height: fit-content !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > * {
+      margin: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+      }
+    }
+
   </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="KK Pearls (PL/IL) - PalmJazz 2026 | CoRobićW Kędzierzyn-Koźle">
-  <meta property="og:description" content="Krzysztof Kobyliński nieustannie poszukuje nowych muzycznych przestrzeni. W ostatnich latach koncertował solo, występował w duetach z Erikiem Truffazem i Daniele di Bonaventurą, re">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_kk-pearls-plil-palmjazz-2026.webp">
-  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/kk-pearls-plil-palmjazz-2026-2026-11-13/">
+  <meta property="og:title" content="SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy | CoRobićW Kędzierzyn-Koźle">
+  <meta property="og:description" content="Wielki powrót naszego programu sylwestrowego! Stęskniliście się za tą energią Ponownie zabieramy Państwa w muzyczną podróż dookoła świata! Przygotujcie się na wieczór pełen kontra">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy.webp">
+  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy-2026-12-31/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "KK Pearls (PL/IL) - PalmJazz 2026",
-    "startDate": "2026-11-13T18:00",
-    "endDate": "2026-11-13",
+    "name": "SYLWESTROWA PODR\u00d3\u017b PO \u015aWIECIE - OD WIEDNIA DO RIO - koncert galowy",
+    "startDate": "2026-12-31T22:00",
+    "endDate": "2026-12-31",
     "location": {
       "@type": "Place",
-      "name": "Wydarzenie",
+      "name": "Chemik",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Kędzierzyn-Koźle",
         "addressCountry": "PL",
-        "streetAddress": "K\u0119dzierzyn-Ko\u017ale"
+        "streetAddress": "None, K\u0119dzierzyn-Ko\u017ale"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_kk-pearls-plil-palmjazz-2026.webp"],
-    "description": "Krzysztof Kobyli\u0144ski nieustannie poszukuje nowych muzycznych przestrzeni. W ostatnich latach koncertowa\u0142 solo, wyst\u0119powa\u0142 w duetach z Erikiem Truffazem i Daniele di Bonaventur\u0105, re",
+    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy.webp"],
+    "description": "Wielki powr\u00f3t naszego programu sylwestrowego! St\u0119sknili\u015bcie si\u0119 za t\u0105 energi\u0105 Ponownie zabieramy Pa\u0144stwa w muzyczn\u0105 podr\u00f3\u017c dooko\u0142a \u015bwiata! Przygotujcie si\u0119 na wiecz\u00f3r pe\u0142en kontra",
     "offers": {
       "@type": "Offer",
-      "url": "https://biletyna.pl/koncert/KK-Pearls-PLIL-koncert-w-ramach-PalmJazz-Festiwal"
+      "url": "https://biletyna.pl/koncert/SYLWESTROWA-PODROZ-PO-SWIECIE-OD-WIEDNIA-DO-RIO-koncert-galowy"
     }
   }
   </script>
@@ -305,47 +428,44 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">KK Pearls (PL/IL) - PalmJazz 2026</span>
+      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - KK Pearls (PL/IL) - PalmJazz 2026"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_kk-pearls-plil-palmjazz-2026.webp');"></div>
-  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_kk-pearls-plil-palmjazz-2026.webp" alt="Plakat: KK Pearls (PL/IL) - PalmJazz 2026" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy.webp');"></div>
+  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy.webp" alt="Plakat: SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
   <div><span class="badge">Kultura i Rozrywka</span></div>
-  <h1>KK Pearls (PL/IL) - PalmJazz 2026</h1>
+  <h1>SYLWESTROWA PODRÓŻ PO ŚWIECIE - OD WIEDNIA DO RIO - koncert galowy</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=KK%20Pearls%20%28PL/IL%29%20-%20PalmJazz%202026&details=Krzysztof%20Kobyli%C5%84ski%20nieustannie%20poszukuje%20nowych%20muzycznych%20przestrzeni.%20W%20ostatnich%20latach%20koncertowa%C5%82%20solo%2C%20wyst%C4%99powa%C5%82%20w%20duetach%20z%20Erikiem..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=KK%20Pearls%20%28PL/IL%29%20-%20PalmJazz%202026%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/kk-pearls-plil-palmjazz-2026-2026-11-13/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=SYLWESTROWA%20PODR%C3%93%C5%BB%20PO%20%C5%9AWIECIE%20-%20OD%20WIEDNIA%20DO%20RIO%20-%20koncert%20galowy&details=Wielki%20powr%C3%B3t%20naszego%20programu%20sylwestrowego%21%20St%C4%99sknili%C5%9Bcie%20si%C4%99%20za%20t%C4%85%20energi%C4%85%20Ponownie%20zabieramy%20Pa%C5%84stwa%20w%20muzyczn%C4%85%20podr%C3%B3%C5%BC%20dooko%C5%82a%20%C5%9Bwiata%21..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=SYLWESTROWA%20PODR%C3%93%C5%BB%20PO%20%C5%9AWIECIE%20-%20OD%20WIEDNIA%20DO%20RIO%20-%20koncert%20galowy%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/sylwestrowa-podroz-po-swiecie-od-wiednia-do-rio-koncert-galowy-2026-12-31/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>Krzysztof Kobyliński nieustannie poszukuje nowych muzycznych przestrzeni. W ostatnich latach koncertował solo, występował w duetach z Erikiem Truffazem i Daniele di Bonaventurą, realizował projekty z Trilokiem Gurtu oraz wieloma artystami z Europy i świata.</p><p>Wśród tych wszystkich przedsięwzięć szczególne miejsce zajmuje jednak KK Pearls – autorski zespół, z którym rozwija własny język muzyczny, łączący jazz z inspiracjami płynącymi z różnych kultur. To właśnie z tym projektem twórca i dyrektor artystyczny Palm Jazz powróci w tym roku na festiwalową scenę.</p><p>Obecny skład KK Pearls tworzą muzycy, z którymi Krzysztof Kobyliński regularnie koncertuje: Reut Rivka Shabi (wokal), Dima Gorelik (gitara) oraz Tom Dayan (perkusja). To zespół oparty na wzajemnym zaufaniu i swobodzie improwizacji, w którym każda kompozycja pozostaje jedynie punktem wyjścia do wspólnego tworzenia muzyki.</p><p>Takie podejście od początku stanowi jeden z najważniejszych znaków rozpoznawczych KK Pearls. Na powrót KK Pearls na Palm Jazz wielu słuchaczy czekało od dawna. Choć Krzysztof Kobyliński regularnie występuje w Polsce i za granicą z różnymi projektami, festiwalowe koncerty KK Pearls należą dziś do rzadkości.</p><p>Tegoroczna edycja Palm Jazz będzie więc okazją, aby ponownie usłyszeć zespół na festiwalu, z którym od początku związana jest jego historia. Skład: • Krzysztof Kobyliński – fortepian • Reut Rivka Shabi – wokal • Dima Gorelik – gitara • Tom Dayan – perkusja O festiwalu Pierwsza edycja Palm Jazz odbyła się w 2010 roku.</p><p>Od tamtej pory festiwal wypracował własny charakter, stając się miejscem spotkań artystów, którzy nie podążają utartymi ścieżkami. Najważniejsze były zawsze autorskie projekty i twórcy konsekwentnie realizujący własną artystyczną wizję.</p><p>Dziś Palm Jazz jest przestrzenią, w której jazz spotyka się z muzyką świata, elektroniką, klasyką i projektami wymykającymi się prostym gatunkowym podziałom. XVII edycja ponownie zestawia powroty wybitnych artystów z festiwalowymi debiutami.</p><p>W tym roku Palm Jazz zabrzmi w Gliwicach, Tarnowskich Górach i Raciborzu – koncerty odbędą się w Centrum Kultury Jazovia, Teatrze Miejskim, Pałacu w Rybnej oraz Raciborskim Centrum Kultury. W programie tegorocznej edycji znaleźli się między innymi: Jan Garbarek, Chris Potter, Wojtek Mazolewski, Deep Forest, Anna Maria Jopek, Adam Makowicz, Marcin Wasilewski Trio oraz Maciej Obara i Mathias Eick.</p><p>Obok nich pojawią się także premierowe projekty i artyści, którzy po raz pierwszy wystąpią przed palmjazzową publicznością. Za artystyczny kształt festiwalu odpowiada jego twórca i dyrektor artystyczny Krzysztof Kobyliński.</p><p>Każda edycja jest efektem jego osobistych muzycznych wyborów i konsekwentnie realizowanej wizji artystycznej. Układana jest jak dobrze skomponowany koncert – poszczególne wydarzenia dopełniają się, tworząc spójną opowieść o muzyce, która wymyka się prostym definicjom.</p><p>Zapraszamy na XVII Festiwal Palm Jazz.</p></div>
+  <div class="event-desc"><p>Wielki powrót naszego programu sylwestrowego! Stęskniliście się za tą energią Ponownie zabieramy Państwa w muzyczną podróż dookoła świata! Przygotujcie się na wieczór pełen kontrastów – od eleganckiej wiedeńskiej klasyki i czaru najpiękniejszych operetek, przez słoneczne melodie południa Europy, aż po namiętne tango i gorącą sambę!</p><p>Tego wydarzenia po prostu nie można przegapić. Do zobaczenia! Muzyczna podróż dookoła świata w jeden wyjątkowy wieczór! W wyjątkowy, jedyny taki wieczór w roku, zapraszamy na wydarzenie pełne blasku, elegancji i najlepszych muzycznych emocji!</p><p>„Sylwestrowa podróż po świecie” to niezwykły koncert galowy, podczas którego publiczność odbędzie fascynującą muzyczną podróż od Wiednia do Rio - przez Europę, Amerykę Południową i Północną. Tego wieczoru zabrzmią największe światowe przeboje – od klasyki wiedeńskich sal koncertowych, przez namiętne tango, zmysłową bossę novę i energetyczną sambę, aż po niezapomniane melodie.</p><p>W programie zabrzmi muzyka Johanna Straussa, Franza Lehara, Georgesa Bizeta i Vittorio Montiego, najpiękniejsze melodie operowe, operetkowe, pełne słońca pieśni neapolitańskie i muzyczne niespodzianki. W programie znajdą się m.in.</p><p>takie utwory jak:„Nad pięknym modrym Dunajem”, „Marsz Radetzkiego”, „O sole mio”, „Dziewczęta z Barcelony”, „Ach jedź do Varasdin”, "Can-can" czy „La Spagnola”. O niezapomniane artystyczne wrażenia zadbają wybitni soliści, których głosy i sceniczna charyzma zachwycają publiczność w Polsce i za granicą: Olivia Ohl-Szulik – sopran, Joanna Wojowska – sopran, Ireneusz Miczka – baryton, Dariusz Pietrzykowski – tenor.</p><p>Towarzyszyć im będzie Appassionata Ensemble - znany z muzycznej wirtuozerii zespół łączący w autorskich aranżacjach klasyczne brzmienie z nowoczesną energią sceniczną. Zespół tworzą: Klaudia Krause – fortepian, aranżacje, Łukasz Grabiński – skrzypce, Piotr Lipiński – perkusja, Marek Krause – gitara basowa, Mirosław Krause – akordeon.</p><p>Magiczny klimat tej wyjątkowej nocy dopełni pełne koloru, ekspresji i pięknych kostiumów taneczne show w wykonaniu tancerzy Sun Dance pod kierownictwem Sabiny Langner. Przewodnikiem sylwestrowej muzycznej podróży będzie Mirosław Krause – charyzmatyczny popularyzator muzyki, który z pasją i humorem łączy wiedzę, anegdotę oraz energię.</p><p>Zapraszamy na elegancki, pełen niezapomnianych melodii sylwestrowy wieczór – idealny, by w najlepszym stylu pożegnać stary rok i powitać nowy!** 🎤 Olivia Ohl-Szulik – jeden z najpiękniejszych głosów operowych w Europie, absolwentka Uniwersytetu Muzycznego we Frankfurcie nad Menem.</p><p>Laureatka licznych konkursów i festiwali, dzieli się swoją muzyczną pasją z publicznością w Polsce i za granicą. Charakteryzuje ją imponująca skala głosu – od partii koloraturowych po dramatyczne – oraz szlachetna barwa, która nadaje wyjątkowy charakter interpretacjom klasycznych dzieł.</p><p>Jej talent rozkwita również w muzyce filmowej i rozrywkowej. Występowała u boku takich artystów jak Sławek Uniatowski, Kayah, Małgorzata Ostrowska czy Kuba Badach. Na scenie urzeka nie tylko brzmieniem, ale też charyzmą i sceniczną naturalnością.</p><p>🎤 JOANNA WOJNOWSKA - sopran - Artystka, której głos łączy szlachetność brzmienia z głęboką muzyczną wrażliwością. Ukończyła z wyróżnieniem Wydział Wokalno-Aktorski Akademii Muzycznej w Katowicach, uzyskując stypendium Ministra Kultury i Sztuki.</p><p>Współpracowała z wieloma renomowanymi instytucjami i zespołami, w tym z Gliwickim Teatrem Muzycznym, orkiestrami Filharmonii Śląskiej i Zielonogórskiej, Śląską Orkiestrą Kameralną, a także zespołami wokalnymi o międzynarodowej renomie, takimi jak Cantores Minores Wratislavienses, Camerata Silesia czy Orfeo Ensemble.</p><p>Jej artystyczna aktywność obejmuje również działalność kameralną, m.in. w duecie wokalnym Sopra Nova, który tworzy wraz z córką Alicją. Artystka koncertuje zarówno w Polsce, jak i za granicą, biorąc udział w prestiżowych festiwalach muzycznych, takich jak Baroque d’Auvergne we Francji, Wratislavia Cantans, Gaude Mater, Gliwicki Festiwal Bachowski czy Festiwal im.</p><p>Jana Kiepury w Krynicy. Równolegle z działalnością sceniczną Joanna Wojnowska z oddaniem realizuje się jako pedagog – kieruje wydziałem wokalistyki Państwowej Szkoły Muzycznej w Gliwicach, kształcąc kolejne pokolenia młodych śpiewaków.</p><p>Jej dorobek został uhonorowany w 2015 roku odznaką „Zasłużony dla Kultury Polskiej”, będącą wyrazem uznania dla jej wkładu w rozwój polskiej kultury muzycznej. 🎤 Ireneusz Miczka – baryton, ceniony solista związany z Gliwickim Teatrem Muzycznym, Operą Śląską i Operą Wrocławską.</p><p>Koncertuje na najważniejszych scenach w kraju, wykonując repertuar operowy, oratoryjny i muzykę rozrywkową. Współpracował z wieloma legendami polskiej sceny, m.in. z Ireną Santor, Grażyną Brodzińską, Małgorzatą Walewską i Wiesławem Ochmanem.</p><p>Regularnie występuje także w popularnym cyklu „Śpiewające fortepiany – koncertowo i z humorem” u boku duetu Czesław Majewski &amp; Janusz Tylman. Równolegle z działalnością sceniczną z sukcesami realizuje się jako pedagog – prowadząc klasę wokalną w Państwowym Policealnym Studium Wokalno-Aktorskim w Chorzowie, kształcąc kolejne pokolenia młodych wokalistów.</p><p>Jego głos i poczucie humoru gwarantują wyjątkowy kontakt z publicznością. 🎤 Dariusz Pietrzykowski - tenor. Należy do grona cenionych polskich tenorów, łączących klasyczną wrażliwość wokalną z bogatym doświadczeniem scenicznym.</p><p>Jest absolwentem bydgoskiej Akademii Muzycznej w klasie Jana Kunerta, którą ukończył z wyróżnieniem. Stypendysta Fundacji Yamaha. Występuje gościnnie na deskach Opery Narodowej w Warszawie, Teatru Wielkiego w Łodzi, Teatru Wielkiego w Poznaniu, Opery Nova w Bydgoszczy, Opery Śląskiej w Bytomiu, Opery Bałtyckiej w Gdańsku, Opery Krakowskiej, Opery Na Zamku w Szczecinie oraz filharmonii w całej Polsce.</p><p>W 2007 roku śpiewał partię solową w balecie Harnasie K. Szymanowskiego podczas koncertu transmitowanego przez Polskie Radio w ramach sezonu koncertowego EBU pod batutą K. Korda. Koncertował również za granicą , m.in. w Austrii, Belgii, Bułgarii, Danii, Francji, Grecji, Niemiec, Holandii, Luksemburgu, Rosji, Hiszpanii, Szwajcarii.</p><p>Appassionata Ensemble to zespół, który łączy klasyczne brzmienie z nowoczesną energią sceniczną. Artyści wyróżniają się wirtuozerią wykonania, muzyczną pasją oraz wyjątkową dbałością o artystyczny detal. W repertuarze zespołu znajdują się zarówno utwory muzyki klasycznej, filmowej i musicalowej, jak również znane standardy oraz autorskie aranżacje przebojów muzyki rozrywkowej.</p><p>Appassionata Ensemble tworzy koncerty pełne emocji, subtelności i muzycznej elegancji, zabierając publiczność w podróże przez różne style i epoki. Zespół często współpracuje z wokalistami, instrumentalistami oraz tancerzami, tworząc widowiska o wyjątkowym klimacie i wysokim poziomie artystycznym.</p><p>Bilety w cenie : do 30 XI 2026r. 200 zł (raciborska karta ,,Senior 60+'' w cenie 110 zł ) od 1XII 220 zł ( raciborska karta ,,Senior 60+'' w cenie 120 zł )</p></div>
 
   
 </div>
   </article>
 
   <aside class="sidebar">
-    ﻿<div class="card">
+    <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
-    <div class="info-label">Data</div><div class="info-val">Piątek, 13 listopada</div>
-    <div class="info-label">Start</div><div class="info-val">18:00</div>
+    <div class="info-label">Data</div><div class="info-val">Czwartek, 31 grudnia</div>
+    <div class="info-label">Start</div><div class="info-val">22:00</div>
     <div class="info-label">Miejsce</div>
-    <div class="info-val"><strong>Wydarzenie</strong><span class="address">Kędzierzyn-Koźle</span>
+    <div class="info-val"><a href="/kedzierzyn_kozle/miejsca/kk-chemik/"><strong>Chemik</strong></a><span class="address">None, Kędzierzyn-Koźle</span>
     </div>
-    
-    <div class="info-label">Parking</div><div class="info-val">Parking ogólnodostępny w pobliżu obiektu</div>
-    
   </div>
 
   
@@ -358,12 +478,9 @@ html {
   
 
   
-    <div class="ticket-market-header">
-      <span class="ticket-market-title">Dostępne bilety</span>
-      <span class="ticket-count">1 opcja</span>
-    </div>
     <div class="offers-stack">
       
+        
         
         
         <div class="offer-box highlight">
@@ -372,13 +489,12 @@ html {
               <div class="offer-provider-line">
                 <span class="offer-provider-name">Biletyna</span>
                 
-                
               </div>
-              <div class="offer-price-val">Od 43.48 zł</div>
+              <div class="offer-price-val is-text-price">Od 213.40 zł</div>
             </div>
-            <div>
+            <div class="offer-btn-col">
               
-                <a href="https://biletyna.pl/koncert/KK-Pearls-PLIL-koncert-w-ramach-PalmJazz-Festiwal" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
+                <a href="https://biletyna.pl/koncert/SYLWESTROWA-PODROZ-PO-SWIECIE-OD-WIEDNIA-DO-RIO-koncert-galowy" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
               
             </div>
           </div>
@@ -389,8 +505,25 @@ html {
     </div>
   
 </div>
-    ﻿
-    ﻿
+    
+    
+<div class="card">
+  <h2>W okolicy (Gastro)</h2>
+  <div class="gastro-list">
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Restauracja Athena</div>
+      <div class="gastro-meta">16m stąd (~1 min) &bull; restaurant</div>
+    </div>
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Kosmos</div>
+      <div class="gastro-meta">140m stąd (~2 min) &bull; restaurant</div>
+    </div>
+    
+  </div>
+</div>
+
   </aside>
 </div>
 

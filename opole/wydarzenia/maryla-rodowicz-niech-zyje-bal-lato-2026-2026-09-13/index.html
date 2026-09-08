@@ -242,6 +242,129 @@ html {
       color: #38bdf8;
     }
 
+  
+    
+    .container-grid {
+      display: grid;
+      align-items: start !important;
+    }
+    .sidebar {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    .sidebar > .card:first-child {
+      margin-top: 0 !important;
+    }
+    .sidebar > .card:first-child h2 {
+      margin-top: 0 !important;
+    }
+
+  
+    
+    .container-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0; /* blokuje rozpychanie grida przez szerokie elementy */
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      height: auto !important;
+      min-height: 0 !important;
+      justify-content: flex-start !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > .card {
+      margin: 0 !important; /* likwiduje sztuczne odstępy między klockami */
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* DESKTOP: Cały kompaktowy stos jedzie równo z długim opisem */
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    /* TABLET / MOBILE: Płynne przejście w jedną kolumnę */
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .sidebar > .card {
+        border-radius: 8px;
+      }
+    }
+
+  
+    /* --- ZWARTY STOS SIDEBARA (BILETY + OBIEKT + GASTRO) --- */
+    .container-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 380px !important;
+      gap: 32px !important;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-self: start !important;
+      gap: 16px !important;
+      height: fit-content !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > * {
+      margin: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+      }
+    }
+
   </style>
   
   
@@ -337,7 +460,7 @@ Maryla Rodowicz na żywo pod błękitnym niebem Występy Maryli Rodowicz to coś
   </article>
 
   <aside class="sidebar">
-    ﻿<div class="card">
+    <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
     <div class="info-label">Data</div><div class="info-val">Niedziela, 13 września</div>
@@ -345,9 +468,6 @@ Maryla Rodowicz na żywo pod błękitnym niebem Występy Maryli Rodowicz to coś
     <div class="info-label">Miejsce</div>
     <div class="info-val"><a href="/opole/miejsca/o-narodowe-centrum-polskiej-piosenki/"><strong>Narodowe Centrum Polskiej Piosenki</strong></a><span class="address">Piastowska, Opole</span>
     </div>
-    
-    <div class="info-label">Parking</div><div class="info-val">Bezpłatny parking (~52m)</div>
-    
   </div>
 
   
@@ -370,12 +490,9 @@ Maryla Rodowicz na żywo pod błękitnym niebem Występy Maryli Rodowicz to coś
   
 
   
-    <div class="ticket-market-header">
-      <span class="ticket-market-title">Dostępne bilety</span>
-      <span class="ticket-count">3 opcje</span>
-    </div>
     <div class="offers-stack">
       
+        
         
         
         <div class="offer-box highlight">
@@ -384,13 +501,12 @@ Maryla Rodowicz na żywo pod błękitnym niebem Występy Maryli Rodowicz to coś
               <div class="offer-provider-line">
                 <span class="offer-provider-name">KupBilecik</span>
                 
-                
                   <span class="offer-tag best-price">Najlepsza cena</span>
                 
               </div>
-              <div class="offer-price-val">Od 15 zł</div>
+              <div class="offer-price-val ">Od 15 zł</div>
             </div>
-            <div>
+            <div class="offer-btn-col">
               
                 <a href="https://www.kupbilecik.pl/pl/event/201089/opole/maryla-rodowicz" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
               
@@ -402,6 +518,7 @@ Maryla Rodowicz na żywo pod błękitnym niebem Występy Maryli Rodowicz to coś
       
         
         
+        
         <div class="offer-box ">
           <div class="offer-main-row">
             <div class="offer-info-col">
@@ -410,13 +527,10 @@ Maryla Rodowicz na żywo pod błękitnym niebem Występy Maryli Rodowicz to coś
                 
                   <span class="offer-tag official">Oficjalna kasa</span>
                 
-                
-                  <span class="offer-tag best-price">Oficjalna kasa</span>
-                
               </div>
-              <div class="offer-price-val">Bilety: 140 zł</div>
+              <div class="offer-price-val is-text-price">Bilety: 140 zł</div>
             </div>
-            <div>
+            <div class="offer-btn-col">
               
                 <a href="https://bilety.ncpp.opole.pl/rezerwacja/numerowane.html?ter_id=34387&ter_idt=c79b53c0d75e246559047a83ac057572" target="_blank" rel="nofollow noopener" class="offer-btn-buy secondary">Kup bilet</a>
               
@@ -428,17 +542,17 @@ Maryla Rodowicz na żywo pod błękitnym niebem Występy Maryli Rodowicz to coś
       
         
         
+        
         <div class="offer-box ">
           <div class="offer-main-row">
             <div class="offer-info-col">
               <div class="offer-provider-line">
                 <span class="offer-provider-name">Biletyna</span>
                 
-                
               </div>
-              <div class="offer-price-val">Od 148.68 zł</div>
+              <div class="offer-price-val is-text-price">Od 148.68 zł</div>
             </div>
-            <div>
+            <div class="offer-btn-col">
               
                 <a href="https://biletyna.pl/koncert/Maryla-Rodowicz/Lato/Opole" target="_blank" rel="nofollow noopener" class="offer-btn-buy secondary">Kup bilet</a>
               
@@ -451,8 +565,8 @@ Maryla Rodowicz na żywo pod błękitnym niebem Występy Maryli Rodowicz to coś
     </div>
   
 </div>
-    ﻿
-    ﻿
+    
+    
 <div class="card">
   <h2>W okolicy (Gastro)</h2>
   <div class="gastro-list">

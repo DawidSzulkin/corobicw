@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka - Kędzierzyn-Koźle | CoRobićW</title>
+  <title>Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim - Kędzierzyn-Koźle | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -242,26 +242,149 @@ html {
       color: #38bdf8;
     }
 
+  
+    
+    .container-grid {
+      display: grid;
+      align-items: start !important;
+    }
+    .sidebar {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    .sidebar > .card:first-child {
+      margin-top: 0 !important;
+    }
+    .sidebar > .card:first-child h2 {
+      margin-top: 0 !important;
+    }
+
+  
+    
+    .container-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0; /* blokuje rozpychanie grida przez szerokie elementy */
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      height: auto !important;
+      min-height: 0 !important;
+      justify-content: flex-start !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > .card {
+      margin: 0 !important; /* likwiduje sztuczne odstępy między klockami */
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* DESKTOP: Cały kompaktowy stos jedzie równo z długim opisem */
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    /* TABLET / MOBILE: Płynne przejście w jedną kolumnę */
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .sidebar > .card {
+        border-radius: 8px;
+      }
+    }
+
+  
+    /* --- ZWARTY STOS SIDEBARA (BILETY + OBIEKT + GASTRO) --- */
+    .container-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 380px !important;
+      gap: 32px !important;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-self: start !important;
+      gap: 16px !important;
+      height: fit-content !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > * {
+      margin: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+      }
+    }
+
   </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka | CoRobićW Kędzierzyn-Koźle">
-  <meta property="og:description" content="„Anatomia Zdarzeń. Kieszenie pełne wspomnień”, w reż. J. Gerigk, Latający Teatr Kantorowi, Rzeszów, Spektakl realizowany w ramach TEATR POLSKA godz. 19.00 - rozmowa z aktorami Wyob">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp">
-  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-24/">
+  <meta property="og:title" content="Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim | CoRobićW Kędzierzyn-Koźle">
+  <meta property="og:description" content="Muzyka, historia i opowieści o jednym z najważniejszych zespołów ostatnich dekad spotkają się na scenie Domu Książęcego Zamku Piastowskiego. Bohaterem wieczoru będzie Depeche Mode">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim.webp">
+  <meta property="og:url" content="https://corobicw.pl/kedzierzyn_kozle/wydarzenia/rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim-2026-10-10/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "ANATOMIA ZDARZE\u0143. KIESZENIE PE\u0141NE WSPOMNIE\u0143 - spektakl - V Og\u00f3lnopolski Festiwal Teatralny OFF-ka",
-    "startDate": "2026-09-24T18:00",
-    "endDate": "2026-09-24",
+    "name": "Rock na Zamku Piastowskim. Wiecz\u00f3r z muzyk\u0105 Depeche Mode i Leszkiem Gnoi\u0144skim",
+    "startDate": "2026-10-10T19:00",
+    "endDate": "2026-10-10",
     "location": {
       "@type": "Place",
-      "name": "Wydarzenie",
+      "name": "Zamek Piastowski - Muzeum Ziemi Kozielskiej",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Kędzierzyn-Koźle",
@@ -269,11 +392,11 @@ html {
         "streetAddress": "K\u0119dzierzyn-Ko\u017ale"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp"],
-    "description": "\u201eAnatomia Zdarze\u0144. Kieszenie pe\u0142ne wspomnie\u0144\u201d, w re\u017c. J. Gerigk, Lataj\u0105cy Teatr Kantorowi, Rzesz\u00f3w, Spektakl realizowany w ramach TEATR POLSKA godz. 19.00 - rozmowa z aktorami Wyob",
+    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim.webp"],
+    "description": "Muzyka, historia i opowie\u015bci o jednym z najwa\u017cniejszych zespo\u0142\u00f3w ostatnich dekad spotkaj\u0105 si\u0119 na scenie Domu Ksi\u0105\u017c\u0119cego Zamku Piastowskiego. Bohaterem wieczoru b\u0119dzie Depeche Mode",
     "offers": {
       "@type": "Offer",
-      "url": "https://biletyna.pl/spektakl/ANATOMIA-ZDARZEN-KIESZENIE-PELNE-WSPOMNIEN-spektakl-V-Ogolnopolski-Festiwal-Teatralny-OFF-ka"
+      "url": "https://biletyna.pl/koncert/Rock-na-Zamku-Piastowskim-Wieczor-z-muzyka-Depeche-Mode-i-Leszkiem-Gnoinskim"
     }
   }
   </script>
@@ -305,47 +428,44 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</span>
+      <a href="/">Polska</a><span>/</span><a href="/kedzierzyn_kozle/">Kędzierzyn-Koźle</a><span>/</span><span class="current">Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp');"></div>
-  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka.webp" alt="Plakat: ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim.webp');"></div>
+  <img src="/assets/thumbnails/biletyna_kedzierzyn_kozle_rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim.webp" alt="Plakat: Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
   <div><span class="badge">Kultura i Rozrywka</span></div>
-  <h1>ANATOMIA ZDARZEŃ. KIESZENIE PEŁNE WSPOMNIEŃ - spektakl - V Ogólnopolski Festiwal Teatralny OFF-ka</h1>
+  <h1>Rock na Zamku Piastowskim. Wieczór z muzyką Depeche Mode i Leszkiem Gnoińskim</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=ANATOMIA%20ZDARZE%C5%83.%20KIESZENIE%20PE%C5%81NE%20WSPOMNIE%C5%83%20-%20spektakl%20-%20V%20Og%C3%B3lnopolski%20Festiwal%20Teatralny%20OFF-ka&details=%E2%80%9EAnatomia%20Zdarze%C5%84.%20Kieszenie%20pe%C5%82ne%20wspomnie%C5%84%E2%80%9D%2C%20w%20re%C5%BC.%20J.%20Gerigk%2C%20Lataj%C4%85cy%20Teatr%20Kantorowi%2C%20Rzesz%C3%B3w%2C%20Spektakl%20realizowany%20w%20ramach%20TEATR%20POLSKA..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=ANATOMIA%20ZDARZE%C5%83.%20KIESZENIE%20PE%C5%81NE%20WSPOMNIE%C5%83%20-%20spektakl%20-%20V%20Og%C3%B3lnopolski%20Festiwal%20Teatralny%20OFF-ka%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/anatomia-zdarzen-kieszenie-pelne-wspomnien-spektakl-v-ogolnopolski-festiwal-teatralny-off-ka-2026-09-24/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Rock%20na%20Zamku%20Piastowskim.%20Wiecz%C3%B3r%20z%20muzyk%C4%85%20Depeche%20Mode%20i%20Leszkiem%20Gnoi%C5%84skim&details=Muzyka%2C%20historia%20i%20opowie%C5%9Bci%20o%20jednym%20z%20najwa%C5%BCniejszych%20zespo%C5%82%C3%B3w%20ostatnich%20dekad%20spotkaj%C4%85%20si%C4%99%20na%20scenie%20Domu%20Ksi%C4%85%C5%BC%C4%99cego%20Zamku%20Piastowskiego...." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=Rock%20na%20Zamku%20Piastowskim.%20Wiecz%C3%B3r%20z%20muzyk%C4%85%20Depeche%20Mode%20i%20Leszkiem%20Gnoi%C5%84skim%20-%20https://corobicw.pl/kedzierzyn_kozle/wydarzenia/rock-na-zamku-piastowskim-wieczor-z-muzyka-depeche-mode-i-leszkiem-gnoinskim-2026-10-10/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>„Anatomia Zdarzeń. Kieszenie pełne wspomnień”, w reż. J. Gerigk, Latający Teatr Kantorowi, Rzeszów, Spektakl realizowany w ramach TEATR POLSKA godz. 19.00 - rozmowa z aktorami Wyobraź sobie, wyjmujesz z szafy od lat nieużywany płaszcz i sięgasz ręką do kieszeni, otwierasz szufladę starej komody albo zaglądasz do stojącej na półce zakurzonej szkatułki - co tam znajdziesz Guzik, stary bilet do kina, żeton, muszelkę, pamiątki z przeszłości, zapomniane przedmioty twoje lub twoich bliskich.</p><p>Bliskich, których już nie ma. Kiedy dotykamy metalowej zardzewiałej puszki, czerwonego guzika, niepełnej talii kart uruchamiają się wspomnienia i nic już nie powstrzyma lawiny, nie uciekniesz od anatomii zdarzeń. Niepostrzeżenie wciągają cię opowieści, udajesz się w podróż pełną ciemnych zakamarków, miejsc do których boisz się zajrzeć, bo po co rozdrapywać stare, dawno zagojone blizny.</p><p>Okazuje się jednak, że nie jesteś w tym sam, że każdy kto słucha opowieści przedmiotów zna te historie, ma je zapisane w genach. Co przyniesie ta wędrówka Może pozwoli oswoić potwora spod dziecięcego łóżka, może zagoi to, co niezagojone, przypomni kogoś o kim warto pamiętać.</p><p>Może pojawi się refleksja skłaniająca do rozmowy, wybaczenia i opowiedzenia dzieciom po co trzymamy w szafie stary zegarek albo czym jest ten zasuszony korzonek w zakorkowanej fiolce.. "Anatomia zdarzeń. Kieszenie pełne wspomnień" Latającego Teatru Kantorowi to rodzaj spotkania z samym sobą w opowieściach innych ludzi.</p><p>To również spotkanie z naszymi przodkami, których obecność ujawnia się w naszych zachowanych, decyzjach czy nieświadomych wyborach. Zapraszamy do naszego kręgu, sprawdź jak sięga twoja pamięć i dokąd zaprowadzą Cię Twoje wspomnienia.</p><p>* **Obsada:** Monika Adamiec Monika Nitkiewicz-Mitrut/Paweł Sroka Karina Góra Grażyna Tabor Anna Jamrozek-Sowa Przemysław Buksiński Marcin Woszczewski Inni realizatorzy: Julian Maziarz/Paweł Maziarz - dźwięk Marcin Nawrocki - oświetlenie Joanna Gerigk - reżyser</p><p>* **Czas trwania:** 70 min grupa wiekowa: młodzież i dorośli</p><p>* **Scenografia:** Barbara Wójcik</p><p>* **Muzyka:** Piotr Madura, Julian Adamiec-Maziarz dramaturgia: Joanna Gerigk data premiery: 9 lipca 2023 miejsce premiery: Rzeszów</p></div>
+  <div class="event-desc"><p>Muzyka, historia i opowieści o jednym z najważniejszych zespołów ostatnich dekad spotkają się na scenie Domu Książęcego Zamku Piastowskiego. Bohaterem wieczoru będzie Depeche Mode – grupa, która od ponad czterdziestu lat inspiruje kolejne pokolenia słuchaczy na całym świecie, a w 2020 roku została wprowadzona do Rock and Roll Hall of Fame.</p><p>Gospodarzem wydarzenia będzie Leszek Gnoiński – dziennikarz muzyczny, autor książek i reżyser filmów dokumentalnych. Szczególne miejsce w jego dorobku zajmuje książka Depeche Mode/Iron Curtain Warsaw 1985, poświęcona legendarnemu koncertowi zespołu w Warszawie.</p><p>Autor z reporterską precyzją odtworzył okoliczności wydarzenia, jego kulisy oraz społeczno-kulturowe tło Polski lat osiemdziesiątych. Najważniejsza będzie jednak muzyka. Na scenie Domu Książęcego zabrzmią przeboje Depeche Mode w nowych, koncertowych interpretacjach, przygotowanych przez utalentowanych muzyków wywodzących się z Wydziału Jazzu i Muzyki Estradowej Akademii Nauk Stosowanych w Nysie.</p><p>To połączenie młodzieńczej energii, muzycznej wrażliwości i szacunku dla twórczości jednego z najważniejszych zespołów ostatnich dekad. Koncert zostanie wzbogacony opowieściami Leszka Gnoińskiego o historii zespołu, jego fenomenie oraz pamiętnym występie w Warszawie w 1985 roku.</p><p>Dzięki połączeniu muzyki wykonywanej na żywo z komentarzem jednego z najlepszych znawców polskiej sceny rockowej publiczność otrzyma nie tylko koncert, ale również wyjątkową podróż przez historię i kulturę, które towarzyszyły narodzinom fenomenu Depeche Mode.</p><p>To propozycja zarówno dla wieloletnich fanów zespołu, jak i dla wszystkich zainteresowanych historią muzyki, która od dekad przekracza granice pokoleń i państw. W cenie biletu: serwis kawowy (kawa, herbata, woda) oraz drobny poczęstunek.</p></div>
 
   
 </div>
   </article>
 
   <aside class="sidebar">
-    ﻿<div class="card">
+    <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
-    <div class="info-label">Data</div><div class="info-val">Czwartek, 24 września</div>
-    <div class="info-label">Start</div><div class="info-val">18:00</div>
+    <div class="info-label">Data</div><div class="info-val">Sobota, 10 października</div>
+    <div class="info-label">Start</div><div class="info-val">19:00</div>
     <div class="info-label">Miejsce</div>
-    <div class="info-val"><strong>Wydarzenie</strong><span class="address">Kędzierzyn-Koźle</span>
+    <div class="info-val"><a href="/kedzierzyn_kozle/miejsca/kk-zamek-piastowski/"><strong>Zamek Piastowski - Muzeum Ziemi Kozielskiej</strong></a><span class="address">Kędzierzyn-Koźle</span>
     </div>
-    
-    <div class="info-label">Parking</div><div class="info-val">Parking ogólnodostępny w pobliżu obiektu</div>
-    
   </div>
 
   
@@ -358,12 +478,9 @@ html {
   
 
   
-    <div class="ticket-market-header">
-      <span class="ticket-market-title">Dostępne bilety</span>
-      <span class="ticket-count">1 opcja</span>
-    </div>
     <div class="offers-stack">
       
+        
         
         
         <div class="offer-box highlight">
@@ -372,13 +489,12 @@ html {
               <div class="offer-provider-line">
                 <span class="offer-provider-name">Biletyna</span>
                 
-                
               </div>
-              <div class="offer-price-val">Od 22.24 zł</div>
+              <div class="offer-price-val is-text-price">Od 106.20 zł</div>
             </div>
-            <div>
+            <div class="offer-btn-col">
               
-                <a href="https://biletyna.pl/spektakl/ANATOMIA-ZDARZEN-KIESZENIE-PELNE-WSPOMNIEN-spektakl-V-Ogolnopolski-Festiwal-Teatralny-OFF-ka" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
+                <a href="https://biletyna.pl/koncert/Rock-na-Zamku-Piastowskim-Wieczor-z-muzyka-Depeche-Mode-i-Leszkiem-Gnoinskim" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
               
             </div>
           </div>
@@ -389,8 +505,39 @@ html {
     </div>
   
 </div>
-    ﻿
-    ﻿
+    
+<div class="card">
+  <h2>Dostępność i obiekt</h2>
+  <div class="info-grid">
+    
+    <div class="info-label">Dostęp dla wózków</div>
+    <div class="info-val is-yes">
+      
+        Tak (winda / podjazd)
+      
+    </div>
+    
+  </div>
+</div>
+
+    
+<div class="card">
+  <h2>W okolicy (Gastro)</h2>
+  <div class="gastro-list">
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Pod Lwami</div>
+      <div class="gastro-meta">89m stąd (~1 min) &bull; pub</div>
+    </div>
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Magdalena Zalewska</div>
+      <div class="gastro-meta">101m stąd (~1 min) &bull; cafe</div>
+    </div>
+    
+  </div>
+</div>
+
   </aside>
 </div>
 

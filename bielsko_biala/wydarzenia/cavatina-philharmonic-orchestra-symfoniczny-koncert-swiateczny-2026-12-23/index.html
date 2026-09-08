@@ -242,6 +242,129 @@ html {
       color: #38bdf8;
     }
 
+  
+    
+    .container-grid {
+      display: grid;
+      align-items: start !important;
+    }
+    .sidebar {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    .sidebar > .card:first-child {
+      margin-top: 0 !important;
+    }
+    .sidebar > .card:first-child h2 {
+      margin-top: 0 !important;
+    }
+
+  
+    
+    .container-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0; /* blokuje rozpychanie grida przez szerokie elementy */
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      height: auto !important;
+      min-height: 0 !important;
+      justify-content: flex-start !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > .card {
+      margin: 0 !important; /* likwiduje sztuczne odstępy między klockami */
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* DESKTOP: Cały kompaktowy stos jedzie równo z długim opisem */
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    /* TABLET / MOBILE: Płynne przejście w jedną kolumnę */
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .sidebar > .card {
+        border-radius: 8px;
+      }
+    }
+
+  
+    /* --- ZWARTY STOS SIDEBARA (BILETY + OBIEKT + GASTRO) --- */
+    .container-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 380px !important;
+      gap: 32px !important;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-self: start !important;
+      gap: 16px !important;
+      height: fit-content !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > * {
+      margin: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+      }
+    }
+
   </style>
   
   
@@ -335,7 +458,7 @@ html {
   </article>
 
   <aside class="sidebar">
-    ﻿<div class="card">
+    <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
     <div class="info-label">Data</div><div class="info-val">Środa, 23 grudnia</div>
@@ -343,9 +466,6 @@ html {
     <div class="info-label">Miejsce</div>
     <div class="info-val"><a href="/bielsko_biala/miejsca/bb-cavatina-hall/"><strong>Cavatina Hall</strong></a><span class="address">Dworkowa 2, Bielsko Biala</span>
     </div>
-    
-    <div class="info-label">Parking</div><div class="info-val">Dostępny w strefie miejskiej</div>
-    
   </div>
 
   
@@ -358,12 +478,9 @@ html {
   
 
   
-    <div class="ticket-market-header">
-      <span class="ticket-market-title">Dostępne bilety</span>
-      <span class="ticket-count">1 opcja</span>
-    </div>
     <div class="offers-stack">
       
+        
         
         
         <div class="offer-box highlight">
@@ -374,13 +491,10 @@ html {
                 
                   <span class="offer-tag official">Oficjalna kasa</span>
                 
-                
-                  <span class="offer-tag best-price">Oficjalna kasa</span>
-                
               </div>
-              <div class="offer-price-val">Sprawdź dostępność</div>
+              <div class="offer-price-val is-text-price">Sprawdź dostępność</div>
             </div>
-            <div>
+            <div class="offer-btn-col">
               
                 <a href="https://cavatinahall.pl/events/cavatina-philharmonic-orchestra-symfoniczny-koncert-swiateczny/" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
               
@@ -393,7 +507,7 @@ html {
     </div>
   
 </div>
-    ﻿
+    
 <div class="card">
   <h2>Dostępność i obiekt</h2>
   <div class="info-grid">
@@ -415,7 +529,7 @@ html {
   </div>
 </div>
 
-    ﻿
+    
 <div class="card">
   <h2>W okolicy (Gastro)</h2>
   <div class="gastro-list">

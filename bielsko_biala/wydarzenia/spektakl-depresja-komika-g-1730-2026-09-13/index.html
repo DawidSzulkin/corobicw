@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HIROMI: The Trio Project - Jazzowa Jesień - Bielsko-Biała | CoRobićW</title>
+  <title>spektakl DEPRESJA KOMIKA g. 17.30 - Bielsko-Biała | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -242,38 +242,161 @@ html {
       color: #38bdf8;
     }
 
+  
+    
+    .container-grid {
+      display: grid;
+      align-items: start !important;
+    }
+    .sidebar {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    .sidebar > .card:first-child {
+      margin-top: 0 !important;
+    }
+    .sidebar > .card:first-child h2 {
+      margin-top: 0 !important;
+    }
+
+  
+    
+    .container-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0; /* blokuje rozpychanie grida przez szerokie elementy */
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      height: auto !important;
+      min-height: 0 !important;
+      justify-content: flex-start !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > .card {
+      margin: 0 !important; /* likwiduje sztuczne odstępy między klockami */
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* DESKTOP: Cały kompaktowy stos jedzie równo z długim opisem */
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    /* TABLET / MOBILE: Płynne przejście w jedną kolumnę */
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .sidebar > .card {
+        border-radius: 8px;
+      }
+    }
+
+  
+    /* --- ZWARTY STOS SIDEBARA (BILETY + OBIEKT + GASTRO) --- */
+    .container-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 380px !important;
+      gap: 32px !important;
+      align-items: start !important;
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-self: start !important;
+      gap: 16px !important;
+      height: fit-content !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .sidebar > * {
+      margin: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 80px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .container-grid {
+        grid-template-columns: 100% !important;
+        gap: 20px !important;
+        padding: 0 16px !important;
+      }
+      .sidebar {
+        position: static !important;
+      }
+    }
+
   </style>
   
   
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="HIROMI: The Trio Project - Jazzowa Jesień | CoRobićW Bielsko-Biała">
-  <meta property="og:description" content="Jazzowa Jesień w Bielsku-Białej to od wielu lat jeden z najważniejszych festiwali jazzowych w Polsce. Bielskie święto jazzu ma już ponad dwudziestoletnią tradycję. Pierwsza edycja">
-  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp">
-  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/hiromi-the-trio-project-jazzowa-jesien-2026-11-04/">
+  <meta property="og:title" content="spektakl DEPRESJA KOMIKA g. 17.30 | CoRobićW Bielsko-Biała">
+  <meta property="og:description" content="Przygotuj się na wieczór pełen nieoczekiwanych zwrotów akcji, śmiechu i głębokich refleksji! „Depresja komika” to spektakl, który łączy humor z poważnym tematem – depresją, ale rob">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/bck_spektakl-depresja-komika-g-1500.webp">
+  <meta property="og:url" content="https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-depresja-komika-g-1730-2026-09-13/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "HIROMI: The Trio Project - Jazzowa Jesie\u0144",
-    "startDate": "2026-11-04",
-    "endDate": "2026-11-08",
+    "name": "spektakl DEPRESJA KOMIKA g. 17.30",
+    "startDate": "2026-09-13T17:30",
+    "endDate": "2026-09-13",
     "location": {
       "@type": "Place",
-      "name": "Piwnica Zamkowa",
+      "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Bielsko-Biała",
         "addressCountry": "PL",
-        "streetAddress": "Wzg\u00f3rze, Bielsko-Bia\u0142a"
+        "streetAddress": "S\u0142owackiego 27, Bielsko Biala"
       }
     },
-    "image": ["https://corobicw.pl/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp"],
-    "description": "Jazzowa Jesie\u0144 w Bielsku-Bia\u0142ej to od wielu lat jeden z najwa\u017cniejszych festiwali jazzowych w Polsce. Bielskie \u015bwi\u0119to jazzu ma ju\u017c ponad dwudziestoletni\u0105 tradycj\u0119. Pierwsza edycja",
+    "image": ["https://corobicw.pl/assets/thumbnails/bck_spektakl-depresja-komika-g-1500.webp"],
+    "description": "Przygotuj si\u0119 na wiecz\u00f3r pe\u0142en nieoczekiwanych zwrot\u00f3w akcji, \u015bmiechu i g\u0142\u0119bokich refleksji! \u201eDepresja komika\u201d to spektakl, kt\u00f3ry \u0142\u0105czy humor z powa\u017cnym tematem \u2013 depresj\u0105, ale rob",
     "offers": {
       "@type": "Offer",
-      "url": "https://bb2026.pl/program/jazzowa-jesien/"
+      "url": "https://www.bck.bielsko.pl/spektakl-depresja-komika-g-1730"
     }
   }
   </script>
@@ -305,47 +428,44 @@ html {
   <main>
     
     <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">HIROMI: The Trio Project - Jazzowa Jesień</span>
+      <a href="/">Polska</a><span>/</span><a href="/bielsko_biala/">Bielsko-Biała</a><span>/</span><span class="current">spektakl DEPRESJA KOMIKA g. 17.30</span>
     </nav>
     
     
 <div class="container-grid">
   <article class="main-content">
     ﻿<div class="ambient-banner" oncontextmenu="return false;">
-  <div class="ambient-shield" title="CoRobićW - HIROMI: The Trio Project - Jazzowa Jesień"></div>
-  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp');"></div>
-  <img src="/assets/thumbnails/bck_hiromi-the-trio-project-jazzowa-jesien.webp" alt="Plakat: HIROMI: The Trio Project - Jazzowa Jesień" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+  <div class="ambient-shield" title="CoRobićW - spektakl DEPRESJA KOMIKA g. 17.30"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/bck_spektakl-depresja-komika-g-1500.webp');"></div>
+  <img src="/assets/thumbnails/bck_spektakl-depresja-komika-g-1500.webp" alt="Plakat: spektakl DEPRESJA KOMIKA g. 17.30" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
 </div>
 
 <div class="event-body-header">
-  <div><span class="badge">Kultura i Sztuka</span></div>
-  <h1>HIROMI: The Trio Project - Jazzowa Jesień</h1>
+  <div><span class="badge">Kultura i Rozrywka</span></div>
+  <h1>spektakl DEPRESJA KOMIKA g. 17.30</h1>
 
   <div class="event-actions-bar">
-    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=HIROMI%3A%20The%20Trio%20Project%20-%20Jazzowa%20Jesie%C5%84&details=Jazzowa%20Jesie%C5%84%20w%20Bielsku-Bia%C5%82ej%20to%20od%20wielu%20lat%20jeden%20z%20najwa%C5%BCniejszych%20festiwali%20jazzowych%20w%20Polsce.%20Bielskie%20%C5%9Bwi%C4%99to%20jazzu%20ma%20ju%C5%BC%20ponad..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
-    <a href="https://wa.me/?text=HIROMI%3A%20The%20Trio%20Project%20-%20Jazzowa%20Jesie%C5%84%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/hiromi-the-trio-project-jazzowa-jesien-2026-11-04/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=spektakl%20DEPRESJA%20KOMIKA%20g.%2017.30&details=Przygotuj%20si%C4%99%20na%20wiecz%C3%B3r%20pe%C5%82en%20nieoczekiwanych%20zwrot%C3%B3w%20akcji%2C%20%C5%9Bmiechu%20i%20g%C5%82%C4%99bokich%20refleksji%21%20%E2%80%9EDepresja%20komika%E2%80%9D%20to%20spektakl%2C%20kt%C3%B3ry%20%C5%82%C4%85czy%20humor%20z..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=spektakl%20DEPRESJA%20KOMIKA%20g.%2017.30%20-%20https://corobicw.pl/bielsko_biala/wydarzenia/spektakl-depresja-komika-g-1730-2026-09-13/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
   </div>
 </div>
     ﻿<div class="event-body-content">
   <h2 class="section-title">O wydarzeniu</h2>
-  <div class="event-desc"><p>Jazzowa Jesień w Bielsku-Białej to od wielu lat jeden z najważniejszych festiwali jazzowych w Polsce. Bielskie święto jazzu ma już ponad dwudziestoletnią tradycję. Pierwsza edycja odbyła się roku 2003. Od początku dobrym duchem i dyrektorem artystycznym Festiwalu był znakomity trębacz Tomasz Stańko.</p><p>Po śmierci muzyka Jazzowa Jesień przyjęła jego imię.</p></div>
+  <div class="event-desc"><p>Przygotuj się na wieczór pełen nieoczekiwanych zwrotów akcji, śmiechu i głębokich refleksji! „Depresja komika” to spektakl, który łączy humor z poważnym tematem – depresją, ale robi to z wielkim wdziękiem i humorem.</p></div>
 
   
 </div>
   </article>
 
   <aside class="sidebar">
-    ﻿<div class="card">
+    <div class="card">
   <h2>Bilety i Organizacja</h2>
   <div class="info-grid">
-    <div class="info-label">Data</div><div class="info-val">Środa, 4 listopada</div>
-    <div class="info-label">Start</div><div class="info-val">Całodniowe</div>
+    <div class="info-label">Data</div><div class="info-val">Niedziela, 13 września</div>
+    <div class="info-label">Start</div><div class="info-val">17:30</div>
     <div class="info-label">Miejsce</div>
-    <div class="info-val"><a href="/bielsko_biala/miejsca/bb-piwnica-zamkowa/"><strong>Piwnica Zamkowa</strong></a><span class="address">Wzgórze, Bielsko-Biała</span>
+    <div class="info-val"><a href="/bielsko_biala/miejsca/bb-bielskie-centrum-kultury-im-marii-koterbskiej/"><strong>Bielskie Centrum Kultury im. Marii Koterbskiej</strong></a><span class="address">Słowackiego 27, Bielsko Biala</span>
     </div>
-    
-    <div class="info-label">Parking</div><div class="info-val">Dostępny w strefie miejskiej</div>
-    
   </div>
 
   
@@ -353,45 +473,17 @@ html {
   
     
     
-  
-    
-    
       
     
   
 
   
-    <div class="ticket-market-header">
-      <span class="ticket-market-title">Dostępne bilety</span>
-      <span class="ticket-count">2 opcje</span>
-    </div>
     <div class="offers-stack">
       
         
         
+        
         <div class="offer-box highlight">
-          <div class="offer-main-row">
-            <div class="offer-info-col">
-              <div class="offer-provider-line">
-                <span class="offer-provider-name">Bilety</span>
-                
-                
-              </div>
-              <div class="offer-price-val">Wstęp wolny</div>
-            </div>
-            <div>
-              
-                <a href="https://bb2026.pl/program/jazzowa-jesien/" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
-              
-            </div>
-          </div>
-
-          
-        </div>
-      
-        
-        
-        <div class="offer-box ">
           <div class="offer-main-row">
             <div class="offer-info-col">
               <div class="offer-provider-line">
@@ -399,15 +491,12 @@ html {
                 
                   <span class="offer-tag official">Oficjalna kasa</span>
                 
-                
-                  <span class="offer-tag best-price">Oficjalna kasa</span>
-                
               </div>
-              <div class="offer-price-val">Sprawdź dostępność</div>
+              <div class="offer-price-val is-text-price">Sprawdź dostępność</div>
             </div>
-            <div>
+            <div class="offer-btn-col">
               
-                <a href="https://www.bck.bielsko.pl/jazzowa-jesien-w-bielsku-bialej" target="_blank" rel="nofollow noopener" class="offer-btn-buy secondary">Kup bilet</a>
+                <a href="https://www.bck.bielsko.pl/spektakl-depresja-komika-g-1730" target="_blank" rel="nofollow noopener" class="offer-btn-buy primary">Kup bilet</a>
               
             </div>
           </div>
@@ -418,41 +507,41 @@ html {
     </div>
   
 </div>
-    ﻿
+    
 <div class="card">
   <h2>Dostępność i obiekt</h2>
   <div class="info-grid">
     
     <div class="info-label">Dostęp dla wózków</div>
-    <div class="info-val is-neutral">
+    <div class="info-val is-yes">
       
-        Brak podjazdu
+        Tak (winda / podjazd)
       
     </div>
     
     <div class="info-label">Kasa biletowa</div>
     <div class="info-val is-yes">
       
-        <a href="tel:33 821 03 03" style="color: var(--accent-blue); text-decoration: none;">33 821 03 03</a>
+        <a href="tel:33 828 16 45" style="color: var(--accent-blue); text-decoration: none;">33 828 16 45</a>
       
     </div>
     
   </div>
 </div>
 
-    ﻿
+    
 <div class="card">
   <h2>W okolicy (Gastro)</h2>
   <div class="gastro-list">
     
     <div class="gastro-item">
-      <div class="gastro-name">Kultura i Kawa</div>
-      <div class="gastro-meta">53m stąd (~1 min) &bull; ice_cream</div>
+      <div class="gastro-name">Chopina 5</div>
+      <div class="gastro-meta">124m stąd (~2 min) &bull; restaurant</div>
     </div>
     
     <div class="gastro-item">
-      <div class="gastro-name">Kawiarnia Imbryk</div>
-      <div class="gastro-meta">55m stąd (~1 min) &bull; cafe</div>
+      <div class="gastro-name">Shakespeare's pub</div>
+      <div class="gastro-meta">298m stąd (~4 min) &bull; pub</div>
     </div>
     
   </div>
