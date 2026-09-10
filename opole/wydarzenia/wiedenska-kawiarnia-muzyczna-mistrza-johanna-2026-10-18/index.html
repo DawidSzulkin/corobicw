@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Narodowe Centrum Polskiej Piosenki | Opole - CoRobićW</title>
+  <title>Wiedeńska kawiarnia muzyczna mistrza Johanna - Opole | CoRobićW</title>
   <style>
 body {
   margin: 0;
@@ -101,93 +101,78 @@ html {
     .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
     .footer-copy { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px; }
     
-  .main-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 32px; overflow: hidden; min-width: 0; }
-  .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-radius: 4px; }
-  h1 { font-size: 2.1rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 8px; }
-  .place-address { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
-  .place-address svg { flex-shrink: 0; color: var(--text-muted); }
-
-  #map {
-    height: 360px;
-    width: calc(100% + 64px) !important;
-    margin: 20px -32px 28px -32px !important;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    border-left: none !important;
-    border-right: none !important;
-    border-radius: 0 !important;
-    z-index: 1;
+  .container-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 32px; align-items: start; }
+  @media (max-width: 960px) {
+    .container-grid { display: flex; flex-direction: column; }
+    .sidebar { order: 2; width: 100%; }
+    .main-content { order: 1; width: 100%; }
   }
 
-  .events-section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-top: 1px solid var(--border);
-    padding-top: 26px;
-    margin-bottom: 18px;
-  }
-  .events-section-title {
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 900;
-    color: var(--text);
-    margin: 0;
-  }
-  .events-count-badge {
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: 9999px;
-    line-height: 1.2;
-  }
+  .main-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; min-width: 0; }
+  .ambient-banner { position: relative; width: 100%; height: clamp(340px, 45vh, 560px); overflow: hidden; background: #06080b; display: flex; justify-content: center; align-items: center; contain: paint; }
+  .ambient-bg { position: absolute; inset: -20px; background-size: cover; background-position: center; filter: blur(35px) opacity(0.35); transform: scale(1.15); pointer-events: none; will-change: transform; }
+  .ambient-fg { position: relative; max-height: 94%; max-width: 92%; width: auto; height: auto; object-fit: contain; z-index: 2; border-radius: 4px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); }
+  .ambient-shield { position: absolute; inset: 0; z-index: 3; }
 
-  .event-card-mini {
-    display: flex;
-    gap: 16px;
-    padding: 14px;
-    border: 1px solid var(--border);
-    background: var(--bg);
-    border-radius: 6px;
-    text-decoration: none;
-    color: inherit;
-    align-items: center;
-    margin-bottom: 12px;
-    transition: border-color 0.2s, background 0.2s, transform 0.2s;
-  }
-  .event-card-mini:hover { border-color: var(--border-strong); background: var(--card-hover); transform: translateX(3px); }
-  .event-card-mini.cancelled { opacity: 0.72; border-color: rgba(239, 68, 68, 0.4); }
+  .event-body-header { padding: 32px 32px 0 32px; }
+  .event-body-content { padding: 0 32px 32px 32px; }
+  .badge { display: inline-block; background: transparent; border: 1px solid var(--border-strong); color: var(--text); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px; margin-right: 6px; margin-bottom: 16px; border-radius: 4px; }
+  h1 { font-size: 2.1rem; font-weight: 900; color: var(--text); line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+  .section-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin: 28px 0 12px; font-weight: 800; color: var(--text); }
+  .event-actions-bar { display: flex; gap: 12px; margin: 24px 0 16px; flex-wrap: wrap; }
+  .action-btn { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); background: transparent; border: 1px solid var(--border-strong); padding: 10px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border-radius: 4px; }
+  .action-btn:hover { background: var(--btn-primary-bg); color: var(--btn-primary-text); }
+  .event-desc p { margin-bottom: 1.25rem; line-height: 1.75; font-size: 1rem; color: var(--text); }
+  .bullets { background: var(--bg); border: 1px solid var(--border); padding: 20px 24px 20px 40px; margin: 24px 0; border-radius: 4px; }
 
-  .event-thumb-mini { width: 110px; height: 80px; object-fit: cover; background: #000; border-radius: 4px; flex-shrink: 0; }
-  .event-info-mini { flex: 1; min-width: 0; }
-  .event-meta-mini { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .event-title-mini { margin: 2px 0 6px; font-size: 1.05rem; font-weight: 800; color: var(--text); line-height: 1.3; }
-  .event-price-mini { font-size: 0.82rem; font-weight: 800; color: var(--accent-green); }
-  .badge-cancelled-mini { color: #f87171; font-weight: 800; font-size: 0.75rem; background: rgba(239, 68, 68, 0.15); padding: 2px 6px; border-radius: 2px; }
+  .sidebar { display: flex; flex-direction: column; gap: 24px; }
+  .sidebar .card { background: var(--card-bg); border: 1px solid var(--border); padding: 24px; border-radius: 6px; }
+  .sidebar h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px; font-weight: 800; }
+  
+  .info-grid { display: grid; grid-template-columns: minmax(85px, auto) 1fr; gap: 16px 14px; align-items: baseline; }
+  .info-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; }
+  .info-val { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+  .info-val a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+  .info-val a:hover { color: var(--accent-blue); }
+  .info-val .address { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; display: block; margin-top: 4px; }
+  
+  .info-val.is-yes { color: var(--accent-green); }
+  .info-val.is-neutral { color: var(--text); font-weight: 500; }
 
-  /* LEAFLET DARK LOOK & ATTRYBUCJA */
-  .leaflet-tile { filter: brightness(0.65) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) !important; }
-  [data-theme="light"] .leaflet-tile { filter: none !important; }
-  .leaflet-container { background-color: var(--bg) !important; }
-  .leaflet-control-attribution {
-    background: rgba(9, 9, 11, 0.75) !important;
-    color: var(--text-muted) !important;
-    font-size: 0.65rem !important;
-    backdrop-filter: blur(4px);
-  }
-  .leaflet-control-attribution a { color: var(--text-muted) !important; }
-  .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-    background: var(--card-bg) !important;
-    color: var(--text) !important;
-    border: 1px solid var(--border) !important;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
-  }
-  .leaflet-popup-content b { color: var(--accent-blue) !important; }
-  .leaflet-control-zoom a { background-color: var(--card-bg) !important; color: var(--text) !important; border-color: var(--border) !important; }
+  .free-entry-banner { margin-top: 20px; background-color: var(--free-bg); border: 1px solid var(--free-border); border-radius: 6px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .free-entry-banner .status { color: var(--accent-green); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem; }
+
+  .ticket-market-header { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .ticket-market-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+  .ticket-count { font-size: 0.72rem; color: var(--text-muted); }
+  .offers-stack { display: flex; flex-direction: column; gap: 12px; }
+  .offer-box { border: 1px solid var(--border); background: var(--card-hover); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s; }
+  .offer-box:hover { border-color: rgba(255,255,255,0.25); }
+  .offer-box.highlight { border-color: rgba(56, 189, 248, 0.35); background: linear-gradient(180deg, rgba(56, 189, 248, 0.04) 0%, var(--card-hover) 100%); }
+  .offer-main-row { display: flex; justify-content: space-between; align-items: center; padding: 14px; gap: 12px; width: 100%; }
+  .offer-info-col { display: flex; flex-direction: column; gap: 4px; }
+  .offer-provider-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .offer-provider-name { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); }
+  .offer-tag { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 3px; }
+  .offer-tag.best-price { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+  .offer-tag.official { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
+  .offer-tag.cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+  .offer-price-val { font-size: 1.15rem; font-weight: 800; color: var(--text); letter-spacing: -0.2px; margin-top: 2px; }
+  .offer-btn-buy { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 9px 16px; border-radius: 4px; min-width: 96px; text-align: center; white-space: nowrap; }
+  .offer-btn-buy.primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid var(--btn-primary-bg); }
+  .offer-btn-buy.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+
+  .offer-discounts-drawer { border-top: 1px dashed var(--border); padding: 8px 14px 10px; background: rgba(56, 189, 248, 0.02); width: 100%; }
+  .offer-discounts-drawer details summary { font-size: 0.72rem; font-weight: 700; color: var(--accent-blue); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 0.5px; user-select: none; }
+  .offer-discounts-drawer details summary::-webkit-details-marker { display: none; }
+  .offer-discounts-drawer ul { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .offer-discounts-drawer li { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.72rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 4px; }
+  .offer-discounts-drawer li:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .gastro-list { display: flex; flex-direction: column; gap: 14px; }
+  .gastro-item { display: flex; flex-direction: column; gap: 3px; }
+  .gastro-name { font-weight: 700; color: var(--text); font-size: 0.92rem; }
+  .gastro-meta { font-size: 0.8rem; color: var(--text-muted); }
 
   
     /* --- SYSTEMOWY PRZEŁĄCZNIK MOTYWU (PILL SWITCH) --- */
@@ -923,9 +908,39 @@ html {
   
     </style>
   
-  <meta name="description" content="Informacje, dojazd, parking i aktualny repertuar: Narodowe Centrum Polskiej Piosenki w Opole.">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Wiedeńska kawiarnia muzyczna mistrza Johanna | CoRobićW Opole">
+  <meta property="og:description" content="„Wiedeńska kawiarnia muzyczna mistrza Johanna” Najpiękniejsza muzyka wiedeńska i słynne czardasze Są melodie, które wystarczy usłyszeć raz, by natychmiast przenieść się myślami do">
+  <meta property="og:image" content="https://corobicw.pl/assets/thumbnails/biletyna_opole_wiedenska-kawiarnia-muzyczna-mistrza-johanna.webp">
+  <meta property="og:url" content="https://corobicw.pl/opole/wydarzenia/wiedenska-kawiarnia-muzyczna-mistrza-johanna-2026-10-18/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wiede\u0144ska kawiarnia muzyczna mistrza Johanna",
+    "startDate": "2026-10-18T18:00",
+    "endDate": "2026-10-18",
+    "location": {
+      "@type": "Place",
+      "name": "Narodowe Centrum Polskiej Piosenki",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Opole",
+        "addressCountry": "PL",
+        "streetAddress": "Piastowska, Opole"
+      }
+    },
+    "image": ["https://corobicw.pl/assets/thumbnails/biletyna_opole_wiedenska-kawiarnia-muzyczna-mistrza-johanna.webp"],
+    "description": "\u201eWiede\u0144ska kawiarnia muzyczna mistrza Johanna\u201d Najpi\u0119kniejsza muzyka wiede\u0144ska i s\u0142ynne czardasze S\u0105 melodie, kt\u00f3re wystarczy us\u0142ysze\u0107 raz, by natychmiast przenie\u015b\u0107 si\u0119 my\u015blami do",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://biletyna.pl/koncert/Wiedenska-kawiarnia-muzyczna-mistrza-Johanna"
+    }
+  }
+  </script>
 
 </head>
 <body>
@@ -953,222 +968,123 @@ html {
   </header>
   <main>
     
-<nav class="breadcrumbs" aria-label="Ścieżka powrotu">
-  <a href="/">Polska</a><span>/</span><a href="/opole/">Opole</a><span>/</span><span class="current">Narodowe Centrum Polskiej Piosenki</span>
-</nav>
-
+    <nav class="breadcrumbs" aria-label="Ścieżka powrotu">
+      <a href="/">Polska</a><span>/</span><a href="/opole/">Opole</a><span>/</span><span class="current">Wiedeńska kawiarnia muzyczna mistrza Johanna</span>
+    </nav>
     
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
+    
 <div class="container-grid">
   <article class="main-content">
-    <span class="badge">arts_centre</span>
-    <h1>Narodowe Centrum Polskiej Piosenki</h1>
-    <p class="place-address">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-      <span>ul. Piastowska 14a, Opole</span>
-    </p>
+    ﻿<div class="ambient-banner" oncontextmenu="return false;">
+  <div class="ambient-shield" title="CoRobićW - Wiedeńska kawiarnia muzyczna mistrza Johanna"></div>
+  <div class="ambient-bg" style="background-image: url('/assets/thumbnails/biletyna_opole_wiedenska-kawiarnia-muzyczna-mistrza-johanna.webp');"></div>
+  <img src="/assets/thumbnails/biletyna_opole_wiedenska-kawiarnia-muzyczna-mistrza-johanna.webp" alt="Plakat: Wiedeńska kawiarnia muzyczna mistrza Johanna" class="ambient-fg" onerror="this.onerror=null; this.src='/assets/placeholder.svg';" fetchpriority="high" draggable="false">
+</div>
 
-    
-      <div id="map"></div>
-    
+<div class="event-body-header">
+  <div><span class="badge">Kultura i Rozrywka</span></div>
+  <h1>Wiedeńska kawiarnia muzyczna mistrza Johanna</h1>
 
-    <div class="events-section-header">
-      <h2 class="events-section-title">Nadchodzące wydarzenia w tym miejscu</h2>
-      <span class="events-count-badge">9</span>
-    </div>
+  <div class="event-actions-bar">
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Wiede%C5%84ska%20kawiarnia%20muzyczna%20mistrza%20Johanna&details=%E2%80%9EWiede%C5%84ska%20kawiarnia%20muzyczna%20mistrza%20Johanna%E2%80%9D%20Najpi%C4%99kniejsza%20muzyka%20wiede%C5%84ska%20i%20s%C5%82ynne%20czardasze%20S%C4%85%20melodie%2C%20kt%C3%B3re%20wystarczy%20us%C5%82ysze%C4%87%20raz%2C%20by..." target="_blank" rel="noopener" class="action-btn">📅 Kalendarz</a>
+    <a href="https://wa.me/?text=Wiede%C5%84ska%20kawiarnia%20muzyczna%20mistrza%20Johanna%20-%20https://corobicw.pl/opole/wydarzenia/wiedenska-kawiarnia-muzyczna-mistrza-johanna-2026-10-18/" target="_blank" rel="noopener" class="action-btn">💬 Wyślij znajomym</a>
+  </div>
+</div>
+    ﻿<div class="event-body-content">
+  <h2 class="section-title">O wydarzeniu</h2>
+  <div class="event-desc"><p>„Wiedeńska kawiarnia muzyczna mistrza Johanna” Najpiękniejsza muzyka wiedeńska i słynne czardasze Są melodie, które wystarczy usłyszeć raz, by natychmiast przenieść się myślami do dawnego Wiednia – miasta eleganckich sal balowych, rozświetlonych kawiarni, wirujących sukien i walca, który od pokoleń niezmiennie zachwyca publiczność na całym świecie.</p><p>„Kawiarnia wiedeńska mistrza Johanna” będzie właśnie takim muzycznym spotkaniem – pełnym wdzięku, temperamentu, romantyzmu i prawdziwie wiedeńskiej elegancji. Tego wieczoru zabrzmią najpiękniejsze melodie związane z tradycją stolicy nad Dunajem: walce, polki i utwory skrzypcowe, w których lekkość wiedeńskiego salonu spotka się z płomiennym temperamentem słynnych czardaszy.</p><p>W roli głównej wystąpi Wiktor Kuźniecow – skrzypce, którego instrument stanie się tego wieczoru raz lirycznym głosem pełnym nostalgii i czułości, innym razem zaś porwie publiczność wirtuozowskim blaskiem i żywiołowym rytmem.</p><p>Szczególnego kolorytu koncertowi dodadzą właśnie czardasze – muzyka, która rozpoczyna się często od tęsknej, niemal improwizowanej opowieści, by po chwili eksplodować zawrotnym tempem i temperamentem. Przy fortepianie zasiądzie Natalia Czekanowska, tworząc wraz ze skrzypkiem kameralny duet, w którym elegancja, subtelność i muzyczna rozmowa pozwolą słuchaczom odkryć dobrze znane melodie w niezwykle bliskiej, niemal salonowej atmosferze.</p><p>Nie zabraknie oczywiście ducha samego Johanna Straussa – niekwestionowanego króla walca, którego muzyka stała się jednym z najpiękniejszych symboli Wiednia. Jego kompozycje od ponad półtora wieku rozbrzmiewają na największych estradach świata, zachowując niezwykłą świeżość, pogodę i zdolność wywoływania uśmiechu już od pierwszych taktów.</p><p>Gospodarzem wieczoru będzie Bartosz Żurakowski, który poprzez opowieści o muzyce, kompozytorach i niezwykłym świecie dawnego Wiednia poprowadzi publiczność przez kolejne części koncertu. Dzięki słowu muzyka otrzyma swoje historie, bohaterów i anegdoty, a koncert nabierze charakteru prawdziwego spotkania w wiedeńskiej kawiarni – miejsca, w którym sztuka zawsze szła w parze z rozmową, humorem i elegancją.</p><p>Będzie to wieczór dla tych, którzy kochają piękne melodie, ale również dla wszystkich, którzy chcieliby choć na chwilę znaleźć się w świecie, gdzie walc wiruje, skrzypce śpiewają, czardasz rozpala temperament, a czas zdaje się płynąć nieco wolniej.</p><p>Zapraszamy do naszej muzycznej kawiarni wiedeńskiej – na spotkanie z mistrzem Johannem, pięknem skrzypiec i melodiami, którym od pokoleń nie sposób się oprzeć.</p></div>
 
-    
-      
-      <a href="/opole/wydarzenia/polska-noc-kabaretowa-2026-2026-09-11/" class="event-card-mini ">
-        <img src="/assets/thumbnails/kupbilecik_opole_polska-noc-kabaretowa-2026.webp" alt="Polska Noc Kabaretowa 2026" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-        <div class="event-info-mini">
-          <div class="event-meta-mini">
-            Piątek, 11 września &bull; 20:00
-          </div>
-          <div class="event-title-mini">Polska Noc Kabaretowa 2026</div>
-          <div class="event-price-mini">
-            
-              Sprawdź szczegóły
-            
-          </div>
-        </div>
-      </a>
-      
-      <a href="/opole/wydarzenia/maryla-rodowicz-niech-zyje-bal-lato-2026-2026-09-13/" class="event-card-mini ">
-        <img src="/assets/thumbnails/kupbilecik_opole_maryla-rodowicz.webp" alt="Maryla Rodowicz - Niech żyje bal. Lato 2026" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-        <div class="event-info-mini">
-          <div class="event-meta-mini">
-            Niedziela, 13 września &bull; 17:00
-          </div>
-          <div class="event-title-mini">Maryla Rodowicz - Niech żyje bal. Lato 2026</div>
-          <div class="event-price-mini">
-            
-              Sprawdź szczegóły
-            
-          </div>
-        </div>
-      </a>
-      
-      <a href="/opole/wydarzenia/lady-pank-2026-09-18/" class="event-card-mini ">
-        <img src="/assets/thumbnails/kupbilecik_opole_lady-pank.webp" alt="Lady Pank" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-        <div class="event-info-mini">
-          <div class="event-meta-mini">
-            Piątek, 18 września &bull; 19:00
-          </div>
-          <div class="event-title-mini">Lady Pank</div>
-          <div class="event-price-mini">
-            
-              Sprawdź szczegóły
-            
-          </div>
-        </div>
-      </a>
-      
-      <a href="/opole/wydarzenia/krolowie-zycia-skawinskitkaczyk-2026-09-20/" class="event-card-mini ">
-        <img src="/assets/thumbnails/ncpp_opole_krolowie-zycia-skawinskitkaczyk.webp" alt="KRÓLOWIE ŻYCIA - Skawiński/Tkaczyk" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-        <div class="event-info-mini">
-          <div class="event-meta-mini">
-            Niedziela, 20 września &bull; 19:00
-          </div>
-          <div class="event-title-mini">KRÓLOWIE ŻYCIA - Skawiński/Tkaczyk</div>
-          <div class="event-price-mini">
-            
-              Sprawdź szczegóły
-            
-          </div>
-        </div>
-      </a>
-      
-      <a href="/opole/wydarzenia/kombii-skawinskitkaczyk-50-lat-na-scenie-2026-09-20/" class="event-card-mini ">
-        <img src="/assets/thumbnails/kupbilecik_opole_kombii.webp" alt="KOMBII Skawiński/Tkaczyk 50 lat na scenie" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-        <div class="event-info-mini">
-          <div class="event-meta-mini">
-            Niedziela, 20 września &bull; 18:30
-          </div>
-          <div class="event-title-mini">KOMBII Skawiński/Tkaczyk 50 lat na scenie</div>
-          <div class="event-price-mini">
-            
-              od 158.24 zł
-            
-          </div>
-        </div>
-      </a>
-      
-      <a href="/opole/wydarzenia/wiedenska-kawiarnia-muzyczna-mistrza-johanna-2026-10-18/" class="event-card-mini ">
-        <img src="/assets/thumbnails/biletyna_opole_wiedenska-kawiarnia-muzyczna-mistrza-johanna.webp" alt="Wiedeńska kawiarnia muzyczna mistrza Johanna" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-        <div class="event-info-mini">
-          <div class="event-meta-mini">
-            Niedziela, 18 października &bull; 18:00
-          </div>
-          <div class="event-title-mini">Wiedeńska kawiarnia muzyczna mistrza Johanna</div>
-          <div class="event-price-mini">
-            
-              od 84.96 zł
-            
-          </div>
-        </div>
-      </a>
-      
-      <a href="/opole/wydarzenia/mieszko-minkiewicz-wszystko-dobrze-2027-02-03/" class="event-card-mini ">
-        <img src="/assets/thumbnails/biletyna_opole_mieszko-minkiewicz-wszystko-dobrze.webp" alt="Mieszko Minkiewicz - Wszystko Dobrze" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-        <div class="event-info-mini">
-          <div class="event-meta-mini">
-            Środa, 3 lutego &bull; 19:00
-          </div>
-          <div class="event-title-mini">Mieszko Minkiewicz - Wszystko Dobrze</div>
-          <div class="event-price-mini">
-            
-              od 74.34 zł
-            
-          </div>
-        </div>
-      </a>
-      
-      <a href="/opole/wydarzenia/sviatoslav-2027-02-13/" class="event-card-mini ">
-        <img src="/assets/thumbnails/biletyna_opole_sviatoslav.webp" alt="SVIATOSLAV" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-        <div class="event-info-mini">
-          <div class="event-meta-mini">
-            Sobota, 13 lutego &bull; 17:00
-          </div>
-          <div class="event-title-mini">SVIATOSLAV</div>
-          <div class="event-price-mini">
-            
-              od 159.30 zł
-            
-          </div>
-        </div>
-      </a>
-      
-      <a href="/opole/wydarzenia/polska-noc-kabaretowa-2027-2027-05-07/" class="event-card-mini ">
-        <img src="/assets/thumbnails/biletyna_opole_polska-noc-kabaretowa-2027.webp" alt="Polska Noc Kabaretowa 2027" class="event-thumb-mini" onerror="this.onerror=null; this.src='/assets/placeholder.svg';">
-        <div class="event-info-mini">
-          <div class="event-meta-mini">
-            Piątek, 7 maja &bull; 20:00
-          </div>
-          <div class="event-title-mini">Polska Noc Kabaretowa 2027</div>
-          <div class="event-price-mini">
-            
-              od 191.16 zł
-            
-          </div>
-        </div>
-      </a>
-      
-    
+  
+</div>
   </article>
 
   <aside class="sidebar">
     <div class="card">
-      <h2>Logistyka i Dojazd</h2>
-      <div class="info-grid">
-        <div class="info-label">Adres</div>
-        <div class="info-val">ul. Piastowska 14a</div>
-
-        <div class="info-label">Parking</div>
-        <div class="info-val">
-          
-            Bezpłatny parking (52m)
-          
-        </div>
-
-        <div class="info-label">Dostępność</div>
-        <div class="info-val">
-          Brak danych
-          
-        </div>
-      </div>
+  <h2>Bilety i Organizacja</h2>
+  <div class="info-grid">
+    <div class="info-label">Data</div><div class="info-val">Niedziela, 18 października</div>
+    <div class="info-label">Start</div><div class="info-val">18:00</div>
+    <div class="info-label">Miejsce</div>
+    <div class="info-val"><a href="/opole/miejsca/o-narodowe-centrum-polskiej-piosenki/"><strong>Narodowe Centrum Polskiej Piosenki</strong></a><span class="address">Piastowska, Opole</span>
     </div>
-  </aside>
+  </div>
+
+  
+  
+  
+    
+    
+      
+      
+        
+      
+    
+  
+
+  
+  
+    <div class="clean-market-stack">
+      
+        
+        
+        
+        
+        
+
+        <div class="clean-market-card ">
+          
+            <a href="https://biletyna.pl/koncert/Wiedenska-kawiarnia-muzyczna-mistrza-Johanna" target="_blank" rel="nofollow noopener" class="clean-market-tile" aria-label="Bilety w Biletyna - Od 84,96 zł">
+              <div class="clean-market-left">
+                <span class="clean-market-name">Biletyna</span>
+                <span class="clean-market-sub">
+                  
+                    Dystrybutor online
+                  
+                </span>
+              </div>
+              <div class="v2-pill ">
+                <span class="v2-price">Od 84,96 zł</span>
+                <span class="v2-arrow" aria-hidden="true">↗</span>
+              </div>
+            </a>
+          
+
+          
+        </div>
+      
+    </div>
+
+    
+    
+      <div class="clean-market-notice">
+        Ceny podawane przez dystrybutorów. Część linków to odnośniki partnerskie portalu.
+      </div>
+    
+
+  
+  
+</div>
+    
+    
+<div class="card">
+  <h2>W okolicy (Gastro)</h2>
+  <div class="gastro-list">
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Qvevri</div>
+      <div class="gastro-meta">152m stąd (~2 min) &bull; restaurant</div>
+    </div>
+    
+    <div class="gastro-item">
+      <div class="gastro-name">Rzymskie Wakacje</div>
+      <div class="gastro-meta">167m stąd (~2 min) &bull; restaurant</div>
+    </div>
+    
+  </div>
 </div>
 
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const lat = 50.6672047; const lon = 17.9182952;
-    if (typeof L !== 'undefined' && document.getElementById('map')) {
-      const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lon], 15);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap'
-      }).addTo(map);
-      L.marker([lat, lon]).addTo(map).bindPopup("<b>Narodowe Centrum Polskiej Piosenki</b>").openPopup();
-    }
-  });
-</script>
-
+  </aside>
+</div>
 
   </main>
   <footer>
