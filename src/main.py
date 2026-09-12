@@ -74,6 +74,7 @@ def main():
     config_files = sorted(list(config_dir.glob("*.yaml")) + list(config_dir.glob("*.yml")))
     
     all_configured_cities = []
+    failed_cities = []
     for cfg_path in config_files:
         city_cfg = load_yaml(cfg_path)
         city_tag = city_cfg.get("city_tag")
@@ -124,8 +125,13 @@ def main():
             )
         except Exception as e:
             print(f"[BŁĄD MIASTA] Nie udało się przetworzyć '{city_name}': {e}")
+            failed_cities.append(city_tag)
 
     # Hub główny portalu
+    if failed_cities:
+        print('\n[FAIL-FAST] Przerwano potok. Błędy w miastach: ' + str(failed_cities))
+        sys.exit(1)
+
     if not args.source and all_configured_cities:
         print("\n=== GENEROWANIE STRONY GŁÓWNEJ (HUB) ===")
         hub_cities = [{"name": c["name"], "tag": c["tag"]} for c in all_configured_cities]

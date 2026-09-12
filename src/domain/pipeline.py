@@ -969,6 +969,15 @@ def run_city_pipeline(
 
     active_db_events = get_active_events(city_tag=raw_tag, min_date=today_iso)
     deduped_events = deduplicate_events(active_db_events, city_name=city_name)
+    # CIRCUIT BREAKER: Ochrona bazy przed uszkodzonym scrapingiem
+    min_thresh = city_cfg.get('min_events', 0) if isinstance(city_cfg, dict) else 0
+    if not source_filter and min_thresh > 0 and len(deduped_events) < min_thresh:
+        raise RuntimeError(
+            f"[CIRCUIT BREAKER] Miasto '{city_name}' ({raw_tag}): odnaleziono tylko {len(deduped_events)} "
+            f"aktywnych wydarzen przy wymaganym minimum {min_thresh}. "
+            f"Zatrzymano synchronizacje bazy danych i renderowanie SSG w celu ochrony produkcji."
+        )
+
     sync_city_events(raw_tag, deduped_events)
     event_models = _prepare_full_event_pages(deduped_events, places_by_id=places_by_id, city_cfg=city_cfg, city_name=city_name)
     renderer.render_city(

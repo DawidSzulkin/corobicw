@@ -71,3 +71,9 @@ _*.py
 serve.py
 
 raw_places_osm.json
+
+# SSG Build Artifacts
+public/**/*.html
+public/*.html
+public/assets/thumbnails/
+public/sitemap.xml
