@@ -38,12 +38,12 @@ jobs:
           pip install pytest pytest-cov
 
       - name: Run unit tests
-          run: |
-            python -m pytest -v -m "not integration"
+        run: |
+          python -m pytest -v -m "not integration"
 
-        - name: Run contract tests (DOM selectors healthcheck)
-          run: |
-            python -m pytest -v tests/test_contracts.py
+      - name: Run contract tests (DOM selectors healthcheck)
+        run: |
+          python -m pytest -v tests/test_contracts.py
 
       - name: Build static site (SSG Pipeline)
         run: |
