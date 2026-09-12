@@ -61,3 +61,22 @@ def test_cavatina_contract():
     resp = session.get(url, headers=HEADERS, timeout=(5, 15))
     assert resp.status_code == 200, "Cavatina API przestało odpowiadać."
     assert isinstance(resp.json(), list), "Cavatina API zmieniło strukturę odpowiedzi."
+
+
+@pytest.mark.integration
+def test_kedzierzynkozle_contract():
+    session = get_resilient_session()
+    url = "https://kedzierzynkozle.pl/pl/lista-wydarzen"
+    resp = session.get(url, headers=HEADERS, timeout=(5, 15))
+    assert resp.status_code == 200, f"Serwis kedzierzynkozle.pl zwrócił status {resp.status_code}"
+    
+    soup = BeautifulSoup(resp.content, "html.parser")
+    rows = soup.select("#block-system-main .views-row")
+    assert len(rows) > 0, "Brak wierszy wydarzeń pod selektorem #block-system-main .views-row"
+    
+    first_row = rows[0]
+    title_el = first_row.select_one(".views-field-title .field-content, .views-field-title a")
+    date_el = first_row.select_one(".data-wydarzenia")
+    
+    assert title_el is not None and len(title_el.get_text(strip=True)) > 0, "Brak tytułu w pierwszym wierszu"
+    assert date_el is not None, "Brak bloku .data-wydarzenia w pierwszym wierszu"

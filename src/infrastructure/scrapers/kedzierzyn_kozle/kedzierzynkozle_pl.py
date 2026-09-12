@@ -3,7 +3,7 @@ import os
 import re
 import sys
 from datetime import datetime
-from typing import Any, Dict, List, Set
+from typing import Any, Dict, List, Set, Tuple
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 from src.infrastructure.scrapers.base import BaseScraper
@@ -22,6 +22,7 @@ MONTHS_PL = {
     'listopad': '11', 'listopada': '11',
     'grudzień': '12', 'grudnia': '12'
 }
+
 
 class KedzierzynKozlePlScraper(BaseScraper):
     def __init__(self, city_tag: str = "kedzierzyn_kozle", partner_id: str = ""):
@@ -90,19 +91,22 @@ class KedzierzynKozlePlScraper(BaseScraper):
             pass
         return ""
 
-    def scrape_month_cards(self, year: int, month: int, today_iso: str) -> List[Dict[str, Any]]:
-        url = f"/pl/calendar-node-field-date/month/{year}-{month:02d}"
+    def scrape_list_page(self, page: int, today_iso: str) -> Tuple[List[Dict[str, Any]], bool]:
+        url = f"/pl/lista-wydarzen?page={page}"
         try:
             soup = self.get_soup(url)
-        except Exception:
-            return []
+        except Exception as e:
+            print(f"[{self.source_name}] Błąd ładowania strony {page}: {e}")
+            return [], False
+
+        rows = soup.select('#block-system-main .views-row')
+        if not rows:
+            return [], False
 
         parsed_items = []
-        rows = soup.select('.view-Wydarzenia .views-row')
-
         for row in rows:
-            title_el = row.select_one('.views-field-title .field-content')
-            link_el = row.select_one('.view-read-more a')
+            title_el = row.select_one('.views-field-title .field-content, .views-field-title a')
+            link_el = row.select_one('.view-read-more a, .views-field-title a')
 
             if not title_el or not link_el:
                 continue
@@ -145,19 +149,25 @@ class KedzierzynKozlePlScraper(BaseScraper):
                 "_rel_url": relative_url
             })
 
-        return parsed_items
+        # Wykrycie obecności następnej strony w pagerze Drupala
+        has_next = bool(soup.select_one('.pager-next a, li.next a, li.pager__item--next a'))
+        return parsed_items, has_next
 
     def fetch_events(self) -> List[Dict[str, Any]]:
         self.seen_urls.clear()
         today_iso = datetime.now().strftime("%Y-%m-%d")
-        now = datetime.now()
         raw_events = []
+        max_pages = 12
 
-        for offset in range(3):
-            target_month = (now.month - 1 + offset) % 12 + 1
-            target_year = now.year + ((now.month - 1 + offset) // 12)
-            events = self.scrape_month_cards(target_year, target_month, today_iso)
-            raw_events.extend(events)
+        print(f"[{self.source_name}] Rozpoczynam pobieranie stron z /pl/lista-wydarzen...")
+        for page in range(max_pages):
+            items, has_next = self.scrape_list_page(page, today_iso)
+            raw_events.extend(items)
+            print(f"[{self.source_name}] Strona {page}: zebrano {len(items)} aktywnych pozycji.")
+            
+            if not has_next:
+                print(f"[{self.source_name}] Osiągnięto ostatnią stronę paginacji ({page}).")
+                break
 
         print(f"[{self.source_name}] Równoległe pobieranie opisów dla {len(raw_events)} wydarzeń...")
         

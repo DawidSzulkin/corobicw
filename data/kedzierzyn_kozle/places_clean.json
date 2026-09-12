@@ -4200,5 +4200,19 @@
       "lat": 50.0,
       "lon": 19.0
     }
+  },
+  "kk-centrum-dugnad": {
+    "place_id": "kk-centrum-dugnad",
+    "name": "Centrum Współpracy „Dugnad”",
+    "group": "kultura",
+    "category": "venue",
+    "address": {
+      "street": "Karola Stalmacha 20",
+      "city": "Kedzierzyn Kozle"
+    },
+    "geo": {
+      "lat": 50.3352,
+      "lon": 18.1434
+    }
   }
 }

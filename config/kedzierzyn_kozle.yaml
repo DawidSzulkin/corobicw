@@ -1,7 +1,7 @@
 city_tag: kedzierzyn_kozle
 city: Kędzierzyn-Koźle
-city_name: "Kędzierzyn-Koźle"
-name: "Kędzierzyn-Koźle"
+city_name: Kędzierzyn-Koźle
+name: Kędzierzyn-Koźle
 description: Wydarzenia, koncerty, spektakle i seanse kinowe w Kędzierzynie-Koźlu.
   Sprawdź aktualny repertuar MOK, kina Chemik i imprez miejskich.
 seo_keywords: Kędzierzyn-Koźle wydarzenia, koncerty Kędzierzyn, kino Chemik, imprezy
@@ -15,7 +15,8 @@ theme: modern
 sources:
   kedzierzynkozle_pl:
     enabled: true
-    name: Miejski Ośrodek Kultury / Urząd Miasta
+    name: Urząd Miasta Kędzierzyn-Koźle
+    min_events: 15
   biletyna_pl:
     enabled: true
     name: Biletyna (Kędzierzyn-Koźle)
@@ -43,6 +44,16 @@ prompts:
     \n}\n"
   user_template: 'Wydarzenie: {title} | Data: {date} | Treść: {description}'
 venue_match_rules:
+- target_id: kk-centrum-dugnad
+  keywords:
+  - dugnad
+  - stalmacha
+  - stelmacha
+- target_id: kk-kkca-wodne-okko
+  keywords:
+  - okko
+  - wodne okko
+  - mostowa 1
 - keywords:
   - parkrun
   - bieg parkrun
@@ -144,9 +155,6 @@ venue_match_rules:
 - target_id: kk-orlik
   keywords:
   - orlik, ul. 9 maja 2
-- target_id: kk-kkca-wodne-okko
-  keywords:
-  - kryta pływalnia / wodne okko
 - target_id: kk-muzeum-ziemi-kozielskiej
   keywords:
   - muzeum ziemi kozielskiej, ul. józefa ignacego kraszewskiego 5
