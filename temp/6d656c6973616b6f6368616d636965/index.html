@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>1 / 31</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #181b22;
+      --border: #2e3440;
+      --text: #eceff4;
+      --muted: #8892b0;
+      --accent: #7aa2f7;
+      --accent-dim: rgba(122, 162, 247, 0.15);
+      --error: #f7768e;
+      --error-bg: rgba(247, 118, 142, 0.12);
+      --success: #9ece6a;
+      --success-bg: rgba(158, 206, 106, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(122, 162, 247, 0.1);
+      border: 1px solid rgba(122, 162, 247, 0.25);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .legend {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 24px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legend strong {
+      color: var(--text);
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .legend span {
+      display: block;
+      margin-top: 8px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .timer-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .timer {
+      font-size: 2rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 26px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hint-box {
+      margin-bottom: 24px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hold-btn {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 340px;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed var(--accent);
+      border-radius: 10px;
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 0.9rem;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      touch-action: manipulation;
+    }
+
+    .hold-btn span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hold-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: var(--accent-dim);
+      z-index: 1;
+      transition: width 0s;
+    }
+
+    .hold-btn.holding .hold-progress {
+      width: 100%;
+      transition: width 2s linear;
+    }
+
+    .secret-hint {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
+      max-width: 340px;
+      padding: 14px 20px;
+      background: rgba(122, 162, 247, 0.08);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      color: var(--accent);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .secret-hint span {
+      font-family: monospace;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+    }
+
+    .hint-box.revealed .hold-btn {
+      display: none;
+    }
+
+    .hint-box.revealed .secret-hint {
+      display: flex;
+    }
+
+    .code-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .word-group {
+      display: flex;
+      gap: 5px;
+    }
+
+    .char-box {
+      width: 34px;
+      height: 44px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      font-family: monospace;
+      transition: border-color 0.2s, background-color 0.2s, transform 0.1s;
+    }
+
+    .char-box:focus {
+      outline: none;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .code-wrapper.error .char-box {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+      animation: shake 0.35s ease-in-out;
+    }
+
+    .code-wrapper.success .char-box {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .feedback {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 12px 16px;
+      transition: opacity 0.25s ease;
+      opacity: 0;
+    }
+
+    .feedback.error {
+      opacity: 1;
+      color: var(--error);
+      background: var(--error-bg);
+      border: 1px solid rgba(247, 118, 142, 0.3);
+    }
+
+    .feedback.success {
+      opacity: 1;
+      color: var(--success);
+      background: var(--success-bg);
+      border: 1px solid rgba(158, 206, 106, 0.35);
+      font-size: 1.05rem;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    @media (max-width: 420px) {
+      .char-box {
+        width: 30px;
+        height: 40px;
+        font-size: 1.05rem;
+      }
+      .timer {
+        font-size: 1.65rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <div class="badge">Zagadka 1 / 31</div>
+
+    <div class="legend">
+      <strong>31 lat. 31 zagadek.</strong>
+      Dziś Twoje urodziny, więc zaczynamy małą zabawę. Rozwiąż wszystkie 31 kroków, a na końcu odbierzesz swoją nagrodę.
+      <span>Czas na pierwszy krok.</span>
+    </div>
+
+    <div class="timer-label">Czas na rozwiązanie</div>
+    <div class="timer" id="timer">--:--:--</div>
+
+    <div class="hint-box" id="hintBox">
+      <button type="button" class="hold-btn" id="holdBtn" oncontextmenu="return false;">
+        <div class="hold-progress"></div>
+        <span>Przytrzymaj (2s), aby odkryć wskazówkę</span>
+      </button>
+
+      <div class="secret-hint" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="3"/>
+          <line x1="2" y1="9" x2="22" y2="9"/>
+          <line x1="13.5" y1="12.5" x2="10.5" y2="17.5"/>
+        </svg>
+        <span>0x?? &rarr; UTF-8</span>
+      </div>
+    </div>
+
+    <div class="code-wrapper" id="codeWrapper" aria-label="Pole na 15-znakowe hasło">
+      <div class="word-group">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="word-group">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="word-group">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+        <input type="text" maxlength="1" class="char-box" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+  </main>
+
+  <script>
+    const deadline = new Date("2026-11-17T00:00:00+01:00").getTime();
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+      const diff = deadline - Date.now();
+      if (diff <= 0) {
+        timerEl.textContent = "00:00:00";
+        timerEl.style.color = "var(--error)";
+        return;
+      }
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      timerEl.textContent = [hours, minutes, seconds]
+        .map(v => String(v).padStart(2, "0"))
+        .join(":");
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    const hintBox = document.getElementById("hintBox");
+    const holdBtn = document.getElementById("holdBtn");
+    let holdTimeout = null;
+
+    function startHold(e) {
+      if (e.type === "mousedown" && e.button !== 0) return;
+      e.preventDefault();
+      holdBtn.classList.add("holding");
+      holdTimeout = setTimeout(() => {
+        hintBox.classList.add("revealed");
+      }, 2000);
+    }
+
+    function cancelHold() {
+      clearTimeout(holdTimeout);
+      holdTimeout = null;
+      holdBtn.classList.remove("holding");
+      hintBox.classList.remove("revealed");
+    }
+
+    holdBtn.addEventListener("mousedown", startHold);
+    holdBtn.addEventListener("touchstart", startHold, { passive: false });
+    window.addEventListener("mouseup", cancelHold);
+    window.addEventListener("touchend", cancelHold);
+    window.addEventListener("touchcancel", cancelHold);
+
+    const inputs = Array.from(document.querySelectorAll(".char-box"));
+    const wrapper = document.getElementById("codeWrapper");
+    const feedback = document.getElementById("feedback");
+    const TARGET = atob("bWVsaXNha29jaGFtY2ll");
+
+    function normalizeText(str) {
+      return str
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/ę/g, "e");
+    }
+
+    function clearState() {
+      wrapper.classList.remove("error", "success");
+      feedback.className = "feedback";
+      feedback.textContent = "";
+    }
+
+    function checkPassword() {
+      const current = inputs.map(i => i.value).join("");
+      if (current.length < inputs.length) {
+        clearState();
+        return;
+      }
+
+      if (normalizeText(current) === TARGET) {
+        wrapper.classList.remove("error");
+        wrapper.classList.add("success");
+        feedback.className = "feedback success";
+        feedback.textContent = "Poczekaj na kolejną zagadkę";
+        inputs.forEach(i => i.disabled = true);
+      } else {
+        wrapper.classList.remove("success");
+        wrapper.classList.add("error");
+        feedback.className = "feedback error";
+        feedback.textContent = "Błędne hasło. Spróbuj ponownie.";
+      }
+    }
+
+    inputs.forEach((input, idx) => {
+      input.addEventListener("input", (e) => {
+        clearState();
+        const val = normalizeText(e.target.value);
+        e.target.value = val.slice(0, 1);
+
+        if (e.target.value && idx < inputs.length - 1) {
+          inputs[idx + 1].focus();
+        }
+        checkPassword();
+      });
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && !input.value && idx > 0) {
+          clearState();
+          inputs[idx - 1].focus();
+        } else if (e.key === "ArrowLeft" && idx > 0) {
+          inputs[idx - 1].focus();
+        } else if (e.key === "ArrowRight" && idx < inputs.length - 1) {
+          inputs[idx + 1].focus();
+        }
+      });
+
+      input.addEventListener("paste", (e) => {
+        e.preventDefault();
+        const pasted = normalizeText((e.clipboardData || window.clipboardData).getData("text"));
+        if (!pasted) return;
+
+        const startIdx = pasted.length >= inputs.length ? 0 : idx;
+        for (let i = 0; i < pasted.length && (startIdx + i) < inputs.length; i++) {
+          inputs[startIdx + i].value = pasted[i];
+        }
+
+        const nextFocus = Math.min(startIdx + pasted.length, inputs.length - 1);
+        inputs[nextFocus].focus();
+        checkPassword();
+      });
+    });
+  </script>
+</body>
+</html>
